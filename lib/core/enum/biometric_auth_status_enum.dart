@@ -1,0 +1,1 @@
+enum BiometricAuthStatusEnum { enabled, disabled }
