@@ -5,8 +5,8 @@ class AppColor {
   //===============================================
   // Primary Color
   //===============================================
-  static const primary = Color.fromRGBO(59, 143, 205, 1);
-  static const primaryHex = 'FF3B8FCD';
+  static const primary = Color.fromRGBO(2, 157, 179, 1);
+  static const primaryHex = '029db3';
   static const primaryColors = [
     primary,
     Color.fromRGBO(239, 199, 68, 1),
@@ -74,7 +74,7 @@ class AppColor {
   // Screen Background
   //===============================================
   static const background = Color.fromRGBO(234, 241, 244, 1);
-  static const backgroundDark = Color.fromRGBO(27, 33, 44, 1);
+  static const backgroundDark = Color.fromRGBO(19, 20, 28, 1);
   static const backgroundLight = Colors.white;
 
   //===============================================

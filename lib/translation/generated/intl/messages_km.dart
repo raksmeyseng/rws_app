@@ -80,7 +80,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "add_news": MessageLookupByLibrary.simpleMessage("បន្ថែមព័ត៌មាន"),
         "all": MessageLookupByLibrary.simpleMessage("ទាំងអស់"),
         "all_customer": MessageLookupByLibrary.simpleMessage("អតិថិជនទាំងអស់"),
-        "appName": MessageLookupByLibrary.simpleMessage("EAC App Admin"),
+        "appName": MessageLookupByLibrary.simpleMessage("RWS App"),
         "app_load_config_failed": MessageLookupByLibrary.simpleMessage(
             "- សូមពិនិត្យថាឧបករណ៍របស់អ្នកមានអុីនធឺណិត\n- មានបញ្ហាបច្ចេកទេសដែលក្រុមការងារយើងខ្ញុំកំពុងរកដំណោះស្រាយ\n\nសូមអធ្យាស្រ័យនិងសូមព្យាយាមម្ដងទៀត។"),
         "appearance": MessageLookupByLibrary.simpleMessage("ទំរង់កម្មវិធី"),
@@ -194,6 +194,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "general_information":
             MessageLookupByLibrary.simpleMessage("ព័ត៌មានលម្អិត"),
         "greeting": MessageLookupByLibrary.simpleMessage("សួស្ដី"),
+        "home": MessageLookupByLibrary.simpleMessage("ទំព័រដើម"),
         "inactive": MessageLookupByLibrary.simpleMessage("លុប"),
         "input_current_password": MessageLookupByLibrary.simpleMessage(
             "បញ្ចូលពាក្យសម្ងាត់បច្ចុប្បន្ន"),
@@ -311,6 +312,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "real_time_date_format": MessageLookupByLibrary.simpleMessage(
             "ថ្ងៃEEEE dd MMMM yyyy | hh:mm:ss a"),
         "register_date": MessageLookupByLibrary.simpleMessage("ថ្ងៃចុះឈ្មោះ"),
+        "report": MessageLookupByLibrary.simpleMessage("របាយការណ៍"),
         "save_profile_failed":
             MessageLookupByLibrary.simpleMessage("ការរក្សាទុក បរាជ័យ"),
         "scan_to_authenticate": MessageLookupByLibrary.simpleMessage(
@@ -359,7 +361,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "សូមអធ្យាស្រ័យ ចំពោះការអាក់ខាន យើងខ្ញុំ សូមផ្អាកការផ្ដល់សេវាកម្មរយៈពេលខ្លី។ ប្រព័ន្ធនឹងដំណើរការឡើងវិញក្នុងពេលដ៏ខ្លីខាងមុខ។"),
         "upload_image_failure":
             MessageLookupByLibrary.simpleMessage("រក្សាទុករូបភាពបរាជ័យ"),
+        "user_name": MessageLookupByLibrary.simpleMessage("អ្នកប្រើប្រាស់"),
         "version": MessageLookupByLibrary.simpleMessage("ជំនាន់កម្មវិធី"),
+        "water_supply":
+            MessageLookupByLibrary.simpleMessage("ប្រព័ន្ធផ្គត់ផ្គង់ទឹក"),
         "your_password_changed_successfuly":
             MessageLookupByLibrary.simpleMessage(
                 "ពាក្យសម្ងាត់របស់អ្នកត្រូវបានផ្លាស់ប្ដូររួចរាល់!"),

@@ -1,14 +1,14 @@
+import 'package:equatable/equatable.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:formz/formz.dart';
 import 'package:rws_app/config/routes/app_route.dart';
 import 'package:rws_app/config/routes/application.dart';
 import 'package:rws_app/core/modules/authentication/bloc/auth_bloc.dart';
 import 'package:rws_app/core/modules/authentication/repositories/auth_repository.dart';
 import 'package:rws_app/core/modules/authentication/repositories/user_repository.dart';
-import 'package:rws_app/core/modules/login/models/email_input.dart';
 import 'package:rws_app/core/modules/login/models/password_input.dart';
-import 'package:equatable/equatable.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:formz/formz.dart';
+import 'package:rws_app/core/modules/login/models/username_input.dart';
 
 part 'login_event.dart';
 part 'login_state.dart';
@@ -25,7 +25,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   final UserRepository userRepo;
 
   Future<void> _onEvent(LoginEvent event, Emitter<LoginState> emit) async {
-    if (event is LoginEmailChanged) {
+    if (event is LoginUserNameChanged) {
       return _onUsernameChanged(event, emit);
     }
     if (event is LoginPasswordChanged) {
@@ -40,11 +40,11 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   }
 
   void _onUsernameChanged(
-    LoginEmailChanged event,
+    LoginUserNameChanged event,
     Emitter<LoginState> emit,
   ) {
-    final emailInput = EmailInput.pure(event.email);
-    emit(state.copyWith(emailInput: emailInput));
+    final userNameInput = UserNameInput.pure(event.email);
+    emit(state.copyWith(userNameInput: userNameInput));
   }
 
   void _onPasswordChanged(
@@ -60,38 +60,38 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     Emitter<LoginState> emit,
   ) async {
     SystemChannels.textInput.invokeMethod('TextInput.hide');
-    final emailInput = EmailInput.dirty(state.emailInput.value);
+    final userNameInput = UserNameInput.dirty(state.userNameInput.value);
     final passwordInput = PasswordInput.dirty(state.passwordInput.value);
 
     emit(state.copyWith(
-      emailInput: emailInput,
+      userNameInput: userNameInput,
       passwordInput: passwordInput,
-      status: Formz.validate([emailInput, passwordInput]),
+      status: Formz.validate([userNameInput, passwordInput]),
     ));
 
     if (state.status.isValidated) {
       emit(state.copyWith(status: FormzStatus.submissionInProgress));
       try {
-        final userToken = await authRepo.login(
-          emailInput.value,
-          passwordInput.value,
-        );
-        Application.authBloc.add(UserTokenUpdated(userToken));
+        // final userToken = await authRepo.login(
+        //   userNameInput.value,
+        //   passwordInput.value,
+        // );
+        // Application.authBloc.add(UserTokenUpdated(userToken));
         // Add some delay to wait for auth state finishing updated
         await Future.delayed(const Duration(milliseconds: 300));
 
-        final user = await userRepo.getUser(userToken.userId);
-        // await authRepo.saveOrUpdateUserTokens(phoneNumber, userToken);
+        final userToken = await userRepo.getUserToken();
+        // await authRepo.saveOrUpdateUserTokens(userToken);
         Application.authBloc.add(AuthStatusChanged(
           status: AuthStatus.authenticated,
           userToken: userToken,
-          user: user,
+          user: userToken.user,
         ));
 
         emit(state.copyWith(status: FormzStatus.submissionSuccess));
         // Add some delay to wait for auth state finishing updated
         await Future.delayed(const Duration(milliseconds: 300));
-        Application.router.goNamed(AppRoute.home);
+        Application.router.goNamed(AppRoute.dashboard);
       } catch (_) {
         emit(state.copyWith(status: FormzStatus.submissionFailure));
       }

@@ -97,6 +97,8 @@ dependencies:
   # Browse for attachment fiels
   file_picker: ^5.2.5
   firebase_core: ^2.7.0
+  # google map
+  google_maps_flutter: ^2.2.5
 
 dev_dependencies:
   flutter_test:

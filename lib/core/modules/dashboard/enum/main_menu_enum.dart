@@ -2,17 +2,17 @@ import 'package:rws_app/translation/generated/l10n.dart';
 import 'package:flutter/material.dart';
 
 enum MainMenuEnum {
-  account,
-  setting,
+  home,
+  settings,
   about,
 }
 
 extension MainMenuEnumExtension on MainMenuEnum {
   String getTitle(BuildContext context) {
     switch (this) {
-      case MainMenuEnum.account:
-        return S.of(context).account;
-      case MainMenuEnum.setting:
+      case MainMenuEnum.home:
+        return S.of(context).home;
+      case MainMenuEnum.settings:
         return S.of(context).title_settings;
       case MainMenuEnum.about:
         return S.of(context).about_app;
@@ -21,9 +21,9 @@ extension MainMenuEnumExtension on MainMenuEnum {
 
   IconData getIconData() {
     switch (this) {
-      case MainMenuEnum.account:
-        return Icons.person;
-      case MainMenuEnum.setting:
+      case MainMenuEnum.home:
+        return Icons.home;
+      case MainMenuEnum.settings:
         return Icons.settings;
       case MainMenuEnum.about:
         return Icons.info;

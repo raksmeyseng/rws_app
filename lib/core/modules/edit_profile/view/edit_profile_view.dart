@@ -1,24 +1,17 @@
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:rws_app/config/routes/application.dart';
-import 'package:rws_app/config/themes/app_color.dart';
-import 'package:rws_app/constants/asset_path.dart';
-import 'package:rws_app/core/enum/base_status_enum.dart';
-import 'package:rws_app/core/modules/edit_profile/models/email_input.dart';
-import 'package:rws_app/core/modules/edit_profile/models/full_name_input.dart';
-import 'package:rws_app/core/modules/edit_profile/models/phone_number_input.dart';
-import 'package:rws_app/core/widgets/caption_widget.dart';
-import 'package:rws_app/core/widgets/dialogs/confirm_dialog.dart';
-import 'package:rws_app/core/widgets/my_text_input.dart';
-import 'package:rws_app/core/widgets/text_widget.dart';
-import 'package:rws_app/core/widgets/wrapper.dart';
-import 'package:rws_app/translation/generated/l10n.dart';
-import 'package:rws_app/utils/common_utils.dart';
-import 'package:rws_app/utils/helpers/dialog_helper.dart';
-import 'package:rws_app/utils/helpers/image_picker_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+import 'package:rws_app/config/themes/app_color.dart';
+import 'package:rws_app/core/modules/edit_profile/models/email_input.dart';
+import 'package:rws_app/core/modules/edit_profile/models/full_name_input.dart';
+import 'package:rws_app/core/modules/edit_profile/models/phone_number_input.dart';
+import 'package:rws_app/core/widgets/caption_widget.dart';
+import 'package:rws_app/core/widgets/my_text_input.dart';
+import 'package:rws_app/core/widgets/wrapper.dart';
+import 'package:rws_app/translation/generated/l10n.dart';
+import 'package:rws_app/utils/common_utils.dart';
+
 import '../bloc/edit_profile_bloc.dart';
 
 class EditProfileView extends StatelessWidget {
@@ -53,8 +46,8 @@ class EditProfileView extends StatelessWidget {
                   child: Wrap(
                     spacing: 40,
                     children: const [
-                      _ProfilePicture(),
-                      SizedBox(height: 24.0),
+                      // _ProfilePicture(),
+                      // SizedBox(height: 24.0),
                       _FormField(),
                     ],
                   ),
@@ -68,111 +61,111 @@ class EditProfileView extends StatelessWidget {
   }
 }
 
-class _ProfilePicture extends StatelessWidget {
-  const _ProfilePicture({Key? key}) : super(key: key);
+// class _ProfilePicture extends StatelessWidget {
+//   const _ProfilePicture({Key? key}) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<EditProfileBloc, EditProfileState>(
-      buildWhen: (previous, current) =>
-          previous.uploadedProfile != current.uploadedProfile,
-      builder: (context, state) {
-        final authUser = Application.authBloc.state.user;
-        String? profileUrl = authUser?.profileUrl;
-        if (state.uploadedProfile != null) {
-          profileUrl = state.uploadedProfile?.url;
-        }
-        return Row(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Stack(
-                alignment: Alignment.center,
-                children: [
-                  ClipOval(
-                    child: SizedBox(
-                      height: 120,
-                      width: 120,
-                      child: profileUrl?.isNotEmpty == true
-                          ? CachedNetworkImage(
-                              imageUrl: profileUrl!,
-                              fit: BoxFit.contain,
-                            )
-                          : Image.asset(
-                              AssetPath.iconUser,
-                              color: Theme.of(context)
-                                  .dividerColor
-                                  .withOpacity(.3),
-                              fit: BoxFit.contain,
-                            ),
-                    ),
-                  ),
-                  const _ProfileUploadIndecator(),
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const SizedBox(height: 8.0),
-                  const _ButtonUploadProfilePicture(),
-                  if (profileUrl?.isNotEmpty == true) ...[
-                    const SizedBox(height: 16.0),
-                    const _ButtonRemoveProfile(),
-                  ],
-                ],
-              ),
-            ),
-          ],
-        );
-      },
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return BlocBuilder<EditProfileBloc, EditProfileState>(
+//       buildWhen: (previous, current) =>
+//           previous.uploadedProfile != current.uploadedProfile,
+//       builder: (context, state) {
+//         final authUser = Application.authBloc.state.user;
+//         String? profileUrl = authUser?.profileUrl;
+//         if (state.uploadedProfile != null) {
+//           profileUrl = state.uploadedProfile?.url;
+//         }
+//         return Row(
+//           mainAxisSize: MainAxisSize.min,
+//           crossAxisAlignment: CrossAxisAlignment.center,
+//           children: [
+//             Padding(
+//               padding: const EdgeInsets.all(16.0),
+//               child: Stack(
+//                 alignment: Alignment.center,
+//                 children: [
+//                   ClipOval(
+//                     child: SizedBox(
+//                       height: 120,
+//                       width: 120,
+//                       child: profileUrl?.isNotEmpty == true
+//                           ? CachedNetworkImage(
+//                               imageUrl: profileUrl!,
+//                               fit: BoxFit.contain,
+//                             )
+//                           : Image.asset(
+//                               AssetPath.iconUser,
+//                               color: Theme.of(context)
+//                                   .dividerColor
+//                                   .withOpacity(.3),
+//                               fit: BoxFit.contain,
+//                             ),
+//                     ),
+//                   ),
+//                   const _ProfileUploadIndecator(),
+//                 ],
+//               ),
+//             ),
+//             Padding(
+//               padding: const EdgeInsets.all(16.0),
+//               child: Column(
+//                 crossAxisAlignment: CrossAxisAlignment.start,
+//                 mainAxisSize: MainAxisSize.min,
+//                 children: [
+//                   const SizedBox(height: 8.0),
+//                   const _ButtonUploadProfilePicture(),
+//                   if (profileUrl?.isNotEmpty == true) ...[
+//                     const SizedBox(height: 16.0),
+//                     const _ButtonRemoveProfile(),
+//                   ],
+//                 ],
+//               ),
+//             ),
+//           ],
+//         );
+//       },
+//     );
+//   }
+// }
 
-class _ButtonRemoveProfile extends StatelessWidget {
-  const _ButtonRemoveProfile({Key? key}) : super(key: key);
+// class _ButtonRemoveProfile extends StatelessWidget {
+//   const _ButtonRemoveProfile({Key? key}) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return TextButton(
-      onPressed: () => _removeProfile(context),
-      style: TextButton.styleFrom(
-        foregroundColor: AppColor.danger,
-      ),
-      child: TextWidget(
-        S.of(context).button_remove_profile,
-        color: AppColor.danger,
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return TextButton(
+//       onPressed: () => _removeProfile(context),
+//       style: TextButton.styleFrom(
+//         foregroundColor: AppColor.danger,
+//       ),
+//       child: TextWidget(
+//         S.of(context).button_remove_profile,
+//         color: AppColor.danger,
+//       ),
+//     );
+//   }
+// }
 
-Future<void> _removeProfile(BuildContext context) async {
-  final bloc = context.read<EditProfileBloc>();
-  final yes = await DialogHelper.showAnimatedDialog<bool>(
-    animationType: DialogAnimationType.fromBottom,
-    pageBuilder: (_, __, ___) => ConfirmDialog(
-      title: S.current.msg_title_remove_profile,
-      icon: Padding(
-        padding: const EdgeInsets.all(4.0),
-        child: Image.asset(
-          AssetPath.iconUser,
-          color: AppColor.white,
-        ),
-      ),
-      message: S.current.msg_remove_profile,
-    ),
-  );
-  if (yes == true) {
-    bloc.add(const ProfilePictureRemoved());
-  }
-}
+// Future<void> _removeProfile(BuildContext context) async {
+//   final bloc = context.read<EditProfileBloc>();
+//   final yes = await DialogHelper.showAnimatedDialog<bool>(
+//     animationType: DialogAnimationType.fromBottom,
+//     pageBuilder: (_, __, ___) => ConfirmDialog(
+//       title: S.current.msg_title_remove_profile,
+//       icon: Padding(
+//         padding: const EdgeInsets.all(4.0),
+//         child: Image.asset(
+//           AssetPath.iconUser,
+//           color: AppColor.white,
+//         ),
+//       ),
+//       message: S.current.msg_remove_profile,
+//     ),
+//   );
+//   if (yes == true) {
+//     bloc.add(const ProfilePictureRemoved());
+//   }
+// }
 
 class _FormField extends StatelessWidget {
   const _FormField({Key? key}) : super(key: key);
@@ -201,65 +194,65 @@ class _FormField extends StatelessWidget {
   }
 }
 
-class _ProfileUploadIndecator extends StatelessWidget {
-  const _ProfileUploadIndecator({Key? key}) : super(key: key);
+// class _ProfileUploadIndecator extends StatelessWidget {
+//   const _ProfileUploadIndecator({Key? key}) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<EditProfileBloc, EditProfileState>(
-      buildWhen: (previous, current) =>
-          previous.uploadStatus != current.uploadStatus,
-      builder: (context, state) {
-        if (state.uploadStatus == BaseStatusEnum.inprogress) {
-          return CircularProgressIndicator(
-            color: Theme.of(context).primaryColor,
-          );
-        }
-        return const SizedBox(height: 0);
-      },
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return BlocBuilder<EditProfileBloc, EditProfileState>(
+//       buildWhen: (previous, current) =>
+//           previous.uploadStatus != current.uploadStatus,
+//       builder: (context, state) {
+//         if (state.uploadStatus == BaseStatusEnum.inprogress) {
+//           return CircularProgressIndicator(
+//             color: Theme.of(context).primaryColor,
+//           );
+//         }
+//         return const SizedBox(height: 0);
+//       },
+//     );
+//   }
+// }
 
-class _ButtonUploadProfilePicture extends StatelessWidget {
-  const _ButtonUploadProfilePicture({Key? key}) : super(key: key);
+// class _ButtonUploadProfilePicture extends StatelessWidget {
+//   const _ButtonUploadProfilePicture({Key? key}) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<EditProfileBloc, EditProfileState>(
-      buildWhen: (previous, current) =>
-          previous.uploadStatus != current.uploadStatus,
-      builder: (context, state) {
-        return TextButton(
-          onPressed: state.uploadStatus == BaseStatusEnum.inprogress
-              ? null
-              : () => _actionButtonUpload(context),
-          child: TextWidget(
-            S.of(context).button_upload_profile,
-            color: Theme.of(context).primaryColor,
-          ),
-        );
-      },
-    );
-  }
+//   @override
+//   Widget build(BuildContext context) {
+//     return BlocBuilder<EditProfileBloc, EditProfileState>(
+//       buildWhen: (previous, current) =>
+//           previous.uploadStatus != current.uploadStatus,
+//       builder: (context, state) {
+//         return TextButton(
+//           onPressed: state.uploadStatus == BaseStatusEnum.inprogress
+//               ? null
+//               : () => _actionButtonUpload(context),
+//           child: TextWidget(
+//             S.of(context).button_upload_profile,
+//             color: Theme.of(context).primaryColor,
+//           ),
+//         );
+//       },
+//     );
+//   }
 
-  Future<void> _actionButtonUpload(BuildContext context) async {
-    final bloc = context.read<EditProfileBloc>();
-    final authUser = Application.authBloc.state.user;
-    String? profileUrl = authUser?.settings?.profileMediaUrl;
-    if (bloc.state.uploadedProfile?.url.isNotEmpty == true) {
-      profileUrl = bloc.state.uploadedProfile?.url;
-    }
-    final file = await ImagePickerHelper.pickImage(
-      context,
-      hasProfile: profileUrl?.isNotEmpty == true,
-    );
-    if (file == null) return;
-    if (file.path.isNotEmpty) {
-      bloc.add(ProfilePictureUploaded(file));
-    }
-  }
-}
+//   Future<void> _actionButtonUpload(BuildContext context) async {
+//     final bloc = context.read<EditProfileBloc>();
+//     final authUser = Application.authBloc.state.user;
+//     String? profileUrl = authUser?.settings?.profileMediaUrl;
+//     if (bloc.state.uploadedProfile?.url.isNotEmpty == true) {
+//       profileUrl = bloc.state.uploadedProfile?.url;
+//     }
+//     final file = await ImagePickerHelper.pickImage(
+//       context,
+//       hasProfile: profileUrl?.isNotEmpty == true,
+//     );
+//     if (file == null) return;
+//     if (file.path.isNotEmpty) {
+//       bloc.add(ProfilePictureUploaded(file));
+//     }
+//   }
+// }
 
 class _FullNameInput extends StatelessWidget {
   const _FullNameInput({Key? key}) : super(key: key);

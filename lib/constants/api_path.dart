@@ -16,7 +16,7 @@ class ApiPath {
       '/v1/Security/$userId/Deactivate';
   static const String refreshToken = '/v1/Security/RefreshToken';
   static String updateProfile(int userId) => '/api/UserAdmin/$userId';
-  static String login = '/v1/AdminSecurity/Authentication';
+  static String login = '/api/login';
 
   // Media Api
   static const String uploadFile = '/api/Media/File';
@@ -28,4 +28,5 @@ class ApiPath {
   static String getAccountDetails(int id) =>
       'https://eac-app-admin.free.mockoapp.net/api/accounts/$id';
   static String getUser(int? userId) => '/api/UserAdmin/$userId';
+  static String getUserToken = 'https://rwsapp.free.mockoapp.net/user';
 }

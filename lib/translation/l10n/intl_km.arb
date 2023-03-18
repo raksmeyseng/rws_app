@@ -1,5 +1,5 @@
 {
-  "appName": "EAC App Admin",
+  "appName": "RWS App",
   "greeting": "សួស្ដី",
   "button_yes": "បាទ/ចាស",
   "button_no": "ទេ",
@@ -194,5 +194,9 @@
   "confirm_password_mismatch": "ពាក្យសម្ងាត់មិនត្រូវគ្នា",
   "confirm_password": "បញ្ជាក់ពាក្យសម្ងាត់",
   "invalid_password":"សូមបញ្ចូលពាក្យសម្ងាត់យ៉ាងតិច 8 ខ្ទង់",
-  "account":"គណនីប្រើប្រាស់"
+  "account":"គណនីប្រើប្រាស់",
+  "user_name":"អ្នកប្រើប្រាស់",
+  "home":"ទំព័រដើម",
+  "water_supply":"ប្រព័ន្ធផ្គត់ផ្គង់ទឹក",
+  "report":"របាយការណ៍"
 }

@@ -31,7 +31,7 @@ class AllRightReserved extends StatelessWidget {
                   ),
                   const SizedBox(width: 16.0),
                 ],
-                const CaptionWidget('© ${AppConstant.copyRightYear} EAC'),
+                const CaptionWidget('© ${AppConstant.copyRightYear} RWS'),
               ],
             ),
           ),

@@ -193,5 +193,9 @@
   "confirm_password_mismatch": "Confirm password mismatch",
   "confirm_password": "Confirm Password",
   "invalid_password":"Please select at least 8 digit.",
-  "account":"Account"
+  "account":"Account",
+  "user_name":"Username",
+  "home":"Home",
+  "water_supply":"Water Supply",
+  "report":"Report"
 }

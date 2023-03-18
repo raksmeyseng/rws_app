@@ -62,7 +62,7 @@ class AuthRepository extends RestApiService {
     const key = AppConstant.userTokens;
     final userTokens = await getUserTokens() ?? {};
     userTokens.removeWhere((key, value) =>
-        UserTokenModel.fromJson(jsonDecode(value)).userId == userId);
+        UserTokenModel.fromJson(jsonDecode(value)).user.id == userId);
     await LocalStorageService.instance.saveString(key, json.encode(userTokens));
   }
 
@@ -126,7 +126,6 @@ class AuthRepository extends RestApiService {
     return setting[userId] ?? const LocalUserSettingModel();
   }
 
-
   /// Only call this function on account deactivation or user token invoked
   Future<void> clearCurrentUserCache(int userId) async {
     await Future.wait([
@@ -140,9 +139,8 @@ class AuthRepository extends RestApiService {
 
   Future<UserTokenModel> login(String email, String password) async {
     final payload = LoginPayloadModel(
-      email: email,
+      username: email,
       password: password,
-      clientId: AppConstant.clientId,
     );
     final res = await post(ApiPath.login, data: payload);
     return UserTokenModel.fromJson(res);

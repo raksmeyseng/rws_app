@@ -8,49 +8,35 @@ part of 'user_model.dart';
 
 UserModel _$UserModelFromJson(Map<String, dynamic> json) => UserModel(
       id: json['id'] as int,
-      fullName: json['name'] as String,
-      active: json['active'] as bool?,
-      dateOfBirth: json['dateOfBirth'] == null
-          ? null
-          : DateTime.parse(json['dateOfBirth'] as String),
-      gender: $enumDecodeNullable(_$GenderEnumEnumMap, json['gender']),
-      phoneNumber: json['phoneNumber'] as String?,
+      username: json['username'] as String,
       email: json['email'] as String?,
-      isLocked: json['isLocked'] as bool?,
-      currentSessionId: json['currentSessionId'] as String?,
-      lastLoginTime: json['lastLoginTime'] == null
-          ? null
-          : DateTime.parse(json['lastLoginTime'] as String),
-      createdDate: DateTime.parse(json['createdDate'] as String),
-      settings: json['userSetting'] == null
-          ? null
-          : UserSettingModel.fromJson(
-              json['userSetting'] as Map<String, dynamic>),
-      password: json['password'] as String?,
-      profileId: json['profileId'] as String?,
-      profileUrl: json['profileUrl'] as String?,
+      isDataEntry: json['is_data_entry'] as bool?,
+      isHeadDepartment: json['is_head_department'] as bool?,
+      isProvincialDepartmentHead:
+          json['is_provincial_department_head'] as bool?,
+      isDataVerifier1: json['is_data_verifier_1'] as bool?,
+      isDataVerifier2: json['is_data_verifier_2'] as bool?,
+      isPartner: json['is_partner'] as bool?,
+      dataEntryProvinceId: json['data_entry_province_id'] as int?,
+      provincialDepartmentHeadProvinceId:
+          json['provincial_department_head_province_id'] as int?,
+      firstName: json['first_name'] as String?,
+      lastName: json['last_name'] as String?,
     );
 
 Map<String, dynamic> _$UserModelToJson(UserModel instance) => <String, dynamic>{
       'id': instance.id,
-      'active': instance.active,
-      'name': instance.fullName,
-      'dateOfBirth': instance.dateOfBirth?.toIso8601String(),
-      'gender': _$GenderEnumEnumMap[instance.gender],
-      'phoneNumber': instance.phoneNumber,
+      'username': instance.username,
       'email': instance.email,
-      'isLocked': instance.isLocked,
-      'currentSessionId': instance.currentSessionId,
-      'lastLoginTime': instance.lastLoginTime?.toIso8601String(),
-      'createdDate': instance.createdDate.toIso8601String(),
-      'userSetting': instance.settings?.toJson(),
-      'password': instance.password,
-      'profileId': instance.profileId,
-      'profileUrl': instance.profileUrl,
+      'is_data_entry': instance.isDataEntry,
+      'is_head_department': instance.isHeadDepartment,
+      'is_provincial_department_head': instance.isProvincialDepartmentHead,
+      'is_data_verifier_1': instance.isDataVerifier1,
+      'is_data_verifier_2': instance.isDataVerifier2,
+      'is_partner': instance.isPartner,
+      'data_entry_province_id': instance.dataEntryProvinceId,
+      'provincial_department_head_province_id':
+          instance.provincialDepartmentHeadProvinceId,
+      'first_name': instance.firstName,
+      'last_name': instance.lastName,
     };
-
-const _$GenderEnumEnumMap = {
-  GenderEnum.female: 2,
-  GenderEnum.male: 1,
-  GenderEnum.other: 3,
-};

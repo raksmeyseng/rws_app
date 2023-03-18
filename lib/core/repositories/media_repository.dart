@@ -37,7 +37,7 @@ class MediaRepository extends RestApiService {
 
     final authState = Application.authBloc.state;
     final base64Username =
-        base64.encode(utf8.encode(authState.user?.fullName ?? '--'));
+        base64.encode(utf8.encode(authState.user?.username ?? '--'));
 
     final headers = {
       'x-uploader': base64Username,
@@ -83,7 +83,7 @@ class MediaRepository extends RestApiService {
 
     final authState = Application.authBloc.state;
     final base64Username =
-        base64.encode(utf8.encode(authState.user?.fullName ?? '--'));
+        base64.encode(utf8.encode(authState.user?.username ?? '--'));
 
     final headers = {
       'x-uploader': base64Username,
@@ -133,7 +133,7 @@ class MediaRepository extends RestApiService {
 
     final authState = Application.authBloc.state;
     final base64Username =
-        base64.encode(utf8.encode(authState.user?.fullName ?? '--'));
+        base64.encode(utf8.encode(authState.user?.username ?? '--'));
 
     final headers = {
       'x-uploader': base64Username,

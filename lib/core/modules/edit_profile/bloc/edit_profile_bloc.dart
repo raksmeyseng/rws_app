@@ -1,5 +1,11 @@
 import 'dart:developer';
 
+import 'package:equatable/equatable.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:formz/formz.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:rws_app/config/routes/application.dart';
 import 'package:rws_app/core/enum/base_status_enum.dart';
 import 'package:rws_app/core/enum/gender_enum.dart';
@@ -11,13 +17,6 @@ import 'package:rws_app/core/modules/edit_profile/models/full_name_input.dart';
 import 'package:rws_app/core/modules/edit_profile/models/gender_input.dart';
 import 'package:rws_app/core/modules/edit_profile/models/phone_number_input.dart';
 import 'package:rws_app/core/modules/edit_profile/models/user_payload_model.dart';
-import 'package:rws_app/utils/common_utils.dart';
-import 'package:equatable/equatable.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:formz/formz.dart';
-import 'package:image_picker/image_picker.dart';
 
 part 'edit_profile_event.dart';
 part 'edit_profile_state.dart';
@@ -81,20 +80,15 @@ class EditProfileBloc extends Bloc<EditProfileEvent, EditProfileState> {
 
   void _onStarted(EditProfileEvent event, Emitter<EditProfileState> emit) {
     final user = Application.authBloc.state.user!;
-    final fullNameInput = FullNameInput.pure(user.fullName);
-
-    final phoneNumberInput =
-        PhoneNumberInput.pure(phoneBeautify(user.phoneNumber));
+    final fullNameInput = FullNameInput.pure(user.username);
     final emailInput = EmailInput.pure(user.email ?? '');
 
     fullNameController.text = fullNameInput.value;
 
-    phoneNumberController.text = phoneNumberInput.text;
     emailController.text = emailInput.value;
 
     emit(state.copyWith(
       fullNameInput: fullNameInput,
-      phoneNumberInput: phoneNumberInput,
       emailInput: emailInput,
     ));
   }
@@ -206,13 +200,9 @@ class EditProfileBloc extends Bloc<EditProfileEvent, EditProfileState> {
       emit(state.copyWith(formStatus: FormzStatus.submissionInProgress));
       try {
         final user = Application.authBloc.state.user!;
-        final pro = state.uploadedProfile ?? UploadedFileModel.empty;
         final payload = UserPayloadModel(
           fullName: fullNameInput.value,
           email: emailInput.value,
-          phoneNumber: user.phoneNumber,
-          profileId: pro.id.isNotEmpty ? pro.id : user.profileId,
-          profileUrl: pro.url.isNotEmpty ? pro.url : user.profileUrl,
         );
 
         final res = await Application.authRepo.updateProfile(user.id, payload);

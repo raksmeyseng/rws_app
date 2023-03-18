@@ -9,17 +9,16 @@ class AppRoute {
   static const String splash = 'splash';
   static const String login = 'login';
   static const String changePassword = 'change-password';
-  static const String home = 'home';
-  static const String settings = 'settings';
-  static const String about = 'about';
+  static const String dashboard = 'dashboard';
+
   static const String notFound = 'not-found';
   static const String register = 'register';
   static const String editProfile = 'edit-profile';
 
-  // Main Menu
-  static final String account = MainMenuEnum.account.name;
-  static final String supplier = MainMenuEnum.setting.name;
-  static final String aboutEAC = MainMenuEnum.about.name;
+  /// Main Menu Item
+  static final String home = MainMenuEnum.home.name;
+  static final String settings = MainMenuEnum.settings.name;
+  static final String about = MainMenuEnum.about.name;
 
   static final List<RouteBase> configs = [
     GoRoute(
@@ -44,9 +43,21 @@ class AppRoute {
       pageBuilder: registerBuilder,
     ),
     GoRoute(
-      name: home,
+      name: dashboard,
       path: '/home',
       pageBuilder: dashboardBuilder,
+      routes: [
+        GoRoute(
+          name: settings,
+          path: 'settings',
+          pageBuilder: settingBuilder,
+        ),
+        GoRoute(
+          name: about,
+          path: 'about',
+          pageBuilder: aboutBuilder,
+        ),
+      ],
     ),
   ];
 }

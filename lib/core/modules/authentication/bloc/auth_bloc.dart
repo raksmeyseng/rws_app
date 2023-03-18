@@ -42,7 +42,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           user: event.user,
           userToken: event.userToken,
         ));
-        add(AuthUserSettingLoaded(event.user!.id.toString()));
+        // add(AuthUserSettingLoaded(event.user!.id.toString()));
         break;
       default:
         return emit(state.copyWith(status: AuthStatus.unknown));

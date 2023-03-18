@@ -189,6 +189,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "general_information":
             MessageLookupByLibrary.simpleMessage("General Information"),
         "greeting": MessageLookupByLibrary.simpleMessage("Hello"),
+        "home": MessageLookupByLibrary.simpleMessage("Home"),
         "inactive": MessageLookupByLibrary.simpleMessage("Inactive"),
         "input_current_password":
             MessageLookupByLibrary.simpleMessage("Input current password"),
@@ -304,6 +305,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "EEEE, MMMM dd, yyyy | hh:mm:ss a"),
         "register_date":
             MessageLookupByLibrary.simpleMessage("Registered Date"),
+        "report": MessageLookupByLibrary.simpleMessage("Report"),
         "save_profile_failed":
             MessageLookupByLibrary.simpleMessage("Save profile failed!"),
         "scan_to_authenticate": MessageLookupByLibrary.simpleMessage(
@@ -350,7 +352,9 @@ class MessageLookup extends MessageLookupByLibrary {
             "We apologize for the service interruption due to system maintenance. The service will be back online shortly."),
         "upload_image_failure":
             MessageLookupByLibrary.simpleMessage("Image uploading failed!"),
+        "user_name": MessageLookupByLibrary.simpleMessage("Username"),
         "version": MessageLookupByLibrary.simpleMessage("Version"),
+        "water_supply": MessageLookupByLibrary.simpleMessage("Water Supply"),
         "your_account_has_been_deleted": MessageLookupByLibrary.simpleMessage(
             "Your user account has been deleted"),
         "your_password_changed_successfuly":

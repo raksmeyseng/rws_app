@@ -3,7 +3,7 @@ part of 'dashboard_bloc.dart';
 class DashboardState extends Equatable {
   const DashboardState._({
     this.status = BaseStatusEnum.initial,
-    this.selectedMenu = MainMenuEnum.account,
+    this.selectedMenu = MainMenuEnum.home,
   });
 
   final BaseStatusEnum status;

@@ -97,12 +97,9 @@ class ChangePasswordBloc
       try {
         final user = Application.authBloc.state.user!;
         final payload = UserPayloadModel(
-          fullName: user.fullName,
+          fullName: user.username,
           email: user.email,
-          phoneNumber: user.phoneNumber,
           password: password.value,
-          profileId: user.profileId,
-          profileUrl: user.profileUrl,
         );
         final res = await Application.authRepo.updateProfile(user.id, payload);
         emit(state.copyWith(

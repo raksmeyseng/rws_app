@@ -41,7 +41,7 @@ class TextWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final style = Theme.of(context).textTheme.bodyLarge!.copyWith(
+    final style = Theme.of(context).textTheme.bodyMedium!.copyWith(
           fontSize: size,
           fontWeight: bold ? FontWeight.bold : null,
           color: primary ? Theme.of(context).primaryColor : color,

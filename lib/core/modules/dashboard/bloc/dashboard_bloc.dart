@@ -2,9 +2,9 @@ import 'dart:async';
 
 import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:rws_app/core/enum/base_status_enum.dart';
-import 'package:rws_app/core/modules/dashboard/enum/main_menu_enum.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:rws_app/core/modules/dashboard/enum/main_menu_enum.dart';
 
 part 'dashboard_event.dart';
 part 'dashboard_state.dart';

@@ -3,25 +3,25 @@ part of 'login_bloc.dart';
 class LoginState extends Equatable {
   const LoginState({
     this.status = FormzStatus.pure,
-    this.emailInput = const EmailInput.pure(),
+    this.userNameInput = const UserNameInput.pure(),
     this.passwordInput = const PasswordInput.pure(),
     this.passwordVisibility = false,
   });
 
   final FormzStatus status;
-  final EmailInput emailInput;
+  final UserNameInput userNameInput;
   final PasswordInput passwordInput;
   final bool passwordVisibility;
 
   LoginState copyWith({
     FormzStatus? status,
-    EmailInput? emailInput,
+    UserNameInput? userNameInput,
     PasswordInput? passwordInput,
     bool? passwordVisibility,
   }) {
     return LoginState(
       status: status ?? this.status,
-      emailInput: emailInput ?? this.emailInput,
+      userNameInput: userNameInput ?? this.userNameInput,
       passwordInput: passwordInput ?? this.passwordInput,
       passwordVisibility: passwordVisibility ?? this.passwordVisibility,
     );
@@ -30,7 +30,7 @@ class LoginState extends Equatable {
   @override
   List<Object> get props => [
         status,
-        emailInput,
+        userNameInput,
         passwordInput,
         passwordVisibility,
       ];

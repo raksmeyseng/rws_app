@@ -1,21 +1,15 @@
 import 'dart:io';
 
-import 'package:rws_app/constants/app_constant.dart';
-import 'package:rws_app/core/modules/app/view/app.dart';
-import 'package:rws_app/core/services/local_storage_service.dart';
-import 'package:rws_app/firebase_options.dart';
-import 'package:rws_app/simple_bloc_observer.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:rws_app/constants/app_constant.dart';
+import 'package:rws_app/core/modules/app/view/app.dart';
+import 'package:rws_app/core/services/local_storage_service.dart';
+import 'package:rws_app/simple_bloc_observer.dart';
 
 void main() async {
-  // Initialize Firebase
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
   HttpOverrides.global = MyHttpOverrides();
 
   // Set background color of status bar

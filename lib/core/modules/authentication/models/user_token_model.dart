@@ -1,23 +1,20 @@
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:rws_app/core/modules/authentication/models/user_model.dart';
 
 part 'user_token_model.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 class UserTokenModel extends Equatable {
   const UserTokenModel({
-    this.issuer,
-    required this.userId,
-    required this.token,
-    required this.refreshToken,
-    required this.tokenExpireTime,
+    required this.data,
+    required this.user,
   });
 
-  final String? issuer;
-  final int userId;
-  final String token;
-  final String refreshToken;
-  final DateTime tokenExpireTime;
+  @JsonKey(name: 'data')
+  final DataModel data;
+  @JsonKey(name: 'user')
+  final UserModel user;
 
   factory UserTokenModel.fromJson(Map<String, dynamic> json) =>
       _$UserTokenModelFromJson(json);
@@ -25,11 +22,26 @@ class UserTokenModel extends Equatable {
   Map<String, dynamic> toJson() => _$UserTokenModelToJson(this);
 
   @override
-  List<Object?> get props => [
-        issuer,
-        userId,
-        token,
-        refreshToken,
-        tokenExpireTime,
-      ];
+  List<Object?> get props => [user, data];
+}
+
+@JsonSerializable()
+class DataModel extends Equatable {
+  const DataModel({
+    required this.expiry,
+    required this.token,
+  });
+
+  @JsonKey(name: 'expiry')
+  final DateTime expiry;
+  @JsonKey(name: 'token')
+  final String token;
+
+  factory DataModel.fromJson(Map<String, dynamic> json) =>
+      _$DataModelFromJson(json);
+
+  Map<String, dynamic> toJson() => _$DataModelToJson(this);
+
+  @override
+  List<Object?> get props => [expiry, token];
 }

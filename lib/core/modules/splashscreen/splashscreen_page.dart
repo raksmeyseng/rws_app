@@ -23,7 +23,7 @@ class SplashScreenPage extends StatelessWidget {
           if (nextRoute != null) {
             context.go(nextRoute!);
           } else {
-            context.goNamed(AppRoute.home);
+            context.goNamed(AppRoute.dashboard);
           }
         }
       },

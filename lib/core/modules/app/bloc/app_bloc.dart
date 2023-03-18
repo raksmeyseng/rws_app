@@ -74,23 +74,20 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       // ==================
       // Load user from remote server
       // ==================
-      final userToken = await authBloc.authRepo.getActiveUserToken();
-      if (userToken != null) {
-        authBloc.add(UserTokenUpdated(userToken));
+      final userToken = await userRepo.getUserToken();
+      authBloc.add(UserTokenUpdated(userToken));
 
-        // Add some delay to wait for auth state finishing updated
-        await Future.delayed(const Duration(milliseconds: 300));
-        final user = await userRepo.getUser(userToken.userId);
-        authBloc.add(AuthStatusChanged(
-          status: AuthStatus.authenticated,
-          userToken: userToken,
-          user: user,
-        ));
-        // ==================
-        // Load auth user settings from local storage
-        // ==================
-        authBloc.add(AuthUserSettingLoaded(user.id.toString()));
-      }
+      // Add some delay to wait for auth state finishing updated
+      await Future.delayed(const Duration(milliseconds: 300));
+      authBloc.add(AuthStatusChanged(
+        status: AuthStatus.authenticated,
+        userToken: userToken,
+        user: userToken.user,
+      ));
+      // ==================
+      // Load auth user settings from local storage
+      // ==================
+      // authBloc.add(AuthUserSettingLoaded(user.id.toString()));
 
       // Add some delay to wait for auth state finishing updated
       await Future.delayed(const Duration(milliseconds: 300));

@@ -57,7 +57,7 @@ class ThemeItemState extends State<ThemeItem> {
                       borderRadius: BorderRadius.circular(8.0),
                       child: Container(
                         color: widget.foregroundColor,
-                        width: 35,
+                        width: 40,
                         height: 10,
                       ),
                     ),
@@ -65,25 +65,17 @@ class ThemeItemState extends State<ThemeItem> {
                 ),
                 Positioned(
                   right: 0,
-                  top: 18,
+                  top: 20,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(8.0),
                       child: Container(
                         color: Theme.of(context).primaryColor,
-                        width: 35,
+                        width: 40,
                         height: 10,
                       ),
                     ),
-                  ),
-                ),
-                Positioned(
-                  bottom: 0,
-                  child: Radio(
-                    value: widget.value,
-                    groupValue: widget.groupValue,
-                    onChanged: widget.onChanged,
                   ),
                 ),
               ],

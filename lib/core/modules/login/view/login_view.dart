@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 import 'package:rws_app/core/modules/login/bloc/login_bloc.dart';
-import 'package:rws_app/core/modules/login/models/email_input.dart';
 import 'package:rws_app/core/modules/login/models/password_input.dart';
+import 'package:rws_app/core/modules/login/models/username_input.dart';
 import 'package:rws_app/core/modules/login/widgets/app_logo.dart';
 import 'package:rws_app/core/widgets/my_button.dart';
 import 'package:rws_app/core/widgets/my_text_input.dart';
@@ -70,7 +70,7 @@ class _ContentView extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        _EmailInput(
+                        _UserNameInput(
                           fillColor:
                               Theme.of(context).dividerColor.withOpacity(.1),
                         ),
@@ -94,8 +94,8 @@ class _ContentView extends StatelessWidget {
   }
 }
 
-class _EmailInput extends StatelessWidget {
-  const _EmailInput({Key? key, this.fillColor}) : super(key: key);
+class _UserNameInput extends StatelessWidget {
+  const _UserNameInput({Key? key, this.fillColor}) : super(key: key);
 
   final Color? fillColor;
 
@@ -103,15 +103,15 @@ class _EmailInput extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<LoginBloc, LoginState>(
       buildWhen: (previous, current) =>
-          previous.emailInput != current.emailInput,
+          previous.userNameInput != current.userNameInput,
       builder: (context, state) {
         return MyTextInput(
           isRequired: true,
-          label: S.of(context).email,
-          initialValue: state.emailInput.value,
+          label: S.of(context).user_name,
+          initialValue: state.userNameInput.value,
           keyboardType: TextInputType.emailAddress,
-          onChanged: (email) {
-            context.read<LoginBloc>().add(LoginEmailChanged(email));
+          onChanged: (username) {
+            context.read<LoginBloc>().add(LoginUserNameChanged(username));
           },
           fillColor: fillColor,
           errorText: _handleErrorText(context, state),
@@ -121,12 +121,10 @@ class _EmailInput extends StatelessWidget {
   }
 
   String? _handleErrorText(BuildContext context, LoginState state) {
-    if (!state.emailInput.invalid) return null;
-    switch (state.emailInput.error) {
-      case EmailInputValidationError.empty:
-        return S.of(context).pls_input_your_email;
-      case EmailInputValidationError.invalid:
-        return S.of(context).invalid_email;
+    if (!state.userNameInput.invalid) return null;
+    switch (state.userNameInput.error) {
+      case UserNameInputValidationError.empty:
+        return S.of(context).pls_input_user_name;
       default:
         return null;
     }

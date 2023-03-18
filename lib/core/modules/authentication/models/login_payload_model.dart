@@ -6,16 +6,14 @@ part 'login_payload_model.g.dart';
 @JsonSerializable()
 class LoginPayloadModel extends Equatable {
   const LoginPayloadModel({
-    required this.clientId,
-    required this.email,
+    required this.username,
     required this.password,
   });
-  final String clientId;
-  final String email;
+  final String username;
   final String password;
 
   @override
-  List<Object?> get props => [clientId, email, password];
+  List<Object?> get props => [username, password];
 
   factory LoginPayloadModel.fromJson(Map<String, dynamic> json) =>
       _$LoginPayloadModelFromJson(json);
