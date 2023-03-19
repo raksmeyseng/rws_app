@@ -19,17 +19,17 @@ enum AuthStatus { unknown, authenticated, unauthenticated }
 
 class AuthRepository extends RestApiService {
   Future<bool> logOut({bool signOutAllDevice = false}) async {
-    final isLogout = await post(
-      ApiPath.logout,
-      data: {'signOutAllDevice': signOutAllDevice},
-    );
-    if (isLogout == true) {
-      // await FirebaseMessageHelper.unsubscribeAuthenticatedTopics();
-      await removeActiveUserToken();
-      Application.authBloc.add(const UserLogoutRequested());
-      return true;
-    }
-    return false;
+    // final isLogout = await post(
+    //   ApiPath.logout,
+    //   data: {'signOutAllDevice': signOutAllDevice},
+    // );
+    // if (isLogout == true) {
+    // await FirebaseMessageHelper.unsubscribeAuthenticatedTopics();
+    await removeActiveUserToken();
+    Application.authBloc.add(const UserLogoutRequested());
+    return true;
+    // }
+    // return false;
   }
 
   Future<void> saveActiveUserToken(UserTokenModel userToken) async {
@@ -38,12 +38,13 @@ class AuthRepository extends RestApiService {
     await LocalStorageService.instance.saveString(key, value);
   }
 
-  Future<UserTokenModel?> getActiveUserToken() async {
+  Future<String?> getActiveUserToken() async {
     final token = await LocalStorageService.instance
         .getString(AppConstant.activeUserToken);
     if (token == null) return null;
-    final user = json.decode(token);
-    return UserTokenModel.fromJson(user);
+    // final user = json.decode(token);
+    // return UserTokenModel.fromJson(user);
+    return token;
   }
 
   Future<void> removeActiveUserToken() async {
