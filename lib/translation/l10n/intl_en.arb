@@ -197,5 +197,10 @@
   "user_name":"Username",
   "home":"Home",
   "water_supply":"Water Supply",
-  "report":"Report"
+  "report":"Report",
+  "location_on_map":"Location",
+  "my_task":"My Task",
+  "location_permission": "Grant location Access",
+  "msg_allow_location_permission": "Allow the app to access your location in app setting.",
+  "no_task":"No Task"
 }

@@ -198,5 +198,10 @@
   "user_name":"អ្នកប្រើប្រាស់",
   "home":"ទំព័រដើម",
   "water_supply":"ប្រព័ន្ធផ្គត់ផ្គង់ទឹក",
-  "report":"របាយការណ៍"
+  "report":"របាយការណ៍",
+  "location_on_map":"ទីតាំងលើផែនទី",
+  "my_task":"ការងាររបស់ខ្ញុំ",
+  "location_permission": "ទីតាំង",
+  "msg_allow_location_permission": "សូមអនុញ្ញាតទីតាំងនៅក្នុងការកំណត់កម្មវិធី។",
+  "no_task":"មិនមានសំណើរ"
 }

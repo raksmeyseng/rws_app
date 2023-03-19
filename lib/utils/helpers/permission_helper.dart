@@ -85,4 +85,28 @@ class PermissionHelper {
     }
     return status.isGranted;
   }
+
+  static Future<bool> requestLocationPermission() async {
+    final status = await Permission.location.request();
+    if (status == PermissionStatus.permanentlyDenied) {
+      final confirmed = await DialogHelper.showAnimatedDialog<bool?>(
+        pageBuilder: (_, __, ___) {
+          return ConfirmDialog(
+            icon: const Icon(
+              Icons.settings,
+              size: 70,
+              color: AppColor.white,
+            ),
+            title: S.current.location_permission,
+            message: S.current.msg_allow_location_permission,
+            confirmText: S.current.button_ok,
+          );
+        },
+      );
+      if (confirmed == true) {
+        await openAppSettings();
+      }
+    }
+    return status.isGranted;
+  }
 }

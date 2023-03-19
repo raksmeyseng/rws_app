@@ -4,13 +4,29 @@ import 'package:go_router/go_router.dart';
 import 'package:rws_app/config/themes/app_color.dart';
 import 'package:rws_app/core/modules/dashboard/bloc/dashboard_bloc.dart';
 import 'package:rws_app/core/modules/dashboard/enum/main_menu_enum.dart';
-import 'package:rws_app/core/modules/dashboard/view/dashboard_view.dart';
 import 'package:rws_app/core/modules/login/widgets/app_logo.dart';
+import 'package:rws_app/core/modules/map/view/maps_page.dart';
+import 'package:rws_app/core/modules/my_task/view/my_task_page.dart';
+import 'package:rws_app/core/modules/water_supply/view/water_supply_page.dart';
 import 'package:rws_app/core/widgets/flat_card.dart';
 import 'package:rws_app/core/widgets/text_widget.dart';
+import 'package:rws_app/translation/generated/l10n.dart';
 
-class DashboardPage extends StatelessWidget {
+class DashboardPage extends StatefulWidget {
   const DashboardPage({super.key});
+
+  @override
+  State<DashboardPage> createState() => _DashboardPageState();
+}
+
+class _DashboardPageState extends State<DashboardPage> {
+  int _currentIndex = 0;
+
+  void _onTabTapped(int index) {
+    setState(() {
+      _currentIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,9 +55,45 @@ class DashboardPage extends StatelessWidget {
             ),
           ),
           drawer: const _DrawerMenu(),
-          body: const DashboardView(),
+          bottomNavigationBar: _bottomNavigatrionBar(),
+          body: IndexedStack(
+            index: _currentIndex,
+            children: const <Widget>[
+              MapsPage(),
+              WaterSupplyPage(),
+              // ReportPage(),
+              MyTaskPage(),
+            ],
+          ),
         );
       }),
+    );
+  }
+
+  Widget _bottomNavigatrionBar() {
+    return BottomNavigationBar(
+      selectedFontSize: 12,
+      unselectedItemColor: Theme.of(context).dividerColor,
+      currentIndex: _currentIndex,
+      onTap: _onTabTapped,
+      items: [
+        BottomNavigationBarItem(
+          icon: const Icon(Icons.map),
+          label: S.of(context).location_on_map,
+        ),
+        BottomNavigationBarItem(
+          icon: const Icon(Icons.water),
+          label: S.of(context).water_supply,
+        ),
+        // BottomNavigationBarItem(
+        //   icon: const Icon(Icons.assessment),
+        //   label: S.of(context).report,
+        // ),
+        BottomNavigationBarItem(
+          icon: const Icon(Icons.task),
+          label: S.of(context).my_task,
+        ),
+      ],
     );
   }
 }

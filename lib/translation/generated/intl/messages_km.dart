@@ -221,11 +221,16 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("អតិថិជនដែលបានភ្ជាប់"),
         "load_data_failed": MessageLookupByLibrary.simpleMessage(
             "មានភាពរអាក់រអួល សូមព្យាយាមម្ដងទៀត។"),
+        "location_on_map":
+            MessageLookupByLibrary.simpleMessage("ទីតាំងលើផែនទី"),
+        "location_permission": MessageLookupByLibrary.simpleMessage("ទីតាំង"),
         "login": MessageLookupByLibrary.simpleMessage("ចូលប្រើប្រាស់"),
         "logout": MessageLookupByLibrary.simpleMessage("ចាកចេញ"),
         "longitude": MessageLookupByLibrary.simpleMessage("រយៈទទឹង"),
         "msg_allow_camera_permission": MessageLookupByLibrary.simpleMessage(
             "សូមអនុញ្ញាតមុខងារថតរូបនៅក្នុងការកំណត់កម្មវិធី។"),
+        "msg_allow_location_permission": MessageLookupByLibrary.simpleMessage(
+            "សូមអនុញ្ញាតទីតាំងនៅក្នុងការកំណត់កម្មវិធី។"),
         "msg_allow_photo_permission": MessageLookupByLibrary.simpleMessage(
             "សូមអនុញ្ញាតមុខងារជ្រើសរើសរូបភាពនៅក្នុងការកំណត់កម្មវិធី។"),
         "msg_allow_storage_permission": MessageLookupByLibrary.simpleMessage(
@@ -251,10 +256,12 @@ class MessageLookup extends MessageLookupByLibrary {
             "អ្នកប្រើប្រាស់ជាទីគោរព, សូមធ្វើបច្ចុប្បន្នភាពកម្មវិធីទៅកាន់ជំនាន់ចុងក្រោយ ដើម្បីទទួលបានអត្ថប្រយោជន៍ច្រើនបំផុតពីកម្មវិធី និងដើម្បីបន្តការប្រើប្រាស់។"),
         "msg_version_update": MessageLookupByLibrary.simpleMessage(
             "អ្នកប្រើប្រាស់ជាទីគោរព, សូមធ្វើបច្ចុប្បន្នភាពកម្មវិធីទៅកាន់ជំនាន់ចុងក្រោយ ដើម្បីទទួលបានអត្ថប្រយោជន៍ច្រើនបំផុតពីកម្មវិធី។"),
+        "my_task": MessageLookupByLibrary.simpleMessage("ការងាររបស់ខ្ញុំ"),
         "new_password":
             MessageLookupByLibrary.simpleMessage("ពាក្យសម្ងាត់ថ្មី"),
         "news_content": MessageLookupByLibrary.simpleMessage("មាតិកា"),
         "news_date": MessageLookupByLibrary.simpleMessage("កាលបរិច្ឆេទ"),
+        "no_task": MessageLookupByLibrary.simpleMessage("មិនមានសំណើរ"),
         "notification": MessageLookupByLibrary.simpleMessage("សារជូនដំណឹង"),
         "page_not_found":
             MessageLookupByLibrary.simpleMessage("រកមិនឃើញទំព័រនេះទេ"),

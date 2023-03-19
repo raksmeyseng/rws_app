@@ -214,11 +214,16 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Linked Customers"),
         "load_data_failed": MessageLookupByLibrary.simpleMessage(
             "Requesting failure, please try again."),
+        "location_on_map": MessageLookupByLibrary.simpleMessage("Location"),
+        "location_permission":
+            MessageLookupByLibrary.simpleMessage("Grant location Access"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
         "logout": MessageLookupByLibrary.simpleMessage("Logout"),
         "longitude": MessageLookupByLibrary.simpleMessage("Longitude"),
         "msg_allow_camera_permission": MessageLookupByLibrary.simpleMessage(
             "Allow the app to access your camera in app setting."),
+        "msg_allow_location_permission": MessageLookupByLibrary.simpleMessage(
+            "Allow the app to access your location in app setting."),
         "msg_allow_photo_permission": MessageLookupByLibrary.simpleMessage(
             "Allow the app to access your device photos in app setting."),
         "msg_allow_storage_permission": MessageLookupByLibrary.simpleMessage(
@@ -244,9 +249,11 @@ class MessageLookup extends MessageLookupByLibrary {
             "Dear valued user, please update to the latest version to benefit from it most and continue using the app."),
         "msg_version_update": MessageLookupByLibrary.simpleMessage(
             "Dear valued user, please update to the latest version to benefit from it most."),
+        "my_task": MessageLookupByLibrary.simpleMessage("My Task"),
         "new_password": MessageLookupByLibrary.simpleMessage("New password"),
         "news_content": MessageLookupByLibrary.simpleMessage("Content"),
         "news_date": MessageLookupByLibrary.simpleMessage("Date"),
+        "no_task": MessageLookupByLibrary.simpleMessage("No Task"),
         "notification": MessageLookupByLibrary.simpleMessage("Notification"),
         "page_not_found": MessageLookupByLibrary.simpleMessage(
             "This page could not be found"),

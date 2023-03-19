@@ -2039,6 +2039,56 @@ class S {
       args: [],
     );
   }
+
+  /// `Location`
+  String get location_on_map {
+    return Intl.message(
+      'Location',
+      name: 'location_on_map',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `My Task`
+  String get my_task {
+    return Intl.message(
+      'My Task',
+      name: 'my_task',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Grant location Access`
+  String get location_permission {
+    return Intl.message(
+      'Grant location Access',
+      name: 'location_permission',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Allow the app to access your location in app setting.`
+  String get msg_allow_location_permission {
+    return Intl.message(
+      'Allow the app to access your location in app setting.',
+      name: 'msg_allow_location_permission',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No Task`
+  String get no_task {
+    return Intl.message(
+      'No Task',
+      name: 'no_task',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
