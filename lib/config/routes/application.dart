@@ -24,4 +24,6 @@ class Application {
   }
 
   static final eventBus = EventBus();
+
+  static void goNamed(String routeName) {}
 }

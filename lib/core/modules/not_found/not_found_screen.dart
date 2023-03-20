@@ -39,7 +39,7 @@ class NotFoundScreen extends StatelessWidget {
               const SizedBox(height: 50),
               TextButton(
                 onPressed: () {
-                  context.goNamed(AppRoute.dashboard);
+                  context.goNamed(AppRoute.home);
                   Application.router.refresh();
                 },
                 child: TextWidget(

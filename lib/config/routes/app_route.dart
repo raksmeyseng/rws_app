@@ -9,7 +9,6 @@ class AppRoute {
   static const String splash = 'splash';
   static const String login = 'login';
   static const String changePassword = 'change-password';
-  static const String dashboard = 'dashboard';
 
   static const String notFound = 'not-found';
   static const String register = 'register';
@@ -43,7 +42,7 @@ class AppRoute {
       pageBuilder: registerBuilder,
     ),
     GoRoute(
-      name: dashboard,
+      name: home,
       path: '/home',
       pageBuilder: dashboardBuilder,
       routes: [

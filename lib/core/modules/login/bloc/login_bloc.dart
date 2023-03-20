@@ -91,7 +91,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         emit(state.copyWith(status: FormzStatus.submissionSuccess));
         // Add some delay to wait for auth state finishing updated
         await Future.delayed(const Duration(milliseconds: 300));
-        Application.router.goNamed(AppRoute.dashboard);
+        Application.router.goNamed(AppRoute.home);
       } catch (_) {
         emit(state.copyWith(status: FormzStatus.submissionFailure));
       }

@@ -30,29 +30,15 @@ class _DashboardPageState extends State<DashboardPage> {
 
   @override
   Widget build(BuildContext context) {
-    final scaffoldKey = GlobalKey<ScaffoldState>();
     return BlocProvider(
       create: (context) => DashboardBloc(),
       child: Builder(builder: (context) {
         return Scaffold(
-          key: scaffoldKey,
           appBar: AppBar(
             backgroundColor: Theme.of(context).primaryColor,
             title: const _TitleWidget(),
             centerTitle: true,
-            leading: IconButton(
-              icon: const Icon(
-                Icons.menu,
-                color: AppColor.white,
-              ),
-              onPressed: () {
-                if (scaffoldKey.currentState!.isDrawerOpen) {
-                  scaffoldKey.currentState!.closeDrawer();
-                } else {
-                  scaffoldKey.currentState!.openDrawer();
-                }
-              },
-            ),
+            iconTheme: const IconThemeData(color: AppColor.white),
           ),
           drawer: const _DrawerMenu(),
           bottomNavigationBar: _bottomNavigatrionBar(),
@@ -135,37 +121,32 @@ class _DrawerMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<DashboardBloc, DashboardState>(
-      buildWhen: (previous, current) =>
-          previous.selectedMenu != current.selectedMenu,
-      builder: (context, state) {
-        return Drawer(
-          child: FlatCard(
-            padding: EdgeInsets.zero,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                const _AppLogo(),
-                Expanded(
-                  child: ListView.builder(
-                    padding: const EdgeInsets.only(top: 16.0),
-                    itemBuilder: (context, index) => _MenuItem(
-                      MainMenuEnum.values[index],
-                      selected:
-                          MainMenuEnum.values[index] == state.selectedMenu,
-                      onSelected: (menu) {
-                        Navigator.of(context).pop();
-                        context.goNamed(menu.getRouteName());
-                      },
-                    ),
-                    itemCount: MainMenuEnum.values.length,
-                  ),
+    return Drawer(
+      child: FlatCard(
+        padding: EdgeInsets.zero,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            const _AppLogo(),
+            const Divider(),
+            Expanded(
+              child: ListView.builder(
+                padding: const EdgeInsets.only(top: 16.0),
+                itemBuilder: (context, index) => _MenuItem(
+                  MainMenuEnum.values[index],
+                  onSelected: (menu) {
+                    Navigator.of(context).pop();
+                    if (!menu.getRouteName().contains('home')) {
+                      context.goNamed(menu.getRouteName());
+                    }
+                  },
                 ),
-              ],
+                itemCount: MainMenuEnum.values.length,
+              ),
             ),
-          ),
-        );
-      },
+          ],
+        ),
+      ),
     );
   }
 }
@@ -174,12 +155,10 @@ class _MenuItem extends StatelessWidget {
   const _MenuItem(
     this.menu, {
     Key? key,
-    required this.selected,
     required this.onSelected,
   }) : super(key: key);
 
   final MainMenuEnum menu;
-  final bool selected;
   final void Function(MainMenuEnum menu) onSelected;
 
   @override
@@ -190,21 +169,16 @@ class _MenuItem extends StatelessWidget {
         borderRadius: const BorderRadius.horizontal(right: Radius.circular(30)),
         child: FlatCard(
           onTap: () => onSelected(menu),
-          color:
-              selected ? Theme.of(context).primaryColor.withOpacity(.1) : null,
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
               Icon(
                 menu.getIconData(),
-                color: selected
-                    ? Theme.of(context).primaryColor
-                    : Theme.of(context).iconTheme.color,
+                color: Theme.of(context).iconTheme.color,
               ),
               const SizedBox(width: 16.0),
               TextWidget(
                 menu.getTitle(context),
-                color: selected ? Theme.of(context).primaryColor : null,
               ),
             ],
           ),
