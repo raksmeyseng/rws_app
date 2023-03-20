@@ -100,6 +100,7 @@ dependencies:
   # google map
   google_maps_flutter: ^2.0.6
   flutter_google_places: ^0.3.0
+  geolocator: ^8.1.1
 
 dev_dependencies:
   flutter_test:

@@ -1,13 +1,17 @@
 import 'dart:io';
 import 'dart:ui' as ui;
 
+import 'package:geolocator/geolocator.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:rws_app/config/routes/application.dart';
 import 'package:rws_app/config/themes/app_color.dart';
 import 'package:rws_app/config/themes/app_theme.dart';
 import 'package:rws_app/core/modules/app/bloc/app_bloc.dart';
+import 'package:rws_app/core/widgets/dialogs/confirm_dialog.dart';
 import 'package:rws_app/core/widgets/text_widget.dart';
 import 'package:rws_app/translation/generated/l10n.dart';
 import 'package:rws_app/utils/helpers/color_helper.dart';
+import 'package:rws_app/utils/helpers/dialog_helper.dart';
 import 'package:rws_app/utils/helpers/image_saver_helper.dart';
 import 'package:rws_app/utils/helpers/js/js_helper.dart';
 import 'package:flutter/foundation.dart';
@@ -321,4 +325,34 @@ String enToKhmerPhone(String phone) {
   }).join();
 
   return phoneBeautify(khmerPhone);
+}
+
+Future<Position?> getCurrentPosition() async {
+  if (!kIsWeb) {
+    final status = await Permission.location.request();
+    if (status == PermissionStatus.permanentlyDenied) {
+      final confirmed = await DialogHelper.showAnimatedDialog<bool?>(
+        pageBuilder: (_, __, ___) {
+          return ConfirmDialog(
+            icon: const Icon(
+              Icons.settings,
+              size: 70,
+              color: AppColor.white,
+            ),
+            title: S.current.location_permission,
+            message: S.current.msg_allow_location_permission,
+            confirmText: S.current.button_ok,
+          );
+        },
+      );
+      if (confirmed == true) {
+        await openAppSettings();
+      }
+    }
+    if (!status.isGranted) {
+      return null;
+    }
+  }
+
+  return Geolocator.getCurrentPosition();
 }
