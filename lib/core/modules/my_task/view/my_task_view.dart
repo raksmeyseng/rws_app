@@ -37,6 +37,7 @@ class _TabBar extends StatelessWidget {
       buildWhen: (previous, current) => previous.tabs != current.tabs,
       builder: (context, state) {
         return TabBar(
+          indicatorColor: Theme.of(context).primaryColor,
           tabs: state.tabs
               .map((e) => Padding(
                     padding: const EdgeInsets.symmetric(vertical: 4.0),
