@@ -54,6 +54,8 @@ dependencies:
   json_annotation: ^4.7.0
   # Making api request
   dio: ^4.0.6
+  # DropDownButton2
+  dropdown_button2: ^1.0.0
   # Select image from the device
   image_picker: ^0.8.6
   # Crop selected image
