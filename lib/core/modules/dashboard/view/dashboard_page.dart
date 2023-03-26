@@ -131,7 +131,6 @@ class _DrawerMenu extends StatelessWidget {
             const Divider(),
             Expanded(
               child: ListView.builder(
-                padding: const EdgeInsets.only(top: 16.0),
                 itemBuilder: (context, index) => _MenuItem(
                   MainMenuEnum.values[index],
                   onSelected: (menu) {

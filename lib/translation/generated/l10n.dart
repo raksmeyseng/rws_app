@@ -2089,6 +2089,86 @@ class S {
       args: [],
     );
   }
+
+  /// `Draft`
+  String get draft {
+    return Intl.message(
+      'Draft',
+      name: 'draft',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `History`
+  String get history {
+    return Intl.message(
+      'History',
+      name: 'history',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No History`
+  String get no_history {
+    return Intl.message(
+      'No History',
+      name: 'no_history',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Village`
+  String get village {
+    return Intl.message(
+      'Village',
+      name: 'village',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Commune`
+  String get commune {
+    return Intl.message(
+      'Commune',
+      name: 'commune',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `District`
+  String get district {
+    return Intl.message(
+      'District',
+      name: 'district',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Province`
+  String get province {
+    return Intl.message(
+      'Province',
+      name: 'province',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Water Supply Type`
+  String get water_supply_type {
+    return Intl.message(
+      'Water Supply Type',
+      name: 'water_supply_type',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

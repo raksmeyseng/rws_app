@@ -126,6 +126,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Change Password"),
         "change_password_failure":
             MessageLookupByLibrary.simpleMessage("Change password failure"),
+        "commune": MessageLookupByLibrary.simpleMessage("Commune"),
         "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
         "confirm_delete_news": MessageLookupByLibrary.simpleMessage(
             "Do you want to delete this news?"),
@@ -163,8 +164,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "date_of_birth": MessageLookupByLibrary.simpleMessage("Date of birth"),
         "deactivate_account":
             MessageLookupByLibrary.simpleMessage("Delete Account"),
+        "district": MessageLookupByLibrary.simpleMessage("District"),
         "do_not_have_acc":
             MessageLookupByLibrary.simpleMessage("Do not have an account?"),
+        "draft": MessageLookupByLibrary.simpleMessage("Draft"),
         "edit_account": MessageLookupByLibrary.simpleMessage("Edit Account"),
         "edit_news": MessageLookupByLibrary.simpleMessage("Edit News"),
         "edit_profile": MessageLookupByLibrary.simpleMessage("Edit Profile"),
@@ -189,6 +192,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "general_information":
             MessageLookupByLibrary.simpleMessage("General Information"),
         "greeting": MessageLookupByLibrary.simpleMessage("Hello"),
+        "history": MessageLookupByLibrary.simpleMessage("History"),
         "home": MessageLookupByLibrary.simpleMessage("Home"),
         "inactive": MessageLookupByLibrary.simpleMessage("Inactive"),
         "input_current_password":
@@ -253,6 +257,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "new_password": MessageLookupByLibrary.simpleMessage("New password"),
         "news_content": MessageLookupByLibrary.simpleMessage("Content"),
         "news_date": MessageLookupByLibrary.simpleMessage("Date"),
+        "no_history": MessageLookupByLibrary.simpleMessage("No History"),
         "no_task": MessageLookupByLibrary.simpleMessage("No Task"),
         "notification": MessageLookupByLibrary.simpleMessage("Notification"),
         "page_not_found": MessageLookupByLibrary.simpleMessage(
@@ -308,6 +313,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "plural_week_ago_": m17,
         "plural_year_ago_": m18,
         "primary_color": MessageLookupByLibrary.simpleMessage("Primary Color"),
+        "province": MessageLookupByLibrary.simpleMessage("Province"),
         "real_time_date_format": MessageLookupByLibrary.simpleMessage(
             "EEEE, MMMM dd, yyyy | hh:mm:ss a"),
         "register_date":
@@ -361,7 +367,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Image uploading failed!"),
         "user_name": MessageLookupByLibrary.simpleMessage("Username"),
         "version": MessageLookupByLibrary.simpleMessage("Version"),
+        "village": MessageLookupByLibrary.simpleMessage("Village"),
         "water_supply": MessageLookupByLibrary.simpleMessage("Water Supply"),
+        "water_supply_type":
+            MessageLookupByLibrary.simpleMessage("Water Supply Type"),
         "your_account_has_been_deleted": MessageLookupByLibrary.simpleMessage(
             "Your user account has been deleted"),
         "your_password_changed_successfuly":

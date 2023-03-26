@@ -29,4 +29,5 @@ class ApiPath {
       'https://eac-app-admin.free.mockoapp.net/api/accounts/$id';
   static String getUser(int? userId) => '/api/UserAdmin/$userId';
   static String getUserToken = 'https://rwsapp.free.mockoapp.net/user';
+  static String getAllMyDraft = 'https://rwsapp.free.mockoapp.net/api/my-task';
 }

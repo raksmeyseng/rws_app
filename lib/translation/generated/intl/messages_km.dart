@@ -126,6 +126,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("ប្ដូរពាក្យសម្ងាត់"),
         "change_password_failure":
             MessageLookupByLibrary.simpleMessage("ប្ដូរពាក្យសម្ងាត់បរាជ័យ"),
+        "commune": MessageLookupByLibrary.simpleMessage("ឃុំ/សង្កាត់"),
         "confirm": MessageLookupByLibrary.simpleMessage("បញ្ជាក់"),
         "confirm_delete_news":
             MessageLookupByLibrary.simpleMessage("តើអ្នកចង់លុបព័ត៌មានមួយនេះឬ?"),
@@ -163,8 +164,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "date_of_birth":
             MessageLookupByLibrary.simpleMessage("ថ្ងៃខែឆ្នាំកំណើត"),
         "deactivate_account": MessageLookupByLibrary.simpleMessage("លុបគណនី"),
+        "district": MessageLookupByLibrary.simpleMessage("ស្រុក/ខណ្ឌ"),
         "do_not_have_acc":
             MessageLookupByLibrary.simpleMessage("មិនមានគណនីប្រើប្រាស់?"),
+        "draft": MessageLookupByLibrary.simpleMessage("ពង្រាង"),
         "edit_account":
             MessageLookupByLibrary.simpleMessage("កែប្រែគណនីប្រើប្រាស់"),
         "edit_news": MessageLookupByLibrary.simpleMessage("កែប្រែព័ត៌មាន"),
@@ -194,6 +197,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "general_information":
             MessageLookupByLibrary.simpleMessage("ព័ត៌មានលម្អិត"),
         "greeting": MessageLookupByLibrary.simpleMessage("សួស្ដី"),
+        "history": MessageLookupByLibrary.simpleMessage("ប្រវត្តិការស្នើសុំ"),
         "home": MessageLookupByLibrary.simpleMessage("ទំព័រដើម"),
         "inactive": MessageLookupByLibrary.simpleMessage("លុប"),
         "input_current_password": MessageLookupByLibrary.simpleMessage(
@@ -261,6 +265,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("ពាក្យសម្ងាត់ថ្មី"),
         "news_content": MessageLookupByLibrary.simpleMessage("មាតិកា"),
         "news_date": MessageLookupByLibrary.simpleMessage("កាលបរិច្ឆេទ"),
+        "no_history":
+            MessageLookupByLibrary.simpleMessage("មិនមានប្រវត្តិការស្នើសុំ"),
         "no_task": MessageLookupByLibrary.simpleMessage("មិនមានសំណើរ"),
         "notification": MessageLookupByLibrary.simpleMessage("សារជូនដំណឹង"),
         "page_not_found":
@@ -316,6 +322,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "plural_week_ago_": m17,
         "plural_year_ago_": m18,
         "primary_color": MessageLookupByLibrary.simpleMessage("ពណ៌កម្មវិធី"),
+        "province": MessageLookupByLibrary.simpleMessage("ខេត្ត/ក្រុង"),
         "real_time_date_format": MessageLookupByLibrary.simpleMessage(
             "ថ្ងៃEEEE dd MMMM yyyy | hh:mm:ss a"),
         "register_date": MessageLookupByLibrary.simpleMessage("ថ្ងៃចុះឈ្មោះ"),
@@ -370,8 +377,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("រក្សាទុករូបភាពបរាជ័យ"),
         "user_name": MessageLookupByLibrary.simpleMessage("អ្នកប្រើប្រាស់"),
         "version": MessageLookupByLibrary.simpleMessage("ជំនាន់កម្មវិធី"),
+        "village": MessageLookupByLibrary.simpleMessage("ភូមិ"),
         "water_supply":
             MessageLookupByLibrary.simpleMessage("ប្រព័ន្ធផ្គត់ផ្គង់ទឹក"),
+        "water_supply_type":
+            MessageLookupByLibrary.simpleMessage("ប្រភេទផ្គត់ផ្គត់ទឹក"),
         "your_password_changed_successfuly":
             MessageLookupByLibrary.simpleMessage(
                 "ពាក្យសម្ងាត់របស់អ្នកត្រូវបានផ្លាស់ប្ដូររួចរាល់!"),

@@ -9,7 +9,10 @@ class WaterSupplyPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => WaterSupplyBloc()..add(const WaterSupplyStarted()),
+      create: (context) => WaterSupplyBloc()
+        ..add(
+          const WaterSupplyStarted(),
+        ),
       child: const WaterSupplyView(),
     );
   }

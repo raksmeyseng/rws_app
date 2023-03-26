@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rws_app/config/themes/app_color.dart';
 import 'package:rws_app/core/modules/view_details/card/card_data_diagram.dart';
 import 'package:rws_app/core/modules/view_details/card/card_list_details.dart';
 import 'package:rws_app/core/modules/view_details/view_process_flow/view_process.dart';
@@ -11,8 +12,8 @@ class ListDetails extends StatefulWidget {
   State<ListDetails> createState() => _ListDetailsState();
 }
 
-class _ListDetailsState extends State<ListDetails> with SingleTickerProviderStateMixin{
-
+class _ListDetailsState extends State<ListDetails>
+    with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
   int _selectedTab = 0;
@@ -23,8 +24,8 @@ class _ListDetailsState extends State<ListDetails> with SingleTickerProviderStat
 
     _tabController = TabController(vsync: this, length: 3);
 
-    _tabController.addListener((){
-      if (!_tabController.indexIsChanging){
+    _tabController.addListener(() {
+      if (!_tabController.indexIsChanging) {
         setState(() {
           _selectedTab = _tabController.index;
         });
@@ -41,19 +42,39 @@ class _ListDetailsState extends State<ListDetails> with SingleTickerProviderStat
           Padding(
             padding: const EdgeInsets.all(10.0),
             child: OutlinedButton(
-              style: OutlinedButton.styleFrom(backgroundColor: const Color(0xFF6c757d),side: const BorderSide(color: Color(0xFF6c757d))),
+              style: OutlinedButton.styleFrom(
+                  backgroundColor: const Color(0xFF6c757d),
+                  side: const BorderSide(color: Color(0xFF6c757d))),
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context)=> const ViewProcessFlow()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const ViewProcessFlow()));
               },
               child: Row(
                 children: const [
-                  Icon(Icons.rotate_left, color: Colors.white,),
-                  Text('មើលលំហូរដំណើរការ', style: TextStyle(color: Colors.white),)
+                  Icon(
+                    Icons.rotate_left,
+                    color: Colors.white,
+                  ),
+                  Text(
+                    'មើលលំហូរដំណើរការ',
+                    style: TextStyle(color: Colors.white),
+                  )
                 ],
               ),
             ),
           ),
         ],
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back,
+            color: AppColor.white,
+          ),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
       ),
       body: DefaultTabController(
           length: 3,
@@ -66,9 +87,27 @@ class _ListDetailsState extends State<ListDetails> with SingleTickerProviderStat
                   controller: _tabController,
                   labelPadding: const EdgeInsets.all(0.0),
                   tabs: [
-                    _getTab(0, const Center(child: Text('Details', style: h4Style,))),
-                    _getTab(1, const Center(child: Text('Diagram', style: h4Style,))),
-                    _getTab(2, const Center(child: Text('QR Code', style: h4Style,))),
+                    _getTab(
+                        0,
+                        const Center(
+                            child: Text(
+                          'Details',
+                          style: h4Style,
+                        ))),
+                    _getTab(
+                        1,
+                        const Center(
+                            child: Text(
+                          'Diagram',
+                          style: h4Style,
+                        ))),
+                    _getTab(
+                        2,
+                        const Center(
+                            child: Text(
+                          'QR Code',
+                          style: h4Style,
+                        ))),
                   ],
                 ),
               ),
@@ -80,7 +119,8 @@ class _ListDetailsState extends State<ListDetails> with SingleTickerProviderStat
                     CardListDetails(),
                     const CardDataDiagram(),
                     Center(
-                      child: Image.network('http://ec2-52-14-59-145.us-east-2.compute.amazonaws.com/media/qr1678958602.6619184.png'),
+                      child: Image.network(
+                          'http://ec2-52-14-59-145.us-east-2.compute.amazonaws.com/media/qr1678958602.6619184.png'),
                     ),
                   ],
                 ),
@@ -96,8 +136,7 @@ class _ListDetailsState extends State<ListDetails> with SingleTickerProviderStat
         child: Container(
           child: child,
           decoration: BoxDecoration(
-              color:
-              (_selectedTab == index ? Colors.white : Colors.lightGreen),
+              color: (_selectedTab == index ? Colors.white : Colors.lightGreen),
               borderRadius: _generateBorderRadius(index)),
         ),
       ),
@@ -114,5 +153,3 @@ class _ListDetailsState extends State<ListDetails> with SingleTickerProviderStat
     }
   }
 }
-
-

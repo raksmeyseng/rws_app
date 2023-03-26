@@ -18,7 +18,7 @@ class AppColor {
   //===============================================
   // Descriptive Color
   //===============================================
-  static const highlight = Color.fromRGBO(59, 143, 205, 1);
+  static const highlight = Color.fromRGBO(2, 157, 179, 1);
   static const success = Color.fromRGBO(2, 200, 132, 1);
   static const danger = Color.fromRGBO(236, 102, 102, 1);
   static const info = Colors.blue;

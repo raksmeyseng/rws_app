@@ -34,4 +34,6 @@ class AssetPath {
   static const String iconOffice = 'assets/icons/office.png';
   static const String iconPdf = 'assets/icons/pdf.png';
   static const String iconAddPhoto = 'assets/icons/add-photo.png';
+  static const String waterSupply = 'assets/icons/water-supply.png';
+  static const String well = 'assets/icons/well.png';
 }

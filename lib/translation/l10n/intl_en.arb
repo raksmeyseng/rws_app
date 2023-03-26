@@ -202,5 +202,13 @@
   "my_task":"My Task",
   "location_permission": "Grant location Access",
   "msg_allow_location_permission": "Allow the app to access your location in app setting.",
-  "no_task":"No Task"
+  "no_task":"No Task",
+  "draft":"Draft",
+  "history":"History",
+  "no_history":"No History",
+  "village":"Village",
+  "commune":"Commune",
+  "district":"District",
+  "province":"Province",
+  "water_supply_type":"Water Supply Type"
 }
