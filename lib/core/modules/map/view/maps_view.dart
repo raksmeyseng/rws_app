@@ -24,48 +24,112 @@ class _MapsViewState extends State<MapsView> {
   late GoogleMapController newGoogleMapController;
   late final LifecycleEventHandler _lifeCycleObserver;
   final CameraPosition position = const CameraPosition(
-    target: LatLng(11.562108, 104.888535),
-    zoom: 12,
+    target: LatLng(11.5564, 104.9282),
+    zoom: 0,
   );
   Set<Marker> markers = <Marker>{
     const Marker(
-      markerId: MarkerId('marker1'),
-      position: LatLng(11.579732, 104.870765),
-      infoWindow: InfoWindow(
-        title: 'Marker 1',
-        snippet: 'This is marker 1',
-      ),
-    ),
-    const Marker(
-      markerId: MarkerId('marker2'),
-      position: LatLng(11.577233, 104.886882),
-      infoWindow: InfoWindow(
-        title: 'Marker 2',
-        snippet: 'This is marker 2',
-      ),
-    ),
-    const Marker(
-      markerId: MarkerId('marker3'),
-      position: LatLng(11.564737, 104.863576),
-      infoWindow: InfoWindow(
-        title: 'Marker 3',
-        snippet: 'This is marker 3',
-      ),
-    ),
-    const Marker(
-      markerId: MarkerId('marker3'),
-      position: LatLng(11.554539, 104.863432),
-      infoWindow: InfoWindow(
-        title: 'Marker 3',
-        snippet: 'This is marker 3',
-      ),
-    ),
-    const Marker(
-      markerId: MarkerId('marker3'),
+      markerId: MarkerId('Phnom Penh'),
       position: LatLng(11.547740, 104.884858),
       infoWindow: InfoWindow(
-        title: 'Marker 3',
-        snippet: 'This is marker 3',
+        title: 'Phnom Penh',
+        snippet: 'ស្ថានីយ៍ផលិតទឹកផឹកឯកជន',
+      ),
+    ),
+    const Marker(
+      markerId: MarkerId('Banteay Meanchey'),
+      position: LatLng(13.695997, 102.566830),
+      infoWindow: InfoWindow(
+        title: 'Banteay Meanchey',
+        snippet: 'ស្ថានីយ៍ផលិតទឹកផឹកសហគមន៍',
+      ),
+    ),
+    const Marker(
+      markerId: MarkerId('Battambang'),
+      position: LatLng(13.101166, 105.025252),
+      infoWindow: InfoWindow(
+        title: 'Battambang',
+        snippet: 'ស្ថានីយ៍ផលិតទឹកផឹកសហគមន៍',
+      ),
+    ),
+    const Marker(
+      markerId: MarkerId('Kampong Cham'),
+      position: LatLng(12.013056, 105.441817),
+      infoWindow: InfoWindow(
+        title: 'Kampong Cham',
+        snippet: 'ស្ថានីយ៍ផលិតទឹកផឹកសហគមន៍',
+      ),
+    ),
+    const Marker(
+      markerId: MarkerId('Kampong Chhnang'),
+      position: LatLng(12.249794, 104.666290),
+      infoWindow: InfoWindow(
+        title: 'Kampong Chhnang',
+        snippet: 'ស្ថានីយ៍ផលិតទឹកផឹកសហគមន៍',
+      ),
+    ),
+    const Marker(
+      markerId: MarkerId('Kampong Speu'),
+      position: LatLng(11.520035, 104.378320),
+      infoWindow: InfoWindow(
+        title: 'Kampong Speu',
+        snippet: 'ស្ថានីយ៍ផលិតទឹកផឹកសហគមន៍',
+      ),
+    ),
+    const Marker(
+      markerId: MarkerId('Kampong Thom'),
+      position: LatLng(12.711749, 104.888535),
+      infoWindow: InfoWindow(
+        title: 'Kampong Thom',
+        snippet: 'ស្ថានីយ៍ផលិតទឹកផឹកសហគមន៍',
+      ),
+    ),
+    const Marker(
+      markerId: MarkerId('Kampot'),
+      position: LatLng(10.615895, 104.174970),
+      infoWindow: InfoWindow(
+        title: 'Kampot',
+        snippet: 'ស្ថានីយ៍ផលិតទឹកផឹកសហគមន៍',
+      ),
+    ),
+    const Marker(
+      markerId: MarkerId('Kandal'),
+      position: LatLng(11.337621, 105.031104),
+      infoWindow: InfoWindow(
+        title: 'Kandal',
+        snippet: 'ស្ថានីយ៍ផលិតទឹកផឹកសហគមន៍',
+      ),
+    ),
+    const Marker(
+      markerId: MarkerId('Kep'),
+      position: LatLng(10.482623, 104.295952),
+      infoWindow: InfoWindow(
+        title: 'Kep',
+        snippet: 'ស្ថានីយ៍ផលិតទឹកផឹកសហគមន៍',
+      ),
+    ),
+    const Marker(
+      markerId: MarkerId('Koh Kong'),
+      position: LatLng(11.612069, 102.986710),
+      infoWindow: InfoWindow(
+        title: 'Koh Kong',
+        snippet: 'ស្ថានីយ៍ផលិតទឹកផឹកសហគមន៍',
+      ),
+    ),
+    const Marker(
+      markerId: MarkerId('Kratié'),
+      position: LatLng(12.483902, 106.019973),
+      infoWindow: InfoWindow(
+        title: 'Kratié',
+        snippet: 'ស្ថានីយ៍ផលិតទឹកផឹកសហគមន៍',
+      ),
+    ),
+    const Marker(
+      markerId: MarkerId('Mondulkiri'),
+      position: LatLng(12.429527, 107.194866),
+      infoWindow: InfoWindow(
+        title: 'Mondulkiri',
+        snippet: 'ស្ថានីយ៍ផលិតទឹកផឹកសហគមន៍',
       ),
     ),
   };
