@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rws_app/constants/asset_path.dart';
 import 'package:rws_app/core/modules/water_supply/bloc/water_supply_bloc.dart';
-import 'package:rws_app/core/modules/water_supply_details/model/watersupply.dart';
 import 'package:rws_app/core/modules/water_supply_details/water_supply_details.dart';
 import 'package:rws_app/core/widgets/flat_card.dart';
 import 'package:rws_app/core/widgets/text_widget.dart';
@@ -28,7 +27,14 @@ class WaterSupplyView extends StatelessWidget {
                     label: 'អណ្តូង',
                     processing: false,
                     onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => const DetailsWaterSupply(title: 'អណ្តូង',)));
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const DetailsWaterSupply(
+                            title: 'អណ្តូង',
+                          ),
+                        ),
+                      );
                     },
                   ),
                   const SizedBox(height: 10),
@@ -37,7 +43,15 @@ class WaterSupplyView extends StatelessWidget {
                     label: 'ប្រព័ន្ធចែកចាយទឹកតាមបណ្តាញបំពង់ខ្នាតតូចសហគមន៍',
                     processing: false,
                     onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => const DetailsWaterSupply(title: 'ប្រព័ន្ធចែកចាយទឹកតាមបណ្តាញបំពង់ខ្នាតតូចសហគមន៍',)));
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const DetailsWaterSupply(
+                            title:
+                                'ប្រព័ន្ធចែកចាយទឹកតាមបណ្តាញបំពង់ខ្នាតតូចសហគមន៍',
+                          ),
+                        ),
+                      );
                     },
                   ),
                   const SizedBox(height: 10),
@@ -46,7 +60,14 @@ class WaterSupplyView extends StatelessWidget {
                     label: 'ស្ថានីយ៍ផលិតទឹកផឹកសហគមន៍',
                     processing: false,
                     onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => const DetailsWaterSupply(title: 'ស្ថានីយ៍ផលិតទឹកផឹកសហគមន៍',)));
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const DetailsWaterSupply(
+                            title: 'ស្ថានីយ៍ផលិតទឹកផឹកសហគមន៍',
+                          ),
+                        ),
+                      );
                     },
                   ),
                   const SizedBox(height: 10),
@@ -55,7 +76,14 @@ class WaterSupplyView extends StatelessWidget {
                     label: 'ស្រះសហគមន៍',
                     processing: false,
                     onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => const DetailsWaterSupply(title: 'ស្រះសហគមន៍',)));
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const DetailsWaterSupply(
+                            title: 'ស្រះសហគមន៍',
+                          ),
+                        ),
+                      );
                     },
                   ),
                   const SizedBox(height: 10),
@@ -64,7 +92,14 @@ class WaterSupplyView extends StatelessWidget {
                     label: 'អាងត្រងទឹកភ្លៀង',
                     processing: false,
                     onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => const DetailsWaterSupply(title: 'អាងត្រងទឹកភ្លៀង',)));
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const DetailsWaterSupply(
+                            title: 'អាងត្រងទឹកភ្លៀង',
+                          ),
+                        ),
+                      );
                     },
                   ),
                   const SizedBox(height: 10),
@@ -73,7 +108,14 @@ class WaterSupplyView extends StatelessWidget {
                     label: 'ប្រព័ន្ធចែកចាយទឹកតាមបណ្តាញបំពង់ឯកជន',
                     processing: false,
                     onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => const DetailsWaterSupply(title: 'ប្រព័ន្ធចែកចាយទឹកតាមបណ្តាញបំពង់ឯកជន',)));
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const DetailsWaterSupply(
+                            title: 'ប្រព័ន្ធចែកចាយទឹកតាមបណ្តាញបំពង់ឯកជន',
+                          ),
+                        ),
+                      );
                     },
                   ),
                   const SizedBox(height: 10),
@@ -82,7 +124,14 @@ class WaterSupplyView extends StatelessWidget {
                     label: 'ស្ថានីយ៍ស្រូបទឹកពីបរិយាកាស',
                     processing: false,
                     onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => const DetailsWaterSupply(title: 'ស្ថានីយ៍ស្រូបទឹកពីបរិយាកាស',)));
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const DetailsWaterSupply(
+                            title: 'ស្ថានីយ៍ស្រូបទឹកពីបរិយាកាស',
+                          ),
+                        ),
+                      );
                     },
                   )
                 ],
@@ -101,14 +150,12 @@ class _FeatureItem extends StatelessWidget {
     required this.iconSvg,
     required this.label,
     this.onTap,
-    this.color,
     this.processing = false,
   }) : super(key: key);
 
   final String iconSvg;
   final String label;
   final void Function()? onTap;
-  final Color? color;
   final bool processing;
 
   @override
@@ -127,7 +174,7 @@ class _FeatureItem extends StatelessWidget {
               children: [
                 Image.asset(
                   iconSvg,
-                  color: color ?? Theme.of(context).iconTheme.color,
+                  color: Theme.of(context).iconTheme.color,
                   width: 18,
                   height: 18,
                 ),
@@ -137,11 +184,7 @@ class _FeatureItem extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      TextWidget(
-                        label,
-                        color: color,
-                        height: 1.8,
-                      ),
+                      TextWidget(label, height: 1.8),
                     ],
                   ),
                 ),

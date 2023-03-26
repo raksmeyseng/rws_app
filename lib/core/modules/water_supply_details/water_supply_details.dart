@@ -3,7 +3,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:rws_app/config/themes/app_color.dart';
 import 'package:rws_app/core/modules/view_details/view/list_details.dart';
-import 'package:rws_app/core/style/fonts/app_style.dart';
+import 'package:rws_app/core/widgets/text_widget.dart';
 import 'package:rws_app/core/widgets/textbutton_icon.dart';
 
 class DetailsWaterSupply extends StatefulWidget {
@@ -23,51 +23,51 @@ class _HomeScreenState extends State<DetailsWaterSupply> {
   int valueShowList = 10;
   @override
   void setState(VoidCallback fn) {
-    // TODO: implement setState
     super.setState(fn);
     valueShowList = int.parse(dropdownValue);
   }
 
   @override
   Widget build(BuildContext context) {
-    final columns = ['ខេត្ត/រាជធានី', 'ស្រុក/ក្រុង', 'ឃុំ/សង្កាត់', 'ភូមិ', 'កាលបរិច្ឆេទបង្កើត', 'ប្រភេទ', 'បង្កើតដោយ', 'ស្ថានភាព', 'មើលលម្អិត'];
+    final columns = [
+      'ខេត្ត/រាជធានី',
+      'ស្រុក/ក្រុង',
+      'ឃុំ/សង្កាត់',
+      'ភូមិ',
+      'កាលបរិច្ឆេទបង្កើត',
+      'ប្រភេទ',
+      'បង្កើតដោយ',
+      'ស្ថានភាព',
+      'មើលលម្អិត'
+    ];
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title, style: TextStyle(color: Colors.white),),
-        leading: IconButton(
-          icon: const Icon(
-            Icons.arrow_back,
-            color: AppColor.white,
-          ),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-        ),
         backgroundColor: Theme.of(context).primaryColor,
+        iconTheme: const IconThemeData(color: AppColor.white),
+        title: TextWidget(
+          widget.title,
+          color: AppColor.white,
+        ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: AddNewWaterManageSystem(
+              onPress: () {},
+              icon: Icons.add_circle_outlined,
+              title: 'បង្កើតថ្មី',
+            ),
+          ),
+        ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(5.0),
-        child: SingleChildScrollView(
-          physics: const BouncingScrollPhysics(),
-          scrollDirection: Axis.vertical,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(
-                height: 10,
-              ),
-              AddNewWaterManageSystem(
-                onPress: (){},
-                icon: Icons.add_circle_outlined,
-                title: 'បង្កើតប្រពន្ធ័គ្រប់គ្រងទឹកថ្មី',
-
-              ),
-              const SizedBox(
-                height: 10,
-              ),
               Row(
                 children: [
-                  const Text('Show'),
+                  const TextWidget('បង្ហាញ'),
                   Container(
                     margin: const EdgeInsets.symmetric(horizontal: 5),
                     decoration: const ShapeDecoration(
@@ -94,13 +94,8 @@ class _HomeScreenState extends State<DetailsWaterSupply> {
                           items: listDropDown.map((String value) {
                             return DropdownMenuItem<String>(
                               value: value,
-                              child: Text(
+                              child: TextWidget(
                                 value,
-                                style: const TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black,
-                                ),
                                 overflow: TextOverflow.ellipsis,
                               ),
                             );
@@ -109,7 +104,7 @@ class _HomeScreenState extends State<DetailsWaterSupply> {
                       ),
                     ),
                   ),
-                  const Text('entries'),
+                  const TextWidget('entries'),
                 ],
               ),
               PaginatedDataTable(
@@ -132,9 +127,9 @@ class _HomeScreenState extends State<DetailsWaterSupply> {
   // view column title
   List<DataColumn> getColumns(List<String> columns) => columns
       .map((String column) => DataColumn(
-    label: Text(column, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15.0),),
-    onSort: onSort,
-  ))
+            label: TextWidget(column),
+            onSort: onSort,
+          ))
       .toList();
 
   void onSort(int columnIndex, bool ascending) {
@@ -162,17 +157,17 @@ class _HomeScreenState extends State<DetailsWaterSupply> {
 class MyData extends DataTableSource {
   final List<Map<String, dynamic>> _data = List.generate(
       87,
-          (index) => {
-        "ProvinceOrCapital": "ពោធិ៍សាត់",
-        "DistrictOrCity": "ពោធិ៍សាត់",
-        "CommuneOrSangkat": "ផ្ទះព្រៃ",
-        "Village": "ចំការចេកជើង",
-        "CreateDate": "2023-03-16 09:23:22",
-        "Category": "អណ្ដូង $index",
-        "CreatedBy": "de_ps",
-        "Status": "Published",
-        "Details": "Details"
-      });
+      (index) => {
+            'ProvinceOrCapital': 'ពោធិ៍សាត់',
+            'DistrictOrCity': 'ពោធិ៍សាត់',
+            'CommuneOrSangkat': 'ផ្ទះព្រៃ',
+            'Village': 'ចំការចេកជើង',
+            'CreateDate': '2023-03-16 09:23:22',
+            'Category': 'អណ្ដូង $index',
+            'CreatedBy': 'de_ps',
+            'Status': 'Published',
+            'Details': 'Details'
+          });
 
   @override
   bool get isRowCountApproximate => false;
@@ -183,26 +178,22 @@ class MyData extends DataTableSource {
   @override
   DataRow getRow(int index) {
     return DataRow(cells: [
-      DataCell(Text(_data[index]['ProvinceOrCapital'].toString())),
-      DataCell(Text(_data[index]["DistrictOrCity"])),
-      DataCell(Text(_data[index]["CommuneOrSangkat"].toString())),
-      DataCell(Text(_data[index]["Village"])),
-      DataCell(Text(_data[index]["CreateDate"].toString())),
-      DataCell(Text(_data[index]["Category"])),
-      DataCell(Text(_data[index]["CreatedBy"].toString())),
-      DataCell(
-          ClipRRect(
-            borderRadius: const BorderRadius.all(Radius.circular(3.0)),
-            child: Container(
-              padding: const EdgeInsets.all(5),
-              color: const Color(0xFFFFC107),
-              child: Text(_data[index]["Status"]),
-            ),
-          )
-      ),
-      const DataCell(
-          ButtonView()
-      ),
+      DataCell(TextWidget(_data[index]['ProvinceOrCapital'].toString())),
+      DataCell(TextWidget(_data[index]['DistrictOrCity'])),
+      DataCell(TextWidget(_data[index]['CommuneOrSangkat'].toString())),
+      DataCell(TextWidget(_data[index]['Village'])),
+      DataCell(TextWidget(_data[index]['CreateDate'].toString())),
+      DataCell(TextWidget(_data[index]['Category'])),
+      DataCell(TextWidget(_data[index]['CreatedBy'].toString())),
+      DataCell(ClipRRect(
+        borderRadius: const BorderRadius.all(Radius.circular(3.0)),
+        child: Container(
+          padding: const EdgeInsets.all(5),
+          color: const Color(0xFFFFC107),
+          child: TextWidget(_data[index]['Status']),
+        ),
+      )),
+      const DataCell(ButtonView()),
     ]);
   }
 }
@@ -213,13 +204,24 @@ class ButtonView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextButton.icon(
-      onPressed: (){
-        Navigator.push(context, MaterialPageRoute(builder: (context) => const ListDetails()));
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const ListDetails(),
+          ),
+        );
       },
-      icon: const Icon(Icons.remove_red_eye_outlined, color: Color(0xFF007bff),),
-      label: const Text('មើលលម្អិត', style: TextStyle(color: Color(0xFF007bff)),),
-      style: TextButton.styleFrom( //<-- SEE HERE
-        side: const BorderSide(width: 1.0, color: Color(0xFF007bff)),
+      icon: Icon(
+        Icons.remove_red_eye_outlined,
+        color: Theme.of(context).primaryColor,
+      ),
+      label: const TextWidget('មើលលម្អិត'),
+      style: TextButton.styleFrom(
+        side: BorderSide(
+          width: 1.0,
+          color: Theme.of(context).primaryColor,
+        ),
       ),
     );
   }
