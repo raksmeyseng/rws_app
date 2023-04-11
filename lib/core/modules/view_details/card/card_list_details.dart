@@ -13,36 +13,41 @@ class CardListDetails extends StatefulWidget {
 class _CardListDetailsState extends State<CardListDetails> {
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
+    return SingleChildScrollView(
+      physics: const BouncingScrollPhysics(),
       scrollDirection: Axis.vertical,
-      itemCount: titleViews.length,
-      itemBuilder: (BuildContext context, int index) {
-        return FlatCard(
-          padding: const EdgeInsets.symmetric(
-            vertical: 10,
-            horizontal: 16,
-          ),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Expanded(
-                flex: 2,
-                child: CaptionWidget(
-                  '${titleViews[index]} : ',
+      child: ListView.builder(
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        itemCount: titleViews.length,
+        itemBuilder: (BuildContext context, int index) {
+          return FlatCard(
+            padding: const EdgeInsets.symmetric(
+              vertical: 10,
+              horizontal: 16,
+            ),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  flex: 2,
+                  child: CaptionWidget(
+                    '${titleViews[index]} : ',
+                  ),
                 ),
-              ),
-              Expanded(
-                flex: 1,
-                child: TextWidget(
-                  valueViews[index],
-                  textAlign: TextAlign.end,
+                Expanded(
+                  flex: 1,
+                  child: TextWidget(
+                    valueViews[index],
+                    textAlign: TextAlign.end,
+                  ),
                 ),
-              ),
-            ],
-          ),
-        );
-      },
+              ],
+            ),
+          );
+        },
+      ),
     );
   }
 

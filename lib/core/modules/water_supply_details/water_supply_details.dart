@@ -30,6 +30,7 @@ class _HomeScreenState extends State<DetailsWaterSupply> {
   @override
   Widget build(BuildContext context) {
     final columns = [
+      'លេខកូដសំនង់',
       'ខេត្ត/រាជធានី',
       'ស្រុក/ក្រុង',
       'ឃុំ/សង្កាត់',
@@ -60,8 +61,10 @@ class _HomeScreenState extends State<DetailsWaterSupply> {
         ],
       ),
       body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        physics: const BouncingScrollPhysics(),
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(5.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -110,7 +113,7 @@ class _HomeScreenState extends State<DetailsWaterSupply> {
               PaginatedDataTable(
                 source: _data,
                 columns: getColumns(columns),
-                showFirstLastButtons: true,
+                // showFirstLastButtons: true,
                 dragStartBehavior: DragStartBehavior.start,
                 columnSpacing: 50,
                 horizontalMargin: 10,
@@ -158,6 +161,7 @@ class MyData extends DataTableSource {
   final List<Map<String, dynamic>> _data = List.generate(
       87,
       (index) => {
+            'ConstructionCode': '1',
             'ProvinceOrCapital': 'ពោធិ៍សាត់',
             'DistrictOrCity': 'ពោធិ៍សាត់',
             'CommuneOrSangkat': 'ផ្ទះព្រៃ',
@@ -178,6 +182,7 @@ class MyData extends DataTableSource {
   @override
   DataRow getRow(int index) {
     return DataRow(cells: [
+      DataCell(TextWidget(_data[index]['ConstructionCode'].toString())),
       DataCell(TextWidget(_data[index]['ProvinceOrCapital'].toString())),
       DataCell(TextWidget(_data[index]['DistrictOrCity'])),
       DataCell(TextWidget(_data[index]['CommuneOrSangkat'].toString())),

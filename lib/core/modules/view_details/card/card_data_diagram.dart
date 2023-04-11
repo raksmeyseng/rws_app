@@ -10,10 +10,11 @@ class CardDataDiagram extends StatelessWidget {
     return const Padding(
       padding: EdgeInsets.symmetric(
         vertical: 10.0,
-        horizontal: 16.0,
+        horizontal: 10.0,
       ),
       child: SingleChildScrollView(
         scrollDirection: Axis.vertical,
+        physics: BouncingScrollPhysics(),
         child: SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: Diagrams(),
