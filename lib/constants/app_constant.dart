@@ -6,7 +6,7 @@ class AppConstant {
   static const String secretKey = 'ZWFjYXBwXzIwMjI6ZWFjYXBwQHNlY3JldA==';
 
   // The year that the app is first published
-  static const int copyRightYear = 2022;
+  static const int copyRightYear = 2023;
 
   // Format Media ID
   static const String guid = '00000000-0000-0000-0000-000000000000';

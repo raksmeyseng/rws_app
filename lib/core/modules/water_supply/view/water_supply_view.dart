@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:rws_app/config/routes/app_route.dart';
 import 'package:rws_app/constants/asset_path.dart';
+import 'package:rws_app/core/enum/base_status_enum.dart';
 import 'package:rws_app/core/modules/water_supply/bloc/water_supply_bloc.dart';
-import 'package:rws_app/core/modules/water_supply_details/water_supply_details.dart';
+import 'package:rws_app/core/modules/water_supply/model/water_supply_model.dart';
 import 'package:rws_app/core/widgets/flat_card.dart';
+import 'package:rws_app/core/widgets/load_data_failed.dart';
 import 'package:rws_app/core/widgets/text_widget.dart';
+import 'package:rws_app/widgets/empty_widget.dart';
 
 class WaterSupplyView extends StatelessWidget {
   const WaterSupplyView({super.key});
@@ -14,154 +19,95 @@ class WaterSupplyView extends StatelessWidget {
     return BlocBuilder<WaterSupplyBloc, WaterSupplyState>(
       buildWhen: (previous, current) => previous.status != current.status,
       builder: (context, state) {
-        return SizedBox.expand(
-          child: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  _FeatureItem(
-                    iconSvg: AssetPath.well,
-                    label: 'អណ្តូង',
-                    processing: false,
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const DetailsWaterSupply(
-                            title: 'អណ្តូង',
-                          ),
-                        ),
-                      );
-                    },
-                  ),
-                  const SizedBox(height: 10),
-                  _FeatureItem(
-                    iconSvg: AssetPath.waterSupply,
-                    label: 'ប្រព័ន្ធចែកចាយទឹកតាមបណ្តាញបំពង់ខ្នាតតូចសហគមន៍',
-                    processing: false,
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const DetailsWaterSupply(
-                            title:
-                                'ប្រព័ន្ធចែកចាយទឹកតាមបណ្តាញបំពង់ខ្នាតតូចសហគមន៍',
-                          ),
-                        ),
-                      );
-                    },
-                  ),
-                  const SizedBox(height: 10),
-                  _FeatureItem(
-                    iconSvg: AssetPath.waterSupply,
-                    label: 'ស្ថានីយ៍ផលិតទឹកផឹកសហគមន៍',
-                    processing: false,
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const DetailsWaterSupply(
-                            title: 'ស្ថានីយ៍ផលិតទឹកផឹកសហគមន៍',
-                          ),
-                        ),
-                      );
-                    },
-                  ),
-                  const SizedBox(height: 10),
-                  _FeatureItem(
-                    iconSvg: AssetPath.waterSupply,
-                    label: 'ស្រះសហគមន៍',
-                    processing: false,
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const DetailsWaterSupply(
-                            title: 'ស្រះសហគមន៍',
-                          ),
-                        ),
-                      );
-                    },
-                  ),
-                  const SizedBox(height: 10),
-                  _FeatureItem(
-                    iconSvg: AssetPath.waterSupply,
-                    label: 'អាងត្រងទឹកភ្លៀង',
-                    processing: false,
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const DetailsWaterSupply(
-                            title: 'អាងត្រងទឹកភ្លៀង',
-                          ),
-                        ),
-                      );
-                    },
-                  ),
-                  const SizedBox(height: 10),
-                  _FeatureItem(
-                    iconSvg: AssetPath.waterSupply,
-                    label: 'ប្រព័ន្ធចែកចាយទឹកតាមបណ្តាញបំពង់ឯកជន',
-                    processing: false,
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const DetailsWaterSupply(
-                            title: 'ប្រព័ន្ធចែកចាយទឹកតាមបណ្តាញបំពង់ឯកជន',
-                          ),
-                        ),
-                      );
-                    },
-                  ),
-                  const SizedBox(height: 10),
-                  _FeatureItem(
-                    iconSvg: AssetPath.waterSupply,
-                    label: 'ស្ថានីយ៍ស្រូបទឹកពីបរិយាកាស',
-                    processing: false,
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const DetailsWaterSupply(
-                            title: 'ស្ថានីយ៍ស្រូបទឹកពីបរិយាកាស',
-                          ),
-                        ),
-                      );
-                    },
-                  )
-                ],
-              ),
-            ),
-          ),
+        switch (state.status) {
+          case BaseStatusEnum.success:
+            return const _SuccessView();
+          case BaseStatusEnum.failure:
+            return const _FailureView();
+          default:
+            return const _LoadingView();
+        }
+      },
+    );
+  }
+}
+
+// ===================
+// Success View
+// ===================
+class _SuccessView extends StatelessWidget {
+  const _SuccessView({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<WaterSupplyBloc, WaterSupplyState>(
+      buildWhen: (previous, current) =>
+          previous.waterSupply != current.waterSupply,
+      builder: (context, state) {
+        if (state.waterSupply.isEmpty) {
+          return const Center(child: EmptyWidget());
+        }
+        return ListView.separated(
+          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+          itemBuilder: (context, index) {
+            return _WaterSupplyItem(item: state.waterSupply[index]);
+          },
+          separatorBuilder: (_, __) => const SizedBox(height: 10),
+          itemCount: state.waterSupply.length,
         );
       },
     );
   }
 }
 
-class _FeatureItem extends StatelessWidget {
-  const _FeatureItem({
-    Key? key,
-    required this.iconSvg,
-    required this.label,
-    this.onTap,
-    this.processing = false,
-  }) : super(key: key);
+// ===================
+// Failure View
+// ===================
+class _FailureView extends StatelessWidget {
+  const _FailureView({Key? key}) : super(key: key);
 
-  final String iconSvg;
-  final String label;
-  final void Function()? onTap;
-  final bool processing;
+  @override
+  Widget build(BuildContext context) {
+    return const LoadDataFailed();
+  }
+}
+
+// ===================
+// Loading View
+// ===================
+class _LoadingView extends StatelessWidget {
+  const _LoadingView({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<WaterSupplyBloc, WaterSupplyState>(
+      buildWhen: (previous, current) => previous.status != current.status,
+      builder: (context, state) {
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+      },
+    );
+  }
+}
+
+class _WaterSupplyItem extends StatelessWidget {
+  const _WaterSupplyItem({Key? key, required this.item}) : super(key: key);
+
+  final WaterSupplyTypeModel item;
 
   @override
   Widget build(BuildContext context) {
     return FlatCard(
-      onTap: processing ? null : onTap,
+      onTap: () {
+        context.goNamed(
+          AppRoute.waterSupplyDetail,
+          extra: {
+            'id': item.id.toString(),
+            'title': item.name.toString(),
+          },
+        );
+      },
       borderRadius: 16.0,
       side: BorderSide(
         width: 1.5,
@@ -173,7 +119,7 @@ class _FeatureItem extends StatelessWidget {
             child: Row(
               children: [
                 Image.asset(
-                  iconSvg,
+                  item.id != 1 ? AssetPath.waterSupply : AssetPath.well,
                   color: Theme.of(context).iconTheme.color,
                   width: 18,
                   height: 18,
@@ -184,7 +130,7 @@ class _FeatureItem extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      TextWidget(label, height: 1.8),
+                      TextWidget(item.name, height: 1.8),
                     ],
                   ),
                 ),
@@ -192,13 +138,6 @@ class _FeatureItem extends StatelessWidget {
             ),
           ),
           const SizedBox(width: 16.0),
-          processing
-              ? const SizedBox(
-                  width: 20,
-                  height: 20,
-                  child: CircularProgressIndicator(strokeWidth: 2),
-                )
-              : const SizedBox(height: 0),
         ],
       ),
     );

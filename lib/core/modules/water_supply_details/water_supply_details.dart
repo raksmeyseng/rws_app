@@ -7,8 +7,8 @@ import 'package:rws_app/core/widgets/text_widget.dart';
 import 'package:rws_app/core/widgets/textbutton_icon.dart';
 
 class DetailsWaterSupply extends StatefulWidget {
-  final String title;
-  const DetailsWaterSupply({Key? key, required this.title}) : super(key: key);
+  final String id;
+  const DetailsWaterSupply({Key? key, required this.id}) : super(key: key);
 
   @override
   State<DetailsWaterSupply> createState() => _HomeScreenState();
@@ -46,7 +46,7 @@ class _HomeScreenState extends State<DetailsWaterSupply> {
         backgroundColor: Theme.of(context).primaryColor,
         iconTheme: const IconThemeData(color: AppColor.white),
         title: TextWidget(
-          widget.title,
+          widget.id,
           color: AppColor.white,
         ),
         actions: [

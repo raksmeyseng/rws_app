@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rws_app/core/modules/water_supply/bloc/water_supply_bloc.dart';
+import 'package:rws_app/core/modules/water_supply/repositories/water_supply_repository.dart';
 import 'package:rws_app/core/modules/water_supply/view/water_supply_view.dart';
 
 class WaterSupplyPage extends StatelessWidget {
@@ -9,7 +10,7 @@ class WaterSupplyPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => WaterSupplyBloc()
+      create: (context) => WaterSupplyBloc(WaterSupplyRepository())
         ..add(
           const WaterSupplyStarted(),
         ),

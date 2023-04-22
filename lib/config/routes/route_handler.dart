@@ -9,6 +9,7 @@ import 'package:rws_app/core/modules/not_found/not_found_screen.dart';
 import 'package:rws_app/core/modules/register/view/register_page.dart';
 import 'package:rws_app/core/modules/setting/view/setting_page.dart';
 import 'package:rws_app/core/modules/splashscreen/splashscreen_page.dart';
+import 'package:rws_app/core/modules/water_supply_details/view/water_supply_detials_page.dart';
 
 extension ObjectExtension on Object? {
   dynamic getValue(String key, dynamic alt) {
@@ -82,5 +83,17 @@ Page editProfileBuilder(BuildContext context, GoRouterState state) {
   return MaterialPage<void>(
     key: state.pageKey,
     child: const EditProfilePage(),
+  );
+}
+
+Page waterSupplyDetailBuilder(BuildContext context, GoRouterState state) {
+  final id = int.tryParse(state.extra.getValue('id', '0'));
+  final title = state.extra.getValue('title', '');
+  return MaterialPage<void>(
+    key: state.pageKey,
+    child: WaterSupplyPage(
+      waterSupplyId: id ?? 0,
+      title: title,
+    ),
   );
 }

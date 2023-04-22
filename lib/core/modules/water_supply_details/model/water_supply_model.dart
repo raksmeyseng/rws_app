@@ -1,0 +1,31 @@
+import 'package:json_annotation/json_annotation.dart';
+import 'package:rws_app/core/modules/my_draft/models/my_draft_model.dart';
+
+part 'water_supply_model.g.dart';
+
+@JsonSerializable(explicitToJson: true)
+class WaterSupplyModel {
+  WaterSupplyModel({
+    required this.id,
+    required this.createdBy,
+    required this.createdDate,
+    required this.waterSupplyType,
+    required this.address,
+  });
+
+  @JsonKey(name: 'id')
+  int id;
+  @JsonKey(name: 'created_by')
+  String createdBy;
+  @JsonKey(name: 'created_date')
+  DateTime createdDate;
+  @JsonKey(name: 'water_supply_type')
+  String waterSupplyType;
+  @JsonKey(name: 'address')
+  Address address;
+
+  factory WaterSupplyModel.fromJson(Map<String, dynamic> json) =>
+      _$WaterSupplyModelFromJson(json);
+
+  Map<String, dynamic> toJson() => _$WaterSupplyModelToJson(this);
+}

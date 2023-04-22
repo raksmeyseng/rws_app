@@ -30,4 +30,8 @@ class ApiPath {
   static String getUser(int? userId) => '/api/UserAdmin/$userId';
   static String getUserToken = 'https://rwsapp.free.mockoapp.net/user';
   static String getAllMyDraft = 'https://rwsapp.free.mockoapp.net/api/my-task';
+  static String getWaterSupplyType =
+      'https://rwsapp.free.mockoapp.net/api/water-supply-type';
+  static String getWaterSupplyList(int id) =>
+      'https://rwsapp.free.mockoapp.net/api/water-supply/$id';
 }
