@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:rws_app/config/themes/app_color.dart';
 import 'package:rws_app/core/enum/base_status_enum.dart';
 import 'package:rws_app/core/modules/my_draft/bloc/my_draft_bloc.dart';
@@ -12,6 +13,8 @@ import 'package:rws_app/core/widgets/my_divider.dart';
 import 'package:rws_app/core/widgets/text_widget.dart';
 import 'package:rws_app/translation/generated/l10n.dart';
 import 'package:rws_app/widgets/empty_widget.dart';
+
+import '../../../../config/routes/app_route.dart';
 
 class MyDraftView extends StatelessWidget {
   const MyDraftView({super.key});
@@ -103,12 +106,21 @@ class _MyDraftItem extends StatelessWidget {
       borderRadius: 10,
       color: Theme.of(context).dividerColor.withOpacity(0.05),
       onTap: () {
+        /*
         Navigator.of(context).push(
           MaterialPageRoute(
             builder: (_) {
               return const ListDetails();
             },
           ),
+        );
+        */
+
+        context.goNamed(
+          AppRoute.waterSupplyViewDetail,
+          extra: {
+            'id': item.id.toString(),
+          },
         );
       },
       child: Column(

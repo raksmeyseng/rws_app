@@ -11,7 +11,7 @@ class WaterSupplyTypeModel {
 
   @JsonKey(name: 'id')
   int id;
-  @JsonKey(name: 'name')
+  @JsonKey(name: 'name_kh')
   String name;
 
   factory WaterSupplyTypeModel.fromJson(Map<String, dynamic> json) =>

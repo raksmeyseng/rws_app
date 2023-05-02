@@ -4,15 +4,15 @@ class WaterSupplyDetialsState extends Equatable {
   const WaterSupplyDetialsState._({
     this.status = BaseStatusEnum.initial,
     this.waterSupply = const [],
-    this.waterSupplyId = 0,
+    this.waterSupplyId =0,
   });
 
   final BaseStatusEnum status;
   final List<WaterSupplyModel> waterSupply;
   final int waterSupplyId;
 
-  const WaterSupplyDetialsState.initial({required int id})
-      : this._(waterSupplyId: id);
+  const WaterSupplyDetialsState.initial({required int waterSupplyId})
+      : this._(waterSupplyId: waterSupplyId);
 
   WaterSupplyDetialsState copyWith({
     BaseStatusEnum? status,

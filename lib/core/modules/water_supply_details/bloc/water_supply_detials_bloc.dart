@@ -12,7 +12,7 @@ class WaterSupplyDetialsBloc
   WaterSupplyDetialsBloc({
     required this.repository,
     required int waterSupplyId,
-  }) : super(WaterSupplyDetialsState.initial(id: waterSupplyId)) {
+  }) : super(WaterSupplyDetialsState.initial(waterSupplyId: waterSupplyId)) {
     on<WaterSupplyDetialsEvent>(_onWaterSupplyEvent);
   }
 
@@ -33,8 +33,9 @@ class WaterSupplyDetialsBloc
   ) async {
     emit(state.copyWith(status: BaseStatusEnum.inprogress));
     try {
+      print(state.waterSupplyId);
       final waterSupply =
-          await repository.getWaterSupplyList(state.waterSupplyId);
+          await repository.getWaterSupplyListv2(state.waterSupplyId);
       emit(state.copyWith(
         status: BaseStatusEnum.success,
         waterSupply: waterSupply,

@@ -210,5 +210,6 @@
   "commune":"Commune",
   "district":"District",
   "province":"Province",
-  "water_supply_type":"Water Supply Type"
+  "water_supply_type":"Water Supply Type",
+  "water_supply_code" : "Water Supply Code"
 }

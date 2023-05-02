@@ -81,6 +81,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         await Future.delayed(const Duration(milliseconds: 300));
 
         final userToken = await userRepo.getUserToken();
+        //final userToken=await userRepo.userLogin(userNameInput.value, passwordInput.value);
+        print(userToken);
         // await authRepo.saveOrUpdateUserTokens(userToken);
         Application.authBloc.add(AuthStatusChanged(
           status: AuthStatus.authenticated,

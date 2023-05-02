@@ -211,5 +211,6 @@
   "commune":"ឃុំ/សង្កាត់",
   "district":"ស្រុក/ខណ្ឌ",
   "province":"ខេត្ត/ក្រុង",
-  "water_supply_type":"ប្រភេទផ្គត់ផ្គត់ទឹក"
+  "water_supply_type":"ប្រភេទផ្គត់ផ្គត់ទឹក",
+  "water_supply_code": "លេខកូដសំណង់"
 }

@@ -2169,6 +2169,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Water Supply Code`
+  String get water_supply_code {
+    return Intl.message(
+      'Water Supply Code',
+      name: 'water_supply_code',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

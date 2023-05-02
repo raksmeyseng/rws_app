@@ -14,6 +14,7 @@ class AppRoute {
   static const String register = 'register';
   static const String editProfile = 'edit-profile';
   static const String waterSupplyDetail = 'water-supply-detail';
+  static const String waterSupplyViewDetail='water-supply-view-detail';
 
   /// Main Menu Item
   static final String home = MainMenuEnum.home.name;
@@ -62,6 +63,11 @@ class AppRoute {
           path: 'water-supply-detail',
           pageBuilder: waterSupplyDetailBuilder,
         ),
+        GoRoute(
+          name: waterSupplyViewDetail,
+          path: 'water-supply-view-detail',
+          pageBuilder: waterSupplyViewDetailBuilder
+        )
       ],
     ),
   ];

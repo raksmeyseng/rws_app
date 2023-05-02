@@ -1,3 +1,5 @@
+import 'package:rws_app/constants/app_constant.dart';
+
 class ApiPath {
   // Security Api
   static const String register = '/v1/Security/Register';
@@ -16,7 +18,7 @@ class ApiPath {
       '/v1/Security/$userId/Deactivate';
   static const String refreshToken = '/v1/Security/RefreshToken';
   static String updateProfile(int userId) => '/api/UserAdmin/$userId';
-  static String login = '/api/login';
+  static String login = AppConstant.mainURL+  'login/';
 
   // Media Api
   static const String uploadFile = '/api/Media/File';
@@ -30,8 +32,17 @@ class ApiPath {
   static String getUser(int? userId) => '/api/UserAdmin/$userId';
   static String getUserToken = 'https://rwsapp.free.mockoapp.net/user';
   static String getAllMyDraft = 'https://rwsapp.free.mockoapp.net/api/my-task';
+
   static String getWaterSupplyType =
-      'https://rwsapp.free.mockoapp.net/api/water-supply-type';
+      //'https://rwsapp.free.mockoapp.net/api/water-supply-type';
+      AppConstant.mainURL + 'watersupplytype/';
+
   static String getWaterSupplyList(int id) =>
       'https://rwsapp.free.mockoapp.net/api/water-supply/$id';
+  
+  //Irith Part 
+  static String getWaterSupplyListv2(int id) =>
+    'http://18.222.12.231/en/api/watersupply/?water_supply_type_id=&main_status=9';
+  static String getWaterSupplyDetail(int id) =>
+      AppConstant.mainURL+ 'watersupply/$id';
 }

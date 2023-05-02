@@ -11,7 +11,9 @@ import 'package:rws_app/core/widgets/load_data_failed.dart';
 import 'package:rws_app/core/widgets/my_divider.dart';
 import 'package:rws_app/core/widgets/text_widget.dart';
 import 'package:rws_app/widgets/empty_widget.dart';
+import 'package:go_router/go_router.dart';
 
+import '../../../../config/routes/app_route.dart';
 import '../../../../translation/generated/l10n.dart';
 
 class WaterSupplyDetialsView extends StatelessWidget {
@@ -105,6 +107,7 @@ class _WaterSupplyItem extends StatelessWidget {
       borderRadius: 10,
       color: Theme.of(context).dividerColor.withOpacity(0.05),
       onTap: () {
+        /*
         Navigator.of(context).push(
           MaterialPageRoute(
             builder: (_) {
@@ -112,6 +115,16 @@ class _WaterSupplyItem extends StatelessWidget {
             },
           ),
         );
+        */
+        print(item.id.toString());
+
+        context.goNamed(
+          AppRoute.waterSupplyViewDetail,
+          extra: {
+            'id': item.id.toString(),
+          },
+        );
+
       },
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -122,20 +135,24 @@ class _WaterSupplyItem extends StatelessWidget {
             TextWidget(item.waterSupplyType),
           ),
           _InfoItem(
+            CaptionWidget('${S.of(context).water_supply_code} :'),
+            TextWidget(item.waterSupplyCode),
+          ),
+          _InfoItem(
             CaptionWidget('${S.of(context).village} :'),
-            TextWidget(item.address.village),
+            TextWidget(item.village.nameEn),
           ),
           _InfoItem(
             CaptionWidget('${S.of(context).commune} :'),
-            TextWidget(item.address.commune),
+            TextWidget(item.commune.nameEn),
           ),
           _InfoItem(
             CaptionWidget('${S.of(context).district} :'),
-            TextWidget(item.address.district),
+            TextWidget(item.district.nameEn),
           ),
           _InfoItem(
             CaptionWidget('${S.of(context).province} :'),
-            TextWidget(item.address.province),
+            TextWidget(item.address.nameEn),
           ),
           const Padding(
             padding: EdgeInsets.symmetric(vertical: 8),
@@ -143,8 +160,8 @@ class _WaterSupplyItem extends StatelessWidget {
           ),
           _InfoItem(
             CaptionWidget('${S.of(context).status} :'),
-            const TextWidget(
-              'បានស្នើ',
+            TextWidget(
+              item.status.statusNameKh,
               color: AppColor.success,
             ),
           ),

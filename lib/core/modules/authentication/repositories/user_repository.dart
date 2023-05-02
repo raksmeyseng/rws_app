@@ -7,6 +7,7 @@ import 'package:rws_app/core/modules/authentication/models/user_token_model.dart
 import 'package:rws_app/core/services/rest_api_service.dart';
 
 class UserRepository extends RestApiService {
+
   Future<UserTokenModel> getUserToken() async {
     final user = await get(ApiPath.getUserToken);
     return UserTokenModel.fromJson(user);
@@ -21,4 +22,13 @@ class UserRepository extends RestApiService {
     final user = await put(ApiPath.updateUserSetting(userId), data: setting);
     return UserModel.fromJson(user);
   }
+
+  Future<UserTokenModel> userLogin(String username,String password) async{
+    print(ApiPath.login);
+
+    final login= await post(ApiPath.login,data:{username:username,password:password},headers: {'Content-Type': 'application/json'});
+    print(login);
+    return UserTokenModel.fromJson(login);
+  }
+
 }

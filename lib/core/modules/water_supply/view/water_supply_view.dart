@@ -130,7 +130,7 @@ class _WaterSupplyItem extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      TextWidget(item.name, height: 1.8),
+                      TextWidget(item.name.toString(), height: 1.8),
                     ],
                   ),
                 ),

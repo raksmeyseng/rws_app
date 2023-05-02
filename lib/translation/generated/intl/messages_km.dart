@@ -380,6 +380,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "village": MessageLookupByLibrary.simpleMessage("ភូមិ"),
         "water_supply":
             MessageLookupByLibrary.simpleMessage("ប្រព័ន្ធផ្គត់ផ្គង់ទឹក"),
+        "water_supply_code":
+            MessageLookupByLibrary.simpleMessage("លេខកូដសំណង់"),
         "water_supply_type":
             MessageLookupByLibrary.simpleMessage("ប្រភេទផ្គត់ផ្គត់ទឹក"),
         "your_password_changed_successfuly":

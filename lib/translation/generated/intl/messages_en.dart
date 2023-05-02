@@ -369,6 +369,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "version": MessageLookupByLibrary.simpleMessage("Version"),
         "village": MessageLookupByLibrary.simpleMessage("Village"),
         "water_supply": MessageLookupByLibrary.simpleMessage("Water Supply"),
+        "water_supply_code":
+            MessageLookupByLibrary.simpleMessage("Water Supply Code"),
         "water_supply_type":
             MessageLookupByLibrary.simpleMessage("Water Supply Type"),
         "your_account_has_been_deleted": MessageLookupByLibrary.simpleMessage(

@@ -9,6 +9,7 @@ import 'package:rws_app/core/modules/not_found/not_found_screen.dart';
 import 'package:rws_app/core/modules/register/view/register_page.dart';
 import 'package:rws_app/core/modules/setting/view/setting_page.dart';
 import 'package:rws_app/core/modules/splashscreen/splashscreen_page.dart';
+import 'package:rws_app/core/modules/view_details/view/list_details.dart';
 import 'package:rws_app/core/modules/water_supply_details/view/water_supply_detials_page.dart';
 
 extension ObjectExtension on Object? {
@@ -94,6 +95,17 @@ Page waterSupplyDetailBuilder(BuildContext context, GoRouterState state) {
     child: WaterSupplyPage(
       waterSupplyId: id ?? 0,
       title: title,
+    ),
+  );
+}
+
+Page waterSupplyViewDetailBuilder(BuildContext context, GoRouterState state){
+  final id=int.tryParse(state.extra.getValue('id','0'));
+  //print(id);
+  return MaterialPage<void>(
+    key: state.pageKey,
+    child: ListDetails(
+      id: id ?? 0,
     ),
   );
 }
