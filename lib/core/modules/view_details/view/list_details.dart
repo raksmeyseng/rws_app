@@ -6,7 +6,7 @@ import 'package:rws_app/core/modules/view_details/card/card_list_details.dart';
 import 'package:rws_app/core/modules/view_details/card/card_qr_detail.dart';
 import 'package:rws_app/core/widgets/tabbar_widget.dart';
 
-class ListDetails extends StatelessWidget {
+class ListDetails extends StatefulWidget {
   //const ListDetails({int id}) : super(key: key);
   const ListDetails({
     super.key,
@@ -16,12 +16,11 @@ class ListDetails extends StatelessWidget {
 
   final int id;
 
-  /*
+
   @override
   State<ListDetails> createState() => _ListDetailsState();
-  */
 
-
+/*
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -33,9 +32,11 @@ class ListDetails extends StatelessWidget {
       },
     );
   }
+
+ */
 }
 
-class _ListDetailsState extends StatelessWidget
+class _ListDetailsState extends State<ListDetails>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
@@ -58,9 +59,6 @@ class _ListDetailsState extends StatelessWidget
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<WaterSupplyViewDetailBloc,WaterSupplyViewDetailState>(
-      buildWhen: (previous, current) => previous.status != current.status,
-      builder: (context, state) {
         return const Scaffold(
           body: TabBarWidget(
             tabs: [
@@ -76,8 +74,7 @@ class _ListDetailsState extends StatelessWidget
             ],
           ),
         );
-      },
-    );
+
     //return const
   }
 }
