@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rws_app/config/themes/app_color.dart';
 import 'package:rws_app/core/enum/base_status_enum.dart';
-import 'package:rws_app/core/modules/view_details/view/list_details.dart';
 import 'package:rws_app/core/modules/water_supply_details/bloc/water_supply_detials_bloc.dart';
 import 'package:rws_app/core/modules/water_supply_details/model/water_supply_model.dart';
 import 'package:rws_app/core/widgets/caption_widget.dart';

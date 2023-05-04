@@ -3,7 +3,6 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rws_app/config/themes/app_color.dart';
-import 'package:rws_app/core/modules/view_details/view/list_details.dart';
 import 'package:rws_app/core/widgets/text_widget.dart';
 import 'package:rws_app/core/widgets/textbutton_icon.dart';
 

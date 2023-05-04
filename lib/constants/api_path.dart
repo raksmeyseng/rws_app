@@ -18,7 +18,7 @@ class ApiPath {
       '/v1/Security/$userId/Deactivate';
   static const String refreshToken = '/v1/Security/RefreshToken';
   static String updateProfile(int userId) => '/api/UserAdmin/$userId';
-  static String login = AppConstant.mainURL+  'login/';
+  static String login = '${AppConstant.mainURL}login/';
 
   // Media Api
   static const String uploadFile = '/api/Media/File';
@@ -35,7 +35,7 @@ class ApiPath {
 
   static String getWaterSupplyType =
       //'https://rwsapp.free.mockoapp.net/api/water-supply-type';
-      AppConstant.mainURL + 'watersupplytype/';
+      '${AppConstant.mainURL}watersupplytype/';
 
   static String getWaterSupplyList(int id) =>
       'https://rwsapp.free.mockoapp.net/api/water-supply/$id';
@@ -44,5 +44,5 @@ class ApiPath {
   static String getWaterSupplyListv2(int id) =>
     'http://18.222.12.231/en/api/watersupply/?water_supply_type_id=&main_status=9';
   static String getWaterSupplyDetail(int id) =>
-      AppConstant.mainURL+ 'watersupply/$id';
+      '${AppConstant.mainURL}watersupply/$id';
 }
