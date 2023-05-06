@@ -103,7 +103,8 @@ dependencies:
   google_maps_flutter: ^2.0.6
   flutter_google_places: ^0.3.0
   geolocator: ^8.1.1
-
+  flutter_speed_dial: ^6.2.0
+  blurry: ^1.4.2
 dev_dependencies:
   flutter_test:
     sdk: flutter

@@ -12,7 +12,7 @@ class _CardQRDetailState extends State<CardQRDetail> {
   Widget build(BuildContext context) {
     return Center(
       child: Image.network(
-          'http://ec2-52-14-59-145.us-east-2.compute.amazonaws.com/media/qr1678958602.6619184.png'),
+          'http://18.222.12.231/media/qr1681033557.780248.png'),
     );
   }
 }

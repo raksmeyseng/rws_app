@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:rws_app/config/themes/app_color.dart';
 import 'package:rws_app/core/widgets/text_widget.dart';
 
-class CardDataDiagram extends StatelessWidget {
-  const CardDataDiagram({Key? key}) : super(key: key);
+class CardDataFields extends StatelessWidget {
+  const CardDataFields({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
