@@ -274,8 +274,12 @@ class MessageLookup extends MessageLookupByLibrary {
             "Biometric authentication is not setup on your device. Please either enable Fingerprint or Face ID."),
         "pls_input_address":
             MessageLookupByLibrary.simpleMessage("Please input address"),
+        "pls_input_commune":
+            MessageLookupByLibrary.simpleMessage("Please input commune"),
         "pls_input_confirm_password": MessageLookupByLibrary.simpleMessage(
             "Please input confirm password"),
+        "pls_input_district":
+            MessageLookupByLibrary.simpleMessage("Please input district"),
         "pls_input_email":
             MessageLookupByLibrary.simpleMessage("Please input email"),
         "pls_input_latitude":
@@ -290,10 +294,14 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Please input password"),
         "pls_input_phone_number":
             MessageLookupByLibrary.simpleMessage("Please input phone number"),
+        "pls_input_province":
+            MessageLookupByLibrary.simpleMessage("Please input province"),
         "pls_input_thumbnail_title": MessageLookupByLibrary.simpleMessage(
             "Please input thumbnail title"),
         "pls_input_user_name":
             MessageLookupByLibrary.simpleMessage("Please input user name"),
+        "pls_input_village":
+            MessageLookupByLibrary.simpleMessage("Please input village"),
         "pls_input_your_dob": MessageLookupByLibrary.simpleMessage(
             "Please input your date of birth"),
         "pls_input_your_email":

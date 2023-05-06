@@ -2179,6 +2179,46 @@ class S {
       args: [],
     );
   }
+
+  /// `Please input province`
+  String get pls_input_province {
+    return Intl.message(
+      'Please input province',
+      name: 'pls_input_province',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please input district`
+  String get pls_input_district {
+    return Intl.message(
+      'Please input district',
+      name: 'pls_input_district',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please input commune`
+  String get pls_input_commune {
+    return Intl.message(
+      'Please input commune',
+      name: 'pls_input_commune',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please input village`
+  String get pls_input_village {
+    return Intl.message(
+      'Please input village',
+      name: 'pls_input_village',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

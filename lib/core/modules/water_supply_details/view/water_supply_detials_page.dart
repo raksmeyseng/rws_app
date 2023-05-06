@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rws_app/config/themes/app_color.dart';
+import 'package:rws_app/core/modules/water_supplier_edit/view/water_supply_edit_page.dart';
 import 'package:rws_app/core/modules/water_supply_details/bloc/water_supply_detials_bloc.dart';
 import 'package:rws_app/core/modules/water_supply_details/repositories/water_supply_detials_repository.dart';
 import 'package:rws_app/core/modules/water_supply_details/view/water_supply_detials_view.dart';
@@ -34,7 +35,18 @@ class WaterSupplyPage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: AddNewWaterManageSystem(
-                onPress: () {},
+                onPress: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (_) {
+                        return WaterSupplyEditPage(
+                          title: title,
+                          waterSupplyId: waterSupplyId,
+                        );
+                      },
+                    ),
+                  );
+                },
                 icon: Icons.add_circle_outlined,
                 title: 'បង្កើតថ្មី',
               ),

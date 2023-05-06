@@ -1,0 +1,40 @@
+import 'package:flutter/material.dart';
+import 'package:json_annotation/json_annotation.dart';
+
+const int _govermentCode = 1;
+const int _organizationCode = 2;
+const int _charityCode = 3;
+
+enum BudgetTypeEnum {
+  @JsonValue(_govermentCode)
+  goverment,
+  @JsonValue(_organizationCode)
+  organization,
+  @JsonValue(_charityCode)
+  charity,
+}
+
+extension BudgetTypeEnumExtension on BudgetTypeEnum {
+  int getCode() {
+    switch (this) {
+      case BudgetTypeEnum.goverment:
+        return _govermentCode;
+      case BudgetTypeEnum.organization:
+        return _organizationCode;
+      case BudgetTypeEnum.charity:
+        return _charityCode;
+    }
+  }
+
+  /// User friendly text
+  String getDisplayText(BuildContext context) {
+    switch (this) {
+      case BudgetTypeEnum.goverment:
+        return 'រដ្ឋ';
+      case BudgetTypeEnum.organization:
+        return 'អង្គការ';
+      case BudgetTypeEnum.charity:
+        return 'សប្បុរស';
+    }
+  }
+}

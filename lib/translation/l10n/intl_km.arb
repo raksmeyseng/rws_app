@@ -212,5 +212,9 @@
   "district":"ស្រុក/ខណ្ឌ",
   "province":"ខេត្ត/ក្រុង",
   "water_supply_type":"ប្រភេទផ្គត់ផ្គត់ទឹក",
-  "water_supply_code": "លេខកូដសំណង់"
+  "water_supply_code": "លេខកូដសំណង់",
+  "pls_input_province":"សូមជ្រើសរើសខេត្ត/ក្រុង",
+  "pls_input_district":"សូមជ្រើសរើសស្រុក/ខណ្ឌ",
+  "pls_input_commune":"សូមជ្រើសរើសឃុំ/សង្កាត់",
+  "pls_input_village":"សូមជ្រើសរើសភូមិ"
 }

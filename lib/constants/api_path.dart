@@ -46,3 +46,4 @@ class ApiPath {
   static String getWaterSupplyDetail(int id) =>
       '${AppConstant.mainURL}watersupply/$id';
 }
+    

@@ -283,8 +283,12 @@ class MessageLookup extends MessageLookupByLibrary {
             "សូមកំណត់មុខងារស្កេនម្រាមដៃ/មុខ នៅលើឧបករណ៍របស់អ្នក។"),
         "pls_input_address":
             MessageLookupByLibrary.simpleMessage("សូមបញ្ចូលអាសយដ្ឋាន"),
+        "pls_input_commune":
+            MessageLookupByLibrary.simpleMessage("សូមជ្រើសរើសឃុំ/សង្កាត់"),
         "pls_input_confirm_password":
             MessageLookupByLibrary.simpleMessage("សូមបញ្ជាក់ពាក្យសម្ងាត់"),
+        "pls_input_district":
+            MessageLookupByLibrary.simpleMessage("សូមជ្រើសរើសស្រុក/ខណ្ឌ"),
         "pls_input_email":
             MessageLookupByLibrary.simpleMessage("សូមបញ្ចូលអ៊ីមែល"),
         "pls_input_latitude":
@@ -299,10 +303,14 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("សូមបញ្ចូលពាក្យសម្ងាត់"),
         "pls_input_phone_number":
             MessageLookupByLibrary.simpleMessage("សូមបញ្ចូលលេខទូរស័ព្ទ"),
+        "pls_input_province":
+            MessageLookupByLibrary.simpleMessage("សូមជ្រើសរើសខេត្ត/ក្រុង"),
         "pls_input_thumbnail_title":
             MessageLookupByLibrary.simpleMessage("សូមបញ្ចូលចំណងជើងរូបភាព"),
         "pls_input_user_name": MessageLookupByLibrary.simpleMessage(
             "សូមបញ្ចូលឈ្មោះអ្នកប្រើប្រាស់"),
+        "pls_input_village":
+            MessageLookupByLibrary.simpleMessage("សូមជ្រើសរើសភូមិ"),
         "pls_input_your_dob": MessageLookupByLibrary.simpleMessage(
             "សូមបញ្ចូលថ្ងៃខែឆ្នាំកំណើតរបស់អ្នក"),
         "pls_input_your_email":

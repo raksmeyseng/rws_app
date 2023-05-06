@@ -211,5 +211,9 @@
   "district":"District",
   "province":"Province",
   "water_supply_type":"Water Supply Type",
-  "water_supply_code" : "Water Supply Code"
+  "water_supply_code" : "Water Supply Code",
+  "pls_input_province":"Please input province",
+  "pls_input_district":"Please input district",
+  "pls_input_commune":"Please input commune",
+  "pls_input_village":"Please input village"
 }
