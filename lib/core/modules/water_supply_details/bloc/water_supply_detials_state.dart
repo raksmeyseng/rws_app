@@ -4,7 +4,7 @@ class WaterSupplyDetialsState extends Equatable {
   const WaterSupplyDetialsState._({
     this.status = BaseStatusEnum.initial,
     this.waterSupply = const [],
-    this.waterSupplyId =0,
+    this.waterSupplyId = 0,
   });
 
   final BaseStatusEnum status;
@@ -17,13 +17,19 @@ class WaterSupplyDetialsState extends Equatable {
   WaterSupplyDetialsState copyWith({
     BaseStatusEnum? status,
     List<WaterSupplyModel>? waterSupply,
+    int? waterSupplyId,
   }) {
     return WaterSupplyDetialsState._(
       status: status ?? this.status,
       waterSupply: waterSupply ?? this.waterSupply,
+      waterSupplyId: waterSupplyId ?? this.waterSupplyId,
     );
   }
 
   @override
-  List<Object?> get props => [status, waterSupply];
+  List<Object?> get props => [
+        status,
+        waterSupply,
+        waterSupplyId,
+      ];
 }

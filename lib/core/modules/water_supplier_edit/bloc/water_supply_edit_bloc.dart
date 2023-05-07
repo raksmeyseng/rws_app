@@ -65,6 +65,16 @@ class WaterSupplyEditBloc
   final receiverFamilyMinorityController = TextEditingController();
   final FocusNode receiverFamilyVictimFocus = FocusNode();
   final receiverFamilyVictimController = TextEditingController();
+  final FocusNode waterSupplyTypeFocus = FocusNode();
+  final waterSupplyTypeController = TextEditingController();
+  final FocusNode containerFocus = FocusNode();
+  final containerController = TextEditingController();
+  final FocusNode capacityFocus = FocusNode();
+  final capacityController = TextEditingController();
+  final FocusNode wellTypeFocus = FocusNode();
+  final wellTypeController = TextEditingController();
+  final FocusNode wellDepthFocus = FocusNode();
+  final wellDepthController = TextEditingController();
 
   Future<void> _onWaterSupplyEvent(
     WaterSupplyEditEvent event,
@@ -138,6 +148,21 @@ class WaterSupplyEditBloc
     }
     if (event is ReceiverFamilyVictimChanged) {
       return _onReceiverFamilyVictimChanged(event, emit);
+    }
+    if (event is WaterSupplyTypeChanged) {
+      return _onWaterSupplyTypeChanged(event, emit);
+    }
+    if (event is ContainerChanged) {
+      return _onContainerChanged(event, emit);
+    }
+    if (event is CapacityChanged) {
+      return _onCapacityChanged(event, emit);
+    }
+    if (event is WellTypeChanged) {
+      return _onWellTypeChanged(event, emit);
+    }
+    if (event is WellDepthChanged) {
+      return _onWellDepthChanged(event, emit);
     }
   }
 
@@ -388,5 +413,47 @@ class WaterSupplyEditBloc
     emit(state.copyWith(
       receiverFamilyVictimInput: receiverFamilyVictim,
     ));
+  }
+
+  void _onWaterSupplyTypeChanged(
+    WaterSupplyTypeChanged event,
+    Emitter<WaterSupplyEditState> emit,
+  ) {
+    final waterSupplyType = WaterSupplyInput.pure(event.waterSupplyType);
+    waterSupplyTypeController.text = event.waterSupplyType;
+    emit(state.copyWith(waterSupplyTypeInput: waterSupplyType));
+  }
+
+  void _onContainerChanged(
+    ContainerChanged event,
+    Emitter<WaterSupplyEditState> emit,
+  ) {
+    final container = WaterSupplyInput.pure(event.container);
+    emit(state.copyWith(containerInput: container));
+  }
+
+  void _onCapacityChanged(
+    CapacityChanged event,
+    Emitter<WaterSupplyEditState> emit,
+  ) {
+    final capacity = WaterSupplyInput.pure(event.capacity);
+    emit(state.copyWith(capacityInput: capacity));
+  }
+
+  void _onWellTypeChanged(
+    WellTypeChanged event,
+    Emitter<WaterSupplyEditState> emit,
+  ) {
+    final wellType = WaterSupplyInput.pure(event.wellType);
+    wellTypeController.text = event.wellType;
+    emit(state.copyWith(wellTypeInput: wellType));
+  }
+
+  void _onWellDepthChanged(
+    WellDepthChanged event,
+    Emitter<WaterSupplyEditState> emit,
+  ) {
+    final wellDepth = WaterSupplyInput.pure(event.wellDepth);
+    emit(state.copyWith(wellDepthInput: wellDepth));
   }
 }

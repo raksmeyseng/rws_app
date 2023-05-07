@@ -31,6 +31,11 @@ class WaterSupplyEditState extends Equatable {
     this.constructionCodeInput = const WaterSupplyInput.pure(),
     this.receiverFamilyMinorityInput = const WaterSupplyInput.pure(),
     this.receiverFamilyVictimInput = const WaterSupplyInput.pure(),
+    this.waterSupplyTypeInput = const WaterSupplyInput.pure(),
+    this.containerInput = const WaterSupplyInput.pure(),
+    this.capacityInput = const WaterSupplyInput.pure(),
+    this.wellTypeInput = const WaterSupplyInput.pure(),
+    this.wellDepthInput = const WaterSupplyInput.pure(),
   });
 
   final BaseStatusEnum status;
@@ -62,6 +67,11 @@ class WaterSupplyEditState extends Equatable {
   final WaterSupplyInput constructionCodeInput;
   final WaterSupplyInput receiverFamilyMinorityInput;
   final WaterSupplyInput receiverFamilyVictimInput;
+  final WaterSupplyInput waterSupplyTypeInput;
+  final WaterSupplyInput containerInput;
+  final WaterSupplyInput capacityInput;
+  final WaterSupplyInput wellTypeInput;
+  final WaterSupplyInput wellDepthInput;
 
   const WaterSupplyEditState.initial({required int waterSupplyId})
       : this._(waterSupplyId: waterSupplyId);
@@ -69,6 +79,7 @@ class WaterSupplyEditState extends Equatable {
   WaterSupplyEditState copyWith({
     BaseStatusEnum? status,
     WaterSupplyModel? waterSupply,
+    int? waterSupplyId,
     WaterSupplyInput? provinceInput,
     WaterSupplyInput? districtInput,
     WaterSupplyInput? communeInput,
@@ -95,10 +106,16 @@ class WaterSupplyEditState extends Equatable {
     WaterSupplyInput? constructionCodeInput,
     WaterSupplyInput? receiverFamilyMinorityInput,
     WaterSupplyInput? receiverFamilyVictimInput,
+    WaterSupplyInput? waterSupplyTypeInput,
+    WaterSupplyInput? containerInput,
+    WaterSupplyInput? capacityInput,
+    WaterSupplyInput? wellTypeInput,
+    WaterSupplyInput? wellDepthInput,
   }) {
     return WaterSupplyEditState._(
       status: status ?? this.status,
       waterSupply: waterSupply ?? this.waterSupply,
+      waterSupplyId: waterSupplyId ?? this.waterSupplyId,
       provinceInput: provinceInput ?? this.provinceInput,
       districtInput: districtInput ?? this.districtInput,
       communeInput: communeInput ?? this.communeInput,
@@ -132,6 +149,11 @@ class WaterSupplyEditState extends Equatable {
           receiverFamilyMinorityInput ?? this.receiverFamilyMinorityInput,
       receiverFamilyVictimInput:
           receiverFamilyVictimInput ?? this.receiverFamilyVictimInput,
+      waterSupplyTypeInput: waterSupplyTypeInput ?? this.waterSupplyTypeInput,
+      containerInput: containerInput ?? this.containerInput,
+      capacityInput: capacityInput ?? this.capacityInput,
+      wellTypeInput: wellTypeInput ?? this.wellTypeInput,
+      wellDepthInput: wellDepthInput ?? this.wellDepthInput,
     );
   }
 
@@ -139,6 +161,7 @@ class WaterSupplyEditState extends Equatable {
   List<Object?> get props => [
         status,
         waterSupply,
+        waterSupplyId,
         provinceInput,
         districtInput,
         communeInput,
@@ -165,5 +188,10 @@ class WaterSupplyEditState extends Equatable {
         constructionCodeInput,
         receiverFamilyMinorityInput,
         receiverFamilyVictimInput,
+        waterSupplyTypeInput,
+        containerInput,
+        capacityInput,
+        wellTypeInput,
+        wellDepthInput,
       ];
 }

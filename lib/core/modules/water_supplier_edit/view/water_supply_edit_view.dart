@@ -5,6 +5,8 @@ import 'package:rws_app/core/enum/base_status_enum.dart';
 import 'package:rws_app/core/enum/budget_type.dart';
 import 'package:rws_app/core/enum/management_type.dart';
 import 'package:rws_app/core/enum/map_type_enum.dart';
+import 'package:rws_app/core/enum/water_supply_type_enum.dart';
+import 'package:rws_app/core/enum/well_type_enum.dart';
 import 'package:rws_app/core/modules/my_draft/models/my_draft_model.dart';
 import 'package:rws_app/core/modules/water_supplier_edit/bloc/water_supply_edit_bloc.dart';
 import 'package:rws_app/core/modules/water_supplier_edit/model/doc_input.dart';
@@ -238,8 +240,7 @@ class _ThirdInputPage extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: const [
-                // _FormField(),
-                // SizedBox(height: 30),
+                _FormField3(),
               ],
             ),
           ),
@@ -414,6 +415,218 @@ class _FormField2 extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: const [
             Expanded(child: _CompanyNameInput()),
+          ],
+        ),
+        //bottom padding
+        const SizedBox(height: 30),
+      ],
+    );
+  }
+}
+
+class _FormField3 extends StatelessWidget {
+  const _FormField3({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
+      builder: (context, state) {
+        switch (state.waterSupplyId) {
+          case 1:
+            return const _WellInputPage();
+          case 2:
+            return const _PipeInputPage();
+          case 3:
+            return const _KoiskInputPage();
+          case 4:
+            return const _PondInputPage();
+          case 5:
+            return const _RainInputPage();
+          case 6:
+            return const _SmallPipeInputPage();
+          case 7:
+            return const _AirInputPage();
+          default:
+            return const _WellInputPage();
+        }
+      },
+    );
+  }
+}
+
+class _WellInputPage extends StatelessWidget {
+  const _WellInputPage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: const [
+            Expanded(child: _WellTypeInput()),
+            SizedBox(width: 16),
+            Expanded(child: _WellDepthInput()),
+          ],
+        ),
+        //bottom padding
+        const SizedBox(height: 30),
+      ],
+    );
+  }
+}
+
+class _PipeInputPage extends StatelessWidget {
+  const _PipeInputPage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: const [
+            Expanded(child: _WaterSupplyTypeInput()),
+          ],
+        ),
+        const SizedBox(height: 16),
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: const [
+            Expanded(child: _ContainerInput()),
+          ],
+        ),
+        const SizedBox(height: 16),
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: const [
+            Expanded(child: _CapacityInput()),
+          ],
+        ),
+        //bottom padding
+        const SizedBox(height: 30),
+      ],
+    );
+  }
+}
+
+class _KoiskInputPage extends StatelessWidget {
+  const _KoiskInputPage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: const [
+            Expanded(child: _ProvinceInput()),
+            SizedBox(width: 16),
+            Expanded(child: _DistrictInput()),
+          ],
+        ),
+        //bottom padding
+        const SizedBox(height: 30),
+      ],
+    );
+  }
+}
+
+class _PondInputPage extends StatelessWidget {
+  const _PondInputPage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: const [
+            Expanded(child: _ProvinceInput()),
+            SizedBox(width: 16),
+            Expanded(child: _DistrictInput()),
+          ],
+        ),
+        //bottom padding
+        const SizedBox(height: 30),
+      ],
+    );
+  }
+}
+
+class _RainInputPage extends StatelessWidget {
+  const _RainInputPage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: const [
+            Expanded(child: _ProvinceInput()),
+            SizedBox(width: 16),
+            Expanded(child: _DistrictInput()),
+          ],
+        ),
+        //bottom padding
+        const SizedBox(height: 30),
+      ],
+    );
+  }
+}
+
+class _SmallPipeInputPage extends StatelessWidget {
+  const _SmallPipeInputPage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: const [
+            Expanded(child: _ProvinceInput()),
+            SizedBox(width: 16),
+            Expanded(child: _DistrictInput()),
+          ],
+        ),
+        //bottom padding
+        const SizedBox(height: 30),
+      ],
+    );
+  }
+}
+
+class _AirInputPage extends StatelessWidget {
+  const _AirInputPage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: const [
+            Expanded(child: _ProvinceInput()),
+            SizedBox(width: 16),
+            Expanded(child: _DistrictInput()),
           ],
         ),
         //bottom padding
@@ -1529,6 +1742,248 @@ class _ConstructionCodeInput extends StatelessWidget {
     switch (state.constructionCodeInput.error) {
       case WaterSupplyInputValidationError.empty:
         return 'សូមបញ្ចូលលេខកូដសំណង់';
+      default:
+        return null;
+    }
+  }
+}
+
+class _WaterSupplyTypeInput extends StatelessWidget {
+  const _WaterSupplyTypeInput({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final bloc = context.read<WaterSupplyEditBloc>();
+    return BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
+      buildWhen: (previous, current) =>
+          previous.waterSupplyTypeInput != current.waterSupplyTypeInput,
+      builder: (context, state) {
+        return MyTextInput(
+          label: 'ប្រភេទប្រភពទឹក',
+          focusNode: bloc.waterSupplyTypeFocus,
+          controller: bloc.waterSupplyTypeController,
+          onTap: () async {
+            final waterSupplyType =
+                await DialogHelper.showAnimatedDialog<String?>(
+              animationType: DialogAnimationType.none,
+              transitionDuration: const Duration(milliseconds: 200),
+              pageBuilder: (context, a1, a2) {
+                return MySimpleDialog(
+                  title: 'ប្រភេទប្រភពទឹក',
+                  content: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 24.0),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        ...WaterSupplyTypeEnum.values.map(
+                          (waterSupplyType) => ListTile(
+                            onTap: () {
+                              Navigator.of(context)
+                                  .pop(waterSupplyType.getDisplayText(context));
+                            },
+                            contentPadding: const EdgeInsets.symmetric(
+                              horizontal: 24.0,
+                            ),
+                            title: TextWidget(
+                                waterSupplyType.getDisplayText(context)),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              },
+            );
+            if (waterSupplyType != null) {
+              bloc.add(WaterSupplyTypeChanged(waterSupplyType));
+            }
+          },
+          errorText: _handleErrorText(context, state),
+          suffixIcon: const Icon(Icons.arrow_drop_down, size: 18),
+          readOnly: true,
+          isRequired: true,
+          textInputAction: TextInputAction.next,
+        );
+      },
+    );
+  }
+
+  String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
+    if (!state.waterSupplyTypeInput.invalid) return null;
+    switch (state.waterSupplyTypeInput.error) {
+      case WaterSupplyInputValidationError.empty:
+        return 'សូមជ្រើសរើសប្រភេទប្រភពទឹក';
+      default:
+        return null;
+    }
+  }
+}
+
+class _ContainerInput extends StatelessWidget {
+  const _ContainerInput({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
+      buildWhen: (previous, current) =>
+          previous.containerInput != current.containerInput,
+      builder: (context, state) {
+        return MyTextInput(
+          label: 'អាងស្តុបទឹកក្រោមដី(m3)',
+          focusNode: context.read<WaterSupplyEditBloc>().containerFocus,
+          controller: context.read<WaterSupplyEditBloc>().containerController,
+          onChanged: (val) =>
+              context.read<WaterSupplyEditBloc>().add(ContainerChanged(val)),
+          errorText: _handleErrorText(context, state),
+          textInputAction: TextInputAction.next,
+          keyboardType: TextInputType.phone,
+        );
+      },
+    );
+  }
+
+  String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
+    if (!state.containerInput.invalid) return null;
+    switch (state.containerInput.error) {
+      case WaterSupplyInputValidationError.empty:
+        return 'សូមបញ្ចូលអាងស្តុបទឹកក្រោមដី(m3)';
+      default:
+        return null;
+    }
+  }
+}
+
+class _CapacityInput extends StatelessWidget {
+  const _CapacityInput({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
+      buildWhen: (previous, current) =>
+          previous.capacityInput != current.capacityInput,
+      builder: (context, state) {
+        return MyTextInput(
+          label: 'សមត្ថភាពផលិតទឹក(m3/h)',
+          focusNode: context.read<WaterSupplyEditBloc>().capacityFocus,
+          controller: context.read<WaterSupplyEditBloc>().capacityController,
+          onChanged: (val) =>
+              context.read<WaterSupplyEditBloc>().add(CapacityChanged(val)),
+          errorText: _handleErrorText(context, state),
+          textInputAction: TextInputAction.next,
+          keyboardType: TextInputType.phone,
+        );
+      },
+    );
+  }
+
+  String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
+    if (!state.capacityInput.invalid) return null;
+    switch (state.capacityInput.error) {
+      case WaterSupplyInputValidationError.empty:
+        return 'សូមបញ្ចូលសមត្ថភាពផលិតទឹក(m3/h)';
+      default:
+        return null;
+    }
+  }
+}
+
+class _WellTypeInput extends StatelessWidget {
+  const _WellTypeInput({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final bloc = context.read<WaterSupplyEditBloc>();
+    return BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
+      buildWhen: (previous, current) =>
+          previous.wellTypeInput != current.wellTypeInput,
+      builder: (context, state) {
+        return MyTextInput(
+          label: 'ប្រភេទអណ្តូង',
+          focusNode: bloc.wellTypeFocus,
+          controller: bloc.wellTypeController,
+          onTap: () async {
+            final wellType = await DialogHelper.showAnimatedDialog<String?>(
+              animationType: DialogAnimationType.none,
+              transitionDuration: const Duration(milliseconds: 200),
+              pageBuilder: (context, a1, a2) {
+                return MySimpleDialog(
+                  title: 'ប្រភេទអណ្តូង',
+                  content: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 24.0),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        ...WellTypeEnum.values.map(
+                          (wellType) => ListTile(
+                            onTap: () {
+                              Navigator.of(context)
+                                  .pop(wellType.getDisplayText(context));
+                            },
+                            contentPadding: const EdgeInsets.symmetric(
+                              horizontal: 24.0,
+                            ),
+                            title: TextWidget(wellType.getDisplayText(context)),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              },
+            );
+            if (wellType != null) {
+              bloc.add(WellTypeChanged(wellType));
+            }
+          },
+          errorText: _handleErrorText(context, state),
+          suffixIcon: const Icon(Icons.arrow_drop_down, size: 18),
+          readOnly: true,
+          isRequired: true,
+          textInputAction: TextInputAction.next,
+        );
+      },
+    );
+  }
+
+  String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
+    if (!state.wellTypeInput.invalid) return null;
+    switch (state.wellTypeInput.error) {
+      case WaterSupplyInputValidationError.empty:
+        return 'សូមជ្រើសរើសប្រភេទអណ្តូង';
+      default:
+        return null;
+    }
+  }
+}
+
+class _WellDepthInput extends StatelessWidget {
+  const _WellDepthInput({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
+      buildWhen: (previous, current) =>
+          previous.wellDepthInput != current.wellDepthInput,
+      builder: (context, state) {
+        return MyTextInput(
+          label: 'ជម្រៅអណ្តូង(m)',
+          focusNode: context.read<WaterSupplyEditBloc>().wellDepthFocus,
+          controller: context.read<WaterSupplyEditBloc>().wellDepthController,
+          onChanged: (val) =>
+              context.read<WaterSupplyEditBloc>().add(WellDepthChanged(val)),
+          errorText: _handleErrorText(context, state),
+          textInputAction: TextInputAction.next,
+          keyboardType: TextInputType.phone,
+        );
+      },
+    );
+  }
+
+  String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
+    if (!state.wellDepthInput.invalid) return null;
+    switch (state.wellDepthInput.error) {
+      case WaterSupplyInputValidationError.empty:
+        return 'សូមបញ្ចូលជម្រៅអណ្តូង(m)';
       default:
         return null;
     }

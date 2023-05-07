@@ -208,3 +208,48 @@ class ConstructionCodeChanged extends WaterSupplyEditEvent {
   @override
   List<Object> get props => [constructionCode];
 }
+
+class WaterSupplyTypeChanged extends WaterSupplyEditEvent {
+  const WaterSupplyTypeChanged(this.waterSupplyType);
+
+  final String waterSupplyType;
+
+  @override
+  List<Object> get props => [waterSupplyType];
+}
+
+class ContainerChanged extends WaterSupplyEditEvent {
+  const ContainerChanged(this.container);
+
+  final String container;
+
+  @override
+  List<Object> get props => [container];
+}
+
+class CapacityChanged extends WaterSupplyEditEvent {
+  const CapacityChanged(this.capacity);
+
+  final String capacity;
+
+  @override
+  List<Object> get props => [capacity];
+}
+
+class WellTypeChanged extends WaterSupplyEditEvent {
+  const WellTypeChanged(this.wellType);
+
+  final String wellType;
+
+  @override
+  List<Object> get props => [wellType];
+}
+
+class WellDepthChanged extends WaterSupplyEditEvent {
+  const WellDepthChanged(this.wellDepth);
+
+  final String wellDepth;
+
+  @override
+  List<Object> get props => [wellDepth];
+}
