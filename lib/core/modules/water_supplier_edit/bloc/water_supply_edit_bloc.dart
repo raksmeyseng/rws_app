@@ -3,9 +3,11 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rws_app/core/enum/base_status_enum.dart';
 import 'package:rws_app/core/modules/my_draft/models/my_draft_model.dart';
+import 'package:rws_app/core/modules/water_supplier_edit/model/doc_input.dart';
 import 'package:rws_app/core/modules/water_supplier_edit/model/water_supply_input.dart';
 import 'package:rws_app/core/modules/water_supplier_edit/repositories/water_supply_edit_repository.dart';
 import 'package:rws_app/core/modules/water_supply_details/model/water_supply_model.dart';
+import 'package:rws_app/utils/helpers/date_helper.dart';
 
 part 'water_supply_edit_event.dart';
 part 'water_supply_edit_state.dart';
@@ -42,12 +44,27 @@ class WaterSupplyEditBloc
   final budgetTypeController = TextEditingController();
   final FocusNode managementTypeFocus = FocusNode();
   final managementTypeController = TextEditingController();
+  final FocusNode managementNameFocus = FocusNode();
+  final managementNameController = TextEditingController();
   final FocusNode receiverTotalFocus = FocusNode();
   final receiverTotalController = TextEditingController();
+  final FocusNode receiverTotalAsFemaleFocus = FocusNode();
+  final receiverTotalAsFemaleController = TextEditingController();
   final FocusNode receiverFamilyTotalFocus = FocusNode();
   final receiverFamilyTotalController = TextEditingController();
+  final FocusNode receiverFamilyPoor1Focus = FocusNode();
+  final receiverFamilyPoor1Controller = TextEditingController();
   final FocusNode receiverFamilyPoor2Focus = FocusNode();
   final receiverFamilyPoor2Controller = TextEditingController();
+  final docController = TextEditingController();
+  final FocusNode companyNameFocus = FocusNode();
+  final companyNameController = TextEditingController();
+  final FocusNode constructionCodeFocus = FocusNode();
+  final constructionCodeController = TextEditingController();
+  final FocusNode receiverFamilyMinorityFocus = FocusNode();
+  final receiverFamilyMinorityController = TextEditingController();
+  final FocusNode receiverFamilyVictimFocus = FocusNode();
+  final receiverFamilyVictimController = TextEditingController();
 
   Future<void> _onWaterSupplyEvent(
     WaterSupplyEditEvent event,
@@ -70,6 +87,57 @@ class WaterSupplyEditBloc
     }
     if (event is MapTypeChanged) {
       return _onMapTypeChanged(event, emit);
+    }
+    if (event is LatetitudeChanged) {
+      return _onLatetitudeChanged(event, emit);
+    }
+    if (event is LongtitudeChanged) {
+      return _onLongtitudeChanged(event, emit);
+    }
+    if (event is FamilyTotalChanged) {
+      return _onFamilyTotalChanged(event, emit);
+    }
+    if (event is LocationRickChanged) {
+      return _onLocationRickChanged(event, emit);
+    }
+    if (event is BudgetTypeChanged) {
+      return _onBudgetTypeChanged(event, emit);
+    }
+    if (event is ManagementTypeChanged) {
+      return _onManagementTypeChanged(event, emit);
+    }
+    if (event is ManagementNameChanged) {
+      return _onManagementNameChanged(event, emit);
+    }
+    if (event is ReceiverTotalChanged) {
+      return _onReceiverTotalChanged(event, emit);
+    }
+    if (event is ReceiverTotalAsFemaleChanged) {
+      return _onReceiverTotalAsFemaleChanged(event, emit);
+    }
+    if (event is ReceiverFamilyTotalChanged) {
+      return _onReceiverFamilyTotalChanged(event, emit);
+    }
+    if (event is ReceiverFamilyPoor1Changed) {
+      return _onReceiverFamilyPoor1Changed(event, emit);
+    }
+    if (event is ReceiverFamilyPoor2Changed) {
+      return _onReceiverFamilyPoor2Changed(event, emit);
+    }
+    if (event is DOCChanged) {
+      return _onDOCChanged(event, emit);
+    }
+    if (event is CompanyNameChanged) {
+      return _onCompanyNameChanged(event, emit);
+    }
+    if (event is ConstructionCodeChanged) {
+      return _onConstructionCodeChanged(event, emit);
+    }
+    if (event is ReceiverFamilyMinorityChanged) {
+      return _onReceiverFamilyMinorityChanged(event, emit);
+    }
+    if (event is ReceiverFamilyVictimChanged) {
+      return _onReceiverFamilyVictimChanged(event, emit);
     }
   }
 
@@ -142,6 +210,183 @@ class WaterSupplyEditBloc
     mapTypeController.text = event.mapType;
     emit(state.copyWith(
       mapTypeInput: mapType,
+    ));
+  }
+
+  void _onLatetitudeChanged(
+    LatetitudeChanged event,
+    Emitter<WaterSupplyEditState> emit,
+  ) {
+    final latetitude = WaterSupplyInput.pure(event.latetitude);
+    emit(state.copyWith(
+      lateitudeInput: latetitude,
+    ));
+  }
+
+  void _onLongtitudeChanged(
+    LongtitudeChanged event,
+    Emitter<WaterSupplyEditState> emit,
+  ) {
+    final longtitude = WaterSupplyInput.pure(event.longtitude);
+    emit(state.copyWith(
+      longtitudeInput: longtitude,
+    ));
+  }
+
+  void _onFamilyTotalChanged(
+    FamilyTotalChanged event,
+    Emitter<WaterSupplyEditState> emit,
+  ) {
+    final familyTotal = WaterSupplyInput.pure(event.familyTotal);
+    emit(state.copyWith(
+      familyTotalInput: familyTotal,
+    ));
+  }
+
+  void _onLocationRickChanged(
+    LocationRickChanged event,
+    Emitter<WaterSupplyEditState> emit,
+  ) {
+    final locationRick = WaterSupplyInput.pure(event.locationRick);
+    locationRickController.text = event.locationRick;
+    emit(state.copyWith(
+      locationRickInput: locationRick,
+    ));
+  }
+
+  void _onBudgetTypeChanged(
+    BudgetTypeChanged event,
+    Emitter<WaterSupplyEditState> emit,
+  ) {
+    final budgetType = WaterSupplyInput.pure(event.budgetType);
+    budgetTypeController.text = event.budgetType;
+    emit(state.copyWith(
+      budgetTypeInput: budgetType,
+    ));
+  }
+
+  void _onManagementTypeChanged(
+    ManagementTypeChanged event,
+    Emitter<WaterSupplyEditState> emit,
+  ) {
+    final managementType = WaterSupplyInput.pure(event.managementType);
+    managementTypeController.text = event.managementType;
+    emit(state.copyWith(
+      managementTypeInput: managementType,
+    ));
+  }
+
+  void _onManagementNameChanged(
+    ManagementNameChanged event,
+    Emitter<WaterSupplyEditState> emit,
+  ) {
+    final managementName = WaterSupplyInput.pure(event.managementName);
+    emit(state.copyWith(
+      managementNameInput: managementName,
+    ));
+  }
+
+  void _onReceiverTotalChanged(
+    ReceiverTotalChanged event,
+    Emitter<WaterSupplyEditState> emit,
+  ) {
+    final receiverTotal = WaterSupplyInput.pure(event.receiverTotal);
+    emit(state.copyWith(
+      receiverTotalInput: receiverTotal,
+    ));
+  }
+
+  void _onReceiverTotalAsFemaleChanged(
+    ReceiverTotalAsFemaleChanged event,
+    Emitter<WaterSupplyEditState> emit,
+  ) {
+    final receiverTotalAsFemale =
+        WaterSupplyInput.pure(event.receiverTotalAsFemale);
+    emit(state.copyWith(
+      receiverTotalAsFemaleInput: receiverTotalAsFemale,
+    ));
+  }
+
+  void _onReceiverFamilyTotalChanged(
+    ReceiverFamilyTotalChanged event,
+    Emitter<WaterSupplyEditState> emit,
+  ) {
+    final receiverFamilyTotal =
+        WaterSupplyInput.pure(event.receiverFamilyTotal);
+    emit(state.copyWith(
+      receiverFamilyTotalInput: receiverFamilyTotal,
+    ));
+  }
+
+  void _onReceiverFamilyPoor1Changed(
+    ReceiverFamilyPoor1Changed event,
+    Emitter<WaterSupplyEditState> emit,
+  ) {
+    final receiverFamilyPoor1 =
+        WaterSupplyInput.pure(event.receiverFamilyPoor1);
+    emit(state.copyWith(
+      receiverFamilyPoor1Input: receiverFamilyPoor1,
+    ));
+  }
+
+  void _onReceiverFamilyPoor2Changed(
+    ReceiverFamilyPoor2Changed event,
+    Emitter<WaterSupplyEditState> emit,
+  ) {
+    final receiverFamilyPoor2 =
+        WaterSupplyInput.pure(event.receiverFamilyPoor2);
+    emit(state.copyWith(
+      receiverFamilyPoor2Input: receiverFamilyPoor2,
+    ));
+  }
+
+  void _onDOCChanged(DOCChanged event, Emitter<WaterSupplyEditState> emit) {
+    final dobInput = DOCInput.pure(event.doc);
+    docController.text = DateHelper.formatDate(event.doc) ?? '';
+    emit(state.copyWith(
+      docInput: dobInput,
+    ));
+  }
+
+  void _onCompanyNameChanged(
+    CompanyNameChanged event,
+    Emitter<WaterSupplyEditState> emit,
+  ) {
+    final companyName = WaterSupplyInput.pure(event.companyName);
+    emit(state.copyWith(
+      companyNameInput: companyName,
+    ));
+  }
+
+  void _onConstructionCodeChanged(
+    ConstructionCodeChanged event,
+    Emitter<WaterSupplyEditState> emit,
+  ) {
+    final constructionCode = WaterSupplyInput.pure(event.constructionCode);
+    emit(state.copyWith(
+      constructionCodeInput: constructionCode,
+    ));
+  }
+
+  void _onReceiverFamilyMinorityChanged(
+    ReceiverFamilyMinorityChanged event,
+    Emitter<WaterSupplyEditState> emit,
+  ) {
+    final receiverFamilyMinority =
+        WaterSupplyInput.pure(event.receiverFamilyMinority);
+    emit(state.copyWith(
+      receiverFamilyMinorityInput: receiverFamilyMinority,
+    ));
+  }
+
+  void _onReceiverFamilyVictimChanged(
+    ReceiverFamilyVictimChanged event,
+    Emitter<WaterSupplyEditState> emit,
+  ) {
+    final receiverFamilyVictim =
+        WaterSupplyInput.pure(event.receiverFamilyVictim);
+    emit(state.copyWith(
+      receiverFamilyVictimInput: receiverFamilyVictim,
     ));
   }
 }

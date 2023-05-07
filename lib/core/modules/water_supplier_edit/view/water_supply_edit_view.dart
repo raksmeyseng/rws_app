@@ -7,6 +7,7 @@ import 'package:rws_app/core/enum/management_type.dart';
 import 'package:rws_app/core/enum/map_type_enum.dart';
 import 'package:rws_app/core/modules/my_draft/models/my_draft_model.dart';
 import 'package:rws_app/core/modules/water_supplier_edit/bloc/water_supply_edit_bloc.dart';
+import 'package:rws_app/core/modules/water_supplier_edit/model/doc_input.dart';
 import 'package:rws_app/core/modules/water_supplier_edit/model/water_supply_input.dart';
 import 'package:rws_app/core/widgets/flat_card.dart';
 import 'package:rws_app/core/widgets/load_data_failed.dart';
@@ -17,6 +18,7 @@ import 'package:rws_app/core/widgets/text_widget.dart';
 import 'package:rws_app/core/widgets/wrapper.dart';
 import 'package:rws_app/translation/generated/l10n.dart';
 import 'package:rws_app/utils/common_utils.dart';
+import 'package:rws_app/utils/helpers/date_helper.dart';
 
 import '../../../../utils/helpers/dialog_helper.dart';
 
@@ -146,7 +148,7 @@ class _TabBar extends StatelessWidget {
         ),
         Padding(
           padding: EdgeInsets.symmetric(vertical: 4.0),
-          child: Tab(text: 'QR Code'),
+          child: Tab(text: 'ប្រព័ន្ធផ្គត់ផ្គង់ទឹក'),
         )
       ],
     );
@@ -186,8 +188,7 @@ class _FirstInputPage extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: const [
-                _FormField(),
-                SizedBox(height: 30),
+                _FormField1(),
               ],
             ),
           ),
@@ -204,22 +205,16 @@ class _SecondInputPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox.expand(
       child: SingleChildScrollView(
-        child: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(
-              vertical: 16,
-              horizontal: 16,
-            ),
-            child: Wrapper(
-              maxWidth: appSmallMaxWidth,
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: const [
-                  // _FormField(),
-                  // SizedBox(height: 30),
-                ],
-              ),
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Wrapper(
+            maxWidth: appSmallMaxWidth,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: const [
+                _FormField2(),
+              ],
             ),
           ),
         ),
@@ -235,22 +230,17 @@ class _ThirdInputPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox.expand(
       child: SingleChildScrollView(
-        child: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(
-              vertical: 24,
-              horizontal: 16,
-            ),
-            child: Wrapper(
-              maxWidth: appSmallMaxWidth,
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: const [
-                  // _FormField(),
-                  // SizedBox(height: 30),
-                ],
-              ),
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Wrapper(
+            maxWidth: appSmallMaxWidth,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: const [
+                // _FormField(),
+                // SizedBox(height: 30),
+              ],
             ),
           ),
         ),
@@ -259,8 +249,8 @@ class _ThirdInputPage extends StatelessWidget {
   }
 }
 
-class _FormField extends StatelessWidget {
-  const _FormField({Key? key}) : super(key: key);
+class _FormField1 extends StatelessWidget {
+  const _FormField1({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -304,7 +294,21 @@ class _FormField extends StatelessWidget {
             Expanded(child: _LongInput()),
           ],
         ),
-        const SizedBox(height: 16),
+        //bottom padding
+        const SizedBox(height: 30),
+      ],
+    );
+  }
+}
+
+class _FormField2 extends StatelessWidget {
+  const _FormField2({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -335,7 +339,17 @@ class _FormField extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: const [
+            Expanded(child: _ManagamentNameInput()),
+          ],
+        ),
+        const SizedBox(height: 16),
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: const [
             Expanded(child: _ReceiverTotalInput()),
+            SizedBox(width: 16),
+            Expanded(child: _ReceiverTotalAsFemaleInput()),
           ],
         ),
         const SizedBox(height: 16),
@@ -351,9 +365,59 @@ class _FormField extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: const [
+            Expanded(child: _ReceiverFamilyPoor1Input()),
+          ],
+        ),
+        const SizedBox(height: 16),
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: const [
             Expanded(child: _ReceiverFamilyPoor2Input()),
           ],
         ),
+        const SizedBox(height: 16),
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: const [
+            Expanded(child: _ReceiverFamilyMinorityInput()),
+          ],
+        ),
+        const SizedBox(height: 16),
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: const [
+            Expanded(child: _ReceiverFamilyVictimInput()),
+          ],
+        ),
+        const SizedBox(height: 16),
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: const [
+            Expanded(child: _ConstructionCodeInput()),
+          ],
+        ),
+        const SizedBox(height: 16),
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: const [
+            Expanded(child: _DateOfConstructionInput()),
+          ],
+        ),
+        const SizedBox(height: 16),
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: const [
+            Expanded(child: _CompanyNameInput()),
+          ],
+        ),
+        //bottom padding
+        const SizedBox(height: 30),
       ],
     );
   }
@@ -732,6 +796,7 @@ class _LatInput extends StatelessWidget {
               context.read<WaterSupplyEditBloc>().add(LatetitudeChanged(lat)),
           errorText: _handleErrorText(context, state),
           textInputAction: TextInputAction.next,
+          keyboardType: TextInputType.phone,
         );
       },
     );
@@ -765,6 +830,7 @@ class _LongInput extends StatelessWidget {
               context.read<WaterSupplyEditBloc>().add(LongtitudeChanged(long)),
           errorText: _handleErrorText(context, state),
           textInputAction: TextInputAction.next,
+          keyboardType: TextInputType.phone,
         );
       },
     );
@@ -799,6 +865,7 @@ class _FamilyTotalInput extends StatelessWidget {
               .add(FamilyTotalChanged(total)),
           errorText: _handleErrorText(context, state),
           textInputAction: TextInputAction.next,
+          keyboardType: TextInputType.phone,
         );
       },
     );
@@ -1035,6 +1102,41 @@ class _ManagementTypeInput extends StatelessWidget {
   }
 }
 
+class _ManagamentNameInput extends StatelessWidget {
+  const _ManagamentNameInput({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
+      buildWhen: (previous, current) =>
+          previous.managementNameInput != current.managementNameInput,
+      builder: (context, state) {
+        return MyTextInput(
+          label: 'ឈ្មោះអ្នកគ្រប់គ្រង',
+          focusNode: context.read<WaterSupplyEditBloc>().managementNameFocus,
+          controller:
+              context.read<WaterSupplyEditBloc>().managementNameController,
+          onChanged: (value) => context
+              .read<WaterSupplyEditBloc>()
+              .add(ManagementNameChanged(value)),
+          errorText: _handleErrorText(context, state),
+          textInputAction: TextInputAction.next,
+        );
+      },
+    );
+  }
+
+  String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
+    if (!state.managementNameInput.invalid) return null;
+    switch (state.managementNameInput.error) {
+      case WaterSupplyInputValidationError.empty:
+        return 'សូមបញ្ចូលឈ្មោះអ្នកគ្រប់គ្រង';
+      default:
+        return null;
+    }
+  }
+}
+
 class _ReceiverTotalInput extends StatelessWidget {
   const _ReceiverTotalInput({Key? key}) : super(key: key);
 
@@ -1055,6 +1157,7 @@ class _ReceiverTotalInput extends StatelessWidget {
           errorText: _handleErrorText(context, state),
           isRequired: true,
           textInputAction: TextInputAction.next,
+          keyboardType: TextInputType.phone,
         );
       },
     );
@@ -1065,6 +1168,46 @@ class _ReceiverTotalInput extends StatelessWidget {
     switch (state.receiverTotalInput.error) {
       case WaterSupplyInputValidationError.empty:
         return 'សូមបញ្ចូលអ្នកទទួលផលសរុប';
+      default:
+        return null;
+    }
+  }
+}
+
+class _ReceiverTotalAsFemaleInput extends StatelessWidget {
+  const _ReceiverTotalAsFemaleInput({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
+      buildWhen: (previous, current) =>
+          previous.receiverTotalAsFemaleInput !=
+          current.receiverTotalAsFemaleInput,
+      builder: (context, state) {
+        return MyTextInput(
+          label: 'អ្នកទទួលផលសរុបស្រី',
+          focusNode:
+              context.read<WaterSupplyEditBloc>().receiverTotalAsFemaleFocus,
+          controller: context
+              .read<WaterSupplyEditBloc>()
+              .receiverTotalAsFemaleController,
+          onChanged: (value) => context
+              .read<WaterSupplyEditBloc>()
+              .add(ReceiverTotalAsFemaleChanged(value)),
+          errorText: _handleErrorText(context, state),
+          isRequired: true,
+          textInputAction: TextInputAction.next,
+          keyboardType: TextInputType.phone,
+        );
+      },
+    );
+  }
+
+  String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
+    if (!state.receiverTotalAsFemaleInput.invalid) return null;
+    switch (state.receiverTotalAsFemaleInput.error) {
+      case WaterSupplyInputValidationError.empty:
+        return 'សូមបញ្ចូលអ្នកទទួលផលសរុបស្រី';
       default:
         return null;
     }
@@ -1092,6 +1235,7 @@ class _ReceiverFamilyTotalInput extends StatelessWidget {
           errorText: _handleErrorText(context, state),
           isRequired: true,
           textInputAction: TextInputAction.next,
+          keyboardType: TextInputType.phone,
         );
       },
     );
@@ -1102,6 +1246,44 @@ class _ReceiverFamilyTotalInput extends StatelessWidget {
     switch (state.receiverFamilyTotalInput.error) {
       case WaterSupplyInputValidationError.empty:
         return 'សូមបញ្ចូលអ្នកទទួលផលគ្រួសារសរុប';
+      default:
+        return null;
+    }
+  }
+}
+
+class _ReceiverFamilyPoor1Input extends StatelessWidget {
+  const _ReceiverFamilyPoor1Input({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
+      buildWhen: (previous, current) =>
+          previous.receiverFamilyPoor1Input != current.receiverFamilyPoor1Input,
+      builder: (context, state) {
+        return MyTextInput(
+          label: 'អ្នកទទួលផលគ្រួសារក្រ១',
+          focusNode:
+              context.read<WaterSupplyEditBloc>().receiverFamilyPoor1Focus,
+          controller:
+              context.read<WaterSupplyEditBloc>().receiverFamilyPoor1Controller,
+          onChanged: (value) => context
+              .read<WaterSupplyEditBloc>()
+              .add(ReceiverFamilyPoor1Changed(value)),
+          errorText: _handleErrorText(context, state),
+          isRequired: true,
+          textInputAction: TextInputAction.next,
+          keyboardType: TextInputType.phone,
+        );
+      },
+    );
+  }
+
+  String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
+    if (!state.receiverFamilyPoor1Input.invalid) return null;
+    switch (state.receiverFamilyPoor1Input.error) {
+      case WaterSupplyInputValidationError.empty:
+        return 'សូមបញ្ចូលអ្នកទទួលផលគ្រួសារក្រ១';
       default:
         return null;
     }
@@ -1129,6 +1311,7 @@ class _ReceiverFamilyPoor2Input extends StatelessWidget {
           errorText: _handleErrorText(context, state),
           isRequired: true,
           textInputAction: TextInputAction.next,
+          keyboardType: TextInputType.phone,
         );
       },
     );
@@ -1139,6 +1322,213 @@ class _ReceiverFamilyPoor2Input extends StatelessWidget {
     switch (state.receiverFamilyPoor2Input.error) {
       case WaterSupplyInputValidationError.empty:
         return 'សូមបញ្ចូលអ្នកទទួលផលគ្រួសារក្រ២';
+      default:
+        return null;
+    }
+  }
+}
+
+class _ReceiverFamilyMinorityInput extends StatelessWidget {
+  const _ReceiverFamilyMinorityInput({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
+      buildWhen: (previous, current) =>
+          previous.receiverFamilyMinorityInput !=
+          current.receiverFamilyMinorityInput,
+      builder: (context, state) {
+        return MyTextInput(
+          label: 'អ្នកទទួលផលគ្រួសារជនជាតិភាគតិច',
+          focusNode:
+              context.read<WaterSupplyEditBloc>().receiverFamilyMinorityFocus,
+          controller: context
+              .read<WaterSupplyEditBloc>()
+              .receiverFamilyMinorityController,
+          onChanged: (value) => context
+              .read<WaterSupplyEditBloc>()
+              .add(ReceiverFamilyMinorityChanged(value)),
+          errorText: _handleErrorText(context, state),
+          isRequired: true,
+          textInputAction: TextInputAction.next,
+          keyboardType: TextInputType.phone,
+        );
+      },
+    );
+  }
+
+  String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
+    if (!state.receiverFamilyMinorityInput.invalid) return null;
+    switch (state.receiverFamilyMinorityInput.error) {
+      case WaterSupplyInputValidationError.empty:
+        return 'សូមបញ្ចូលអ្នកទទួលផលជនជាតិភាគតិច';
+      default:
+        return null;
+    }
+  }
+}
+
+class _ReceiverFamilyVictimInput extends StatelessWidget {
+  const _ReceiverFamilyVictimInput({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
+      buildWhen: (previous, current) =>
+          previous.receiverFamilyVictimInput !=
+          current.receiverFamilyVictimInput,
+      builder: (context, state) {
+        return MyTextInput(
+          label: 'អ្នកទទួលផលគ្រួសារជនងាយរងគ្រោះ',
+          focusNode:
+              context.read<WaterSupplyEditBloc>().receiverFamilyVictimFocus,
+          controller: context
+              .read<WaterSupplyEditBloc>()
+              .receiverFamilyVictimController,
+          onChanged: (value) => context
+              .read<WaterSupplyEditBloc>()
+              .add(ReceiverFamilyVictimChanged(value)),
+          errorText: _handleErrorText(context, state),
+          isRequired: true,
+          textInputAction: TextInputAction.next,
+          keyboardType: TextInputType.phone,
+        );
+      },
+    );
+  }
+
+  String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
+    if (!state.receiverFamilyVictimInput.invalid) return null;
+    switch (state.receiverFamilyVictimInput.error) {
+      case WaterSupplyInputValidationError.empty:
+        return 'សូមបញ្ចូលអ្នកទទួលផលជនងាយរងគ្រោះ';
+      default:
+        return null;
+    }
+  }
+}
+
+class _DateOfConstructionInput extends StatelessWidget {
+  const _DateOfConstructionInput({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
+      buildWhen: (previous, current) => previous.docInput != current.docInput,
+      builder: (context, state) {
+        final bloc = context.read<WaterSupplyEditBloc>();
+        return Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            MyTextInput(
+              label: 'កាលបរិច្ឆេទសំណង់',
+              controller: context.read<WaterSupplyEditBloc>().docController,
+              onTap: () async {
+                final date = await _pickDate(context);
+                if (date != null) {
+                  bloc.add(DOCChanged(date));
+                }
+              },
+              readOnly: true,
+              isRequired: true,
+              suffixIcon: const Icon(
+                Icons.calendar_today_outlined,
+                size: 18,
+              ),
+              errorText: _handleErrorText(context, state),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
+    if (!state.docInput.invalid) return null;
+    switch (state.docInput.error) {
+      case DOCInputValidationError.empty:
+        return S.of(context).pls_input_your_dob;
+      default:
+        return null;
+    }
+  }
+
+  Future<DateTime?> _pickDate(BuildContext context) async {
+    final DateTime? date = await showDatePicker(
+      context: context,
+      initialDate: context.read<WaterSupplyEditBloc>().state.docInput.value ??
+          DateTime.now(),
+      firstDate: DateHelper.calendarFirstDate(),
+      lastDate: DateHelper.calendarLastDate(),
+    );
+    return date;
+  }
+}
+
+class _CompanyNameInput extends StatelessWidget {
+  const _CompanyNameInput({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
+      buildWhen: (previous, current) =>
+          previous.companyNameInput != current.companyNameInput,
+      builder: (context, state) {
+        return MyTextInput(
+          label: 'សាងសង់ដោយក្រុមហ៊ុន',
+          focusNode: context.read<WaterSupplyEditBloc>().companyNameFocus,
+          controller: context.read<WaterSupplyEditBloc>().companyNameController,
+          onChanged: (value) => context
+              .read<WaterSupplyEditBloc>()
+              .add(CompanyNameChanged(value)),
+          errorText: _handleErrorText(context, state),
+          textInputAction: TextInputAction.next,
+        );
+      },
+    );
+  }
+
+  String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
+    if (!state.companyNameInput.invalid) return null;
+    switch (state.companyNameInput.error) {
+      case WaterSupplyInputValidationError.empty:
+        return 'សូមបញ្ចូលសាងសង់ដោយក្រុមហ៊ុន';
+      default:
+        return null;
+    }
+  }
+}
+
+class _ConstructionCodeInput extends StatelessWidget {
+  const _ConstructionCodeInput({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
+      buildWhen: (previous, current) =>
+          previous.constructionCodeInput != current.constructionCodeInput,
+      builder: (context, state) {
+        return MyTextInput(
+          label: 'លេខកូដសំណង់',
+          focusNode: context.read<WaterSupplyEditBloc>().constructionCodeFocus,
+          controller:
+              context.read<WaterSupplyEditBloc>().constructionCodeController,
+          onChanged: (value) => context
+              .read<WaterSupplyEditBloc>()
+              .add(ConstructionCodeChanged(value)),
+          errorText: _handleErrorText(context, state),
+          textInputAction: TextInputAction.next,
+        );
+      },
+    );
+  }
+
+  String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
+    if (!state.constructionCodeInput.invalid) return null;
+    switch (state.constructionCodeInput.error) {
+      case WaterSupplyInputValidationError.empty:
+        return 'សូមបញ្ចូលលេខកូដសំណង់';
       default:
         return null;
     }

@@ -123,7 +123,6 @@ class _WaterSupplyItem extends StatelessWidget {
             'id': item.id.toString(),
           },
         );
-
       },
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -131,7 +130,12 @@ class _WaterSupplyItem extends StatelessWidget {
         children: [
           _InfoItem(
             CaptionWidget('${S.of(context).water_supply_type} :'),
-            TextWidget(item.waterSupplyType),
+            Flexible(
+              child: TextWidget(
+                item.waterSupplyType,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
           ),
           _InfoItem(
             CaptionWidget('${S.of(context).water_supply_code} :'),

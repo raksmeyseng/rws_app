@@ -16,13 +16,21 @@ class WaterSupplyEditState extends Equatable {
     this.locationRickInput = const WaterSupplyInput.pure(),
     this.budgetTypeInput = const WaterSupplyInput.pure(),
     this.managementTypeInput = const WaterSupplyInput.pure(),
+    this.managementNameInput = const WaterSupplyInput.pure(),
     this.receiverTotalInput = const WaterSupplyInput.pure(),
+    this.receiverTotalAsFemaleInput = const WaterSupplyInput.pure(),
     this.receiverFamilyTotalInput = const WaterSupplyInput.pure(),
+    this.receiverFamilyPoor1Input = const WaterSupplyInput.pure(),
     this.receiverFamilyPoor2Input = const WaterSupplyInput.pure(),
     this.provinces = const [],
     this.districts = const [],
     this.communes = const [],
     this.villages = const [],
+    this.docInput = const DOCInput.pure(),
+    this.companyNameInput = const WaterSupplyInput.pure(),
+    this.constructionCodeInput = const WaterSupplyInput.pure(),
+    this.receiverFamilyMinorityInput = const WaterSupplyInput.pure(),
+    this.receiverFamilyVictimInput = const WaterSupplyInput.pure(),
   });
 
   final BaseStatusEnum status;
@@ -39,13 +47,21 @@ class WaterSupplyEditState extends Equatable {
   final WaterSupplyInput locationRickInput;
   final WaterSupplyInput budgetTypeInput;
   final WaterSupplyInput managementTypeInput;
+  final WaterSupplyInput managementNameInput;
   final WaterSupplyInput receiverTotalInput;
+  final WaterSupplyInput receiverTotalAsFemaleInput;
   final WaterSupplyInput receiverFamilyTotalInput;
+  final WaterSupplyInput receiverFamilyPoor1Input;
   final WaterSupplyInput receiverFamilyPoor2Input;
   final List<ProvinceModel> provinces;
   final List<DistrictModel> districts;
   final List<CommuneModel> communes;
   final List<VillageModel> villages;
+  final DOCInput docInput;
+  final WaterSupplyInput companyNameInput;
+  final WaterSupplyInput constructionCodeInput;
+  final WaterSupplyInput receiverFamilyMinorityInput;
+  final WaterSupplyInput receiverFamilyVictimInput;
 
   const WaterSupplyEditState.initial({required int waterSupplyId})
       : this._(waterSupplyId: waterSupplyId);
@@ -64,13 +80,21 @@ class WaterSupplyEditState extends Equatable {
     WaterSupplyInput? locationRickInput,
     WaterSupplyInput? budgetTypeInput,
     WaterSupplyInput? managementTypeInput,
+    WaterSupplyInput? managementNameInput,
     WaterSupplyInput? receiverTotalInput,
+    WaterSupplyInput? receiverTotalAsFemaleInput,
     WaterSupplyInput? receiverFamilyTotalInput,
+    WaterSupplyInput? receiverFamilyPoor1Input,
     WaterSupplyInput? receiverFamilyPoor2Input,
     List<ProvinceModel>? provinces,
     List<DistrictModel>? districts,
     List<CommuneModel>? communes,
     List<VillageModel>? villages,
+    DOCInput? docInput,
+    WaterSupplyInput? companyNameInput,
+    WaterSupplyInput? constructionCodeInput,
+    WaterSupplyInput? receiverFamilyMinorityInput,
+    WaterSupplyInput? receiverFamilyVictimInput,
   }) {
     return WaterSupplyEditState._(
       status: status ?? this.status,
@@ -86,15 +110,28 @@ class WaterSupplyEditState extends Equatable {
       locationRickInput: locationRickInput ?? this.locationRickInput,
       budgetTypeInput: budgetTypeInput ?? this.budgetTypeInput,
       managementTypeInput: managementTypeInput ?? this.managementTypeInput,
+      managementNameInput: managementNameInput ?? this.managementNameInput,
       receiverTotalInput: receiverTotalInput ?? this.receiverTotalInput,
+      receiverTotalAsFemaleInput:
+          receiverTotalAsFemaleInput ?? this.receiverTotalAsFemaleInput,
       receiverFamilyTotalInput:
           receiverFamilyTotalInput ?? this.receiverFamilyTotalInput,
+      receiverFamilyPoor1Input:
+          receiverFamilyPoor1Input ?? this.receiverFamilyPoor1Input,
       receiverFamilyPoor2Input:
           receiverFamilyPoor2Input ?? this.receiverFamilyPoor2Input,
       provinces: provinces ?? this.provinces,
       districts: districts ?? this.districts,
       communes: communes ?? this.communes,
       villages: villages ?? this.villages,
+      docInput: docInput ?? this.docInput,
+      companyNameInput: companyNameInput ?? this.companyNameInput,
+      constructionCodeInput:
+          constructionCodeInput ?? this.constructionCodeInput,
+      receiverFamilyMinorityInput:
+          receiverFamilyMinorityInput ?? this.receiverFamilyMinorityInput,
+      receiverFamilyVictimInput:
+          receiverFamilyVictimInput ?? this.receiverFamilyVictimInput,
     );
   }
 
@@ -113,12 +150,20 @@ class WaterSupplyEditState extends Equatable {
         locationRickInput,
         budgetTypeInput,
         managementTypeInput,
+        managementNameInput,
         receiverTotalInput,
+        receiverTotalAsFemaleInput,
         receiverFamilyTotalInput,
+        receiverFamilyPoor1Input,
         receiverFamilyPoor2Input,
         provinces,
         districts,
         communes,
         villages,
+        docInput,
+        companyNameInput,
+        constructionCodeInput,
+        receiverFamilyMinorityInput,
+        receiverFamilyVictimInput,
       ];
 }

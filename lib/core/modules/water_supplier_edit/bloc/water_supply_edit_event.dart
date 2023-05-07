@@ -110,6 +110,15 @@ class ManagementTypeChanged extends WaterSupplyEditEvent {
   List<Object> get props => [managementType];
 }
 
+class ManagementNameChanged extends WaterSupplyEditEvent {
+  const ManagementNameChanged(this.managementName);
+
+  final String managementName;
+
+  @override
+  List<Object> get props => [managementName];
+}
+
 class ReceiverTotalChanged extends WaterSupplyEditEvent {
   const ReceiverTotalChanged(this.receiverTotal);
 
@@ -117,6 +126,15 @@ class ReceiverTotalChanged extends WaterSupplyEditEvent {
 
   @override
   List<Object> get props => [receiverTotal];
+}
+
+class ReceiverTotalAsFemaleChanged extends WaterSupplyEditEvent {
+  const ReceiverTotalAsFemaleChanged(this.receiverTotalAsFemale);
+
+  final String receiverTotalAsFemale;
+
+  @override
+  List<Object> get props => [receiverTotalAsFemale];
 }
 
 class ReceiverFamilyTotalChanged extends WaterSupplyEditEvent {
@@ -128,6 +146,15 @@ class ReceiverFamilyTotalChanged extends WaterSupplyEditEvent {
   List<Object> get props => [receiverFamilyTotal];
 }
 
+class ReceiverFamilyPoor1Changed extends WaterSupplyEditEvent {
+  const ReceiverFamilyPoor1Changed(this.receiverFamilyPoor1);
+
+  final String receiverFamilyPoor1;
+
+  @override
+  List<Object> get props => [receiverFamilyPoor1];
+}
+
 class ReceiverFamilyPoor2Changed extends WaterSupplyEditEvent {
   const ReceiverFamilyPoor2Changed(this.receiverFamilyPoor2);
 
@@ -135,4 +162,49 @@ class ReceiverFamilyPoor2Changed extends WaterSupplyEditEvent {
 
   @override
   List<Object> get props => [receiverFamilyPoor2];
+}
+
+class ReceiverFamilyMinorityChanged extends WaterSupplyEditEvent {
+  const ReceiverFamilyMinorityChanged(this.receiverFamilyMinority);
+
+  final String receiverFamilyMinority;
+
+  @override
+  List<Object> get props => [receiverFamilyMinority];
+}
+
+class ReceiverFamilyVictimChanged extends WaterSupplyEditEvent {
+  const ReceiverFamilyVictimChanged(this.receiverFamilyVictim);
+
+  final String receiverFamilyVictim;
+
+  @override
+  List<Object> get props => [receiverFamilyVictim];
+}
+
+class DOCChanged extends WaterSupplyEditEvent {
+  const DOCChanged(this.doc);
+
+  final DateTime doc;
+
+  @override
+  List<Object> get props => [doc];
+}
+
+class CompanyNameChanged extends WaterSupplyEditEvent {
+  const CompanyNameChanged(this.companyName);
+
+  final String companyName;
+
+  @override
+  List<Object> get props => [companyName];
+}
+
+class ConstructionCodeChanged extends WaterSupplyEditEvent {
+  const ConstructionCodeChanged(this.constructionCode);
+
+  final String constructionCode;
+
+  @override
+  List<Object> get props => [constructionCode];
 }
