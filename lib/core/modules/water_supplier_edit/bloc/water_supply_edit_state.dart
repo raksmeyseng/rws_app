@@ -36,6 +36,17 @@ class WaterSupplyEditState extends Equatable {
     this.capacityInput = const WaterSupplyInput.pure(),
     this.wellTypeInput = const WaterSupplyInput.pure(),
     this.wellDepthInput = const WaterSupplyInput.pure(),
+    this.utmXInput = const WaterSupplyInput.pure(),
+    this.utmYInput = const WaterSupplyInput.pure(),
+    this.latDegreeInput = const WaterSupplyInput.pure(),
+    this.latMinuteInput = const WaterSupplyInput.pure(),
+    this.latSecondInput = const WaterSupplyInput.pure(),
+    this.longDegreeInput = const WaterSupplyInput.pure(),
+    this.longMinuteInput = const WaterSupplyInput.pure(),
+    this.longSecondInput = const WaterSupplyInput.pure(),
+    this.wellScreenInput = const WaterSupplyInput.pure(),
+    this.wellThearInput = const WaterSupplyInput.pure(),
+    this.waterQualityInput = const WaterSupplyInput.pure(),
   });
 
   final BaseStatusEnum status;
@@ -72,6 +83,17 @@ class WaterSupplyEditState extends Equatable {
   final WaterSupplyInput capacityInput;
   final WaterSupplyInput wellTypeInput;
   final WaterSupplyInput wellDepthInput;
+  final WaterSupplyInput utmXInput;
+  final WaterSupplyInput utmYInput;
+  final WaterSupplyInput latDegreeInput;
+  final WaterSupplyInput latMinuteInput;
+  final WaterSupplyInput latSecondInput;
+  final WaterSupplyInput longDegreeInput;
+  final WaterSupplyInput longMinuteInput;
+  final WaterSupplyInput longSecondInput;
+  final WaterSupplyInput wellScreenInput;
+  final WaterSupplyInput wellThearInput;
+  final WaterSupplyInput waterQualityInput;
 
   const WaterSupplyEditState.initial({required int waterSupplyId})
       : this._(waterSupplyId: waterSupplyId);
@@ -111,6 +133,17 @@ class WaterSupplyEditState extends Equatable {
     WaterSupplyInput? capacityInput,
     WaterSupplyInput? wellTypeInput,
     WaterSupplyInput? wellDepthInput,
+    WaterSupplyInput? utmXInput,
+    WaterSupplyInput? utmYInput,
+    WaterSupplyInput? latDegreeInput,
+    WaterSupplyInput? latMinuteInput,
+    WaterSupplyInput? latSecondInput,
+    WaterSupplyInput? longDegreeInput,
+    WaterSupplyInput? longMinuteInput,
+    WaterSupplyInput? longSecondInput,
+    WaterSupplyInput? wellScreenInput,
+    WaterSupplyInput? wellThearInput,
+    WaterSupplyInput? waterQualityInput,
   }) {
     return WaterSupplyEditState._(
       status: status ?? this.status,
@@ -154,6 +187,17 @@ class WaterSupplyEditState extends Equatable {
       capacityInput: capacityInput ?? this.capacityInput,
       wellTypeInput: wellTypeInput ?? this.wellTypeInput,
       wellDepthInput: wellDepthInput ?? this.wellDepthInput,
+      utmXInput: utmXInput ?? this.utmXInput,
+      utmYInput: utmYInput ?? this.utmYInput,
+      latDegreeInput: latDegreeInput ?? this.latDegreeInput,
+      latMinuteInput: latMinuteInput ?? this.latMinuteInput,
+      latSecondInput: latSecondInput ?? this.latSecondInput,
+      longDegreeInput: longDegreeInput ?? this.longDegreeInput,
+      longMinuteInput: longMinuteInput ?? this.longMinuteInput,
+      longSecondInput: longSecondInput ?? this.longSecondInput,
+      wellScreenInput: wellScreenInput ?? this.wellScreenInput,
+      wellThearInput: wellThearInput ?? this.wellThearInput,
+      waterQualityInput: waterQualityInput ?? this.waterQualityInput,
     );
   }
 
@@ -193,5 +237,16 @@ class WaterSupplyEditState extends Equatable {
         capacityInput,
         wellTypeInput,
         wellDepthInput,
+        utmXInput,
+        utmYInput,
+        latDegreeInput,
+        latMinuteInput,
+        latSecondInput,
+        longDegreeInput,
+        longMinuteInput,
+        longSecondInput,
+        wellScreenInput,
+        wellThearInput,
+        waterQualityInput,
       ];
 }

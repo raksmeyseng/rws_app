@@ -75,6 +75,28 @@ class WaterSupplyEditBloc
   final wellTypeController = TextEditingController();
   final FocusNode wellDepthFocus = FocusNode();
   final wellDepthController = TextEditingController();
+  final FocusNode utmXFocus = FocusNode();
+  final utmXController = TextEditingController();
+  final FocusNode utmYFocus = FocusNode();
+  final utmYController = TextEditingController();
+  final FocusNode latDegreeFocus = FocusNode();
+  final latDegreeController = TextEditingController();
+  final FocusNode latMinuteFocus = FocusNode();
+  final latMinuteController = TextEditingController();
+  final FocusNode latSecondFocus = FocusNode();
+  final latSecondController = TextEditingController();
+  final FocusNode longDegreeFocus = FocusNode();
+  final longDegreeController = TextEditingController();
+  final FocusNode longMinuteFocus = FocusNode();
+  final longMinuteController = TextEditingController();
+  final FocusNode longSecondFocus = FocusNode();
+  final longSecondController = TextEditingController();
+  final FocusNode wellScreenFocus = FocusNode();
+  final wellScreenController = TextEditingController();
+  final FocusNode wellThearFocus = FocusNode();
+  final wellThearController = TextEditingController();
+  final FocusNode waterQualityFocus = FocusNode();
+  final waterQualityController = TextEditingController();
 
   Future<void> _onWaterSupplyEvent(
     WaterSupplyEditEvent event,
@@ -163,6 +185,39 @@ class WaterSupplyEditBloc
     }
     if (event is WellDepthChanged) {
       return _onWellDepthChanged(event, emit);
+    }
+    if (event is UTMXChanged) {
+      return _onUTMXChanged(event, emit);
+    }
+    if (event is UTMYChanged) {
+      return _onUTMYChanged(event, emit);
+    }
+    if (event is LatDegreeChanged) {
+      return _onLatDegreeChanged(event, emit);
+    }
+    if (event is LatMinuteChanged) {
+      return _onLatMinuteChanged(event, emit);
+    }
+    if (event is LatSecondChanged) {
+      return _onLatSecondChanged(event, emit);
+    }
+    if (event is LongDegreeChanged) {
+      return _onLongDegreeChanged(event, emit);
+    }
+    if (event is LongMinuteChanged) {
+      return _onLongMinuteChanged(event, emit);
+    }
+    if (event is LongSecondChanged) {
+      return _onLongSecondChanged(event, emit);
+    }
+    if (event is WellScreenChanged) {
+      return _onWellScreenChanged(event, emit);
+    }
+    if (event is WellThearChanged) {
+      return _onWellThearChanged(event, emit);
+    }
+    if (event is WaterQualityChanged) {
+      return _onWaterQualityChanged(event, emit);
     }
   }
 
@@ -455,5 +510,94 @@ class WaterSupplyEditBloc
   ) {
     final wellDepth = WaterSupplyInput.pure(event.wellDepth);
     emit(state.copyWith(wellDepthInput: wellDepth));
+  }
+
+  void _onUTMXChanged(
+    UTMXChanged event,
+    Emitter<WaterSupplyEditState> emit,
+  ) {
+    final utmx = WaterSupplyInput.pure(event.utmx);
+    emit(state.copyWith(utmXInput: utmx));
+  }
+
+  void _onUTMYChanged(
+    UTMYChanged event,
+    Emitter<WaterSupplyEditState> emit,
+  ) {
+    final utmy = WaterSupplyInput.pure(event.utmy);
+    emit(state.copyWith(utmYInput: utmy));
+  }
+
+  void _onLatDegreeChanged(
+    LatDegreeChanged event,
+    Emitter<WaterSupplyEditState> emit,
+  ) {
+    final latDegree = WaterSupplyInput.pure(event.latDegree);
+    emit(state.copyWith(latDegreeInput: latDegree));
+  }
+
+  void _onLatMinuteChanged(
+    LatMinuteChanged event,
+    Emitter<WaterSupplyEditState> emit,
+  ) {
+    final latMinute = WaterSupplyInput.pure(event.latMinute);
+    emit(state.copyWith(latDegreeInput: latMinute));
+  }
+
+  void _onLatSecondChanged(
+    LatSecondChanged event,
+    Emitter<WaterSupplyEditState> emit,
+  ) {
+    final latSecond = WaterSupplyInput.pure(event.latSecond);
+    emit(state.copyWith(latSecondInput: latSecond));
+  }
+
+  void _onLongDegreeChanged(
+    LongDegreeChanged event,
+    Emitter<WaterSupplyEditState> emit,
+  ) {
+    final longDegree = WaterSupplyInput.pure(event.longDegree);
+    emit(state.copyWith(longDegreeInput: longDegree));
+  }
+
+  void _onLongMinuteChanged(
+    LongMinuteChanged event,
+    Emitter<WaterSupplyEditState> emit,
+  ) {
+    final longMinute = WaterSupplyInput.pure(event.longMinute);
+    emit(state.copyWith(longMinuteInput: longMinute));
+  }
+
+  void _onLongSecondChanged(
+    LongSecondChanged event,
+    Emitter<WaterSupplyEditState> emit,
+  ) {
+    final longSecond = WaterSupplyInput.pure(event.longSecond);
+    emit(state.copyWith(longSecondInput: longSecond));
+  }
+
+  void _onWellScreenChanged(
+    WellScreenChanged event,
+    Emitter<WaterSupplyEditState> emit,
+  ) {
+    final wellScreen = WaterSupplyInput.pure(event.wellScreen);
+    emit(state.copyWith(wellScreenInput: wellScreen));
+  }
+
+  void _onWellThearChanged(
+    WellThearChanged event,
+    Emitter<WaterSupplyEditState> emit,
+  ) {
+    final wellThear = WaterSupplyInput.pure(event.wellThear);
+    emit(state.copyWith(wellThearInput: wellThear));
+  }
+
+  void _onWaterQualityChanged(
+    WaterQualityChanged event,
+    Emitter<WaterSupplyEditState> emit,
+  ) {
+    final waterQuality = WaterSupplyInput.pure(event.waterQuality);
+    waterQualityController.text = event.waterQuality;
+    emit(state.copyWith(waterQualityInput: waterQuality));
   }
 }

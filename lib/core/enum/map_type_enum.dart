@@ -38,3 +38,16 @@ extension MapTypeEnumExtension on MapTypeEnum {
     }
   }
 }
+
+MapTypeEnum? getEnumByString(String value) {
+  switch (value) {
+    case 'UTM':
+      return MapTypeEnum.utm;
+    case 'Decimal Degress':
+      return MapTypeEnum.decimal;
+    case 'Degree Minutes Seconds':
+      return MapTypeEnum.degree;
+    default:
+      return null;
+  }
+}

@@ -253,3 +253,102 @@ class WellDepthChanged extends WaterSupplyEditEvent {
   @override
   List<Object> get props => [wellDepth];
 }
+
+class UTMXChanged extends WaterSupplyEditEvent {
+  const UTMXChanged(this.utmx);
+
+  final String utmx;
+
+  @override
+  List<Object> get props => [utmx];
+}
+
+class UTMYChanged extends WaterSupplyEditEvent {
+  const UTMYChanged(this.utmy);
+
+  final String utmy;
+
+  @override
+  List<Object> get props => [utmy];
+}
+
+class LatDegreeChanged extends WaterSupplyEditEvent {
+  const LatDegreeChanged(this.latDegree);
+
+  final String latDegree;
+
+  @override
+  List<Object> get props => [latDegree];
+}
+
+class LatMinuteChanged extends WaterSupplyEditEvent {
+  const LatMinuteChanged(this.latMinute);
+
+  final String latMinute;
+
+  @override
+  List<Object> get props => [latMinute];
+}
+
+class LatSecondChanged extends WaterSupplyEditEvent {
+  const LatSecondChanged(this.latSecond);
+
+  final String latSecond;
+
+  @override
+  List<Object> get props => [latSecond];
+}
+
+class LongDegreeChanged extends WaterSupplyEditEvent {
+  const LongDegreeChanged(this.longDegree);
+
+  final String longDegree;
+
+  @override
+  List<Object> get props => [longDegree];
+}
+
+class LongMinuteChanged extends WaterSupplyEditEvent {
+  const LongMinuteChanged(this.longMinute);
+
+  final String longMinute;
+
+  @override
+  List<Object> get props => [longMinute];
+}
+
+class LongSecondChanged extends WaterSupplyEditEvent {
+  const LongSecondChanged(this.longSecond);
+
+  final String longSecond;
+
+  @override
+  List<Object> get props => [longSecond];
+}
+
+class WellScreenChanged extends WaterSupplyEditEvent {
+  const WellScreenChanged(this.wellScreen);
+
+  final String wellScreen;
+
+  @override
+  List<Object> get props => [wellScreen];
+}
+
+class WellThearChanged extends WaterSupplyEditEvent {
+  const WellThearChanged(this.wellThear);
+
+  final String wellThear;
+
+  @override
+  List<Object> get props => [wellThear];
+}
+
+class WaterQualityChanged extends WaterSupplyEditEvent {
+  const WaterQualityChanged(this.waterQuality);
+
+  final String waterQuality;
+
+  @override
+  List<Object> get props => [waterQuality];
+}
