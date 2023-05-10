@@ -3,10 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rws_app/core/enum/area_enum.dart';
 import 'package:rws_app/core/enum/base_status_enum.dart';
 import 'package:rws_app/core/enum/budget_type.dart';
+import 'package:rws_app/core/enum/check_water_quality_enum.dart';
 import 'package:rws_app/core/enum/management_type.dart';
 import 'package:rws_app/core/enum/map_type_enum.dart';
 import 'package:rws_app/core/enum/water_quality_enum.dart';
 import 'package:rws_app/core/enum/water_supply_type_enum.dart';
+import 'package:rws_app/core/enum/well_status_enum.dart';
 import 'package:rws_app/core/enum/well_type_enum.dart';
 import 'package:rws_app/core/modules/my_draft/models/my_draft_model.dart';
 import 'package:rws_app/core/modules/water_supplier_edit/bloc/water_supply_edit_bloc.dart';
@@ -480,7 +482,33 @@ class _WellInputPage extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: const [
+            Expanded(child: _NiVoStaticInput()),
+            SizedBox(width: 16),
+            Expanded(child: _NiVoDynamicInput()),
+          ],
+        ),
+        const SizedBox(height: 16),
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: const [
             Expanded(child: _WaterQualityInput()),
+          ],
+        ),
+        const SizedBox(height: 16),
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: const [
+            Expanded(child: _CheckWaterQualityInput()),
+          ],
+        ),
+        const SizedBox(height: 16),
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: const [
+            Expanded(child: _WellStatusInput()),
           ],
         ),
         //bottom padding
@@ -2509,6 +2537,212 @@ class _WaterQualityInput extends StatelessWidget {
     switch (state.waterQualityInput.error) {
       case WaterSupplyInputValidationError.empty:
         return 'សូមជ្រើសរើសគុណភាពទឹក';
+      default:
+        return null;
+    }
+  }
+}
+
+class _NiVoStaticInput extends StatelessWidget {
+  const _NiVoStaticInput({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
+      buildWhen: (previous, current) =>
+          previous.niVoStaticInput != current.niVoStaticInput,
+      builder: (context, state) {
+        return MyTextInput(
+          label: 'នីវ៉ូស្តាទិច (m)',
+          focusNode: context.read<WaterSupplyEditBloc>().niVoStaticFocus,
+          controller: context.read<WaterSupplyEditBloc>().niVoStaticController,
+          onChanged: (val) =>
+              context.read<WaterSupplyEditBloc>().add(NiVoStaticChanged(val)),
+          errorText: _handleErrorText(context, state),
+          textInputAction: TextInputAction.next,
+          keyboardType: TextInputType.phone,
+        );
+      },
+    );
+  }
+
+  String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
+    if (!state.niVoStaticInput.invalid) return null;
+    switch (state.niVoStaticInput.error) {
+      case WaterSupplyInputValidationError.empty:
+        return 'សូមបញ្ចូលនីវ៉ូស្តាទិច (m)';
+      default:
+        return null;
+    }
+  }
+}
+
+class _NiVoDynamicInput extends StatelessWidget {
+  const _NiVoDynamicInput({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
+      buildWhen: (previous, current) =>
+          previous.niVoDynamicInput != current.niVoDynamicInput,
+      builder: (context, state) {
+        return MyTextInput(
+          label: 'នីវ៉ូឌីណាមិច (m)',
+          focusNode: context.read<WaterSupplyEditBloc>().niVoDynamicFocus,
+          controller: context.read<WaterSupplyEditBloc>().niVoDynamicController,
+          onChanged: (val) =>
+              context.read<WaterSupplyEditBloc>().add(NiVoDynamicChanged(val)),
+          errorText: _handleErrorText(context, state),
+          textInputAction: TextInputAction.next,
+          keyboardType: TextInputType.phone,
+        );
+      },
+    );
+  }
+
+  String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
+    if (!state.niVoDynamicInput.invalid) return null;
+    switch (state.niVoDynamicInput.error) {
+      case WaterSupplyInputValidationError.empty:
+        return 'សូមបញ្ចូលនីវ៉ូឌីណាមិច (m)';
+      default:
+        return null;
+    }
+  }
+}
+
+class _CheckWaterQualityInput extends StatelessWidget {
+  const _CheckWaterQualityInput({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final bloc = context.read<WaterSupplyEditBloc>();
+    return BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
+      buildWhen: (previous, current) =>
+          previous.checkWaterQualityInput != current.checkWaterQualityInput,
+      builder: (context, state) {
+        return MyTextInput(
+          label: 'ត្រួតពិនិត្យគុណភាពទឹក',
+          focusNode: bloc.checkWaterQualityFocus,
+          controller: bloc.checkWaterQualityController,
+          onTap: () async {
+            final type = await DialogHelper.showAnimatedDialog<String?>(
+              animationType: DialogAnimationType.none,
+              transitionDuration: const Duration(milliseconds: 200),
+              pageBuilder: (context, a1, a2) {
+                return MySimpleDialog(
+                  title: 'ត្រួតពិនិត្យគុណភាពទឹក',
+                  content: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 24.0),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        ...CheckWaterQualityEnum.values.map(
+                          (check) => ListTile(
+                            onTap: () {
+                              Navigator.of(context)
+                                  .pop(check.getDisplayText(context));
+                            },
+                            contentPadding: const EdgeInsets.symmetric(
+                              horizontal: 24.0,
+                            ),
+                            title: TextWidget(check.getDisplayText(context)),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              },
+            );
+            if (type != null) {
+              bloc.add(CheckWaterQualityChanged(type));
+            }
+          },
+          errorText: _handleErrorText(context, state),
+          suffixIcon: const Icon(Icons.arrow_drop_down, size: 18),
+          readOnly: true,
+          isRequired: true,
+          textInputAction: TextInputAction.next,
+        );
+      },
+    );
+  }
+
+  String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
+    if (!state.checkWaterQualityInput.invalid) return null;
+    switch (state.checkWaterQualityInput.error) {
+      case WaterSupplyInputValidationError.empty:
+        return 'សូមជ្រើសរើសត្រួតពិនិត្យគុណភាពទឹក';
+      default:
+        return null;
+    }
+  }
+}
+
+class _WellStatusInput extends StatelessWidget {
+  const _WellStatusInput({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final bloc = context.read<WaterSupplyEditBloc>();
+    return BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
+      buildWhen: (previous, current) =>
+          previous.wellStatusInput != current.wellStatusInput,
+      builder: (context, state) {
+        return MyTextInput(
+          label: 'ស្ថានភាពអណ្តូង',
+          focusNode: bloc.wellStatusFocus,
+          controller: bloc.wellStatusController,
+          onTap: () async {
+            final type = await DialogHelper.showAnimatedDialog<String?>(
+              animationType: DialogAnimationType.none,
+              transitionDuration: const Duration(milliseconds: 200),
+              pageBuilder: (context, a1, a2) {
+                return MySimpleDialog(
+                  title: 'ស្ថានភាពអណ្តូង',
+                  content: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 24.0),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        ...WellStatusEnum.values.map(
+                          (status) => ListTile(
+                            onTap: () {
+                              Navigator.of(context)
+                                  .pop(status.getDisplayText(context));
+                            },
+                            contentPadding: const EdgeInsets.symmetric(
+                              horizontal: 24.0,
+                            ),
+                            title: TextWidget(status.getDisplayText(context)),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              },
+            );
+            if (type != null) {
+              bloc.add(WellStatusChanged(type));
+            }
+          },
+          errorText: _handleErrorText(context, state),
+          suffixIcon: const Icon(Icons.arrow_drop_down, size: 18),
+          readOnly: true,
+          isRequired: true,
+          textInputAction: TextInputAction.next,
+        );
+      },
+    );
+  }
+
+  String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
+    if (!state.wellStatusInput.invalid) return null;
+    switch (state.wellStatusInput.error) {
+      case WaterSupplyInputValidationError.empty:
+        return 'សូមជ្រើសរើសស្ថានភាពអណ្តូង';
       default:
         return null;
     }

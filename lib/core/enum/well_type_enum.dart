@@ -54,7 +54,7 @@ extension WellTypeEnumExtension on WellTypeEnum {
       case WellTypeEnum.motor:
         return 'អណ្ដូងបូមដោយម៉ូទ័រ';
       case WellTypeEnum.pump:
-        return 'អណ្ដូងស្នប់អាហ្វ្រីដេហ្';
+        return 'អណ្ដូងស្នប់អាហ្វ្រីដេហ្វ';
       case WellTypeEnum.markII:
         return 'អណ្ដូងMark II';
       case WellTypeEnum.markIII:

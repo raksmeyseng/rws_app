@@ -97,6 +97,14 @@ class WaterSupplyEditBloc
   final wellThearController = TextEditingController();
   final FocusNode waterQualityFocus = FocusNode();
   final waterQualityController = TextEditingController();
+  final FocusNode checkWaterQualityFocus = FocusNode();
+  final checkWaterQualityController = TextEditingController();
+  final FocusNode niVoStaticFocus = FocusNode();
+  final niVoStaticController = TextEditingController();
+  final FocusNode niVoDynamicFocus = FocusNode();
+  final niVoDynamicController = TextEditingController();
+  final FocusNode wellStatusFocus = FocusNode();
+  final wellStatusController = TextEditingController();
 
   Future<void> _onWaterSupplyEvent(
     WaterSupplyEditEvent event,
@@ -218,6 +226,18 @@ class WaterSupplyEditBloc
     }
     if (event is WaterQualityChanged) {
       return _onWaterQualityChanged(event, emit);
+    }
+    if (event is NiVoStaticChanged) {
+      return _onNiVoStaticChanged(event, emit);
+    }
+    if (event is NiVoDynamicChanged) {
+      return _onNiVoDynamicChanged(event, emit);
+    }
+    if (event is CheckWaterQualityChanged) {
+      return _onCheckWaterQualityChanged(event, emit);
+    }
+    if (event is WellStatusChanged) {
+      return _onWellStatusChanged(event, emit);
     }
   }
 
@@ -599,5 +619,39 @@ class WaterSupplyEditBloc
     final waterQuality = WaterSupplyInput.pure(event.waterQuality);
     waterQualityController.text = event.waterQuality;
     emit(state.copyWith(waterQualityInput: waterQuality));
+  }
+
+  void _onNiVoStaticChanged(
+    NiVoStaticChanged event,
+    Emitter<WaterSupplyEditState> emit,
+  ) {
+    final niVoStatic = WaterSupplyInput.pure(event.niVoStatic);
+    emit(state.copyWith(niVoStaticInput: niVoStatic));
+  }
+
+  void _onNiVoDynamicChanged(
+    NiVoDynamicChanged event,
+    Emitter<WaterSupplyEditState> emit,
+  ) {
+    final niVoDynamic = WaterSupplyInput.pure(event.niVoDynamic);
+    emit(state.copyWith(niVoDynamicInput: niVoDynamic));
+  }
+
+  void _onCheckWaterQualityChanged(
+    CheckWaterQualityChanged event,
+    Emitter<WaterSupplyEditState> emit,
+  ) {
+    final checkWaterQuality = WaterSupplyInput.pure(event.checkWaterQuality);
+    checkWaterQualityController.text = event.checkWaterQuality;
+    emit(state.copyWith(checkWaterQualityInput: checkWaterQuality));
+  }
+
+  void _onWellStatusChanged(
+    WellStatusChanged event,
+    Emitter<WaterSupplyEditState> emit,
+  ) {
+    final wellStatus = WaterSupplyInput.pure(event.wellStatus);
+    wellStatusController.text = event.wellStatus;
+    emit(state.copyWith(wellStatusInput: wellStatus));
   }
 }

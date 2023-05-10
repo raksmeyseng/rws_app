@@ -352,3 +352,39 @@ class WaterQualityChanged extends WaterSupplyEditEvent {
   @override
   List<Object> get props => [waterQuality];
 }
+
+class NiVoStaticChanged extends WaterSupplyEditEvent {
+  const NiVoStaticChanged(this.niVoStatic);
+
+  final String niVoStatic;
+
+  @override
+  List<Object> get props => [niVoStatic];
+}
+
+class NiVoDynamicChanged extends WaterSupplyEditEvent {
+  const NiVoDynamicChanged(this.niVoDynamic);
+
+  final String niVoDynamic;
+
+  @override
+  List<Object> get props => [niVoDynamic];
+}
+
+class CheckWaterQualityChanged extends WaterSupplyEditEvent {
+  const CheckWaterQualityChanged(this.checkWaterQuality);
+
+  final String checkWaterQuality;
+
+  @override
+  List<Object> get props => [checkWaterQuality];
+}
+
+class WellStatusChanged extends WaterSupplyEditEvent {
+  const WellStatusChanged(this.wellStatus);
+
+  final String wellStatus;
+
+  @override
+  List<Object> get props => [wellStatus];
+}

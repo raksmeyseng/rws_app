@@ -47,6 +47,10 @@ class WaterSupplyEditState extends Equatable {
     this.wellScreenInput = const WaterSupplyInput.pure(),
     this.wellThearInput = const WaterSupplyInput.pure(),
     this.waterQualityInput = const WaterSupplyInput.pure(),
+    this.niVoStaticInput = const WaterSupplyInput.pure(),
+    this.niVoDynamicInput = const WaterSupplyInput.pure(),
+    this.checkWaterQualityInput = const WaterSupplyInput.pure(),
+    this.wellStatusInput = const WaterSupplyInput.pure(),
   });
 
   final BaseStatusEnum status;
@@ -94,6 +98,10 @@ class WaterSupplyEditState extends Equatable {
   final WaterSupplyInput wellScreenInput;
   final WaterSupplyInput wellThearInput;
   final WaterSupplyInput waterQualityInput;
+  final WaterSupplyInput niVoStaticInput;
+  final WaterSupplyInput niVoDynamicInput;
+  final WaterSupplyInput checkWaterQualityInput;
+  final WaterSupplyInput wellStatusInput;
 
   const WaterSupplyEditState.initial({required int waterSupplyId})
       : this._(waterSupplyId: waterSupplyId);
@@ -144,6 +152,10 @@ class WaterSupplyEditState extends Equatable {
     WaterSupplyInput? wellScreenInput,
     WaterSupplyInput? wellThearInput,
     WaterSupplyInput? waterQualityInput,
+    WaterSupplyInput? niVoStaticInput,
+    WaterSupplyInput? niVoDynamicInput,
+    WaterSupplyInput? checkWaterQualityInput,
+    WaterSupplyInput? wellStatusInput,
   }) {
     return WaterSupplyEditState._(
       status: status ?? this.status,
@@ -198,6 +210,11 @@ class WaterSupplyEditState extends Equatable {
       wellScreenInput: wellScreenInput ?? this.wellScreenInput,
       wellThearInput: wellThearInput ?? this.wellThearInput,
       waterQualityInput: waterQualityInput ?? this.waterQualityInput,
+      niVoStaticInput: niVoStaticInput ?? this.niVoStaticInput,
+      niVoDynamicInput: niVoDynamicInput ?? this.niVoDynamicInput,
+      checkWaterQualityInput:
+          checkWaterQualityInput ?? this.checkWaterQualityInput,
+      wellStatusInput: wellStatusInput ?? this.wellStatusInput,
     );
   }
 
@@ -248,5 +265,9 @@ class WaterSupplyEditState extends Equatable {
         wellScreenInput,
         wellThearInput,
         waterQualityInput,
+        niVoStaticInput,
+        niVoDynamicInput,
+        checkWaterQualityInput,
+        wellStatusInput,
       ];
 }
