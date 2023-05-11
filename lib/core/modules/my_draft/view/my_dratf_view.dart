@@ -119,6 +119,7 @@ class _MyDraftItem extends StatelessWidget {
           AppRoute.waterSupplyViewDetail,
           extra: {
             'id': item.id.toString(),
+            'title': item.waterSupplyType.toString(),
           },
         );
       },

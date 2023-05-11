@@ -9,7 +9,7 @@ import 'package:rws_app/core/modules/not_found/not_found_screen.dart';
 import 'package:rws_app/core/modules/register/view/register_page.dart';
 import 'package:rws_app/core/modules/setting/view/setting_page.dart';
 import 'package:rws_app/core/modules/splashscreen/splashscreen_page.dart';
-import 'package:rws_app/core/modules/view_details/view/list_details.dart';
+import 'package:rws_app/core/modules/view_details/view/list_data_details_page.dart';
 import 'package:rws_app/core/modules/water_supplier_edit/view/water_supply_edit_page.dart';
 import 'package:rws_app/core/modules/water_supply_details/view/water_supply_detials_page.dart';
 
@@ -102,11 +102,12 @@ Page waterSupplyDetailBuilder(BuildContext context, GoRouterState state) {
 
 Page waterSupplyViewDetailBuilder(BuildContext context, GoRouterState state) {
   final id = int.tryParse(state.extra.getValue('id', '0'));
-  //print(id);
+  final title = state.extra.getValue('title', '');
   return MaterialPage<void>(
     key: state.pageKey,
-    child: ListDetails(
-      id: id ?? 0,
+    child: ListDataDetailsPage(
+      waterSupplyId: id ?? 0,
+      title: title,
     ),
   );
 }

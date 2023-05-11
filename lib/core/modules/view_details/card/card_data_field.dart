@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rws_app/config/themes/app_color.dart';
+import 'package:rws_app/core/modules/view_details/bloc/list_data_details_bloc.dart';
 import 'package:rws_app/core/widgets/text_widget.dart';
 
 class CardDataFields extends StatelessWidget {
@@ -126,102 +128,107 @@ class Diagrams extends StatelessWidget {
         unit: 'NTU',
         waterQuality: '8',
         price: 0.00));
-
-    return Column(
-      children: [
-        // title details
-        Table(
-          border: TableBorder.all(
-            width: 0.5,
-            color: AppColor.black,
-          ),
-          defaultColumnWidth: const FixedColumnWidth(150.0),
-          children: const [
-            TableRow(children: [
-              Padding(
-                padding: EdgeInsets.all(5),
-                child: TextWidget(
-                  'ប៉ារាម៉ែត្រ កូដ',
-                  textAlign: TextAlign.center,
-                ),
+    return BlocBuilder<ListDataDetailsBloc, ListDataDetailsState>(
+      buildWhen: (previous, current) =>
+          previous.waterSupply != current.waterSupply,
+      builder: (context, state) {
+        return Column(
+          children: [
+            // title details
+            Table(
+              border: TableBorder.all(
+                width: 0.5,
+                color: AppColor.black,
               ),
-              Padding(
-                padding: EdgeInsets.all(5),
-                child: TextWidget(
-                  'ប៉ារាម៉ែត្រ',
-                  textAlign: TextAlign.center,
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.all(5),
-                child: TextWidget(
-                  'ឯកតា',
-                  textAlign: TextAlign.center,
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.all(5),
-                child: TextWidget(
-                  'ស្តង់ដាគុណភាពទឹកផឹក?',
-                  textAlign: TextAlign.center,
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.all(5),
-                child: TextWidget(
-                  'តម្លៃ',
-                  textAlign: TextAlign.center,
-                ),
-              ),
-            ]),
-          ],
-        ),
-        // view details
-        Table(
-          border: TableBorder.all(
-            width: 0.5,
-            color: AppColor.black,
-          ),
-          defaultColumnWidth: const FixedColumnWidth(150.0),
-          children: namelist.map((diagram) {
-            return TableRow(
-              children: [
-                TableCell(
-                  child: Padding(
-                      padding: const EdgeInsets.all(5),
-                      child: TextWidget(diagram.parameterCode)),
-                ),
-                TableCell(
-                  child: Padding(
-                    padding: const EdgeInsets.all(5),
-                    child: TextWidget(diagram.parameters),
-                  ),
-                ),
-                TableCell(
-                  child: Padding(
-                    padding: const EdgeInsets.all(5),
-                    child: TextWidget(diagram.unit),
-                  ),
-                ),
-                TableCell(
-                  child: Padding(
-                    padding: const EdgeInsets.all(5),
-                    child: TextWidget(diagram.waterQuality),
-                  ),
-                ),
-                TableCell(
-                  child: Padding(
-                    padding: const EdgeInsets.all(5),
+              defaultColumnWidth: const FixedColumnWidth(150.0),
+              children: const [
+                TableRow(children: [
+                  Padding(
+                    padding: EdgeInsets.all(5),
                     child: TextWidget(
-                      diagram.price.toString(),
+                      'ប៉ារាម៉ែត្រ កូដ',
+                      textAlign: TextAlign.center,
                     ),
                   ),
-                ),
+                  Padding(
+                    padding: EdgeInsets.all(5),
+                    child: TextWidget(
+                      'ប៉ារាម៉ែត្រ',
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(5),
+                    child: TextWidget(
+                      'ឯកតា',
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(5),
+                    child: TextWidget(
+                      'ស្តង់ដាគុណភាពទឹកផឹក?',
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(5),
+                    child: TextWidget(
+                      'តម្លៃ',
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ]),
               ],
-            );
-          }).toList(),
-        )
-      ],
+            ),
+            // view details
+            Table(
+              border: TableBorder.all(
+                width: 0.5,
+                color: AppColor.black,
+              ),
+              defaultColumnWidth: const FixedColumnWidth(150.0),
+              children: namelist.map((diagram) {
+                return TableRow(
+                  children: [
+                    TableCell(
+                      child: Padding(
+                          padding: const EdgeInsets.all(5),
+                          child: TextWidget(diagram.parameterCode)),
+                    ),
+                    TableCell(
+                      child: Padding(
+                        padding: const EdgeInsets.all(5),
+                        child: TextWidget(diagram.parameters),
+                      ),
+                    ),
+                    TableCell(
+                      child: Padding(
+                        padding: const EdgeInsets.all(5),
+                        child: TextWidget(diagram.unit),
+                      ),
+                    ),
+                    TableCell(
+                      child: Padding(
+                        padding: const EdgeInsets.all(5),
+                        child: TextWidget(diagram.waterQuality),
+                      ),
+                    ),
+                    TableCell(
+                      child: Padding(
+                        padding: const EdgeInsets.all(5),
+                        child: TextWidget(
+                          diagram.price.toString(),
+                        ),
+                      ),
+                    ),
+                  ],
+                );
+              }).toList(),
+            )
+          ],
+        );
+      },
     );
   }
 }
