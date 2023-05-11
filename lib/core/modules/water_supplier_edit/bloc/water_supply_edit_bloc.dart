@@ -105,6 +105,20 @@ class WaterSupplyEditBloc
   final niVoDynamicController = TextEditingController();
   final FocusNode wellStatusFocus = FocusNode();
   final wellStatusController = TextEditingController();
+  final FocusNode ariPoolFocus = FocusNode();
+  final ariPoolController = TextEditingController();
+  final FocusNode filterTankFocus = FocusNode();
+  final filterTankController = TextEditingController();
+  final FocusNode pipeLenghtFocus = FocusNode();
+  final pipeLenghtController = TextEditingController();
+  final FocusNode pipeStatusFocus = FocusNode();
+  final pipeStatusController = TextEditingController();
+  final FocusNode coverageFocus = FocusNode();
+  final coverageController = TextEditingController();
+  final FocusNode connectorFocus = FocusNode();
+  final connectorController = TextEditingController();
+  final FocusNode qualityWaterCheckFocus = FocusNode();
+  final qualityWaterCheckController = TextEditingController();
 
   Future<void> _onWaterSupplyEvent(
     WaterSupplyEditEvent event,
@@ -238,6 +252,27 @@ class WaterSupplyEditBloc
     }
     if (event is WellStatusChanged) {
       return _onWellStatusChanged(event, emit);
+    }
+    if (event is AirPoolChanged) {
+      return _onAirPoolChanged(event, emit);
+    }
+    if (event is FilterTankChanged) {
+      return _onFilterTankChanged(event, emit);
+    }
+    if (event is PipeLenghtChanged) {
+      return _onPipeLenghtChanged(event, emit);
+    }
+    if (event is PipeStatusChanged) {
+      return _onPipeStatusChanged(event, emit);
+    }
+    if (event is ConnectorChanged) {
+      return _onConnectorChanged(event, emit);
+    }
+    if (event is CoverageChanged) {
+      return _onCoverageChanged(event, emit);
+    }
+    if (event is QualityWaterCheckChanged) {
+      return _onQualityWaterCheckChanged(event, emit);
     }
   }
 
@@ -653,5 +688,64 @@ class WaterSupplyEditBloc
     final wellStatus = WaterSupplyInput.pure(event.wellStatus);
     wellStatusController.text = event.wellStatus;
     emit(state.copyWith(wellStatusInput: wellStatus));
+  }
+
+  void _onAirPoolChanged(
+    AirPoolChanged event,
+    Emitter<WaterSupplyEditState> emit,
+  ) {
+    final airPool = WaterSupplyInput.pure(event.airPool);
+    emit(state.copyWith(airPoolInput: airPool));
+  }
+
+  void _onFilterTankChanged(
+    FilterTankChanged event,
+    Emitter<WaterSupplyEditState> emit,
+  ) {
+    final filterTank = WaterSupplyInput.pure(event.filterTank);
+    filterTankController.text = event.filterTank;
+    emit(state.copyWith(filterTankInput: filterTank));
+  }
+
+  void _onPipeLenghtChanged(
+    PipeLenghtChanged event,
+    Emitter<WaterSupplyEditState> emit,
+  ) {
+    final pipeLenght = WaterSupplyInput.pure(event.pipeLenght);
+    emit(state.copyWith(pipeLenghtInput: pipeLenght));
+  }
+
+  void _onConnectorChanged(
+    ConnectorChanged event,
+    Emitter<WaterSupplyEditState> emit,
+  ) {
+    final connector = WaterSupplyInput.pure(event.connector);
+    emit(state.copyWith(connectorInput: connector));
+  }
+
+  void _onPipeStatusChanged(
+    PipeStatusChanged event,
+    Emitter<WaterSupplyEditState> emit,
+  ) {
+    final pipeStatus = WaterSupplyInput.pure(event.pipeStatus);
+    pipeStatusController.text = event.pipeStatus;
+    emit(state.copyWith(pipeStatusInput: pipeStatus));
+  }
+
+  void _onCoverageChanged(
+    CoverageChanged event,
+    Emitter<WaterSupplyEditState> emit,
+  ) {
+    final coverage = WaterSupplyInput.pure(event.coverage);
+    emit(state.copyWith(coverageInput: coverage));
+  }
+
+  void _onQualityWaterCheckChanged(
+    QualityWaterCheckChanged event,
+    Emitter<WaterSupplyEditState> emit,
+  ) {
+    final quality = WaterSupplyInput.pure(event.quality);
+    qualityWaterCheckController.text = event.quality;
+    emit(state.copyWith(qualityWaterCheckInput: quality));
   }
 }

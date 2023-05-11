@@ -51,6 +51,13 @@ class WaterSupplyEditState extends Equatable {
     this.niVoDynamicInput = const WaterSupplyInput.pure(),
     this.checkWaterQualityInput = const WaterSupplyInput.pure(),
     this.wellStatusInput = const WaterSupplyInput.pure(),
+    this.airPoolInput = const WaterSupplyInput.pure(),
+    this.filterTankInput = const WaterSupplyInput.pure(),
+    this.connectorInput = const WaterSupplyInput.pure(),
+    this.coverageInput = const WaterSupplyInput.pure(),
+    this.pipeStatusInput = const WaterSupplyInput.pure(),
+    this.pipeLenghtInput = const WaterSupplyInput.pure(),
+    this.qualityWaterCheckInput = const WaterSupplyInput.pure(),
   });
 
   final BaseStatusEnum status;
@@ -102,6 +109,13 @@ class WaterSupplyEditState extends Equatable {
   final WaterSupplyInput niVoDynamicInput;
   final WaterSupplyInput checkWaterQualityInput;
   final WaterSupplyInput wellStatusInput;
+  final WaterSupplyInput airPoolInput;
+  final WaterSupplyInput filterTankInput;
+  final WaterSupplyInput connectorInput;
+  final WaterSupplyInput pipeLenghtInput;
+  final WaterSupplyInput pipeStatusInput;
+  final WaterSupplyInput coverageInput;
+  final WaterSupplyInput qualityWaterCheckInput;
 
   const WaterSupplyEditState.initial({required int waterSupplyId})
       : this._(waterSupplyId: waterSupplyId);
@@ -156,6 +170,13 @@ class WaterSupplyEditState extends Equatable {
     WaterSupplyInput? niVoDynamicInput,
     WaterSupplyInput? checkWaterQualityInput,
     WaterSupplyInput? wellStatusInput,
+    WaterSupplyInput? airPoolInput,
+    WaterSupplyInput? filterTankInput,
+    WaterSupplyInput? connectorInput,
+    WaterSupplyInput? pipeLenghtInput,
+    WaterSupplyInput? pipeStatusInput,
+    WaterSupplyInput? coverageInput,
+    WaterSupplyInput? qualityWaterCheckInput,
   }) {
     return WaterSupplyEditState._(
       status: status ?? this.status,
@@ -215,6 +236,14 @@ class WaterSupplyEditState extends Equatable {
       checkWaterQualityInput:
           checkWaterQualityInput ?? this.checkWaterQualityInput,
       wellStatusInput: wellStatusInput ?? this.wellStatusInput,
+      airPoolInput: airPoolInput ?? this.airPoolInput,
+      filterTankInput: filterTankInput ?? this.filterTankInput,
+      connectorInput: connectorInput ?? this.connectorInput,
+      pipeLenghtInput: pipeLenghtInput ?? this.pipeLenghtInput,
+      pipeStatusInput: pipeStatusInput ?? this.pipeStatusInput,
+      coverageInput: coverageInput ?? this.coverageInput,
+      qualityWaterCheckInput:
+          qualityWaterCheckInput ?? this.qualityWaterCheckInput,
     );
   }
 
@@ -269,5 +298,12 @@ class WaterSupplyEditState extends Equatable {
         niVoDynamicInput,
         checkWaterQualityInput,
         wellStatusInput,
+        airPoolInput,
+        filterTankInput,
+        connectorInput,
+        pipeLenghtInput,
+        pipeStatusInput,
+        coverageInput,
+        qualityWaterCheckInput,
       ];
 }

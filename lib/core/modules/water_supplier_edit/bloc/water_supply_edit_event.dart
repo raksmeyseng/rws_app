@@ -388,3 +388,66 @@ class WellStatusChanged extends WaterSupplyEditEvent {
   @override
   List<Object> get props => [wellStatus];
 }
+
+class AirPoolChanged extends WaterSupplyEditEvent {
+  const AirPoolChanged(this.airPool);
+
+  final String airPool;
+
+  @override
+  List<Object> get props => [airPool];
+}
+
+class FilterTankChanged extends WaterSupplyEditEvent {
+  const FilterTankChanged(this.filterTank);
+
+  final String filterTank;
+
+  @override
+  List<Object> get props => [filterTank];
+}
+
+class PipeLenghtChanged extends WaterSupplyEditEvent {
+  const PipeLenghtChanged(this.pipeLenght);
+
+  final String pipeLenght;
+
+  @override
+  List<Object> get props => [pipeLenght];
+}
+
+class PipeStatusChanged extends WaterSupplyEditEvent {
+  const PipeStatusChanged(this.pipeStatus);
+
+  final String pipeStatus;
+
+  @override
+  List<Object> get props => [pipeStatus];
+}
+
+class CoverageChanged extends WaterSupplyEditEvent {
+  const CoverageChanged(this.coverage);
+
+  final String coverage;
+
+  @override
+  List<Object> get props => [coverage];
+}
+
+class ConnectorChanged extends WaterSupplyEditEvent {
+  const ConnectorChanged(this.connector);
+
+  final String connector;
+
+  @override
+  List<Object> get props => [connector];
+}
+
+class QualityWaterCheckChanged extends WaterSupplyEditEvent {
+  const QualityWaterCheckChanged(this.quality);
+
+  final String quality;
+
+  @override
+  List<Object> get props => [quality];
+}
