@@ -58,6 +58,13 @@ class WaterSupplyEditState extends Equatable {
     this.pipeStatusInput = const WaterSupplyInput.pure(),
     this.pipeLenghtInput = const WaterSupplyInput.pure(),
     this.qualityWaterCheckInput = const WaterSupplyInput.pure(),
+    this.pondLatInput = const WaterSupplyInput.pure(),
+    this.pondLongInput = const WaterSupplyInput.pure(),
+    this.pondFilterInput = const WaterSupplyInput.pure(),
+    this.pondDepthInput = const WaterSupplyInput.pure(),
+    this.pondTypeInput = const WaterSupplyInput.pure(),
+    this.seasonInput = const WaterSupplyInput.pure(),
+    this.pondStatusInput = const WaterSupplyInput.pure(),
   });
 
   final BaseStatusEnum status;
@@ -116,6 +123,13 @@ class WaterSupplyEditState extends Equatable {
   final WaterSupplyInput pipeStatusInput;
   final WaterSupplyInput coverageInput;
   final WaterSupplyInput qualityWaterCheckInput;
+  final WaterSupplyInput pondLatInput;
+  final WaterSupplyInput pondLongInput;
+  final WaterSupplyInput pondDepthInput;
+  final WaterSupplyInput pondFilterInput;
+  final WaterSupplyInput pondTypeInput;
+  final WaterSupplyInput seasonInput;
+  final WaterSupplyInput pondStatusInput;
 
   const WaterSupplyEditState.initial({required int waterSupplyId})
       : this._(waterSupplyId: waterSupplyId);
@@ -177,6 +191,13 @@ class WaterSupplyEditState extends Equatable {
     WaterSupplyInput? pipeStatusInput,
     WaterSupplyInput? coverageInput,
     WaterSupplyInput? qualityWaterCheckInput,
+    WaterSupplyInput? pondLatInput,
+    WaterSupplyInput? pondLongInput,
+    WaterSupplyInput? pondDepthInput,
+    WaterSupplyInput? pondFilterInput,
+    WaterSupplyInput? pondTypeInput,
+    WaterSupplyInput? seasonInput,
+    WaterSupplyInput? pondStatusInput,
   }) {
     return WaterSupplyEditState._(
       status: status ?? this.status,
@@ -244,6 +265,13 @@ class WaterSupplyEditState extends Equatable {
       coverageInput: coverageInput ?? this.coverageInput,
       qualityWaterCheckInput:
           qualityWaterCheckInput ?? this.qualityWaterCheckInput,
+      pondLatInput: pondLatInput ?? this.pondLatInput,
+      pondLongInput: pondLongInput ?? this.pondLongInput,
+      pondDepthInput: pondDepthInput ?? this.pondDepthInput,
+      pondFilterInput: pondFilterInput ?? this.pondFilterInput,
+      pondTypeInput: pondTypeInput ?? this.pondTypeInput,
+      seasonInput: seasonInput ?? this.seasonInput,
+      pondStatusInput: pondStatusInput ?? this.pondStatusInput,
     );
   }
 
@@ -305,5 +333,12 @@ class WaterSupplyEditState extends Equatable {
         pipeStatusInput,
         coverageInput,
         qualityWaterCheckInput,
+        pondLatInput,
+        pondLongInput,
+        pondDepthInput,
+        pondFilterInput,
+        pondTypeInput,
+        seasonInput,
+        pondStatusInput,
       ];
 }

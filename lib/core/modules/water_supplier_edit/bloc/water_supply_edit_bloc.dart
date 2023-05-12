@@ -119,6 +119,20 @@ class WaterSupplyEditBloc
   final connectorController = TextEditingController();
   final FocusNode qualityWaterCheckFocus = FocusNode();
   final qualityWaterCheckController = TextEditingController();
+  final FocusNode pondLatFocus = FocusNode();
+  final pondLatController = TextEditingController();
+  final FocusNode pondLongFocus = FocusNode();
+  final pondLongController = TextEditingController();
+  final FocusNode pondDepthFocus = FocusNode();
+  final pondDepthController = TextEditingController();
+  final FocusNode pondTypeFocus = FocusNode();
+  final pondTypeController = TextEditingController();
+  final FocusNode pondStatusFocus = FocusNode();
+  final pondStatusController = TextEditingController();
+  final FocusNode seasonFocus = FocusNode();
+  final seasonController = TextEditingController();
+  final FocusNode pondFilterFocus = FocusNode();
+  final pondFilterController = TextEditingController();
 
   Future<void> _onWaterSupplyEvent(
     WaterSupplyEditEvent event,
@@ -273,6 +287,27 @@ class WaterSupplyEditBloc
     }
     if (event is QualityWaterCheckChanged) {
       return _onQualityWaterCheckChanged(event, emit);
+    }
+    if (event is PondLatChanged) {
+      return _onPondLatChanged(event, emit);
+    }
+    if (event is PondLongChanged) {
+      return _onPondLongChanged(event, emit);
+    }
+    if (event is PondDepthChanged) {
+      return _onPondDepthChanged(event, emit);
+    }
+    if (event is PondFilterChanged) {
+      return _onPondFilterChanged(event, emit);
+    }
+    if (event is PondTypeChanged) {
+      return _onPondTypeChanged(event, emit);
+    }
+    if (event is PondStatusChanged) {
+      return _onPondStatusChanged(event, emit);
+    }
+    if (event is SeasonChanged) {
+      return _onSeasonChanged(event, emit);
     }
   }
 
@@ -747,5 +782,65 @@ class WaterSupplyEditBloc
     final quality = WaterSupplyInput.pure(event.quality);
     qualityWaterCheckController.text = event.quality;
     emit(state.copyWith(qualityWaterCheckInput: quality));
+  }
+
+  void _onPondLatChanged(
+    PondLatChanged event,
+    Emitter<WaterSupplyEditState> emit,
+  ) {
+    final pondLat = WaterSupplyInput.pure(event.pondLat);
+    emit(state.copyWith(pondLatInput: pondLat));
+  }
+
+  void _onPondLongChanged(
+    PondLongChanged event,
+    Emitter<WaterSupplyEditState> emit,
+  ) {
+    final pondLong = WaterSupplyInput.pure(event.pondLong);
+    emit(state.copyWith(pondLongInput: pondLong));
+  }
+
+  void _onPondTypeChanged(
+    PondTypeChanged event,
+    Emitter<WaterSupplyEditState> emit,
+  ) {
+    final pondType = WaterSupplyInput.pure(event.pondType);
+    pondTypeController.text = event.pondType;
+    emit(state.copyWith(pondTypeInput: pondType));
+  }
+
+  void _onPondDepthChanged(
+    PondDepthChanged event,
+    Emitter<WaterSupplyEditState> emit,
+  ) {
+    final pondDepth = WaterSupplyInput.pure(event.pondDepth);
+    emit(state.copyWith(pondDepthInput: pondDepth));
+  }
+
+  void _onPondFilterChanged(
+    PondFilterChanged event,
+    Emitter<WaterSupplyEditState> emit,
+  ) {
+    final pondFilter = WaterSupplyInput.pure(event.pondFilter);
+    pondFilterController.text = event.pondFilter;
+    emit(state.copyWith(pondFilterInput: pondFilter));
+  }
+
+  void _onSeasonChanged(
+    SeasonChanged event,
+    Emitter<WaterSupplyEditState> emit,
+  ) {
+    final season = WaterSupplyInput.pure(event.season);
+    seasonController.text = event.season;
+    emit(state.copyWith(seasonInput: season));
+  }
+
+  void _onPondStatusChanged(
+    PondStatusChanged event,
+    Emitter<WaterSupplyEditState> emit,
+  ) {
+    final pondStatus = WaterSupplyInput.pure(event.pondStatus);
+    pondStatusController.text = event.pondStatus;
+    emit(state.copyWith(pondStatusInput: pondStatus));
   }
 }

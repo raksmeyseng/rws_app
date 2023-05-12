@@ -451,3 +451,66 @@ class QualityWaterCheckChanged extends WaterSupplyEditEvent {
   @override
   List<Object> get props => [quality];
 }
+
+class PondLatChanged extends WaterSupplyEditEvent {
+  const PondLatChanged(this.pondLat);
+
+  final String pondLat;
+
+  @override
+  List<Object> get props => [pondLat];
+}
+
+class PondLongChanged extends WaterSupplyEditEvent {
+  const PondLongChanged(this.pondLong);
+
+  final String pondLong;
+
+  @override
+  List<Object> get props => [pondLong];
+}
+
+class PondFilterChanged extends WaterSupplyEditEvent {
+  const PondFilterChanged(this.pondFilter);
+
+  final String pondFilter;
+
+  @override
+  List<Object> get props => [pondFilter];
+}
+
+class PondTypeChanged extends WaterSupplyEditEvent {
+  const PondTypeChanged(this.pondType);
+
+  final String pondType;
+
+  @override
+  List<Object> get props => [pondType];
+}
+
+class PondDepthChanged extends WaterSupplyEditEvent {
+  const PondDepthChanged(this.pondDepth);
+
+  final String pondDepth;
+
+  @override
+  List<Object> get props => [pondDepth];
+}
+
+class PondStatusChanged extends WaterSupplyEditEvent {
+  const PondStatusChanged(this.pondStatus);
+
+  final String pondStatus;
+
+  @override
+  List<Object> get props => [pondStatus];
+}
+
+class SeasonChanged extends WaterSupplyEditEvent {
+  const SeasonChanged(this.season);
+
+  final String season;
+
+  @override
+  List<Object> get props => [season];
+}
