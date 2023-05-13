@@ -29,6 +29,7 @@ class MyOutlinedButton extends StatelessWidget {
     final borderRadius = dense ? 10.0 : 14.0;
     return Wrapper(
       maxWidth: maxWidth ?? appContentMaxWidth,
+      center: false,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(borderRadius),
         child: Container(

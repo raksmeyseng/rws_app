@@ -16,7 +16,6 @@ class CardDataFields extends StatelessWidget {
       ),
       child: SingleChildScrollView(
         scrollDirection: Axis.vertical,
-        physics: BouncingScrollPhysics(),
         child: SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: Diagrams(),

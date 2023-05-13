@@ -54,8 +54,6 @@ class CardListDetails extends StatelessWidget {
           previous.waterSupply != current.waterSupply,
       builder: (context, state) {
         return SingleChildScrollView(
-          physics: const BouncingScrollPhysics(),
-          scrollDirection: Axis.vertical,
           child: ListView.builder(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
