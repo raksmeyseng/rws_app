@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-const int _haveCode = 1;
-const int _notHaveCode = 2;
+const int _haveCode = 0;
+const int _notHaveCode = 1;
 
 enum FilterEnum {
   @JsonValue(_haveCode)

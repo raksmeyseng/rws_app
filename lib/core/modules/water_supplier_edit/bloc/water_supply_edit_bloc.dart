@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:formz/formz.dart';
 import 'package:rws_app/core/enum/base_status_enum.dart';
 import 'package:rws_app/core/modules/my_draft/models/my_draft_model.dart';
 import 'package:rws_app/core/modules/water_supplier_edit/model/doc_input.dart';
@@ -17,7 +18,9 @@ class WaterSupplyEditBloc
   WaterSupplyEditBloc({
     required this.repository,
     required int waterSupplyId,
-  }) : super(WaterSupplyEditState.initial(waterSupplyId: waterSupplyId)) {
+    required int id,
+  }) : super(WaterSupplyEditState.initial(
+            waterSupplyTypeId: waterSupplyId, id: id)) {
     on<WaterSupplyEditEvent>(_onWaterSupplyEvent);
   }
 
@@ -133,6 +136,20 @@ class WaterSupplyEditBloc
   final seasonController = TextEditingController();
   final FocusNode pondFilterFocus = FocusNode();
   final pondFilterController = TextEditingController();
+  final FocusNode usingTypeFocus = FocusNode();
+  final usingTypeController = TextEditingController();
+  final FocusNode tankStatusFocus = FocusNode();
+  final tankStatusController = TextEditingController();
+  final FocusNode capacityTypeFocus = FocusNode();
+  final capacityTypeController = TextEditingController();
+  final FocusNode supplierFocus = FocusNode();
+  final supplierController = TextEditingController();
+  final supplierDateController = TextEditingController();
+  final dueDateController = TextEditingController();
+  final FocusNode filterFocus = FocusNode();
+  final filterController = TextEditingController();
+  final FocusNode airStationFocus = FocusNode();
+  final airStationController = TextEditingController();
 
   Future<void> _onWaterSupplyEvent(
     WaterSupplyEditEvent event,
@@ -309,6 +326,33 @@ class WaterSupplyEditBloc
     if (event is SeasonChanged) {
       return _onSeasonChanged(event, emit);
     }
+    if (event is UsingTypeChanged) {
+      return _onUsingTypeChanged(event, emit);
+    }
+    if (event is TankStatusChanged) {
+      return _onTankStatusChanged(event, emit);
+    }
+    if (event is CapacityTypeChanged) {
+      return _onCapacityTypeChanged(event, emit);
+    }
+    if (event is SupplierChanged) {
+      return _onSupplierChanged(event, emit);
+    }
+    if (event is SupplierDateChanged) {
+      return _onSupplierDateChanged(event, emit);
+    }
+    if (event is DueDateChanged) {
+      return _onDueDateChanged(event, emit);
+    }
+    if (event is FilterChanged) {
+      return _onFilterChanged(event, emit);
+    }
+    if (event is AirStationChanged) {
+      return _onAirStationChanged(event, emit);
+    }
+    if (event is Submitted) {
+      return _onSubmitted(event, emit);
+    }
   }
 
   Future<void> _onWaterSupplyStarted(
@@ -334,9 +378,7 @@ class WaterSupplyEditBloc
   ) {
     final province = WaterSupplyInput.pure(event.province);
     provinceController.text = event.province;
-    emit(state.copyWith(
-      provinceInput: province,
-    ));
+    emit(state.copyWith(provinceInput: province));
   }
 
   void _onDistrictChanged(
@@ -345,9 +387,7 @@ class WaterSupplyEditBloc
   ) {
     final distict = WaterSupplyInput.pure(event.district);
     districtController.text = event.district;
-    emit(state.copyWith(
-      districtInput: distict,
-    ));
+    emit(state.copyWith(districtInput: distict));
   }
 
   void _onCommuneChanged(
@@ -356,9 +396,7 @@ class WaterSupplyEditBloc
   ) {
     final commune = WaterSupplyInput.pure(event.commnue);
     communeController.text = event.commnue;
-    emit(state.copyWith(
-      communeInput: commune,
-    ));
+    emit(state.copyWith(communeInput: commune));
   }
 
   void _onVillageChanged(
@@ -367,9 +405,7 @@ class WaterSupplyEditBloc
   ) {
     final village = WaterSupplyInput.pure(event.village);
     villageController.text = event.village;
-    emit(state.copyWith(
-      villageInput: village,
-    ));
+    emit(state.copyWith(villageInput: village));
   }
 
   void _onMapTypeChanged(
@@ -378,9 +414,7 @@ class WaterSupplyEditBloc
   ) {
     final mapType = WaterSupplyInput.pure(event.mapType);
     mapTypeController.text = event.mapType;
-    emit(state.copyWith(
-      mapTypeInput: mapType,
-    ));
+    emit(state.copyWith(mapTypeInput: mapType));
   }
 
   void _onLatetitudeChanged(
@@ -388,9 +422,7 @@ class WaterSupplyEditBloc
     Emitter<WaterSupplyEditState> emit,
   ) {
     final latetitude = WaterSupplyInput.pure(event.latetitude);
-    emit(state.copyWith(
-      lateitudeInput: latetitude,
-    ));
+    emit(state.copyWith(lateitudeInput: latetitude));
   }
 
   void _onLongtitudeChanged(
@@ -398,9 +430,7 @@ class WaterSupplyEditBloc
     Emitter<WaterSupplyEditState> emit,
   ) {
     final longtitude = WaterSupplyInput.pure(event.longtitude);
-    emit(state.copyWith(
-      longtitudeInput: longtitude,
-    ));
+    emit(state.copyWith(longtitudeInput: longtitude));
   }
 
   void _onFamilyTotalChanged(
@@ -408,9 +438,7 @@ class WaterSupplyEditBloc
     Emitter<WaterSupplyEditState> emit,
   ) {
     final familyTotal = WaterSupplyInput.pure(event.familyTotal);
-    emit(state.copyWith(
-      familyTotalInput: familyTotal,
-    ));
+    emit(state.copyWith(familyTotalInput: familyTotal));
   }
 
   void _onLocationRickChanged(
@@ -419,9 +447,7 @@ class WaterSupplyEditBloc
   ) {
     final locationRick = WaterSupplyInput.pure(event.locationRick);
     locationRickController.text = event.locationRick;
-    emit(state.copyWith(
-      locationRickInput: locationRick,
-    ));
+    emit(state.copyWith(locationRickInput: locationRick));
   }
 
   void _onBudgetTypeChanged(
@@ -430,9 +456,7 @@ class WaterSupplyEditBloc
   ) {
     final budgetType = WaterSupplyInput.pure(event.budgetType);
     budgetTypeController.text = event.budgetType;
-    emit(state.copyWith(
-      budgetTypeInput: budgetType,
-    ));
+    emit(state.copyWith(budgetTypeInput: budgetType));
   }
 
   void _onManagementTypeChanged(
@@ -441,9 +465,7 @@ class WaterSupplyEditBloc
   ) {
     final managementType = WaterSupplyInput.pure(event.managementType);
     managementTypeController.text = event.managementType;
-    emit(state.copyWith(
-      managementTypeInput: managementType,
-    ));
+    emit(state.copyWith(managementTypeInput: managementType));
   }
 
   void _onManagementNameChanged(
@@ -451,9 +473,7 @@ class WaterSupplyEditBloc
     Emitter<WaterSupplyEditState> emit,
   ) {
     final managementName = WaterSupplyInput.pure(event.managementName);
-    emit(state.copyWith(
-      managementNameInput: managementName,
-    ));
+    emit(state.copyWith(managementNameInput: managementName));
   }
 
   void _onReceiverTotalChanged(
@@ -461,9 +481,7 @@ class WaterSupplyEditBloc
     Emitter<WaterSupplyEditState> emit,
   ) {
     final receiverTotal = WaterSupplyInput.pure(event.receiverTotal);
-    emit(state.copyWith(
-      receiverTotalInput: receiverTotal,
-    ));
+    emit(state.copyWith(receiverTotalInput: receiverTotal));
   }
 
   void _onReceiverTotalAsFemaleChanged(
@@ -472,9 +490,7 @@ class WaterSupplyEditBloc
   ) {
     final receiverTotalAsFemale =
         WaterSupplyInput.pure(event.receiverTotalAsFemale);
-    emit(state.copyWith(
-      receiverTotalAsFemaleInput: receiverTotalAsFemale,
-    ));
+    emit(state.copyWith(receiverTotalAsFemaleInput: receiverTotalAsFemale));
   }
 
   void _onReceiverFamilyTotalChanged(
@@ -483,9 +499,7 @@ class WaterSupplyEditBloc
   ) {
     final receiverFamilyTotal =
         WaterSupplyInput.pure(event.receiverFamilyTotal);
-    emit(state.copyWith(
-      receiverFamilyTotalInput: receiverFamilyTotal,
-    ));
+    emit(state.copyWith(receiverFamilyTotalInput: receiverFamilyTotal));
   }
 
   void _onReceiverFamilyPoor1Changed(
@@ -494,9 +508,7 @@ class WaterSupplyEditBloc
   ) {
     final receiverFamilyPoor1 =
         WaterSupplyInput.pure(event.receiverFamilyPoor1);
-    emit(state.copyWith(
-      receiverFamilyPoor1Input: receiverFamilyPoor1,
-    ));
+    emit(state.copyWith(receiverFamilyPoor1Input: receiverFamilyPoor1));
   }
 
   void _onReceiverFamilyPoor2Changed(
@@ -505,17 +517,13 @@ class WaterSupplyEditBloc
   ) {
     final receiverFamilyPoor2 =
         WaterSupplyInput.pure(event.receiverFamilyPoor2);
-    emit(state.copyWith(
-      receiverFamilyPoor2Input: receiverFamilyPoor2,
-    ));
+    emit(state.copyWith(receiverFamilyPoor2Input: receiverFamilyPoor2));
   }
 
   void _onDOCChanged(DOCChanged event, Emitter<WaterSupplyEditState> emit) {
     final dobInput = DOCInput.pure(event.doc);
     docController.text = DateHelper.formatDate(event.doc) ?? '';
-    emit(state.copyWith(
-      docInput: dobInput,
-    ));
+    emit(state.copyWith(docInput: dobInput));
   }
 
   void _onCompanyNameChanged(
@@ -523,9 +531,7 @@ class WaterSupplyEditBloc
     Emitter<WaterSupplyEditState> emit,
   ) {
     final companyName = WaterSupplyInput.pure(event.companyName);
-    emit(state.copyWith(
-      companyNameInput: companyName,
-    ));
+    emit(state.copyWith(companyNameInput: companyName));
   }
 
   void _onConstructionCodeChanged(
@@ -533,9 +539,7 @@ class WaterSupplyEditBloc
     Emitter<WaterSupplyEditState> emit,
   ) {
     final constructionCode = WaterSupplyInput.pure(event.constructionCode);
-    emit(state.copyWith(
-      constructionCodeInput: constructionCode,
-    ));
+    emit(state.copyWith(constructionCodeInput: constructionCode));
   }
 
   void _onReceiverFamilyMinorityChanged(
@@ -544,9 +548,7 @@ class WaterSupplyEditBloc
   ) {
     final receiverFamilyMinority =
         WaterSupplyInput.pure(event.receiverFamilyMinority);
-    emit(state.copyWith(
-      receiverFamilyMinorityInput: receiverFamilyMinority,
-    ));
+    emit(state.copyWith(receiverFamilyMinorityInput: receiverFamilyMinority));
   }
 
   void _onReceiverFamilyVictimChanged(
@@ -555,9 +557,7 @@ class WaterSupplyEditBloc
   ) {
     final receiverFamilyVictim =
         WaterSupplyInput.pure(event.receiverFamilyVictim);
-    emit(state.copyWith(
-      receiverFamilyVictimInput: receiverFamilyVictim,
-    ));
+    emit(state.copyWith(receiverFamilyVictimInput: receiverFamilyVictim));
   }
 
   void _onWaterSupplyTypeChanged(
@@ -842,5 +842,114 @@ class WaterSupplyEditBloc
     final pondStatus = WaterSupplyInput.pure(event.pondStatus);
     pondStatusController.text = event.pondStatus;
     emit(state.copyWith(pondStatusInput: pondStatus));
+  }
+
+  void _onUsingTypeChanged(
+    UsingTypeChanged event,
+    Emitter<WaterSupplyEditState> emit,
+  ) {
+    final usingType = WaterSupplyInput.pure(event.usingType);
+    usingTypeController.text = event.usingType;
+    emit(state.copyWith(usingTypeInput: usingType));
+  }
+
+  void _onTankStatusChanged(
+    TankStatusChanged event,
+    Emitter<WaterSupplyEditState> emit,
+  ) {
+    final tankStatus = WaterSupplyInput.pure(event.tankStatus);
+    tankStatusController.text = event.tankStatus;
+    emit(state.copyWith(tankStatusInput: tankStatus));
+  }
+
+  void _onCapacityTypeChanged(
+    CapacityTypeChanged event,
+    Emitter<WaterSupplyEditState> emit,
+  ) {
+    final capacityType = WaterSupplyInput.pure(event.capacityType);
+    capacityTypeController.text = event.capacityType;
+    emit(state.copyWith(capacityTypeInput: capacityType));
+  }
+
+  void _onSupplierChanged(
+    SupplierChanged event,
+    Emitter<WaterSupplyEditState> emit,
+  ) {
+    final supplier = WaterSupplyInput.pure(event.supplier);
+    supplierController.text = event.supplier;
+    emit(state.copyWith(supplierInput: supplier));
+  }
+
+  void _onSupplierDateChanged(
+    SupplierDateChanged event,
+    Emitter<WaterSupplyEditState> emit,
+  ) {
+    final dateInput = DOCInput.pure(event.supplierDate);
+    supplierDateController.text =
+        DateHelper.formatDate(event.supplierDate) ?? '';
+    emit(state.copyWith(supplierDateInput: dateInput));
+  }
+
+  void _onDueDateChanged(
+    DueDateChanged event,
+    Emitter<WaterSupplyEditState> emit,
+  ) {
+    final dueDate = DOCInput.pure(event.dueDate);
+    dueDateController.text = DateHelper.formatDate(event.dueDate) ?? '';
+    emit(state.copyWith(dueDateInput: dueDate));
+  }
+
+  void _onFilterChanged(
+    FilterChanged event,
+    Emitter<WaterSupplyEditState> emit,
+  ) {
+    final filter = WaterSupplyInput.pure(event.filter);
+    filterController.text = event.filter;
+    emit(state.copyWith(filterInput: filter));
+  }
+
+  void _onAirStationChanged(
+    AirStationChanged event,
+    Emitter<WaterSupplyEditState> emit,
+  ) {
+    final airStation = WaterSupplyInput.pure(event.airStation);
+    airStationController.text = event.airStation;
+    emit(state.copyWith(airStationInput: airStation));
+  }
+
+  void _onSubmitted(
+    Submitted event,
+    Emitter<WaterSupplyEditState> emit,
+  ) {
+    final provinceInput = WaterSupplyInput.dirty(state.provinceInput.value);
+    final districtInput = WaterSupplyInput.dirty(state.districtInput.value);
+    final communeInput = WaterSupplyInput.dirty(state.communeInput.value);
+    final villageInput = WaterSupplyInput.dirty(state.villageInput.value);
+
+    emit(state.copyWith(
+      provinceInput: provinceInput,
+      districtInput: districtInput,
+      communeInput: communeInput,
+      villageInput: villageInput,
+      formzStatus: Formz.validate([
+        provinceInput,
+        districtInput,
+        communeInput,
+        villageInput,
+      ]),
+    ));
+
+    if (state.formzStatus.isValidated) {
+      emit(state.copyWith(formzStatus: FormzStatus.submissionInProgress));
+      try {
+        final res = repository.addOrUpdateWaterSupply(
+          id: state.id,
+          waterSupplyTypeId: state.waterSupplyTypeId,
+        );
+        emit(state.copyWith(formzStatus: FormzStatus.submissionSuccess));
+      } catch (_) {
+        emit(state.copyWith(formzStatus: FormzStatus.submissionFailure));
+      }
+    }
   }
 }

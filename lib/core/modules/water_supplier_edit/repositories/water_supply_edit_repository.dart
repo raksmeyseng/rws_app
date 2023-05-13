@@ -7,4 +7,17 @@ class WaterSupplyEditRepository extends RestApiService {
     final res = await get(ApiPath.getWaterSupplyDetail(id));
     return WaterSupplyModel.fromJson(res);
   }
+
+  Future<WaterSupplyModel> addOrUpdateWaterSupply({
+    required int waterSupplyTypeId,
+    required int id,
+  }) async {
+    if (id == 0) {
+      final res = await get(ApiPath.addWaterSupply(waterSupplyTypeId));
+      return WaterSupplyModel.fromJson(res);
+    } else {
+      final res = await get(ApiPath.updateWaterSupply(id, waterSupplyTypeId));
+      return WaterSupplyModel.fromJson(res);
+    }
+  }
 }

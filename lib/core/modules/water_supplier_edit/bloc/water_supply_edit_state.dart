@@ -3,8 +3,10 @@ part of 'water_supply_edit_bloc.dart';
 class WaterSupplyEditState extends Equatable {
   const WaterSupplyEditState._({
     this.status = BaseStatusEnum.initial,
+    this.formzStatus = FormzStatus.pure,
     this.waterSupply,
-    this.waterSupplyId = 0,
+    this.waterSupplyTypeId = 0,
+    this.id = 0,
     this.provinceInput = const WaterSupplyInput.pure(),
     this.districtInput = const WaterSupplyInput.pure(),
     this.communeInput = const WaterSupplyInput.pure(),
@@ -65,11 +67,21 @@ class WaterSupplyEditState extends Equatable {
     this.pondTypeInput = const WaterSupplyInput.pure(),
     this.seasonInput = const WaterSupplyInput.pure(),
     this.pondStatusInput = const WaterSupplyInput.pure(),
+    this.usingTypeInput = const WaterSupplyInput.pure(),
+    this.capacityTypeInput = const WaterSupplyInput.pure(),
+    this.tankStatusInput = const WaterSupplyInput.pure(),
+    this.supplierInput = const WaterSupplyInput.pure(),
+    this.supplierDateInput = const DOCInput.pure(),
+    this.dueDateInput = const DOCInput.pure(),
+    this.filterInput = const WaterSupplyInput.pure(),
+    this.airStationInput = const WaterSupplyInput.pure(),
   });
 
   final BaseStatusEnum status;
+  final FormzStatus formzStatus;
   final WaterSupplyModel? waterSupply;
-  final int waterSupplyId;
+  final int waterSupplyTypeId;
+  final int id;
   final WaterSupplyInput provinceInput;
   final WaterSupplyInput districtInput;
   final WaterSupplyInput communeInput;
@@ -130,14 +142,26 @@ class WaterSupplyEditState extends Equatable {
   final WaterSupplyInput pondTypeInput;
   final WaterSupplyInput seasonInput;
   final WaterSupplyInput pondStatusInput;
+  final WaterSupplyInput usingTypeInput;
+  final WaterSupplyInput capacityTypeInput;
+  final WaterSupplyInput tankStatusInput;
+  final WaterSupplyInput supplierInput;
+  final DOCInput supplierDateInput;
+  final DOCInput dueDateInput;
+  final WaterSupplyInput filterInput;
+  final WaterSupplyInput airStationInput;
 
-  const WaterSupplyEditState.initial({required int waterSupplyId})
-      : this._(waterSupplyId: waterSupplyId);
+  const WaterSupplyEditState.initial({
+    required int waterSupplyTypeId,
+    required int id,
+  }) : this._(waterSupplyTypeId: waterSupplyTypeId, id: id);
 
   WaterSupplyEditState copyWith({
     BaseStatusEnum? status,
+    FormzStatus? formzStatus,
     WaterSupplyModel? waterSupply,
-    int? waterSupplyId,
+    int? waterSupplyTypeId,
+    int? id,
     WaterSupplyInput? provinceInput,
     WaterSupplyInput? districtInput,
     WaterSupplyInput? communeInput,
@@ -198,11 +222,21 @@ class WaterSupplyEditState extends Equatable {
     WaterSupplyInput? pondTypeInput,
     WaterSupplyInput? seasonInput,
     WaterSupplyInput? pondStatusInput,
+    WaterSupplyInput? usingTypeInput,
+    WaterSupplyInput? capacityTypeInput,
+    WaterSupplyInput? tankStatusInput,
+    WaterSupplyInput? supplierInput,
+    DOCInput? supplierDateInput,
+    DOCInput? dueDateInput,
+    WaterSupplyInput? filterInput,
+    WaterSupplyInput? airStationInput,
   }) {
     return WaterSupplyEditState._(
       status: status ?? this.status,
+      formzStatus: formzStatus ?? this.formzStatus,
       waterSupply: waterSupply ?? this.waterSupply,
-      waterSupplyId: waterSupplyId ?? this.waterSupplyId,
+      waterSupplyTypeId: waterSupplyTypeId ?? this.waterSupplyTypeId,
+      id: id ?? this.id,
       provinceInput: provinceInput ?? this.provinceInput,
       districtInput: districtInput ?? this.districtInput,
       communeInput: communeInput ?? this.communeInput,
@@ -272,14 +306,24 @@ class WaterSupplyEditState extends Equatable {
       pondTypeInput: pondTypeInput ?? this.pondTypeInput,
       seasonInput: seasonInput ?? this.seasonInput,
       pondStatusInput: pondStatusInput ?? this.pondStatusInput,
+      usingTypeInput: usingTypeInput ?? this.usingTypeInput,
+      capacityTypeInput: capacityTypeInput ?? this.capacityTypeInput,
+      tankStatusInput: tankStatusInput ?? this.tankStatusInput,
+      supplierInput: supplierInput ?? this.supplierInput,
+      supplierDateInput: supplierDateInput ?? this.supplierDateInput,
+      dueDateInput: dueDateInput ?? this.dueDateInput,
+      filterInput: filterInput ?? this.filterInput,
+      airStationInput: airStationInput ?? this.airStationInput,
     );
   }
 
   @override
   List<Object?> get props => [
         status,
+        formzStatus,
         waterSupply,
-        waterSupplyId,
+        waterSupplyTypeId,
+        id,
         provinceInput,
         districtInput,
         communeInput,
@@ -340,5 +384,13 @@ class WaterSupplyEditState extends Equatable {
         pondTypeInput,
         seasonInput,
         pondStatusInput,
+        usingTypeInput,
+        capacityTypeInput,
+        tankStatusInput,
+        supplierInput,
+        supplierDateInput,
+        dueDateInput,
+        filterInput,
+        airStationInput,
       ];
 }

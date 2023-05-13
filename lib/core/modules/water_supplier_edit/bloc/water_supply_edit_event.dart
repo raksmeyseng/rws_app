@@ -514,3 +514,79 @@ class SeasonChanged extends WaterSupplyEditEvent {
   @override
   List<Object> get props => [season];
 }
+
+class UsingTypeChanged extends WaterSupplyEditEvent {
+  const UsingTypeChanged(this.usingType);
+
+  final String usingType;
+
+  @override
+  List<Object> get props => [usingType];
+}
+
+class TankStatusChanged extends WaterSupplyEditEvent {
+  const TankStatusChanged(this.tankStatus);
+
+  final String tankStatus;
+
+  @override
+  List<Object> get props => [tankStatus];
+}
+
+class CapacityTypeChanged extends WaterSupplyEditEvent {
+  const CapacityTypeChanged(this.capacityType);
+
+  final String capacityType;
+
+  @override
+  List<Object> get props => [capacityType];
+}
+
+class SupplierChanged extends WaterSupplyEditEvent {
+  const SupplierChanged(this.supplier);
+
+  final String supplier;
+
+  @override
+  List<Object> get props => [supplier];
+}
+
+class SupplierDateChanged extends WaterSupplyEditEvent {
+  const SupplierDateChanged(this.supplierDate);
+
+  final DateTime supplierDate;
+
+  @override
+  List<Object> get props => [supplierDate];
+}
+
+class DueDateChanged extends WaterSupplyEditEvent {
+  const DueDateChanged(this.dueDate);
+
+  final DateTime dueDate;
+
+  @override
+  List<Object> get props => [dueDate];
+}
+
+class FilterChanged extends WaterSupplyEditEvent {
+  const FilterChanged(this.filter);
+
+  final String filter;
+
+  @override
+  List<Object> get props => [filter];
+}
+
+class AirStationChanged extends WaterSupplyEditEvent {
+  const AirStationChanged(this.airStation);
+
+  final String airStation;
+
+  @override
+  List<Object> get props => [airStation];
+}
+
+class Submitted extends WaterSupplyEditEvent {
+  const Submitted();
+}

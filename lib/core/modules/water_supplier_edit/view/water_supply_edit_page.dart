@@ -11,10 +11,12 @@ class WaterSupplyEditPage extends StatelessWidget {
     super.key,
     required this.waterSupplyId,
     required this.title,
+    this.id,
   });
 
   final int waterSupplyId;
   final String title;
+  final int? id;
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +24,7 @@ class WaterSupplyEditPage extends StatelessWidget {
       create: (context) => WaterSupplyEditBloc(
         repository: WaterSupplyEditRepository(),
         waterSupplyId: waterSupplyId,
+        id: id ?? 0,
       )..add(const WaterSupplyStarted()),
       child: Scaffold(
         appBar: AppBar(
