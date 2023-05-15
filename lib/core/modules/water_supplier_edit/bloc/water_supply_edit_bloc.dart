@@ -925,17 +925,167 @@ class WaterSupplyEditBloc
     final districtInput = WaterSupplyInput.dirty(state.districtInput.value);
     final communeInput = WaterSupplyInput.dirty(state.communeInput.value);
     final villageInput = WaterSupplyInput.dirty(state.villageInput.value);
+    final mapTypeInput = WaterSupplyInput.dirty(state.mapTypeInput.value);
+    final familyTotalInput =
+        WaterSupplyInput.dirty(state.familyTotalInput.value);
+    final lateitudeInput = WaterSupplyInput.dirty(state.lateitudeInput.value);
+    final longtitudeInput = WaterSupplyInput.dirty(state.longtitudeInput.value);
+    final locationRickInput =
+        WaterSupplyInput.dirty(state.locationRickInput.value);
+    final budgetTypeInput = WaterSupplyInput.dirty(state.budgetTypeInput.value);
+    final managementTypeInput =
+        WaterSupplyInput.dirty(state.managementTypeInput.value);
+    final managementNameInput =
+        WaterSupplyInput.dirty(state.managementNameInput.value);
+    final receiverTotalInput =
+        WaterSupplyInput.dirty(state.receiverTotalInput.value);
+    final receiverTotalAsFemaleInput =
+        WaterSupplyInput.dirty(state.receiverTotalAsFemaleInput.value);
+    final receiverFamilyTotalInput =
+        WaterSupplyInput.dirty(state.receiverFamilyTotalInput.value);
+    final receiverFamilyPoor1Input =
+        WaterSupplyInput.dirty(state.receiverFamilyPoor1Input.value);
+    final receiverFamilyPoor2Input =
+        WaterSupplyInput.dirty(state.receiverFamilyPoor2Input.value);
+    final docInput = DOCInput.dirty(state.docInput.value);
+    final companyNameInput =
+        WaterSupplyInput.dirty(state.companyNameInput.value);
+    final constructionCodeInput =
+        WaterSupplyInput.dirty(state.constructionCodeInput.value);
+    final receiverFamilyMinorityInput =
+        WaterSupplyInput.dirty(state.receiverFamilyMinorityInput.value);
+    final receiverFamilyVictimInput =
+        WaterSupplyInput.dirty(state.receiverFamilyVictimInput.value);
+    final waterSupplyTypeInput =
+        WaterSupplyInput.dirty(state.waterSupplyTypeInput.value);
+    final containerInput = WaterSupplyInput.dirty(state.containerInput.value);
+    final capacityInput = WaterSupplyInput.dirty(state.capacityInput.value);
+    final wellTypeInput = WaterSupplyInput.dirty(state.wellTypeInput.value);
+    final wellDepthInput = WaterSupplyInput.dirty(state.wellDepthInput.value);
+    final utmXInput = WaterSupplyInput.dirty(state.utmXInput.value);
+    final utmYInput = WaterSupplyInput.dirty(state.utmYInput.value);
+    final latDegreeInput = WaterSupplyInput.dirty(state.latDegreeInput.value);
+    final latMinuteInput = WaterSupplyInput.dirty(state.latMinuteInput.value);
+    final latSecondInput = WaterSupplyInput.dirty(state.latSecondInput.value);
+    final longDegreeInput = WaterSupplyInput.dirty(state.longDegreeInput.value);
+    final longMinuteInput = WaterSupplyInput.dirty(state.longMinuteInput.value);
+    final longSecondInput = WaterSupplyInput.dirty(state.longSecondInput.value);
+    final wellScreenInput = WaterSupplyInput.dirty(state.wellScreenInput.value);
+    final wellThearInput = WaterSupplyInput.dirty(state.wellThearInput.value);
+    final waterQualityInput =
+        WaterSupplyInput.dirty(state.waterQualityInput.value);
+    final niVoStaticInput = WaterSupplyInput.dirty(state.niVoStaticInput.value);
+    final niVoDynamicInput =
+        WaterSupplyInput.dirty(state.niVoDynamicInput.value);
+    final checkWaterQualityInput =
+        WaterSupplyInput.dirty(state.checkWaterQualityInput.value);
+    final wellStatusInput = WaterSupplyInput.dirty(state.wellStatusInput.value);
+    final airPoolInput = WaterSupplyInput.dirty(state.airPoolInput.value);
+    final filterTankInput = WaterSupplyInput.dirty(state.filterTankInput.value);
+    final connectorInput = WaterSupplyInput.dirty(state.connectorInput.value);
+    final pipeLenghtInput = WaterSupplyInput.dirty(state.pipeLenghtInput.value);
+    final pipeStatusInput = WaterSupplyInput.dirty(state.pipeStatusInput.value);
+    final coverageInput = WaterSupplyInput.dirty(state.coverageInput.value);
+    final qualityWaterCheckInput =
+        WaterSupplyInput.dirty(state.qualityWaterCheckInput.value);
+    final pondLatInput = WaterSupplyInput.dirty(state.pondLatInput.value);
+    final pondLongInput = WaterSupplyInput.dirty(state.pondLongInput.value);
+    final pondDepthInput = WaterSupplyInput.dirty(state.pondDepthInput.value);
+    final pondFilterInput = WaterSupplyInput.dirty(state.pondFilterInput.value);
+    final pondTypeInput = WaterSupplyInput.dirty(state.pondTypeInput.value);
+    final seasonInput = WaterSupplyInput.dirty(state.seasonInput.value);
+    final pondStatusInput = WaterSupplyInput.dirty(state.pondStatusInput.value);
+    final usingTypeInput = WaterSupplyInput.dirty(state.usingTypeInput.value);
+    final capacityTypeInput =
+        WaterSupplyInput.dirty(state.capacityTypeInput.value);
+    final tankStatusInput = WaterSupplyInput.dirty(state.tankStatusInput.value);
+    final supplierInput = WaterSupplyInput.dirty(state.supplierInput.value);
+    final supplierDateInput = DOCInput.dirty(state.supplierDateInput.value);
+    final dueDateInput = DOCInput.dirty(state.dueDateInput.value);
+    final filterInput = WaterSupplyInput.dirty(state.filterInput.value);
+    final airStationInput = WaterSupplyInput.dirty(state.airStationInput.value);
 
     emit(state.copyWith(
       provinceInput: provinceInput,
       districtInput: districtInput,
       communeInput: communeInput,
       villageInput: villageInput,
+      mapTypeInput: mapTypeInput,
+      familyTotalInput: familyTotalInput,
+      lateitudeInput: lateitudeInput,
+      longtitudeInput: longtitudeInput,
+      locationRickInput: locationRickInput,
+      budgetTypeInput: budgetTypeInput,
+      managementTypeInput: managementTypeInput,
+      managementNameInput: managementNameInput,
+      receiverTotalInput: receiverTotalInput,
+      receiverTotalAsFemaleInput: receiverTotalAsFemaleInput,
+      receiverFamilyTotalInput: receiverFamilyTotalInput,
+      receiverFamilyPoor1Input: receiverFamilyPoor1Input,
+      receiverFamilyPoor2Input: receiverFamilyPoor2Input,
+      docInput: docInput,
+      companyNameInput: companyNameInput,
+      constructionCodeInput: constructionCodeInput,
+      receiverFamilyMinorityInput: receiverFamilyMinorityInput,
+      receiverFamilyVictimInput: receiverFamilyVictimInput,
+      waterSupplyTypeInput: waterSupplyTypeInput,
+      containerInput: containerInput,
+      capacityInput: capacityInput,
+      wellTypeInput: wellTypeInput,
+      wellDepthInput: wellDepthInput,
+      utmXInput: utmXInput,
+      utmYInput: utmYInput,
+      latDegreeInput: latDegreeInput,
+      latMinuteInput: latMinuteInput,
+      latSecondInput: latSecondInput,
+      longDegreeInput: longDegreeInput,
+      longMinuteInput: longMinuteInput,
+      longSecondInput: longSecondInput,
+      wellScreenInput: wellScreenInput,
+      wellThearInput: wellThearInput,
+      waterQualityInput: waterQualityInput,
+      niVoStaticInput: niVoStaticInput,
+      niVoDynamicInput: niVoDynamicInput,
+      checkWaterQualityInput: checkWaterQualityInput,
+      wellStatusInput: wellStatusInput,
+      airPoolInput: airPoolInput,
+      filterTankInput: filterTankInput,
+      connectorInput: connectorInput,
+      pipeLenghtInput: pipeLenghtInput,
+      pipeStatusInput: pipeStatusInput,
+      coverageInput: coverageInput,
+      qualityWaterCheckInput: qualityWaterCheckInput,
+      pondLatInput: pondLatInput,
+      pondLongInput: pondLongInput,
+      pondDepthInput: pondDepthInput,
+      pondFilterInput: pondFilterInput,
+      pondTypeInput: pondTypeInput,
+      seasonInput: seasonInput,
+      pondStatusInput: pondStatusInput,
+      usingTypeInput: usingTypeInput,
+      capacityTypeInput: capacityTypeInput,
+      tankStatusInput: tankStatusInput,
+      supplierInput: supplierInput,
+      supplierDateInput: supplierDateInput,
+      dueDateInput: dueDateInput,
+      filterInput: filterInput,
+      airStationInput: airStationInput,
       formzStatus: Formz.validate([
         provinceInput,
         districtInput,
         communeInput,
         villageInput,
+        budgetTypeInput,
+        locationRickInput,
+        managementTypeInput,
+        receiverTotalInput,
+        receiverFamilyTotalInput,
+        receiverTotalAsFemaleInput,
+        receiverFamilyPoor1Input,
+        receiverFamilyPoor2Input,
+        receiverFamilyMinorityInput,
+        receiverFamilyVictimInput,
+        docInput,
       ]),
     ));
 
