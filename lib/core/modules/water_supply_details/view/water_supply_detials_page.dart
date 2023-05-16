@@ -9,6 +9,7 @@ import 'package:rws_app/core/widgets/text_widget.dart';
 import 'package:rws_app/core/widgets/textbutton_icon.dart';
 
 class WaterSupplyPage extends StatelessWidget {
+
   const WaterSupplyPage({
     super.key,
     required this.waterSupplyId,
@@ -64,4 +65,5 @@ class WaterSupplyPage extends StatelessWidget {
       ),
     );
   }
+
 }

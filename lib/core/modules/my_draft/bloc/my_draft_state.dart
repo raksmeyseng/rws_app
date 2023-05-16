@@ -7,13 +7,13 @@ class MyDraftState extends Equatable {
   });
 
   final BaseStatusEnum status;
-  final List<MyDraftModel> mydraft;
+  final List<WaterSupplyModel> mydraft;
 
   const MyDraftState.initial() : this._();
 
   MyDraftState copyWith({
     BaseStatusEnum? status,
-    List<MyDraftModel>? mydraft,
+    List<WaterSupplyModel>? mydraft,
   }) {
     return MyDraftState._(
       status: status ?? this.status,

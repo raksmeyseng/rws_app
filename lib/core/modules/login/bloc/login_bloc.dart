@@ -14,6 +14,7 @@ part 'login_event.dart';
 part 'login_state.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
+
   LoginBloc({
     required this.authRepo,
     required this.userRepo,
@@ -25,6 +26,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   final UserRepository userRepo;
 
   Future<void> _onEvent(LoginEvent event, Emitter<LoginState> emit) async {
+
     if (event is LoginUserNameChanged) {
       return _onUsernameChanged(event, emit);
     }
@@ -37,6 +39,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     if (event is PasswordVisibilityToggled) {
       return _onPasswordVisibilityToggled(event, emit);
     }
+
   }
 
   void _onUsernameChanged(
@@ -80,8 +83,10 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         // Add some delay to wait for auth state finishing updated
         await Future.delayed(const Duration(milliseconds: 300));
 
-        final userToken = await userRepo.getUserToken();
-        //final userToken=await userRepo.userLogin(userNameInput.value, passwordInput.value);
+        //final userToken = await userRepo.getUserToken();
+
+        final userToken=await userRepo.userLogin(userNameInput.value, passwordInput.value);
+
         print(userToken);
         // await authRepo.saveOrUpdateUserTokens(userToken);
         Application.authBloc.add(AuthStatusChanged(

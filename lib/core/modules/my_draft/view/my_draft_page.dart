@@ -9,6 +9,7 @@ class MyDraftPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
     return BlocProvider(
       create: (context) =>
           MyDraftBloc(MyDraftRepository())..add(const MyDraftStarted()),

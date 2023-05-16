@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rws_app/config/themes/app_color.dart';
+import 'package:rws_app/core/modules/view_details/bloc/list_data_details_bloc.dart';
 import 'package:rws_app/core/widgets/text_widget.dart';
 
 class ViewProcessFlow extends StatelessWidget {
@@ -7,7 +9,11 @@ class ViewProcessFlow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+
+    return BlocBuilder<ListDataDetailsBloc,ListDataDetailsState>(
+      buildWhen: (previous, current) => previous.waterSupply!=current.waterSupply,
+      builder: (context,state){
+        return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).primaryColor,
         iconTheme: const IconThemeData(color: AppColor.white),
@@ -26,6 +32,9 @@ class ViewProcessFlow extends StatelessWidget {
         ),
       ),
     );
+      },
+    );
+    
   }
 }
 

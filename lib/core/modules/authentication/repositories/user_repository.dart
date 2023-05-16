@@ -26,8 +26,10 @@ class UserRepository extends RestApiService {
   Future<UserTokenModel> userLogin(String username,String password) async{
     print(ApiPath.login);
 
-    final login= await post(ApiPath.login,data:{username:username,password:password},headers: {'Content-Type': 'application/json'});
+    final login= await post(ApiPath.login,data:
+      {'username':username,'password':password});
     print(login);
+
     return UserTokenModel.fromJson(login);
   }
 
