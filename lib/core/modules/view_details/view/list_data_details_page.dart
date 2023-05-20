@@ -23,6 +23,47 @@ class ListDataDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    // return BlocBuilder<ListDataDetailsBloc,ListDataDetailsState>(
+    //   buildWhen: (previous,current)=>previous.status!=current.status,
+    //   builder: (context,state){
+    //     return Scaffold(
+    //     appBar: AppBar(
+    //       title: TextWidget(title, color: AppColor.white),
+    //       backgroundColor: Theme.of(context).primaryColor,
+    //       leading: IconButton(
+    //         icon: const Icon(
+    //           Icons.arrow_back,
+    //           color: AppColor.white,
+    //         ),
+    //         onPressed: () => Navigator.of(context).pop(),
+    //       ),
+    //       actions: <Widget>[
+    //         Padding(
+    //           padding: const EdgeInsets.all(10),
+    //           child: MyButton(
+    //             title: 'លំហូរដំណើរការ',
+    //             maxWidth: 120,
+    //             color: Colors.black12,
+    //             onPressed: () {
+    //               Navigator.push(
+    //                 context,
+    //                 MaterialPageRoute(
+    //                   builder: (context) => const ViewProcessFlow(),
+    //                 ),
+    //               );
+    //             },
+    //           ),
+    //         ),
+    //       ],
+    //     ),
+    //     body: const ListDataDetailsView(),
+    //     floatingActionButton: const _FloatingActionButton(),
+    //     bottomNavigationBar: const _BottomNavigationBar(),
+    //   );
+    //   },
+    //   );
+
     return BlocProvider(
       create: (context) => ListDataDetailsBloc(
         repository: ListDataDetailRepository(),

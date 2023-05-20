@@ -51,10 +51,14 @@ class ApiPath {
   static String getAllMyApprovalHistory(int id)=>'${AppConstant.mainURL}watersupplyworkflow/?watersupply_id=&user_id=$id';
   static String getPendingApprovalAdmin(int id)=>'${AppConstant.mainURL}watersupply/';
   static String getPendingApprovalProvincialHead(int id) => '${AppConstant.mainURL}watersupplybyprovince/?province_id=$id&main_status=1';
+  static String getPendingApprovalDataVerifier1='${AppConstant.mainURL}watersupplybyprovince/?province_id=&main_status=2';
+  static String getPendingApprovalDataVerifier2='${AppConstant.mainURL}watersupplybyprovince/?province_id=&main_status=5';
+  static String getPendingApprovalDepartmentHead='${AppConstant.mainURL}watersupplybyprovinceandmultiplestatus/?main_status=7%2C12&province_id=';
 
   static String addWaterSupply(int id) =>
       '${AppConstant.mainURL}watersupply/$id';
   static String updateWaterSupply(int id, int waterSupplyTypeId) =>
       '${AppConstant.mainURL}watersupply/$id';
+  
 }
     

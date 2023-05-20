@@ -52,8 +52,10 @@ part of 'water_supply_model.dart';
       beneficiaryTotalFamilyPoor1:json['beneficiary_total_family_poor_1'] as int,
       beneficiaryTotalFamilyPoor2: json['beneficiary_total_family_poor_2'] as int,
       beneficiaryTotalFamilyVulnearable:json['beneficiary_total_family_vulnerable'] as int,
-      beneficiaryTotalFamilyIndigenous: json['beneficiary_total_family_indigenous'] as int
- 
+      beneficiaryTotalFamilyIndigenous: json['beneficiary_total_family_indigenous'] as int,
+      waterSupplyTypeId: json['water_supply_type_id']['id'] as int,
+      //workflow: (json['watersupplyworkflow_watersupply'] as List).map((i) => MyApprovalHistoryModel.fromJson(i)).toList(),
+      waterSupplyWells: List<WaterSupplyWellModel>.from(json['watersupplywell_watersupply'].map((model)=>WaterSupplyWellModel.fromJson(model))),
       
       //address: json['province_id']['name_kh'] as String,
     );

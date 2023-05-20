@@ -153,7 +153,7 @@ class CardListDetails extends StatelessWidget {
               ),
               _InfoItem(
                 CaptionWidget('${titleViews[10]} :'),
-                TextWidget(state.waterSupply?.isRiskEnviromentArea.toString()),
+                TextWidget(state.waterSupply?.isRiskEnviromentArea==true?"ប្រឈម":"មិនប្រឈម"),
               ),
               const Padding(
                 padding: EdgeInsets.symmetric(vertical: 8),
@@ -169,7 +169,7 @@ class CardListDetails extends StatelessWidget {
               ),
               _InfoItem(
                 CaptionWidget('${titleViews[12]} :'),
-                TextWidget(state.waterSupply?.sourceBudget.toString()),
+                TextWidget(state.waterSupply?.sourceBudget==0?"រដ្ខ":state.waterSupply?.sourceBudget==1?"អង្គការ":"សប្បុរស"),
               ),
               const Padding(
                 padding: EdgeInsets.symmetric(vertical: 8),
@@ -185,7 +185,7 @@ class CardListDetails extends StatelessWidget {
               ),
               _InfoItem(
                 CaptionWidget('${titleViews[14]} :'),
-                TextWidget(state.waterSupply?.managementType.toString()),
+                TextWidget(state.waterSupply?.managementType==0?"សហគមន៍":"ឯកជន"),
               ),
               const Padding(
                 padding: EdgeInsets.symmetric(vertical: 8),

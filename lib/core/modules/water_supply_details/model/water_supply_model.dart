@@ -2,6 +2,9 @@ import 'package:json_annotation/json_annotation.dart';
 import 'package:rws_app/core/modules/authentication/models/user_model.dart';
 import 'package:rws_app/core/modules/my_draft/models/my_draft_model.dart';
 
+import '../../../models/water_supply_well.dart';
+import '../../my_approval_history/models/my_approval_history_model.dart';
+
 part 'water_supply_model.g.dart';
 
 @JsonSerializable(explicitToJson: true)
@@ -45,7 +48,10 @@ class WaterSupplyModel {
     required this.isRiskEnviromentArea,
     required this.managedBy,
     required this.managementType,
-    required this.sourceBudget
+    required this.sourceBudget,
+    required this.waterSupplyTypeId,
+    this.waterSupplyWells,
+    //required this.workflow
   });
 
   @JsonKey(name: 'id')
@@ -54,6 +60,8 @@ class WaterSupplyModel {
   // String createdBy;
   @JsonKey(name: 'created_date')
   DateTime createdDate;
+  @JsonKey(name:'water_supply_type_id')
+  int waterSupplyTypeId;
   @JsonKey(name: 'water_supply_type')
   String waterSupplyType;
   @JsonKey(name: 'province_id')
@@ -122,6 +130,12 @@ class WaterSupplyModel {
   int beneficiaryTotalFamilyVulnearable;
    @JsonKey(name: 'beneficiary_total_family_indigenous')
   int beneficiaryTotalFamilyIndigenous;
+  // @JsonKey(name:'watersupplyworkflow_watersupply')
+  // List<MyApprovalHistoryModel> workflow;
+
+  @JsonKey(name:'watersupplywell_watersupply')
+  List<WaterSupplyWellModel>? waterSupplyWells;
+  
 
 
   factory WaterSupplyModel.fromJson(Map<String, dynamic> json) =>
