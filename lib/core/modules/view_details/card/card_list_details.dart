@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rws_app/core/modules/view_details/bloc/list_data_details_bloc.dart';
 import 'package:rws_app/core/widgets/caption_widget.dart';
-import 'package:rws_app/core/widgets/flat_card.dart';
 import 'package:rws_app/core/widgets/text_widget.dart';
 
 import '../../../widgets/my_divider.dart';
@@ -13,49 +12,29 @@ class CardListDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<String> titleViews = [
-      'ប្រភេទ',//0
-      'លេខកូដសំនង់',//1
-      'ខេត្ត/រាជធានី',//2
-      'ស្រុក/ក្រុង',//3
-      'ឃុំ/សង្កាត់',//4
-      'ភូមិ',//5
-      'ខ្នាតផែនទី',//6
-      'កូអរដោនេ UTMX',//7
-      'កូអរដោនេ UTMY',//8
-      'គ្រួសារសរុប',//9
-      'តំបន់ប្រឈមផ្នែកបរិស្ថាន',//10
-      'កាលបរិច្ឆេទសាងសង់',   //11
-      'ប្រភពថវិកា',//12
-      'សាងសង់ដោយក្រុមហ៊ុន',//13
-      'ប្រភេទនៃការគ្រប់គ្រង',//14
-      'ឈ្មោះអ្នកគ្រប់គ្រង',//15
-      'អ្នកទទួលផលសរុប',//16
-      'អ្នកទទួលផលសរុបស្រី',//17
-      'អ្នកទទួលផលគ្រួសារសរុប',//18
-      'អ្នកទទួលផលគ្រួសារក្រ១',//19
-      'អ្នកទទួលផលគ្រួសារក្រ២',//20
-      'អ្នកទទួលផលគ្រួសារជនងាយរងគ្រោះ',//21
-      'អ្នកទទួលផលគ្រួសារជនជាតិដើមភាគតិច'//22
-    ];
-
-    List<String> valueViews = [
-      '',
-      '',
-      '',
-      '',
-      '',
-      '',
-      '',
-      '',
-      '',
-      '',
-      '',
-      '',
-      '',
-      '',
-      '',
-      '',
-      ''
+      'ប្រភេទ', //0
+      'លេខកូដសំនង់', //1
+      'ខេត្ត/រាជធានី', //2
+      'ស្រុក/ក្រុង', //3
+      'ឃុំ/សង្កាត់', //4
+      'ភូមិ', //5
+      'ខ្នាតផែនទី', //6
+      'កូអរដោនេ UTMX', //7
+      'កូអរដោនេ UTMY', //8
+      'គ្រួសារសរុប', //9
+      'តំបន់ប្រឈមផ្នែកបរិស្ថាន', //10
+      'កាលបរិច្ឆេទសាងសង់', //11
+      'ប្រភពថវិកា', //12
+      'សាងសង់ដោយក្រុមហ៊ុន', //13
+      'ប្រភេទនៃការគ្រប់គ្រង', //14
+      'ឈ្មោះអ្នកគ្រប់គ្រង', //15
+      'អ្នកទទួលផលសរុប', //16
+      'អ្នកទទួលផលសរុបស្រី', //17
+      'អ្នកទទួលផលគ្រួសារសរុប', //18
+      'អ្នកទទួលផលគ្រួសារក្រ១', //19
+      'អ្នកទទួលផលគ្រួសារក្រ២', //20
+      'អ្នកទទួលផលគ្រួសារជនងាយរងគ្រោះ', //21
+      'អ្នកទទួលផលគ្រួសារជនជាតិដើមភាគតិច' //22
     ];
     return BlocBuilder<ListDataDetailsBloc, ListDataDetailsState>(
       buildWhen: (previous, current) =>
@@ -63,18 +42,17 @@ class CardListDetails extends StatelessWidget {
       builder: (context, state) {
         return SingleChildScrollView(
           padding: const EdgeInsets.symmetric(
-                   vertical: 10,
-                   horizontal: 16,
-                ),
+            vertical: 10,
+            horizontal: 16,
+          ),
           child: Column(
-            
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
-            children:[
+            children: [
               _InfoItem(
                 CaptionWidget('${titleViews[0]} :'),
                 TextWidget(state.waterSupply?.waterSupplyType),
-              ),             
+              ),
               const Padding(
                 padding: EdgeInsets.symmetric(vertical: 8),
                 child: MyDivider(),
@@ -121,7 +99,11 @@ class CardListDetails extends StatelessWidget {
               ),
               _InfoItem(
                 CaptionWidget('${titleViews[6]} :'),
-                TextWidget(state.waterSupply?.mapUnitId==1?'UTM':state.waterSupply?.mapUnitId==2?'Decimal Degree':'Degree Minute Seconds'),
+                TextWidget(state.waterSupply?.mapUnitId == 1
+                    ? 'UTM'
+                    : state.waterSupply?.mapUnitId == 2
+                        ? 'Decimal Degree'
+                        : 'Degree Minute Seconds'),
               ),
               const Padding(
                 padding: EdgeInsets.symmetric(vertical: 8),
@@ -129,7 +111,11 @@ class CardListDetails extends StatelessWidget {
               ),
               _InfoItem(
                 CaptionWidget('${titleViews[7]} :'),
-                TextWidget(state.waterSupply?.mapUnitId==1?state.waterSupply?.utmX:state.waterSupply?.mapUnitId==2?state.waterSupply?.decimalDegreeLat: '$state.waterSupply?.mdsXDegree:$state.waterSupply?.mdsXMinute:$state.waterSupply?.mdsXSecond'),
+                TextWidget(state.waterSupply?.mapUnitId == 1
+                    ? state.waterSupply?.utmX
+                    : state.waterSupply?.mapUnitId == 2
+                        ? state.waterSupply?.decimalDegreeLat
+                        : '$state.waterSupply?.mdsXDegree:$state.waterSupply?.mdsXMinute:$state.waterSupply?.mdsXSecond'),
               ),
               const Padding(
                 padding: EdgeInsets.symmetric(vertical: 8),
@@ -137,7 +123,11 @@ class CardListDetails extends StatelessWidget {
               ),
               _InfoItem(
                 CaptionWidget('${titleViews[8]} :'),
-                TextWidget(state.waterSupply?.mapUnitId==1?state.waterSupply?.utmY:state.waterSupply?.mapUnitId==2?state.waterSupply?.decimalDegreeLng: '$state.waterSupply?.mdsYDegree:$state.waterSupply?.mdsYMinute:$state.waterSupply?.mdsYSecond'),
+                TextWidget(state.waterSupply?.mapUnitId == 1
+                    ? state.waterSupply?.utmY
+                    : state.waterSupply?.mapUnitId == 2
+                        ? state.waterSupply?.decimalDegreeLng
+                        : '$state.waterSupply?.mdsYDegree:$state.waterSupply?.mdsYMinute:$state.waterSupply?.mdsYSecond'),
               ),
               const Padding(
                 padding: EdgeInsets.symmetric(vertical: 8),
@@ -153,7 +143,9 @@ class CardListDetails extends StatelessWidget {
               ),
               _InfoItem(
                 CaptionWidget('${titleViews[10]} :'),
-                TextWidget(state.waterSupply?.isRiskEnviromentArea==true?"ប្រឈម":"មិនប្រឈម"),
+                TextWidget(state.waterSupply?.isRiskEnviromentArea == true
+                    ? 'ប្រឈម'
+                    : 'មិនប្រឈម'),
               ),
               const Padding(
                 padding: EdgeInsets.symmetric(vertical: 8),
@@ -169,7 +161,11 @@ class CardListDetails extends StatelessWidget {
               ),
               _InfoItem(
                 CaptionWidget('${titleViews[12]} :'),
-                TextWidget(state.waterSupply?.sourceBudget==0?"រដ្ខ":state.waterSupply?.sourceBudget==1?"អង្គការ":"សប្បុរស"),
+                TextWidget(state.waterSupply?.sourceBudget == 0
+                    ? 'រដ្ខ'
+                    : state.waterSupply?.sourceBudget == 1
+                        ? 'អង្គការ'
+                        : 'សប្បុរស'),
               ),
               const Padding(
                 padding: EdgeInsets.symmetric(vertical: 8),
@@ -185,7 +181,8 @@ class CardListDetails extends StatelessWidget {
               ),
               _InfoItem(
                 CaptionWidget('${titleViews[14]} :'),
-                TextWidget(state.waterSupply?.managementType==0?"សហគមន៍":"ឯកជន"),
+                TextWidget(
+                    state.waterSupply?.managementType == 0 ? 'សហគមន៍' : 'ឯកជន'),
               ),
               const Padding(
                 padding: EdgeInsets.symmetric(vertical: 8),
@@ -201,7 +198,8 @@ class CardListDetails extends StatelessWidget {
               ),
               _InfoItem(
                 CaptionWidget('${titleViews[16]} :'),
-                TextWidget(state.waterSupply?.beneficiaryTotalPeople.toString()),
+                TextWidget(
+                    state.waterSupply?.beneficiaryTotalPeople.toString()),
               ),
               const Padding(
                 padding: EdgeInsets.symmetric(vertical: 8),
@@ -217,7 +215,8 @@ class CardListDetails extends StatelessWidget {
               ),
               _InfoItem(
                 CaptionWidget('${titleViews[18]} :'),
-                TextWidget(state.waterSupply?.beneficiaryTotalFamily.toString()),
+                TextWidget(
+                    state.waterSupply?.beneficiaryTotalFamily.toString()),
               ),
               const Padding(
                 padding: EdgeInsets.symmetric(vertical: 8),
@@ -225,7 +224,8 @@ class CardListDetails extends StatelessWidget {
               ),
               _InfoItem(
                 CaptionWidget('${titleViews[19]} :'),
-                TextWidget(state.waterSupply?.beneficiaryTotalFamilyPoor1.toString()),
+                TextWidget(
+                    state.waterSupply?.beneficiaryTotalFamilyPoor1.toString()),
               ),
               const Padding(
                 padding: EdgeInsets.symmetric(vertical: 8),
@@ -233,7 +233,8 @@ class CardListDetails extends StatelessWidget {
               ),
               _InfoItem(
                 CaptionWidget('${titleViews[20]} :'),
-                TextWidget(state.waterSupply?.beneficiaryTotalFamilyPoor2.toString()),
+                TextWidget(
+                    state.waterSupply?.beneficiaryTotalFamilyPoor2.toString()),
               ),
               const Padding(
                 padding: EdgeInsets.symmetric(vertical: 8),
@@ -241,7 +242,8 @@ class CardListDetails extends StatelessWidget {
               ),
               _InfoItem(
                 CaptionWidget('${titleViews[21]} :'),
-                TextWidget(state.waterSupply?.beneficiaryTotalFamilyVulnearable.toString()),
+                TextWidget(state.waterSupply?.beneficiaryTotalFamilyVulnearable
+                    .toString()),
               ),
               const Padding(
                 padding: EdgeInsets.symmetric(vertical: 8),
@@ -249,7 +251,8 @@ class CardListDetails extends StatelessWidget {
               ),
               _InfoItem(
                 CaptionWidget('${titleViews[22]} :'),
-                TextWidget(state.waterSupply?.beneficiaryTotalFamilyIndigenous.toString()),
+                TextWidget(state.waterSupply?.beneficiaryTotalFamilyIndigenous
+                    .toString()),
               ),
               const Padding(
                 padding: EdgeInsets.symmetric(vertical: 8),
@@ -299,7 +302,6 @@ class CardListDetails extends StatelessWidget {
           //     );
           //   },
           // ),
-
         );
       },
     );
@@ -315,7 +317,6 @@ class _InfoItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [label, value],
     );

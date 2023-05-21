@@ -15,12 +15,11 @@ import '../../../widgets/flat_card.dart';
 import '../../../widgets/my_divider.dart';
 import '../../../widgets/text_widget.dart';
 
-class MyPendingApprovalView extends StatelessWidget{
+class MyPendingApprovalView extends StatelessWidget {
   const MyPendingApprovalView({super.key});
-  
+
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return BlocBuilder<MyPendingApprovalBloc, MyPendingApprovalState>(
       buildWhen: (previous, current) => previous.status != current.status,
       builder: (context, state) {
@@ -35,9 +34,6 @@ class MyPendingApprovalView extends StatelessWidget{
       },
     );
   }
-
-
-
 }
 
 // ===================
@@ -49,7 +45,8 @@ class _SuccessView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<MyPendingApprovalBloc, MyPendingApprovalState>(
-      buildWhen: (previous, current) => previous.myPendingApproval != current.myPendingApproval,
+      buildWhen: (previous, current) =>
+          previous.myPendingApproval != current.myPendingApproval,
       builder: (context, state) {
         if (state.myPendingApproval.isEmpty) {
           return const Center(child: EmptyWidget());
@@ -136,7 +133,7 @@ class _MyDraftItem extends StatelessWidget {
           ),
           _InfoItem(
             CaptionWidget('${S.of(context).user_name} :'),
-            TextWidget(item.user.firstName.toString()+' '+item.user.lastName.toString()),
+            TextWidget('${item.user.firstName} ${item.user.lastName}'),
           ),
           _InfoItem(
             CaptionWidget('${S.of(context).water_supply_type} :'),
@@ -170,14 +167,12 @@ class _MyDraftItem extends StatelessWidget {
           _InfoItem(
             CaptionWidget('${S.of(context).status} :'),
             TextWidget(item.status.statusNameKh.toString(),
-            color: AppColor.warning
-            ),
+                color: AppColor.warning),
           ),
         ],
       ),
     );
   }
-
 }
 
 class _InfoItem extends StatelessWidget {

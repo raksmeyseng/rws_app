@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:rws_app/config/themes/app_color.dart';
 import 'package:rws_app/core/modules/view_details/bloc/list_data_details_bloc.dart';
 import 'package:rws_app/core/widgets/text_widget.dart';
 
@@ -16,19 +15,16 @@ class CardDataFields extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return BlocBuilder<ListDataDetailsBloc, ListDataDetailsState>(
-      buildWhen: (previous,current)=>previous.status!=current.status,
-      builder:(context, state){
-        switch(state.waterSupply?.waterSupplyTypeId){
-          case 1:
-          return const _WellView();
-          default:
-          return const _FailureView();
-        }
-      }
-    );
-
+        buildWhen: (previous, current) => previous.status != current.status,
+        builder: (context, state) {
+          switch (state.waterSupply?.waterSupplyTypeId) {
+            case 1:
+              return const _WellView();
+            default:
+              return const _FailureView();
+          }
+        });
   }
 }
 
@@ -44,9 +40,9 @@ class _FailureView extends StatelessWidget {
   }
 }
 
-class _WellView extends StatelessWidget{
-  const _WellView({Key? key}):super(key: key);
-  
+class _WellView extends StatelessWidget {
+  const _WellView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ListDataDetailsBloc, ListDataDetailsState>(
@@ -55,100 +51,99 @@ class _WellView extends StatelessWidget{
       builder: (context, state) {
         return SingleChildScrollView(
           padding: const EdgeInsets.symmetric(
-                   vertical: 10,
-                   horizontal: 16,
-                ),
+            vertical: 10,
+            horizontal: 16,
+          ),
           child: Column(
-            
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
-            children:[
-              
+            children: [
               _InfoItem(
-                CaptionWidget('ប្រភេទអណ្ដូង'),
-                TextWidget(state.waterSupply?.waterSupplyWells?.first.wellTypeObj.first.valueObjs.first.nameKh),
-              ),             
+                const CaptionWidget('ប្រភេទអណ្ដូង'),
+                TextWidget(state.waterSupply?.waterSupplyWells?.first
+                    .wellTypeObj.first.valueObjs.first.nameKh),
+              ),
               const Padding(
                 padding: EdgeInsets.symmetric(vertical: 8),
                 child: MyDivider(),
               ),
-
               _InfoItem(
-                CaptionWidget('ជម្រៅអណ្ដូង (m)'),
-                TextWidget(state.waterSupply?.waterSupplyWells?.first.wellHeight),
-              ),             
+                const CaptionWidget('ជម្រៅអណ្ដូង (m)'),
+                TextWidget(
+                    state.waterSupply?.waterSupplyWells?.first.wellHeight),
+              ),
               const Padding(
                 padding: EdgeInsets.symmetric(vertical: 8),
                 child: MyDivider(),
               ),
-              
               _InfoItem(
-                CaptionWidget('ជម្រៅតម្រង (Screen) (m)'),
-                TextWidget(state.waterSupply?.waterSupplyWells?.first.wellFilterHeight),
-              ),             
+                const CaptionWidget('ជម្រៅតម្រង (Screen) (m)'),
+                TextWidget(state
+                    .waterSupply?.waterSupplyWells?.first.wellFilterHeight),
+              ),
               const Padding(
                 padding: EdgeInsets.symmetric(vertical: 8),
                 child: MyDivider(),
               ),
-
               _InfoItem(
-                CaptionWidget('ធារទឹក (m3/h)'),
-                TextWidget(state.waterSupply?.waterSupplyWells?.first.wellWaterSupply),
-              ),             
+                const CaptionWidget('ធារទឹក (m3/h)'),
+                TextWidget(
+                    state.waterSupply?.waterSupplyWells?.first.wellWaterSupply),
+              ),
               const Padding(
                 padding: EdgeInsets.symmetric(vertical: 8),
                 child: MyDivider(),
               ),
-
               _InfoItem(
-                CaptionWidget('នីរ៉ូស្តាទិច (m)'),
-                TextWidget(state.waterSupply?.waterSupplyWells?.first.wellNirostatic),
-              ),             
+                const CaptionWidget('នីរ៉ូស្តាទិច (m)'),
+                TextWidget(
+                    state.waterSupply?.waterSupplyWells?.first.wellNirostatic),
+              ),
               const Padding(
                 padding: EdgeInsets.symmetric(vertical: 8),
                 child: MyDivider(),
               ),
-
               _InfoItem(
-                CaptionWidget('នីរ៉ូឌីណាមិច (m)'),
-                TextWidget(state.waterSupply?.waterSupplyWells?.first.wellNirodynamic),
-              ),             
+                const CaptionWidget('នីរ៉ូឌីណាមិច (m)'),
+                TextWidget(
+                    state.waterSupply?.waterSupplyWells?.first.wellNirodynamic),
+              ),
               const Padding(
                 padding: EdgeInsets.symmetric(vertical: 8),
                 child: MyDivider(),
               ),
-
               _InfoItem(
-                CaptionWidget('គុណភាពទឹក'),
-                TextWidget(state.waterSupply?.waterSupplyWells?.first.wellWaterQualityObj?.first.nameKh),
-              ),             
+                const CaptionWidget('គុណភាពទឹក'),
+                TextWidget(state.waterSupply?.waterSupplyWells?.first
+                    .wellWaterQualityObj?.first.nameKh),
+              ),
               const Padding(
                 padding: EdgeInsets.symmetric(vertical: 8),
                 child: MyDivider(),
               ),
-
               _InfoItem(
-                CaptionWidget('ត្រួតពិនិត្យគុណភាពទឹក'),
-                TextWidget(state.waterSupply?.waterSupplyWells?.first.wellWaterQualityCheckObj?.first.nameKh),
-              ),                          
+                const CaptionWidget('ត្រួតពិនិត្យគុណភាពទឹក'),
+                TextWidget(state.waterSupply?.waterSupplyWells?.first
+                    .wellWaterQualityCheckObj?.first.nameKh),
+              ),
               const Padding(
                 padding: EdgeInsets.symmetric(vertical: 8),
                 child: MyDivider(),
               ),
-
               _InfoItem(
-                CaptionWidget('ស្ថានភាពអណ្ដូងទឹក'),
-                TextWidget(state.waterSupply?.waterSupplyWells?.first.wellStatusObj?.first.nameKh),
-              ),             
+                const CaptionWidget('ស្ថានភាពអណ្ដូងទឹក'),
+                TextWidget(state.waterSupply?.waterSupplyWells?.first
+                    .wellStatusObj?.first.nameKh),
+              ),
               const Padding(
                 padding: EdgeInsets.symmetric(vertical: 8),
                 child: MyDivider(),
               ),
-
               _InfoItem(
-                CaptionWidget('ហេតុអ្វី'),
-                TextWidget(state.waterSupply?.waterSupplyWells?.first.wellStatusReason),
-              ),             
+                const CaptionWidget('ហេតុអ្វី'),
+                TextWidget(state
+                    .waterSupply?.waterSupplyWells?.first.wellStatusReason),
+              ),
               const Padding(
                 padding: EdgeInsets.symmetric(vertical: 8),
                 child: MyDivider(),
@@ -158,14 +153,10 @@ class _WellView extends StatelessWidget{
               _WaterQualityParameterItem(),
             ],
           ),
-
-          
         );
       },
     );
   }
-
-
 }
 
 class Diagrams extends StatelessWidget {
@@ -276,119 +267,117 @@ class Diagrams extends StatelessWidget {
           previous.waterSupply != current.waterSupply,
       builder: (context, state) {
         return Padding(
-          padding: EdgeInsets.symmetric(
+          padding: const EdgeInsets.symmetric(
             vertical: 10.0,
             horizontal: 10.0,
           ),
           child: SingleChildScrollView(
             scrollDirection: Axis.vertical,
             child: SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Column(
-              children: [
-                _InfoItem(
-                  CaptionWidget('${S.of(context).province} :'),
-                  TextWidget(state.waterSupply?.waterSupplyWells?.first.id.toString()),
-                ),
-                // title details
-                // Table(
-                //   border: TableBorder.all(
-                //     width: 0.5,
-                //     color: AppColor.black,
-                //   ),
-                //   defaultColumnWidth: const FixedColumnWidth(150.0),
-                //   children: const [
-                //     TableRow(children: [
-                //       Padding(
-                //         padding: EdgeInsets.all(5),
-                //         child: TextWidget(
-                //           'ប៉ារាម៉ែត្រ កូដ',
-                //           textAlign: TextAlign.center,
-                //         ),
-                //       ),
-                //       Padding(
-                //         padding: EdgeInsets.all(5),
-                //         child: TextWidget(
-                //           'ប៉ារាម៉ែត្រ',
-                //           textAlign: TextAlign.center,
-                //         ),
-                //       ),
-                //       Padding(
-                //         padding: EdgeInsets.all(5),
-                //         child: TextWidget(
-                //           'ឯកតា',
-                //           textAlign: TextAlign.center,
-                //         ),
-                //       ),
-                //       Padding(
-                //         padding: EdgeInsets.all(5),
-                //         child: TextWidget(
-                //           'ស្តង់ដាគុណភាពទឹកផឹក?',
-                //           textAlign: TextAlign.center,
-                //         ),
-                //       ),
-                //       Padding(
-                //         padding: EdgeInsets.all(5),
-                //         child: TextWidget(
-                //           'តម្លៃ',
-                //           textAlign: TextAlign.center,
-                //         ),
-                //       ),
-                //     ]),
-                //   ],
-                // ),
-                // // view details
-                // Table(
-                //   border: TableBorder.all(
-                //     width: 0.5,
-                //     color: AppColor.black,
-                //   ),
-                //   defaultColumnWidth: const FixedColumnWidth(150.0),
-                //   children: namelist.map((diagram) {
-                //     return TableRow(
-                //       children: [
-                //         TableCell(
-                //           child: Padding(
-                //               padding: const EdgeInsets.all(5),
-                //               child: TextWidget(diagram.parameterCode)),
-                //         ),
-                //         TableCell(
-                //           child: Padding(
-                //             padding: const EdgeInsets.all(5),
-                //             child: TextWidget(diagram.parameters),
-                //           ),
-                //         ),
-                //         TableCell(
-                //           child: Padding(
-                //             padding: const EdgeInsets.all(5),
-                //             child: TextWidget(diagram.unit),
-                //           ),
-                //         ),
-                //         TableCell(
-                //           child: Padding(
-                //             padding: const EdgeInsets.all(5),
-                //             child: TextWidget(diagram.waterQuality),
-                //           ),
-                //         ),
-                //         TableCell(
-                //           child: Padding(
-                //             padding: const EdgeInsets.all(5),
-                //             child: TextWidget(
-                //               diagram.price.toString(),
-                //             ),
-                //           ),
-                //         ),
-                //       ],
-                //     );
-                //   }).toList(),
-                // )
-              ],
-            )
-            ),
+                scrollDirection: Axis.horizontal,
+                child: Column(
+                  children: [
+                    _InfoItem(
+                      CaptionWidget('${S.of(context).province} :'),
+                      TextWidget(state.waterSupply?.waterSupplyWells?.first.id
+                          .toString()),
+                    ),
+                    // title details
+                    // Table(
+                    //   border: TableBorder.all(
+                    //     width: 0.5,
+                    //     color: AppColor.black,
+                    //   ),
+                    //   defaultColumnWidth: const FixedColumnWidth(150.0),
+                    //   children: const [
+                    //     TableRow(children: [
+                    //       Padding(
+                    //         padding: EdgeInsets.all(5),
+                    //         child: TextWidget(
+                    //           'ប៉ារាម៉ែត្រ កូដ',
+                    //           textAlign: TextAlign.center,
+                    //         ),
+                    //       ),
+                    //       Padding(
+                    //         padding: EdgeInsets.all(5),
+                    //         child: TextWidget(
+                    //           'ប៉ារាម៉ែត្រ',
+                    //           textAlign: TextAlign.center,
+                    //         ),
+                    //       ),
+                    //       Padding(
+                    //         padding: EdgeInsets.all(5),
+                    //         child: TextWidget(
+                    //           'ឯកតា',
+                    //           textAlign: TextAlign.center,
+                    //         ),
+                    //       ),
+                    //       Padding(
+                    //         padding: EdgeInsets.all(5),
+                    //         child: TextWidget(
+                    //           'ស្តង់ដាគុណភាពទឹកផឹក?',
+                    //           textAlign: TextAlign.center,
+                    //         ),
+                    //       ),
+                    //       Padding(
+                    //         padding: EdgeInsets.all(5),
+                    //         child: TextWidget(
+                    //           'តម្លៃ',
+                    //           textAlign: TextAlign.center,
+                    //         ),
+                    //       ),
+                    //     ]),
+                    //   ],
+                    // ),
+                    // // view details
+                    // Table(
+                    //   border: TableBorder.all(
+                    //     width: 0.5,
+                    //     color: AppColor.black,
+                    //   ),
+                    //   defaultColumnWidth: const FixedColumnWidth(150.0),
+                    //   children: namelist.map((diagram) {
+                    //     return TableRow(
+                    //       children: [
+                    //         TableCell(
+                    //           child: Padding(
+                    //               padding: const EdgeInsets.all(5),
+                    //               child: TextWidget(diagram.parameterCode)),
+                    //         ),
+                    //         TableCell(
+                    //           child: Padding(
+                    //             padding: const EdgeInsets.all(5),
+                    //             child: TextWidget(diagram.parameters),
+                    //           ),
+                    //         ),
+                    //         TableCell(
+                    //           child: Padding(
+                    //             padding: const EdgeInsets.all(5),
+                    //             child: TextWidget(diagram.unit),
+                    //           ),
+                    //         ),
+                    //         TableCell(
+                    //           child: Padding(
+                    //             padding: const EdgeInsets.all(5),
+                    //             child: TextWidget(diagram.waterQuality),
+                    //           ),
+                    //         ),
+                    //         TableCell(
+                    //           child: Padding(
+                    //             padding: const EdgeInsets.all(5),
+                    //             child: TextWidget(
+                    //               diagram.price.toString(),
+                    //             ),
+                    //           ),
+                    //         ),
+                    //       ],
+                    //     );
+                    //   }).toList(),
+                    // )
+                  ],
+                )),
           ),
         );
-            
-      
       },
     );
   }
@@ -424,24 +413,21 @@ class _InfoItem extends StatelessWidget {
   }
 }
 
-class _WellTypeItem extends StatelessWidget{
-
-  const _WellTypeItem(this.item,{Key? key}):super(key: key);
+class _WellTypeItem extends StatelessWidget {
+  const _WellTypeItem(this.item, {Key? key}) : super(key: key);
 
   final WaterSupplyOptionModel? item;
 
   @override
   Widget build(Object context) {
-    // TODO: implement build
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [const CaptionWidget('Well Type'),
-                TextWidget(item?.valueObjs.first.nameKh),
-                ],
+      children: [
+        const CaptionWidget('Well Type'),
+        TextWidget(item?.valueObjs.first.nameKh),
+      ],
     );
   }
-
-
 }
 
 class _WaterQualityParameterItem extends StatelessWidget {
@@ -454,28 +440,24 @@ class _WaterQualityParameterItem extends StatelessWidget {
     return FlatCard(
       borderRadius: 10,
       color: Theme.of(context).dividerColor.withOpacity(0.05),
-      onTap: () {
-        
-      },
+      onTap: () {},
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _InfoItem(
             CaptionWidget('${S.of(context).water_supply_code} :'),
-            TextWidget('Code'),
+            const TextWidget('Code'),
           ),
           _InfoItem(
             CaptionWidget('${S.of(context).water_supply_type} :'),
-            Flexible(
+            const Flexible(
               child: TextWidget(
                 'TTT',
                 overflow: TextOverflow.ellipsis,
               ),
             ),
           ),
-          
-          
         ],
       ),
     );

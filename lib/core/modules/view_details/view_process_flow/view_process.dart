@@ -1,39 +1,33 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rws_app/config/themes/app_color.dart';
-import 'package:rws_app/core/modules/view_details/bloc/list_data_details_bloc.dart';
 import 'package:rws_app/core/widgets/text_widget.dart';
 
-import '../../my_approval_history/models/my_approval_history_model.dart';
-
 class ViewProcessFlow extends StatelessWidget {
-
-  const ViewProcessFlow({Key? key}):super(key:key);
+  const ViewProcessFlow({Key? key}) : super(key: key);
 
   //final List<MyApprovalHistoryModel> workflow;
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-          appBar: AppBar(
-            backgroundColor: Theme.of(context).primaryColor,
-            iconTheme: const IconThemeData(color: AppColor.white),
-            title: const TextWidget(
-              'មើលលំហូរដំណើរការ',
-              color: AppColor.white,
-            ),
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).primaryColor,
+        iconTheme: const IconThemeData(color: AppColor.white),
+        title: const TextWidget(
+          'មើលលំហូរដំណើរការ',
+          color: AppColor.white,
+        ),
+      ),
+      body: const SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.symmetric(
+            vertical: 10,
+            horizontal: 16,
           ),
-          body: const SingleChildScrollView(
-            child: Padding(
-              padding: EdgeInsets.symmetric(
-                vertical: 10,
-                horizontal: 16,
-              ),
-              child: ViewProcess(),
-            ),
-          ),
-        );
-    
+          child: ViewProcess(),
+        ),
+      ),
+    );
   }
 }
 

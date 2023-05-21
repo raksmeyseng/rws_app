@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rws_app/core/enum/base_status_enum.dart';
 import 'package:rws_app/core/modules/authentication/repositories/auth_repository.dart';
 import 'package:rws_app/core/modules/my_approval_history/repositories/my_approval_history_repository.dart';
-import 'package:rws_app/core/modules/water_supply_details/model/water_supply_model.dart';
 
 import '../../../../config/routes/application.dart';
 import '../models/my_approval_history_model.dart';
