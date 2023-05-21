@@ -1,13 +1,67 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:rws_app/core/enum/base_status_enum.dart';
 import 'package:rws_app/core/modules/view_details/bloc/list_data_details_bloc.dart';
 import 'package:rws_app/core/widgets/caption_widget.dart';
+import 'package:rws_app/core/widgets/load_data_failed.dart';
 import 'package:rws_app/core/widgets/text_widget.dart';
 
 import '../../../widgets/my_divider.dart';
 
 class CardListDetails extends StatelessWidget {
   const CardListDetails({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<ListDataDetailsBloc, ListDataDetailsState>(
+      buildWhen: (previous, current) => previous.status != current.status,
+      builder: (context, state) {
+        switch (state.status) {
+          case BaseStatusEnum.success:
+            return const _ContentView();
+          case BaseStatusEnum.failure:
+            return const _FailureView();
+          default:
+            return const _LoadingView();
+        }
+      },
+    );
+  }
+}
+
+// ===================
+// Failure View
+// ===================
+class _FailureView extends StatelessWidget {
+  const _FailureView({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const Center(child: LoadDataFailed());
+  }
+}
+
+// ===================
+// Loading View
+// ===================
+class _LoadingView extends StatelessWidget {
+  const _LoadingView({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<ListDataDetailsBloc, ListDataDetailsState>(
+      buildWhen: (previous, current) => previous.status != current.status,
+      builder: (context, state) {
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+      },
+    );
+  }
+}
+
+class _ContentView extends StatelessWidget {
+  const _ContentView();
 
   @override
   Widget build(BuildContext context) {

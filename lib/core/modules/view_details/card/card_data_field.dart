@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:rws_app/core/enum/base_status_enum.dart';
 import 'package:rws_app/core/modules/view_details/bloc/list_data_details_bloc.dart';
 import 'package:rws_app/core/widgets/text_widget.dart';
 
@@ -16,15 +17,18 @@ class CardDataFields extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ListDataDetailsBloc, ListDataDetailsState>(
-        buildWhen: (previous, current) => previous.status != current.status,
-        builder: (context, state) {
-          switch (state.waterSupply?.waterSupplyTypeId) {
-            case 1:
-              return const _WellView();
-            default:
-              return const _FailureView();
-          }
-        });
+      buildWhen: (previous, current) => previous.status != current.status,
+      builder: (context, state) {
+        switch (state.status) {
+          case BaseStatusEnum.success:
+            return const _WellView();
+          case BaseStatusEnum.failure:
+            return const _FailureView();
+          default:
+            return const _LoadingView();
+        }
+      },
+    );
   }
 }
 
@@ -37,6 +41,25 @@ class _FailureView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const LoadDataFailed();
+  }
+}
+
+// ===================
+// Loading View
+// ===================
+class _LoadingView extends StatelessWidget {
+  const _LoadingView({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<ListDataDetailsBloc, ListDataDetailsState>(
+      buildWhen: (previous, current) => previous.status != current.status,
+      builder: (context, state) {
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+      },
+    );
   }
 }
 
