@@ -393,7 +393,7 @@ class _FormField2 extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: const [
-            Expanded(child: _ReceiverFamilyMinorityInput()),
+            Expanded(child: _ReceiverFamilyIndigenousInput()),
           ],
         ),
         const SizedBox(height: 16),
@@ -401,7 +401,7 @@ class _FormField2 extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: const [
-            Expanded(child: _ReceiverFamilyVictimInput()),
+            Expanded(child: _ReceiverFamilyVulnearableInput()),
           ],
         ),
         const SizedBox(height: 16),
@@ -914,7 +914,8 @@ class _ProvinceInput extends StatelessWidget {
     final bloc = context.read<WaterSupplyEditBloc>();
     return BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
       buildWhen: (previous, current) =>
-          previous.provinceInput != current.provinceInput,
+          previous.provinceInput != current.provinceInput ||
+          previous.provinces != current.provinces,
       builder: (context, state) {
         return MyTextInput(
           label: S.of(context).province,
@@ -927,31 +928,32 @@ class _ProvinceInput extends StatelessWidget {
               transitionDuration: const Duration(milliseconds: 200),
               pageBuilder: (context, a1, a2) {
                 return MySimpleDialog(
-                  title: S.of(context).province,
-                  content: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 24.0),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        ...state.provinces.map(
-                          (pro) => ListTile(
-                            onTap: () {
-                              Navigator.of(context).pop(pro);
-                            },
-                            contentPadding: const EdgeInsets.symmetric(
-                              horizontal: 24.0,
+                    title: S.of(context).province,
+                    content: SingleChildScrollView(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 24.0),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            ...state.provinces.map(
+                              (pro) => ListTile(
+                                onTap: () {
+                                  Navigator.of(context).pop(pro);
+                                },
+                                contentPadding: const EdgeInsets.symmetric(
+                                  horizontal: 24.0,
+                                ),
+                                title: TextWidget(pro.nameEn),
+                              ),
                             ),
-                            title: TextWidget(pro.nameEn),
-                          ),
+                          ],
                         ),
-                      ],
-                    ),
-                  ),
-                );
+                      ),
+                    ));
               },
             );
             if (province != null) {
-              bloc.add(ProvinceChanged(province.nameEn));
+              bloc.add(ProvinceChanged(province));
             }
           },
           isRequired: true,
@@ -986,13 +988,15 @@ class _DistrictInput extends StatelessWidget {
     final bloc = context.read<WaterSupplyEditBloc>();
     return BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
       buildWhen: (previous, current) =>
-          previous.districtInput != current.districtInput,
+          previous.districtInput != current.districtInput ||
+          previous.districts != current.districts,
       builder: (context, state) {
         return MyTextInput(
           label: S.of(context).district,
           focusNode: context.read<WaterSupplyEditBloc>().districtFocus,
           controller: context.read<WaterSupplyEditBloc>().districtController,
           onTap: () async {
+            if (state.districts.isEmpty) return;
             final district =
                 await DialogHelper.showAnimatedDialog<DistrictModel?>(
               animationType: DialogAnimationType.none,
@@ -1000,30 +1004,32 @@ class _DistrictInput extends StatelessWidget {
               pageBuilder: (context, a1, a2) {
                 return MySimpleDialog(
                   title: S.of(context).district,
-                  content: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 24.0),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        ...state.districts.map(
-                          (dis) => ListTile(
-                            onTap: () {
-                              Navigator.of(context).pop(dis);
-                            },
-                            contentPadding: const EdgeInsets.symmetric(
-                              horizontal: 24.0,
+                  content: SingleChildScrollView(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 24.0),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          ...state.districts.map(
+                            (dis) => ListTile(
+                              onTap: () {
+                                Navigator.of(context).pop(dis);
+                              },
+                              contentPadding: const EdgeInsets.symmetric(
+                                horizontal: 24.0,
+                              ),
+                              title: TextWidget(dis.nameEn),
                             ),
-                            title: TextWidget(dis.nameEn),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 );
               },
             );
             if (district != null) {
-              bloc.add(DistrictChanged(district.nameEn));
+              bloc.add(DistrictChanged(district));
             }
           },
           isRequired: true,
@@ -1058,13 +1064,15 @@ class _CommuneInput extends StatelessWidget {
     final bloc = context.read<WaterSupplyEditBloc>();
     return BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
       buildWhen: (previous, current) =>
-          previous.communeInput != current.communeInput,
+          previous.communeInput != current.communeInput ||
+          previous.communes != current.communes,
       builder: (context, state) {
         return MyTextInput(
           label: S.of(context).commune,
           focusNode: context.read<WaterSupplyEditBloc>().communeFocus,
           controller: context.read<WaterSupplyEditBloc>().communeController,
           onTap: () async {
+            if (state.communes.isEmpty) return;
             final commnue =
                 await DialogHelper.showAnimatedDialog<CommuneModel?>(
               animationType: DialogAnimationType.none,
@@ -1072,30 +1080,32 @@ class _CommuneInput extends StatelessWidget {
               pageBuilder: (context, a1, a2) {
                 return MySimpleDialog(
                   title: S.of(context).commune,
-                  content: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 24.0),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        ...state.communes.map(
-                          (com) => ListTile(
-                            onTap: () {
-                              Navigator.of(context).pop(com);
-                            },
-                            contentPadding: const EdgeInsets.symmetric(
-                              horizontal: 24.0,
+                  content: SingleChildScrollView(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 24.0),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          ...state.communes.map(
+                            (com) => ListTile(
+                              onTap: () {
+                                Navigator.of(context).pop(com);
+                              },
+                              contentPadding: const EdgeInsets.symmetric(
+                                horizontal: 24.0,
+                              ),
+                              title: TextWidget(com.nameEn),
                             ),
-                            title: TextWidget(com.nameEn),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 );
               },
             );
             if (commnue != null) {
-              bloc.add(CommnueChanged(commnue.nameEn));
+              bloc.add(CommnueChanged(commnue));
             }
           },
           isRequired: true,
@@ -1130,13 +1140,15 @@ class _VillageInput extends StatelessWidget {
     final bloc = context.read<WaterSupplyEditBloc>();
     return BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
       buildWhen: (previous, current) =>
-          previous.villageInput != current.villageInput,
+          previous.villageInput != current.villageInput ||
+          previous.villages != current.villages,
       builder: (context, state) {
         return MyTextInput(
           label: S.of(context).village,
           focusNode: context.read<WaterSupplyEditBloc>().villageFocus,
           controller: context.read<WaterSupplyEditBloc>().villageController,
           onTap: () async {
+            if (state.villages.isEmpty) return;
             final village =
                 await DialogHelper.showAnimatedDialog<VillageModel?>(
               animationType: DialogAnimationType.none,
@@ -1144,30 +1156,32 @@ class _VillageInput extends StatelessWidget {
               pageBuilder: (context, a1, a2) {
                 return MySimpleDialog(
                   title: S.of(context).village,
-                  content: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 24.0),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        ...state.villages.map(
-                          (vill) => ListTile(
-                            onTap: () {
-                              Navigator.of(context).pop(vill);
-                            },
-                            contentPadding: const EdgeInsets.symmetric(
-                              horizontal: 24.0,
+                  content: SingleChildScrollView(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 24.0),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          ...state.villages.map(
+                            (vill) => ListTile(
+                              onTap: () {
+                                Navigator.of(context).pop(vill);
+                              },
+                              contentPadding: const EdgeInsets.symmetric(
+                                horizontal: 24.0,
+                              ),
+                              title: TextWidget(vill.nameEn),
                             ),
-                            title: TextWidget(vill.nameEn),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 );
               },
             );
             if (village != null) {
-              bloc.add(VillageChanged(village.nameEn));
+              bloc.add(VillageChanged(village));
             }
           },
           isRequired: true,
@@ -2187,15 +2201,15 @@ class _ReceiverFamilyPoor2Input extends StatelessWidget {
   }
 }
 
-class _ReceiverFamilyMinorityInput extends StatelessWidget {
-  const _ReceiverFamilyMinorityInput({Key? key}) : super(key: key);
+class _ReceiverFamilyIndigenousInput extends StatelessWidget {
+  const _ReceiverFamilyIndigenousInput({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
       buildWhen: (previous, current) =>
-          previous.receiverFamilyMinorityInput !=
-          current.receiverFamilyMinorityInput,
+          previous.receiverFamilyIndigenousInput !=
+          current.receiverFamilyIndigenousInput,
       builder: (context, state) {
         return MyTextInput(
           label: 'អ្នកទទួលផលគ្រួសារជនជាតិភាគតិច',
@@ -2217,8 +2231,8 @@ class _ReceiverFamilyMinorityInput extends StatelessWidget {
   }
 
   String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
-    if (!state.receiverFamilyMinorityInput.invalid) return null;
-    switch (state.receiverFamilyMinorityInput.error) {
+    if (!state.receiverFamilyIndigenousInput.invalid) return null;
+    switch (state.receiverFamilyIndigenousInput.error) {
       case WaterSupplyInputValidationError.empty:
         return 'សូមបញ្ចូលអ្នកទទួលផលជនជាតិភាគតិច';
       default:
@@ -2227,15 +2241,15 @@ class _ReceiverFamilyMinorityInput extends StatelessWidget {
   }
 }
 
-class _ReceiverFamilyVictimInput extends StatelessWidget {
-  const _ReceiverFamilyVictimInput({Key? key}) : super(key: key);
+class _ReceiverFamilyVulnearableInput extends StatelessWidget {
+  const _ReceiverFamilyVulnearableInput({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
       buildWhen: (previous, current) =>
-          previous.receiverFamilyVictimInput !=
-          current.receiverFamilyVictimInput,
+          previous.receiverFamilyVulnearableInput !=
+          current.receiverFamilyVulnearableInput,
       builder: (context, state) {
         return MyTextInput(
           label: 'អ្នកទទួលផលគ្រួសារជនងាយរងគ្រោះ',
@@ -2257,8 +2271,8 @@ class _ReceiverFamilyVictimInput extends StatelessWidget {
   }
 
   String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
-    if (!state.receiverFamilyVictimInput.invalid) return null;
-    switch (state.receiverFamilyVictimInput.error) {
+    if (!state.receiverFamilyVulnearableInput.invalid) return null;
+    switch (state.receiverFamilyVulnearableInput.error) {
       case WaterSupplyInputValidationError.empty:
         return 'សូមបញ្ចូលអ្នកទទួលផលគ្រួសារជនងាយរងគ្រោះ';
       default:

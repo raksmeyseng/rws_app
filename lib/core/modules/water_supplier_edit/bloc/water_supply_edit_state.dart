@@ -31,8 +31,8 @@ class WaterSupplyEditState extends Equatable {
     this.docInput = const DOCInput.pure(),
     this.companyNameInput = const WaterSupplyInput.pure(),
     this.constructionCodeInput = const WaterSupplyInput.pure(),
-    this.receiverFamilyMinorityInput = const WaterSupplyInput.pure(),
-    this.receiverFamilyVictimInput = const WaterSupplyInput.pure(),
+    this.receiverFamilyIndigenousInput = const WaterSupplyInput.pure(),
+    this.receiverFamilyVulnearableInput = const WaterSupplyInput.pure(),
     this.waterSupplyTypeInput = const WaterSupplyInput.pure(),
     this.containerInput = const WaterSupplyInput.pure(),
     this.capacityInput = const WaterSupplyInput.pure(),
@@ -106,8 +106,8 @@ class WaterSupplyEditState extends Equatable {
   final DOCInput docInput;
   final WaterSupplyInput companyNameInput;
   final WaterSupplyInput constructionCodeInput;
-  final WaterSupplyInput receiverFamilyMinorityInput;
-  final WaterSupplyInput receiverFamilyVictimInput;
+  final WaterSupplyInput receiverFamilyIndigenousInput;
+  final WaterSupplyInput receiverFamilyVulnearableInput;
   final WaterSupplyInput waterSupplyTypeInput;
   final WaterSupplyInput containerInput;
   final WaterSupplyInput capacityInput;
@@ -186,8 +186,8 @@ class WaterSupplyEditState extends Equatable {
     DOCInput? docInput,
     WaterSupplyInput? companyNameInput,
     WaterSupplyInput? constructionCodeInput,
-    WaterSupplyInput? receiverFamilyMinorityInput,
-    WaterSupplyInput? receiverFamilyVictimInput,
+    WaterSupplyInput? receiverFamilyIndigenousInput,
+    WaterSupplyInput? receiverFamilyVulnearableInput,
     WaterSupplyInput? waterSupplyTypeInput,
     WaterSupplyInput? containerInput,
     WaterSupplyInput? capacityInput,
@@ -266,10 +266,10 @@ class WaterSupplyEditState extends Equatable {
       companyNameInput: companyNameInput ?? this.companyNameInput,
       constructionCodeInput:
           constructionCodeInput ?? this.constructionCodeInput,
-      receiverFamilyMinorityInput:
-          receiverFamilyMinorityInput ?? this.receiverFamilyMinorityInput,
-      receiverFamilyVictimInput:
-          receiverFamilyVictimInput ?? this.receiverFamilyVictimInput,
+      receiverFamilyIndigenousInput:
+          receiverFamilyIndigenousInput ?? this.receiverFamilyIndigenousInput,
+      receiverFamilyVulnearableInput:
+          receiverFamilyVulnearableInput ?? this.receiverFamilyVulnearableInput,
       waterSupplyTypeInput: waterSupplyTypeInput ?? this.waterSupplyTypeInput,
       containerInput: containerInput ?? this.containerInput,
       capacityInput: capacityInput ?? this.capacityInput,
@@ -348,8 +348,8 @@ class WaterSupplyEditState extends Equatable {
         docInput,
         companyNameInput,
         constructionCodeInput,
-        receiverFamilyMinorityInput,
-        receiverFamilyVictimInput,
+        receiverFamilyIndigenousInput,
+        receiverFamilyVulnearableInput,
         waterSupplyTypeInput,
         containerInput,
         capacityInput,

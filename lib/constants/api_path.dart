@@ -32,7 +32,6 @@ class ApiPath {
   static String getUser(int? userId) => '/api/UserAdmin/$userId';
   static String getUserToken = 'https://rwsapp.free.mockoapp.net/user';
 
-
   static String getWaterSupplyType =
       //'https://rwsapp.free.mockoapp.net/api/water-supply-type';
       '${AppConstant.mainURL}watersupplytype/';
@@ -42,23 +41,30 @@ class ApiPath {
 
   //Irith Part
   static String getWaterSupplyListv2(int id) =>
-    '${AppConstant.mainURL}watersupply/?water_supply_type_id=$id&main_status=9';
+      '${AppConstant.mainURL}watersupply/?water_supply_type_id=$id&main_status=9';
   static String getWaterSupplyDetail(int id) =>
       '${AppConstant.mainURL}watersupply/$id';
 
-  static String getAllMyDraft(int id) => '${AppConstant.mainURL}watersupplybyuserandstatus/?created_by=$id&main_status=3';
-  static String getAllMyRequestedHistory(int id)=>'${AppConstant.mainURL}watersupplybyuser/?search=$id';
-  static String getAllMyApprovalHistory(int id)=>'${AppConstant.mainURL}watersupplyworkflow/?watersupply_id=&user_id=$id';
-  static String getPendingApprovalAdmin(int id)=>'${AppConstant.mainURL}watersupply/';
-  static String getPendingApprovalProvincialHead(int id) => '${AppConstant.mainURL}watersupplybyprovince/?province_id=$id&main_status=1';
-  static String getPendingApprovalDataVerifier1='${AppConstant.mainURL}watersupplybyprovince/?province_id=&main_status=2';
-  static String getPendingApprovalDataVerifier2='${AppConstant.mainURL}watersupplybyprovince/?province_id=&main_status=5';
-  static String getPendingApprovalDepartmentHead='${AppConstant.mainURL}watersupplybyprovinceandmultiplestatus/?main_status=7%2C12&province_id=';
+  static String getAllMyDraft(int id) =>
+      '${AppConstant.mainURL}watersupplybyuserandstatus/?created_by=$id&main_status=3';
+  static String getAllMyRequestedHistory(int id) =>
+      '${AppConstant.mainURL}watersupplybyuser/?search=$id';
+  static String getAllMyApprovalHistory(int id) =>
+      '${AppConstant.mainURL}watersupplyworkflow/?watersupply_id=&user_id=$id';
+  static String getPendingApprovalAdmin(int id) =>
+      '${AppConstant.mainURL}watersupply/';
+  static String getPendingApprovalProvincialHead(int id) =>
+      '${AppConstant.mainURL}watersupplybyprovince/?province_id=$id&main_status=1';
+  static String getPendingApprovalDataVerifier1 =
+      '${AppConstant.mainURL}watersupplybyprovince/?province_id=&main_status=2';
+  static String getPendingApprovalDataVerifier2 =
+      '${AppConstant.mainURL}watersupplybyprovince/?province_id=&main_status=5';
+  static String getPendingApprovalDepartmentHead =
+      '${AppConstant.mainURL}watersupplybyprovinceandmultiplestatus/?main_status=7%2C12&province_id=';
 
-  static String addWaterSupply(int id) =>
-      '${AppConstant.mainURL}watersupply/$id';
-  static String updateWaterSupply(int id, int waterSupplyTypeId) =>
-      '${AppConstant.mainURL}watersupply/$id';
-  
+  static String addWaterSupply = '${AppConstant.mainURL}v2/watersupply';
+  static String updateWaterSupply(int id) =>
+      '${AppConstant.mainURL}v2/watersupply/$id';
+
+  static String getProvince() => '${AppConstant.mainURL}province';
 }
-    

@@ -2,9 +2,11 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
+import 'package:rws_app/config/routes/application.dart';
 import 'package:rws_app/core/enum/base_status_enum.dart';
 import 'package:rws_app/core/modules/my_draft/models/my_draft_model.dart';
 import 'package:rws_app/core/modules/water_supplier_edit/model/doc_input.dart';
+import 'package:rws_app/core/modules/water_supplier_edit/model/payload_water_supply_model.dart';
 import 'package:rws_app/core/modules/water_supplier_edit/model/water_supply_input.dart';
 import 'package:rws_app/core/modules/water_supplier_edit/repositories/water_supply_edit_repository.dart';
 import 'package:rws_app/core/modules/water_supply_details/model/water_supply_model.dart';
@@ -361,11 +363,20 @@ class WaterSupplyEditBloc
   ) async {
     emit(state.copyWith(status: BaseStatusEnum.inprogress));
     try {
-      // final waterSupply =
-      //     await repository.getWaterSupplyDetail(state.waterSupplyId);
+      final provinces = await repository.getProvinces();
+      if (state.id == 0) {
+        emit(state.copyWith(
+          status: BaseStatusEnum.success,
+          provinces: provinces,
+        ));
+        return;
+      }
+      final waterSupply =
+          await repository.getWaterSupplyDetail(state.waterSupplyTypeId);
       emit(state.copyWith(
         status: BaseStatusEnum.success,
-        // waterSupply: waterSupply,
+        waterSupply: waterSupply,
+        provinces: provinces,
       ));
     } catch (e) {
       emit(state.copyWith(status: BaseStatusEnum.failure));
@@ -376,35 +387,47 @@ class WaterSupplyEditBloc
     ProvinceChanged event,
     Emitter<WaterSupplyEditState> emit,
   ) {
-    final province = WaterSupplyInput.pure(event.province);
-    provinceController.text = event.province;
-    emit(state.copyWith(provinceInput: province));
+    final province = WaterSupplyInput.pure(event.province.nameEn);
+    provinceController.text = event.province.nameEn;
+    districtController.text = '';
+    emit(state.copyWith(
+      provinceInput: province,
+      districts: event.province.provincedistrict,
+    ));
   }
 
   void _onDistrictChanged(
     DistrictChanged event,
     Emitter<WaterSupplyEditState> emit,
   ) {
-    final distict = WaterSupplyInput.pure(event.district);
-    districtController.text = event.district;
-    emit(state.copyWith(districtInput: distict));
+    final distict = WaterSupplyInput.pure(event.district.nameEn);
+    districtController.text = event.district.nameEn;
+    communeController.text = '';
+    emit(state.copyWith(
+      districtInput: distict,
+      communes: event.district.districtCommnue,
+    ));
   }
 
   void _onCommuneChanged(
     CommnueChanged event,
     Emitter<WaterSupplyEditState> emit,
   ) {
-    final commune = WaterSupplyInput.pure(event.commnue);
-    communeController.text = event.commnue;
-    emit(state.copyWith(communeInput: commune));
+    final commune = WaterSupplyInput.pure(event.commnue.nameEn);
+    communeController.text = event.commnue.nameEn;
+    villageController.text = '';
+    emit(state.copyWith(
+      communeInput: commune,
+      villages: event.commnue.commnuevillage,
+    ));
   }
 
   void _onVillageChanged(
     VillageChanged event,
     Emitter<WaterSupplyEditState> emit,
   ) {
-    final village = WaterSupplyInput.pure(event.village);
-    villageController.text = event.village;
+    final village = WaterSupplyInput.pure(event.village.nameEn);
+    villageController.text = event.village.nameEn;
     emit(state.copyWith(villageInput: village));
   }
 
@@ -548,7 +571,7 @@ class WaterSupplyEditBloc
   ) {
     final receiverFamilyMinority =
         WaterSupplyInput.pure(event.receiverFamilyMinority);
-    emit(state.copyWith(receiverFamilyMinorityInput: receiverFamilyMinority));
+    emit(state.copyWith(receiverFamilyIndigenousInput: receiverFamilyMinority));
   }
 
   void _onReceiverFamilyVictimChanged(
@@ -557,7 +580,7 @@ class WaterSupplyEditBloc
   ) {
     final receiverFamilyVictim =
         WaterSupplyInput.pure(event.receiverFamilyVictim);
-    emit(state.copyWith(receiverFamilyVictimInput: receiverFamilyVictim));
+    emit(state.copyWith(receiverFamilyVulnearableInput: receiverFamilyVictim));
   }
 
   void _onWaterSupplyTypeChanged(
@@ -952,10 +975,10 @@ class WaterSupplyEditBloc
         WaterSupplyInput.dirty(state.companyNameInput.value);
     final constructionCodeInput =
         WaterSupplyInput.dirty(state.constructionCodeInput.value);
-    final receiverFamilyMinorityInput =
-        WaterSupplyInput.dirty(state.receiverFamilyMinorityInput.value);
-    final receiverFamilyVictimInput =
-        WaterSupplyInput.dirty(state.receiverFamilyVictimInput.value);
+    final receiverFamilyIndigenousInput =
+        WaterSupplyInput.dirty(state.receiverFamilyIndigenousInput.value);
+    final receiverFamilyVulnearableInput =
+        WaterSupplyInput.dirty(state.receiverFamilyVulnearableInput.value);
     final waterSupplyTypeInput =
         WaterSupplyInput.dirty(state.waterSupplyTypeInput.value);
     final containerInput = WaterSupplyInput.dirty(state.containerInput.value);
@@ -1026,8 +1049,8 @@ class WaterSupplyEditBloc
       docInput: docInput,
       companyNameInput: companyNameInput,
       constructionCodeInput: constructionCodeInput,
-      receiverFamilyMinorityInput: receiverFamilyMinorityInput,
-      receiverFamilyVictimInput: receiverFamilyVictimInput,
+      receiverFamilyIndigenousInput: receiverFamilyIndigenousInput,
+      receiverFamilyVulnearableInput: receiverFamilyVulnearableInput,
       waterSupplyTypeInput: waterSupplyTypeInput,
       containerInput: containerInput,
       capacityInput: capacityInput,
@@ -1083,8 +1106,8 @@ class WaterSupplyEditBloc
         receiverTotalAsFemaleInput,
         receiverFamilyPoor1Input,
         receiverFamilyPoor2Input,
-        receiverFamilyMinorityInput,
-        receiverFamilyVictimInput,
+        receiverFamilyIndigenousInput,
+        receiverFamilyVulnearableInput,
         docInput,
       ]),
     ));
@@ -1092,9 +1115,47 @@ class WaterSupplyEditBloc
     if (state.formzStatus.isValidated) {
       emit(state.copyWith(formzStatus: FormzStatus.submissionInProgress));
       try {
-        final res = repository.addOrUpdateWaterSupply(
-          id: state.id,
+        final user = Application.authBloc.state.user;
+        final payload = PayloadWaterSupplyModel(
+          createdBy: user != null ? user.username : '',
+          province: 0,
+          district: 0,
+          commune: 0,
+          village: 0,
+          mapUnitId: 0,
+          decimalDegreeLat: lateitudeInput.value,
+          decimalDegreeLng: longtitudeInput.value,
+          utmX: utmXInput.value,
+          utmY: utmYInput.value,
+          mdsXDegree: latDegreeInput.value,
+          mdsXMinute: latMinuteInput.value,
+          mdsXSecond: latSecondInput.value,
+          mdsYDegree: longDegreeInput.value,
+          mdsYMinute: longMinuteInput.value,
+          mdsYSecond: longSecondInput.value,
+          totalFamily: int.parse(familyTotalInput.value),
+          beneficiaryTotalFamily: int.parse(receiverFamilyTotalInput.value),
+          beneficiaryTotalFamilyIndigenous:
+              int.parse(receiverFamilyIndigenousInput.value),
+          beneficiaryTotalFamilyPoor1:
+              int.parse(receiverFamilyPoor1Input.value),
+          beneficiaryTotalFamilyPoor2:
+              int.parse(receiverFamilyPoor2Input.value),
+          beneficiaryTotalFamilyVulnearable:
+              int.parse(receiverFamilyVulnearableInput.value),
+          beneficiaryTotalPeople: int.parse(receiverTotalInput.value),
+          beneficiaryTotalWoman: int.parse(receiverTotalAsFemaleInput.value),
+          constructedBy: companyNameInput.value,
+          constructionDate: docInput.value ?? DateTime.now(),
+          isRiskEnviromentArea: false,
+          managedBy: managementNameInput.value,
+          managementType: int.parse(managementTypeInput.value),
+          sourceBudget: int.parse(budgetTypeInput.value),
           waterSupplyTypeId: state.waterSupplyTypeId,
+        );
+        repository.addOrUpdateWaterSupply(
+          id: state.id,
+          payload: payload,
         );
         emit(state.copyWith(formzStatus: FormzStatus.submissionSuccess));
       } catch (_) {
