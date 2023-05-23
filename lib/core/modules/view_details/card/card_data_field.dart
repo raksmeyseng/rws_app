@@ -149,13 +149,7 @@ class _WellView extends StatelessWidget{
                 CaptionWidget('ហេតុអ្វី'),
                 TextWidget(state.waterSupply?.waterSupplyWells?.first.wellStatusReason),
               ),             
-              const Padding(
-                padding: EdgeInsets.symmetric(vertical: 8),
-                child: MyDivider(),
-              ),
-              _WaterQualityParameterItem(),
-              const SizedBox(height: 10),
-              _WaterQualityParameterItem(),
+              
             ],
           ),
 
@@ -432,10 +426,11 @@ class _WellTypeItem extends StatelessWidget{
 
   @override
   Widget build(Object context) {
-    // TODO: implement build
+   
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [const CaptionWidget('Well Type'),
+      children: [
+        const CaptionWidget('Well Type'),
                 TextWidget(item?.valueObjs.first.nameKh),
                 ],
     );

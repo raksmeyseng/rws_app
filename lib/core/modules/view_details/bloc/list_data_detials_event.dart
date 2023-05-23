@@ -10,3 +10,7 @@ abstract class ListDataDetailsEvent extends Equatable {
 class ListDataStarted extends ListDataDetailsEvent {
   const ListDataStarted();
 }
+
+class DeleteSubmited extends ListDataDetailsEvent{
+  const DeleteSubmited();
+}

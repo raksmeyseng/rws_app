@@ -5,6 +5,7 @@ import 'package:rws_app/core/modules/change_password/view/change_password_page.d
 import 'package:rws_app/core/modules/dashboard/view/dashboard_page.dart';
 import 'package:rws_app/core/modules/edit_profile/view/edit_profile_page.dart';
 import 'package:rws_app/core/modules/login/view/login_page.dart';
+import 'package:rws_app/core/modules/my_task/view/my_task_page.dart';
 import 'package:rws_app/core/modules/not_found/not_found_screen.dart';
 import 'package:rws_app/core/modules/register/view/register_page.dart';
 import 'package:rws_app/core/modules/setting/view/setting_page.dart';
@@ -85,6 +86,13 @@ Page editProfileBuilder(BuildContext context, GoRouterState state) {
   return MaterialPage<void>(
     key: state.pageKey,
     child: const EditProfilePage(),
+  );
+}
+
+Page myTaskBuilder(BuildContext context,GoRouterState state){
+  return MaterialPage<void>(
+    key: state.pageKey,
+  child: const MyTaskPage()
   );
 }
 

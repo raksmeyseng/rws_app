@@ -1,8 +1,12 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:rws_app/core/modules/authentication/models/user_model.dart';
 import 'package:rws_app/core/modules/my_draft/models/my_draft_model.dart';
+import 'package:rws_app/core/modules/water_supply_details/model/watersupply.dart';
 
+import '../../../models/water_quality_parameter.dart';
+import '../../../models/water_supply_qrcode.dart';
 import '../../../models/water_supply_well.dart';
+import '../../../models/water_supply_workflow.dart';
 import '../../my_approval_history/models/my_approval_history_model.dart';
 
 part 'water_supply_model.g.dart';
@@ -50,7 +54,26 @@ class WaterSupplyModel {
     required this.managementType,
     required this.sourceBudget,
     required this.waterSupplyTypeId,
+    required this.isWaterQualityCheck,
     this.waterSupplyWells,
+    this.workflows,
+    this.qrcode,
+    this.wqcParam1,
+    this.wqcParam2,
+    this.wqcParam3,
+    this.wqcParam4,
+    this.wqcParam5,
+    this.wqcParam10,
+    this.wqcParam11,
+    this.wqcParam12,
+    this.wqcParam13,
+    this.wqcParam14,
+    this.wqcParam15,
+    this.wqcParam16,
+    this.wqcParam6,
+    this.wqcParam7,
+    this.wqcParam8,
+    this.wqcParam9,
     //required this.workflow
   });
 
@@ -130,11 +153,50 @@ class WaterSupplyModel {
   int beneficiaryTotalFamilyVulnearable;
    @JsonKey(name: 'beneficiary_total_family_indigenous')
   int beneficiaryTotalFamilyIndigenous;
+  @JsonKey(name:'is_water_quality_check')
+  bool isWaterQualityCheck;
   // @JsonKey(name:'watersupplyworkflow_watersupply')
   // List<MyApprovalHistoryModel> workflow;
+  @JsonKey(name:'watersupplyworkflow_watersupply')
+  List<WaterSupplyWorkFlowModel>? workflows; 
+  @JsonKey(name:'watersupplyqrcode_watersupply')
+  List<WaterSupplyQRCodeModel>? qrcode;
 
   @JsonKey(name:'watersupplywell_watersupply')
   List<WaterSupplyWellModel>? waterSupplyWells;
+
+  @JsonKey(name: 'wqc_param1_obj')
+  List<WaterSupplyWaterQualityParameterModel>? wqcParam1;
+  @JsonKey(name: 'wqc_param2_obj')
+  List<WaterSupplyWaterQualityParameterModel>? wqcParam2;
+  @JsonKey(name: 'wqc_param3_obj')
+  List<WaterSupplyWaterQualityParameterModel>? wqcParam3;
+  @JsonKey(name: 'wqc_param4_obj')
+  List<WaterSupplyWaterQualityParameterModel>? wqcParam4;
+  @JsonKey(name: 'wqc_param5_obj')
+  List<WaterSupplyWaterQualityParameterModel>? wqcParam5;
+  @JsonKey(name: 'wqc_param6_obj')
+  List<WaterSupplyWaterQualityParameterModel>? wqcParam6;
+  @JsonKey(name: 'wqc_param7_obj')
+  List<WaterSupplyWaterQualityParameterModel>? wqcParam7;
+  @JsonKey(name: 'wqc_param8_obj')
+  List<WaterSupplyWaterQualityParameterModel>? wqcParam8;
+  @JsonKey(name: 'wqc_param9_obj')
+  List<WaterSupplyWaterQualityParameterModel>? wqcParam9;
+  @JsonKey(name: 'wqc_param10_obj')
+  List<WaterSupplyWaterQualityParameterModel>? wqcParam10;
+  @JsonKey(name: 'wqc_param11_obj')
+  List<WaterSupplyWaterQualityParameterModel>? wqcParam11;
+  @JsonKey(name: 'wqc_param12_obj')
+  List<WaterSupplyWaterQualityParameterModel>? wqcParam12;
+  @JsonKey(name: 'wqc_param13_obj')
+  List<WaterSupplyWaterQualityParameterModel>? wqcParam13;
+  @JsonKey(name: 'wqc_param14_obj')
+  List<WaterSupplyWaterQualityParameterModel>? wqcParam14;
+  @JsonKey(name: 'wqc_param15_obj')
+  List<WaterSupplyWaterQualityParameterModel>? wqcParam15;
+  @JsonKey(name: 'wqc_param16_obj')
+  List<WaterSupplyWaterQualityParameterModel>? wqcParam16;
   
 
 

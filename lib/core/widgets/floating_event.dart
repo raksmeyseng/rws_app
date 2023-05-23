@@ -1,7 +1,9 @@
 import 'package:blurry/blurry.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:rws_app/config/themes/app_color.dart';
+import 'package:rws_app/core/modules/view_details/bloc/list_data_details_bloc.dart';
 
 class FloatingEvent extends StatelessWidget {
   const FloatingEvent({Key? key}) : super(key: key);
@@ -24,10 +26,10 @@ class FloatingEvent extends StatelessWidget {
       children: [
         SpeedDialChild(
           //speed dial child
-          child: const Icon(Icons.share),
+          child: const Icon(Icons.save),
           backgroundColor: AppColor.active,
           foregroundColor: AppColor.white,
-          label: 'ផ្ញើ',
+          label: 'ដាក់ស្នើ',
           labelStyle: const TextStyle(fontSize: 18.0),
           onTap: () => print('Send'),
         ),
@@ -50,9 +52,7 @@ class FloatingEvent extends StatelessWidget {
               title: 'Delete',
               description: 'Do you want to delete this Draft?',
               confirmButtonText: 'Confirm',
-              onConfirmButtonPressed: () {
-                print('Delete check!');
-              },
+              onConfirmButtonPressed:()=>_onDeleteSubmited(context),
               themeColor: AppColor.inactive,
               icon: Icons.delete_outline_rounded,
             ).show(context);
@@ -61,4 +61,11 @@ class FloatingEvent extends StatelessWidget {
       ],
     );
   }
+
+  void _onDeleteSubmited(BuildContext context){
+    FocusScope.of(context).unfocus();
+    context.read<ListDataDetailsBloc>().add(const DeleteSubmited());
+  }
+
+
 }

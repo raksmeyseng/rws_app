@@ -11,9 +11,11 @@ class CardQRDetail extends StatelessWidget {
       buildWhen: (previous, current) =>
           previous.waterSupply != current.waterSupply,
       builder: (context, state) {
+        String url = 'http://18.222.12.231/media/';
+        String qrCodeName= state.waterSupply!.qrcode!.first.qrCodeImageName;
+        url = url+qrCodeName;
         return Center(
-          child: Image.network(
-              'http://18.222.12.231/media/qr1681033557.780248.png'),
+          child: Image.network(url),
         );
       },
     );

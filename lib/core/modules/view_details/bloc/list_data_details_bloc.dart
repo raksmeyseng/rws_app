@@ -1,8 +1,11 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rws_app/core/enum/base_status_enum.dart';
 import 'package:rws_app/core/modules/view_details/respository/list_data_detail_repository.dart';
 import 'package:rws_app/core/modules/water_supply_details/model/water_supply_model.dart';
+import 'package:rws_app/config/routes/app_route.dart';
+import 'package:rws_app/config/routes/application.dart';
 
 part 'list_data_detials_event.dart';
 part 'list_data_detials_state.dart';
@@ -25,6 +28,9 @@ class ListDataDetailsBloc
     if (event is ListDataStarted) {
       return _onListDataDetailsStarted(event, emit);
     }
+    if(event is DeleteSubmited){
+      return _onDeleteSubmited(event, emit);
+    }
   }
 
   Future<void> _onListDataDetailsStarted(
@@ -43,4 +49,20 @@ class ListDataDetailsBloc
       emit(state.copyWith(status: BaseStatusEnum.failure));
     }
   }
+
+  Future<void> _onDeleteSubmited(DeleteSubmited event,Emitter<ListDataDetailsState> emit) async {
+    try{
+      await Future.delayed(const Duration(milliseconds: 300));
+      final response = await repository.deleteWaterSupply(state.waterSupplyId);
+      emit(state.copyWith(
+        status: BaseStatusEnum.success,
+      ));
+      await Future.delayed(const Duration(milliseconds: 300));
+      Application.router.goNamed(AppRoute.home);
+      
+    }catch(_){
+
+    }
+  }
+
 }
