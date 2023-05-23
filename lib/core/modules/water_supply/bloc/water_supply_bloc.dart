@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rws_app/core/enum/base_status_enum.dart';
-import 'package:rws_app/core/modules/water_supply/model/water_supply_model.dart';
+import 'package:rws_app/core/modules/water_supply/model/water_supply_type_model.dart';
 import 'package:rws_app/core/modules/water_supply/repositories/water_supply_repository.dart';
 
 part 'water_supply_event.dart';

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'water_supply_model.dart';
+part of 'water_supply_type_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator

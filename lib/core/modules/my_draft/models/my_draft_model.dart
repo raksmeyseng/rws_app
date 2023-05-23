@@ -52,94 +52,91 @@ class Address {
   Map<String, dynamic> toJson() => _$AddressToJson(this);
 }
 
-@JsonSerializable()
-class ProvinceModel{
+@JsonSerializable(explicitToJson: true)
+class ProvinceModel {
   @JsonKey(name: 'id')
   int id;
   @JsonKey(name: 'name_en')
   String nameEn;
+  @JsonKey(name: 'provincedistrict')
+  List<DistrictModel>? provincedistrict;
 
   ProvinceModel({
     required this.id,
     required this.nameEn,
+    this.provincedistrict,
   });
 
-factory ProvinceModel.fromJson(Map<String, dynamic> json) => _$ProvinceModelFromJson(json);
-Map<String, dynamic> toJson() => _$ProvinceModelToJson(this);
-
-
+  factory ProvinceModel.fromJson(Map<String, dynamic> json) =>
+      _$ProvinceModelFromJson(json);
+  Map<String, dynamic> toJson() => _$ProvinceModelToJson(this);
 }
 
-@JsonSerializable()
-class DistrictModel{
+@JsonSerializable(explicitToJson: true)
+class DistrictModel {
   @JsonKey(name: 'id')
   int id;
   @JsonKey(name: 'name_en')
   String nameEn;
+  @JsonKey(name: 'districtcommnue')
+  List<CommuneModel>? districtCommnue;
 
   DistrictModel({
     required this.id,
     required this.nameEn,
+    this.districtCommnue,
   });
 
-  factory DistrictModel.fromJson(Map<String, dynamic> json) => _$DistrictModelFromJson(json);
+  factory DistrictModel.fromJson(Map<String, dynamic> json) =>
+      _$DistrictModelFromJson(json);
   Map<String, dynamic> toJson() => _$DistrictModelToJson(this);
 }
 
-@JsonSerializable()
-class CommuneModel{
+@JsonSerializable(explicitToJson: true)
+class CommuneModel {
   @JsonKey(name: 'id')
   int id;
   @JsonKey(name: 'name_en')
   String nameEn;
+  @JsonKey(name: 'commnuevillage')
+  List<VillageModel>? commnuevillage;
 
   CommuneModel({
     required this.id,
-    required this.nameEn
-});
-  factory CommuneModel.fromJson(Map<String, dynamic> json) => _$CommnueModelFromJson(json);
-  Map<String, dynamic> toJson() => _$CommnueModelToJson(this);
+    required this.nameEn,
+    this.commnuevillage,
+  });
 
+  factory CommuneModel.fromJson(Map<String, dynamic> json) =>
+      _$CommuneModelFromJson(json);
+  Map<String, dynamic> toJson() => _$CommuneModelToJson(this);
 }
-@JsonSerializable()
-class VillageModel{
+
+@JsonSerializable(explicitToJson: true)
+class VillageModel {
   @JsonKey(name: 'id')
   int id;
   @JsonKey(name: 'name_en')
   String nameEn;
 
-  VillageModel({
-    required this.id,
-    required this.nameEn
-  });
-  factory VillageModel.fromJson(Map<String, dynamic> json) => _$VillageModelFromJson(json);
+  VillageModel({required this.id, required this.nameEn});
+  factory VillageModel.fromJson(Map<String, dynamic> json) =>
+      _$VillageModelFromJson(json);
   Map<String, dynamic> toJson() => _$VillageModelToJson(this);
-
 }
 
 @JsonSerializable()
-class StatusModel{
-  @JsonKey(name:'id')
+class StatusModel {
+  @JsonKey(name: 'id')
   int id;
-  @JsonKey(name : 'status_name')
+  @JsonKey(name: 'status_name')
   String statusName;
-  @JsonKey(name : 'status_name_kh')
+  @JsonKey(name: 'status_name_kh')
   String statusNameKh;
 
-  StatusModel({
-    required this.id,
-    required this.statusName,
-    required this.statusNameKh
-});
-  factory StatusModel.fromJson(Map<String, dynamic> json) => _$StatusModelFromJson(json);
+  StatusModel(
+      {required this.id, required this.statusName, required this.statusNameKh});
+  factory StatusModel.fromJson(Map<String, dynamic> json) =>
+      _$StatusModelFromJson(json);
   Map<String, dynamic> toJson() => _$StatusModelToJson(this);
-
-
 }
-
-
-
-
-
-
-

@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
-part 'water_supply_model.g.dart';
+part 'water_supply_type_model.g.dart';
 
 @JsonSerializable()
 class WaterSupplyTypeModel {

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rws_app/config/themes/app_color.dart';
 import 'package:rws_app/core/models/water_supply_workflow.dart';
 import 'package:rws_app/core/modules/view_details/bloc/list_data_details_bloc.dart';
@@ -14,7 +13,7 @@ class ViewProcessFlow extends StatelessWidget {
 
 
   const ViewProcessFlow({Key? key, required this.workflows}):super(key:key);
-  
+
   final List<WaterSupplyWorkFlowModel> workflows;
 
   //final List<MyApprovalHistoryModel> workflow;
@@ -169,7 +168,7 @@ class _WaterSupplyWorkFlowItem extends StatelessWidget {
       borderRadius: 10,
       color: Theme.of(context).dividerColor.withOpacity(0.05),
       onTap: () {
-        
+
       },
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -192,8 +191,8 @@ class _WaterSupplyWorkFlowItem extends StatelessWidget {
             CaptionWidget('${S.of(context).user_name} :'),
             TextWidget(item.user.firstName.toString()+' '+item.user.lastName.toString()),
           ),
-          
-          
+
+
         ],
       ),
     );

@@ -14,7 +14,7 @@ class WaterSupplyStarted extends WaterSupplyEditEvent {
 class ProvinceChanged extends WaterSupplyEditEvent {
   const ProvinceChanged(this.province);
 
-  final String province;
+  final ProvinceModel province;
 
   @override
   List<Object> get props => [province];
@@ -23,7 +23,7 @@ class ProvinceChanged extends WaterSupplyEditEvent {
 class DistrictChanged extends WaterSupplyEditEvent {
   const DistrictChanged(this.district);
 
-  final String district;
+  final DistrictModel district;
 
   @override
   List<Object> get props => [district];
@@ -32,7 +32,7 @@ class DistrictChanged extends WaterSupplyEditEvent {
 class CommnueChanged extends WaterSupplyEditEvent {
   const CommnueChanged(this.commnue);
 
-  final String commnue;
+  final CommuneModel commnue;
 
   @override
   List<Object> get props => [commnue];
@@ -41,7 +41,7 @@ class CommnueChanged extends WaterSupplyEditEvent {
 class VillageChanged extends WaterSupplyEditEvent {
   const VillageChanged(this.village);
 
-  final String village;
+  final VillageModel village;
 
   @override
   List<Object> get props => [village];

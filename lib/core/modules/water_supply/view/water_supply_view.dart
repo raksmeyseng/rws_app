@@ -5,7 +5,7 @@ import 'package:rws_app/config/routes/app_route.dart';
 import 'package:rws_app/constants/asset_path.dart';
 import 'package:rws_app/core/enum/base_status_enum.dart';
 import 'package:rws_app/core/modules/water_supply/bloc/water_supply_bloc.dart';
-import 'package:rws_app/core/modules/water_supply/model/water_supply_model.dart';
+import 'package:rws_app/core/modules/water_supply/model/water_supply_type_model.dart';
 import 'package:rws_app/core/widgets/flat_card.dart';
 import 'package:rws_app/core/widgets/load_data_failed.dart';
 import 'package:rws_app/core/widgets/text_widget.dart';

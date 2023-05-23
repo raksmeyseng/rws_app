@@ -13,7 +13,6 @@ part 'water_supply_model.g.dart';
 
 @JsonSerializable(explicitToJson: true)
 class WaterSupplyModel {
-
   //WaterSupplyModel();
 
   WaterSupplyModel({
@@ -158,7 +157,7 @@ class WaterSupplyModel {
   // @JsonKey(name:'watersupplyworkflow_watersupply')
   // List<MyApprovalHistoryModel> workflow;
   @JsonKey(name:'watersupplyworkflow_watersupply')
-  List<WaterSupplyWorkFlowModel>? workflows; 
+  List<WaterSupplyWorkFlowModel>? workflows;
   @JsonKey(name:'watersupplyqrcode_watersupply')
   List<WaterSupplyQRCodeModel>? qrcode;
 
@@ -197,7 +196,6 @@ class WaterSupplyModel {
   List<WaterSupplyWaterQualityParameterModel>? wqcParam15;
   @JsonKey(name: 'wqc_param16_obj')
   List<WaterSupplyWaterQualityParameterModel>? wqcParam16;
-  
 
 
   factory WaterSupplyModel.fromJson(Map<String, dynamic> json) =>
@@ -205,4 +203,3 @@ class WaterSupplyModel {
 
   Map<String, dynamic> toJson() => _$WaterSupplyModelToJson(this);
 }
-
