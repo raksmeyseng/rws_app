@@ -9,8 +9,8 @@ part of 'water_supply_model.dart';
 WaterSupplyModel _$WaterSupplyModelFromJson(Map<String, dynamic> json) =>
     WaterSupplyModel(
       id: json['id'] as int,
-      createdDate: DateTime.parse(json['created_date'] as String),
-      waterSupplyType: json['water_supply_type'] as String,
+      createdDate: DateTime.parse(json['created_at'] as String),
+      waterSupplyType: json['water_supply_type_id']['name_kh'] as String,
       address:
           ProvinceModel.fromJson(json['province_id'] as Map<String, dynamic>),
       district:
@@ -30,7 +30,7 @@ WaterSupplyModel _$WaterSupplyModelFromJson(Map<String, dynamic> json) =>
       mdsXDegree: json['mds_x_degress'] as String,
       mdsXMinute: json['mds_x_minute'] as String,
       mdsXSecond: json['mds_x_second'] as String,
-      mdsYDegree: json['mds_y_degree'] as String,
+      mdsYDegree: json['mds_x_degress'] as String,
       mdsYMinute: json['mds_y_minute'] as String,
       mdsYSecond: json['mds_y_second'] as String,
       totalFamily: json['total_family'] as int,
@@ -45,11 +45,11 @@ WaterSupplyModel _$WaterSupplyModelFromJson(Map<String, dynamic> json) =>
           json['beneficiary_total_family_vulnerable'] as int,
       beneficiaryTotalPeople: json['beneficiary_total_people'] as int,
       beneficiaryTotalWoman: json['beneficiary_total_women'] as int,
-      beneficiaryTotalFamily:json['beneficiary_total_family'] as int,
-      beneficiaryTotalFamilyPoor1:json['beneficiary_total_family_poor_1'] as int,
-      beneficiaryTotalFamilyPoor2: json['beneficiary_total_family_poor_2'] as int,
-      beneficiaryTotalFamilyVulnearable:json['beneficiary_total_family_vulnerable'] as int,
-      beneficiaryTotalFamilyIndigenous: json['beneficiary_total_family_indigenous'] as int,
+      // beneficiaryTotalFamily:json['beneficiary_total_family'] as int,
+      // beneficiaryTotalFamilyPoor1:json['beneficiary_total_family_poor_1'] as int,
+      // beneficiaryTotalFamilyPoor2: json['beneficiary_total_family_poor_2'] as int,
+      // beneficiaryTotalFamilyVulnearable:json['beneficiary_total_family_vulnerable'] as int,
+      // beneficiaryTotalFamilyIndigenous: json['beneficiary_total_family_indigenous'] as int,
       waterSupplyTypeId: json['water_supply_type_id']['id'] as int,
       isWaterQualityCheck: json['is_water_quality_check'] as bool,
       //workflow: (json['watersupplyworkflow_watersupply'] as List).map((i) => MyApprovalHistoryModel.fromJson(i)).toList(),
@@ -80,10 +80,10 @@ WaterSupplyModel _$WaterSupplyModelFromJson(Map<String, dynamic> json) =>
       managedBy: json['managed_by'] as String,
       managementType: json['management_type'] as int,
       sourceBudget: json['source_budget'] as int,
-      waterSupplyTypeId: json['water_supply_type_id'] as int,
-      waterSupplyWells: (json['watersupplywell_watersupply'] as List<dynamic>?)
-          ?.map((e) => WaterSupplyWellModel.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      // waterSupplyTypeId: json['water_supply_type_id'] as int,
+      // waterSupplyWells: (json['watersupplywell_watersupply'] as List<dynamic>?)
+      //     ?.map((e) => WaterSupplyWellModel.fromJson(e as Map<String, dynamic>))
+      //     .toList(),
     );
 
 Map<String, dynamic> _$WaterSupplyModelToJson(WaterSupplyModel instance) =>

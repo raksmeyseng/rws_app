@@ -63,8 +63,8 @@ class ApiPath {
   static String getPendingApprovalDepartmentHead =
       '${AppConstant.mainURL}watersupplybyprovinceandmultiplestatus/?main_status=7%2C12&province_id=';
 
-  static String addWaterSupply(int id) =>
-      '${AppConstant.mainURL}watersupply/$id';
+  static String addWaterSupply =
+      '${AppConstant.mainURL}watersupply/';
   static String updateWaterSupply(int id, int waterSupplyTypeId) =>
       '${AppConstant.mainURL}watersupply/$id';
 
