@@ -23,4 +23,22 @@ class ListDataDetailRepository extends RestApiService{
     return WaterSupplyDeleteResponseModel.fromJson(response);
   }
 
+  Future<void> submitDraftedWaterSupply(int id) async{
+    final int userId = Application.authBloc.state.userToken?.user.id??0;
+
+    await post(ApiPath.postWorkFlow,data:{
+      'watersupply_id': id,
+      'status_id':1,
+      'user_id': userId,
+      'remark': ''
+    });
+
+    await put(ApiPath.updateWaterSupplyMainStatus(id), 
+    data:{
+      'id': id,
+      'main_status': 1
+    });
+
+  }
+
 }

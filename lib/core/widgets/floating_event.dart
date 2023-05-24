@@ -31,7 +31,16 @@ class FloatingEvent extends StatelessWidget {
           foregroundColor: AppColor.white,
           label: 'ដាក់ស្នើ',
           labelStyle: const TextStyle(fontSize: 18.0),
-          onTap: () => print('Send'),
+          onTap: () {
+            Blurry(
+              title: 'ដាក់ស្នើ',
+              description: 'តើអ្នកចង់ដាក់ស្នើទិន្នន័យនេះមែនទេ?',
+              confirmButtonText: 'Confirm',
+              onConfirmButtonPressed:()=>_onSubmitDrated(context),
+              themeColor: AppColor.inactive,
+              icon: Icons.delete_outline_rounded,
+            ).show(context);
+          },
         ),
         SpeedDialChild(
           child: const Icon(Icons.edit),
@@ -65,6 +74,11 @@ class FloatingEvent extends StatelessWidget {
   void _onDeleteSubmited(BuildContext context){
     FocusScope.of(context).unfocus();
     context.read<ListDataDetailsBloc>().add(const DeleteSubmited());
+  }
+
+  void _onSubmitDrated(BuildContext context){
+    FocusScope.of(context).unfocus();
+    context.read<ListDataDetailsBloc>().add(const SubmitDrafted());
   }
 
 

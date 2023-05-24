@@ -14,3 +14,11 @@ class ListDataStarted extends ListDataDetailsEvent {
 class DeleteSubmited extends ListDataDetailsEvent{
   const DeleteSubmited();
 }
+
+class SubmitDrafted extends ListDataDetailsEvent{
+  const SubmitDrafted();
+}
+
+class ProvincialHeadDepartmentApprove extends ListDataDetailsEvent{
+  const ProvincialHeadDepartmentApprove();
+}

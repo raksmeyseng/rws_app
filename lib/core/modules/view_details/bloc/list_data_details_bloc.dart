@@ -31,6 +31,12 @@ class ListDataDetailsBloc
     if(event is DeleteSubmited){
       return _onDeleteSubmited(event, emit);
     }
+    if(event is SubmitDrafted){
+      return _onSubmitDrafted(event,emit);
+    }
+    if(event is ProvincialHeadDepartmentApprove){
+      return _onPDHApproved(event, emit);
+    }
   }
 
   Future<void> _onListDataDetailsStarted(
@@ -44,6 +50,7 @@ class ListDataDetailsBloc
       emit(state.copyWith(
         status: BaseStatusEnum.success,
         waterSupply: waterSupply,
+        mainStatus: waterSupply.status.id,
       ));
     } catch (e) {
       emit(state.copyWith(status: BaseStatusEnum.failure));
@@ -61,8 +68,28 @@ class ListDataDetailsBloc
       Application.router.goNamed(AppRoute.home);
       
     }catch(_){
-
+      
     }
+  }
+
+  Future<void> _onSubmitDrafted(SubmitDrafted event,Emitter<ListDataDetailsState> emit) async{
+    try{
+      await Future.delayed(const Duration(milliseconds: 300));
+      await repository.submitDraftedWaterSupply(state.waterSupplyId);
+      emit(state.copyWith(
+        status: BaseStatusEnum.success,
+      ));
+      await Future.delayed(const Duration(milliseconds: 300));
+      Application.router.goNamed(AppRoute.home);
+    }catch(_){
+      emit(state.copyWith(
+        status: BaseStatusEnum.failure,
+      ));
+    }
+  }
+
+  Future<void> _onPDHApproved(ProvincialHeadDepartmentApprove event, Emitter<ListDataDetailsState> emit) async{
+    print ('Main Status : '+ state.mainStatus.toString());
   }
 
 }

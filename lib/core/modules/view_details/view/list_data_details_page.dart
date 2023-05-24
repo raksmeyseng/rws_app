@@ -1,3 +1,4 @@
+import 'package:blurry/blurry.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rws_app/config/themes/app_color.dart';
@@ -251,7 +252,15 @@ class _ApprovalButtonBar extends StatelessWidget{
                       title: 'Approve',
                       color: AppColor.active,
                       onPressed: () {
-                        print('approve');
+                        Blurry(
+                          title: 'Approve',
+                          description: 'Do you want to approve this request?',
+                          confirmButtonText: 'Confirm',
+                          onConfirmButtonPressed:()=>_onApproved(context),
+                          themeColor: AppColor.success,
+                          icon: Icons.check_circle,
+      
+                        ).show(context);
                       },
                     ),
                   )
@@ -261,6 +270,11 @@ class _ApprovalButtonBar extends StatelessWidget{
           
       },
     );
+  }
+
+  void _onApproved(BuildContext context){
+    FocusScope.of(context).unfocus();
+    context.read<ListDataDetailsBloc>().add(const ProvincialHeadDepartmentApprove());
   }
 
 }

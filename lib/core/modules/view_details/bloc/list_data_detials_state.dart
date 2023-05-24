@@ -5,11 +5,13 @@ class ListDataDetailsState extends Equatable {
     this.status = BaseStatusEnum.initial,
     this.waterSupply,
     this.waterSupplyId = 0,
+    this.mainStatus=0,
   });
 
   final BaseStatusEnum status;
   final WaterSupplyModel? waterSupply;
   final int waterSupplyId;
+  final int? mainStatus;
 
   const ListDataDetailsState.initial({required int waterSupplyId})
       : this._(waterSupplyId: waterSupplyId);
@@ -18,11 +20,13 @@ class ListDataDetailsState extends Equatable {
     BaseStatusEnum? status,
     WaterSupplyModel? waterSupply,
     int? waterSupplyId,
+    int? mainStatus,
   }) {
     return ListDataDetailsState._(
       status: status ?? this.status,
       waterSupply: waterSupply ?? this.waterSupply,
       waterSupplyId: waterSupplyId ?? this.waterSupplyId,
+      mainStatus: mainStatus??this.mainStatus,
     );
   }
 
