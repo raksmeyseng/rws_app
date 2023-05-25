@@ -22,3 +22,11 @@ class SubmitDrafted extends ListDataDetailsEvent{
 class ProvincialHeadDepartmentApprove extends ListDataDetailsEvent{
   const ProvincialHeadDepartmentApprove();
 }
+
+class ProvincialHeadDepartmentReject extends ListDataDetailsEvent{
+  const ProvincialHeadDepartmentReject();
+}
+
+class ProvincialHeadDepartmentRequestEdit extends ListDataDetailsEvent{
+  const ProvincialHeadDepartmentRequestEdit();
+}

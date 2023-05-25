@@ -37,6 +37,9 @@ class ListDataDetailsBloc
     if(event is ProvincialHeadDepartmentApprove){
       return _onPDHApproved(event, emit);
     }
+    if(event is ProvincialHeadDepartmentReject){
+      return _onPDHRejected(event, emit);
+    }
   }
 
   Future<void> _onListDataDetailsStarted(
@@ -75,7 +78,7 @@ class ListDataDetailsBloc
   Future<void> _onSubmitDrafted(SubmitDrafted event,Emitter<ListDataDetailsState> emit) async{
     try{
       await Future.delayed(const Duration(milliseconds: 300));
-      await repository.submitDraftedWaterSupply(state.waterSupplyId);
+      await repository.submitDraftedWaterSupply(state.waterSupplyId,1);
       emit(state.copyWith(
         status: BaseStatusEnum.success,
       ));
@@ -89,7 +92,77 @@ class ListDataDetailsBloc
   }
 
   Future<void> _onPDHApproved(ProvincialHeadDepartmentApprove event, Emitter<ListDataDetailsState> emit) async{
-    print ('Main Status : '+ state.mainStatus.toString());
+    //print ('Main Status : '+ state.mainStatus.toString());
+    int status=0;
+    if(state.mainStatus==1)
+    {
+      status=2; // Provincial Head Approved
+    }
+    else if (state.mainStatus==2){
+      //Data verifier1 Approved
+      status=5;
+    }
+    else if(state.mainStatus==5){
+      //Data Verifier2 Approved
+      status=7;
+
+    }else if(state.mainStatus==7){
+      //Department Head Approved
+      status=9;
+    }
+
+    if(status>0){
+      try{
+        await Future.delayed(const Duration(milliseconds: 300));
+        await repository.submitDraftedWaterSupply(state.waterSupplyId,status);
+        emit(state.copyWith(
+          status: BaseStatusEnum.success,
+        ));
+        await Future.delayed(const Duration(milliseconds: 300));
+        Application.router.goNamed(AppRoute.home);
+      }catch(_){
+        emit(state.copyWith(
+          status: BaseStatusEnum.failure,
+        ));
+      }
+    }
+
+  }
+
+  Future<void> _onPDHRejected(ProvincialHeadDepartmentReject event,Emitter<ListDataDetailsState> emit) async{
+    int status=0;
+    if(state.mainStatus==1){
+      //Provincial Department Head Rejected
+      status=4;
+    }else if (state.mainStatus==2){
+      //Data verifier1 Approved
+      status=6;
+    }
+    else if(state.mainStatus==5){
+      //Data Verifier2 Approved
+      status=8;
+
+    }else if(state.mainStatus==7){
+      //Department Head Approved
+      status=10;
+    }
+
+
+    if(status>0){
+      try{
+        await Future.delayed(const Duration(milliseconds: 300));
+        await repository.submitDraftedWaterSupply(state.waterSupplyId,status);
+        emit(state.copyWith(
+          status: BaseStatusEnum.success,
+        ));
+        await Future.delayed(const Duration(milliseconds: 300));
+        Application.router.goNamed(AppRoute.home);
+      }catch(_){
+        emit(state.copyWith(
+          status: BaseStatusEnum.failure,
+        ));
+      }
+    }
   }
 
 }

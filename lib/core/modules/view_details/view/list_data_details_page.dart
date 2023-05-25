@@ -200,8 +200,21 @@ class _BottomNavigationBar extends StatelessWidget {
           case BaseStatusEnum.success:
             final isProvincialHead = Application.authBloc.state.userToken?.user.isProvincialDepartmentHead??false;
             final provincialDepartmentHeadProvinceId=Application.authBloc.state.userToken?.user.provincialDepartmentHeadProvinceId??0;
+            final isDataVerifier1=Application.authBloc.state.userToken?.user.isDataVerifier1??false;
+            final isDataVerifier2=Application.authBloc.state.userToken?.user.isDataVerifier2??false;
+            final isHeadDepartment=Application.authBloc.state.userToken?.user.isHeadDepartment??false;
 
-            if(isProvincialHead && state.waterSupply!.status.id == 1 && state.waterSupply!.address.id == provincialDepartmentHeadProvinceId){
+            if(isProvincialHead  && state.waterSupply!.address.id == provincialDepartmentHeadProvinceId){
+              if(state.waterSupply!.status.id == 1){
+                return const _ApprovalButtonBar();
+              }else if(state.waterSupply!.status.id==9){
+                return const _RequestEditButtonBar();
+              }
+              else{
+                return const SizedBox.shrink(); 
+              }
+            }
+            else if((isDataVerifier1 && state.waterSupply!.status.id==2) || (isDataVerifier2 && state.waterSupply!.status.id == 5 )|| (isHeadDepartment && state.waterSupply!.status.id==7 )){
               return const _ApprovalButtonBar();
             }
             else 
@@ -213,7 +226,7 @@ class _BottomNavigationBar extends StatelessWidget {
           default:
             return const SizedBox.shrink();
         }
-        
+      
       },
     );
   }
@@ -240,8 +253,18 @@ class _ApprovalButtonBar extends StatelessWidget{
                       title: 'Reject',
                       color: AppColor.inactive,
                       onPressed: () {
-                        print('reject!');
-                      },
+                        //print('reject!');
+                        Blurry(
+                          title: 'Reject',
+                          description: 'Do you want to reject this request?',
+                          confirmButtonText: 'Confirm',
+                          onConfirmButtonPressed:()=>_onRejected(context),
+                          themeColor: AppColor.danger,
+                          icon: Icons.crop_square_sharp,
+                          inputTextController: TextEditingController(),
+      
+                        ).show(context);
+                      }
                     ),
                   ),
                   const SizedBox(
@@ -276,5 +299,62 @@ class _ApprovalButtonBar extends StatelessWidget{
     FocusScope.of(context).unfocus();
     context.read<ListDataDetailsBloc>().add(const ProvincialHeadDepartmentApprove());
   }
+
+  void _onRejected(BuildContext context){
+    FocusScope.of(context).unfocus();
+    context.read<ListDataDetailsBloc>().add(const ProvincialHeadDepartmentReject());
+  }
+}
+
+class _RequestEditButtonBar extends StatelessWidget{
+  const _RequestEditButtonBar();
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<ListDataDetailsBloc, ListDataDetailsState>(
+      buildWhen: (previous, current) => previous != current,
+      builder: (context, state) {
+        return Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 10,
+                vertical: 10,
+              ),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: MyOutlinedButton(
+                      title: 'Request Edit',
+                      color: AppColor.inactive,
+                      onPressed: () {
+                        //print('reject!');
+                        Blurry(
+                          title: 'Request Edit',
+                          description: 'Do you want to request edit this request?',
+                          confirmButtonText: 'Confirm',
+                          onConfirmButtonPressed:()=>_onRequestEdit(context),
+                          themeColor: AppColor.primary,
+                          icon: Icons.info,
+                          inputTextController: TextEditingController(),
+      
+                        ).show(context);
+                      }
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  
+                ],
+              ),
+            );
+          
+      },
+    );
+  }
+
+  void _onRequestEdit(BuildContext context){
+    FocusScope.of(context).unfocus();
+    context.read<ListDataDetailsBloc>().add(const ProvincialHeadDepartmentRequestEdit());
+  }
+
 
 }
