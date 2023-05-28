@@ -1033,6 +1033,132 @@ class WaterSupplyEditBloc
     final filterInput = WaterSupplyInput.dirty(state.filterInput.value);
     final airStationInput = WaterSupplyInput.dirty(state.airStationInput.value);
 
+    FormzStatus? validForm;
+
+    if (state.waterSupplyTypeId == 1) {
+      validForm = Formz.validate([
+        provinceInput,
+        districtInput,
+        communeInput,
+        villageInput,
+        budgetTypeInput,
+        locationRickInput,
+        managementTypeInput,
+        receiverTotalInput,
+        receiverFamilyTotalInput,
+        receiverTotalAsFemaleInput,
+        receiverFamilyPoor1Input,
+        receiverFamilyPoor2Input,
+        receiverFamilyIndigenousInput,
+        receiverFamilyVulnearableInput,
+        docInput,
+        wellTypeInput,
+        waterQualityInput,
+        checkWaterQualityInput,
+        wellStatusInput
+      ]);
+    } else if (state.waterSupplyTypeId == 2 || state.waterSupplyTypeId == 3) {
+      validForm = Formz.validate([
+        provinceInput,
+        districtInput,
+        communeInput,
+        villageInput,
+        budgetTypeInput,
+        locationRickInput,
+        managementTypeInput,
+        receiverTotalInput,
+        receiverFamilyTotalInput,
+        receiverTotalAsFemaleInput,
+        receiverFamilyPoor1Input,
+        receiverFamilyPoor2Input,
+        receiverFamilyIndigenousInput,
+        receiverFamilyVulnearableInput,
+        docInput,
+        waterSupplyTypeInput,
+        filterTankInput,
+        pipeStatusInput,
+        qualityWaterCheckInput
+      ]);
+    } else if (state.waterSupplyTypeId == 4) {
+      validForm = Formz.validate([
+        provinceInput,
+        districtInput,
+        communeInput,
+        villageInput,
+        budgetTypeInput,
+        locationRickInput,
+        managementTypeInput,
+        receiverTotalInput,
+        receiverFamilyTotalInput,
+        receiverTotalAsFemaleInput,
+        receiverFamilyPoor1Input,
+        receiverFamilyPoor2Input,
+        receiverFamilyIndigenousInput,
+        receiverFamilyVulnearableInput,
+        docInput,
+      ]);
+    } else if (state.waterSupplyTypeId == 5) {
+      validForm = Formz.validate([
+        provinceInput,
+        districtInput,
+        communeInput,
+        villageInput,
+        budgetTypeInput,
+        locationRickInput,
+        managementTypeInput,
+        receiverTotalInput,
+        receiverFamilyTotalInput,
+        receiverTotalAsFemaleInput,
+        receiverFamilyPoor1Input,
+        receiverFamilyPoor2Input,
+        receiverFamilyIndigenousInput,
+        receiverFamilyVulnearableInput,
+        docInput,
+        checkWaterQualityInput
+      ]);
+    } else if (state.waterSupplyTypeId == 6) {
+      validForm = Formz.validate([
+        provinceInput,
+        districtInput,
+        communeInput,
+        villageInput,
+        budgetTypeInput,
+        locationRickInput,
+        managementTypeInput,
+        receiverTotalInput,
+        receiverFamilyTotalInput,
+        receiverTotalAsFemaleInput,
+        receiverFamilyPoor1Input,
+        receiverFamilyPoor2Input,
+        receiverFamilyIndigenousInput,
+        receiverFamilyVulnearableInput,
+        docInput,
+        waterSupplyTypeInput,
+        checkWaterQualityInput,
+        pipeStatusInput
+      ]);
+    } else if (state.waterSupplyTypeId == 7) {
+      validForm = Formz.validate([
+        provinceInput,
+        districtInput,
+        communeInput,
+        villageInput,
+        budgetTypeInput,
+        locationRickInput,
+        managementTypeInput,
+        receiverTotalInput,
+        receiverFamilyTotalInput,
+        receiverTotalAsFemaleInput,
+        receiverFamilyPoor1Input,
+        receiverFamilyPoor2Input,
+        receiverFamilyIndigenousInput,
+        receiverFamilyVulnearableInput,
+        docInput,
+        waterSupplyTypeInput,
+        checkWaterQualityInput
+      ]);
+    }
+
     emit(state.copyWith(
       provinceInput: provinceInput,
       districtInput: districtInput,
@@ -1098,23 +1224,7 @@ class WaterSupplyEditBloc
       dueDateInput: dueDateInput,
       filterInput: filterInput,
       airStationInput: airStationInput,
-      formzStatus: Formz.validate([
-        provinceInput,
-        districtInput,
-        communeInput,
-        villageInput,
-        budgetTypeInput,
-        locationRickInput,
-        managementTypeInput,
-        receiverTotalInput,
-        receiverFamilyTotalInput,
-        receiverTotalAsFemaleInput,
-        receiverFamilyPoor1Input,
-        receiverFamilyPoor2Input,
-        receiverFamilyIndigenousInput,
-        receiverFamilyVulnearableInput,
-        docInput,
-      ]),
+      formzStatus: validForm,
     ));
 
     if (state.formzStatus.isValidated) {
