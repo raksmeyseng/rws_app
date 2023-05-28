@@ -9,7 +9,7 @@ const h1Style = TextStyle(
 
 const h2Style = TextStyle(
     fontSize: 22,
-    color: Colors.black,
+    color: Colors.white,
     fontFamily: 'Poppins',
     fontWeight: FontWeight.w600);
 

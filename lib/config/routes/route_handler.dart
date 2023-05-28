@@ -10,6 +10,7 @@ import 'package:rws_app/core/modules/not_found/not_found_screen.dart';
 import 'package:rws_app/core/modules/register/view/register_page.dart';
 import 'package:rws_app/core/modules/setting/view/setting_page.dart';
 import 'package:rws_app/core/modules/splashscreen/splashscreen_page.dart';
+import 'package:rws_app/core/modules/user_information/view/user_page.dart';
 import 'package:rws_app/core/modules/view_details/view/list_data_details_page.dart';
 import 'package:rws_app/core/modules/water_supplier_edit/view/water_supply_edit_page.dart';
 import 'package:rws_app/core/modules/water_supply_details/view/water_supply_detials_page.dart';
@@ -37,6 +38,13 @@ Page settingBuilder(BuildContext context, GoRouterState state) {
   return MaterialPage<void>(
     key: state.pageKey,
     child: const SettingPage(),
+  );
+}
+
+Page usersBuilder(BuildContext context, GoRouterState state) {
+  return MaterialPage<void>(
+    key: state.pageKey,
+    child: const UserPage(),
   );
 }
 

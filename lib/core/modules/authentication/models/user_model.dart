@@ -15,7 +15,7 @@ class UserModel extends Equatable {
     this.isDataVerifier1,
     this.isDataVerifier2,
     this.isPartner,
-    this.dataEntryProvinceId,
+    required this.dataEntryProvinceId,
     this.provincialDepartmentHeadProvinceId,
     this.firstName,
     this.lastName,

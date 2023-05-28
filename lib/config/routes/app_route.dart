@@ -20,6 +20,7 @@ class AppRoute {
 
   /// Main Menu Item
   static final String home = MainMenuEnum.home.name;
+  static final String users = MainMenuEnum.users.name;
   static final String settings = MainMenuEnum.settings.name;
   static final String about = MainMenuEnum.about.name;
 
@@ -55,6 +56,11 @@ class AppRoute {
       path: '/home',
       pageBuilder: dashboardBuilder,
       routes: [
+        GoRoute(
+          name: users,
+          path: 'users',
+          pageBuilder: usersBuilder,
+        ),
         GoRoute(
           name: settings,
           path: 'settings',
