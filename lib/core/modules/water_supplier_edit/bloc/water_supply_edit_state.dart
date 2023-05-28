@@ -16,8 +16,8 @@ class WaterSupplyEditState extends Equatable {
     this.lateitudeInput = const WaterSupplyInput.pure(),
     this.longtitudeInput = const WaterSupplyInput.pure(),
     this.locationRickInput = const WaterSupplyInput.pure(),
-    this.budgetTypeInput = const WaterSupplyInput.pure(),
-    this.managementTypeInput = const WaterSupplyInput.pure(),
+    this.budgetTypeInput = const BudgetTypeInput.pure(),
+    this.managementTypeInput = const ManagementTypeInput.pure(),
     this.managementNameInput = const WaterSupplyInput.pure(),
     this.receiverTotalInput = const WaterSupplyInput.pure(),
     this.receiverTotalAsFemaleInput = const WaterSupplyInput.pure(),
@@ -91,8 +91,8 @@ class WaterSupplyEditState extends Equatable {
   final WaterSupplyInput lateitudeInput;
   final WaterSupplyInput longtitudeInput;
   final WaterSupplyInput locationRickInput;
-  final WaterSupplyInput budgetTypeInput;
-  final WaterSupplyInput managementTypeInput;
+  final BudgetTypeInput budgetTypeInput;
+  final ManagementTypeInput managementTypeInput;
   final WaterSupplyInput managementNameInput;
   final WaterSupplyInput receiverTotalInput;
   final WaterSupplyInput receiverTotalAsFemaleInput;
@@ -171,8 +171,8 @@ class WaterSupplyEditState extends Equatable {
     WaterSupplyInput? lateitudeInput,
     WaterSupplyInput? longtitudeInput,
     WaterSupplyInput? locationRickInput,
-    WaterSupplyInput? budgetTypeInput,
-    WaterSupplyInput? managementTypeInput,
+    BudgetTypeInput? budgetTypeInput,
+    ManagementTypeInput? managementTypeInput,
     WaterSupplyInput? managementNameInput,
     WaterSupplyInput? receiverTotalInput,
     WaterSupplyInput? receiverTotalAsFemaleInput,

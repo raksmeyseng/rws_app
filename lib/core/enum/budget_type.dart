@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 const int _govermentCode = 1;
@@ -27,7 +26,7 @@ extension BudgetTypeEnumExtension on BudgetTypeEnum {
   }
 
   /// User friendly text
-  String getDisplayText(BuildContext context) {
+  String getDisplayText() {
     switch (this) {
       case BudgetTypeEnum.goverment:
         return 'រដ្ឋ';

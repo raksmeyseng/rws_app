@@ -6,6 +6,8 @@ part 'payload_water_supply_model.g.dart';
 class PayloadWaterSupplyModel {
   PayloadWaterSupplyModel({
     required this.createdBy,
+    required this.createdAt,
+    required this.createdAt1,
     required this.province,
     required this.district,
     required this.commune,
@@ -40,6 +42,10 @@ class PayloadWaterSupplyModel {
 
   @JsonKey(name: 'created_by')
   String createdBy;
+  @JsonKey(name: 'created_at')
+  DateTime createdAt;
+  @JsonKey(name: 'crated_at_1')
+  DateTime createdAt1;
   @JsonKey(name: 'water_supply_type_id')
   int waterSupplyTypeId;
   @JsonKey(name: 'province_id')
@@ -77,7 +83,7 @@ class PayloadWaterSupplyModel {
   @JsonKey(name: 'is_risk_enviroment_area')
   bool isRiskEnviromentArea;
   @JsonKey(name: 'construction_date')
-  DateTime constructionDate;
+  DateTime? constructionDate;
   @JsonKey(name: 'source_budget')
   int sourceBudget;
   @JsonKey(name: 'constructed_by')

@@ -10,6 +10,8 @@ PayloadWaterSupplyModel _$PayloadWaterSupplyModelFromJson(
         Map<String, dynamic> json) =>
     PayloadWaterSupplyModel(
       createdBy: json['created_by'] as String,
+      createdAt: DateTime.parse(json['created_at'] as String),
+      createdAt1: DateTime.parse(json['crated_at_1'] as String),
       province: json['province_id'] as int,
       district: json['district_id'] as int,
       commune: json['commune_id'] as int,
@@ -38,7 +40,9 @@ PayloadWaterSupplyModel _$PayloadWaterSupplyModelFromJson(
       beneficiaryTotalPeople: json['beneficiary_total_people'] as int,
       beneficiaryTotalWoman: json['beneficiary_total_women'] as int,
       constructedBy: json['constructed_by'] as String,
-      constructionDate: DateTime.parse(json['construction_date'] as String),
+      constructionDate: json['construction_date'] == null
+          ? null
+          : DateTime.parse(json['construction_date'] as String),
       isRiskEnviromentArea: json['is_risk_enviroment_area'] as bool,
       managedBy: json['managed_by'] as String,
       managementType: json['management_type'] as int,
@@ -50,6 +54,8 @@ Map<String, dynamic> _$PayloadWaterSupplyModelToJson(
         PayloadWaterSupplyModel instance) =>
     <String, dynamic>{
       'created_by': instance.createdBy,
+      'created_at': instance.createdAt.toIso8601String(),
+      'crated_at_1': instance.createdAt1.toIso8601String(),
       'water_supply_type_id': instance.waterSupplyTypeId,
       'province_id': instance.province,
       'district_id': instance.district,
@@ -68,7 +74,7 @@ Map<String, dynamic> _$PayloadWaterSupplyModelToJson(
       'mds_y_second': instance.mdsYSecond,
       'total_family': instance.totalFamily,
       'is_risk_enviroment_area': instance.isRiskEnviromentArea,
-      'construction_date': instance.constructionDate.toIso8601String(),
+      'construction_date': instance.constructionDate?.toIso8601String(),
       'source_budget': instance.sourceBudget,
       'constructed_by': instance.constructedBy,
       'management_type': instance.managementType,

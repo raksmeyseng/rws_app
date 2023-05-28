@@ -32,7 +32,6 @@ class ApiPath {
   static String getUser(int? userId) => '/api/UserAdmin/$userId';
   static String getUserToken = 'https://rwsapp.free.mockoapp.net/user';
 
-
   static String getWaterSupplyType =
       //'https://rwsapp.free.mockoapp.net/api/water-supply-type';
       '${AppConstant.mainURL}watersupplytype/';
@@ -63,19 +62,18 @@ class ApiPath {
   static String getPendingApprovalDepartmentHead =
       '${AppConstant.mainURL}watersupplybyprovinceandmultiplestatus/?main_status=7%2C12&province_id=';
 
-  static String addWaterSupply =
-      '${AppConstant.mainURL}watersupply/';
-  static String updateWaterSupply(int id, int waterSupplyTypeId) =>
-      '${AppConstant.mainURL}watersupply/$id';
+  static String addWaterSupply = '${AppConstant.mainURL}watersupply';
+  static String updateWaterSupply(int id) =>
+      '${AppConstant.mainURL}watersupply/$id/update';
 
-  static String deleteWaterSupply(int id)=>
-    '${AppConstant.mainURL}v2/watersupply/$id/delete/'; //put
-  
-  static String postWorkFlow='${AppConstant.mainURL}v2/watersupplyworkflow'; //post
+  static String deleteWaterSupply(int id) =>
+      '${AppConstant.mainURL}v2/watersupply/$id/delete/'; //put
 
-  static String updateWaterSupplyMainStatus(int id) => 
-   '${AppConstant.mainURL}watersupply/$id/update/'; //put
+  static String postWorkFlow =
+      '${AppConstant.mainURL}v2/watersupplyworkflow'; //post
+
+  static String updateWaterSupplyMainStatus(int id) =>
+      '${AppConstant.mainURL}watersupply/$id/update/'; //put
 
   static String getProvince() => '${AppConstant.mainURL}province';
 }
-    

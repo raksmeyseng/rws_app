@@ -1,58 +1,54 @@
-// import 'dart:html';
-
 import 'package:json_annotation/json_annotation.dart';
 
 part 'water_quality_parameter.g.dart';
 
 @JsonSerializable(explicitToJson: true)
-class WaterQualityParameterModel{
-
+class WaterQualityParameterModel {
   WaterQualityParameterModel({
     required this.id,
     required this.parameterCode,
     required this.parameter,
     required this.unit,
-    required this.standartOfDrinkingWater
-
+    required this.standartOfDrinkingWater,
   });
 
-  @JsonKey(name:'id')
+  @JsonKey(name: 'id')
   int id;
-  @JsonKey(name:'parameter_code')
+  @JsonKey(name: 'parameter_code')
   String parameterCode;
-  @JsonKey(name:'parameter')
+  @JsonKey(name: 'parameter')
   String parameter;
-  @JsonKey(name:'unit')
+  @JsonKey(name: 'unit')
   String unit;
-  @JsonKey(name:'standard_of_drinking_water')
+  @JsonKey(name: 'standard_of_drinking_water')
   String standartOfDrinkingWater;
 
   factory WaterQualityParameterModel.fromJson(Map<String, dynamic> json) =>
-      _$WaterQualityParameterToJson(json);
-
-
+      _$WaterQualityParameterModelFromJson(json);
+  Map<String, dynamic> toJson() => _$WaterQualityParameterModelToJson(this);
 }
 
 @JsonSerializable(explicitToJson: true)
-class WaterSupplyWaterQualityParameterModel{
-
+class WaterSupplyWaterQualityParameterModel {
   WaterSupplyWaterQualityParameterModel({
     required this.id,
     required this.waterSupplyId,
     required this.parameter,
-    required this.value
+    required this.value,
   });
 
-  @JsonKey(name:'id')
+  @JsonKey(name: 'id')
   int id;
-  @JsonKey(name:'water_supply_id')
+  @JsonKey(name: 'water_supply_id')
   int waterSupplyId;
-  @JsonKey(name:'water_quanlity_check_parameter_id')
+  @JsonKey(name: 'water_quanlity_check_parameter_id')
   WaterQualityParameterModel parameter;
-  @JsonKey(name:'value')
+  @JsonKey(name: 'value')
   String value;
 
-  factory WaterSupplyWaterQualityParameterModel.fromJson(Map<String, dynamic> json) =>
-      _$WaterSupplyWaterQualityParameterModelToJson(json);
-
+  factory WaterSupplyWaterQualityParameterModel.fromJson(
+          Map<String, dynamic> json) =>
+      _$WaterSupplyWaterQualityParameterModelFromJson(json);
+  Map<String, dynamic> toJson() =>
+      _$WaterSupplyWaterQualityParameterModelToJson(this);
 }

@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 const int _associationCode = 1;
@@ -22,7 +21,7 @@ extension ManagementTypeEnumExtension on ManagementTypeEnum {
   }
 
   /// User friendly text
-  String getDisplayText(BuildContext context) {
+  String getDisplayText() {
     switch (this) {
       case ManagementTypeEnum.association:
         return 'សមាគមន៍';

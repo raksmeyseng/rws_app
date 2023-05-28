@@ -21,7 +21,9 @@ import 'package:rws_app/core/enum/well_status_enum.dart';
 import 'package:rws_app/core/enum/well_type_enum.dart';
 import 'package:rws_app/core/modules/my_draft/models/my_draft_model.dart';
 import 'package:rws_app/core/modules/water_supplier_edit/bloc/water_supply_edit_bloc.dart';
+import 'package:rws_app/core/modules/water_supplier_edit/model/budget_type_input.dart';
 import 'package:rws_app/core/modules/water_supplier_edit/model/doc_input.dart';
+import 'package:rws_app/core/modules/water_supplier_edit/model/management_type_input.dart';
 import 'package:rws_app/core/modules/water_supplier_edit/model/water_supply_input.dart';
 import 'package:rws_app/core/widgets/caption_widget.dart';
 import 'package:rws_app/core/widgets/flat_card.dart';
@@ -42,18 +44,27 @@ class WaterSupplyEditView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
-      buildWhen: (previous, current) => previous.status != current.status,
-      builder: (context, state) {
-        switch (state.status) {
-          case BaseStatusEnum.success:
-            return const _SuccessView();
-          case BaseStatusEnum.failure:
-            return const _FailureView();
-          default:
-            return const _LoadingView();
+    return BlocListener<WaterSupplyEditBloc, WaterSupplyEditState>(
+      listenWhen: (previous, current) =>
+          previous.formzStatus != current.formzStatus,
+      listener: (context, state) {
+        if (state.formzStatus == FormzStatus.submissionSuccess) {
+          Navigator.of(context).pop();
         }
       },
+      child: BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
+        buildWhen: (previous, current) => previous.status != current.status,
+        builder: (context, state) {
+          switch (state.status) {
+            case BaseStatusEnum.success:
+              return const _SuccessView();
+            case BaseStatusEnum.failure:
+              return const _FailureView();
+            default:
+              return const _LoadingView();
+          }
+        },
+      ),
     );
   }
 }
@@ -68,11 +79,8 @@ class _SuccessView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
       buildWhen: (previous, current) =>
-          previous.waterSupply != current.waterSupply,
+          previous.formzStatus != current.formzStatus,
       builder: (context, state) {
-        // if (state.waterSupply == null) {
-        //   return const Center(child: EmptyWidget());
-        // }
         return DefaultTabController(
           length: 3,
           child: Stack(
@@ -97,7 +105,7 @@ class _SuccessView extends StatelessWidget {
                     horizontal: 16,
                     vertical: 10,
                   ),
-                  child: state.formzStatus.isSubmissionInProgress
+                  child: state.formzStatus == FormzStatus.submissionInProgress
                       ? const CircularProgressIndicator()
                       : MyButton(
                           title: S.of(context).button_ok,
@@ -1256,7 +1264,7 @@ class _MapTypeInput extends StatelessWidget {
               bloc.add(MapTypeChanged(mapType));
             }
           },
-          errorText: _handleErrorText(context, state),
+          // errorText: _handleErrorText(context, state),
           suffixIcon: const Icon(Icons.arrow_drop_down, size: 18),
           readOnly: true,
           textInputAction: TextInputAction.next,
@@ -1265,15 +1273,15 @@ class _MapTypeInput extends StatelessWidget {
     );
   }
 
-  String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
-    if (!state.mapTypeInput.invalid) return null;
-    switch (state.mapTypeInput.error) {
-      case WaterSupplyInputValidationError.empty:
-        return 'សូមជ្រើសរើសខ្នាតផែនទី';
-      default:
-        return null;
-    }
-  }
+  // String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
+  //   if (!state.mapTypeInput.invalid) return null;
+  //   switch (state.mapTypeInput.error) {
+  //     case WaterSupplyInputValidationError.empty:
+  //       return 'សូមជ្រើសរើសខ្នាតផែនទី';
+  //     default:
+  //       return null;
+  //   }
+  // }
 }
 
 class _MapTypeDynamicForm extends StatelessWidget {
@@ -1396,7 +1404,7 @@ class _LatInput extends StatelessWidget {
           controller: context.read<WaterSupplyEditBloc>().latetitudeController,
           onChanged: (lat) =>
               context.read<WaterSupplyEditBloc>().add(LatetitudeChanged(lat)),
-          errorText: _handleErrorText(context, state),
+          // errorText: _handleErrorText(context, state),
           textInputAction: TextInputAction.next,
           keyboardType: TextInputType.phone,
         );
@@ -1404,15 +1412,15 @@ class _LatInput extends StatelessWidget {
     );
   }
 
-  String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
-    if (!state.lateitudeInput.invalid) return null;
-    switch (state.lateitudeInput.error) {
-      case WaterSupplyInputValidationError.empty:
-        return 'សូមបញ្ចូលរយៈទទឹង';
-      default:
-        return null;
-    }
-  }
+  // String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
+  //   if (!state.lateitudeInput.invalid) return null;
+  //   switch (state.lateitudeInput.error) {
+  //     case WaterSupplyInputValidationError.empty:
+  //       return 'សូមបញ្ចូលរយៈទទឹង';
+  //     default:
+  //       return null;
+  //   }
+  // }
 }
 
 class _LongInput extends StatelessWidget {
@@ -1430,7 +1438,7 @@ class _LongInput extends StatelessWidget {
           controller: context.read<WaterSupplyEditBloc>().longtitudeController,
           onChanged: (long) =>
               context.read<WaterSupplyEditBloc>().add(LongtitudeChanged(long)),
-          errorText: _handleErrorText(context, state),
+          // errorText: _handleErrorText(context, state),
           textInputAction: TextInputAction.next,
           keyboardType: TextInputType.phone,
         );
@@ -1438,15 +1446,15 @@ class _LongInput extends StatelessWidget {
     );
   }
 
-  String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
-    if (!state.longtitudeInput.invalid) return null;
-    switch (state.longtitudeInput.error) {
-      case WaterSupplyInputValidationError.empty:
-        return 'សូមបញ្ចូលរយៈបណ្តោយ';
-      default:
-        return null;
-    }
-  }
+  // String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
+  //   if (!state.longtitudeInput.invalid) return null;
+  //   switch (state.longtitudeInput.error) {
+  //     case WaterSupplyInputValidationError.empty:
+  //       return 'សូមបញ្ចូលរយៈបណ្តោយ';
+  //     default:
+  //       return null;
+  //   }
+  // }
 }
 
 class _UTMXInput extends StatelessWidget {
@@ -1463,7 +1471,7 @@ class _UTMXInput extends StatelessWidget {
           controller: context.read<WaterSupplyEditBloc>().utmXController,
           onChanged: (y) =>
               context.read<WaterSupplyEditBloc>().add(UTMXChanged(y)),
-          errorText: _handleErrorText(context, state),
+          // errorText: _handleErrorText(context, state),
           textInputAction: TextInputAction.next,
           keyboardType: TextInputType.phone,
         );
@@ -1471,15 +1479,15 @@ class _UTMXInput extends StatelessWidget {
     );
   }
 
-  String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
-    if (!state.utmXInput.invalid) return null;
-    switch (state.utmXInput.error) {
-      case WaterSupplyInputValidationError.empty:
-        return 'សូមបញ្ចូលកូអរដោនេ UTMX';
-      default:
-        return null;
-    }
-  }
+  // String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
+  //   if (!state.utmXInput.invalid) return null;
+  //   switch (state.utmXInput.error) {
+  //     case WaterSupplyInputValidationError.empty:
+  //       return 'សូមបញ្ចូលកូអរដោនេ UTMX';
+  //     default:
+  //       return null;
+  //   }
+  // }
 }
 
 class _UTMYInput extends StatelessWidget {
@@ -1496,7 +1504,7 @@ class _UTMYInput extends StatelessWidget {
           controller: context.read<WaterSupplyEditBloc>().utmYController,
           onChanged: (y) =>
               context.read<WaterSupplyEditBloc>().add(UTMYChanged(y)),
-          errorText: _handleErrorText(context, state),
+          // errorText: _handleErrorText(context, state),
           textInputAction: TextInputAction.next,
           keyboardType: TextInputType.phone,
         );
@@ -1504,15 +1512,15 @@ class _UTMYInput extends StatelessWidget {
     );
   }
 
-  String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
-    if (!state.utmYInput.invalid) return null;
-    switch (state.utmYInput.error) {
-      case WaterSupplyInputValidationError.empty:
-        return 'សូមបញ្ចូលកូអរដោនេ UTMY';
-      default:
-        return null;
-    }
-  }
+  // String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
+  //   if (!state.utmYInput.invalid) return null;
+  //   switch (state.utmYInput.error) {
+  //     case WaterSupplyInputValidationError.empty:
+  //       return 'សូមបញ្ចូលកូអរដោនេ UTMY';
+  //     default:
+  //       return null;
+  //   }
+  // }
 }
 
 class _LatDegreeInput extends StatelessWidget {
@@ -1530,7 +1538,7 @@ class _LatDegreeInput extends StatelessWidget {
           controller: context.read<WaterSupplyEditBloc>().latDegreeController,
           onChanged: (degree) =>
               context.read<WaterSupplyEditBloc>().add(LatDegreeChanged(degree)),
-          errorText: _handleErrorText(context, state),
+          // errorText: _handleErrorText(context, state),
           textInputAction: TextInputAction.next,
           keyboardType: TextInputType.phone,
         );
@@ -1538,15 +1546,15 @@ class _LatDegreeInput extends StatelessWidget {
     );
   }
 
-  String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
-    if (!state.latDegreeInput.invalid) return null;
-    switch (state.latDegreeInput.error) {
-      case WaterSupplyInputValidationError.empty:
-        return 'សូមបញ្ចូល Degree';
-      default:
-        return null;
-    }
-  }
+  // String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
+  //   if (!state.latDegreeInput.invalid) return null;
+  //   switch (state.latDegreeInput.error) {
+  //     case WaterSupplyInputValidationError.empty:
+  //       return 'សូមបញ្ចូល Degree';
+  //     default:
+  //       return null;
+  //   }
+  // }
 }
 
 class _LatSecondInput extends StatelessWidget {
@@ -1564,7 +1572,7 @@ class _LatSecondInput extends StatelessWidget {
           controller: context.read<WaterSupplyEditBloc>().latSecondController,
           onChanged: (sec) =>
               context.read<WaterSupplyEditBloc>().add(LatSecondChanged(sec)),
-          errorText: _handleErrorText(context, state),
+          // errorText: _handleErrorText(context, state),
           textInputAction: TextInputAction.next,
           keyboardType: TextInputType.phone,
         );
@@ -1572,15 +1580,15 @@ class _LatSecondInput extends StatelessWidget {
     );
   }
 
-  String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
-    if (!state.latSecondInput.invalid) return null;
-    switch (state.latSecondInput.error) {
-      case WaterSupplyInputValidationError.empty:
-        return 'សូមបញ្ចូល Second';
-      default:
-        return null;
-    }
-  }
+  // String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
+  //   if (!state.latSecondInput.invalid) return null;
+  //   switch (state.latSecondInput.error) {
+  //     case WaterSupplyInputValidationError.empty:
+  //       return 'សូមបញ្ចូល Second';
+  //     default:
+  //       return null;
+  //   }
+  // }
 }
 
 class _LongDegreeInput extends StatelessWidget {
@@ -1599,7 +1607,7 @@ class _LongDegreeInput extends StatelessWidget {
           onChanged: (degree) => context
               .read<WaterSupplyEditBloc>()
               .add(LongDegreeChanged(degree)),
-          errorText: _handleErrorText(context, state),
+          // errorText: _handleErrorText(context, state),
           textInputAction: TextInputAction.next,
           keyboardType: TextInputType.phone,
         );
@@ -1607,15 +1615,15 @@ class _LongDegreeInput extends StatelessWidget {
     );
   }
 
-  String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
-    if (!state.longDegreeInput.invalid) return null;
-    switch (state.longDegreeInput.error) {
-      case WaterSupplyInputValidationError.empty:
-        return 'សូមបញ្ចូល Degree';
-      default:
-        return null;
-    }
-  }
+  // String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
+  //   if (!state.longDegreeInput.invalid) return null;
+  //   switch (state.longDegreeInput.error) {
+  //     case WaterSupplyInputValidationError.empty:
+  //       return 'សូមបញ្ចូល Degree';
+  //     default:
+  //       return null;
+  //   }
+  // }
 }
 
 class _LongSecondInput extends StatelessWidget {
@@ -1633,7 +1641,7 @@ class _LongSecondInput extends StatelessWidget {
           controller: context.read<WaterSupplyEditBloc>().longSecondController,
           onChanged: (sec) =>
               context.read<WaterSupplyEditBloc>().add(LongSecondChanged(sec)),
-          errorText: _handleErrorText(context, state),
+          // errorText: _handleErrorText(context, state),
           textInputAction: TextInputAction.next,
           keyboardType: TextInputType.phone,
         );
@@ -1641,15 +1649,15 @@ class _LongSecondInput extends StatelessWidget {
     );
   }
 
-  String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
-    if (!state.longSecondInput.invalid) return null;
-    switch (state.longSecondInput.error) {
-      case WaterSupplyInputValidationError.empty:
-        return 'សូមបញ្ចូល Second';
-      default:
-        return null;
-    }
-  }
+  // String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
+  //   if (!state.longSecondInput.invalid) return null;
+  //   switch (state.longSecondInput.error) {
+  //     case WaterSupplyInputValidationError.empty:
+  //       return 'សូមបញ្ចូល Second';
+  //     default:
+  //       return null;
+  //   }
+  // }
 }
 
 class _LatMinuteInput extends StatelessWidget {
@@ -1667,7 +1675,7 @@ class _LatMinuteInput extends StatelessWidget {
           controller: context.read<WaterSupplyEditBloc>().latMinuteController,
           onChanged: (min) =>
               context.read<WaterSupplyEditBloc>().add(LatMinuteChanged(min)),
-          errorText: _handleErrorText(context, state),
+          // errorText: _handleErrorText(context, state),
           textInputAction: TextInputAction.next,
           keyboardType: TextInputType.phone,
         );
@@ -1675,15 +1683,15 @@ class _LatMinuteInput extends StatelessWidget {
     );
   }
 
-  String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
-    if (!state.latMinuteInput.invalid) return null;
-    switch (state.latMinuteInput.error) {
-      case WaterSupplyInputValidationError.empty:
-        return 'សូមបញ្ចូល Minute';
-      default:
-        return null;
-    }
-  }
+  // String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
+  //   if (!state.latMinuteInput.invalid) return null;
+  //   switch (state.latMinuteInput.error) {
+  //     case WaterSupplyInputValidationError.empty:
+  //       return 'សូមបញ្ចូល Minute';
+  //     default:
+  //       return null;
+  //   }
+  // }
 }
 
 class _LongMinuteInput extends StatelessWidget {
@@ -1701,7 +1709,7 @@ class _LongMinuteInput extends StatelessWidget {
           controller: context.read<WaterSupplyEditBloc>().longMinuteController,
           onChanged: (min) =>
               context.read<WaterSupplyEditBloc>().add(LongMinuteChanged(min)),
-          errorText: _handleErrorText(context, state),
+          // errorText: _handleErrorText(context, state),
           textInputAction: TextInputAction.next,
           keyboardType: TextInputType.phone,
         );
@@ -1709,15 +1717,15 @@ class _LongMinuteInput extends StatelessWidget {
     );
   }
 
-  String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
-    if (!state.longMinuteInput.invalid) return null;
-    switch (state.longMinuteInput.error) {
-      case WaterSupplyInputValidationError.empty:
-        return 'សូមបញ្ចូល Minute';
-      default:
-        return null;
-    }
-  }
+  // String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
+  //   if (!state.longMinuteInput.invalid) return null;
+  //   switch (state.longMinuteInput.error) {
+  //     case WaterSupplyInputValidationError.empty:
+  //       return 'សូមបញ្ចូល Minute';
+  //     default:
+  //       return null;
+  //   }
+  // }
 }
 
 class _FamilyTotalInput extends StatelessWidget {
@@ -1736,7 +1744,7 @@ class _FamilyTotalInput extends StatelessWidget {
           onChanged: (total) => context
               .read<WaterSupplyEditBloc>()
               .add(FamilyTotalChanged(total)),
-          errorText: _handleErrorText(context, state),
+          // errorText: _handleErrorText(context, state),
           textInputAction: TextInputAction.next,
           keyboardType: TextInputType.phone,
         );
@@ -1744,15 +1752,15 @@ class _FamilyTotalInput extends StatelessWidget {
     );
   }
 
-  String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
-    if (!state.familyTotalInput.invalid) return null;
-    switch (state.familyTotalInput.error) {
-      case WaterSupplyInputValidationError.empty:
-        return 'សូមបញ្ចូលគ្រួសារសរុប';
-      default:
-        return null;
-    }
-  }
+  // String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
+  //   if (!state.familyTotalInput.invalid) return null;
+  //   switch (state.familyTotalInput.error) {
+  //     case WaterSupplyInputValidationError.empty:
+  //       return 'សូមបញ្ចូលគ្រួសារសរុប';
+  //     default:
+  //       return null;
+  //   }
+  // }
 }
 
 class _LocationRiskInput extends StatelessWidget {
@@ -1843,7 +1851,8 @@ class _BudgetTypeInput extends StatelessWidget {
           focusNode: context.read<WaterSupplyEditBloc>().budgetTypeFocus,
           controller: context.read<WaterSupplyEditBloc>().budgetTypeController,
           onTap: () async {
-            final budget = await DialogHelper.showAnimatedDialog<String?>(
+            final budget =
+                await DialogHelper.showAnimatedDialog<BudgetTypeEnum?>(
               animationType: DialogAnimationType.none,
               transitionDuration: const Duration(milliseconds: 200),
               pageBuilder: (context, a1, a2) {
@@ -1857,14 +1866,12 @@ class _BudgetTypeInput extends StatelessWidget {
                         ...BudgetTypeEnum.values.map(
                           (budgetType) => ListTile(
                             onTap: () {
-                              Navigator.of(context)
-                                  .pop(budgetType.getDisplayText(context));
+                              Navigator.of(context).pop(budgetType);
                             },
                             contentPadding: const EdgeInsets.symmetric(
                               horizontal: 24.0,
                             ),
-                            title:
-                                TextWidget(budgetType.getDisplayText(context)),
+                            title: TextWidget(budgetType.getDisplayText()),
                           ),
                         ),
                       ],
@@ -1893,7 +1900,7 @@ class _BudgetTypeInput extends StatelessWidget {
   String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
     if (!state.budgetTypeInput.invalid) return null;
     switch (state.budgetTypeInput.error) {
-      case WaterSupplyInputValidationError.empty:
+      case BudgetTypeInputValidationError.empty:
         return 'សូមជ្រើសរើសប្រភេទថវិកា';
       default:
         return null;
@@ -1917,7 +1924,8 @@ class _ManagementTypeInput extends StatelessWidget {
           controller:
               context.read<WaterSupplyEditBloc>().managementTypeController,
           onTap: () async {
-            final manage = await DialogHelper.showAnimatedDialog<String?>(
+            final manage =
+                await DialogHelper.showAnimatedDialog<ManagementTypeEnum?>(
               animationType: DialogAnimationType.none,
               transitionDuration: const Duration(milliseconds: 200),
               pageBuilder: (context, a1, a2) {
@@ -1931,14 +1939,12 @@ class _ManagementTypeInput extends StatelessWidget {
                         ...ManagementTypeEnum.values.map(
                           (manageType) => ListTile(
                             onTap: () {
-                              Navigator.of(context)
-                                  .pop(manageType.getDisplayText(context));
+                              Navigator.of(context).pop(manageType);
                             },
                             contentPadding: const EdgeInsets.symmetric(
                               horizontal: 24.0,
                             ),
-                            title:
-                                TextWidget(manageType.getDisplayText(context)),
+                            title: TextWidget(manageType.getDisplayText()),
                           ),
                         ),
                       ],
@@ -1967,7 +1973,7 @@ class _ManagementTypeInput extends StatelessWidget {
   String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
     if (!state.managementTypeInput.invalid) return null;
     switch (state.managementTypeInput.error) {
-      case WaterSupplyInputValidationError.empty:
+      case ManagementTypeInputValidationError.empty:
         return 'សូមជ្រើសរើសប្រភេទនៃការគ្រប់គ្រង';
       default:
         return null;
@@ -1992,22 +1998,22 @@ class _ManagamentNameInput extends StatelessWidget {
           onChanged: (value) => context
               .read<WaterSupplyEditBloc>()
               .add(ManagementNameChanged(value)),
-          errorText: _handleErrorText(context, state),
+          // errorText: _handleErrorText(context, state),
           textInputAction: TextInputAction.next,
         );
       },
     );
   }
 
-  String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
-    if (!state.managementNameInput.invalid) return null;
-    switch (state.managementNameInput.error) {
-      case WaterSupplyInputValidationError.empty:
-        return 'សូមបញ្ចូលឈ្មោះអ្នកគ្រប់គ្រង';
-      default:
-        return null;
-    }
-  }
+  // String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
+  //   if (!state.managementNameInput.invalid) return null;
+  //   switch (state.managementNameInput.error) {
+  //     case WaterSupplyInputValidationError.empty:
+  //       return 'សូមបញ្ចូលឈ្មោះអ្នកគ្រប់គ្រង';
+  //     default:
+  //       return null;
+  //   }
+  // }
 }
 
 class _ReceiverTotalInput extends StatelessWidget {
@@ -2355,22 +2361,22 @@ class _CompanyNameInput extends StatelessWidget {
           onChanged: (value) => context
               .read<WaterSupplyEditBloc>()
               .add(CompanyNameChanged(value)),
-          errorText: _handleErrorText(context, state),
+          // errorText: _handleErrorText(context, state),
           textInputAction: TextInputAction.next,
         );
       },
     );
   }
 
-  String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
-    if (!state.companyNameInput.invalid) return null;
-    switch (state.companyNameInput.error) {
-      case WaterSupplyInputValidationError.empty:
-        return 'សូមបញ្ចូលសាងសង់ដោយក្រុមហ៊ុន';
-      default:
-        return null;
-    }
-  }
+  // String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
+  //   if (!state.companyNameInput.invalid) return null;
+  //   switch (state.companyNameInput.error) {
+  //     case WaterSupplyInputValidationError.empty:
+  //       return 'សូមបញ្ចូលសាងសង់ដោយក្រុមហ៊ុន';
+  //     default:
+  //       return null;
+  //   }
+  // }
 }
 
 class _ConstructionCodeInput extends StatelessWidget {
@@ -2390,22 +2396,22 @@ class _ConstructionCodeInput extends StatelessWidget {
           onChanged: (value) => context
               .read<WaterSupplyEditBloc>()
               .add(ConstructionCodeChanged(value)),
-          errorText: _handleErrorText(context, state),
+          // errorText: _handleErrorText(context, state),
           textInputAction: TextInputAction.next,
         );
       },
     );
   }
 
-  String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
-    if (!state.constructionCodeInput.invalid) return null;
-    switch (state.constructionCodeInput.error) {
-      case WaterSupplyInputValidationError.empty:
-        return 'សូមបញ្ចូលលេខកូដសំណង់';
-      default:
-        return null;
-    }
-  }
+  // String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
+  //   if (!state.constructionCodeInput.invalid) return null;
+  //   switch (state.constructionCodeInput.error) {
+  //     case WaterSupplyInputValidationError.empty:
+  //       return 'សូមបញ្ចូលលេខកូដសំណង់';
+  //     default:
+  //       return null;
+  //   }
+  // }
 }
 
 class _WaterSupplyTypeInput extends StatelessWidget {
@@ -2494,7 +2500,7 @@ class _ContainerInput extends StatelessWidget {
           controller: context.read<WaterSupplyEditBloc>().containerController,
           onChanged: (val) =>
               context.read<WaterSupplyEditBloc>().add(ContainerChanged(val)),
-          errorText: _handleErrorText(context, state),
+          // errorText: _handleErrorText(context, state),
           textInputAction: TextInputAction.next,
           keyboardType: TextInputType.phone,
         );
@@ -2502,15 +2508,15 @@ class _ContainerInput extends StatelessWidget {
     );
   }
 
-  String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
-    if (!state.containerInput.invalid) return null;
-    switch (state.containerInput.error) {
-      case WaterSupplyInputValidationError.empty:
-        return 'សូមបញ្ចូលអាងស្តុបទឹកក្រោមដី(m3)';
-      default:
-        return null;
-    }
-  }
+  // String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
+  //   if (!state.containerInput.invalid) return null;
+  //   switch (state.containerInput.error) {
+  //     case WaterSupplyInputValidationError.empty:
+  //       return 'សូមបញ្ចូលអាងស្តុបទឹកក្រោមដី(m3)';
+  //     default:
+  //       return null;
+  //   }
+  // }
 }
 
 class _CapacityInput extends StatelessWidget {
@@ -2528,7 +2534,7 @@ class _CapacityInput extends StatelessWidget {
           controller: context.read<WaterSupplyEditBloc>().capacityController,
           onChanged: (val) =>
               context.read<WaterSupplyEditBloc>().add(CapacityChanged(val)),
-          errorText: _handleErrorText(context, state),
+          // errorText: _handleErrorText(context, state),
           textInputAction: TextInputAction.next,
           keyboardType: TextInputType.phone,
         );
@@ -2536,15 +2542,15 @@ class _CapacityInput extends StatelessWidget {
     );
   }
 
-  String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
-    if (!state.capacityInput.invalid) return null;
-    switch (state.capacityInput.error) {
-      case WaterSupplyInputValidationError.empty:
-        return 'សូមបញ្ចូលសមត្ថភាពផលិតទឹក(m3/h)';
-      default:
-        return null;
-    }
-  }
+  // String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
+  //   if (!state.capacityInput.invalid) return null;
+  //   switch (state.capacityInput.error) {
+  //     case WaterSupplyInputValidationError.empty:
+  //       return 'សូមបញ្ចូលសមត្ថភាពផលិតទឹក(m3/h)';
+  //     default:
+  //       return null;
+  //   }
+  // }
 }
 
 class _WellTypeInput extends StatelessWidget {
@@ -2631,7 +2637,7 @@ class _WellDepthInput extends StatelessWidget {
           controller: context.read<WaterSupplyEditBloc>().wellDepthController,
           onChanged: (val) =>
               context.read<WaterSupplyEditBloc>().add(WellDepthChanged(val)),
-          errorText: _handleErrorText(context, state),
+          // errorText: _handleErrorText(context, state),
           textInputAction: TextInputAction.next,
           keyboardType: TextInputType.phone,
         );
@@ -2639,15 +2645,15 @@ class _WellDepthInput extends StatelessWidget {
     );
   }
 
-  String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
-    if (!state.wellDepthInput.invalid) return null;
-    switch (state.wellDepthInput.error) {
-      case WaterSupplyInputValidationError.empty:
-        return 'សូមបញ្ចូលជម្រៅអណ្តូង(m)';
-      default:
-        return null;
-    }
-  }
+  // String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
+  //   if (!state.wellDepthInput.invalid) return null;
+  //   switch (state.wellDepthInput.error) {
+  //     case WaterSupplyInputValidationError.empty:
+  //       return 'សូមបញ្ចូលជម្រៅអណ្តូង(m)';
+  //     default:
+  //       return null;
+  //   }
+  // }
 }
 
 class _WellScreenInput extends StatelessWidget {
@@ -2665,7 +2671,7 @@ class _WellScreenInput extends StatelessWidget {
           controller: context.read<WaterSupplyEditBloc>().wellScreenController,
           onChanged: (val) =>
               context.read<WaterSupplyEditBloc>().add(WellScreenChanged(val)),
-          errorText: _handleErrorText(context, state),
+          // errorText: _handleErrorText(context, state),
           textInputAction: TextInputAction.next,
           keyboardType: TextInputType.phone,
         );
@@ -2673,15 +2679,15 @@ class _WellScreenInput extends StatelessWidget {
     );
   }
 
-  String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
-    if (!state.wellScreenInput.invalid) return null;
-    switch (state.wellScreenInput.error) {
-      case WaterSupplyInputValidationError.empty:
-        return 'សូមបញ្ចូលជម្រៅតម្រង (Screen) (m)';
-      default:
-        return null;
-    }
-  }
+  // String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
+  //   if (!state.wellScreenInput.invalid) return null;
+  //   switch (state.wellScreenInput.error) {
+  //     case WaterSupplyInputValidationError.empty:
+  //       return 'សូមបញ្ចូលជម្រៅតម្រង (Screen) (m)';
+  //     default:
+  //       return null;
+  //   }
+  // }
 }
 
 class _WellThearInput extends StatelessWidget {
@@ -2699,7 +2705,7 @@ class _WellThearInput extends StatelessWidget {
           controller: context.read<WaterSupplyEditBloc>().wellThearController,
           onChanged: (val) =>
               context.read<WaterSupplyEditBloc>().add(WellThearChanged(val)),
-          errorText: _handleErrorText(context, state),
+          // errorText: _handleErrorText(context, state),
           textInputAction: TextInputAction.next,
           keyboardType: TextInputType.phone,
         );
@@ -2707,15 +2713,15 @@ class _WellThearInput extends StatelessWidget {
     );
   }
 
-  String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
-    if (!state.wellThearInput.invalid) return null;
-    switch (state.wellThearInput.error) {
-      case WaterSupplyInputValidationError.empty:
-        return 'សូមបញ្ចូលធារទឹក (m3/h)';
-      default:
-        return null;
-    }
-  }
+  // String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
+  //   if (!state.wellThearInput.invalid) return null;
+  //   switch (state.wellThearInput.error) {
+  //     case WaterSupplyInputValidationError.empty:
+  //       return 'សូមបញ្ចូលធារទឹក (m3/h)';
+  //     default:
+  //       return null;
+  //   }
+  // }
 }
 
 class _WaterQualityInput extends StatelessWidget {
@@ -2802,7 +2808,7 @@ class _NiVoStaticInput extends StatelessWidget {
           controller: context.read<WaterSupplyEditBloc>().niVoStaticController,
           onChanged: (val) =>
               context.read<WaterSupplyEditBloc>().add(NiVoStaticChanged(val)),
-          errorText: _handleErrorText(context, state),
+          // errorText: _handleErrorText(context, state),
           textInputAction: TextInputAction.next,
           keyboardType: TextInputType.phone,
         );
@@ -2810,15 +2816,15 @@ class _NiVoStaticInput extends StatelessWidget {
     );
   }
 
-  String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
-    if (!state.niVoStaticInput.invalid) return null;
-    switch (state.niVoStaticInput.error) {
-      case WaterSupplyInputValidationError.empty:
-        return 'សូមបញ្ចូលនីវ៉ូស្តាទិច (m)';
-      default:
-        return null;
-    }
-  }
+  // String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
+  //   if (!state.niVoStaticInput.invalid) return null;
+  //   switch (state.niVoStaticInput.error) {
+  //     case WaterSupplyInputValidationError.empty:
+  //       return 'សូមបញ្ចូលនីវ៉ូស្តាទិច (m)';
+  //     default:
+  //       return null;
+  //   }
+  // }
 }
 
 class _NiVoDynamicInput extends StatelessWidget {
@@ -2836,7 +2842,7 @@ class _NiVoDynamicInput extends StatelessWidget {
           controller: context.read<WaterSupplyEditBloc>().niVoDynamicController,
           onChanged: (val) =>
               context.read<WaterSupplyEditBloc>().add(NiVoDynamicChanged(val)),
-          errorText: _handleErrorText(context, state),
+          // errorText: _handleErrorText(context, state),
           textInputAction: TextInputAction.next,
           keyboardType: TextInputType.phone,
         );
@@ -2844,15 +2850,15 @@ class _NiVoDynamicInput extends StatelessWidget {
     );
   }
 
-  String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
-    if (!state.niVoDynamicInput.invalid) return null;
-    switch (state.niVoDynamicInput.error) {
-      case WaterSupplyInputValidationError.empty:
-        return 'សូមបញ្ចូលនីវ៉ូឌីណាមិច (m)';
-      default:
-        return null;
-    }
-  }
+  // String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
+  //   if (!state.niVoDynamicInput.invalid) return null;
+  //   switch (state.niVoDynamicInput.error) {
+  //     case WaterSupplyInputValidationError.empty:
+  //       return 'សូមបញ្ចូលនីវ៉ូឌីណាមិច (m)';
+  //     default:
+  //       return null;
+  //   }
+  // }
 }
 
 class _CheckWaterQualityInput extends StatelessWidget {
@@ -3008,7 +3014,7 @@ class _AirPoolInput extends StatelessWidget {
           controller: context.read<WaterSupplyEditBloc>().ariPoolController,
           onChanged: (val) =>
               context.read<WaterSupplyEditBloc>().add(AirPoolChanged(val)),
-          errorText: _handleErrorText(context, state),
+          // errorText: _handleErrorText(context, state),
           textInputAction: TextInputAction.next,
           keyboardType: TextInputType.phone,
         );
@@ -3016,15 +3022,15 @@ class _AirPoolInput extends StatelessWidget {
     );
   }
 
-  String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
-    if (!state.airPoolInput.invalid) return null;
-    switch (state.airPoolInput.error) {
-      case WaterSupplyInputValidationError.empty:
-        return 'សូមបញ្ចូលអាងអាកាស (m)';
-      default:
-        return null;
-    }
-  }
+  // String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
+  //   if (!state.airPoolInput.invalid) return null;
+  //   switch (state.airPoolInput.error) {
+  //     case WaterSupplyInputValidationError.empty:
+  //       return 'សូមបញ្ចូលអាងអាកាស (m)';
+  //     default:
+  //       return null;
+  //   }
+  // }
 }
 
 class _FilterTankInput extends StatelessWidget {
@@ -3111,7 +3117,7 @@ class _ConnectorInput extends StatelessWidget {
           controller: context.read<WaterSupplyEditBloc>().connectorController,
           onChanged: (val) =>
               context.read<WaterSupplyEditBloc>().add(ConnectorChanged(val)),
-          errorText: _handleErrorText(context, state),
+          // errorText: _handleErrorText(context, state),
           textInputAction: TextInputAction.next,
           keyboardType: TextInputType.phone,
         );
@@ -3119,15 +3125,15 @@ class _ConnectorInput extends StatelessWidget {
     );
   }
 
-  String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
-    if (!state.connectorInput.invalid) return null;
-    switch (state.connectorInput.error) {
-      case WaterSupplyInputValidationError.empty:
-        return 'សូមបញ្ចូលចំនួនតំណដែលបានត';
-      default:
-        return null;
-    }
-  }
+  // String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
+  //   if (!state.connectorInput.invalid) return null;
+  //   switch (state.connectorInput.error) {
+  //     case WaterSupplyInputValidationError.empty:
+  //       return 'សូមបញ្ចូលចំនួនតំណដែលបានត';
+  //     default:
+  //       return null;
+  //   }
+  // }
 }
 
 class _PipeLenghtInput extends StatelessWidget {
@@ -3145,7 +3151,7 @@ class _PipeLenghtInput extends StatelessWidget {
           controller: context.read<WaterSupplyEditBloc>().pipeLenghtController,
           onChanged: (val) =>
               context.read<WaterSupplyEditBloc>().add(PipeLenghtChanged(val)),
-          errorText: _handleErrorText(context, state),
+          // errorText: _handleErrorText(context, state),
           textInputAction: TextInputAction.next,
           keyboardType: TextInputType.phone,
         );
@@ -3153,15 +3159,15 @@ class _PipeLenghtInput extends StatelessWidget {
     );
   }
 
-  String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
-    if (!state.pipeLenghtInput.invalid) return null;
-    switch (state.pipeLenghtInput.error) {
-      case WaterSupplyInputValidationError.empty:
-        return 'សូមបញ្ចូលប្រវែងបណ្តោយទុយោមេ (m)';
-      default:
-        return null;
-    }
-  }
+  // String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
+  //   if (!state.pipeLenghtInput.invalid) return null;
+  //   switch (state.pipeLenghtInput.error) {
+  //     case WaterSupplyInputValidationError.empty:
+  //       return 'សូមបញ្ចូលប្រវែងបណ្តោយទុយោមេ (m)';
+  //     default:
+  //       return null;
+  //   }
+  // }
 }
 
 class _PipeStatusInput extends StatelessWidget {
@@ -3317,22 +3323,22 @@ class _CoverageInput extends StatelessWidget {
           controller: context.read<WaterSupplyEditBloc>().coverageController,
           onChanged: (val) =>
               context.read<WaterSupplyEditBloc>().add(CoverageChanged(val)),
-          errorText: _handleErrorText(context, state),
+          // errorText: _handleErrorText(context, state),
           textInputAction: TextInputAction.next,
         );
       },
     );
   }
 
-  String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
-    if (!state.coverageInput.invalid) return null;
-    switch (state.coverageInput.error) {
-      case WaterSupplyInputValidationError.empty:
-        return 'សូមបញ្ចូលភូមិ/ឃុំគ្របដណ្តប់';
-      default:
-        return null;
-    }
-  }
+  // String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
+  //   if (!state.coverageInput.invalid) return null;
+  //   switch (state.coverageInput.error) {
+  //     case WaterSupplyInputValidationError.empty:
+  //       return 'សូមបញ្ចូលភូមិ/ឃុំគ្របដណ្តប់';
+  //     default:
+  //       return null;
+  //   }
+  // }
 }
 
 class _PondLatInput extends StatelessWidget {
@@ -3350,7 +3356,7 @@ class _PondLatInput extends StatelessWidget {
           controller: context.read<WaterSupplyEditBloc>().pondLatController,
           onChanged: (val) =>
               context.read<WaterSupplyEditBloc>().add(PondLatChanged(val)),
-          errorText: _handleErrorText(context, state),
+          // errorText: _handleErrorText(context, state),
           textInputAction: TextInputAction.next,
           keyboardType: TextInputType.phone,
         );
@@ -3358,15 +3364,15 @@ class _PondLatInput extends StatelessWidget {
     );
   }
 
-  String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
-    if (!state.pondLatInput.invalid) return null;
-    switch (state.pondLatInput.error) {
-      case WaterSupplyInputValidationError.empty:
-        return 'សូមបញ្ចូលទទឹងស្រះ (ម៉ែត្រ)';
-      default:
-        return null;
-    }
-  }
+  // String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
+  //   if (!state.pondLatInput.invalid) return null;
+  //   switch (state.pondLatInput.error) {
+  //     case WaterSupplyInputValidationError.empty:
+  //       return 'សូមបញ្ចូលទទឹងស្រះ (ម៉ែត្រ)';
+  //     default:
+  //       return null;
+  //   }
+  // }
 }
 
 class _PondLongInput extends StatelessWidget {
@@ -3384,7 +3390,7 @@ class _PondLongInput extends StatelessWidget {
           controller: context.read<WaterSupplyEditBloc>().pondLongController,
           onChanged: (val) =>
               context.read<WaterSupplyEditBloc>().add(PondLongChanged(val)),
-          errorText: _handleErrorText(context, state),
+          // errorText: _handleErrorText(context, state),
           textInputAction: TextInputAction.next,
           keyboardType: TextInputType.phone,
         );
@@ -3392,15 +3398,15 @@ class _PondLongInput extends StatelessWidget {
     );
   }
 
-  String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
-    if (!state.pondLongInput.invalid) return null;
-    switch (state.pondLongInput.error) {
-      case WaterSupplyInputValidationError.empty:
-        return 'សូមបញ្ចូលបណ្តោយស្រះ (ម៉ែត្រ)';
-      default:
-        return null;
-    }
-  }
+  // String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
+  //   if (!state.pondLongInput.invalid) return null;
+  //   switch (state.pondLongInput.error) {
+  //     case WaterSupplyInputValidationError.empty:
+  //       return 'សូមបញ្ចូលបណ្តោយស្រះ (ម៉ែត្រ)';
+  //     default:
+  //       return null;
+  //   }
+  // }
 }
 
 class _PondDepthInput extends StatelessWidget {
@@ -3418,7 +3424,7 @@ class _PondDepthInput extends StatelessWidget {
           controller: context.read<WaterSupplyEditBloc>().pondDepthController,
           onChanged: (val) =>
               context.read<WaterSupplyEditBloc>().add(PondDepthChanged(val)),
-          errorText: _handleErrorText(context, state),
+          // errorText: _handleErrorText(context, state),
           textInputAction: TextInputAction.next,
           keyboardType: TextInputType.phone,
         );
@@ -3426,15 +3432,15 @@ class _PondDepthInput extends StatelessWidget {
     );
   }
 
-  String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
-    if (!state.pondDepthInput.invalid) return null;
-    switch (state.pondDepthInput.error) {
-      case WaterSupplyInputValidationError.empty:
-        return 'សូមបញ្ចូលជម្រៅស្រះ (ម៉ែត្រ)';
-      default:
-        return null;
-    }
-  }
+  // String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
+  //   if (!state.pondDepthInput.invalid) return null;
+  //   switch (state.pondDepthInput.error) {
+  //     case WaterSupplyInputValidationError.empty:
+  //       return 'សូមបញ្ចូលជម្រៅស្រះ (ម៉ែត្រ)';
+  //     default:
+  //       return null;
+  //   }
+  // }
 }
 
 class _PondFilterInput extends StatelessWidget {
@@ -3485,7 +3491,7 @@ class _PondFilterInput extends StatelessWidget {
               bloc.add(PondFilterChanged(type));
             }
           },
-          errorText: _handleErrorText(context, state),
+          // errorText: _handleErrorText(context, state),
           suffixIcon: const Icon(Icons.arrow_drop_down, size: 18),
           readOnly: true,
           textInputAction: TextInputAction.next,
@@ -3494,15 +3500,15 @@ class _PondFilterInput extends StatelessWidget {
     );
   }
 
-  String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
-    if (!state.pondFilterInput.invalid) return null;
-    switch (state.pondFilterInput.error) {
-      case WaterSupplyInputValidationError.empty:
-        return 'សូមជ្រើសរើសអាងចម្រោះ';
-      default:
-        return null;
-    }
-  }
+  // String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
+  //   if (!state.pondFilterInput.invalid) return null;
+  //   switch (state.pondFilterInput.error) {
+  //     case WaterSupplyInputValidationError.empty:
+  //       return 'សូមជ្រើសរើសអាងចម្រោះ';
+  //     default:
+  //       return null;
+  //   }
+  // }
 }
 
 class _PondTypeInput extends StatelessWidget {
@@ -3553,7 +3559,7 @@ class _PondTypeInput extends StatelessWidget {
               bloc.add(PondTypeChanged(type));
             }
           },
-          errorText: _handleErrorText(context, state),
+          // errorText: _handleErrorText(context, state),
           suffixIcon: const Icon(Icons.arrow_drop_down, size: 18),
           readOnly: true,
           textInputAction: TextInputAction.next,
@@ -3562,15 +3568,15 @@ class _PondTypeInput extends StatelessWidget {
     );
   }
 
-  String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
-    if (!state.pondTypeInput.invalid) return null;
-    switch (state.pondTypeInput.error) {
-      case WaterSupplyInputValidationError.empty:
-        return 'សូមជ្រើសរើសប្រភេទស្រះ';
-      default:
-        return null;
-    }
-  }
+  // String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
+  //   if (!state.pondTypeInput.invalid) return null;
+  //   switch (state.pondTypeInput.error) {
+  //     case WaterSupplyInputValidationError.empty:
+  //       return 'សូមជ្រើសរើសប្រភេទស្រះ';
+  //     default:
+  //       return null;
+  //   }
+  // }
 }
 
 class _SeasonInput extends StatelessWidget {
@@ -3621,7 +3627,7 @@ class _SeasonInput extends StatelessWidget {
               bloc.add(SeasonChanged(type));
             }
           },
-          errorText: _handleErrorText(context, state),
+          // errorText: _handleErrorText(context, state),
           suffixIcon: const Icon(Icons.arrow_drop_down, size: 18),
           readOnly: true,
           textInputAction: TextInputAction.next,
@@ -3630,15 +3636,15 @@ class _SeasonInput extends StatelessWidget {
     );
   }
 
-  String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
-    if (!state.seasonInput.invalid) return null;
-    switch (state.seasonInput.error) {
-      case WaterSupplyInputValidationError.empty:
-        return 'សូមជ្រើសរើសរដូវប្រាំង';
-      default:
-        return null;
-    }
-  }
+  // String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
+  //   if (!state.seasonInput.invalid) return null;
+  //   switch (state.seasonInput.error) {
+  //     case WaterSupplyInputValidationError.empty:
+  //       return 'សូមជ្រើសរើសរដូវប្រាំង';
+  //     default:
+  //       return null;
+  //   }
+  // }
 }
 
 class _PondStatusInput extends StatelessWidget {
@@ -3689,7 +3695,7 @@ class _PondStatusInput extends StatelessWidget {
               bloc.add(PondStatusChanged(type));
             }
           },
-          errorText: _handleErrorText(context, state),
+          // errorText: _handleErrorText(context, state),
           suffixIcon: const Icon(Icons.arrow_drop_down, size: 18),
           readOnly: true,
           textInputAction: TextInputAction.next,
@@ -3698,15 +3704,15 @@ class _PondStatusInput extends StatelessWidget {
     );
   }
 
-  String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
-    if (!state.pondStatusInput.invalid) return null;
-    switch (state.pondStatusInput.error) {
-      case WaterSupplyInputValidationError.empty:
-        return 'សូមជ្រើសរើសស្ថានភាពស្រះ';
-      default:
-        return null;
-    }
-  }
+  // String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
+  //   if (!state.pondStatusInput.invalid) return null;
+  //   switch (state.pondStatusInput.error) {
+  //     case WaterSupplyInputValidationError.empty:
+  //       return 'សូមជ្រើសរើសស្ថានភាពស្រះ';
+  //     default:
+  //       return null;
+  //   }
+  // }
 }
 
 class _UsingTypeInput extends StatelessWidget {
@@ -3757,7 +3763,7 @@ class _UsingTypeInput extends StatelessWidget {
               bloc.add(UsingTypeChanged(type));
             }
           },
-          errorText: _handleErrorText(context, state),
+          // errorText: _handleErrorText(context, state),
           suffixIcon: const Icon(Icons.arrow_drop_down, size: 18),
           readOnly: true,
           textInputAction: TextInputAction.next,
@@ -3766,15 +3772,15 @@ class _UsingTypeInput extends StatelessWidget {
     );
   }
 
-  String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
-    if (!state.usingTypeInput.invalid) return null;
-    switch (state.usingTypeInput.error) {
-      case WaterSupplyInputValidationError.empty:
-        return 'សូមជ្រើសរើសប្រភេទនៃការប្រើប្រាស់';
-      default:
-        return null;
-    }
-  }
+  // String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
+  //   if (!state.usingTypeInput.invalid) return null;
+  //   switch (state.usingTypeInput.error) {
+  //     case WaterSupplyInputValidationError.empty:
+  //       return 'សូមជ្រើសរើសប្រភេទនៃការប្រើប្រាស់';
+  //     default:
+  //       return null;
+  //   }
+  // }
 }
 
 class _TankStatusInput extends StatelessWidget {
@@ -3825,7 +3831,7 @@ class _TankStatusInput extends StatelessWidget {
               bloc.add(TankStatusChanged(type));
             }
           },
-          errorText: _handleErrorText(context, state),
+          // errorText: _handleErrorText(context, state),
           suffixIcon: const Icon(Icons.arrow_drop_down, size: 18),
           readOnly: true,
           textInputAction: TextInputAction.next,
@@ -3834,15 +3840,15 @@ class _TankStatusInput extends StatelessWidget {
     );
   }
 
-  String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
-    if (!state.tankStatusInput.invalid) return null;
-    switch (state.tankStatusInput.error) {
-      case WaterSupplyInputValidationError.empty:
-        return 'សូមជ្រើសរើសស្ថានភាពអាង';
-      default:
-        return null;
-    }
-  }
+  // String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
+  //   if (!state.tankStatusInput.invalid) return null;
+  //   switch (state.tankStatusInput.error) {
+  //     case WaterSupplyInputValidationError.empty:
+  //       return 'សូមជ្រើសរើសស្ថានភាពអាង';
+  //     default:
+  //       return null;
+  //   }
+  // }
 }
 
 class _CapacityTypeInput extends StatelessWidget {
@@ -3893,7 +3899,7 @@ class _CapacityTypeInput extends StatelessWidget {
               bloc.add(CapacityTypeChanged(type));
             }
           },
-          errorText: _handleErrorText(context, state),
+          // errorText: _handleErrorText(context, state),
           suffixIcon: const Icon(Icons.arrow_drop_down, size: 18),
           readOnly: true,
           textInputAction: TextInputAction.next,
@@ -3902,15 +3908,15 @@ class _CapacityTypeInput extends StatelessWidget {
     );
   }
 
-  String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
-    if (!state.capacityTypeInput.invalid) return null;
-    switch (state.capacityTypeInput.error) {
-      case WaterSupplyInputValidationError.empty:
-        return 'សូមជ្រើសរើសចំណុះ';
-      default:
-        return null;
-    }
-  }
+  // String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
+  //   if (!state.capacityTypeInput.invalid) return null;
+  //   switch (state.capacityTypeInput.error) {
+  //     case WaterSupplyInputValidationError.empty:
+  //       return 'សូមជ្រើសរើសចំណុះ';
+  //     default:
+  //       return null;
+  //   }
+  // }
 }
 
 class _SupplierInput extends StatelessWidget {
@@ -3961,7 +3967,7 @@ class _SupplierInput extends StatelessWidget {
               bloc.add(SupplierChanged(type));
             }
           },
-          errorText: _handleErrorText(context, state),
+          // errorText: _handleErrorText(context, state),
           suffixIcon: const Icon(Icons.arrow_drop_down, size: 18),
           readOnly: true,
           textInputAction: TextInputAction.next,
@@ -3970,15 +3976,15 @@ class _SupplierInput extends StatelessWidget {
     );
   }
 
-  String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
-    if (!state.supplierInput.invalid) return null;
-    switch (state.supplierInput.error) {
-      case WaterSupplyInputValidationError.empty:
-        return 'សូមជ្រើសរើសអាជ្ញាបណ្ណ';
-      default:
-        return null;
-    }
-  }
+  // String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
+  //   if (!state.supplierInput.invalid) return null;
+  //   switch (state.supplierInput.error) {
+  //     case WaterSupplyInputValidationError.empty:
+  //       return 'សូមជ្រើសរើសអាជ្ញាបណ្ណ';
+  //     default:
+  //       return null;
+  //   }
+  // }
 }
 
 class _SupplierDateInput extends StatelessWidget {
@@ -4010,7 +4016,7 @@ class _SupplierDateInput extends StatelessWidget {
                 Icons.calendar_today_outlined,
                 size: 18,
               ),
-              errorText: _handleErrorText(context, state),
+              // errorText: _handleErrorText(context, state),
             ),
           ],
         );
@@ -4018,15 +4024,15 @@ class _SupplierDateInput extends StatelessWidget {
     );
   }
 
-  String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
-    if (!state.supplierDateInput.invalid) return null;
-    switch (state.supplierDateInput.error) {
-      case DOCInputValidationError.empty:
-        return 'សូមជ្រើសរើសថ្ងៃ ខែ ឆ្នាំទទួលបានអាជ្ញាបណ្ណ';
-      default:
-        return null;
-    }
-  }
+  // String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
+  //   if (!state.supplierDateInput.invalid) return null;
+  //   switch (state.supplierDateInput.error) {
+  //     case DOCInputValidationError.empty:
+  //       return 'សូមជ្រើសរើសថ្ងៃ ខែ ឆ្នាំទទួលបានអាជ្ញាបណ្ណ';
+  //     default:
+  //       return null;
+  //   }
+  // }
 
   Future<DateTime?> _pickDate(BuildContext context) async {
     final DateTime? date = await showDatePicker(
@@ -4069,7 +4075,7 @@ class _DueDateInput extends StatelessWidget {
                 Icons.calendar_today_outlined,
                 size: 18,
               ),
-              errorText: _handleErrorText(context, state),
+              // errorText: _handleErrorText(context, state),
             ),
           ],
         );
@@ -4077,15 +4083,15 @@ class _DueDateInput extends StatelessWidget {
     );
   }
 
-  String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
-    if (!state.dueDateInput.invalid) return null;
-    switch (state.dueDateInput.error) {
-      case DOCInputValidationError.empty:
-        return 'សូមជ្រើសរើសថ្ងៃ ខែ ឆ្នាំផុតកំណត់អាជ្ញាបណ្ណ';
-      default:
-        return null;
-    }
-  }
+  // String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
+  //   if (!state.dueDateInput.invalid) return null;
+  //   switch (state.dueDateInput.error) {
+  //     case DOCInputValidationError.empty:
+  //       return 'សូមជ្រើសរើសថ្ងៃ ខែ ឆ្នាំផុតកំណត់អាជ្ញាបណ្ណ';
+  //     default:
+  //       return null;
+  //   }
+  // }
 
   Future<DateTime?> _pickDate(BuildContext context) async {
     final DateTime? date = await showDatePicker(
@@ -4148,7 +4154,7 @@ class _FilterInput extends StatelessWidget {
               bloc.add(FilterChanged(type));
             }
           },
-          errorText: _handleErrorText(context, state),
+          // errorText: _handleErrorText(context, state),
           suffixIcon: const Icon(Icons.arrow_drop_down, size: 18),
           readOnly: true,
           textInputAction: TextInputAction.next,
@@ -4157,15 +4163,15 @@ class _FilterInput extends StatelessWidget {
     );
   }
 
-  String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
-    if (!state.filterInput.invalid) return null;
-    switch (state.filterInput.error) {
-      case WaterSupplyInputValidationError.empty:
-        return 'សូមជ្រើសរើសប្រព័ន្ធចម្រោះទឹក';
-      default:
-        return null;
-    }
-  }
+  // String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
+  //   if (!state.filterInput.invalid) return null;
+  //   switch (state.filterInput.error) {
+  //     case WaterSupplyInputValidationError.empty:
+  //       return 'សូមជ្រើសរើសប្រព័ន្ធចម្រោះទឹក';
+  //     default:
+  //       return null;
+  //   }
+  // }
 }
 
 class _AirStationInput extends StatelessWidget {
@@ -4216,7 +4222,7 @@ class _AirStationInput extends StatelessWidget {
               bloc.add(AirStationChanged(type));
             }
           },
-          errorText: _handleErrorText(context, state),
+          // errorText: _handleErrorText(context, state),
           suffixIcon: const Icon(Icons.arrow_drop_down, size: 18),
           readOnly: true,
           textInputAction: TextInputAction.next,
@@ -4225,13 +4231,13 @@ class _AirStationInput extends StatelessWidget {
     );
   }
 
-  String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
-    if (!state.airStationInput.invalid) return null;
-    switch (state.airStationInput.error) {
-      case WaterSupplyInputValidationError.empty:
-        return 'សូមជ្រើសរើសស្ថានភាពស្ថានីយ';
-      default:
-        return null;
-    }
-  }
+  // String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
+  //   if (!state.airStationInput.invalid) return null;
+  //   switch (state.airStationInput.error) {
+  //     case WaterSupplyInputValidationError.empty:
+  //       return 'សូមជ្រើសរើសស្ថានភាពស្ថានីយ';
+  //     default:
+  //       return null;
+  //   }
+  // }
 }

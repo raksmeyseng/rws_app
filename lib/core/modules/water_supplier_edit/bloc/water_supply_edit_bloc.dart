@@ -4,13 +4,18 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 import 'package:rws_app/config/routes/application.dart';
 import 'package:rws_app/core/enum/base_status_enum.dart';
+import 'package:rws_app/core/enum/budget_type.dart';
+import 'package:rws_app/core/enum/management_type.dart';
 import 'package:rws_app/core/modules/my_draft/models/my_draft_model.dart';
+import 'package:rws_app/core/modules/water_supplier_edit/model/budget_type_input.dart';
 import 'package:rws_app/core/modules/water_supplier_edit/model/doc_input.dart';
+import 'package:rws_app/core/modules/water_supplier_edit/model/management_type_input.dart';
 import 'package:rws_app/core/modules/water_supplier_edit/model/payload_water_supply_model.dart';
 import 'package:rws_app/core/modules/water_supplier_edit/model/water_supply_input.dart';
 import 'package:rws_app/core/modules/water_supplier_edit/repositories/water_supply_edit_repository.dart';
 import 'package:rws_app/core/modules/water_supply_details/model/water_supply_model.dart';
 import 'package:rws_app/utils/helpers/date_helper.dart';
+import 'package:rws_app/utils/helpers/loading_helper.dart';
 
 part 'water_supply_edit_event.dart';
 part 'water_supply_edit_state.dart';
@@ -477,8 +482,8 @@ class WaterSupplyEditBloc
     BudgetTypeChanged event,
     Emitter<WaterSupplyEditState> emit,
   ) {
-    final budgetType = WaterSupplyInput.pure(event.budgetType);
-    budgetTypeController.text = event.budgetType;
+    final budgetType = BudgetTypeInput.pure(event.budgetType);
+    budgetTypeController.text = event.budgetType.getDisplayText();
     emit(state.copyWith(budgetTypeInput: budgetType));
   }
 
@@ -486,8 +491,8 @@ class WaterSupplyEditBloc
     ManagementTypeChanged event,
     Emitter<WaterSupplyEditState> emit,
   ) {
-    final managementType = WaterSupplyInput.pure(event.managementType);
-    managementTypeController.text = event.managementType;
+    final managementType = ManagementTypeInput.pure(event.managementType);
+    managementTypeController.text = event.managementType.getDisplayText();
     emit(state.copyWith(managementTypeInput: managementType));
   }
 
@@ -955,9 +960,9 @@ class WaterSupplyEditBloc
     final longtitudeInput = WaterSupplyInput.dirty(state.longtitudeInput.value);
     final locationRickInput =
         WaterSupplyInput.dirty(state.locationRickInput.value);
-    final budgetTypeInput = WaterSupplyInput.dirty(state.budgetTypeInput.value);
+    final budgetTypeInput = BudgetTypeInput.dirty(state.budgetTypeInput.value);
     final managementTypeInput =
-        WaterSupplyInput.dirty(state.managementTypeInput.value);
+        ManagementTypeInput.dirty(state.managementTypeInput.value);
     final managementNameInput =
         WaterSupplyInput.dirty(state.managementNameInput.value);
     final receiverTotalInput =
@@ -1113,11 +1118,14 @@ class WaterSupplyEditBloc
     ));
 
     if (state.formzStatus.isValidated) {
+      LoadingHelper.show();
       emit(state.copyWith(formzStatus: FormzStatus.submissionInProgress));
       try {
         final user = Application.authBloc.state.user;
         final payload = PayloadWaterSupplyModel(
           createdBy: user != null ? user.username : '',
+          createdAt: DateTime.now(),
+          createdAt1: DateTime.now(),
           province: 0,
           district: 0,
           commune: 0,
@@ -1133,24 +1141,38 @@ class WaterSupplyEditBloc
           mdsYDegree: longDegreeInput.value,
           mdsYMinute: longMinuteInput.value,
           mdsYSecond: longSecondInput.value,
-          totalFamily: int.parse(familyTotalInput.value),
-          beneficiaryTotalFamily: int.parse(receiverFamilyTotalInput.value),
+          totalFamily: familyTotalInput.value.isNotEmpty
+              ? int.parse(familyTotalInput.value)
+              : 0,
+          beneficiaryTotalFamily: receiverFamilyTotalInput.value.isNotEmpty
+              ? int.parse(receiverFamilyTotalInput.value)
+              : 0,
           beneficiaryTotalFamilyIndigenous:
-              int.parse(receiverFamilyIndigenousInput.value),
-          beneficiaryTotalFamilyPoor1:
-              int.parse(receiverFamilyPoor1Input.value),
-          beneficiaryTotalFamilyPoor2:
-              int.parse(receiverFamilyPoor2Input.value),
+              receiverFamilyIndigenousInput.value.isNotEmpty
+                  ? int.parse(receiverFamilyIndigenousInput.value)
+                  : 0,
+          beneficiaryTotalFamilyPoor1: receiverFamilyPoor1Input.value.isNotEmpty
+              ? int.parse(receiverFamilyPoor1Input.value)
+              : 0,
+          beneficiaryTotalFamilyPoor2: receiverFamilyPoor2Input.value.isNotEmpty
+              ? int.parse(receiverFamilyPoor2Input.value)
+              : 0,
           beneficiaryTotalFamilyVulnearable:
-              int.parse(receiverFamilyVulnearableInput.value),
-          beneficiaryTotalPeople: int.parse(receiverTotalInput.value),
-          beneficiaryTotalWoman: int.parse(receiverTotalAsFemaleInput.value),
+              receiverFamilyVulnearableInput.value.isNotEmpty
+                  ? int.parse(receiverFamilyVulnearableInput.value)
+                  : 0,
+          beneficiaryTotalPeople: receiverTotalInput.value.isNotEmpty
+              ? int.parse(receiverTotalInput.value)
+              : 0,
+          beneficiaryTotalWoman: receiverTotalAsFemaleInput.value.isNotEmpty
+              ? int.parse(receiverTotalAsFemaleInput.value)
+              : 0,
           constructedBy: companyNameInput.value,
-          constructionDate: docInput.value ?? DateTime.now(),
+          constructionDate: docInput.value,
           isRiskEnviromentArea: false,
           managedBy: managementNameInput.value,
-          managementType: int.parse(managementTypeInput.value),
-          sourceBudget: int.parse(budgetTypeInput.value),
+          managementType: managementTypeInput.value?.getCode() ?? 0,
+          sourceBudget: budgetTypeInput.value?.getCode() ?? 0,
           waterSupplyTypeId: state.waterSupplyTypeId,
         );
         repository.addOrUpdateWaterSupply(
@@ -1160,6 +1182,8 @@ class WaterSupplyEditBloc
         emit(state.copyWith(formzStatus: FormzStatus.submissionSuccess));
       } catch (_) {
         emit(state.copyWith(formzStatus: FormzStatus.submissionFailure));
+      } finally {
+        LoadingHelper.close();
       }
     }
   }

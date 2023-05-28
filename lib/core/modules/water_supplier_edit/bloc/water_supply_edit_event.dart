@@ -95,7 +95,7 @@ class LocationRickChanged extends WaterSupplyEditEvent {
 class BudgetTypeChanged extends WaterSupplyEditEvent {
   const BudgetTypeChanged(this.budgetType);
 
-  final String budgetType;
+  final BudgetTypeEnum budgetType;
 
   @override
   List<Object> get props => [budgetType];
@@ -104,7 +104,7 @@ class BudgetTypeChanged extends WaterSupplyEditEvent {
 class ManagementTypeChanged extends WaterSupplyEditEvent {
   const ManagementTypeChanged(this.managementType);
 
-  final String managementType;
+  final ManagementTypeEnum managementType;
 
   @override
   List<Object> get props => [managementType];

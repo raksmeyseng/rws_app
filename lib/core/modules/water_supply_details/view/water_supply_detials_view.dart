@@ -66,13 +66,13 @@ class _SuccessView extends StatelessWidget {
 
 // ===================
 // Failure View
-// ===================
+// ===================s
 class _FailureView extends StatelessWidget {
   const _FailureView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return const LoadDataFailed();
+    return const Center(child: LoadDataFailed());
   }
 }
 
