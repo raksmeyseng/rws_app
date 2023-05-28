@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:rws_app/config/themes/app_color.dart';
-import 'package:rws_app/core/modules/view_details/view_process_flow/view_process.dart';
 import 'package:rws_app/core/widgets/floating_event.dart';
 import 'package:rws_app/core/widgets/my_button.dart';
 

@@ -1,13 +1,11 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:rws_app/core/modules/authentication/models/user_model.dart';
 import 'package:rws_app/core/modules/my_draft/models/my_draft_model.dart';
-import 'package:rws_app/core/modules/water_supply_details/model/watersupply.dart';
 
 import '../../../models/water_quality_parameter.dart';
 import '../../../models/water_supply_qrcode.dart';
 import '../../../models/water_supply_well.dart';
 import '../../../models/water_supply_workflow.dart';
-import '../../my_approval_history/models/my_approval_history_model.dart';
 
 part 'water_supply_model.g.dart';
 

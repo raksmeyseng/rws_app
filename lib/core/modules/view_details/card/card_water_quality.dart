@@ -2,9 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rws_app/core/models/water_quality_parameter.dart';
-import 'package:rws_app/widgets/empty_widget.dart';
 
-import '../../../../translation/generated/l10n.dart';
 import '../../../widgets/caption_widget.dart';
 import '../../../widgets/flat_card.dart';
 import '../../../widgets/text_widget.dart';

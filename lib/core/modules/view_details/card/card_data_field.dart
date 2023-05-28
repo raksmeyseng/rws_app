@@ -194,7 +194,7 @@ class _WellView extends StatelessWidget {
               ),
 
               _InfoItem(
-                CaptionWidget('ហេតុអ្វី'),
+                const CaptionWidget('ហេតុអ្វី'),
                 TextWidget(state.waterSupply?.waterSupplyWells?.first.wellStatusReason),
               ),             
 
@@ -510,11 +510,11 @@ class _WaterQualityParameterItem extends StatelessWidget {
         children: [
           _InfoItem(
             CaptionWidget('${S.of(context).water_supply_code} :'),
-            TextWidget('Code'),
+            const TextWidget('Code'),
           ),
           _InfoItem(
             CaptionWidget('${S.of(context).water_supply_type} :'),
-            Flexible(
+            const Flexible(
               child: TextWidget(
                 'TTT',
                 overflow: TextOverflow.ellipsis,

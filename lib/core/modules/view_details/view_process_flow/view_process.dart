@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:rws_app/config/themes/app_color.dart';
 import 'package:rws_app/core/models/water_supply_workflow.dart';
-import 'package:rws_app/core/modules/view_details/bloc/list_data_details_bloc.dart';
 import 'package:rws_app/core/widgets/text_widget.dart';
 
 import '../../../../translation/generated/l10n.dart';
 import '../../../widgets/caption_widget.dart';
 import '../../../widgets/flat_card.dart';
-import '../../my_approval_history/models/my_approval_history_model.dart';
 
 class ViewProcessFlow extends StatelessWidget {
 
@@ -189,7 +187,7 @@ class _WaterSupplyWorkFlowItem extends StatelessWidget {
           ),
           _InfoItem(
             CaptionWidget('${S.of(context).user_name} :'),
-            TextWidget(item.user.firstName.toString()+' '+item.user.lastName.toString()),
+            TextWidget('${item.user.firstName} ${item.user.lastName}'),
           ),
 
 
