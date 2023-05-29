@@ -5,4 +5,9 @@ abstract class ReportEvent extends Equatable {
 
   @override
   List<Object> get props => [];
+
+}
+
+class ReportEventStated extends ReportEvent{
+  const ReportEventStated();
 }

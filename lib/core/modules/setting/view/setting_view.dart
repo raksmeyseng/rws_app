@@ -66,6 +66,8 @@ class _UserProfile extends StatelessWidget {
         return state.user;
       },
       builder: (context, user) {
+        String firstName =user?.firstName??'';
+        String lastName= user?.lastName??''; 
         return FlatCard(
           color: Theme.of(context).primaryColor,
           child: Stack(
@@ -124,8 +126,9 @@ class _UserProfile extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Flexible(
+                          
                           child: TextWidget(
-                            user?.username ?? '-',
+                            firstName + ' '+ lastName,
                             bold: true,
                             size: 16,
                             maxLines: 2,

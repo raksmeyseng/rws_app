@@ -8,6 +8,7 @@ import 'package:rws_app/core/modules/login/view/login_page.dart';
 import 'package:rws_app/core/modules/my_task/view/my_task_page.dart';
 import 'package:rws_app/core/modules/not_found/not_found_screen.dart';
 import 'package:rws_app/core/modules/register/view/register_page.dart';
+import 'package:rws_app/core/modules/report/view/report_page.dart';
 import 'package:rws_app/core/modules/setting/view/setting_page.dart';
 import 'package:rws_app/core/modules/splashscreen/splashscreen_page.dart';
 import 'package:rws_app/core/modules/user_information/view/user_page.dart';
@@ -53,6 +54,13 @@ Page aboutBuilder(BuildContext context, GoRouterState state) {
     key: state.pageKey,
     child: const AboutPage(),
   );
+}
+
+Page reportBuilder(BuildContext context,GoRouterState state){
+  return MaterialPage<void>(
+    key: state.pageKey,
+    child: const ReportPage(),
+    );
 }
 
 Page loginBuilder(BuildContext context, GoRouterState state) {

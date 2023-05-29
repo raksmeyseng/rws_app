@@ -6,6 +6,7 @@ enum MainMenuEnum {
   users,
   settings,
   about,
+  report,
 }
 
 extension MainMenuEnumExtension on MainMenuEnum {
@@ -19,6 +20,8 @@ extension MainMenuEnumExtension on MainMenuEnum {
         return S.of(context).title_settings;
       case MainMenuEnum.about:
         return S.of(context).about_app;
+      case MainMenuEnum.report:
+        return S.of(context).report;
     }
   }
 
@@ -32,6 +35,8 @@ extension MainMenuEnumExtension on MainMenuEnum {
         return Icons.settings;
       case MainMenuEnum.about:
         return Icons.info;
+      case MainMenuEnum.report:
+        return Icons.report;
     }
   }
 
