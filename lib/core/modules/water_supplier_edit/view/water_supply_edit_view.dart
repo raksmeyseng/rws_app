@@ -38,6 +38,7 @@ import 'package:rws_app/utils/common_utils.dart';
 import 'package:rws_app/utils/helpers/date_helper.dart';
 
 import '../../../../utils/helpers/dialog_helper.dart';
+import '../model/location_risk_input.dart';
 
 class WaterSupplyEditView extends StatelessWidget {
   const WaterSupplyEditView({super.key});
@@ -1779,7 +1780,7 @@ class _LocationRiskInput extends StatelessWidget {
           controller:
               context.read<WaterSupplyEditBloc>().locationRickController,
           onTap: () async {
-            final area = await DialogHelper.showAnimatedDialog<String?>(
+            final area = await DialogHelper.showAnimatedDialog<AreaEnum?>(
               animationType: DialogAnimationType.none,
               transitionDuration: const Duration(milliseconds: 200),
               pageBuilder: (context, a1, a2) {
@@ -1794,12 +1795,12 @@ class _LocationRiskInput extends StatelessWidget {
                           (areaType) => ListTile(
                             onTap: () {
                               Navigator.of(context)
-                                  .pop(areaType.getDisplayText(context));
+                                  .pop(areaType);
                             },
                             contentPadding: const EdgeInsets.symmetric(
                               horizontal: 24.0,
                             ),
-                            title: TextWidget(areaType.getDisplayText(context)),
+                            title: TextWidget(areaType.getDisplayText()),
                           ),
                         ),
                       ],
@@ -1828,7 +1829,7 @@ class _LocationRiskInput extends StatelessWidget {
   String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
     if (!state.locationRickInput.invalid) return null;
     switch (state.locationRickInput.error) {
-      case WaterSupplyInputValidationError.empty:
+      case LocationRiskInputValidationError.empty:
         return 'សូមជ្រើសរើសតំបន់ប្រឈមផ្នែកបរិស្ថាន';
       default:
         return null;

@@ -17,6 +17,9 @@ import 'package:rws_app/core/modules/water_supply_details/model/water_supply_mod
 import 'package:rws_app/utils/helpers/date_helper.dart';
 import 'package:rws_app/utils/helpers/loading_helper.dart';
 
+import '../../../enum/area_enum.dart';
+import '../model/location_risk_input.dart';
+
 part 'water_supply_edit_event.dart';
 part 'water_supply_edit_state.dart';
 
@@ -368,7 +371,15 @@ class WaterSupplyEditBloc
   ) async {
     emit(state.copyWith(status: BaseStatusEnum.inprogress));
     try {
-      final provinces = await repository.getProvinces();
+      var provinces;
+      final isDataEntry=Application.authBloc.state.user?.isDataEntry??false;
+      if(isDataEntry){
+        final dataEntryProvinceId=Application.authBloc.state.user?.dataEntryProvinceId??0;
+        provinces = await repository.getProvincesByDataEntry(dataEntryProvinceId);
+      }
+      else{
+        provinces = await repository.getProvinces();
+      } 
       if (state.id == 0) {
         emit(state.copyWith(
           status: BaseStatusEnum.success,
@@ -461,6 +472,7 @@ class WaterSupplyEditBloc
     emit(state.copyWith(longtitudeInput: longtitude));
   }
 
+  //START Other Inforamtion Event
   void _onFamilyTotalChanged(
     FamilyTotalChanged event,
     Emitter<WaterSupplyEditState> emit,
@@ -473,8 +485,8 @@ class WaterSupplyEditBloc
     LocationRickChanged event,
     Emitter<WaterSupplyEditState> emit,
   ) {
-    final locationRick = WaterSupplyInput.pure(event.locationRick);
-    locationRickController.text = event.locationRick;
+    final locationRick = LocationRiskInput.pure(event.locationRick);
+    locationRickController.text = event.locationRick.getDisplayText();
     emit(state.copyWith(locationRickInput: locationRick));
   }
 
@@ -588,6 +600,7 @@ class WaterSupplyEditBloc
     emit(state.copyWith(receiverFamilyVulnearableInput: receiverFamilyVictim));
   }
 
+  
   void _onWaterSupplyTypeChanged(
     WaterSupplyTypeChanged event,
     Emitter<WaterSupplyEditState> emit,
@@ -954,12 +967,13 @@ class WaterSupplyEditBloc
     final communeInput = WaterSupplyInput.dirty(state.communeInput.value);
     final villageInput = WaterSupplyInput.dirty(state.villageInput.value);
     final mapTypeInput = WaterSupplyInput.dirty(state.mapTypeInput.value);
+    final waterSupplyCodeInput=WaterSupplyInput.dirty(state.waterSupplyCode.value);
     final familyTotalInput =
         WaterSupplyInput.dirty(state.familyTotalInput.value);
     final lateitudeInput = WaterSupplyInput.dirty(state.lateitudeInput.value);
     final longtitudeInput = WaterSupplyInput.dirty(state.longtitudeInput.value);
     final locationRickInput =
-        WaterSupplyInput.dirty(state.locationRickInput.value);
+        LocationRiskInput.dirty(state.locationRickInput.value);
     final budgetTypeInput = BudgetTypeInput.dirty(state.budgetTypeInput.value);
     final managementTypeInput =
         ManagementTypeInput.dirty(state.managementTypeInput.value);
@@ -1183,6 +1197,7 @@ class WaterSupplyEditBloc
       receiverFamilyIndigenousInput: receiverFamilyIndigenousInput,
       receiverFamilyVulnearableInput: receiverFamilyVulnearableInput,
       waterSupplyTypeInput: waterSupplyTypeInput,
+
       containerInput: containerInput,
       capacityInput: capacityInput,
       wellTypeInput: wellTypeInput,
@@ -1225,6 +1240,7 @@ class WaterSupplyEditBloc
       filterInput: filterInput,
       airStationInput: airStationInput,
       formzStatus: validForm,
+      waterSupplyCode: waterSupplyCodeInput
     ));
 
     if (state.formzStatus.isValidated) {
@@ -1232,25 +1248,27 @@ class WaterSupplyEditBloc
       emit(state.copyWith(formzStatus: FormzStatus.submissionInProgress));
       try {
         final user = Application.authBloc.state.user;
+        final provinceId=provinceInput.value;
+        final isRiskLocation=locationRickInput.value?.getCode();
         final payload = PayloadWaterSupplyModel(
-          createdBy: user != null ? user.username : '',
-          createdAt: DateTime.now(),
-          createdAt1: DateTime.now(),
-          province: 0,
-          district: 0,
-          commune: 0,
-          village: 0,
-          mapUnitId: 0,
-          decimalDegreeLat: lateitudeInput.value,
-          decimalDegreeLng: longtitudeInput.value,
-          utmX: utmXInput.value,
-          utmY: utmYInput.value,
-          mdsXDegree: latDegreeInput.value,
-          mdsXMinute: latMinuteInput.value,
-          mdsXSecond: latSecondInput.value,
-          mdsYDegree: longDegreeInput.value,
-          mdsYMinute: longMinuteInput.value,
-          mdsYSecond: longSecondInput.value,
+          createdBy: user != null ? user.id : 0,
+          // createdAt: DateTime.now(),
+          // createdAt1: DateTime.now(),
+          province: 12,
+          district: 1585,
+          commune: 4,
+          village: 12,
+          mapUnitId: 1,
+          decimalDegreeLat:latDegreeInput.value.isNotEmpty? double.parse(lateitudeInput.value):0,
+          decimalDegreeLng:longtitudeInput.value.isNotEmpty? double.parse(longtitudeInput.value):0,
+          utmX:utmXInput.value.isNotEmpty? double.parse(utmXInput.value):0,
+          utmY: utmYInput.value.isNotEmpty? double.parse(utmYInput.value):0,
+          mdsXDegree:latDegreeInput.value.isNotEmpty? double.parse(latDegreeInput.value):0,
+          mdsXMinute:latMinuteInput.value.isNotEmpty? double.parse(latMinuteInput.value):0,
+          mdsXSecond:latSecondInput.value.isNotEmpty? double.parse(latSecondInput.value):0,
+          mdsYDegree:longDegreeInput.value.isNotEmpty? double.parse(longDegreeInput.value):0,
+          mdsYMinute:longMinuteInput.value.isNotEmpty? double.parse(longMinuteInput.value):0,
+          mdsYSecond:longSecondInput.value.isNotEmpty? double.parse(longSecondInput.value):0,
           totalFamily: familyTotalInput.value.isNotEmpty
               ? int.parse(familyTotalInput.value)
               : 0,
@@ -1278,13 +1296,20 @@ class WaterSupplyEditBloc
               ? int.parse(receiverTotalAsFemaleInput.value)
               : 0,
           constructedBy: companyNameInput.value,
-          constructionDate: docInput.value,
-          isRiskEnviromentArea: false,
+
+          constructionDate:'2023-05-16',// docInput.value,
+          isRiskEnviromentArea:isRiskLocation==1?true: false,
           managedBy: managementNameInput.value,
           managementType: managementTypeInput.value?.getCode() ?? 0,
           sourceBudget: budgetTypeInput.value?.getCode() ?? 0,
           waterSupplyTypeId: state.waterSupplyTypeId,
+          isActive: true,
+          updatedBy: user != null ? user.id : 0,
+          mainStatus: 3,
+          waterSupplyCode: constructionCodeInput.value,//not yet have control yet
+
         );
+        print(payload);
         repository.addOrUpdateWaterSupply(
           id: state.id,
           payload: payload,

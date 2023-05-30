@@ -128,6 +128,14 @@ class _MyDraftItem extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _InfoItem(
+            CaptionWidget('${S.of(context).news_date} :'),
+            TextWidget(item.createdDate.toString()),
+          ),
+          _InfoItem(
+            const CaptionWidget('លេខកូដសំណង់ :'),
+            TextWidget(item.waterSupplyCode),
+          ),
+          _InfoItem(
             CaptionWidget('${S.of(context).water_supply_type} :'),
             Flexible(
               child: TextWidget(

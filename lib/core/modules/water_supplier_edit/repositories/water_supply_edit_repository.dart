@@ -10,21 +10,33 @@ class WaterSupplyEditRepository extends RestApiService {
     return WaterSupplyModel.fromJson(res);
   }
 
-  Future<WaterSupplyModel> addOrUpdateWaterSupply({
+  Future<void> addOrUpdateWaterSupply({
     required int id,
     required PayloadWaterSupplyModel payload,
   }) async {
     if (id == 0) {
-      final res = await post(ApiPath.addWaterSupply, data: payload);
-      return WaterSupplyModel.fromJson(res);
+      try{
+        print(ApiPath.addWaterSupply);
+        final res = await post(ApiPath.addWaterSupply, data: payload);
+        print(res);
+        //return WaterSupplyModel.fromJson(res);
+      }catch(_){
+
+      }
+      
+      
     } else {
       final res = await post(ApiPath.updateWaterSupply(id), data: payload);
-      return WaterSupplyModel.fromJson(res);
+      //return WaterSupplyModel.fromJson(res);
     }
   }
 
   Future<List<ProvinceModel>> getProvinces() async {
     final res = await get(ApiPath.getProvince());
+    return res.map<ProvinceModel>((x) => ProvinceModel.fromJson(x)).toList();
+  }
+  Future<List<ProvinceModel>> getProvincesByDataEntry(int id) async{
+    final res = await get(ApiPath.getProvinceByDataEntry(id));
     return res.map<ProvinceModel>((x) => ProvinceModel.fromJson(x)).toList();
   }
 }

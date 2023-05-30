@@ -21,7 +21,7 @@ extension AreaEnumExtension on AreaEnum {
     }
   }
 
-  String getDisplayText(BuildContext context) {
+  String getDisplayText() {
     switch (this) {
       case AreaEnum.face:
         return 'ប្រឈម';

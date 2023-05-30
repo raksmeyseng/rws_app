@@ -86,7 +86,7 @@ class FamilyTotalChanged extends WaterSupplyEditEvent {
 class LocationRickChanged extends WaterSupplyEditEvent {
   const LocationRickChanged(this.locationRick);
 
-  final String locationRick;
+  final AreaEnum locationRick;
 
   @override
   List<Object> get props => [locationRick];
