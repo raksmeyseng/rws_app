@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -5,12 +6,17 @@ import 'package:formz/formz.dart';
 import 'package:rws_app/config/routes/application.dart';
 import 'package:rws_app/core/enum/base_status_enum.dart';
 import 'package:rws_app/core/enum/budget_type.dart';
+import 'package:rws_app/core/enum/check_water_quality_enum.dart';
 import 'package:rws_app/core/enum/management_type.dart';
+import 'package:rws_app/core/enum/water_supply_type_enum.dart';
+import 'package:rws_app/core/enum/well_status_enum.dart';
 import 'package:rws_app/core/modules/my_draft/models/my_draft_model.dart';
 import 'package:rws_app/core/modules/water_supplier_edit/model/budget_type_input.dart';
 import 'package:rws_app/core/modules/water_supplier_edit/model/doc_input.dart';
 import 'package:rws_app/core/modules/water_supplier_edit/model/management_type_input.dart';
 import 'package:rws_app/core/modules/water_supplier_edit/model/payload_water_supply_model.dart';
+import 'package:rws_app/core/modules/water_supplier_edit/model/payload_well.dart';
+import 'package:rws_app/core/modules/water_supplier_edit/model/qrcode_model.dart';
 import 'package:rws_app/core/modules/water_supplier_edit/model/water_supply_input.dart';
 import 'package:rws_app/core/modules/water_supplier_edit/repositories/water_supply_edit_repository.dart';
 import 'package:rws_app/core/modules/water_supply_details/model/water_supply_model.dart';
@@ -18,7 +24,14 @@ import 'package:rws_app/utils/helpers/date_helper.dart';
 import 'package:rws_app/utils/helpers/loading_helper.dart';
 
 import '../../../enum/area_enum.dart';
+import '../../../enum/water_quality_enum.dart';
+import '../../../enum/well_type_enum.dart';
+import '../model/input/check_water_quality_input.dart';
+import '../model/input/status_input.dart';
+import '../model/input/water_supply_type_input.dart';
 import '../model/location_risk_input.dart';
+import '../model/water_quality_input.dart';
+import '../model/well_type_input.dart';
 
 part 'water_supply_edit_event.dart';
 part 'water_supply_edit_state.dart';
@@ -605,8 +618,8 @@ class WaterSupplyEditBloc
     WaterSupplyTypeChanged event,
     Emitter<WaterSupplyEditState> emit,
   ) {
-    final waterSupplyType = WaterSupplyInput.pure(event.waterSupplyType);
-    waterSupplyTypeController.text = event.waterSupplyType;
+    final waterSupplyType = WaterSupplyTypeInput.pure(event.waterSupplyType);
+    waterSupplyTypeController.text = event.waterSupplyType.getDisplayText();
     emit(state.copyWith(waterSupplyTypeInput: waterSupplyType));
   }
 
@@ -630,8 +643,8 @@ class WaterSupplyEditBloc
     WellTypeChanged event,
     Emitter<WaterSupplyEditState> emit,
   ) {
-    final wellType = WaterSupplyInput.pure(event.wellType);
-    wellTypeController.text = event.wellType;
+    final wellType = WellTypeInput.pure(event.wellType);
+    wellTypeController.text = event.wellType.getDisplayText();
     emit(state.copyWith(wellTypeInput: wellType));
   }
 
@@ -727,8 +740,8 @@ class WaterSupplyEditBloc
     WaterQualityChanged event,
     Emitter<WaterSupplyEditState> emit,
   ) {
-    final waterQuality = WaterSupplyInput.pure(event.waterQuality);
-    waterQualityController.text = event.waterQuality;
+    final waterQuality = WaterQualityInput.pure(event.waterQuality);
+    waterQualityController.text = event.waterQuality.getDisplayText();
     emit(state.copyWith(waterQualityInput: waterQuality));
   }
 
@@ -752,8 +765,8 @@ class WaterSupplyEditBloc
     CheckWaterQualityChanged event,
     Emitter<WaterSupplyEditState> emit,
   ) {
-    final checkWaterQuality = WaterSupplyInput.pure(event.checkWaterQuality);
-    checkWaterQualityController.text = event.checkWaterQuality;
+    final checkWaterQuality = CheckWaterQualityInput.pure(event.checkWaterQuality);
+    checkWaterQualityController.text = event.checkWaterQuality.getDisplayText();
     emit(state.copyWith(checkWaterQualityInput: checkWaterQuality));
   }
 
@@ -761,8 +774,8 @@ class WaterSupplyEditBloc
     WellStatusChanged event,
     Emitter<WaterSupplyEditState> emit,
   ) {
-    final wellStatus = WaterSupplyInput.pure(event.wellStatus);
-    wellStatusController.text = event.wellStatus;
+    final wellStatus = WellStatusInput.pure(event.wellStatus);
+    wellStatusController.text = event.wellStatus.getDisplayText();
     emit(state.copyWith(wellStatusInput: wellStatus));
   }
 
@@ -803,8 +816,8 @@ class WaterSupplyEditBloc
     PipeStatusChanged event,
     Emitter<WaterSupplyEditState> emit,
   ) {
-    final pipeStatus = WaterSupplyInput.pure(event.pipeStatus);
-    pipeStatusController.text = event.pipeStatus;
+    final pipeStatus = WellStatusInput.pure(event.pipeStatus);
+    pipeStatusController.text = event.pipeStatus.getDisplayText();
     emit(state.copyWith(pipeStatusInput: pipeStatus));
   }
 
@@ -820,8 +833,8 @@ class WaterSupplyEditBloc
     QualityWaterCheckChanged event,
     Emitter<WaterSupplyEditState> emit,
   ) {
-    final quality = WaterSupplyInput.pure(event.quality);
-    qualityWaterCheckController.text = event.quality;
+    final quality = WaterQualityInput.pure(event.quality);
+    qualityWaterCheckController.text = event.quality.getDisplayText();
     emit(state.copyWith(qualityWaterCheckInput: quality));
   }
 
@@ -953,8 +966,8 @@ class WaterSupplyEditBloc
     AirStationChanged event,
     Emitter<WaterSupplyEditState> emit,
   ) {
-    final airStation = WaterSupplyInput.pure(event.airStation);
-    airStationController.text = event.airStation;
+    final airStation = WellStatusInput.pure(event.airStation);
+    airStationController.text = event.airStation.getDisplayText();
     emit(state.copyWith(airStationInput: airStation));
   }
 
@@ -999,11 +1012,8 @@ class WaterSupplyEditBloc
     final receiverFamilyVulnearableInput =
         WaterSupplyInput.dirty(state.receiverFamilyVulnearableInput.value);
     final waterSupplyTypeInput =
-        WaterSupplyInput.dirty(state.waterSupplyTypeInput.value);
-    final containerInput = WaterSupplyInput.dirty(state.containerInput.value);
-    final capacityInput = WaterSupplyInput.dirty(state.capacityInput.value);
-    final wellTypeInput = WaterSupplyInput.dirty(state.wellTypeInput.value);
-    final wellDepthInput = WaterSupplyInput.dirty(state.wellDepthInput.value);
+        WaterSupplyTypeInput.dirty(state.waterSupplyTypeInput.value);
+    
     final utmXInput = WaterSupplyInput.dirty(state.utmXInput.value);
     final utmYInput = WaterSupplyInput.dirty(state.utmYInput.value);
     final latDegreeInput = WaterSupplyInput.dirty(state.latDegreeInput.value);
@@ -1011,25 +1021,33 @@ class WaterSupplyEditBloc
     final latSecondInput = WaterSupplyInput.dirty(state.latSecondInput.value);
     final longDegreeInput = WaterSupplyInput.dirty(state.longDegreeInput.value);
     final longMinuteInput = WaterSupplyInput.dirty(state.longMinuteInput.value);
-    final longSecondInput = WaterSupplyInput.dirty(state.longSecondInput.value);
+    final longSecondInput = WaterSupplyInput.dirty(state.longSecondInput.value);   
+    
+    //Start Well
+    final wellTypeInput = WellTypeInput.dirty(state.wellTypeInput.value);
+    final wellDepthInput = WaterSupplyInput.dirty(state.wellDepthInput.value);
     final wellScreenInput = WaterSupplyInput.dirty(state.wellScreenInput.value);
     final wellThearInput = WaterSupplyInput.dirty(state.wellThearInput.value);
     final waterQualityInput =
-        WaterSupplyInput.dirty(state.waterQualityInput.value);
+        WaterQualityInput.dirty(state.waterQualityInput.value);
     final niVoStaticInput = WaterSupplyInput.dirty(state.niVoStaticInput.value);
     final niVoDynamicInput =
         WaterSupplyInput.dirty(state.niVoDynamicInput.value);
     final checkWaterQualityInput =
-        WaterSupplyInput.dirty(state.checkWaterQualityInput.value);
-    final wellStatusInput = WaterSupplyInput.dirty(state.wellStatusInput.value);
+        CheckWaterQualityInput.dirty(state.checkWaterQualityInput.value);
+    final wellStatusInput = WellStatusInput.dirty(state.wellStatusInput.value);
+    //End Well
+
     final airPoolInput = WaterSupplyInput.dirty(state.airPoolInput.value);
     final filterTankInput = WaterSupplyInput.dirty(state.filterTankInput.value);
     final connectorInput = WaterSupplyInput.dirty(state.connectorInput.value);
+    final containerInput = WaterSupplyInput.dirty(state.containerInput.value);
+    final capacityInput = WaterSupplyInput.dirty(state.capacityInput.value);
     final pipeLenghtInput = WaterSupplyInput.dirty(state.pipeLenghtInput.value);
-    final pipeStatusInput = WaterSupplyInput.dirty(state.pipeStatusInput.value);
+    final pipeStatusInput = WellStatusInput.dirty(state.pipeStatusInput.value);
     final coverageInput = WaterSupplyInput.dirty(state.coverageInput.value);
     final qualityWaterCheckInput =
-        WaterSupplyInput.dirty(state.qualityWaterCheckInput.value);
+        WaterQualityInput.dirty(state.qualityWaterCheckInput.value);
     final pondLatInput = WaterSupplyInput.dirty(state.pondLatInput.value);
     final pondLongInput = WaterSupplyInput.dirty(state.pondLongInput.value);
     final pondDepthInput = WaterSupplyInput.dirty(state.pondDepthInput.value);
@@ -1045,7 +1063,7 @@ class WaterSupplyEditBloc
     final supplierDateInput = DOCInput.dirty(state.supplierDateInput.value);
     final dueDateInput = DOCInput.dirty(state.dueDateInput.value);
     final filterInput = WaterSupplyInput.dirty(state.filterInput.value);
-    final airStationInput = WaterSupplyInput.dirty(state.airStationInput.value);
+    final airStationInput = WellStatusInput.dirty(state.airStationInput.value);
 
     FormzStatus? validForm;
 
@@ -1064,12 +1082,14 @@ class WaterSupplyEditBloc
         receiverFamilyPoor1Input,
         receiverFamilyPoor2Input,
         receiverFamilyIndigenousInput,
-        receiverFamilyVulnearableInput,
+        receiverFamilyVulnearableInput,       
         docInput,
+
         wellTypeInput,
         waterQualityInput,
         checkWaterQualityInput,
         wellStatusInput
+
       ]);
     } else if (state.waterSupplyTypeId == 2 || state.waterSupplyTypeId == 3) {
       validForm = Formz.validate([
@@ -1200,8 +1220,7 @@ class WaterSupplyEditBloc
 
       containerInput: containerInput,
       capacityInput: capacityInput,
-      wellTypeInput: wellTypeInput,
-      wellDepthInput: wellDepthInput,
+      
       utmXInput: utmXInput,
       utmYInput: utmYInput,
       latDegreeInput: latDegreeInput,
@@ -1210,6 +1229,9 @@ class WaterSupplyEditBloc
       longDegreeInput: longDegreeInput,
       longMinuteInput: longMinuteInput,
       longSecondInput: longSecondInput,
+
+      wellTypeInput: wellTypeInput,
+      wellDepthInput: wellDepthInput,
       wellScreenInput: wellScreenInput,
       wellThearInput: wellThearInput,
       waterQualityInput: waterQualityInput,
@@ -1217,6 +1239,7 @@ class WaterSupplyEditBloc
       niVoDynamicInput: niVoDynamicInput,
       checkWaterQualityInput: checkWaterQualityInput,
       wellStatusInput: wellStatusInput,
+      
       airPoolInput: airPoolInput,
       filterTankInput: filterTankInput,
       connectorInput: connectorInput,
@@ -1239,6 +1262,7 @@ class WaterSupplyEditBloc
       dueDateInput: dueDateInput,
       filterInput: filterInput,
       airStationInput: airStationInput,
+
       formzStatus: validForm,
       waterSupplyCode: waterSupplyCodeInput
     ));
@@ -1309,11 +1333,54 @@ class WaterSupplyEditBloc
           waterSupplyCode: constructionCodeInput.value,//not yet have control yet
 
         );
-        print(payload);
+        //print(payload);
         repository.addOrUpdateWaterSupply(
           id: state.id,
           payload: payload,
-        );
+        ).then((watersupply){
+          final waterSupplyId=watersupply.waterSupplyId;
+          //print(waterSupplyId);
+
+          /* QRCODE SECTION */
+          repository.getGenerateQRCodeResponse(waterSupplyId).then((qrcode){
+            final payloadWaterSupplyQRCode= PayloadWaterSupplyQRCodeModel(
+              waterSupplyId: waterSupplyId, 
+              qrCodeImageName: qrcode.qrName 
+              );
+            repository.addWaterSupplyQRCode(payload: payloadWaterSupplyQRCode);
+          });
+          
+
+          //START WELL
+          if(state.waterSupplyTypeId==1){
+            final payloadWell=PayloadWellModel(
+              waterSupplyId: waterSupplyId,
+              wellType: wellTypeInput.value?.getCode().toString() ??'', 
+              wellHeight: wellDepthInput.value, 
+              wellFilterHeight: wellScreenInput.value, 
+              wellWaterSupply: wellThearInput.value, 
+              wellNiroStatic: niVoStaticInput.value, 
+              wellNiroDynamic: niVoDynamicInput.value, 
+              wellStatus: wellStatusInput.value?.getCode()==0?'12':'13', 
+              wellStatusReason: '', 
+              wellWaterQuality: waterQualityInput.value?.getCode()==0?'8':'9', 
+              wellWaterQualityCheck: checkWaterQualityInput.value?.getCode()==0?'10':'11', 
+              isActive: true
+              );
+              repository.addWaterSupplyWell(payload: payloadWell).then((well){
+                
+                //WELL TYPE 
+                final payloadWellOptionValue = PayloadWellOptionValueModel(
+                  waterSupplyWellId: well.id??0, 
+                  optionId: 1, 
+                  valueId: wellTypeInput.value?.getCode()??0, 
+                  isActive: true
+                  );
+                repository.addWaterSupplyWellOptionValue(payload: payloadWellOptionValue);
+              });
+          }
+        });
+        
         emit(state.copyWith(formzStatus: FormzStatus.submissionSuccess));
       } catch (_) {
         emit(state.copyWith(formzStatus: FormzStatus.submissionFailure));

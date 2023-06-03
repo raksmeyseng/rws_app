@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-const int _wellCode = 1;
-const int _unWellCode = 2;
+const int _wellCode = 0;
+const int _unWellCode = 1;
 
 enum WaterQualityEnum {
   @JsonValue(_wellCode)
@@ -21,7 +21,7 @@ extension WaterQualityEnumExtension on WaterQualityEnum {
     }
   }
 
-  String getDisplayText(BuildContext context) {
+  String getDisplayText() {
     switch (this) {
       case WaterQualityEnum.well:
         return 'ល្អ';

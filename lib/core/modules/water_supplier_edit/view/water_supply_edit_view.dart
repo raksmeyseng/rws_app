@@ -38,7 +38,12 @@ import 'package:rws_app/utils/common_utils.dart';
 import 'package:rws_app/utils/helpers/date_helper.dart';
 
 import '../../../../utils/helpers/dialog_helper.dart';
+import '../model/input/check_water_quality_input.dart';
+import '../model/input/status_input.dart';
+import '../model/input/water_supply_type_input.dart';
 import '../model/location_risk_input.dart';
+import '../model/water_quality_input.dart';
+import '../model/well_type_input.dart';
 
 class WaterSupplyEditView extends StatelessWidget {
   const WaterSupplyEditView({super.key});
@@ -2431,7 +2436,7 @@ class _WaterSupplyTypeInput extends StatelessWidget {
           controller: bloc.waterSupplyTypeController,
           onTap: () async {
             final waterSupplyType =
-                await DialogHelper.showAnimatedDialog<String?>(
+                await DialogHelper.showAnimatedDialog<WaterSupplyTypeEnum?>(
               animationType: DialogAnimationType.none,
               transitionDuration: const Duration(milliseconds: 200),
               pageBuilder: (context, a1, a2) {
@@ -2446,13 +2451,13 @@ class _WaterSupplyTypeInput extends StatelessWidget {
                           (waterSupplyType) => ListTile(
                             onTap: () {
                               Navigator.of(context)
-                                  .pop(waterSupplyType.getDisplayText(context));
+                                  .pop(waterSupplyType);
                             },
                             contentPadding: const EdgeInsets.symmetric(
                               horizontal: 24.0,
                             ),
                             title: TextWidget(
-                                waterSupplyType.getDisplayText(context)),
+                                waterSupplyType.getDisplayText()),
                           ),
                         ),
                       ],
@@ -2478,7 +2483,7 @@ class _WaterSupplyTypeInput extends StatelessWidget {
   String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
     if (!state.waterSupplyTypeInput.invalid) return null;
     switch (state.waterSupplyTypeInput.error) {
-      case WaterSupplyInputValidationError.empty:
+      case WaterSupplyTypeInputValidationError.empty:
         return 'សូមជ្រើសរើសប្រភេទប្រភពទឹក';
       default:
         return null;
@@ -2569,7 +2574,7 @@ class _WellTypeInput extends StatelessWidget {
           focusNode: bloc.wellTypeFocus,
           controller: bloc.wellTypeController,
           onTap: () async {
-            final wellType = await DialogHelper.showAnimatedDialog<String?>(
+            final wellType = await DialogHelper.showAnimatedDialog<WellTypeEnum?>(
               animationType: DialogAnimationType.none,
               transitionDuration: const Duration(milliseconds: 200),
               pageBuilder: (context, a1, a2) {
@@ -2584,12 +2589,12 @@ class _WellTypeInput extends StatelessWidget {
                           (wellType) => ListTile(
                             onTap: () {
                               Navigator.of(context)
-                                  .pop(wellType.getDisplayText(context));
+                                  .pop(wellType);
                             },
                             contentPadding: const EdgeInsets.symmetric(
                               horizontal: 24.0,
                             ),
-                            title: TextWidget(wellType.getDisplayText(context)),
+                            title: TextWidget(wellType.getDisplayText()),
                           ),
                         ),
                       ],
@@ -2615,7 +2620,7 @@ class _WellTypeInput extends StatelessWidget {
   String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
     if (!state.wellTypeInput.invalid) return null;
     switch (state.wellTypeInput.error) {
-      case WaterSupplyInputValidationError.empty:
+      case WellTypeInputValidatorError.empty:
         return 'សូមជ្រើសរើសប្រភេទអណ្តូង';
       default:
         return null;
@@ -2740,7 +2745,7 @@ class _WaterQualityInput extends StatelessWidget {
           focusNode: bloc.waterQualityFocus,
           controller: bloc.waterQualityController,
           onTap: () async {
-            final type = await DialogHelper.showAnimatedDialog<String?>(
+            final type = await DialogHelper.showAnimatedDialog<WaterQualityEnum?>(
               animationType: DialogAnimationType.none,
               transitionDuration: const Duration(milliseconds: 200),
               pageBuilder: (context, a1, a2) {
@@ -2755,12 +2760,12 @@ class _WaterQualityInput extends StatelessWidget {
                           (quality) => ListTile(
                             onTap: () {
                               Navigator.of(context)
-                                  .pop(quality.getDisplayText(context));
+                                  .pop(quality);
                             },
                             contentPadding: const EdgeInsets.symmetric(
                               horizontal: 24.0,
                             ),
-                            title: TextWidget(quality.getDisplayText(context)),
+                            title: TextWidget(quality.getDisplayText()),
                           ),
                         ),
                       ],
@@ -2786,7 +2791,7 @@ class _WaterQualityInput extends StatelessWidget {
   String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
     if (!state.waterQualityInput.invalid) return null;
     switch (state.waterQualityInput.error) {
-      case WaterSupplyInputValidationError.empty:
+      case WaterQualityInputValidationError.empty:
         return 'សូមជ្រើសរើសគុណភាពទឹក';
       default:
         return null;
@@ -2877,7 +2882,7 @@ class _CheckWaterQualityInput extends StatelessWidget {
           focusNode: bloc.checkWaterQualityFocus,
           controller: bloc.checkWaterQualityController,
           onTap: () async {
-            final type = await DialogHelper.showAnimatedDialog<String?>(
+            final type = await DialogHelper.showAnimatedDialog<CheckWaterQualityEnum?>(
               animationType: DialogAnimationType.none,
               transitionDuration: const Duration(milliseconds: 200),
               pageBuilder: (context, a1, a2) {
@@ -2892,12 +2897,12 @@ class _CheckWaterQualityInput extends StatelessWidget {
                           (check) => ListTile(
                             onTap: () {
                               Navigator.of(context)
-                                  .pop(check.getDisplayText(context));
+                                  .pop(check);
                             },
                             contentPadding: const EdgeInsets.symmetric(
                               horizontal: 24.0,
                             ),
-                            title: TextWidget(check.getDisplayText(context)),
+                            title: TextWidget(check.getDisplayText()),
                           ),
                         ),
                       ],
@@ -2923,7 +2928,7 @@ class _CheckWaterQualityInput extends StatelessWidget {
   String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
     if (!state.checkWaterQualityInput.invalid) return null;
     switch (state.checkWaterQualityInput.error) {
-      case WaterSupplyInputValidationError.empty:
+      case CheckWaterQualityInputValidationError.empty:
         return 'សូមជ្រើសរើសត្រួតពិនិត្យគុណភាពទឹក';
       default:
         return null;
@@ -2946,7 +2951,7 @@ class _WellStatusInput extends StatelessWidget {
           focusNode: bloc.wellStatusFocus,
           controller: bloc.wellStatusController,
           onTap: () async {
-            final type = await DialogHelper.showAnimatedDialog<String?>(
+            final type = await DialogHelper.showAnimatedDialog<WellStatusEnum?>(
               animationType: DialogAnimationType.none,
               transitionDuration: const Duration(milliseconds: 200),
               pageBuilder: (context, a1, a2) {
@@ -2961,12 +2966,12 @@ class _WellStatusInput extends StatelessWidget {
                           (status) => ListTile(
                             onTap: () {
                               Navigator.of(context)
-                                  .pop(status.getDisplayText(context));
+                                  .pop(status);
                             },
                             contentPadding: const EdgeInsets.symmetric(
                               horizontal: 24.0,
                             ),
-                            title: TextWidget(status.getDisplayText(context)),
+                            title: TextWidget(status.getDisplayText()),
                           ),
                         ),
                       ],
@@ -2992,7 +2997,7 @@ class _WellStatusInput extends StatelessWidget {
   String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
     if (!state.wellStatusInput.invalid) return null;
     switch (state.wellStatusInput.error) {
-      case WaterSupplyInputValidationError.empty:
+      case WellStatusInputValidationError.empty:
         return 'សូមជ្រើសរើសស្ថានភាពអណ្តូង';
       default:
         return null;
@@ -3186,7 +3191,7 @@ class _PipeStatusInput extends StatelessWidget {
           focusNode: bloc.pipeStatusFocus,
           controller: bloc.pipeStatusController,
           onTap: () async {
-            final type = await DialogHelper.showAnimatedDialog<String?>(
+            final type = await DialogHelper.showAnimatedDialog<WellStatusEnum?>(
               animationType: DialogAnimationType.none,
               transitionDuration: const Duration(milliseconds: 200),
               pageBuilder: (context, a1, a2) {
@@ -3201,12 +3206,12 @@ class _PipeStatusInput extends StatelessWidget {
                           (status) => ListTile(
                             onTap: () {
                               Navigator.of(context)
-                                  .pop(status.getDisplayText(context));
+                                  .pop(status);
                             },
                             contentPadding: const EdgeInsets.symmetric(
                               horizontal: 24.0,
                             ),
-                            title: TextWidget(status.getDisplayText(context)),
+                            title: TextWidget(status.getDisplayText()),
                           ),
                         ),
                       ],
@@ -3232,7 +3237,7 @@ class _PipeStatusInput extends StatelessWidget {
   String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
     if (!state.pipeStatusInput.invalid) return null;
     switch (state.pipeStatusInput.error) {
-      case WaterSupplyInputValidationError.empty:
+      case WellStatusInputValidationError.empty:
         return 'សូមជ្រើសរើសស្ថានភាពបណ្តាញទឹក';
       default:
         return null;
@@ -3255,7 +3260,7 @@ class _QualityWaterCheckInput extends StatelessWidget {
           focusNode: bloc.qualityWaterCheckFocus,
           controller: bloc.qualityWaterCheckController,
           onTap: () async {
-            final type = await DialogHelper.showAnimatedDialog<String?>(
+            final type = await DialogHelper.showAnimatedDialog<WaterQualityEnum?>(
               animationType: DialogAnimationType.none,
               transitionDuration: const Duration(milliseconds: 200),
               pageBuilder: (context, a1, a2) {
@@ -3270,12 +3275,12 @@ class _QualityWaterCheckInput extends StatelessWidget {
                           (status) => ListTile(
                             onTap: () {
                               Navigator.of(context)
-                                  .pop(status.getDisplayText(context));
+                                  .pop(status);
                             },
                             contentPadding: const EdgeInsets.symmetric(
                               horizontal: 24.0,
                             ),
-                            title: TextWidget(status.getDisplayText(context)),
+                            title: TextWidget(status.getDisplayText()),
                           ),
                         ),
                       ],
@@ -3301,7 +3306,7 @@ class _QualityWaterCheckInput extends StatelessWidget {
   String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
     if (!state.qualityWaterCheckInput.invalid) return null;
     switch (state.qualityWaterCheckInput.error) {
-      case WaterSupplyInputValidationError.empty:
+      case WaterQualityInputValidationError.empty:
         return 'សូមជ្រើសរើសការត្រួតពិនិត្យគុណភាពទឹក';
       default:
         return null;
@@ -4190,7 +4195,7 @@ class _AirStationInput extends StatelessWidget {
           focusNode: bloc.airStationFocus,
           controller: bloc.airStationController,
           onTap: () async {
-            final type = await DialogHelper.showAnimatedDialog<String?>(
+            final type = await DialogHelper.showAnimatedDialog<WellStatusEnum?>(
               animationType: DialogAnimationType.none,
               transitionDuration: const Duration(milliseconds: 200),
               pageBuilder: (context, a1, a2) {
@@ -4205,12 +4210,12 @@ class _AirStationInput extends StatelessWidget {
                           (status) => ListTile(
                             onTap: () {
                               Navigator.of(context)
-                                  .pop(status.getDisplayText(context));
+                                  .pop(status);
                             },
                             contentPadding: const EdgeInsets.symmetric(
                               horizontal: 24.0,
                             ),
-                            title: TextWidget(status.getDisplayText(context)),
+                            title: TextWidget(status.getDisplayText()),
                           ),
                         ),
                       ],

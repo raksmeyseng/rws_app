@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-const int _checkCode = 1;
-const int _unCheckCode = 2;
+const int _checkCode = 0;
+const int _unCheckCode = 1;
 
 enum CheckWaterQualityEnum {
   @JsonValue(_checkCode)
@@ -21,7 +21,7 @@ extension CheckWaterQualityEnumExtension on CheckWaterQualityEnum {
     }
   }
 
-  String getDisplayText(BuildContext context) {
+  String getDisplayText() {
     switch (this) {
       case CheckWaterQualityEnum.check:
         return 'បាន';

@@ -33,10 +33,10 @@ class WaterSupplyEditState extends Equatable {
     this.constructionCodeInput = const WaterSupplyInput.pure(),
     this.receiverFamilyIndigenousInput = const WaterSupplyInput.pure(),
     this.receiverFamilyVulnearableInput = const WaterSupplyInput.pure(),
-    this.waterSupplyTypeInput = const WaterSupplyInput.pure(),
+    this.waterSupplyTypeInput = const WaterSupplyTypeInput.pure(),
     this.containerInput = const WaterSupplyInput.pure(),
     this.capacityInput = const WaterSupplyInput.pure(),
-    this.wellTypeInput = const WaterSupplyInput.pure(),
+    this.wellTypeInput = const WellTypeInput.pure(),
     this.wellDepthInput = const WaterSupplyInput.pure(),
     this.utmXInput = const WaterSupplyInput.pure(),
     this.utmYInput = const WaterSupplyInput.pure(),
@@ -48,18 +48,18 @@ class WaterSupplyEditState extends Equatable {
     this.longSecondInput = const WaterSupplyInput.pure(),
     this.wellScreenInput = const WaterSupplyInput.pure(),
     this.wellThearInput = const WaterSupplyInput.pure(),
-    this.waterQualityInput = const WaterSupplyInput.pure(),
+    this.waterQualityInput = const WaterQualityInput.pure(),
     this.niVoStaticInput = const WaterSupplyInput.pure(),
     this.niVoDynamicInput = const WaterSupplyInput.pure(),
-    this.checkWaterQualityInput = const WaterSupplyInput.pure(),
-    this.wellStatusInput = const WaterSupplyInput.pure(),
+    this.checkWaterQualityInput = const CheckWaterQualityInput.pure(),
+    this.wellStatusInput = const WellStatusInput.pure(),
     this.airPoolInput = const WaterSupplyInput.pure(),
     this.filterTankInput = const WaterSupplyInput.pure(),
     this.connectorInput = const WaterSupplyInput.pure(),
     this.coverageInput = const WaterSupplyInput.pure(),
-    this.pipeStatusInput = const WaterSupplyInput.pure(),
+    this.pipeStatusInput = const WellStatusInput.pure(),
     this.pipeLenghtInput = const WaterSupplyInput.pure(),
-    this.qualityWaterCheckInput = const WaterSupplyInput.pure(),
+    this.qualityWaterCheckInput = const WaterQualityInput.pure(),
     this.pondLatInput = const WaterSupplyInput.pure(),
     this.pondLongInput = const WaterSupplyInput.pure(),
     this.pondFilterInput = const WaterSupplyInput.pure(),
@@ -74,7 +74,7 @@ class WaterSupplyEditState extends Equatable {
     this.supplierDateInput = const DOCInput.pure(),
     this.dueDateInput = const DOCInput.pure(),
     this.filterInput = const WaterSupplyInput.pure(),
-    this.airStationInput = const WaterSupplyInput.pure(),
+    this.airStationInput = const WellStatusInput.pure(),
     this.waterSupplyCode=const WaterSupplyInput.pure(),
   });
 
@@ -110,10 +110,10 @@ class WaterSupplyEditState extends Equatable {
   final WaterSupplyInput constructionCodeInput;
   final WaterSupplyInput receiverFamilyIndigenousInput;
   final WaterSupplyInput receiverFamilyVulnearableInput;
-  final WaterSupplyInput waterSupplyTypeInput;
+  final WaterSupplyTypeInput waterSupplyTypeInput;
   final WaterSupplyInput containerInput;
   final WaterSupplyInput capacityInput;
-  final WaterSupplyInput wellTypeInput;
+  final WellTypeInput wellTypeInput;
   final WaterSupplyInput wellDepthInput;
   final WaterSupplyInput utmXInput;
   final WaterSupplyInput utmYInput;
@@ -125,18 +125,18 @@ class WaterSupplyEditState extends Equatable {
   final WaterSupplyInput longSecondInput;
   final WaterSupplyInput wellScreenInput;
   final WaterSupplyInput wellThearInput;
-  final WaterSupplyInput waterQualityInput;
+  final WaterQualityInput waterQualityInput;
   final WaterSupplyInput niVoStaticInput;
   final WaterSupplyInput niVoDynamicInput;
-  final WaterSupplyInput checkWaterQualityInput;
-  final WaterSupplyInput wellStatusInput;
+  final CheckWaterQualityInput checkWaterQualityInput;
+  final WellStatusInput wellStatusInput;
   final WaterSupplyInput airPoolInput;
   final WaterSupplyInput filterTankInput;
   final WaterSupplyInput connectorInput;
   final WaterSupplyInput pipeLenghtInput;
-  final WaterSupplyInput pipeStatusInput;
+  final WellStatusInput pipeStatusInput;
   final WaterSupplyInput coverageInput;
-  final WaterSupplyInput qualityWaterCheckInput;
+  final WaterQualityInput qualityWaterCheckInput;
   final WaterSupplyInput pondLatInput;
   final WaterSupplyInput pondLongInput;
   final WaterSupplyInput pondDepthInput;
@@ -151,7 +151,7 @@ class WaterSupplyEditState extends Equatable {
   final DOCInput supplierDateInput;
   final DOCInput dueDateInput;
   final WaterSupplyInput filterInput;
-  final WaterSupplyInput airStationInput;
+  final WellStatusInput airStationInput;
 
   const WaterSupplyEditState.initial({
     required int waterSupplyTypeId,
@@ -190,10 +190,10 @@ class WaterSupplyEditState extends Equatable {
     WaterSupplyInput? constructionCodeInput,
     WaterSupplyInput? receiverFamilyIndigenousInput,
     WaterSupplyInput? receiverFamilyVulnearableInput,
-    WaterSupplyInput? waterSupplyTypeInput,
+    WaterSupplyTypeInput? waterSupplyTypeInput,
     WaterSupplyInput? containerInput,
     WaterSupplyInput? capacityInput,
-    WaterSupplyInput? wellTypeInput,
+    WellTypeInput? wellTypeInput,
     WaterSupplyInput? wellDepthInput,
     WaterSupplyInput? utmXInput,
     WaterSupplyInput? utmYInput,
@@ -205,18 +205,18 @@ class WaterSupplyEditState extends Equatable {
     WaterSupplyInput? longSecondInput,
     WaterSupplyInput? wellScreenInput,
     WaterSupplyInput? wellThearInput,
-    WaterSupplyInput? waterQualityInput,
+    WaterQualityInput? waterQualityInput,
     WaterSupplyInput? niVoStaticInput,
     WaterSupplyInput? niVoDynamicInput,
-    WaterSupplyInput? checkWaterQualityInput,
-    WaterSupplyInput? wellStatusInput,
+    CheckWaterQualityInput? checkWaterQualityInput,
+    WellStatusInput? wellStatusInput,
     WaterSupplyInput? airPoolInput,
     WaterSupplyInput? filterTankInput,
     WaterSupplyInput? connectorInput,
     WaterSupplyInput? pipeLenghtInput,
-    WaterSupplyInput? pipeStatusInput,
+    WellStatusInput? pipeStatusInput,
     WaterSupplyInput? coverageInput,
-    WaterSupplyInput? qualityWaterCheckInput,
+    WaterQualityInput? qualityWaterCheckInput,
     WaterSupplyInput? pondLatInput,
     WaterSupplyInput? pondLongInput,
     WaterSupplyInput? pondDepthInput,
@@ -231,7 +231,7 @@ class WaterSupplyEditState extends Equatable {
     DOCInput? supplierDateInput,
     DOCInput? dueDateInput,
     WaterSupplyInput? filterInput,
-    WaterSupplyInput? airStationInput,
+    WellStatusInput? airStationInput,
     WaterSupplyInput? waterSupplyCode,
   }) {
     return WaterSupplyEditState._(

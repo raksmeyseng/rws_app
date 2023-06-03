@@ -212,7 +212,7 @@ class ConstructionCodeChanged extends WaterSupplyEditEvent {
 class WaterSupplyTypeChanged extends WaterSupplyEditEvent {
   const WaterSupplyTypeChanged(this.waterSupplyType);
 
-  final String waterSupplyType;
+  final WaterSupplyTypeEnum waterSupplyType;
 
   @override
   List<Object> get props => [waterSupplyType];
@@ -239,7 +239,7 @@ class CapacityChanged extends WaterSupplyEditEvent {
 class WellTypeChanged extends WaterSupplyEditEvent {
   const WellTypeChanged(this.wellType);
 
-  final String wellType;
+  final WellTypeEnum wellType;
 
   @override
   List<Object> get props => [wellType];
@@ -347,7 +347,7 @@ class WellThearChanged extends WaterSupplyEditEvent {
 class WaterQualityChanged extends WaterSupplyEditEvent {
   const WaterQualityChanged(this.waterQuality);
 
-  final String waterQuality;
+  final WaterQualityEnum waterQuality;
 
   @override
   List<Object> get props => [waterQuality];
@@ -374,7 +374,7 @@ class NiVoDynamicChanged extends WaterSupplyEditEvent {
 class CheckWaterQualityChanged extends WaterSupplyEditEvent {
   const CheckWaterQualityChanged(this.checkWaterQuality);
 
-  final String checkWaterQuality;
+  final CheckWaterQualityEnum checkWaterQuality;
 
   @override
   List<Object> get props => [checkWaterQuality];
@@ -383,7 +383,7 @@ class CheckWaterQualityChanged extends WaterSupplyEditEvent {
 class WellStatusChanged extends WaterSupplyEditEvent {
   const WellStatusChanged(this.wellStatus);
 
-  final String wellStatus;
+  final WellStatusEnum wellStatus;
 
   @override
   List<Object> get props => [wellStatus];
@@ -419,7 +419,7 @@ class PipeLenghtChanged extends WaterSupplyEditEvent {
 class PipeStatusChanged extends WaterSupplyEditEvent {
   const PipeStatusChanged(this.pipeStatus);
 
-  final String pipeStatus;
+  final WellStatusEnum pipeStatus;
 
   @override
   List<Object> get props => [pipeStatus];
@@ -446,7 +446,7 @@ class ConnectorChanged extends WaterSupplyEditEvent {
 class QualityWaterCheckChanged extends WaterSupplyEditEvent {
   const QualityWaterCheckChanged(this.quality);
 
-  final String quality;
+  final WaterQualityEnum quality;
 
   @override
   List<Object> get props => [quality];
@@ -581,7 +581,7 @@ class FilterChanged extends WaterSupplyEditEvent {
 class AirStationChanged extends WaterSupplyEditEvent {
   const AirStationChanged(this.airStation);
 
-  final String airStation;
+  final WellStatusEnum airStation;
 
   @override
   List<Object> get props => [airStation];

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-const int _underWaterCode = 0;
-const int _onTheWaterCode = 1;
-const int _springWaterCode = 2;
-const int _allCode = 3;
+const int _underWaterCode = 14;
+const int _onTheWaterCode = 15;
+const int _springWaterCode = 16;
+const int _allCode = 17;
 
 enum WaterSupplyTypeEnum {
   @JsonValue(_underWaterCode)
@@ -34,7 +34,7 @@ extension WaterSupplyTypeEnumExtension on WaterSupplyTypeEnum {
   }
 
   /// User friendly text
-  String getDisplayText(BuildContext context) {
+  String getDisplayText() {
     switch (this) {
       case WaterSupplyTypeEnum.underWater:
         return 'ក្រោមទឹក';

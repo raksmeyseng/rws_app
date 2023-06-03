@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-const int _activeCode = 1;
-const int _inactiveCode = 2;
+const int _activeCode = 0;
+const int _inactiveCode = 1;
 
 enum WellStatusEnum {
   @JsonValue(_activeCode)
@@ -21,7 +21,7 @@ extension WellStatusEnumExtension on WellStatusEnum {
     }
   }
 
-  String getDisplayText(BuildContext context) {
+  String getDisplayText() {
     switch (this) {
       case WellStatusEnum.active:
         return 'ដំណើរការ';

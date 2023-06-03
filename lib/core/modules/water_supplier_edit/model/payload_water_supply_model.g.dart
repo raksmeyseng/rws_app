@@ -55,7 +55,7 @@ PayloadWaterSupplyModel _$PayloadWaterSupplyModelFromJson(
       mainStatus: json['main_status'] as int,
       updatedBy: json['updated_by'] as int,
       waterSupplyCode: json['water_supply_code'] as String,
-      
+      id: json['id'] as int,
     );
 
 Map<String, dynamic> _$PayloadWaterSupplyModelToJson(

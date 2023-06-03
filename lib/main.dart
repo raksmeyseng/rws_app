@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:rws_app/constants/app_constant.dart';
 import 'package:rws_app/core/modules/app/view/app.dart';
 import 'package:rws_app/core/services/local_storage_service.dart';

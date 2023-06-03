@@ -41,8 +41,12 @@ class PayloadWaterSupplyModel {
     required this.isActive,
     required this.mainStatus,
     required this.updatedBy,
-    required this.waterSupplyCode
+    required this.waterSupplyCode,
+    this.id,
   });
+
+  @JsonKey(name:'id')
+  int? id;
 
   @JsonKey(name: 'created_by')//
   int createdBy;

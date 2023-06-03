@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-const int _motorCode = 0;
-const int _pumpCode = 1;
-const int _markIICode = 2;
-const int _markIIICode = 3;
-const int _pump6Code = 4;
-const int _drainageCode = 5;
-const int _mixedCode = 6;
+const int _motorCode = 1;
+const int _pumpCode = 2;
+const int _markIICode = 3;
+const int _markIIICode = 4;
+const int _pump6Code = 5;
+const int _drainageCode = 6;
+const int _mixedCode = 7;
 
 enum WellTypeEnum {
   @JsonValue(_motorCode)
@@ -49,7 +49,7 @@ extension WellTypeEnumExtension on WellTypeEnum {
   }
 
   /// User friendly text
-  String getDisplayText(BuildContext context) {
+  String getDisplayText() {
     switch (this) {
       case WellTypeEnum.motor:
         return 'អណ្ដូងបូមដោយម៉ូទ័រ';
@@ -69,4 +69,5 @@ extension WellTypeEnumExtension on WellTypeEnum {
         return 'អណ្ដូងចំរុះ';
     }
   }
+
 }
