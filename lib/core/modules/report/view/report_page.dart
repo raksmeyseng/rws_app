@@ -30,11 +30,11 @@ class ReportPage extends StatelessWidget {
               onPressed: () => Navigator.of(context).pop(),
             ),
           ),
-          body: Padding(
-            padding: const EdgeInsets.all(24.0),
+          body: const Padding(
+            padding: EdgeInsets.all(24.0),
             child: Column(
               mainAxisSize: MainAxisSize.min,
-              children: const [
+              children: [
                 
               ],
             ),

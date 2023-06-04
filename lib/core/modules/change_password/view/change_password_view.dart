@@ -28,16 +28,16 @@ class ChangePasswordView extends StatelessWidget {
           context.goNamed(AppRoute.settings);
         }
       },
-      child: SizedBox.expand(
+      child: const SizedBox.expand(
         child: SingleChildScrollView(
           child: SafeArea(
             child: Padding(
-              padding: const EdgeInsets.all(24.0),
+              padding: EdgeInsets.all(24.0),
               child: Wrapper(
                 maxWidth: appContentMaxWidth,
                 child: Wrap(
                   spacing: 40,
-                  children: const [
+                  children: [
                     _FormField(),
                   ],
                 ),
@@ -55,10 +55,10 @@ class _FormField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return const Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: const [
+      children: [
         _PasswordInput(),
         SizedBox(height: 24),
         _ConfirmPasswordInput(),

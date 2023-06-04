@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -384,7 +383,7 @@ class WaterSupplyEditBloc
   ) async {
     emit(state.copyWith(status: BaseStatusEnum.inprogress));
     try {
-      var provinces;
+      List<ProvinceModel> provinces;
       final isDataEntry=Application.authBloc.state.user?.isDataEntry??false;
       if(isDataEntry){
         final dataEntryProvinceId=Application.authBloc.state.user?.dataEntryProvinceId??0;
@@ -1272,7 +1271,7 @@ class WaterSupplyEditBloc
       emit(state.copyWith(formzStatus: FormzStatus.submissionInProgress));
       try {
         final user = Application.authBloc.state.user;
-        final provinceId=provinceInput.value;
+        provinceInput.value;
         final isRiskLocation=locationRickInput.value?.getCode();
         final payload = PayloadWaterSupplyModel(
           createdBy: user != null ? user.id : 0,

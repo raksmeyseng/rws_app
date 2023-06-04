@@ -89,14 +89,14 @@ class _TitleWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return const Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        const AppLogo(size: 30),
-        const SizedBox(width: 16.0),
+        AppLogo(size: 30),
+        SizedBox(width: 16.0),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
+          children: [
             TextWidget(
               'ក្រសួងអភិវឌ្ឃន៍ជនបទ',
               bold: true,
@@ -192,17 +192,17 @@ class _AppLogo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(24.0),
+    return const Padding(
+      padding: EdgeInsets.all(24.0),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const AppLogo(size: 40),
-          const SizedBox(width: 16.0),
+          AppLogo(size: 40),
+          SizedBox(width: 16.0),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
+            children: [
               TextWidget(
                 'ក្រសួងអភិវឌ្ឃន៍ជនបទ',
                 bold: true,

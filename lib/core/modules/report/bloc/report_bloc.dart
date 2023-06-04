@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -34,7 +32,7 @@ class ReportBloc extends Bloc<ReportEvent, ReportState> {
       //Sheet sheetObject = selectedExcel['Sheet1'];
       sheetObject.appendRow(data);
 
-      var res = await Permission.storage.request();
+      await Permission.storage.request();
  
  //"/storage/emulated/0/Download/"  download folder address
  //excel2.xlsx is the file name "feel free to change the file name to anything you want"
