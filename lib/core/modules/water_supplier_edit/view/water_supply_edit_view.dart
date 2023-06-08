@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
+import 'package:rws_app/config/routes/app_route.dart';
+import 'package:rws_app/config/routes/application.dart';
 import 'package:rws_app/core/enum/area_enum.dart';
 import 'package:rws_app/core/enum/base_status_enum.dart';
 import 'package:rws_app/core/enum/budget_type.dart';
@@ -55,7 +57,7 @@ class WaterSupplyEditView extends StatelessWidget {
           previous.formzStatus != current.formzStatus,
       listener: (context, state) {
         if (state.formzStatus == FormzStatus.submissionSuccess) {
-          Navigator.of(context).pop();
+          Application.router.goNamed(AppRoute.home, extra: {'index': '2'});
         }
       },
       child: BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
@@ -1799,8 +1801,7 @@ class _LocationRiskInput extends StatelessWidget {
                         ...AreaEnum.values.map(
                           (areaType) => ListTile(
                             onTap: () {
-                              Navigator.of(context)
-                                  .pop(areaType);
+                              Navigator.of(context).pop(areaType);
                             },
                             contentPadding: const EdgeInsets.symmetric(
                               horizontal: 24.0,
@@ -2450,14 +2451,12 @@ class _WaterSupplyTypeInput extends StatelessWidget {
                         ...WaterSupplyTypeEnum.values.map(
                           (waterSupplyType) => ListTile(
                             onTap: () {
-                              Navigator.of(context)
-                                  .pop(waterSupplyType);
+                              Navigator.of(context).pop(waterSupplyType);
                             },
                             contentPadding: const EdgeInsets.symmetric(
                               horizontal: 24.0,
                             ),
-                            title: TextWidget(
-                                waterSupplyType.getDisplayText()),
+                            title: TextWidget(waterSupplyType.getDisplayText()),
                           ),
                         ),
                       ],
@@ -2574,7 +2573,8 @@ class _WellTypeInput extends StatelessWidget {
           focusNode: bloc.wellTypeFocus,
           controller: bloc.wellTypeController,
           onTap: () async {
-            final wellType = await DialogHelper.showAnimatedDialog<WellTypeEnum?>(
+            final wellType =
+                await DialogHelper.showAnimatedDialog<WellTypeEnum?>(
               animationType: DialogAnimationType.none,
               transitionDuration: const Duration(milliseconds: 200),
               pageBuilder: (context, a1, a2) {
@@ -2588,8 +2588,7 @@ class _WellTypeInput extends StatelessWidget {
                         ...WellTypeEnum.values.map(
                           (wellType) => ListTile(
                             onTap: () {
-                              Navigator.of(context)
-                                  .pop(wellType);
+                              Navigator.of(context).pop(wellType);
                             },
                             contentPadding: const EdgeInsets.symmetric(
                               horizontal: 24.0,
@@ -2745,7 +2744,8 @@ class _WaterQualityInput extends StatelessWidget {
           focusNode: bloc.waterQualityFocus,
           controller: bloc.waterQualityController,
           onTap: () async {
-            final type = await DialogHelper.showAnimatedDialog<WaterQualityEnum?>(
+            final type =
+                await DialogHelper.showAnimatedDialog<WaterQualityEnum?>(
               animationType: DialogAnimationType.none,
               transitionDuration: const Duration(milliseconds: 200),
               pageBuilder: (context, a1, a2) {
@@ -2759,8 +2759,7 @@ class _WaterQualityInput extends StatelessWidget {
                         ...WaterQualityEnum.values.map(
                           (quality) => ListTile(
                             onTap: () {
-                              Navigator.of(context)
-                                  .pop(quality);
+                              Navigator.of(context).pop(quality);
                             },
                             contentPadding: const EdgeInsets.symmetric(
                               horizontal: 24.0,
@@ -2882,7 +2881,8 @@ class _CheckWaterQualityInput extends StatelessWidget {
           focusNode: bloc.checkWaterQualityFocus,
           controller: bloc.checkWaterQualityController,
           onTap: () async {
-            final type = await DialogHelper.showAnimatedDialog<CheckWaterQualityEnum?>(
+            final type =
+                await DialogHelper.showAnimatedDialog<CheckWaterQualityEnum?>(
               animationType: DialogAnimationType.none,
               transitionDuration: const Duration(milliseconds: 200),
               pageBuilder: (context, a1, a2) {
@@ -2896,8 +2896,7 @@ class _CheckWaterQualityInput extends StatelessWidget {
                         ...CheckWaterQualityEnum.values.map(
                           (check) => ListTile(
                             onTap: () {
-                              Navigator.of(context)
-                                  .pop(check);
+                              Navigator.of(context).pop(check);
                             },
                             contentPadding: const EdgeInsets.symmetric(
                               horizontal: 24.0,
@@ -2965,8 +2964,7 @@ class _WellStatusInput extends StatelessWidget {
                         ...WellStatusEnum.values.map(
                           (status) => ListTile(
                             onTap: () {
-                              Navigator.of(context)
-                                  .pop(status);
+                              Navigator.of(context).pop(status);
                             },
                             contentPadding: const EdgeInsets.symmetric(
                               horizontal: 24.0,
@@ -3205,8 +3203,7 @@ class _PipeStatusInput extends StatelessWidget {
                         ...WellStatusEnum.values.map(
                           (status) => ListTile(
                             onTap: () {
-                              Navigator.of(context)
-                                  .pop(status);
+                              Navigator.of(context).pop(status);
                             },
                             contentPadding: const EdgeInsets.symmetric(
                               horizontal: 24.0,
@@ -3260,7 +3257,8 @@ class _QualityWaterCheckInput extends StatelessWidget {
           focusNode: bloc.qualityWaterCheckFocus,
           controller: bloc.qualityWaterCheckController,
           onTap: () async {
-            final type = await DialogHelper.showAnimatedDialog<WaterQualityEnum?>(
+            final type =
+                await DialogHelper.showAnimatedDialog<WaterQualityEnum?>(
               animationType: DialogAnimationType.none,
               transitionDuration: const Duration(milliseconds: 200),
               pageBuilder: (context, a1, a2) {
@@ -3274,8 +3272,7 @@ class _QualityWaterCheckInput extends StatelessWidget {
                         ...WaterQualityEnum.values.map(
                           (status) => ListTile(
                             onTap: () {
-                              Navigator.of(context)
-                                  .pop(status);
+                              Navigator.of(context).pop(status);
                             },
                             contentPadding: const EdgeInsets.symmetric(
                               horizontal: 24.0,
@@ -4209,8 +4206,7 @@ class _AirStationInput extends StatelessWidget {
                         ...WellStatusEnum.values.map(
                           (status) => ListTile(
                             onTap: () {
-                              Navigator.of(context)
-                                  .pop(status);
+                              Navigator.of(context).pop(status);
                             },
                             contentPadding: const EdgeInsets.symmetric(
                               horizontal: 24.0,

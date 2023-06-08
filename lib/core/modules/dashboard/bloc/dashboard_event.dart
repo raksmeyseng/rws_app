@@ -17,3 +17,11 @@ class SelectedMenuChanged extends DashboardEvent {
   @override
   List<Object> get props => [selectedMenu];
 }
+
+class TabTapped extends DashboardEvent {
+  const TabTapped(this.index);
+  final int index;
+
+  @override
+  List<Object> get props => [index];
+}

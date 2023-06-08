@@ -3,22 +3,6 @@ class NewsAttachmentRemoved {
   final String id;
 }
 
-class ConnectionFeeUpdated {
-  const ConnectionFeeUpdated();
-}
-
-class ElectricTariffUpdated {
-  const ElectricTariffUpdated();
-}
-
-class LegalUpdated {
-  const LegalUpdated();
-}
-
-class QAUpdated {
-  const QAUpdated();
-}
-
-class SupplierUpdated {
-  const SupplierUpdated();
+class WaterSupplyUpdated {
+  const WaterSupplyUpdated();
 }
