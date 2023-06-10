@@ -12,6 +12,7 @@ import 'package:rws_app/core/modules/authentication/models/register_response_mod
 import 'package:rws_app/core/modules/authentication/models/user_model.dart';
 import 'package:rws_app/core/modules/authentication/models/user_token_model.dart';
 import 'package:rws_app/core/modules/edit_profile/models/user_payload_model.dart';
+import 'package:rws_app/core/modules/user_information/model/change_password.dart';
 import 'package:rws_app/core/services/local_storage_service.dart';
 import 'package:rws_app/core/services/rest_api_service.dart';
 
@@ -145,5 +146,11 @@ class AuthRepository extends RestApiService {
     );
     final res = await post(ApiPath.login, data: payload);
     return UserTokenModel.fromJson(res);
+  }
+
+  //change password
+  Future<UserTokenModel> changePassword(int userID, ChangePasswordModel changePasswordModel) async {
+    final user = await post(ApiPath.changePassword(userID), data: changePasswordModel);
+    return UserTokenModel.fromJson(user);
   }
 }

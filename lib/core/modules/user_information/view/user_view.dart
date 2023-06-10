@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rws_app/core/modules/authentication/bloc/auth_bloc.dart';
+import 'package:rws_app/core/modules/change_password/models/confirm_password.dart';
+import 'package:rws_app/core/modules/change_password/models/password.dart';
+import 'package:rws_app/core/modules/change_password/view/change_password_view.dart';
+import 'package:rws_app/core/modules/user_information/bloc/change_password/change_password_bloc.dart';
+import 'package:rws_app/core/widgets/caption_widget.dart';
+import 'package:rws_app/core/widgets/my_text_input.dart';
 import 'package:rws_app/translation/generated/l10n.dart';
 import '../../authentication/models/user_model.dart';
 
@@ -115,17 +121,21 @@ class _UserViewState extends State<UserView> {
                   const SizedBox(height: 30,),
                   Text(S.of(context).change_password, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
                   const SizedBox(height: 20,),
-                  buildChangePassword('Old Password : ', 'Enter old password', oldPassword),
-                  buildChangePassword('New Password : ', 'Enter new password', newPassword),
-                  buildChangePassword('Confirm New Password : ', 'Enter confirm new password', confirmNewPassword),
-                  const SizedBox(height: 30,),
+                  // buildCurrentPassword(S.of(context).current_password, 'Enter old password'),
+                  const _CurrentPasswordInput(),
+                  // buildNewPassword(S.of(context).new_password, 'Enter new password'),
+                  const _NewPasswordInput(),
+                  // buildRenewPassword(S.of(context).confirm_new_password, 'Enter confirm new password'),
+                  const _ConfirmNewPasswordInput(),
+                  const SizedBox(height: 50,),
                 ],
               ),
             ),
           ),
           floatingActionButton: FloatingActionButton(
             onPressed: () {
-              print('save');
+              context.read<ResetPasswordBloc>()
+                  .add(const ResetPasswordSubmitted());
             },
             child: const Icon(Icons.save),
           ),
@@ -157,26 +167,87 @@ class _UserViewState extends State<UserView> {
     );
   }
 
-  Widget buildChangePassword(String labelChangePW, String hintText, TextEditingController textEditingController){
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 20),
-      child: TextField(
-        controller: textEditingController,
-        decoration: InputDecoration(
-          contentPadding: const EdgeInsets.only(bottom: 5),
-          labelText: labelChangePW,
-          floatingLabelBehavior: FloatingLabelBehavior.always,
-          hintText: hintText,
-          hintStyle: const TextStyle(
-            color: Colors.grey,
-          )
-        ),
-      ),
-    );
-  }
+  // Widget buildCurrentPassword(String labelChangePW, String hintText){
+  //   return Padding(
+  //     padding: const EdgeInsets.only(bottom: 20),
+  //     child: TextFormField(
+  //       controller: oldPassword,
+  //       validator: (value) {
+  //         if (value!.isEmpty) {
+  //           return "password can't be empty";
+  //         } else if (value.length > 8) {
+  //           return 'password length must be >=8';
+  //         }
+  //         return null;
+  //       },
+  //       decoration: InputDecoration(
+  //         contentPadding: const EdgeInsets.only(bottom: 5),
+  //         labelText: labelChangePW,
+  //         floatingLabelBehavior: FloatingLabelBehavior.always,
+  //         hintText: hintText,
+  //         hintStyle: const TextStyle(
+  //           color: Colors.grey,
+  //         ),
+  //       ),
+  //     ),
+  //   );
+  // }
+
+  // Widget buildNewPassword(String labelChangePW, String hintText){
+  //   return Padding(
+  //     padding: const EdgeInsets.only(bottom: 20),
+  //     child: TextFormField(
+  //       controller: newPassword,
+  //       validator: (value) {
+  //         if (value!.isEmpty) {
+  //           return "new password can't be empty";
+  //         } else if (value.length > 8) {
+  //           return 'new password length must be >=8';
+  //         }
+  //         return null;
+  //       },
+  //       decoration: InputDecoration(
+  //           contentPadding: const EdgeInsets.only(bottom: 5),
+  //           labelText: labelChangePW,
+  //           floatingLabelBehavior: FloatingLabelBehavior.always,
+  //           hintText: hintText,
+  //           hintStyle: const TextStyle(
+  //             color: Colors.grey,
+  //           ),
+  //       ),
+  //     ),
+  //   );
+  // }
+
+  // Widget buildRenewPassword(String labelChangePW, String hintText){
+  //   return Padding(
+  //     padding: const EdgeInsets.only(bottom: 20),
+  //     child: TextFormField(
+  //       validator: (value) {
+  //         if (value!.isEmpty) {
+  //           return "Confirm password can't be empty";
+  //         } else if (value.length > 8) {
+  //           return 'Confirm password length must be >=8';
+  //         } else if (value != confirmNewPassword.text) {
+  //           return 'Confirm Password and confirm password are not same';
+  //         }
+  //         return null;
+  //       },
+  //       controller: confirmNewPassword,
+  //       decoration: InputDecoration(
+  //           contentPadding: const EdgeInsets.only(bottom: 5),
+  //           labelText: labelChangePW,
+  //           floatingLabelBehavior: FloatingLabelBehavior.always,
+  //           hintText: hintText,
+  //           hintStyle: const TextStyle(
+  //             color: Colors.grey,
+  //           ),
+  //       ),
+  //     ),
+  //   );
+  // }
 
   void conditionProvince(){
-
     if(provinceIDDataEntry == '1' || provincialIDDataEntry == '1'){
       provinceDataEntry = 'បន្ទាយមានជ័យ';
     }else if(provinceIDDataEntry == '2' || provincialIDDataEntry == '2'){
@@ -227,10 +298,196 @@ class _UserViewState extends State<UserView> {
       provinceDataEntry = 'ប៉ៃលិន';
     }else if(provinceIDDataEntry == '25' || provincialIDDataEntry == '25'){
       provinceDataEntry = 'ត្បូងឃ្មុំ';
-    }else{
-      provinceDataEntry = '';
     }
 
     print(provinceDataEntry);
   }
 }
+
+class _CurrentPasswordInput extends StatelessWidget {
+  const _CurrentPasswordInput({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<ResetPasswordBloc, ResetPasswordState>(
+      builder: (context, state) {
+        return Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 16.0),
+              child: CaptionWidget(
+                '${S.of(context).current_password.toUpperCase()} *',
+              ),
+            ),
+            const SizedBox(height: 4.0),
+            MyTextInput(
+              focusNode: context.read<ResetPasswordBloc>().currentPinFocus,
+              onChanged: (pin) =>
+                  context.read<ResetPasswordBloc>().add(CurrentPasswordChanged(pin)),
+              keyboardType: TextInputType.number,
+              obscureText: !state.currentPasswordVisibility,
+              isRequired: true,
+              suffixIcon: IconButton(
+                icon: Icon(
+                  state.currentPasswordVisibility
+                      ? Icons.visibility
+                      : Icons.visibility_off,
+                ),
+                onPressed: () => context
+                    .read<ResetPasswordBloc>()
+                    .add(const ToggleCurrentPassVisibility()),
+              ),
+              errorText: _handleErrorText(context, state),
+              textInputAction: TextInputAction.next,
+              onSubmitted: (value) {
+                context
+                    .read<ResetPasswordBloc>()
+                    .currentPinFocus
+                    .requestFocus();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  String? _handleErrorText(BuildContext context, ResetPasswordState state) {
+    if (!state.currentPassword.invalid) return null;
+    switch (state.currentPassword.error) {
+      case PasswordValidationError.empty:
+      case PasswordValidationError.invalid:
+        return S.of(context).pls_input_your_password;
+      default:
+        return null;
+    }
+  }
+}
+
+class _NewPasswordInput extends StatelessWidget {
+  const _NewPasswordInput({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<ResetPasswordBloc, ResetPasswordState>(
+      builder: (context, state) {
+        return Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 16.0),
+              child: CaptionWidget(
+                '${S.of(context).new_password.toUpperCase()} *',
+              ),
+            ),
+            const SizedBox(height: 4.0),
+            MyTextInput(
+              focusNode: context.read<ResetPasswordBloc>().newPinFocus,
+              onChanged: (pin) =>
+                  context.read<ResetPasswordBloc>().add(NewPasswordChanged(pin)),
+              keyboardType: TextInputType.number,
+              obscureText: !state.newPasswordVisibility,
+              isRequired: true,
+              suffixIcon: IconButton(
+                icon: Icon(
+                  state.newPasswordVisibility
+                      ? Icons.visibility
+                      : Icons.visibility_off,
+                ),
+                onPressed: () => context
+                    .read<ResetPasswordBloc>()
+                    .add(const ToggleNewPassVisibility()),
+              ),
+              errorText: _handleErrorText(context, state),
+              textInputAction: TextInputAction.next,
+              onSubmitted: (value) {
+                context
+                    .read<ResetPasswordBloc>()
+                    .newPinFocus
+                    .requestFocus();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  String? _handleErrorText(BuildContext context, ResetPasswordState state) {
+    if (!state.newPassword.invalid) return null;
+    switch (state.newPassword.error) {
+      case PasswordValidationError.empty:
+      case PasswordValidationError.invalid:
+        return S.of(context).input_new_password;
+      default:
+        return null;
+    }
+  }
+}
+
+class _ConfirmNewPasswordInput extends StatelessWidget {
+  const _ConfirmNewPasswordInput({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<ResetPasswordBloc, ResetPasswordState>(
+      builder: (context, state) {
+        return Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 16.0),
+              child: CaptionWidget(
+                '${S.of(context).confirm_new_password.toUpperCase()} *',
+              ),
+            ),
+            const SizedBox(height: 4.0),
+            MyTextInput(
+              focusNode: context.read<ResetPasswordBloc>().confirmNewPinFocus,
+              onChanged: (pin) =>
+                  context.read<ResetPasswordBloc>().add(ConfirmPasswordChanged(pin)),
+              keyboardType: TextInputType.number,
+              obscureText: !state.confirmPassVisibility,
+              isRequired: true,
+              suffixIcon: IconButton(
+                icon: Icon(
+                  state.confirmPassVisibility
+                      ? Icons.visibility
+                      : Icons.visibility_off,
+                ),
+                onPressed: () => context
+                    .read<ResetPasswordBloc>()
+                    .add(const ToggleConfirmNewPassVisibility()),
+              ),
+              errorText: _handleErrorText(context, state),
+              textInputAction: TextInputAction.next,
+              onSubmitted: (value) {
+                context
+                    .read<ResetPasswordBloc>()
+                    .confirmNewPinFocus
+                    .requestFocus();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  String? _handleErrorText(BuildContext context, ResetPasswordState state) {
+    if (!state.confirmPassword.invalid) return null;
+    switch (state.confirmPassword.error) {
+      case ConfirmPasswordValidationError.empty:
+        return S.of(context).confirm_new_password;
+      case ConfirmPasswordValidationError.mismatch:
+        return S.of(context).password_mismatch;
+      default:
+        return null;
+    }
+  }
+}
+

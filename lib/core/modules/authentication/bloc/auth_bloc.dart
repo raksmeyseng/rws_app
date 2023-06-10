@@ -7,6 +7,7 @@ import 'package:rws_app/core/modules/authentication/models/user_token_model.dart
 import 'package:rws_app/core/modules/authentication/repositories/auth_repository.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:rws_app/core/modules/user_information/model/change_password.dart';
 
 part 'auth_event.dart';
 part 'auth_state.dart';

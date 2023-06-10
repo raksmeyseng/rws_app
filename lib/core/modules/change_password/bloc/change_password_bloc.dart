@@ -50,7 +50,7 @@ class ChangePasswordBloc
     PasswordChanged event,
     Emitter<ChangePasswordState> emit,
   ) {
-    final password = Password.pure(event.password);
+    final password = NewPassword.pure(event.password);
     emit(state.copyWith(password: password));
   }
 
@@ -82,7 +82,7 @@ class ChangePasswordBloc
     ChangePasswordSubmitted event,
     Emitter<ChangePasswordState> emit,
   ) async {
-    final password = Password.dirty(state.password.value);
+    final password = NewPassword.dirty(state.password.value);
     final confirmPassword = ConfirmPassword.dirty(
       password: password.value,
       value: state.confirmPassword.value,

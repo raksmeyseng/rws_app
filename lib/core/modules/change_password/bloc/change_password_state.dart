@@ -3,7 +3,7 @@ part of 'change_password_bloc.dart';
 class ChangePasswordState extends Equatable {
   const ChangePasswordState._({
     this.status = FormzStatus.pure,
-    this.password = const Password.pure(),
+    this.password = const NewPassword.pure(),
     this.confirmPassword = const ConfirmPassword.pure(),
     this.user,
     this.passwordVisibility = false,
@@ -11,7 +11,7 @@ class ChangePasswordState extends Equatable {
   });
 
   final FormzStatus status;
-  final Password password;
+  final NewPassword password;
   final ConfirmPassword confirmPassword;
   final UserModel? user;
   final bool passwordVisibility;
@@ -21,7 +21,7 @@ class ChangePasswordState extends Equatable {
 
   ChangePasswordState copyWith({
     FormzStatus? status,
-    Password? password,
+    NewPassword? password,
     ConfirmPassword? confirmPassword,
     UserModel? user,
     bool? passwordVisibility,

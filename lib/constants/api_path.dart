@@ -20,6 +20,11 @@ class ApiPath {
   static String updateProfile(int userId) => '/api/UserAdmin/$userId';
   static String login = '${AppConstant.mainURL}login/';
 
+  // Change Password
+  static String changePassword(int userId) => '/change_password/$userId';
+  // static String changePassword =
+  //     '${AppConstant.mainURL}/change_password/';
+
   // Media Api
   static const String uploadFile = '/api/Media/File';
   static const String getAppSetting = '/v1/App/Setting';
