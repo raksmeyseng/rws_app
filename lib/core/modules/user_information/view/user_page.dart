@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rws_app/config/routes/application.dart';
 import 'package:rws_app/config/themes/app_color.dart';
-import 'package:rws_app/core/modules/user_information/bloc/change_password/change_password_bloc.dart';
+import 'package:rws_app/core/modules/user_information/bloc/reset_password/change_password_bloc.dart';
 import 'package:rws_app/core/modules/user_information/view/user_view.dart';
 import 'package:rws_app/core/widgets/text_widget.dart';
 import 'package:rws_app/translation/generated/l10n.dart';

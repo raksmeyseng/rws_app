@@ -6,7 +6,6 @@ import 'package:rws_app/core/modules/authentication/models/user_model.dart';
 import 'package:rws_app/core/modules/authentication/repositories/user_repository.dart';
 import 'package:rws_app/core/modules/change_password/models/confirm_password.dart';
 import 'package:rws_app/core/modules/change_password/models/password.dart';
-import 'package:rws_app/core/modules/edit_profile/models/user_payload_model.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
