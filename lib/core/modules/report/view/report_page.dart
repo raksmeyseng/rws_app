@@ -5,15 +5,18 @@ import 'package:rws_app/core/widgets/text_widget.dart';
 
 import '../../../../config/themes/app_color.dart';
 import '../../../../translation/generated/l10n.dart';
+import '../repositories/report_repository.dart';
 
 class ReportPage extends StatelessWidget {
   const ReportPage({super.key});
+
+  //final ReportRepository repository;
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => ReportBloc(
-
+repository: ReportRepository(),
       )..add(const ReportEventStated()),
       child: Scaffold(
           appBar: AppBar(
@@ -30,11 +33,11 @@ class ReportPage extends StatelessWidget {
               onPressed: () => Navigator.of(context).pop(),
             ),
           ),
-          body: const Padding(
-            padding: EdgeInsets.all(24.0),
+          body: Padding(
+            padding: const EdgeInsets.all(24.0),
             child: Column(
               mainAxisSize: MainAxisSize.min,
-              children: [
+              children: const [
                 
               ],
             ),

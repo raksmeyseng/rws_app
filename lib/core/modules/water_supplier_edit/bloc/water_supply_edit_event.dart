@@ -50,7 +50,7 @@ class VillageChanged extends WaterSupplyEditEvent {
 class MapTypeChanged extends WaterSupplyEditEvent {
   const MapTypeChanged(this.mapType);
 
-  final String mapType;
+  final MapTypeEnum mapType;
 
   @override
   List<Object> get props => [mapType];

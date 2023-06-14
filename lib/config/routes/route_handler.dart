@@ -45,7 +45,7 @@ Page settingBuilder(BuildContext context, GoRouterState state) {
 Page usersBuilder(BuildContext context, GoRouterState state) {
   return MaterialPage<void>(
     key: state.pageKey,
-    child: const UserPage(),
+    child: const AboutPage()// const UserPage(),
   );
 }
 
@@ -78,12 +78,12 @@ Page dashboardBuilder(BuildContext context, GoRouterState state) {
   );
 }
 
-Page changePasswordBuilder(BuildContext context, GoRouterState state) {
-  return MaterialPage<void>(
-    key: state.pageKey,
-    child: const ChangePasswordPage(),
-  );
-}
+// Page changePasswordBuilder(BuildContext context, GoRouterState state) {
+//   return MaterialPage<void>(
+//     key: state.pageKey,
+//     child: const ChangePasswordPage(),
+//   );
+// }
 
 Page notFoundBuilder(BuildContext context, GoRouterState state) {
   return MaterialPage<void>(

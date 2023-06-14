@@ -12,9 +12,9 @@ class BottomBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: Theme.of(context).cardColor,
-      child: const Padding(
-        padding: EdgeInsets.all(16.0),
-        child: Row(children: [
+      child: Padding(
+        padding:const EdgeInsets.all(16.0),
+        child: Row(children: const [
           RealTimeDate(),
           Spacer(),
           _VersionWidget(),

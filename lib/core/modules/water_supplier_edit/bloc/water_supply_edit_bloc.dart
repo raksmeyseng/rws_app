@@ -12,6 +12,7 @@ import 'package:rws_app/core/enum/well_status_enum.dart';
 import 'package:rws_app/core/modules/my_draft/models/my_draft_model.dart';
 import 'package:rws_app/core/modules/water_supplier_edit/model/budget_type_input.dart';
 import 'package:rws_app/core/modules/water_supplier_edit/model/doc_input.dart';
+import 'package:rws_app/core/modules/water_supplier_edit/model/input/map_type_input.dart';
 import 'package:rws_app/core/modules/water_supplier_edit/model/management_type_input.dart';
 import 'package:rws_app/core/modules/water_supplier_edit/model/payload_water_supply_model.dart';
 import 'package:rws_app/core/modules/water_supplier_edit/model/payload_well.dart';
@@ -24,6 +25,7 @@ import 'package:rws_app/utils/helpers/date_helper.dart';
 import 'package:rws_app/utils/helpers/loading_helper.dart';
 
 import '../../../enum/area_enum.dart';
+import '../../../enum/map_type_enum.dart';
 import '../../../enum/water_quality_enum.dart';
 import '../../../enum/well_type_enum.dart';
 import '../model/input/check_water_quality_input.dart';
@@ -417,9 +419,11 @@ class WaterSupplyEditBloc
     ProvinceChanged event,
     Emitter<WaterSupplyEditState> emit,
   ) {
-    final province = WaterSupplyInput.pure(event.province.nameEn);
+    //final province = WaterSupplyInput.pure(event.province.nameEn);
+    final province = WaterSupplyInput.pure(event.province.id.toString());
     provinceController.text = event.province.nameEn;
     districtController.text = '';
+    //provinceController.value=event.province.id as TextEditingValue;
     emit(state.copyWith(
       provinceInput: province,
       districts: event.province.provincedistrict,
@@ -430,7 +434,7 @@ class WaterSupplyEditBloc
     DistrictChanged event,
     Emitter<WaterSupplyEditState> emit,
   ) {
-    final distict = WaterSupplyInput.pure(event.district.nameEn);
+    final distict = WaterSupplyInput.pure(event.district.id.toString());
     districtController.text = event.district.nameEn;
     communeController.text = '';
     emit(state.copyWith(
@@ -443,7 +447,7 @@ class WaterSupplyEditBloc
     CommnueChanged event,
     Emitter<WaterSupplyEditState> emit,
   ) {
-    final commune = WaterSupplyInput.pure(event.commnue.nameEn);
+    final commune = WaterSupplyInput.pure(event.commnue.id.toString());
     communeController.text = event.commnue.nameEn;
     villageController.text = '';
     emit(state.copyWith(
@@ -456,7 +460,7 @@ class WaterSupplyEditBloc
     VillageChanged event,
     Emitter<WaterSupplyEditState> emit,
   ) {
-    final village = WaterSupplyInput.pure(event.village.nameEn);
+    final village = WaterSupplyInput.pure(event.village.id.toString());
     villageController.text = event.village.nameEn;
     emit(state.copyWith(villageInput: village));
   }
@@ -465,8 +469,8 @@ class WaterSupplyEditBloc
     MapTypeChanged event,
     Emitter<WaterSupplyEditState> emit,
   ) {
-    final mapType = WaterSupplyInput.pure(event.mapType);
-    mapTypeController.text = event.mapType;
+    final mapType = MapTypeInput.pure(event.mapType);
+    mapTypeController.text = event.mapType.getDisplayText();
     emit(state.copyWith(mapTypeInput: mapType));
   }
 
@@ -980,7 +984,7 @@ class WaterSupplyEditBloc
     final districtInput = WaterSupplyInput.dirty(state.districtInput.value);
     final communeInput = WaterSupplyInput.dirty(state.communeInput.value);
     final villageInput = WaterSupplyInput.dirty(state.villageInput.value);
-    final mapTypeInput = WaterSupplyInput.dirty(state.mapTypeInput.value);
+    final mapTypeInput = MapTypeInput.dirty(state.mapTypeInput.value);
     final waterSupplyCodeInput =
         WaterSupplyInput.dirty(state.waterSupplyCode.value);
     final familyTotalInput =
@@ -1268,17 +1272,18 @@ class WaterSupplyEditBloc
       Future.delayed(const Duration(microseconds: 300));
       try {
         final user = Application.authBloc.state.user;
-        provinceInput.value;
+        final province = provinceInput.value;
+        print(province);
         final isRiskLocation = locationRickInput.value?.getCode();
         final payload = PayloadWaterSupplyModel(
           createdBy: user != null ? user.id : 0,
           // createdAt: DateTime.now(),
           // createdAt1: DateTime.now(),
-          province: 12,
-          district: 1585,
-          commune: 4,
-          village: 12,
-          mapUnitId: 1,
+          province: int.parse(province),
+          district: int.parse(districtInput.value),
+          commune: int.parse(communeInput.value),
+          village: int.parse(villageInput.value),
+          mapUnitId: mapTypeInput.value?.getCode()??1,
           decimalDegreeLat: latDegreeInput.value.isNotEmpty
               ? double.parse(lateitudeInput.value)
               : 0,
@@ -1389,6 +1394,11 @@ class WaterSupplyEditBloc
               );
             });
           }
+          //PIPE
+          else if(state.waterSupplyTypeId== 2){
+              
+          }
+
         });
         Application.eventBus.fire(const WaterSupplyUpdated());
         emit(state.copyWith(formzStatus: FormzStatus.submissionSuccess));

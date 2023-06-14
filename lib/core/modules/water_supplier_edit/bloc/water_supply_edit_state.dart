@@ -11,7 +11,7 @@ class WaterSupplyEditState extends Equatable {
     this.districtInput = const WaterSupplyInput.pure(),
     this.communeInput = const WaterSupplyInput.pure(),
     this.villageInput = const WaterSupplyInput.pure(),
-    this.mapTypeInput = const WaterSupplyInput.pure(),
+    this.mapTypeInput = const MapTypeInput.pure(),
     this.familyTotalInput = const WaterSupplyInput.pure(),
     this.lateitudeInput = const WaterSupplyInput.pure(),
     this.longtitudeInput = const WaterSupplyInput.pure(),
@@ -87,7 +87,7 @@ class WaterSupplyEditState extends Equatable {
   final WaterSupplyInput districtInput;
   final WaterSupplyInput communeInput;
   final WaterSupplyInput villageInput;
-  final WaterSupplyInput mapTypeInput;
+  final MapTypeInput mapTypeInput;
   final WaterSupplyInput familyTotalInput;
   final WaterSupplyInput lateitudeInput;
   final WaterSupplyInput longtitudeInput;
@@ -168,7 +168,7 @@ class WaterSupplyEditState extends Equatable {
     WaterSupplyInput? districtInput,
     WaterSupplyInput? communeInput,
     WaterSupplyInput? villageInput,
-    WaterSupplyInput? mapTypeInput,
+    MapTypeInput? mapTypeInput,
     WaterSupplyInput? familyTotalInput,
     WaterSupplyInput? lateitudeInput,
     WaterSupplyInput? longtitudeInput,

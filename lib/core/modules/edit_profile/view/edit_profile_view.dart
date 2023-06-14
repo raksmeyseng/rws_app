@@ -33,19 +33,19 @@ class EditProfileView extends StatelessWidget {
           Navigator.of(context).pop();
         }
       },
-      child: const SizedBox.expand(
+      child:  SizedBox.expand(
         child: SingleChildScrollView(
-          physics: AlwaysScrollableScrollPhysics(),
+          physics:const AlwaysScrollableScrollPhysics(),
           child: SafeArea(
             child: Padding(
-              padding: EdgeInsets.all(24.0),
+              padding:const EdgeInsets.all(24.0),
               child: Wrapper(
                 maxWidth: appSmallMaxWidth,
                 child: Align(
                   alignment: Alignment.topCenter,
                   child: Wrap(
                     spacing: 40,
-                    children: [
+                    children:const [
                       // _ProfilePicture(),
                       // SizedBox(height: 24.0),
                       _FormField(),
@@ -172,20 +172,20 @@ class _FormField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
-          children: [
+          children:const [
             Expanded(child: _FullNameInput()),
             SizedBox(width: 24.0),
             Expanded(child: _EmailInput()),
           ],
         ),
-        SizedBox(height: 24.0),
+        const SizedBox(height: 24.0),
         Row(
-          children: [
+          children:const [
             Expanded(child: _PhoneNumberInput()),
           ],
         ),

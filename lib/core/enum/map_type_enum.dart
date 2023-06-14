@@ -27,7 +27,7 @@ extension MapTypeEnumExtension on MapTypeEnum {
   }
 
   /// User friendly text
-  String getDisplayText(BuildContext context) {
+  String getDisplayText() {
     switch (this) {
       case MapTypeEnum.utm:
         return 'UTM';

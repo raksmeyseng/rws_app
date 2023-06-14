@@ -28,11 +28,11 @@ class _Content extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SingleChildScrollView(
+    return SingleChildScrollView(
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
+        children:const [
           SizedBox(height: 12.0),
           _ThemeMode(),
           // SizedBox(height: 16.0),

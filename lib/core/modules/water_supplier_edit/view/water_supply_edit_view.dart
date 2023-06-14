@@ -94,11 +94,11 @@ class _SuccessView extends StatelessWidget {
           child: Stack(
             fit: StackFit.expand,
             children: [
-              const Padding(
-                padding: EdgeInsets.only(bottom: 30.0),
+               Padding(
+                padding:const EdgeInsets.only(bottom: 30.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
+                  children:const [
                     _TabBar(),
                     Expanded(child: _TabBarView()),
                   ],
@@ -215,16 +215,16 @@ class _FirstInputPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SizedBox.expand(
+    return SizedBox.expand(
       child: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.all(16),
+          padding:const EdgeInsets.all(16),
           child: Wrapper(
             maxWidth: appSmallMaxWidth,
             child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
+              children: const [
                 _FormField1(),
               ],
             ),
@@ -240,16 +240,16 @@ class _SecondInputPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SizedBox.expand(
+    return SizedBox.expand(
       child: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.all(16),
+          padding: const EdgeInsets.all(16),
           child: Wrapper(
             maxWidth: appSmallMaxWidth,
             child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
+              children:const [
                 _FormField2(),
               ],
             ),
@@ -265,16 +265,16 @@ class _ThirdInputPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SizedBox.expand(
+    return SizedBox.expand(
       child: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.all(16),
+          padding: const EdgeInsets.all(16),
           child: Wrapper(
             maxWidth: appSmallMaxWidth,
             child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
+              children:const [
                 _FormField3(),
               ],
             ),
@@ -290,40 +290,40 @@ class _FormField1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return  Column(
       mainAxisSize: MainAxisSize.min,
       children: [
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+          children:const [
             Expanded(child: _ProvinceInput()),
             SizedBox(width: 16),
             Expanded(child: _DistrictInput()),
           ],
         ),
-        SizedBox(height: 16),
+       const SizedBox(height: 16),
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+          children:const [
             Expanded(child: _CommuneInput()),
             SizedBox(width: 16),
             Expanded(child: _VillageInput()),
           ],
         ),
-        SizedBox(height: 16),
+        const SizedBox(height: 16),
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+          children:const [
             Expanded(child: _MapTypeInput()),
           ],
         ),
-        SizedBox(height: 16),
-        _MapTypeDynamicForm(),
+        const SizedBox(height: 16),
+        const _MapTypeDynamicForm(),
         //bottom padding
-        SizedBox(height: 30),
+        const SizedBox(height: 30),
       ],
     );
   }
@@ -334,118 +334,118 @@ class _FormField2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+          children: const [
             Expanded(child: _FamilyTotalInput()),
             SizedBox(width: 16),
             Expanded(child: _BudgetTypeInput()),
           ],
         ),
-        SizedBox(height: 16),
+        const SizedBox(height: 16),
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+          children: const [
             Expanded(child: _LocationRiskInput()),
           ],
         ),
-        SizedBox(height: 16),
+        const SizedBox(height: 16),
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+          children:const [
             Expanded(child: _ManagementTypeInput()),
           ],
         ),
-        SizedBox(height: 16),
+        const SizedBox(height: 16),
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+          children: const [
             Expanded(child: _ManagamentNameInput()),
           ],
         ),
-        SizedBox(height: 16),
+        const SizedBox(height: 16),
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+          children:const [
             Expanded(child: _ReceiverTotalInput()),
             SizedBox(width: 16),
             Expanded(child: _ReceiverTotalAsFemaleInput()),
           ],
         ),
-        SizedBox(height: 16),
+        const SizedBox(height: 16),
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+          children:const [
             Expanded(child: _ReceiverFamilyTotalInput()),
           ],
         ),
-        SizedBox(height: 16),
+        const SizedBox(height: 16),
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+          children: const [
             Expanded(child: _ReceiverFamilyPoor1Input()),
           ],
         ),
-        SizedBox(height: 16),
+        const SizedBox(height: 16),
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+          children:const [
             Expanded(child: _ReceiverFamilyPoor2Input()),
           ],
         ),
-        SizedBox(height: 16),
+        const SizedBox(height: 16),
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+          children:const [
             Expanded(child: _ReceiverFamilyIndigenousInput()),
           ],
         ),
-        SizedBox(height: 16),
+        const SizedBox(height: 16),
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+          children:const [
             Expanded(child: _ReceiverFamilyVulnearableInput()),
           ],
         ),
-        SizedBox(height: 16),
+        const SizedBox(height: 16),
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+          children:const [
             Expanded(child: _ConstructionCodeInput()),
           ],
         ),
-        SizedBox(height: 16),
+        const SizedBox(height: 16),
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+          children:const [
             Expanded(child: _DateOfConstructionInput()),
           ],
         ),
-        SizedBox(height: 16),
+        const SizedBox(height: 16),
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+          children:const [
             Expanded(child: _CompanyNameInput()),
           ],
         ),
         //bottom padding
-        SizedBox(height: 30),
+       const SizedBox(height: 30),
       ],
     );
   }
@@ -487,64 +487,64 @@ class _WellInputPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return  Column(
       mainAxisSize: MainAxisSize.min,
       children: [
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+          children:const [
             Expanded(child: _WellTypeInput()),
             SizedBox(width: 16),
             Expanded(child: _WellDepthInput()),
           ],
         ),
-        SizedBox(height: 16),
+        const SizedBox(height: 16),
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+          children: const [
             Expanded(child: _WellScreenInput()),
             SizedBox(width: 16),
             Expanded(child: _WellThearInput()),
           ],
         ),
-        SizedBox(height: 16),
+        const SizedBox(height: 16),
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+          children:const [
             Expanded(child: _NiVoStaticInput()),
             SizedBox(width: 16),
             Expanded(child: _NiVoDynamicInput()),
           ],
         ),
-        SizedBox(height: 16),
+        const SizedBox(height: 16),
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+          children: const [
             Expanded(child: _WaterQualityInput()),
           ],
         ),
-        SizedBox(height: 16),
+        const SizedBox(height: 16),
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+          children:const [
             Expanded(child: _CheckWaterQualityInput()),
           ],
         ),
-        SizedBox(height: 16),
+        const SizedBox(height: 16),
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+          children:const [
             Expanded(child: _WellStatusInput()),
           ],
         ),
         //bottom padding
-        SizedBox(height: 30),
+        const SizedBox(height: 30),
       ],
     );
   }
@@ -555,85 +555,85 @@ class _PipeInputPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+          children:const [
             Expanded(child: _WaterSupplyTypeInput()),
           ],
         ),
-        SizedBox(height: 16),
+        const SizedBox(height: 16),
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+          children: const [
             Expanded(child: _ContainerInput()),
           ],
         ),
-        SizedBox(height: 16),
+        const SizedBox(height: 16),
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+          children:const [
             Expanded(child: _CapacityInput()),
           ],
         ),
-        SizedBox(height: 16),
+        const SizedBox(height: 16),
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+          children:const [
             Expanded(child: _AirPoolInput()),
             SizedBox(width: 16),
             Expanded(child: _FilterTankInput()),
           ],
         ),
-        SizedBox(height: 16),
+        const SizedBox(height: 16),
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+          children:const [
             Expanded(child: _ConnectorInput()),
           ],
         ),
-        SizedBox(height: 16),
+        const SizedBox(height: 16),
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+          children:const [
             Expanded(child: _PipeLenghtInput()),
           ],
         ),
-        SizedBox(height: 16),
+        const SizedBox(height: 16),
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+          children:const [
             Expanded(child: _PipeStatusInput()),
           ],
         ),
-        SizedBox(height: 16),
+        const SizedBox(height: 16),
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+          children:const [
             Expanded(child: _QualityWaterCheckInput()),
           ],
         ),
-        SizedBox(height: 16),
+        const SizedBox(height: 16),
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+          children:const [
             Expanded(child: _CoverageInput()),
           ],
         ),
 
         //bottom padding
-        SizedBox(height: 30),
+        const SizedBox(height: 30),
       ],
     );
   }
@@ -674,48 +674,48 @@ class _PondInputPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+          children:const [
             Expanded(child: _PondLatInput()),
             SizedBox(width: 16),
             Expanded(child: _PondLongInput()),
           ],
         ),
-        SizedBox(height: 16),
+        const SizedBox(height: 16),
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+          children:const [
             Expanded(child: _PondDepthInput()),
             SizedBox(width: 16),
             Expanded(child: _PondFilterInput()),
           ],
         ),
-        SizedBox(height: 16),
+        const SizedBox(height: 16),
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+          children:const [
             Expanded(child: _PondTypeInput()),
             SizedBox(width: 16),
             Expanded(child: _SeasonInput()),
           ],
         ),
-        SizedBox(height: 16),
+        const SizedBox(height: 16),
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+          children:const [
             Expanded(child: _PondStatusInput()),
           ],
         ),
         //bottom padding
-        SizedBox(height: 30),
+        const SizedBox(height: 30),
       ],
     );
   }
@@ -726,36 +726,36 @@ class _RainInputPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+          children:const [
             Expanded(child: _UsingTypeInput()),
           ],
         ),
-        SizedBox(height: 16),
+        const SizedBox(height: 16),
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+          children:const [
             Expanded(child: _CapacityTypeInput()),
             SizedBox(width: 16),
             Expanded(child: _TankStatusInput()),
           ],
         ),
-        SizedBox(height: 16),
+        const SizedBox(height: 16),
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+          children:const [
             Expanded(child: _CheckWaterQualityInput()),
           ],
         ),
         //bottom padding
-        SizedBox(height: 30),
+        const SizedBox(height: 30),
       ],
     );
   }
@@ -766,109 +766,109 @@ class _SmallPipeInputPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+          children:const [
             Expanded(child: _WaterSupplyTypeInput()),
           ],
         ),
-        SizedBox(height: 16),
+        const SizedBox(height: 16),
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+          children:const [
             Expanded(child: _CapacityInput()),
           ],
         ),
-        SizedBox(height: 16),
+        const SizedBox(height: 16),
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+          children:const [
             Expanded(child: _ContainerInput()),
           ],
         ),
-        SizedBox(height: 16),
+        const SizedBox(height: 16),
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+          children:const [
             Expanded(child: _AirPoolInput()),
           ],
         ),
 
-        SizedBox(height: 16),
+        const SizedBox(height: 16),
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+          children:const [
             Expanded(child: _PondFilterInput()),
             SizedBox(width: 16),
             Expanded(child: _ConnectorInput()),
           ],
         ),
-        SizedBox(height: 16),
+        const SizedBox(height: 16),
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+          children:const [
             Expanded(child: _CheckWaterQualityInput()),
           ],
         ),
-        SizedBox(height: 16),
+        const SizedBox(height: 16),
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+          children:const [
             Expanded(child: _CoverageInput()),
           ],
         ),
-        SizedBox(height: 16),
+        const SizedBox(height: 16),
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+          children:const [
             Expanded(child: _SupplierInput()),
           ],
         ),
-        SizedBox(height: 16),
+        const SizedBox(height: 16),
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+          children:const [
             Expanded(child: _SupplierDateInput()),
           ],
         ),
-        SizedBox(height: 16),
+        const SizedBox(height: 16),
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+          children:const [
             Expanded(child: _DueDateInput()),
           ],
         ),
-        SizedBox(height: 16),
+        const SizedBox(height: 16),
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+          children:const [
             Expanded(child: _PipeLenghtInput()),
           ],
         ),
-        SizedBox(height: 16),
+        const SizedBox(height: 16),
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+          children:const [
             Expanded(child: _PipeStatusInput()),
           ],
         ),
         //bottom padding
-        SizedBox(height: 30),
+        const SizedBox(height: 30),
       ],
     );
   }
@@ -879,44 +879,44 @@ class _AirInputPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return  Column(
       mainAxisSize: MainAxisSize.min,
       children: [
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+          children:const [
             Expanded(child: _WaterSupplyTypeInput()),
           ],
         ),
-        SizedBox(height: 16),
+        const SizedBox(height: 16),
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+          children:const [
             Expanded(child: _CapacityInput()),
           ],
         ),
-        SizedBox(height: 16),
+        const SizedBox(height: 16),
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+          children:const [
             Expanded(child: _CheckWaterQualityInput()),
           ],
         ),
-        SizedBox(height: 16),
+        const SizedBox(height: 16),
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+          children:const [
             Expanded(child: _FilterInput()),
             SizedBox(width: 16),
             Expanded(child: _AirStationInput()),
           ],
         ),
         //bottom padding
-        SizedBox(height: 30),
+        const SizedBox(height: 30),
       ],
     );
   }
@@ -1239,7 +1239,7 @@ class _MapTypeInput extends StatelessWidget {
           focusNode: bloc.mapTypeFocus,
           controller: bloc.mapTypeController,
           onTap: () async {
-            final mapType = await DialogHelper.showAnimatedDialog<String?>(
+            final mapType = await DialogHelper.showAnimatedDialog<MapTypeEnum?>(
               animationType: DialogAnimationType.none,
               transitionDuration: const Duration(milliseconds: 200),
               pageBuilder: (context, a1, a2) {
@@ -1254,12 +1254,12 @@ class _MapTypeInput extends StatelessWidget {
                           (mapType) => ListTile(
                             onTap: () {
                               Navigator.of(context)
-                                  .pop(mapType.getDisplayText(context));
+                                  .pop(mapType);
                             },
                             contentPadding: const EdgeInsets.symmetric(
                               horizontal: 24.0,
                             ),
-                            title: TextWidget(mapType.getDisplayText(context)),
+                            title: TextWidget(mapType.getDisplayText()),
                           ),
                         ),
                       ],
@@ -1301,7 +1301,7 @@ class _MapTypeDynamicForm extends StatelessWidget {
       buildWhen: (previous, current) =>
           previous.mapTypeInput != current.mapTypeInput,
       builder: (context, state) {
-        final mapTypeEnum = getEnumByString(state.mapTypeInput.value);
+        final mapTypeEnum = state.mapTypeInput.value;
         switch (mapTypeEnum) {
           case MapTypeEnum.utm:
             return const _UtmForm();
@@ -1322,10 +1322,10 @@ class _UtmForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Row(
+    return Row(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
+      children:const [
         Expanded(child: _LatInput()),
         SizedBox(width: 16),
         Expanded(child: _LongInput()),
@@ -1339,10 +1339,10 @@ class _DecimalForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Row(
+    return Row(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
+      children:const [
         Expanded(child: _UTMXInput()),
         SizedBox(width: 16),
         Expanded(child: _UTMYInput()),
@@ -1356,18 +1356,18 @@ class _DegreeForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return  Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Padding(
+        const Padding(
           padding: EdgeInsets.only(left: 8.0),
           child: CaptionWidget('រយៈទទឹង'),
         ),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+          children:const [
             Expanded(child: _LatDegreeInput()),
             SizedBox(width: 16),
             Expanded(child: _LatMinuteInput()),
@@ -1375,16 +1375,16 @@ class _DegreeForm extends StatelessWidget {
             Expanded(child: _LatSecondInput()),
           ],
         ),
-        SizedBox(height: 16),
-        Padding(
+        const SizedBox(height: 16),
+        const Padding(
           padding: EdgeInsets.only(left: 8.0),
           child: CaptionWidget('រយៈបណ្តោយ'),
         ),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+          children:const [
             Expanded(child: _LongDegreeInput()),
             SizedBox(width: 16),
             Expanded(child: _LongMinuteInput()),
