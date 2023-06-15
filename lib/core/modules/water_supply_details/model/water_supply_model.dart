@@ -3,6 +3,7 @@ import 'package:rws_app/core/modules/authentication/models/user_model.dart';
 import 'package:rws_app/core/modules/my_draft/models/my_draft_model.dart';
 
 import '../../../models/water_quality_parameter.dart';
+import '../../../models/water_supply_pipe.dart';
 import '../../../models/water_supply_qrcode.dart';
 import '../../../models/water_supply_well.dart';
 import '../../../models/water_supply_workflow.dart';
@@ -53,6 +54,7 @@ class WaterSupplyModel {
     required this.waterSupplyTypeId,
     required this.isWaterQualityCheck,
     this.waterSupplyWells,
+    this.waterSupplyPipes,
     this.workflows,
     this.qrcode,
     this.wqcParam1,
@@ -161,6 +163,8 @@ class WaterSupplyModel {
 
   @JsonKey(name:'watersupplywell_watersupply')
   List<WaterSupplyWellModel>? waterSupplyWells;
+  @JsonKey(name:'watersupplypipe_watersupply')
+  List<WaterSupplyPipeModel>? waterSupplyPipes;
 
   @JsonKey(name: 'wqc_param1_obj')
   List<WaterSupplyWaterQualityParameterModel>? wqcParam1;

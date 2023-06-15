@@ -54,6 +54,8 @@ WaterSupplyModel _$WaterSupplyModelFromJson(Map<String, dynamic> json) =>
       isWaterQualityCheck: json['is_water_quality_check'] as bool,
       //workflow: (json['watersupplyworkflow_watersupply'] as List).map((i) => MyApprovalHistoryModel.fromJson(i)).toList(),
       waterSupplyWells: List<WaterSupplyWellModel>.from(json['watersupplywell_watersupply'].map((model)=>WaterSupplyWellModel.fromJson(model))),
+      waterSupplyPipes:List<WaterSupplyPipeModel>.from(json['watersupplypipe_watersupply'].map((model)=>WaterSupplyPipeModel.fromJson(model))),
+
       workflows: List<WaterSupplyWorkFlowModel>.from(json['watersupplyworkflow_watersupply'].map((model)=>WaterSupplyWorkFlowModel.fromJson(model))),
       qrcode: List<WaterSupplyQRCodeModel>.from(json['watersupplyqrcode_watersupply'].map((model)=>WaterSupplyQRCodeModel.fromJson(model))),
 

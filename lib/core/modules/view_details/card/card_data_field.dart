@@ -22,7 +22,18 @@ class CardDataFields extends StatelessWidget {
       builder: (context, state) {
         switch (state.status) {
           case BaseStatusEnum.success:
-            return const _WellView();
+          
+            switch(state.waterSupply?.waterSupplyTypeId){
+              case 1:
+                return const _WellView();
+              case 2:
+                return const _PipeView();
+              default:
+                return const EmptyWidget();
+            }
+
+              
+            
           case BaseStatusEnum.failure:
             return const _FailureView();
           default:
@@ -197,6 +208,52 @@ class _WellView extends StatelessWidget {
                 const CaptionWidget('ហេតុអ្វី'),
                 TextWidget(state.waterSupply?.waterSupplyWells?.first.wellStatusReason),
               ),             
+
+            ],
+          ),
+        );
+      },
+    );
+  }
+}
+
+
+//START PIPE VIEW
+class _PipeView extends StatelessWidget {
+  const _PipeView({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<ListDataDetailsBloc, ListDataDetailsState>(
+      buildWhen: (previous, current) =>
+          previous.waterSupply != current.waterSupply,
+      builder: (context, state) {
+
+        if (state.waterSupply?.waterSupplyPipes?.isEmpty ?? true) {
+          return const Center(child: EmptyWidget());
+        }
+        return SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(
+            vertical: 10,
+            horizontal: 16,
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+
+              _InfoItem(
+                const CaptionWidget('សមត្ថភាពផលិតទឹក(ចំនួនប៊ីដុង/មួយថ្ងៃ)'),
+                TextWidget(
+                  state.waterSupply?.waterSupplyPipes?.first.abilityOfProductWater,
+                ),
+              ),
+              const Padding(
+                padding: EdgeInsets.symmetric(vertical: 8),
+                child: MyDivider(),
+              ),
+
+                    
 
             ],
           ),
