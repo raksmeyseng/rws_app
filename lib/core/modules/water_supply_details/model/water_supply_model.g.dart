@@ -56,6 +56,13 @@ WaterSupplyModel _$WaterSupplyModelFromJson(Map<String, dynamic> json) =>
       waterSupplyWells: List<WaterSupplyWellModel>.from(json['watersupplywell_watersupply'].map((model)=>WaterSupplyWellModel.fromJson(model))),
       waterSupplyPipes:List<WaterSupplyPipeModel>.from(json['watersupplypipe_watersupply'].map((model)=>WaterSupplyPipeModel.fromJson(model))),
 
+      // waterSupplyPipe: List<WaterSupplyPipeModel>.from(json['watersupplypipe_watersupply'].map((model)=>WaterSupplyPipeModel.fromJson(model))),
+      // waterSupplyKiosk: List<WaterSupplyWellModel>.from(json['watersupplyKiosk_watersupply'].map((model)=>WaterSupplyWellModel.fromJson(model))),
+      // waterSupplyCommunityPond: List<WaterSupplyWellModel>.from(json['watersupplyCommunityPond_watersupply'].map((model)=>WaterSupplyWellModel.fromJson(model))),
+      // waterSupplyRainWaterHarvesting: List<WaterSupplyWellModel>.from(json['watersupplyRainWaterHarvesting_watersupply'].map((model)=>WaterSupplyWellModel.fromJson(model))),
+      // waterSupplyPipePrivate: List<WaterSupplyWellModel>.from(json['watersupplypipeprivate_watersupply'].map((model)=>WaterSupplyWellModel.fromJson(model))),
+      // waterSupplyAirWater: List<WaterSupplyWellModel>.from(json['watersupplyairwater_watersupply'].map((model)=>WaterSupplyWellModel.fromJson(model))),
+
       workflows: List<WaterSupplyWorkFlowModel>.from(json['watersupplyworkflow_watersupply'].map((model)=>WaterSupplyWorkFlowModel.fromJson(model))),
       qrcode: List<WaterSupplyQRCodeModel>.from(json['watersupplyqrcode_watersupply'].map((model)=>WaterSupplyQRCodeModel.fromJson(model))),
 
@@ -130,4 +137,16 @@ Map<String, dynamic> _$WaterSupplyModelToJson(WaterSupplyModel instance) =>
           instance.beneficiaryTotalFamilyIndigenous,
       'watersupplywell_watersupply':
           instance.waterSupplyWells?.map((e) => e.toJson()).toList(),
+      // 'watersupplypipe_watersupply':
+      //     instance.waterSupplyPipes?.map((e) => e.toJson()).toList(),
+      // 'watersupplyKiosk_watersupply':
+      //     instance.waterSupplyKiosk?.map((e) => e.toJson()).toList(),
+      // 'watersupplyCommunityPond_watersupply':
+      //     instance.waterSupplyCommunityPond?.map((e) => e.toJson()).toList(),
+      // 'watersupplyRainWaterHarvesting_watersupply':
+      //     instance.waterSupplyRainWaterHarvesting?.map((e) => e.toJson()).toList(),
+      // 'watersupplypipeprivate_watersupply':
+      //     instance.waterSupplyPipePrivate?.map((e) => e.toJson()).toList(),
+      // 'watersupplyairwater_watersupply':
+      //     instance.waterSupplyAirWater?.map((e) => e.toJson()).toList(),
     };
