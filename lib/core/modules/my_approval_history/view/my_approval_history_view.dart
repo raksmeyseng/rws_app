@@ -147,15 +147,15 @@ class _MyDraftItem extends StatelessWidget {
           ),
           _InfoItem(
             CaptionWidget('${S.of(context).village} :'),
-            TextWidget(item.waterSupply.village.nameEn),
+            TextWidget(item.waterSupply.village?.nameEn),
           ),
           _InfoItem(
             CaptionWidget('${S.of(context).commune} :'),
-            TextWidget(item.waterSupply.commune.nameEn),
+            TextWidget(item.waterSupply.commune?.nameEn),
           ),
           _InfoItem(
             CaptionWidget('${S.of(context).district} :'),
-            TextWidget(item.waterSupply.district.nameEn),
+            TextWidget(item.waterSupply.district?.nameEn),
           ),
           _InfoItem(
             CaptionWidget('${S.of(context).province} :'),

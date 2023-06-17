@@ -1,9 +1,9 @@
 import 'package:json_annotation/json_annotation.dart';
-part 'water_supply_pipe.g.dart';
+part 'water_supply_small_pipe.g.dart';
 @JsonSerializable(explicitToJson: true)
-class WaterSupplyPipeModel {
+class WaterSupplySmallPipeModel {
 
-  WaterSupplyPipeModel({
+  WaterSupplySmallPipeModel({
     required this.id,
     required this.waterSupplyId,
     required this.sourceTypeOfWater,
@@ -22,7 +22,7 @@ class WaterSupplyPipeModel {
   @JsonKey(name:'underground_pool_storage')
   String underGroudPoolStorage;
 
-  factory WaterSupplyPipeModel.fromJson(Map<String, dynamic> json) =>
+  factory WaterSupplySmallPipeModel.fromJson(Map<String, dynamic> json) =>
       _$WaterSupplyPipeModelFromJson(json);
 
 

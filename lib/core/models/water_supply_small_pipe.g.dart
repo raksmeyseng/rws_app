@@ -1,7 +1,7 @@
-part of 'water_supply_pipe.dart';
+part of 'water_supply_small_pipe.dart';
 
-WaterSupplyPipeModel _$WaterSupplyPipeModelFromJson(Map<String,dynamic> json)=>
-WaterSupplyPipeModel(
+WaterSupplySmallPipeModel _$WaterSupplyPipeModelFromJson(Map<String,dynamic> json)=>
+WaterSupplySmallPipeModel(
   id: json['id'] as int, 
   waterSupplyId: json['watersupply_id'] as int, 
   sourceTypeOfWater: json['source_type_of_water'] as String, 

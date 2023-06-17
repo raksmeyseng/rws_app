@@ -4,7 +4,7 @@ import 'package:rws_app/core/modules/authentication/models/user_model.dart';
 import 'package:rws_app/core/modules/my_draft/models/my_draft_model.dart';
 
 import '../../../models/water_quality_parameter.dart';
-import '../../../models/water_supply_pipe.dart';
+import '../../../models/water_supply_small_pipe.dart';
 import '../../../models/water_supply_qrcode.dart';
 import '../../../models/water_supply_well.dart';
 import '../../../models/water_supply_workflow.dart';
@@ -171,7 +171,7 @@ class WaterSupplyModel {
   @JsonKey(name:'watersupplywell_watersupply')
   List<WaterSupplyWellModel>? waterSupplyWells;
   @JsonKey(name:'watersupplypipe_watersupply')
-  List<WaterSupplyPipeModel>? waterSupplyPipes;
+  List<WaterSupplySmallPipeModel>? waterSupplyPipes;
   // @JsonKey(name:'watersupplypipe_watersupply')
   // List<WaterSupplyPipeModel>? waterSupplyPipe;
   // @JsonKey(name:'watersupplyKiosk_watersupply')
