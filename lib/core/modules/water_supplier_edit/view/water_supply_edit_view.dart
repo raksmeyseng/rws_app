@@ -27,6 +27,7 @@ import 'package:rws_app/core/modules/water_supplier_edit/model/budget_type_input
 import 'package:rws_app/core/modules/water_supplier_edit/model/doc_input.dart';
 import 'package:rws_app/core/modules/water_supplier_edit/model/management_type_input.dart';
 import 'package:rws_app/core/modules/water_supplier_edit/model/water_supply_input.dart';
+import 'package:rws_app/core/modules/water_supply_edit_manage/view/water_supply_edit_manage_view.dart';
 import 'package:rws_app/core/widgets/caption_widget.dart';
 import 'package:rws_app/core/widgets/flat_card.dart';
 import 'package:rws_app/core/widgets/load_data_failed.dart';
@@ -482,8 +483,16 @@ class _FormField3 extends StatelessWidget {
   }
 }
 
-class _WellInputPage extends StatelessWidget {
+class _WellInputPage extends StatefulWidget {
   const _WellInputPage({Key? key}) : super(key: key);
+
+  @override
+  State<_WellInputPage> createState() => _WellInputPageState();
+}
+
+class _WellInputPageState extends State<_WellInputPage> {
+
+  int valueCallBack = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -531,8 +540,17 @@ class _WellInputPage extends StatelessWidget {
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children:const [
-            Expanded(child: _CheckWaterQualityInput()),
+          children: [
+            Expanded(
+              child: _CheckWaterQualityInput(
+                voidCallback: (value) {
+                  setState(() {
+                    valueCallBack = value;
+                    print('value is : $valueCallBack');
+                  });
+                },
+              ),
+            ),
           ],
         ),
         const SizedBox(height: 16),
@@ -542,6 +560,22 @@ class _WellInputPage extends StatelessWidget {
           children:const [
             Expanded(child: _WellStatusInput()),
           ],
+        ),
+        const SizedBox(height: 16),
+        Visibility(
+          visible: valueCallBack == 0 ? true : false,
+          child: Padding(
+            padding: const EdgeInsets.only(left: 5.0, right: 5.0),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: const [
+                Expanded(child: WaterSupplyEditManageView()),
+                SizedBox(width: 16),
+                Expanded(child: WaterSupplyEditManageTextBox()),
+              ],
+            ),
+          ),
         ),
         //bottom padding
         const SizedBox(height: 30),
@@ -750,8 +784,8 @@ class _RainInputPage extends StatelessWidget {
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children:const [
-            Expanded(child: _CheckWaterQualityInput()),
+          children: [
+            Expanded(child: _CheckWaterQualityInput(voidCallback: (value) {  },),),
           ],
         ),
         //bottom padding
@@ -815,8 +849,8 @@ class _SmallPipeInputPage extends StatelessWidget {
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children:const [
-            Expanded(child: _CheckWaterQualityInput()),
+          children: [
+            Expanded(child: _CheckWaterQualityInput(voidCallback: (value) {  },)),
           ],
         ),
         const SizedBox(height: 16),
@@ -901,8 +935,8 @@ class _AirInputPage extends StatelessWidget {
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children:const [
-            Expanded(child: _CheckWaterQualityInput()),
+          children: [
+            Expanded(child: _CheckWaterQualityInput(voidCallback: (value) {  },)),
           ],
         ),
         const SizedBox(height: 16),
@@ -2867,8 +2901,8 @@ class _NiVoDynamicInput extends StatelessWidget {
 }
 
 class _CheckWaterQualityInput extends StatelessWidget {
-  const _CheckWaterQualityInput({Key? key}) : super(key: key);
-
+  const _CheckWaterQualityInput({Key? key, required this.voidCallback}) : super(key: key);
+  final Function(int) voidCallback;
   @override
   Widget build(BuildContext context) {
     final bloc = context.read<WaterSupplyEditBloc>();
@@ -2896,7 +2930,9 @@ class _CheckWaterQualityInput extends StatelessWidget {
                         ...CheckWaterQualityEnum.values.map(
                           (check) => ListTile(
                             onTap: () {
+                              voidCallback(check.index);
                               Navigator.of(context).pop(check);
+                              // print('test : ${voidCallback()}');
                             },
                             contentPadding: const EdgeInsets.symmetric(
                               horizontal: 24.0,
@@ -4243,3 +4279,262 @@ class _AirStationInput extends StatelessWidget {
   //   }
   // }
 }
+
+// class WaterSupplyEditManageView extends StatelessWidget {
+//   const WaterSupplyEditManageView({Key? key}): super(key: key);
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Visibility(
+//       visible: true,
+//       child: Column(
+//         crossAxisAlignment: CrossAxisAlignment.start,
+//         mainAxisSize: MainAxisSize.min,
+//         children: const [
+//           Text('Parameter Code', style: TextStyle(fontWeight: FontWeight.bold),),
+//           SizedBox(height: 15,),
+//           SizedBox(
+//             height: 50,
+//             child: Text('PA000010'),
+//           ),
+//           SizedBox(height: 5,),
+//           SizedBox(
+//             height: 50,
+//             child: Text('PA000020'),
+//           ),
+//           SizedBox(height: 5,),
+//           SizedBox(
+//             height: 50,
+//             child: Text('PA000030'),
+//           ),
+//           SizedBox(height: 5,),
+//           SizedBox(
+//             height: 50,
+//             child: Text('PA000040'),
+//           ),
+//           SizedBox(height: 5,),
+//           SizedBox(
+//             height: 50,
+//             child: Text('PA000050'),
+//           ),
+//           SizedBox(height: 5,),
+//           SizedBox(
+//             height: 50,
+//             child: Text('PA000060'),
+//           ),
+//           SizedBox(height: 5,),
+//           SizedBox(
+//             height: 50,
+//             child: Text('PA000070'),
+//           ),
+//           SizedBox(height: 5,),
+//           SizedBox(
+//             height: 50,
+//             child: Text('PA000080'),
+//           ),
+//           SizedBox(height: 5,),
+//           SizedBox(
+//             height: 50,
+//             child: Text('PA000090'),
+//           ),
+//           SizedBox(height: 5,),
+//           SizedBox(
+//             height: 50,
+//             child: Text('PA000100'),
+//           ),
+//           SizedBox(height: 5,),
+//           SizedBox(
+//             height: 50,
+//             child: Text('PA000110'),
+//           ),
+//           SizedBox(height: 5,),
+//           SizedBox(
+//             height: 50,
+//             child: Text('PA000120'),
+//           ),
+//           SizedBox(height: 5,),
+//           SizedBox(
+//             height: 50,
+//             child: Text('PA000130'),
+//           ),
+//           SizedBox(height: 5,),
+//           SizedBox(
+//             height: 50,
+//             child: Text('PA000140'),
+//           ),
+//           SizedBox(height: 5,),
+//           SizedBox(
+//             height: 50,
+//             child: Text('PA000150'),
+//           ),
+//           SizedBox(height: 5,),
+//           SizedBox(
+//             height: 50,
+//             child: Text('PA000160'),
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+// }
+//
+// class WaterSupplyEditManageTextBox extends StatelessWidget {
+//   const WaterSupplyEditManageTextBox({Key? key}): super(key: key);
+//   @override
+//   Widget build(BuildContext context) {
+//     return Visibility(
+//       visible: true,
+//       child: Column(
+//         crossAxisAlignment: CrossAxisAlignment.start,
+//         mainAxisSize: MainAxisSize.min,
+//         children: const[
+//           Text('Value', style: TextStyle(fontWeight: FontWeight.bold),),
+//           SizedBox(height: 15,),
+//           SizedBox(
+//             height: 50,
+//             child: MyTextInput(
+//               // errorText: _handleErrorText(context, state),
+//               textInputAction: TextInputAction.next,
+//               keyboardType: TextInputType.number,
+//             ),
+//           ),
+//           SizedBox(height: 5,),
+//           SizedBox(
+//             height: 50,
+//             child: MyTextInput(
+//               // errorText: _handleErrorText(context, state),
+//               textInputAction: TextInputAction.next,
+//               keyboardType: TextInputType.number,
+//             ),
+//           ),
+//           SizedBox(height: 5,),
+//           SizedBox(
+//             height: 50,
+//             child: MyTextInput(
+//               // errorText: _handleErrorText(context, state),
+//               textInputAction: TextInputAction.next,
+//               keyboardType: TextInputType.number,
+//             ),
+//           ),
+//           SizedBox(height: 5,),
+//           SizedBox(
+//             height: 50,
+//             child: MyTextInput(
+//               // errorText: _handleErrorText(context, state),
+//               textInputAction: TextInputAction.next,
+//               keyboardType: TextInputType.number,
+//             ),
+//           ),
+//           SizedBox(height: 5,),
+//           SizedBox(
+//             height: 50,
+//             child: MyTextInput(
+//               // errorText: _handleErrorText(context, state),
+//               textInputAction: TextInputAction.next,
+//               keyboardType: TextInputType.number,
+//             ),
+//           ),
+//           SizedBox(height: 5,),
+//           SizedBox(
+//             height: 50,
+//             child: MyTextInput(
+//               // errorText: _handleErrorText(context, state),
+//               textInputAction: TextInputAction.next,
+//               keyboardType: TextInputType.number,
+//             ),
+//           ),
+//           SizedBox(height: 5,),
+//           SizedBox(
+//             height: 50,
+//             child: MyTextInput(
+//               // errorText: _handleErrorText(context, state),
+//               textInputAction: TextInputAction.next,
+//               keyboardType: TextInputType.number,
+//             ),
+//           ),
+//           SizedBox(height: 5,),
+//           SizedBox(
+//             height: 50,
+//             child: MyTextInput(
+//               // errorText: _handleErrorText(context, state),
+//               textInputAction: TextInputAction.next,
+//               keyboardType: TextInputType.number,
+//             ),
+//           ),
+//           SizedBox(height: 5,),
+//           SizedBox(
+//             height: 50,
+//             child: MyTextInput(
+//               // errorText: _handleErrorText(context, state),
+//               textInputAction: TextInputAction.next,
+//               keyboardType: TextInputType.number,
+//             ),
+//           ),
+//           SizedBox(height: 5,),
+//           SizedBox(
+//             height: 50,
+//             child: MyTextInput(
+//               // errorText: _handleErrorText(context, state),
+//               textInputAction: TextInputAction.next,
+//               keyboardType: TextInputType.number,
+//             ),
+//           ),
+//           SizedBox(height: 5,),
+//           SizedBox(
+//             height: 50,
+//             child: MyTextInput(
+//               // errorText: _handleErrorText(context, state),
+//               textInputAction: TextInputAction.next,
+//               keyboardType: TextInputType.number,
+//             ),
+//           ),
+//           SizedBox(height: 5,),
+//           SizedBox(
+//             height: 50,
+//             child: MyTextInput(
+//               // errorText: _handleErrorText(context, state),
+//               textInputAction: TextInputAction.next,
+//               keyboardType: TextInputType.number,
+//             ),
+//           ),
+//           SizedBox(height: 5,),
+//           SizedBox(
+//             height: 50,
+//             child: MyTextInput(
+//               // errorText: _handleErrorText(context, state),
+//               textInputAction: TextInputAction.next,
+//               keyboardType: TextInputType.number,
+//             ),
+//           ),
+//           SizedBox(height: 5,),
+//           SizedBox(
+//             height: 50,
+//             child: MyTextInput(
+//               // errorText: _handleErrorText(context, state),
+//               textInputAction: TextInputAction.next,
+//               keyboardType: TextInputType.number,
+//             ),
+//           ),
+//           SizedBox(height: 5,),
+//           SizedBox(
+//             height: 50,
+//             child: MyTextInput(
+//               // errorText: _handleErrorText(context, state),
+//               textInputAction: TextInputAction.next,
+//               keyboardType: TextInputType.number,
+//             ),
+//           ),
+//           SizedBox(height: 5,),
+//           SizedBox(
+//             height: 50,
+//             child: MyTextInput(
+//               // errorText: _handleErrorText(context, state),
+//               textInputAction: TextInputAction.next,
+//               keyboardType: TextInputType.number,
+//             ),
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+// }
