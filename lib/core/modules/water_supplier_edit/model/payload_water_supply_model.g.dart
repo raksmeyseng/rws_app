@@ -56,6 +56,7 @@ PayloadWaterSupplyModel _$PayloadWaterSupplyModelFromJson(
       updatedBy: json['updated_by'] as int,
       waterSupplyCode: json['water_supply_code'] as String,
       id: json['id'] as int,
+      isWaterQualityCheck:  json['is_water_quality_check'] as bool,
     );
 
 Map<String, dynamic> _$PayloadWaterSupplyModelToJson(
@@ -100,5 +101,6 @@ Map<String, dynamic> _$PayloadWaterSupplyModelToJson(
       'is_active':instance.isActive,
       'main_status':instance.mainStatus,
       'updated_by':instance.updatedBy,
-      'water_supply_code':instance.waterSupplyCode
+      'water_supply_code':instance.waterSupplyCode,
+      'is_water_quality_check':instance.isWaterQualityCheck
     };

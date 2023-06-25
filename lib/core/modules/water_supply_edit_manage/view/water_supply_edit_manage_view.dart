@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rws_app/core/widgets/my_text_input.dart';
+
+import '../../water_supplier_edit/bloc/water_supply_edit_bloc.dart';
 
 class WaterSupplyEditManageView extends StatelessWidget {
   const WaterSupplyEditManageView({Key? key}): super(key: key);
@@ -100,7 +103,9 @@ class WaterSupplyEditManageView extends StatelessWidget {
 }
 
 class WaterSupplyEditManageTextBox extends StatelessWidget {
+
   const WaterSupplyEditManageTextBox({Key? key}): super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Visibility(
@@ -113,11 +118,12 @@ class WaterSupplyEditManageTextBox extends StatelessWidget {
           SizedBox(height: 15,),
           SizedBox(
             height: 50,
-            child: MyTextInput(
-              // errorText: _handleErrorText(context, state),
-              textInputAction: TextInputAction.next,
-              keyboardType: TextInputType.number,
-            ),
+            // child: MyTextInput(
+            //   // errorText: _handleErrorText(context, state),
+            //   textInputAction: TextInputAction.next,
+            //   keyboardType: TextInputType.number,
+            // ),
+            child: _wqParameter1(),
           ),
           SizedBox(height: 5,),
           SizedBox(
@@ -258,4 +264,30 @@ class WaterSupplyEditManageTextBox extends StatelessWidget {
       ),
     );
   }
+}
+
+class _wqParameter1 extends StatelessWidget{
+  const _wqParameter1({Key? key}):super(key:key);
+  
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
+      buildWhen: (previous, current) =>
+          previous.wqParameter1 != current.wqParameter1,
+      builder: (context, state) {
+        return MyTextInput(
+          //label: 'អាងអាកាស (m)',
+          focusNode: context.read<WaterSupplyEditBloc>().parameter1,
+          controller: context.read<WaterSupplyEditBloc>().parameter1Controller,
+          onChanged: (val) =>
+              context.read<WaterSupplyEditBloc>().add(WaterQualityParameterChanged(val)),
+          // errorText: _handleErrorText(context, state),
+          textInputAction: TextInputAction.next,
+          keyboardType: TextInputType.phone,
+        );
+      },
+    );
+  }
+
 }

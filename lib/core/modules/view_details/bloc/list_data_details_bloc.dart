@@ -1,10 +1,13 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:rws_app/config/routes/app_route.dart';
 import 'package:rws_app/config/routes/application.dart';
 import 'package:rws_app/core/enum/base_status_enum.dart';
 import 'package:rws_app/core/modules/view_details/respository/list_data_detail_repository.dart';
 import 'package:rws_app/core/modules/water_supply_details/model/water_supply_model.dart';
+import 'dart:isolate';
+import 'dart:ui'; 
 
 part 'list_data_detials_event.dart';
 part 'list_data_detials_state.dart';
@@ -19,6 +22,7 @@ class ListDataDetailsBloc
   }
 
   final ListDataDetailRepository repository;
+  final ReceivePort _port = ReceivePort();
 
   Future<void> _onListDataDetailsEvent(
     ListDataDetailsEvent event,
@@ -47,13 +51,26 @@ class ListDataDetailsBloc
   ) async {
     emit(state.copyWith(status: BaseStatusEnum.inprogress));
     try {
+
       final waterSupply =
           await repository.getWaterSupplyViewDetail(state.waterSupplyId);
+
+          IsolateNameServer.registerPortWithName(_port.sendPort, 'downloader_send_port');
+          _port.listen((dynamic data) {
+            String id = data[0];
+            DownloadTaskStatus status = data[1];
+            int progress = data[2];
+            
+          });
+
+    //FlutterDownloader.registerCallback(downloadCallback);
+
       emit(state.copyWith(
         status: BaseStatusEnum.success,
         waterSupply: waterSupply,
         mainStatus: waterSupply.status.id,
       ));
+
     } catch (e) {
       emit(state.copyWith(status: BaseStatusEnum.failure));
     }
@@ -62,7 +79,9 @@ class ListDataDetailsBloc
   Future<void> _onDeleteSubmited(
       DeleteSubmited event, Emitter<ListDataDetailsState> emit) async {
     try {
-      await repository.deleteWaterSupply(state.waterSupplyId);
+      //await repository.deleteWaterSupply(state.waterSupplyId);
+      await repository.downloadExcel();
+
       emit(state.copyWith(status: BaseStatusEnum.success));
     } catch (_) {
       emit(state.copyWith(deleteStatus: BaseStatusEnum.failure));
@@ -152,5 +171,10 @@ class ListDataDetailsBloc
         ));
       }
     }
+  }
+
+  void downloadCallback(String id, DownloadTaskStatus status, int progress) {
+    final SendPort send = IsolateNameServer.lookupPortByName('downloader_send_port')!;
+    send.send([id, status, progress]);
   }
 }

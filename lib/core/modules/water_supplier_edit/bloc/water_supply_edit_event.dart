@@ -590,3 +590,14 @@ class AirStationChanged extends WaterSupplyEditEvent {
 class Submitted extends WaterSupplyEditEvent {
   const Submitted();
 }
+
+/* Water Quality Paramter  */
+class WaterQualityParameterChanged extends WaterSupplyEditEvent{
+  
+  const WaterQualityParameterChanged(this.value);
+  final String value ;
+
+  @override
+  List<Object> get props => [value];
+
+}

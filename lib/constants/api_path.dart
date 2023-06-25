@@ -96,10 +96,15 @@ class ApiPath {
   static String postPipePrivateOptionValue = '${AppConstant.mainURL}watersupplypipeprivateoptionvalue/';
   static String postAirWater='${AppConstant.mainURL}watersupplyairwater/';
   static String postAirWaterOptionValue = '${AppConstant.mainURL}watersupplyairwateroptionvalue/';
+  static String postWaterQualityParameter = '${AppConstant.mainURL}watersupplyqualitycheckparameter/';
 
 
   static String getProvince() => '${AppConstant.mainURL}province';
   static String getProvinceByDataEntry(int id) => '${AppConstant.mainURL}province/?id=$id';
+  static String getDistrictByProvinceId(int id) => '${AppConstant.mainURL}district/?province_id__id=$id';
+  static String getCommuneByDistrictId(int id)=> '${AppConstant.mainURL}commune/?district_id__id=$id';
+  static String getVillageByCommuneId(int id) => '${AppConstant.mainURL}village/?commune_id__id=$id';
+
   static String generateQRCode(int id)=> '${AppConstant.mainURL}generateqrcode/$id/';
 
 }
