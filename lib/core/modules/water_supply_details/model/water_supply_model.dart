@@ -5,6 +5,10 @@ import 'package:rws_app/core/modules/my_draft/models/my_draft_model.dart';
 
 import '../../../models/water_quality_parameter.dart';
 import '../../../models/water_supply_small_pipe.dart';
+import '../../../models/water_supply_kiosk.dart';
+import '../../../models/water_supply_pond.dart';
+import '../../../models/water_supply_rain.dart';
+import '../../../models/water_supply_model_pipe/water_supply_pipe.dart';
 import '../../../models/water_supply_qrcode.dart';
 import '../../../models/water_supply_well.dart';
 import '../../../models/water_supply_workflow.dart';
@@ -56,10 +60,11 @@ class WaterSupplyModel {
     required this.isWaterQualityCheck,
     this.waterSupplyWells,
     this.waterSupplyPipes,
-    // this.waterSupplyPipe,
+    this.watersupplykiosks,
+    this.waterSupplyPipe,
     // this.waterSupplyKiosk,
-    // this.waterSupplyCommunityPond,
-    // this.waterSupplyRainWaterHarvesting,
+     this.waterSupplyCommunityPond,
+    this.waterSupplyRainWaterHarvesting,
     // this.waterSupplyPipePrivate,
     // this.waterSupplyAirWater,
     this.workflows,
@@ -172,8 +177,14 @@ class WaterSupplyModel {
   List<WaterSupplyWellModel>? waterSupplyWells;
   @JsonKey(name:'watersupplypipe_watersupply')
   List<WaterSupplySmallPipeModel>? waterSupplyPipes;
-  // @JsonKey(name:'watersupplypipe_watersupply')
-  // List<WaterSupplyPipeModel>? waterSupplyPipe;
+  @JsonKey(name:'watersupplyKiosk_watersupply')
+  List<WaterSupplyKioskModel>? watersupplykiosks;
+   @JsonKey(name:'watersupplyCommunityPond_watersupply')
+  List<WaterSupplyPondModel>? waterSupplyCommunityPond;
+  @JsonKey(name:'watersupplyRainWaterHarvesting_watersupply')
+  List<WaterSupplyRainModel>? waterSupplyRainWaterHarvesting;
+  @JsonKey(name:'watersupplypipe_watersupply')
+  List<WaterSupplyPipeModel>? waterSupplyPipe;
   // @JsonKey(name:'watersupplyKiosk_watersupply')
   // List<WaterSupplyWellModel>? waterSupplyKiosk;
   // @JsonKey(name:'watersupplyCommunityPond_watersupply')

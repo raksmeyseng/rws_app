@@ -63,7 +63,7 @@ class WaterSupplyPipeModel {
   String areaCovering;
 
   factory WaterSupplyPipeModel.fromJson(Map<String, dynamic> json) =>
-      _$WaterSupplyWellModelFromJson(json);
+      _$WaterSupplyPipeModelFromJson(json);
   Map<String, dynamic> toJson() => _$WaterSupplyPipeModelToJson(this);
 }
 

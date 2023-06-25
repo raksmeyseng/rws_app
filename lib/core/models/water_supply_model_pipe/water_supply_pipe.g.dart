@@ -1,43 +1,45 @@
 
 part of 'water_supply_pipe.dart';
 
-WaterSupplyPipeModel _$WaterSupplyWellModelFromJson(
+WaterSupplyPipeModel _$WaterSupplyPipeModelFromJson(
     Map<String, dynamic> json) =>
     WaterSupplyPipeModel(
           id: json['id'] as int,
           watersupplyId: json['watersupply_id'] as int,
           isActive: json['well_height'] as String,
-          sourceTypeOfWater: json['well_filter_height'] as String,
-          abiltyOfProduceWater: json['well_nirodynamic'] as String,
-          undergroundPoolStorage: json['well_nirostatic'] as String,
-          poolAir: json['well_status'] as String,
-          poolFilter: json['well_status_reason'] as String,
-          numberOfLink: json['well_watar_quality'] as String,
-          waterQualityCheck: json['well_water_quality_check'] as String,
-          status: json['well_water_supply'] as String,
-          statusNoReason: json['well_water_supply'] as String,
-          poolFilterObj: (json['well_watar_quality_obj'] as List<dynamic>?)
+          sourceTypeOfWater: json['source_type_of_water'] as String,
+          abiltyOfProduceWater: json['abilty_of_produce_water'] as String,
+          undergroundPoolStorage: json['underground_pool_storage'] as String,
+          poolAir: json['pool_air'] as String,
+          poolFilter: json['pool_filter'] as String,
+          numberOfLink: json['number_of_link'] as String,
+          waterQualityCheck: json['water_quality_check'] as String,
+          status: json['status'] as String,
+          statusNoReason: json['status_no_reason'] as String,
+          poolFilterObj: (json['pool_filter_obj'] as List<dynamic>?)
               ?.map((e) =>
               WaterSupplyOptionValueModel.fromJson(e as Map<String, dynamic>))
               .toList(),
-          pipeWaterQualityCheckObj: (json['well_water_quality_check_obj']
+          pipeWaterQualityCheckObj: (json['water_quality_check_obj']
           as List<dynamic>?)
               ?.map((e) =>
               WaterSupplyOptionValueModel.fromJson(e as Map<String, dynamic>))
               .toList(),
-          pipeLength: json['pipe_length'] as String,
-          areaCovering: json['area_covering'] as String,
-          pipeStatusObj: (json['well_water_quality_check_obj']
+          pipeStatusObj: (json['status_obj']
           as List<dynamic>?)
               ?.map((e) =>
               WaterSupplyOptionValueModel.fromJson(e as Map<String, dynamic>))
               .toList(),
-          watersupplypipeoptionvalueWatersupplypipe: (json['well_water_quality_check_obj']
+
+          watersupplypipeoptionvalueWatersupplypipe: (json['watersupplypipeoptionvalue_watersupplypipe']
           as List<dynamic>?)
               ?.map((e) =>
               WaterSupplyOptionModel.fromJson(e as Map<String, dynamic>))
               .toList(),
 
+          pipeLength: json['pipe_length'] as String,
+          areaCovering: json['area_covering'] as String,
+        
     );
 
 Map<String, dynamic> _$WaterSupplyPipeModelToJson(

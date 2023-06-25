@@ -1,56 +1,50 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:rws_app/translation/generated/l10n.dart';
-part 'water_supply_small_pipe.g.dart';
+part 'water_supply_kiosk_g.dart';
+
 @JsonSerializable(explicitToJson: true)
-class WaterSupplySmallPipeModel {
-  WaterSupplySmallPipeModel({
+class WaterSupplyKioskModel{
+  WaterSupplyKioskModel({ 
     required this.id,
     required this.waterSupplyId,
     required this.abilityOfProductWater,
-    required this.underGroudPoolStorage,
-    required this.number_of_link,
-    required this.pool_filter,
-    required this.pool_air,
-    required this.pool_filter_obj,
-    required this.water_quality_check_obj,
-    required this.status_obj,
-    required this.source_type_of_water,
-
-  });
+    required this.sourceTypeOfWater,
+    required this.filterSystemObj, 
+    required this.statusObj,
+    required this.waterQualityCheckingObj,
+    required this.statusNoReason,
   
+    });
+   
   @JsonKey(name:'id')
   int id;
   @JsonKey(name:'watersupply_id')
   int waterSupplyId;
   @JsonKey(name:'abilty_of_produce_water')
-  String abilityOfProductWater;
-  @JsonKey(name:'underground_pool_storage')
-  String underGroudPoolStorage;
-  @JsonKey(name:'number_of_link')
-  String number_of_link;
-  @JsonKey(name:'pool_air')
-  String pool_air;
-  @JsonKey(name:'pool_filter')
-  String pool_filter;
-  @JsonKey(name: 'pool_filter_obj')
-  List<WaterSupplyOptionValueModel> pool_filter_obj;
-  @JsonKey(name: 'water_quality_check_obj')
-  List<WaterSupplyOptionValueModel> water_quality_check_obj;
-  @JsonKey(name: 'status_obj')
-  List<WaterSupplyOptionValueModel> status_obj;
-    @JsonKey(name: 'source_type_of_water')
-  List<WaterSupplyOptionModel> source_type_of_water;
+  String abilityOfProductWater; 
+    @JsonKey(name:'abilty_of_produce_water')
+  String statusNoReason; 
+    @JsonKey(name: 'status_no_reason')
+      List<WaterSupplyOptionModel> sourceTypeOfWater;
+  @JsonKey(name: 'filter_system_obj')
+  List<WaterSupplyOptionValueModel> filterSystemObj;
+    @JsonKey(name: 'water_quality_checking_obj')
+  List<WaterSupplyOptionValueModel> waterQualityCheckingObj;
+      @JsonKey(name: 'status_obj')
+  List<WaterSupplyOptionValueModel> statusObj;
 
-  factory WaterSupplySmallPipeModel.fromJson(Map<String, dynamic> json) =>
-      _$WaterSupplySmallPipeModelFromJson(json);
-  Map<String, dynamic> toJson() => _$WaterSupplySmallPipeModelToJson(this);
+
+    factory WaterSupplyKioskModel.fromJson(Map<String, dynamic> json) =>
+      _$WaterSupplyKioskModelFromJson(json);
+  Map<String, dynamic> toJson() => _$WaterSupplyKioskModelToJson(this);
+
 }
+
 
 @JsonSerializable(explicitToJson: true)
 class WaterSupplyOptionModel {
   WaterSupplyOptionModel({
     required this.id,
-    required this.waterSupplySmallPipeId,    
+    required this.waterSupplyKioskId,
     required this.optionId,
     required this.valueId,
     required this.valueObjs,
@@ -58,8 +52,8 @@ class WaterSupplyOptionModel {
 
   @JsonKey(name: 'id')
   int id;
-  @JsonKey(name: 'water_supply_pipe_id')
-  int waterSupplySmallPipeId;
+  @JsonKey(name: 'water_supply_kiosk_id')
+  int waterSupplyKioskId;
   @JsonKey(name: 'option_id')
   int optionId;
   @JsonKey(name: 'value_id')

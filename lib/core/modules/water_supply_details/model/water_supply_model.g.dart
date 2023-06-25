@@ -54,11 +54,13 @@ WaterSupplyModel _$WaterSupplyModelFromJson(Map<String, dynamic> json) =>
       isWaterQualityCheck: json['is_water_quality_check'] as bool,
       //workflow: (json['watersupplyworkflow_watersupply'] as List).map((i) => MyApprovalHistoryModel.fromJson(i)).toList(),
       waterSupplyWells: List<WaterSupplyWellModel>.from(json['watersupplywell_watersupply'].map((model)=>WaterSupplyWellModel.fromJson(model))),
-      waterSupplyPipes:List<WaterSupplySmallPipeModel>.from(json['watersupplypipe_watersupply'].map((model)=>WaterSupplySmallPipeModel.fromJson(model))),
-
-      // waterSupplyPipe: List<WaterSupplyPipeModel>.from(json['watersupplypipe_watersupply'].map((model)=>WaterSupplyPipeModel.fromJson(model))),
+      waterSupplyPipes: List<WaterSupplySmallPipeModel>.from(json['watersupplypipe_watersupply'].map((model)=>WaterSupplySmallPipeModel.fromJson(model))),
+      watersupplykiosks: List<WaterSupplyKioskModel>.from(json['watersupplyKiosk_watersupply'].map((model)=>WaterSupplyKioskModel.fromJson(model))),
+      waterSupplyCommunityPond: List<WaterSupplyPondModel>.from(json['watersupplyCommunityPond_watersupply'].map((model)=>WaterSupplyPondModel.fromJson(model))),
+      waterSupplyRainWaterHarvesting: List<WaterSupplyRainModel>.from(json['watersupplyRainWaterHarvesting_watersupply'].map((model)=>WaterSupplyRainModel.fromJson(model))),
+      waterSupplyPipe: List<WaterSupplyPipeModel>.from(json['watersupplypipe_watersupply'].map((model)=>WaterSupplyPipeModel.fromJson(model))),
       // waterSupplyKiosk: List<WaterSupplyWellModel>.from(json['watersupplyKiosk_watersupply'].map((model)=>WaterSupplyWellModel.fromJson(model))),
-      // waterSupplyCommunityPond: List<WaterSupplyWellModel>.from(json['watersupplyCommunityPond_watersupply'].map((model)=>WaterSupplyWellModel.fromJson(model))),
+      
       // waterSupplyRainWaterHarvesting: List<WaterSupplyWellModel>.from(json['watersupplyRainWaterHarvesting_watersupply'].map((model)=>WaterSupplyWellModel.fromJson(model))),
       // waterSupplyPipePrivate: List<WaterSupplyWellModel>.from(json['watersupplypipeprivate_watersupply'].map((model)=>WaterSupplyWellModel.fromJson(model))),
       // waterSupplyAirWater: List<WaterSupplyWellModel>.from(json['watersupplyairwater_watersupply'].map((model)=>WaterSupplyWellModel.fromJson(model))),
