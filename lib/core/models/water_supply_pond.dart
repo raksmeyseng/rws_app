@@ -31,7 +31,7 @@ class WaterSupplyPondModel{
   String typeOfPond;
   @JsonKey(name: 'status_no_reason')
   String statusNoReason;
-  @JsonKey(name: 'filter_system_obj')
+  @JsonKey(name: 'pool_filter_obj')
   List<WaterSupplyOptionValueModel> filterSystemObj;
   @JsonKey(name: 'is_summer_has_water_obj')
   List<WaterSupplyOptionValueModel> isSummerHasWaterObj;

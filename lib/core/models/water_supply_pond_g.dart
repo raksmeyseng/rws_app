@@ -11,12 +11,10 @@ WaterSupplyPondModel _$WaterSupplyPondModelFromJson(
       typeOfPond: json['type_of_pond'] as String,
       statusNoReason: json['status_no_reason'] as String,   
 
-      filterSystemObj: (json['filter_system_obj'] as List<dynamic>)
-          .map((e) => WaterSupplyOptionValueModel.fromJson(e as Map<String, dynamic>)).toList(),
-      statusObj: (json['status_obj'] as List<dynamic>)
-          .map((e) => WaterSupplyOptionValueModel.fromJson(e as Map<String, dynamic>)).toList(),
-      isSummerHasWaterObj: (json['is_summer_has_water_obj'] as List<dynamic>)
-          .map((e) => WaterSupplyOptionValueModel.fromJson(e as Map<String, dynamic>)).toList(),
+      filterSystemObj: List<WaterSupplyOptionValueModel>.from(json['pool_filter_obj'].map((model)=>WaterSupplyOptionValueModel.fromJson(model))),
+
+      statusObj: List<WaterSupplyOptionValueModel>.from(json['status_obj'].map((model)=>WaterSupplyOptionValueModel.fromJson(model))),
+      isSummerHasWaterObj: List<WaterSupplyOptionValueModel>.from(json['is_summer_has_water_obj'].map((model)=>WaterSupplyOptionValueModel.fromJson(model))),
     );
 
 Map<String, dynamic> _$WaterSupplyPondModelToJson(

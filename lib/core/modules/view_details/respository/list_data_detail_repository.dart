@@ -33,16 +33,16 @@ class ListDataDetailRepository extends RestApiService{
         try{
           final externalDir = await getExternalStorageDirectory();
 
-          final res = await get('http://18.222.12.231/en/api/exportcsvwatersupply/');
-          print(res);
-          // final id = await FlutterDownloader.enqueue(
-          //     url: 'http://18.222.12.231/en/api/exportcsvwatersupply/',
-          //     //url:'https://www.kozco.com/tech/LRMonoPhase4.mp3',
-          //     savedDir: externalDir!.path,
-          //   showNotification: true,
-          //   saveInPublicStorage: true,
-          //   openFileFromNotification: true,
-          // );
+          // final res = await get('http://18.222.12.231/en/api/exportcsvwatersupply/');
+          // print(res);
+          final id = await FlutterDownloader.enqueue(
+              url: 'http://18.222.12.231/en/api/exportcsvwatersupply/',
+              //url:'https://www.kozco.com/tech/LRMonoPhase4.mp3',
+              savedDir: externalDir!.path,
+            showNotification: true,
+            saveInPublicStorage: true,
+            openFileFromNotification: true,
+          );
         }catch(_){
 
         }

@@ -179,11 +179,11 @@ class WaterSupplyModel {
   List<WaterSupplySmallPipeModel>? waterSupplyPipes;
   @JsonKey(name:'watersupplyKiosk_watersupply')
   List<WaterSupplyKioskModel>? watersupplykiosks;
-   @JsonKey(name:'watersupplyCommunityPond_watersupply')
+  @JsonKey(name:'watersupplyCommunityPond_watersupply')
   List<WaterSupplyPondModel>? waterSupplyCommunityPond;
   @JsonKey(name:'watersupplyRainWaterHarvesting_watersupply')
   List<WaterSupplyRainModel>? waterSupplyRainWaterHarvesting;
-  @JsonKey(name:'watersupplypipe_watersupply')
+  @JsonKey(name:'watersupplypipeprivate_watersupply')
   List<WaterSupplyPipeModel>? waterSupplyPipe;
   // @JsonKey(name:'watersupplyKiosk_watersupply')
   // List<WaterSupplyWellModel>? waterSupplyKiosk;
