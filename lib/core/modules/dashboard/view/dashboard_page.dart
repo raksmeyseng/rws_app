@@ -12,74 +12,95 @@ import 'package:rws_app/core/widgets/flat_card.dart';
 import 'package:rws_app/core/widgets/text_widget.dart';
 import 'package:rws_app/translation/generated/l10n.dart';
 
-class DashboardPage extends StatefulWidget {
-  const DashboardPage({super.key});
+class DashboardPage extends StatelessWidget {
+  const DashboardPage({super.key, required this.index});
 
-  @override
-  State<DashboardPage> createState() => _DashboardPageState();
-}
-
-class _DashboardPageState extends State<DashboardPage> {
-  int _currentIndex = 0;
-
-  void _onTabTapped(int index) {
-    setState(() {
-      _currentIndex = index;
-    });
-  }
+  final int index;
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => DashboardBloc(),
-      child: Builder(builder: (context) {
-        return Scaffold(
-          appBar: AppBar(
-            backgroundColor: Theme.of(context).primaryColor,
-            title: const _TitleWidget(),
-            centerTitle: true,
-            iconTheme: const IconThemeData(color: AppColor.white),
-          ),
-          drawer: const _DrawerMenu(),
-          bottomNavigationBar: _bottomNavigatrionBar(),
-          body: IndexedStack(
-            index: _currentIndex,
-            children: const <Widget>[
-              MapsPage(),
-              WaterSupplyPage(),
-              // ReportPage(),
-              MyTaskPage(),
-            ],
-          ),
-        );
-      }),
+      create: (context) =>
+          DashboardBloc(index: index)..add(const DashboardStarted()),
+      child: BlocBuilder<DashboardBloc, DashboardState>(
+        buildWhen: (previous, current) => previous.status != current.status,
+        builder: (context, state) {
+          return Scaffold(
+            appBar: AppBar(
+              backgroundColor: Theme.of(context).primaryColor,
+              title: const _TitleWidget(),
+              centerTitle: true,
+              iconTheme: const IconThemeData(color: AppColor.white),
+            ),
+            drawer: const _DrawerMenu(),
+            bottomNavigationBar: const _BottomNavigationBar(),
+            body: const _ContentView(),
+          );
+        },
+      ),
     );
   }
+}
 
-  Widget _bottomNavigatrionBar() {
-    return BottomNavigationBar(
-      selectedFontSize: 12,
-      unselectedItemColor: Theme.of(context).dividerColor,
-      currentIndex: _currentIndex,
-      onTap: _onTabTapped,
-      items: [
-        BottomNavigationBarItem(
-          icon: const Icon(Icons.map),
-          label: S.of(context).location_on_map,
-        ),
-        BottomNavigationBarItem(
-          icon: const Icon(Icons.water),
-          label: S.of(context).water_supply,
-        ),
-        // BottomNavigationBarItem(
-        //   icon: const Icon(Icons.assessment),
-        //   label: S.of(context).report,
-        // ),
-        BottomNavigationBarItem(
-          icon: const Icon(Icons.task),
-          label: S.of(context).my_task,
-        ),
-      ],
+class _ContentView extends StatelessWidget {
+  const _ContentView();
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<DashboardBloc, DashboardState>(
+      buildWhen: (previous, current) =>
+          previous.currentIndex != current.currentIndex,
+      builder: (context, state) {
+        return IndexedStack(
+          index: state.currentIndex,
+          children: const <Widget>[
+            MapsPage(),
+            WaterSupplyPage(),
+            // ReportPage(),
+            MyTaskPage(),
+          ],
+        );
+      },
+    );
+  }
+}
+
+class _BottomNavigationBar extends StatelessWidget {
+  const _BottomNavigationBar();
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<DashboardBloc, DashboardState>(
+      buildWhen: (previous, current) =>
+          previous.currentIndex != current.currentIndex,
+      builder: (context, state) {
+        return BottomNavigationBar(
+          selectedFontSize: 12,
+          unselectedItemColor: Theme.of(context).dividerColor,
+          currentIndex: state.currentIndex,
+          onTap: (index) {
+            context.read<DashboardBloc>().add(TabTapped(index));
+          },
+          items: [
+            BottomNavigationBarItem(
+              icon: const Icon(Icons.map),
+              label: S.of(context).location_on_map,
+            ),
+            BottomNavigationBarItem(
+              icon: const Icon(Icons.water),
+              label: S.of(context).water_supply,
+            ),
+            // BottomNavigationBarItem(
+            //   icon: const Icon(Icons.assessment),
+            //   label: S.of(context).report,
+            // ),
+            BottomNavigationBarItem(
+              icon: const Icon(Icons.task),
+              label: S.of(context).my_task,
+            ),
+          ],
+        );
+      },
     );
   }
 }
@@ -193,7 +214,7 @@ class _AppLogo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(24.0),
+      padding:const EdgeInsets.all(24.0),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -202,7 +223,7 @@ class _AppLogo extends StatelessWidget {
           const SizedBox(width: 16.0),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
+            children:const [
               TextWidget(
                 'ក្រសួងអភិវឌ្ឃន៍ជនបទ',
                 bold: true,

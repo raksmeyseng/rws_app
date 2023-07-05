@@ -2,6 +2,7 @@ part of 'auth_bloc.dart';
 
 class AuthState extends Equatable {
   const AuthState._({
+    this.resetPassword,
     this.status = AuthStatus.unknown,
     this.userToken,
     this.user,
@@ -13,6 +14,7 @@ class AuthState extends Equatable {
   final AuthStatus status;
   final UserTokenModel? userToken;
   final UserModel? user;
+  final ChangePasswordModel? resetPassword;
   final BiometricAuthStatusEnum biometricStatus;
   final String biometricIcon;
   final int wrongPinAttemptCount;
@@ -28,6 +30,7 @@ class AuthState extends Equatable {
     int? wrongPinAttemptCount,
   }) {
     return AuthState._(
+      resetPassword: resetPassword ?? resetPassword,
       status: status ?? this.status,
       user: user ?? this.user,
       userToken: userToken ?? this.userToken,

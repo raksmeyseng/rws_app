@@ -32,7 +32,7 @@ class _Content extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: const [
+        children:const [
           SizedBox(height: 12.0),
           _ThemeMode(),
           // SizedBox(height: 16.0),

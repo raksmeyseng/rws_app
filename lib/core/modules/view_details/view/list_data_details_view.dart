@@ -31,7 +31,7 @@ class ListDataDetailsView extends StatelessWidget {
               length: length,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
+                children:const [
                   _TabBar(),
                   Expanded(child: _TabBarView()),
                 ],

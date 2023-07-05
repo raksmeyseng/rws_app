@@ -1,8 +1,11 @@
+import 'dart:async';
+
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rws_app/config/routes/application.dart';
 import 'package:rws_app/core/enum/base_status_enum.dart';
 import 'package:rws_app/core/modules/my_draft/repositories/my_draft_repository.dart';
+import 'package:rws_app/utils/event/event_type.dart';
 
 import '../../authentication/repositories/auth_repository.dart';
 import '../../water_supply_details/model/water_supply_model.dart';
@@ -13,10 +16,17 @@ part 'my_draft_state.dart';
 class MyDraftBloc extends Bloc<MyDraftEvent, MyDraftState> {
   MyDraftBloc(this.repository) : super(const MyDraftState.initial()) {
     on<MyDraftEvent>(_onMyDraftEvent);
+
+    _waterSupplyUpdatedSub =
+        Application.eventBus.on<WaterSupplyUpdated>().listen((event) {
+      add(const MyDraftStarted());
+    });
   }
 
   MyDraftRepository repository = MyDraftRepository();
-  AuthRepository authRepository=AuthRepository();
+  AuthRepository authRepository = AuthRepository();
+
+  StreamSubscription<WaterSupplyUpdated>? _waterSupplyUpdatedSub;
 
   Future<void> _onMyDraftEvent(
     MyDraftEvent event,
@@ -37,15 +47,20 @@ class MyDraftBloc extends Bloc<MyDraftEvent, MyDraftState> {
       final userId = Application.authBloc.state.userToken?.user.id;
       print(userId);
 
-      final mydraft = await repository.getMyDraftList(userId??0);
+      final mydraft = await repository.getMyDraftList(userId ?? 0);
 
       emit(state.copyWith(
         status: BaseStatusEnum.success,
         mydraft: mydraft,
       ));
-
     } catch (_) {
       emit(state.copyWith(status: BaseStatusEnum.failure));
     }
+  }
+
+  @override
+  Future<void> close() {
+    _waterSupplyUpdatedSub?.cancel();
+    return super.close();
   }
 }

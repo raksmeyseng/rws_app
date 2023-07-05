@@ -9,7 +9,7 @@ class SplashscreenView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
-      children: const [
+      children:const [
         Expanded(
           child: Center(
             child: ShowUpTransition(

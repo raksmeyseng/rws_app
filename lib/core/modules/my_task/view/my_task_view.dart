@@ -14,7 +14,7 @@ class MyTaskView extends StatelessWidget {
           length: state.tabs.length,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
+            children:const [
               _TabBar(),
               Expanded(child: _TabBarView()),
             ],

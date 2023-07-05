@@ -45,7 +45,7 @@ Page settingBuilder(BuildContext context, GoRouterState state) {
 Page usersBuilder(BuildContext context, GoRouterState state) {
   return MaterialPage<void>(
     key: state.pageKey,
-    child: const UserPage(),
+    child: const AboutPage()// const UserPage(),
   );
 }
 
@@ -56,11 +56,11 @@ Page aboutBuilder(BuildContext context, GoRouterState state) {
   );
 }
 
-Page reportBuilder(BuildContext context,GoRouterState state){
+Page reportBuilder(BuildContext context, GoRouterState state) {
   return MaterialPage<void>(
     key: state.pageKey,
     child: const ReportPage(),
-    );
+  );
 }
 
 Page loginBuilder(BuildContext context, GoRouterState state) {
@@ -71,18 +71,19 @@ Page loginBuilder(BuildContext context, GoRouterState state) {
 }
 
 Page dashboardBuilder(BuildContext context, GoRouterState state) {
+  final index = int.tryParse(state.extra.getValue('index', '0'));
   return MaterialPage<void>(
     key: state.pageKey,
-    child: const DashboardPage(),
+    child: DashboardPage(index: index ?? 0),
   );
 }
 
-Page changePasswordBuilder(BuildContext context, GoRouterState state) {
-  return MaterialPage<void>(
-    key: state.pageKey,
-    child: const ChangePasswordPage(),
-  );
-}
+// Page changePasswordBuilder(BuildContext context, GoRouterState state) {
+//   return MaterialPage<void>(
+//     key: state.pageKey,
+//     child: const ChangePasswordPage(),
+//   );
+// }
 
 Page notFoundBuilder(BuildContext context, GoRouterState state) {
   return MaterialPage<void>(
@@ -105,11 +106,8 @@ Page editProfileBuilder(BuildContext context, GoRouterState state) {
   );
 }
 
-Page myTaskBuilder(BuildContext context,GoRouterState state){
-  return MaterialPage<void>(
-    key: state.pageKey,
-  child: const MyTaskPage()
-  );
+Page myTaskBuilder(BuildContext context, GoRouterState state) {
+  return MaterialPage<void>(key: state.pageKey, child: const MyTaskPage());
 }
 
 Page waterSupplyDetailBuilder(BuildContext context, GoRouterState state) {

@@ -13,7 +13,7 @@ class BottomBar extends StatelessWidget {
     return Container(
       color: Theme.of(context).cardColor,
       child: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding:const EdgeInsets.all(16.0),
         child: Row(children: const [
           RealTimeDate(),
           Spacer(),

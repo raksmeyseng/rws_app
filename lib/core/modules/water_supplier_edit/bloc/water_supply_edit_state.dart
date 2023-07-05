@@ -11,7 +11,7 @@ class WaterSupplyEditState extends Equatable {
     this.districtInput = const WaterSupplyInput.pure(),
     this.communeInput = const WaterSupplyInput.pure(),
     this.villageInput = const WaterSupplyInput.pure(),
-    this.mapTypeInput = const WaterSupplyInput.pure(),
+    this.mapTypeInput = const MapTypeInput.pure(),
     this.familyTotalInput = const WaterSupplyInput.pure(),
     this.lateitudeInput = const WaterSupplyInput.pure(),
     this.longtitudeInput = const WaterSupplyInput.pure(),
@@ -76,6 +76,7 @@ class WaterSupplyEditState extends Equatable {
     this.filterInput = const WaterSupplyInput.pure(),
     this.airStationInput = const WellStatusInput.pure(),
     this.waterSupplyCode=const WaterSupplyInput.pure(),
+    this.wqParameter1=const WaterSupplyInput.pure(),
   });
 
   final BaseStatusEnum status;
@@ -87,7 +88,7 @@ class WaterSupplyEditState extends Equatable {
   final WaterSupplyInput districtInput;
   final WaterSupplyInput communeInput;
   final WaterSupplyInput villageInput;
-  final WaterSupplyInput mapTypeInput;
+  final MapTypeInput mapTypeInput;
   final WaterSupplyInput familyTotalInput;
   final WaterSupplyInput lateitudeInput;
   final WaterSupplyInput longtitudeInput;
@@ -153,6 +154,9 @@ class WaterSupplyEditState extends Equatable {
   final WaterSupplyInput filterInput;
   final WellStatusInput airStationInput;
 
+  final WaterSupplyInput wqParameter1;
+
+
   const WaterSupplyEditState.initial({
     required int waterSupplyTypeId,
     required int id,
@@ -168,7 +172,7 @@ class WaterSupplyEditState extends Equatable {
     WaterSupplyInput? districtInput,
     WaterSupplyInput? communeInput,
     WaterSupplyInput? villageInput,
-    WaterSupplyInput? mapTypeInput,
+    MapTypeInput? mapTypeInput,
     WaterSupplyInput? familyTotalInput,
     WaterSupplyInput? lateitudeInput,
     WaterSupplyInput? longtitudeInput,
@@ -233,6 +237,7 @@ class WaterSupplyEditState extends Equatable {
     WaterSupplyInput? filterInput,
     WellStatusInput? airStationInput,
     WaterSupplyInput? waterSupplyCode,
+    WaterSupplyInput? wqParameter1,
   }) {
     return WaterSupplyEditState._(
       status: status ?? this.status,
@@ -317,7 +322,8 @@ class WaterSupplyEditState extends Equatable {
       dueDateInput: dueDateInput ?? this.dueDateInput,
       filterInput: filterInput ?? this.filterInput,
       airStationInput: airStationInput ?? this.airStationInput,
-      waterSupplyCode: waterSupplyCode??this.waterSupplyCode
+      waterSupplyCode: waterSupplyCode??this.waterSupplyCode,
+      wqParameter1:wqParameter1??this.wqParameter1,
     );
   }
 
@@ -397,5 +403,6 @@ class WaterSupplyEditState extends Equatable {
         filterInput,
         airStationInput,
         waterSupplyCode,
+        wqParameter1,
       ];
 }

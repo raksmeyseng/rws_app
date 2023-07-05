@@ -26,23 +26,23 @@ class RegisterView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox.expand(
+    return  SizedBox.expand(
       child: SingleChildScrollView(
         child: SafeArea(
           child: Wrapper(
             maxWidth: appSmallMaxWidth,
             child: Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding:const EdgeInsets.all(16.0),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const _RegisterIcon(),
+                 const _RegisterIcon(),
                   const _Title(),
                   const SizedBox(height: 24.0),
                   const _FullNameInput(),
                   const SizedBox(height: 16.0),
                   Row(
-                    children: const [
+                    children:const [
                       Expanded(
                         flex: 2,
                         child: _DOBInput(),

@@ -16,7 +16,7 @@ class LanguagePage extends StatelessWidget {
       appBar: AppBar(title: AppBarTitle(title: S.of(context).language)),
       body: Column(
         mainAxisSize: MainAxisSize.min,
-        children: const [
+        children:const [
           SizedBox(height: 12.0),
           _Content(),
         ],

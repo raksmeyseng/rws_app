@@ -35,9 +35,9 @@ class SettingView extends StatelessWidget {
               const _UserProfile(),
               const SizedBox(height: 10.0),
               Padding(
-                padding: const EdgeInsets.all(16.0),
+                padding:const EdgeInsets.all(16.0),
                 child: Column(
-                  children: const [
+                  children:const [
                     _AppTheme(),
                     // SizedBox(height: 14.0),
                     // _LanguageItem(),
@@ -128,7 +128,7 @@ class _UserProfile extends StatelessWidget {
                         Flexible(
                           
                           child: TextWidget(
-                            firstName + ' '+ lastName,
+                            '$firstName $lastName',
                             bold: true,
                             size: 16,
                             maxLines: 2,

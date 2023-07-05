@@ -50,7 +50,7 @@ class VillageChanged extends WaterSupplyEditEvent {
 class MapTypeChanged extends WaterSupplyEditEvent {
   const MapTypeChanged(this.mapType);
 
-  final String mapType;
+  final MapTypeEnum mapType;
 
   @override
   List<Object> get props => [mapType];
@@ -589,4 +589,15 @@ class AirStationChanged extends WaterSupplyEditEvent {
 
 class Submitted extends WaterSupplyEditEvent {
   const Submitted();
+}
+
+/* Water Quality Paramter  */
+class WaterQualityParameterChanged extends WaterSupplyEditEvent{
+  
+  const WaterQualityParameterChanged(this.value);
+  final String value ;
+
+  @override
+  List<Object> get props => [value];
+
 }

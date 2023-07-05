@@ -1,42 +1,42 @@
-part of 'change_password_bloc.dart';
+// part of 'change_password_bloc.dart';
 
-abstract class ChangePasswordEvent extends Equatable {
-  const ChangePasswordEvent();
+// abstract class ChangePasswordEvent extends Equatable {
+//   const ChangePasswordEvent();
 
-  @override
-  List<Object> get props => [];
-}
+//   @override
+//   List<Object> get props => [];
+// }
 
-class PasswordChanged extends ChangePasswordEvent {
-  const PasswordChanged(this.password);
+// class PasswordChanged extends ChangePasswordEvent {
+//   const PasswordChanged(this.password);
 
-  final String password;
+//   final String password;
 
-  @override
-  List<Object> get props => [password];
-}
+//   @override
+//   List<Object> get props => [password];
+// }
 
-class ConfirmPasswordChanged extends ChangePasswordEvent {
-  const ConfirmPasswordChanged(this.confirmPass);
+// class ConfirmPasswordChanged extends ChangePasswordEvent {
+//   const ConfirmPasswordChanged(this.confirmPass);
 
-  final String confirmPass;
+//   final String confirmPass;
 
-  @override
-  List<Object> get props => [confirmPass];
-}
+//   @override
+//   List<Object> get props => [confirmPass];
+// }
 
-class ToggleOldPassVisibility extends ChangePasswordEvent {
-  const ToggleOldPassVisibility();
-}
+// class ToggleOldPassVisibility extends ChangePasswordEvent {
+//   const ToggleOldPassVisibility();
+// }
 
-class TogglePassVisibility extends ChangePasswordEvent {
-  const TogglePassVisibility();
-}
+// class TogglePassVisibility extends ChangePasswordEvent {
+//   const TogglePassVisibility();
+// }
 
-class ToggleConfirmPassVisibility extends ChangePasswordEvent {
-  const ToggleConfirmPassVisibility();
-}
+// class ToggleConfirmPassVisibility extends ChangePasswordEvent {
+//   const ToggleConfirmPassVisibility();
+// }
 
-class ChangePasswordSubmitted extends ChangePasswordEvent {
-  const ChangePasswordSubmitted();
-}
+// class ChangePasswordSubmitted extends ChangePasswordEvent {
+//   const ChangePasswordSubmitted();
+// }

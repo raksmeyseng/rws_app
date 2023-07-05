@@ -42,6 +42,7 @@ class PayloadWaterSupplyModel {
     required this.mainStatus,
     required this.updatedBy,
     required this.waterSupplyCode,
+    required this.isWaterQualityCheck,
     this.id,
   });
 
@@ -124,6 +125,9 @@ class PayloadWaterSupplyModel {
   int beneficiaryTotalFamilyIndigenous;
   @JsonKey(name:'main_status')//
   int mainStatus;
+
+  @JsonKey(name:'is_water_quality_check')
+  bool isWaterQualityCheck;
 
 
   factory PayloadWaterSupplyModel.fromJson(Map<String, dynamic> json) =>

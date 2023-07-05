@@ -1,8 +1,14 @@
 import 'package:json_annotation/json_annotation.dart';
+// import 'package:rws_app/core/models/water_supply_model_pipe/water_supply_pipe.dart';
 import 'package:rws_app/core/modules/authentication/models/user_model.dart';
 import 'package:rws_app/core/modules/my_draft/models/my_draft_model.dart';
 
 import '../../../models/water_quality_parameter.dart';
+import '../../../models/water_supply_small_pipe.dart';
+import '../../../models/water_supply_kiosk.dart';
+import '../../../models/water_supply_pond.dart';
+import '../../../models/water_supply_rain.dart';
+import '../../../models/water_supply_model_pipe/water_supply_pipe.dart';
 import '../../../models/water_supply_qrcode.dart';
 import '../../../models/water_supply_well.dart';
 import '../../../models/water_supply_workflow.dart';
@@ -53,6 +59,14 @@ class WaterSupplyModel {
     required this.waterSupplyTypeId,
     required this.isWaterQualityCheck,
     this.waterSupplyWells,
+    this.waterSupplyPipes,
+    this.watersupplykiosks,
+    this.waterSupplyPipe,
+    // this.waterSupplyKiosk,
+     this.waterSupplyCommunityPond,
+    this.waterSupplyRainWaterHarvesting,
+    // this.waterSupplyPipePrivate,
+    // this.waterSupplyAirWater,
     this.workflows,
     this.qrcode,
     this.wqcParam1,
@@ -161,6 +175,26 @@ class WaterSupplyModel {
 
   @JsonKey(name:'watersupplywell_watersupply')
   List<WaterSupplyWellModel>? waterSupplyWells;
+  @JsonKey(name:'watersupplypipe_watersupply')
+  List<WaterSupplySmallPipeModel>? waterSupplyPipes;
+  @JsonKey(name:'watersupplyKiosk_watersupply')
+  List<WaterSupplyKioskModel>? watersupplykiosks;
+  @JsonKey(name:'watersupplyCommunityPond_watersupply')
+  List<WaterSupplyPondModel>? waterSupplyCommunityPond;
+  @JsonKey(name:'watersupplyRainWaterHarvesting_watersupply')
+  List<WaterSupplyRainModel>? waterSupplyRainWaterHarvesting;
+  @JsonKey(name:'watersupplypipeprivate_watersupply')
+  List<WaterSupplyPipeModel>? waterSupplyPipe;
+  // @JsonKey(name:'watersupplyKiosk_watersupply')
+  // List<WaterSupplyWellModel>? waterSupplyKiosk;
+  // @JsonKey(name:'watersupplyCommunityPond_watersupply')
+  // List<WaterSupplyWellModel>? waterSupplyCommunityPond;
+  // @JsonKey(name:'watersupplyRainWaterHarvesting_watersupply')
+  // List<WaterSupplyWellModel>? waterSupplyRainWaterHarvesting;
+  // @JsonKey(name:'watersupplypipeprivate_watersupply')
+  // List<WaterSupplyWellModel>? waterSupplyPipePrivate;
+  // @JsonKey(name:'watersupplyairwater_watersupply')
+  // List<WaterSupplyWellModel>? waterSupplyAirWater;
 
   @JsonKey(name: 'wqc_param1_obj')
   List<WaterSupplyWaterQualityParameterModel>? wqcParam1;

@@ -6,6 +6,7 @@ import 'package:rws_app/core/modules/water_supplier_edit/model/response_water_su
 import 'package:rws_app/core/modules/water_supply_details/model/water_supply_model.dart';
 import 'package:rws_app/core/services/rest_api_service.dart';
 
+import '../model/payload_water_quality_parameter_model.dart';
 import '../model/payload_well.dart';
 import '../model/qrcode_model.dart';
 
@@ -61,6 +62,10 @@ class WaterSupplyEditRepository extends RestApiService {
     await post(ApiPath.postWaterSupplyQRcode, data:payload);
   }
 
+  Future<void> addWaterQuanlityParameter({required PayloadWaterQualityParameterModel payload}) async{
+    var res = await post(ApiPath.postWaterQualityParameter, data: payload);
+  }
+
   Future<List<ProvinceModel>> getProvinces() async {
     final res = await get(ApiPath.getProvince());
     return res.map<ProvinceModel>((x) => ProvinceModel.fromJson(x)).toList();
@@ -68,6 +73,18 @@ class WaterSupplyEditRepository extends RestApiService {
   Future<List<ProvinceModel>> getProvincesByDataEntry(int id) async{
     final res = await get(ApiPath.getProvinceByDataEntry(id));
     return res.map<ProvinceModel>((x) => ProvinceModel.fromJson(x)).toList();
+  }
+  Future<List<DistrictModel>> getDistrictByProvince(int id) async{
+    final res = await get(ApiPath.getDistrictByProvinceId(id));
+    return res.map<DistrictModel>((x)=>DistrictModel.fromJson(x)).toList();
+  }
+  Future<List<CommuneModel>> getCommuneByDistrictId(int id) async {
+    final res = await get(ApiPath.getCommuneByDistrictId(id));
+    return res.map<CommuneModel>((x)=>CommuneModel.fromJson(x)).toList();
+  }
+  Future<List<VillageModel>> getVillageByCommuneId(int id) async {
+    final res = await get(ApiPath.getVillageByCommuneId(id));
+    return res.map<VillageModel>((x)=>VillageModel.fromJson(x)).toList();
   }
 
 }

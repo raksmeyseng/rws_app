@@ -43,12 +43,12 @@ const double appSmallMaxWidth = 512;
 // }
 
 bool isSytemDarkMode() {
-  final brightness = SchedulerBinding.instance.window.platformBrightness;
+  final brightness = SchedulerBinding.instance.platformDispatcher.platformBrightness;
   return brightness == Brightness.dark;
 }
 
 void listenAndHandleSystemAppearanceChanged() {
-  final window = SchedulerBinding.instance.window;
+  final window = SchedulerBinding.instance.platformDispatcher;
   window.onPlatformBrightnessChanged = () {
     final state = Application.appBloc.state;
     if (state.theme.getKey() == AutoTheme.key) {

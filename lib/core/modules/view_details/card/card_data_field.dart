@@ -12,6 +12,7 @@ import '../../../widgets/caption_widget.dart';
 import '../../../widgets/flat_card.dart';
 import '../../../widgets/my_divider.dart';
 
+
 class CardDataFields extends StatelessWidget {
   const CardDataFields({Key? key}) : super(key: key);
 
@@ -22,7 +23,26 @@ class CardDataFields extends StatelessWidget {
       builder: (context, state) {
         switch (state.status) {
           case BaseStatusEnum.success:
-            return const _WellView();
+          
+            switch(state.waterSupply?.waterSupplyTypeId){
+              case 1:
+                return const _WellView();
+              case 2:
+                return const _SmallPipeView();
+              case 3: 
+                return const _KioskView();
+              case 4: 
+                return const _PondView();
+              case 5: 
+                return const _RainView();
+               case 6: 
+                return const _PipeView(); 
+              default:
+                return const EmptyWidget();
+            }
+
+              
+            
           case BaseStatusEnum.failure:
             return const _FailureView();
           default:
@@ -198,6 +218,518 @@ class _WellView extends StatelessWidget {
                 TextWidget(state.waterSupply?.waterSupplyWells?.first.wellStatusReason),
               ),             
 
+            ],
+          ),
+        );
+      },
+    );
+  }
+}
+
+
+//START Small PIPE VIEW
+class _SmallPipeView extends StatelessWidget {
+  const _SmallPipeView({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<ListDataDetailsBloc, ListDataDetailsState>(
+      buildWhen: (previous, current) =>
+          previous.waterSupply != current.waterSupply,
+      builder: (context, state) {
+
+        if (state.waterSupply?.waterSupplyPipes?.isEmpty ?? true) {
+          return const Center(child: EmptyWidget());
+        }
+        return SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(
+            vertical: 10,
+            horizontal: 16,
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+             _InfoItem(
+                const CaptionWidget('ប្រភេទប្រភពទឹក'),
+                TextWidget(
+                  state.waterSupply?.waterSupplyPipes?.first.source_type_of_water.first
+                          .valueObjs.first.nameKh ??
+                      '-',
+                      
+                ),
+              ),
+              const Padding(
+                padding: EdgeInsets.symmetric(vertical: 8),
+                child: MyDivider(),
+              ),
+             _InfoItem(
+                const CaptionWidget('សមត្ថភាពផលិតទឹក(ចំនួនប៊ីដុង/មួយថ្ងៃ)'),
+                TextWidget(
+                  state.waterSupply?.waterSupplyPipes?.first.abilityOfProductWater,
+                ),
+              ),
+              const Padding(
+                padding: EdgeInsets.symmetric(vertical: 8),
+                child: MyDivider(),
+              ),
+
+              _InfoItem(
+                const CaptionWidget('អាងក្រោមដី(m3)'),
+                TextWidget(
+                  state.waterSupply?.waterSupplyPipes?.first.underGroudPoolStorage,
+                ),
+              ),
+              const Padding(
+                padding: EdgeInsets.symmetric(vertical: 8),
+                child: MyDivider(),
+              ),
+              _InfoItem(
+                const CaptionWidget('អាងអាកាស(m3)'),
+                TextWidget(
+                  state.waterSupply?.waterSupplyPipes?.first.pool_air,
+                ),
+              ),
+              const Padding(
+                padding: EdgeInsets.symmetric(vertical: 8),
+                child: MyDivider(),
+              ),
+              _InfoItem(
+                const CaptionWidget('អាងចម្រោះ'),
+                TextWidget(
+                  state.waterSupply?.waterSupplyPipes?.first.pool_filter,
+                ),
+              ),
+              const Padding(
+                padding: EdgeInsets.symmetric(vertical: 8),
+                child: MyDivider(),
+              ),
+              _InfoItem(
+                const CaptionWidget('ចំនួនតំណដែលបានត'),
+                TextWidget(
+                  state.waterSupply?.waterSupplyPipes?.first.number_of_link,
+                ),
+              ),
+              const Padding(
+                padding: EdgeInsets.symmetric(vertical: 8),
+                child: MyDivider(),
+              ),
+                           _InfoItem(
+                const CaptionWidget('ការត្រួតពិនិត្យគុណភាពទឹក'),
+                TextWidget(
+                  state.waterSupply?.waterSupplyPipes?.first.water_quality_check_obj.first
+                      .nameKh ??
+                      '-',
+                ),
+              ),
+              const Padding(
+                padding: EdgeInsets.symmetric(vertical: 8),
+                child: MyDivider(),
+              ),
+              _InfoItem(
+                const CaptionWidget('ស្ថានភាពបណ្ដាញទឹក'),
+                TextWidget(
+                  state.waterSupply?.waterSupplyPipes?.first.status_obj.first
+                      .nameKh ??
+                      '-',
+                ),
+              ),
+              const Padding(
+                padding: EdgeInsets.symmetric(vertical: 8),
+                child: MyDivider(),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+}
+
+
+class _KioskView extends StatelessWidget {
+  const _KioskView({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<ListDataDetailsBloc, ListDataDetailsState>(
+      buildWhen: (previous, current) =>
+          previous.waterSupply != current.waterSupply,
+      builder: (context, state) {
+        if (state.waterSupply?.watersupplykiosks?.isEmpty ?? true) {
+          return const Center(child: EmptyWidget());
+        }
+        return SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(
+            vertical: 10,
+            horizontal: 16,
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _InfoItem(
+                const CaptionWidget('ប្រភេទប្រភពទឹក:'),
+                TextWidget(
+                  state.waterSupply?.watersupplykiosks?.first.sourceTypeOfWater.first
+                          .valueObjs.first.nameKh ??
+                      '-',
+                      
+                ),
+              ),
+              const Padding(
+                padding: EdgeInsets.symmetric(vertical: 8),
+                child: MyDivider(),
+              ),
+              _InfoItem(
+                const CaptionWidget('សមត្ថភាពផលិតទឹក(ចំនួនប៊ីដុង/មួយថ្ងៃ):'),
+                TextWidget(
+                  state.waterSupply?.watersupplykiosks?.first.abilityOfProductWater,
+                ),
+              ),
+              const Padding(
+                padding: EdgeInsets.symmetric(vertical: 8),
+                child: MyDivider(),
+              ),
+                   _InfoItem(
+                const CaptionWidget('ប្រពន្ធចម្រោះទឹក:'),
+                TextWidget(
+                  state.waterSupply?.watersupplykiosks?.first.filterSystemObj.first
+                      .nameKh ??
+                      '-',
+                ),
+              ),         
+                 const Padding(
+                padding: EdgeInsets.symmetric(vertical: 8),
+                child: MyDivider(),
+              ),
+                                _InfoItem(
+                const CaptionWidget('ការត្រួតពិនិត្យគុណភាពទឹក:'),
+                TextWidget(
+                  state.waterSupply?.watersupplykiosks?.first.waterQualityCheckingObj.first
+                      .nameKh ??
+                      '-',
+                ),
+              ),         
+                 const Padding(
+                padding: EdgeInsets.symmetric(vertical: 8),
+                child: MyDivider(),
+              ),
+                                            
+             _InfoItem(
+                const CaptionWidget('ស្ថានភាពបណ្ដាញទឹក:'),
+                TextWidget(
+                  state.waterSupply?.watersupplykiosks?.first.statusObj.first
+                      .nameKh ??
+                      '-',
+                ),
+              ),         
+                 const Padding(
+                padding: EdgeInsets.symmetric(vertical: 8),
+                child: MyDivider(),
+              ),
+                _InfoItem(
+                const CaptionWidget('មូលហេតុ:'),
+                TextWidget(
+                  state.waterSupply?.watersupplykiosks?.first.statusNoReason,
+                ),
+              ),         
+                 const Padding(
+                padding: EdgeInsets.symmetric(vertical: 8),
+                child: MyDivider(),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+}
+
+class _PondView extends StatelessWidget {
+  const _PondView({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<ListDataDetailsBloc, ListDataDetailsState>(
+      buildWhen: (previous, current) =>
+          previous.waterSupply != current.waterSupply,
+      builder: (context, state) {
+        if (state.waterSupply?.waterSupplyCommunityPond?.isEmpty ?? true) {
+          return const Center(child: EmptyWidget());
+        }
+        return SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(
+            vertical: 10,
+            horizontal: 16,
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+               _InfoItem(
+                const CaptionWidget('ប្រពន្ធចម្រោះទឹក:'),
+                TextWidget(
+                  state.waterSupply?.waterSupplyCommunityPond?.first.filterSystemObj.first
+                      .nameKh ??
+                      '-',
+                ),
+              ),         
+                 const Padding(
+                padding: EdgeInsets.symmetric(vertical: 8),
+                child: MyDivider(),
+              ),
+             /*                   _InfoItem(
+                const CaptionWidget('រដូវប្រាំង:'),
+                TextWidget(
+                  state.waterSupply?.waterSupplyCommunityPond?.first.isSummerHasWaterObj.first
+                      .nameKh ??
+                      '-',
+                ),
+              ),         
+                 const Padding(
+                padding: EdgeInsets.symmetric(vertical: 8),
+                child: MyDivider(),
+              ),
+               */                              
+             /* _InfoItem(
+                const CaptionWidget('ស្ថានភាពបណ្ដាញទឹក:'),
+                TextWidget(
+                  state.waterSupply?.watersupplykiosks?.first.statusObj.first
+                      .nameKh ??
+                      '-',
+                ),
+              ),         
+                 const Padding(
+                padding: EdgeInsets.symmetric(vertical: 8),
+                child: MyDivider(),
+              ),
+                _InfoItem(
+                const CaptionWidget('មូលហេតុ:'),
+                TextWidget(
+                  state.waterSupply?.watersupplykiosks?.first.statusNoReason,
+                ),
+              ),         
+                 const Padding(
+                padding: EdgeInsets.symmetric(vertical: 8),
+                child: MyDivider(),
+              ), */
+            ],
+          ),
+        );
+      },
+    );
+  }
+}
+
+class _RainView extends StatelessWidget {
+  const _RainView({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<ListDataDetailsBloc, ListDataDetailsState>(
+      buildWhen: (previous, current) =>
+          previous.waterSupply != current.waterSupply,
+      builder: (context, state) {
+        if (state.waterSupply?.waterSupplyRainWaterHarvesting?.isEmpty ?? true) {
+          return const Center(child: EmptyWidget());
+        }
+        return SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(
+            vertical: 10,
+            horizontal: 16,
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _InfoItem(
+                const CaptionWidget('ប្រភេទនៃការប្រើប្រាស់:'),
+                TextWidget(
+                  state.waterSupply?.waterSupplyRainWaterHarvesting?.first.typeOfUsing.first
+                      .nameKh ??
+                      '-',
+                ),
+              ),         
+                 const Padding(
+                padding: EdgeInsets.symmetric(vertical: 8),
+                child: MyDivider(),
+              ),
+                             _InfoItem(
+                const CaptionWidget('ចំណុះ:'),
+                TextWidget(
+                  state.waterSupply?.waterSupplyRainWaterHarvesting?.first.capacityOfRainWaterHarvesting.first
+                      .nameKh ??
+                      '-',
+                ),
+              ),         
+                 const Padding(
+                padding: EdgeInsets.symmetric(vertical: 8),
+                child: MyDivider(),
+              ),
+               _InfoItem(
+                const CaptionWidget('ត្រួតពិនិត្យគុណភាពទឹក:'),
+                TextWidget(
+                  state.waterSupply?.waterSupplyRainWaterHarvesting?.first.waterQualityCheckObj.first
+                      .nameKh ??
+                      '-',
+                ),
+              ),         
+                 const Padding(
+                padding: EdgeInsets.symmetric(vertical: 8),
+                child: MyDivider(),
+              ),
+               _InfoItem(
+                const CaptionWidget('ស្ថានភាពអាង:'),
+                TextWidget(
+                  state.waterSupply?.waterSupplyRainWaterHarvesting?.first.statusObj.first
+                      .nameKh ??
+                      '-',
+                ),
+              ),         
+                 const Padding(
+                padding: EdgeInsets.symmetric(vertical: 8),
+                child: MyDivider(),
+              ),
+                             _InfoItem(
+                const CaptionWidget('មូលហេតុ:'),
+                TextWidget(
+                  state.waterSupply?.waterSupplyRainWaterHarvesting?.first.statusNoReason,
+                ),
+              ),         
+                 const Padding(
+                padding: EdgeInsets.symmetric(vertical: 8),
+                child: MyDivider(),
+              ),                              
+             /* _InfoItem(
+                const CaptionWidget('ស្ថានភាពបណ្ដាញទឹក:'),
+                TextWidget(
+                  state.waterSupply?.watersupplykiosks?.first.statusObj.first
+                      .nameKh ??
+                      '-',
+                ),
+              ),         
+                 const Padding(
+                padding: EdgeInsets.symmetric(vertical: 8),
+                child: MyDivider(),
+              ),
+                _InfoItem(
+                const CaptionWidget('មូលហេតុ:'),
+                TextWidget(
+                  state.waterSupply?.watersupplykiosks?.first.statusNoReason,
+                ),
+              ),         
+                 const Padding(
+                padding: EdgeInsets.symmetric(vertical: 8),
+                child: MyDivider(),
+              ), */
+            ],
+          ),
+        );
+      },
+    );
+  }
+}
+
+class _PipeView extends StatelessWidget {
+  const _PipeView({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<ListDataDetailsBloc, ListDataDetailsState>(
+      buildWhen: (previous, current) =>
+          previous.waterSupply != current.waterSupply,
+      builder: (context, state) {
+        if (state.waterSupply?.waterSupplyPipe?.isEmpty ?? true) {
+          return const Center(child: EmptyWidget());
+        }
+        return SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(
+            vertical: 10,
+            horizontal: 16,
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _InfoItem(
+                const CaptionWidget('ប្រភេទនៃការប្រើប្រាស់:'),
+                TextWidget(
+                  state.waterSupply?.waterSupplyPipe?.first.numberOfLink,
+                ),
+              ),         
+                 const Padding(
+                padding: EdgeInsets.symmetric(vertical: 8),
+                child: MyDivider(),
+              ),
+                            /*  _InfoItem(
+                const CaptionWidget('ចំណុះ:'),
+                TextWidget(
+                  state.waterSupply?.waterSupplyRainWaterHarvesting?.first.capacityOfRainWaterHarvesting.first
+                      .nameKh ??
+                      '-',
+                ),
+              ),         
+                 const Padding(
+                padding: EdgeInsets.symmetric(vertical: 8),
+                child: MyDivider(),
+              ),
+               _InfoItem(
+                const CaptionWidget('ត្រួតពិនិត្យគុណភាពទឹក:'),
+                TextWidget(
+                  state.waterSupply?.waterSupplyRainWaterHarvesting?.first.waterQualityCheckObj.first
+                      .nameKh ??
+                      '-',
+                ),
+              ),         
+                 const Padding(
+                padding: EdgeInsets.symmetric(vertical: 8),
+                child: MyDivider(),
+              ),
+               _InfoItem(
+                const CaptionWidget('ស្ថានភាពអាង:'),
+                TextWidget(
+                  state.waterSupply?.waterSupplyRainWaterHarvesting?.first.statusObj.first
+                      .nameKh ??
+                      '-',
+                ),
+              ),         
+                 const Padding(
+                padding: EdgeInsets.symmetric(vertical: 8),
+                child: MyDivider(),
+              ),
+                             _InfoItem(
+                const CaptionWidget('មូលហេតុ:'),
+                TextWidget(
+                  state.waterSupply?.waterSupplyRainWaterHarvesting?.first.statusNoReason,
+                ),
+              ),         
+                 const Padding(
+                padding: EdgeInsets.symmetric(vertical: 8),
+                child: MyDivider(),
+              ),    */                           
+             /* _InfoItem(
+                const CaptionWidget('ស្ថានភាពបណ្ដាញទឹក:'),
+                TextWidget(
+                  state.waterSupply?.watersupplykiosks?.first.statusObj.first
+                      .nameKh ??
+                      '-',
+                ),
+              ),         
+                 const Padding(
+                padding: EdgeInsets.symmetric(vertical: 8),
+                child: MyDivider(),
+              ),
+                _InfoItem(
+                const CaptionWidget('មូលហេតុ:'),
+                TextWidget(
+                  state.waterSupply?.watersupplykiosks?.first.statusNoReason,
+                ),
+              ),         
+                 const Padding(
+                padding: EdgeInsets.symmetric(vertical: 8),
+                child: MyDivider(),
+              ), */
             ],
           ),
         );
