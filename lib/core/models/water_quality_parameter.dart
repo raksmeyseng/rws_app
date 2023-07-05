@@ -34,7 +34,7 @@ class WaterSupplyWaterQualityParameterModel {
     required this.id,
     required this.waterSupplyId,
     required this.parameter,
-    required this.value,
+    this.value,
   });
 
   @JsonKey(name: 'id')
@@ -44,7 +44,7 @@ class WaterSupplyWaterQualityParameterModel {
   @JsonKey(name: 'water_quanlity_check_parameter_id')
   WaterQualityParameterModel parameter;
   @JsonKey(name: 'value')
-  String value;
+  String? value;
 
   factory WaterSupplyWaterQualityParameterModel.fromJson(
           Map<String, dynamic> json) =>
