@@ -1299,6 +1299,7 @@ class WaterSupplyEditBloc
         print(province);
         final isRiskLocation = locationRickInput.value?.getCode();
         final is_water_quality_check = checkWaterQualityInput.value?.getCode() == 0 ? true : false;
+
         final payload = PayloadWaterSupplyModel(
           createdBy: user != null ? user.id : 0,
           // createdAt: DateTime.now(),
@@ -1391,8 +1392,9 @@ class WaterSupplyEditBloc
           });
 
           /* START WATER QUALITY PARAMETER */
-          final payloadWQParameter1= PayloadWaterQualityParameterModel(
-            value:wqParameter1Input.value,
+          if(is_water_quality_check){
+final payloadWQParameter1= PayloadWaterQualityParameterModel(
+            value:wqParameter1Input.value==''?'0':wqParameter1Input.value,
             isActive: true, 
             waterSupplyId: waterSupplyId, 
             parameterId: 1);
@@ -1408,9 +1410,12 @@ class WaterSupplyEditBloc
 
             repository.addWaterQuanlityParameter(payload: payloadWQParameter);
           }
+          }
+          
 
           //START WELL
           if (state.waterSupplyTypeId == 1) {
+
             final payloadWell = PayloadWellModel(
               waterSupplyId: waterSupplyId,
               wellType: wellTypeInput.value?.getCode().toString() ?? '',
@@ -1438,6 +1443,7 @@ class WaterSupplyEditBloc
                 payload: payloadWellOptionValue,
               );
             });
+            
           }
           //PIPE
           else if(state.waterSupplyTypeId== 2){
