@@ -21,6 +21,7 @@ import 'package:rws_app/core/modules/water_supplier_edit/model/qrcode_model.dart
 import 'package:rws_app/core/modules/water_supplier_edit/model/water_supply_input.dart';
 import 'package:rws_app/core/modules/water_supplier_edit/repositories/water_supply_edit_repository.dart';
 import 'package:rws_app/core/modules/water_supply_details/model/water_supply_model.dart';
+import 'package:rws_app/core/modules/water_supply_details/model/watersupply.dart';
 import 'package:rws_app/utils/event/event_type.dart';
 import 'package:rws_app/utils/helpers/date_helper.dart';
 import 'package:rws_app/utils/helpers/loading_helper.dart';
@@ -406,6 +407,7 @@ class WaterSupplyEditBloc
       } else {
         provinces = await repository.getProvinces();
       }
+      
       if (state.id == 0) {
         emit(state.copyWith(
           status: BaseStatusEnum.success,
@@ -413,13 +415,32 @@ class WaterSupplyEditBloc
         ));
         return;
       }
+      
       final waterSupply =
           await repository.getWaterSupplyDetail(state.waterSupplyTypeId);
+
+        
         emit(state.copyWith(
           status: BaseStatusEnum.success,
           waterSupply: waterSupply,
           provinces: provinces,
+          districts: await repository.getDistrictByProvince(waterSupply.address.id),
+          communes: await repository.getCommuneByDistrictId(waterSupply.district.id),
+          villages: await repository.getVillageByCommuneId(waterSupply.commune.id),
+
+          provinceInput: WaterSupplyInput.pure(waterSupply.address.id.toString()),
+          districtInput: WaterSupplyInput.pure(waterSupply.district.id.toString()),
+          communeInput: WaterSupplyInput.pure(waterSupply.commune.id.toString()),
+          villageInput: WaterSupplyInput.pure(waterSupply.village.id.toString()),
+
         ));
+
+        provinceController.text=waterSupply.address.nameEn;
+        districtController.text=waterSupply.district.nameEn;
+        communeController.text=waterSupply.commune.nameEn;
+        villageController.text=waterSupply.village.nameEn;
+
+
     } catch (e) {
       emit(state.copyWith(status: BaseStatusEnum.failure));
     }

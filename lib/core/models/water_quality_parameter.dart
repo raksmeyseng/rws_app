@@ -33,7 +33,7 @@ class WaterSupplyWaterQualityParameterModel {
   WaterSupplyWaterQualityParameterModel({
     required this.id,
     required this.waterSupplyId,
-    required this.parameter,
+    this.parameter,
     this.value,
   });
 
@@ -42,7 +42,7 @@ class WaterSupplyWaterQualityParameterModel {
   @JsonKey(name: 'water_supply_id')
   int waterSupplyId;
   @JsonKey(name: 'water_quanlity_check_parameter_id')
-  WaterQualityParameterModel parameter;
+  WaterQualityParameterModel? parameter;
   @JsonKey(name: 'value')
   String? value;
 

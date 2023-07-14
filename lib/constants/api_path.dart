@@ -47,6 +47,8 @@ class ApiPath {
   //Irith Part
   static String getWaterSupplyListv2(int id) =>
       '${AppConstant.mainURL}watersupply/?water_supply_type_id=$id&main_status=9';
+    static String getWaterSupplyListAll =
+      '${AppConstant.mainURL}watersupply/?water_supply_type_id=&main_status=9'; 
   static String getWaterSupplyDetail(int id) =>
       '${AppConstant.mainURL}watersupply/$id';
 

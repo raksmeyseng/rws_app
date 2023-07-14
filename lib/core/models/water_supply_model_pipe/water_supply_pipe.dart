@@ -7,7 +7,7 @@ class WaterSupplyPipeModel {
   WaterSupplyPipeModel({
     required this.id,
     required this.watersupplyId,
-    required this.isActive,
+    //this.isActive,
     required this.sourceTypeOfWater,
     required this.abiltyOfProduceWater,
     required this.undergroundPoolStorage,
@@ -29,8 +29,8 @@ class WaterSupplyPipeModel {
   int id;
   @JsonKey(name: 'watersupply_id')
   int watersupplyId;
-  @JsonKey(name: 'is_active')
-  String isActive;
+  // @JsonKey(name: 'is_active')
+  // String? isActive;
   @JsonKey(name: 'source_type_of_water')
   String sourceTypeOfWater;
   @JsonKey(name: 'abilty_of_produce_water')

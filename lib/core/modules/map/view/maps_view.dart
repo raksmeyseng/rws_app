@@ -12,6 +12,8 @@ import 'package:rws_app/core/widgets/load_data_failed.dart';
 import 'package:rws_app/utils/common_utils.dart';
 import 'package:rws_app/utils/lifecycle_event_handler.dart';
 
+import '../../water_supply_details/model/water_supply_model.dart';
+
 class MapsView extends StatefulWidget {
   const MapsView({super.key});
 
@@ -156,15 +158,28 @@ class _MapsViewState extends State<MapsView> {
       buildWhen: (previous, current) => previous.status != current.status,
       builder: (context, state) {
         return MyAnimatedSwitcher(
-          child: _buildChild(state.status),
+          child: _buildChild(state.status,state.waterSupplys),
         );
       },
     );
   }
 
-  Widget _buildChild(BaseStatusEnum status) {
+  Widget _buildChild(BaseStatusEnum status,List<WaterSupplyModel> waterSupplys) {
     switch (status) {
       case BaseStatusEnum.success:
+      // ignore: prefer_collection_literals
+      Set<Marker> markers= Set<Marker>();
+      for(var ws in waterSupplys){
+        var marker = Marker(
+          markerId: MarkerId(ws.address.nameEn),
+          position: LatLng(double.parse(ws.decimalDegreeLat), double.parse(ws.decimalDegreeLng)),
+          infoWindow: InfoWindow(
+            title: ws.waterSupplyCode,
+            snippet: ws.waterSupplyType,
+          )
+        );
+        markers.add(marker);
+      }
         return GoogleMap(
           mapType: MapType.normal,
           myLocationButtonEnabled: true,
@@ -184,7 +199,7 @@ class _MapsViewState extends State<MapsView> {
     }
   }
 
-  Future<void> goToCurrentUserLocation({double zoom = 14}) async {
+  Future<void> goToCurrentUserLocation({double zoom = 7}) async {
     try {
       final GoogleMapController controller = await completer.future;
       final pos = await getCurrentPosition();

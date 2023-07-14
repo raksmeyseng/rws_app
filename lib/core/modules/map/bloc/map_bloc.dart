@@ -6,13 +6,20 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:rws_app/core/enum/base_status_enum.dart';
 import 'package:rws_app/utils/helpers/permission_helper.dart';
 
+import '../../water_supply_details/model/water_supply_model.dart';
+import '../../water_supply_details/repositories/water_supply_detials_repository.dart';
+
 part 'map_event.dart';
 part 'map_state.dart';
 
 class MapBloc extends Bloc<MapEvent, MapState> {
-  MapBloc() : super(const MapState.initial()) {
+  MapBloc({
+    required this.repository
+  }) : super(const MapState.initial()) {
     on<MapEvent>(_onMapEvent);
   }
+
+  final WaterSupplyDetialsRepository repository;
 
   Future<void> _onMapEvent(
     MapEvent event,
@@ -36,7 +43,9 @@ class MapBloc extends Bloc<MapEvent, MapState> {
     try {
       final hasPermission = await PermissionHelper.requestLocationPermission();
       if (hasPermission) {
-        emit(state.copyWith(status: BaseStatusEnum.success));
+        final waterSupply =
+          await repository.getWaterSupplyListAll();
+        emit(state.copyWith(status: BaseStatusEnum.success,waterSupplys: waterSupply));
       }
     } catch (e) {
       emit(state.copyWith(status: BaseStatusEnum.failure));

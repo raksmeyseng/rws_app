@@ -35,6 +35,7 @@ WaterSupplyWaterQualityParameterModel
           parameter: WaterQualityParameterModel.fromJson(
               json['water_quanlity_check_parameter_id']
                   as Map<String, dynamic>),
+          
           value: json['value'] as String,
         );
 
@@ -43,6 +44,6 @@ Map<String, dynamic> _$WaterSupplyWaterQualityParameterModelToJson(
     <String, dynamic>{
       'id': instance.id,
       'water_supply_id': instance.waterSupplyId,
-      'water_quanlity_check_parameter_id': instance.parameter.toJson(),
+      //'water_quanlity_check_parameter_id': instance.parameter.toJson(),
       'value': instance.value,
     };

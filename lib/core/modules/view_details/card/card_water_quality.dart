@@ -136,13 +136,13 @@ class _ParameterItem extends StatelessWidget{
         children: [
           _InfoItem(
             const CaptionWidget('Parameter Code :'),
-            TextWidget(item.parameter.parameterCode),
+            TextWidget(item.parameter?.parameterCode),
           ),
           _InfoItem(
             const CaptionWidget('Parameter :'),
             Flexible(
               child: TextWidget(
-                item.parameter.parameter,
+                item.parameter?.parameter,
                 overflow: TextOverflow.ellipsis,
               ),
             ),
@@ -150,11 +150,11 @@ class _ParameterItem extends StatelessWidget{
           
           _InfoItem(
             const CaptionWidget('Unit :'),
-            TextWidget(item.parameter.unit),
+            TextWidget(item.parameter?.unit),
           ),
           _InfoItem(
             const CaptionWidget('Standard Water :'),
-            TextWidget(item.parameter.standartOfDrinkingWater),
+            TextWidget(item.parameter?.standartOfDrinkingWater),
           ),
           _InfoItem(
             const CaptionWidget('Value :'),

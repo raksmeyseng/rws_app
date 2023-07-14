@@ -6,7 +6,7 @@ WaterSupplyPipeModel _$WaterSupplyPipeModelFromJson(
     WaterSupplyPipeModel(
           id: json['id'] as int,
           watersupplyId: json['watersupply_id'] as int,
-          isActive: json['well_height'] as String,
+          //isActive: json['well_height'] as String,
           sourceTypeOfWater: json['source_type_of_water'] as String,
           abiltyOfProduceWater: json['abilty_of_produce_water'] as String,
           undergroundPoolStorage: json['underground_pool_storage'] as String,
@@ -47,8 +47,8 @@ Map<String, dynamic> _$WaterSupplyPipeModelToJson(
     <String, dynamic>{
       'id': instance.id,
       'watersupply_id': instance.id,
-      'is_active': instance.watersupplyId,
-      'source_type_of_water': instance.isActive,
+      //'is_active': instance.watersupplyId,
+      //'source_type_of_water': instance.isActive,
       'abilty_of_produce_water': instance.sourceTypeOfWater,
       'underground_pool_storage': instance.abiltyOfProduceWater,
       'pool_air': instance.undergroundPoolStorage,

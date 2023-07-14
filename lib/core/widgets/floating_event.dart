@@ -5,12 +5,18 @@ import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:rws_app/config/themes/app_color.dart';
 import 'package:rws_app/core/modules/view_details/bloc/list_data_details_bloc.dart';
 
+import '../modules/water_supplier_edit/view/water_supply_edit_page.dart';
+
+
 class FloatingEvent extends StatelessWidget {
   const FloatingEvent({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return SpeedDial(
+    return BlocBuilder<ListDataDetailsBloc,ListDataDetailsState>(
+      buildWhen: (previous, current) => previous.waterSupply != current.waterSupply,
+      builder: (context,state){
+        return SpeedDial(
       icon: Icons.apps_sharp, //icon on Floating action button
       activeIcon: Icons.close, //icon when menu is expanded on button
       backgroundColor: Theme.of(context).primaryColor,
@@ -48,7 +54,19 @@ class FloatingEvent extends StatelessWidget {
           foregroundColor: AppColor.white,
           label: 'កែតម្រូវ',
           labelStyle: const TextStyle(fontSize: 18.0),
-          onTap: () => print('Edit'),
+          onTap: () {
+            Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (_) {
+                        return WaterSupplyEditPage(
+                          title: 'Edit',
+                          waterSupplyId: state.waterSupplyId,
+                          id: 1,
+                        );
+                      },
+                    ),
+                  );
+          },
         ),
         SpeedDialChild(
           child: const Icon(Icons.delete),
@@ -68,7 +86,10 @@ class FloatingEvent extends StatelessWidget {
           },
         ),
       ],
-    );
+    ); 
+      }
+      );
+    
   }
 
   void _onDeleteSubmited(BuildContext context){
