@@ -3,6 +3,7 @@ import 'package:rws_app/core/modules/my_approval_history/view/my_approval_histor
 import 'package:rws_app/core/modules/my_draft/view/my_draft_page.dart';
 import 'package:rws_app/core/modules/my_history/view/my_history_page.dart';
 import 'package:rws_app/core/modules/my_pending_approval/view/my_pending_approval_page.dart';
+import 'package:rws_app/core/modules/my_request/view/my_request_page.dart';
 import 'package:rws_app/core/modules/my_task/model/my_task_model.dart';
 import 'package:rws_app/translation/generated/l10n.dart';
 
@@ -14,7 +15,8 @@ class MyTaskRepository {
 
     //final userId = Application.authBloc.state.userToken?.user.id;
     final isDataEntry = Application.authBloc.state.userToken?.user.isDataEntry??false;
-      //print('userid $isDataEntry');
+    final isDataProvincialHead = Application.authBloc.state.userToken?.user.isProvincialDepartmentHead??false;
+      print('userid $isDataEntry');
 
     if( isDataEntry ){
       return [
@@ -27,7 +29,24 @@ class MyTaskRepository {
               widget: const MyHistoryPage(),
             ),
           ];
-    }else{
+    }
+    else if (isDataProvincialHead){
+      return [
+        MyTaskModel(
+          name: S.of(context).request,
+          widget: const MyRequestPage(),
+        ),
+        MyTaskModel(
+          name: S.of(context).draft,
+          widget: const MyPendingApprovalPage(),
+        ),
+        MyTaskModel(
+          name: S.of(context).history,
+          widget: const MyApprovalHistoryPage(),
+        ),
+      ];
+    }
+    else{
       return [
             MyTaskModel(
               name: S.of(context).draft,

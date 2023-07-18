@@ -54,6 +54,8 @@ class ApiPath {
 
   static String getAllMyDraft(int id) =>
       '${AppConstant.mainURL}watersupplybyuserandstatus/?created_by=$id&main_status=3';
+  static String getRequestProvincialHeadDepartment(int id) =>
+      '${AppConstant.mainURL}watersupplybyuserandstatus/?created_by=$id&main_status=12';
   static String getAllMyRequestedHistory(int id) =>
       '${AppConstant.mainURL}watersupplybyuser/?search=$id';
   static String getAllMyApprovalHistory(int id) =>

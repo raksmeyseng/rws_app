@@ -43,6 +43,9 @@ class ListDataDetailsBloc
     if (event is ProvincialHeadDepartmentReject) {
       return _onPDHRejected(event, emit);
     }
+    if (event is ProvincialHeadDepartmentRequestEdit) {
+      return _onPDHRequestEdit(event, emit);
+    }
   }
 
   Future<void> _onListDataDetailsStarted(
@@ -104,10 +107,36 @@ class ListDataDetailsBloc
       ));
     }
   }
+  //provincial department head request edit
+  Future<void> _onPDHRequestEdit(ProvincialHeadDepartmentRequestEdit event,
+      Emitter<ListDataDetailsState> emit) async {
+    print ('Main Status : ${state.mainStatus}');
+    int status = 0;
+    if (state.mainStatus == 9) {
+      //Provincial Department Head Request Edit
+      status = 12;
+    }
+
+    if (status > 0) {
+      try {
+        await Future.delayed(const Duration(milliseconds: 300));
+        await repository.provincialDepartmentHeadRequestEdit(state.waterSupplyId, status);
+        emit(state.copyWith(
+          status: BaseStatusEnum.success,
+        ));
+        await Future.delayed(const Duration(milliseconds: 300));
+        Application.router.goNamed(AppRoute.home);
+      } catch (_) {
+        emit(state.copyWith(
+          status: BaseStatusEnum.failure,
+        ));
+      }
+    }
+  }
 
   Future<void> _onPDHApproved(ProvincialHeadDepartmentApprove event,
       Emitter<ListDataDetailsState> emit) async {
-    //print ('Main Status : '+ state.mainStatus.toString());
+    // print ('Main Status : ${state.mainStatus}');
     int status = 0;
     if (state.mainStatus == 1) {
       status = 2; // Provincial Head Approved
@@ -154,6 +183,9 @@ class ListDataDetailsBloc
     } else if (state.mainStatus == 7) {
       //Department Head Approved
       status = 10;
+    } else if (state.mainStatus == 12) {
+      //Provincial Department Head Request Edit
+      status = 12;
     }
 
     if (status > 0) {

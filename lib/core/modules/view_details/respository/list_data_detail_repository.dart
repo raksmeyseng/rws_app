@@ -81,6 +81,24 @@ class ListDataDetailRepository extends RestApiService{
 
   }
 
+  Future<void> provincialDepartmentHeadRequestEdit(int id,int status) async{
+    final int userId = Application.authBloc.state.userToken?.user.id??0;
+    print('status : $status');
+    await post(ApiPath.postWorkFlow,data:{
+      'watersupply_id': id,
+      'status_id':status,
+      'user_id': userId,
+      'remark': 'remark'
+    });
+
+    await put(ApiPath.updateWaterSupplyMainStatus(id),
+    data:{
+      'id': id,
+      'main_status': status
+    });
+
+  }
+
   void _downloadExcel() async{
     final status = await Permission.storage.request();
 

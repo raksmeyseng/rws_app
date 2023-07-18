@@ -335,6 +335,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "ថ្ងៃEEEE dd MMMM yyyy | hh:mm:ss a"),
         "register_date": MessageLookupByLibrary.simpleMessage("ថ្ងៃចុះឈ្មោះ"),
         "report": MessageLookupByLibrary.simpleMessage("របាយការណ៍"),
+        "request": MessageLookupByLibrary.simpleMessage("ការស្នើសុំរបស់ខ្ញុំ"),
         "save_profile_failed":
             MessageLookupByLibrary.simpleMessage("ការរក្សាទុក បរាជ័យ"),
         "scan_to_authenticate": MessageLookupByLibrary.simpleMessage(

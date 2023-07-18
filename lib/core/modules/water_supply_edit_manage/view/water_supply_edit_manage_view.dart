@@ -130,6 +130,8 @@ class WaterSupplyEditManageTextBox extends StatelessWidget {
             height: 50,
             child: MyTextInput(
               // errorText: _handleErrorText(context, state),
+              initialValue: '0',
+              autofocus: true,
               textInputAction: TextInputAction.next,
               keyboardType: TextInputType.number,
             ),
@@ -139,6 +141,8 @@ class WaterSupplyEditManageTextBox extends StatelessWidget {
             height: 50,
             child: MyTextInput(
               // errorText: _handleErrorText(context, state),
+              initialValue: '0',
+              autofocus: true,
               textInputAction: TextInputAction.next,
               keyboardType: TextInputType.number,
             ),
@@ -148,6 +152,8 @@ class WaterSupplyEditManageTextBox extends StatelessWidget {
             height: 50,
             child: MyTextInput(
               // errorText: _handleErrorText(context, state),
+              initialValue: '0',
+              autofocus: true,
               textInputAction: TextInputAction.next,
               keyboardType: TextInputType.number,
             ),
@@ -157,6 +163,8 @@ class WaterSupplyEditManageTextBox extends StatelessWidget {
             height: 50,
             child: MyTextInput(
               // errorText: _handleErrorText(context, state),
+              initialValue: '0',
+              autofocus: true,
               textInputAction: TextInputAction.next,
               keyboardType: TextInputType.number,
             ),
@@ -166,6 +174,8 @@ class WaterSupplyEditManageTextBox extends StatelessWidget {
             height: 50,
             child: MyTextInput(
               // errorText: _handleErrorText(context, state),
+              initialValue: '0',
+              autofocus: true,
               textInputAction: TextInputAction.next,
               keyboardType: TextInputType.number,
             ),
@@ -175,6 +185,8 @@ class WaterSupplyEditManageTextBox extends StatelessWidget {
             height: 50,
             child: MyTextInput(
               // errorText: _handleErrorText(context, state),
+              initialValue: '0',
+              autofocus: true,
               textInputAction: TextInputAction.next,
               keyboardType: TextInputType.number,
             ),
@@ -184,6 +196,8 @@ class WaterSupplyEditManageTextBox extends StatelessWidget {
             height: 50,
             child: MyTextInput(
               // errorText: _handleErrorText(context, state),
+              initialValue: '0',
+              autofocus: true,
               textInputAction: TextInputAction.next,
               keyboardType: TextInputType.number,
             ),
@@ -193,6 +207,8 @@ class WaterSupplyEditManageTextBox extends StatelessWidget {
             height: 50,
             child: MyTextInput(
               // errorText: _handleErrorText(context, state),
+              initialValue: '0',
+              autofocus: true,
               textInputAction: TextInputAction.next,
               keyboardType: TextInputType.number,
             ),
@@ -202,6 +218,8 @@ class WaterSupplyEditManageTextBox extends StatelessWidget {
             height: 50,
             child: MyTextInput(
               // errorText: _handleErrorText(context, state),
+              initialValue: '0',
+              autofocus: true,
               textInputAction: TextInputAction.next,
               keyboardType: TextInputType.number,
             ),
@@ -211,6 +229,8 @@ class WaterSupplyEditManageTextBox extends StatelessWidget {
             height: 50,
             child: MyTextInput(
               // errorText: _handleErrorText(context, state),
+              initialValue: '0',
+              autofocus: true,
               textInputAction: TextInputAction.next,
               keyboardType: TextInputType.number,
             ),
@@ -220,6 +240,8 @@ class WaterSupplyEditManageTextBox extends StatelessWidget {
             height: 50,
             child: MyTextInput(
               // errorText: _handleErrorText(context, state),
+              initialValue: '0',
+              autofocus: true,
               textInputAction: TextInputAction.next,
               keyboardType: TextInputType.number,
             ),
@@ -229,6 +251,8 @@ class WaterSupplyEditManageTextBox extends StatelessWidget {
             height: 50,
             child: MyTextInput(
               // errorText: _handleErrorText(context, state),
+              initialValue: '0',
+              autofocus: true,
               textInputAction: TextInputAction.next,
               keyboardType: TextInputType.number,
             ),
@@ -238,6 +262,8 @@ class WaterSupplyEditManageTextBox extends StatelessWidget {
             height: 50,
             child: MyTextInput(
               // errorText: _handleErrorText(context, state),
+              initialValue: '0',
+              autofocus: true,
               textInputAction: TextInputAction.next,
               keyboardType: TextInputType.number,
             ),
@@ -247,6 +273,8 @@ class WaterSupplyEditManageTextBox extends StatelessWidget {
             height: 50,
             child: MyTextInput(
               // errorText: _handleErrorText(context, state),
+              initialValue: '0',
+              autofocus: true,
               textInputAction: TextInputAction.next,
               keyboardType: TextInputType.number,
             ),
@@ -256,6 +284,8 @@ class WaterSupplyEditManageTextBox extends StatelessWidget {
             height: 50,
             child: MyTextInput(
               // errorText: _handleErrorText(context, state),
+              initialValue: '0',
+              autofocus: true,
               textInputAction: TextInputAction.next,
               keyboardType: TextInputType.number,
             ),
@@ -268,7 +298,7 @@ class WaterSupplyEditManageTextBox extends StatelessWidget {
 
 class _wqParameter1 extends StatelessWidget{
   const _wqParameter1({Key? key}):super(key:key);
-  
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build

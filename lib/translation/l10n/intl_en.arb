@@ -204,6 +204,7 @@
   "msg_allow_location_permission": "Allow the app to access your location in app setting.",
   "no_task":"No Task",
   "draft":"Draft",
+  "request":"My Request",
   "history":"History",
   "no_history":"No History",
   "village":"Village",

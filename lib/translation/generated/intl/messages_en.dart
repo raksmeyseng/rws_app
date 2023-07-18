@@ -327,6 +327,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "register_date":
             MessageLookupByLibrary.simpleMessage("Registered Date"),
         "report": MessageLookupByLibrary.simpleMessage("Report"),
+        "request": MessageLookupByLibrary.simpleMessage("My Request"),
         "save_profile_failed":
             MessageLookupByLibrary.simpleMessage("Save profile failed!"),
         "scan_to_authenticate": MessageLookupByLibrary.simpleMessage(

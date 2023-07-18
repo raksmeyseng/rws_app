@@ -2100,6 +2100,16 @@ class S {
     );
   }
 
+  /// `My Request`
+  String get request {
+    return Intl.message(
+      'My Request',
+      name: 'request',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `History`
   String get history {
     return Intl.message(
