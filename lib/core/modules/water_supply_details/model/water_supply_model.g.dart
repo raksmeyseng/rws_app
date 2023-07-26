@@ -59,6 +59,7 @@ WaterSupplyModel _$WaterSupplyModelFromJson(Map<String, dynamic> json) =>
       waterSupplyCommunityPond: List<WaterSupplyPondModel>.from(json['watersupplyCommunityPond_watersupply'].map((model)=>WaterSupplyPondModel.fromJson(model))),
       waterSupplyRainWaterHarvesting: List<WaterSupplyRainModel>.from(json['watersupplyRainWaterHarvesting_watersupply'].map((model)=>WaterSupplyRainModel.fromJson(model))),
       waterSupplyPipe: List<WaterSupplyPipeModel>.from(json['watersupplypipeprivate_watersupply'].map((model)=>WaterSupplyPipeModel.fromJson(model))),
+      waterSupplyAirWater: List<WaterSupplyAirModel>.from(json['watersupplyairwater_watersupply'].map((model)=>WaterSupplyAirModel.fromJson(model))),
       // waterSupplyKiosk: List<WaterSupplyWellModel>.from(json['watersupplyKiosk_watersupply'].map((model)=>WaterSupplyWellModel.fromJson(model))),
       
       // waterSupplyRainWaterHarvesting: List<WaterSupplyWellModel>.from(json['watersupplyRainWaterHarvesting_watersupply'].map((model)=>WaterSupplyWellModel.fromJson(model))),

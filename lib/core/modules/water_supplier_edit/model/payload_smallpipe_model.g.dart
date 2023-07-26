@@ -1,7 +1,8 @@
-part of 'payload_pipe_model.dart';
+part of 'payload_smallpipe_model.dart';
 
-PayloadPipeModel _$PayloadPipeModelFromJson(Map<String,dynamic> json)=>
-PayloadPipeModel(
+
+PayloadSmallPipeModel _$PayloadSmallPipeModelFromJson(Map<String,dynamic> json)=>
+PayloadSmallPipeModel(
   waterSupplyId: json['watersupply_id'] as int,
   id: json['id'] as int,
   sourceTypeOfWater: json['source_type_of_water'] as String,
@@ -14,16 +15,10 @@ PayloadPipeModel(
   status: json['status'] as String, 
   statusNoReason: json['status_no_reason'] as String, 
   isActive: json['is_active'] as bool,
-
-  pipeLength: json['pipe_length'] as String,
-  areaCovering: json['area_covering'] as String, 
-  isHasLicense: json['is_has_license'] as String, 
-  licenseRegisteredDate: json['license_registered_date'] as String, 
-  licenseExpiredDate: json['license_expired_date'] as String, 
   
   );
 
-Map<String,dynamic> _$PayloadPipeModelToJson(PayloadPipeModel instance)=>
+Map<String,dynamic> _$PayloadSmallPipeModelToJson(PayloadSmallPipeModel instance)=>
 <String,dynamic>{
   'watersupply_id': instance.waterSupplyId,
   'source_type_of_water': instance.sourceTypeOfWater,
@@ -36,27 +31,20 @@ Map<String,dynamic> _$PayloadPipeModelToJson(PayloadPipeModel instance)=>
   'status':instance.status,
   'status_no_reason':instance.statusNoReason,
   'is_active':instance.isActive,
-  'id':instance.isActive,
-
-  'pipe_length':instance.pipeLength,
-  'area_covering':instance.areaCovering,
-  'is_has_license':instance.isHasLicense,
-  'license_registered_date':instance.licenseRegisteredDate,
-  'license_expired_date':instance.licenseExpiredDate,
-
+  'id':instance.isActive, 
 };
 
-PayloadPipeOptionValueModel _$PayloadPipeOptionValueModelFromJson(Map<String,dynamic> json)=>
-PayloadPipeOptionValueModel(
-  waterSupplyPipeId: json['water_supply_pipe_id'] as int, 
+PayloadSmallPipeOptionValueModel _$PayloadSmallPipeOptionValueModelFromJson(Map<String,dynamic> json)=>
+PayloadSmallPipeOptionValueModel(
+  waterSupplyWellId: json['water_supply_pipe_id'] as int, 
   optionId: json['option_id'] as int, 
   valueId: json['value_id'] as int, 
   isActive: json['is_active'] as bool
   );
 
-Map<String,dynamic> _$PayloadPipeOptionValueModelToJson(PayloadPipeOptionValueModel instance)=>
+Map<String,dynamic> _$PayloadSmallPipeOptionValueModelToJson(PayloadSmallPipeOptionValueModel instance)=>
 <String,dynamic>{
-  'water_supply_pipe_id':instance.waterSupplyPipeId,
+  'water_supply_pipe_id':instance.waterSupplyWellId,
   'option_id':instance.optionId,
   'value_id':instance.valueId,
   'is_active' : instance.isActive

@@ -54,7 +54,8 @@ class WaterSupplyEditState extends Equatable {
     this.checkWaterQualityInput = const CheckWaterQualityInput.pure(),
     this.wellStatusInput = const WellStatusInput.pure(),
     this.airPoolInput = const WaterSupplyInput.pure(),
-    this.filterTankInput = const WaterSupplyInput.pure(),
+    this.filterTankInput = const PoolfilterInput.pure(),
+    this.undergroundStorage = const WaterSupplyInput.pure(),
     this.connectorInput = const WaterSupplyInput.pure(),
     this.coverageInput = const WaterSupplyInput.pure(),
     this.pipeStatusInput = const WellStatusInput.pure(),
@@ -62,18 +63,20 @@ class WaterSupplyEditState extends Equatable {
     this.qualityWaterCheckInput = const WaterQualityInput.pure(),
     this.pondLatInput = const WaterSupplyInput.pure(),
     this.pondLongInput = const WaterSupplyInput.pure(),
-    this.pondFilterInput = const WaterSupplyInput.pure(),
+    this.pondFilterInput = const PondfilterInput.pure(),
+   
     this.pondDepthInput = const WaterSupplyInput.pure(),
-    this.pondTypeInput = const WaterSupplyInput.pure(),
-    this.seasonInput = const WaterSupplyInput.pure(),
-    this.pondStatusInput = const WaterSupplyInput.pure(),
-    this.usingTypeInput = const WaterSupplyInput.pure(),
-    this.capacityTypeInput = const WaterSupplyInput.pure(),
-    this.tankStatusInput = const WaterSupplyInput.pure(),
+    this.pondTypeInput = const PondTypeInput.pure(),
+    this.seasonInput = const SeasonHasWaterInput.pure(),
+    //this.pondStatusInput = const WaterSupplyInput.pure(),
+    this.pondStatusInput = const PondStatusInput.pure(),
+    this.usingTypeInput = const UsingTypeInput.pure(),
+    this.capacityTypeInput = const CapacityInput.pure(),
+    this.tankStatusInput = const TankStatusInput.pure(),
     this.supplierInput = const WaterSupplyInput.pure(),
     this.supplierDateInput = const DOCInput.pure(),
     this.dueDateInput = const DOCInput.pure(),
-    this.filterInput = const WaterSupplyInput.pure(),
+    this.filterInput = const PoolfilterInput.pure(),
     this.airStationInput = const WellStatusInput.pure(),
     this.waterSupplyCode=const WaterSupplyInput.pure(),
     this.wqParameter1=const WaterSupplyInput.pure(),
@@ -114,6 +117,8 @@ class WaterSupplyEditState extends Equatable {
   final WaterSupplyTypeInput waterSupplyTypeInput;
   final WaterSupplyInput containerInput;
   final WaterSupplyInput capacityInput;
+
+  //Well?
   final WellTypeInput wellTypeInput;
   final WaterSupplyInput wellDepthInput;
   final WaterSupplyInput utmXInput;
@@ -131,27 +136,33 @@ class WaterSupplyEditState extends Equatable {
   final WaterSupplyInput niVoDynamicInput;
   final CheckWaterQualityInput checkWaterQualityInput;
   final WellStatusInput wellStatusInput;
-  final WaterSupplyInput airPoolInput;
-  final WaterSupplyInput filterTankInput;
+  
+  //small pipe
+  final WaterSupplyInput airPoolInput;  
+  final PoolfilterInput filterTankInput;
   final WaterSupplyInput connectorInput;
   final WaterSupplyInput pipeLenghtInput;
   final WellStatusInput pipeStatusInput;
   final WaterSupplyInput coverageInput;
   final WaterQualityInput qualityWaterCheckInput;
+  final WaterSupplyInput undergroundStorage;
+  //pond
   final WaterSupplyInput pondLatInput;
   final WaterSupplyInput pondLongInput;
   final WaterSupplyInput pondDepthInput;
-  final WaterSupplyInput pondFilterInput;
-  final WaterSupplyInput pondTypeInput;
-  final WaterSupplyInput seasonInput;
-  final WaterSupplyInput pondStatusInput;
-  final WaterSupplyInput usingTypeInput;
-  final WaterSupplyInput capacityTypeInput;
-  final WaterSupplyInput tankStatusInput;
+  //final WaterSupplyInput pondFilterInput;
+  final PondfilterInput pondFilterInput;
+  final PondTypeInput pondTypeInput;
+  final SeasonHasWaterInput seasonInput;
+ // final WaterSupplyInput pondStatusInput;
+  final PondStatusInput pondStatusInput;
+  final UsingTypeInput usingTypeInput;
+  final CapacityInput capacityTypeInput;
+  final TankStatusInput tankStatusInput;
   final WaterSupplyInput supplierInput;
   final DOCInput supplierDateInput;
   final DOCInput dueDateInput;
-  final WaterSupplyInput filterInput;
+  final PoolfilterInput filterInput;
   final WellStatusInput airStationInput;
 
   final WaterSupplyInput wqParameter1;
@@ -215,7 +226,8 @@ class WaterSupplyEditState extends Equatable {
     CheckWaterQualityInput? checkWaterQualityInput,
     WellStatusInput? wellStatusInput,
     WaterSupplyInput? airPoolInput,
-    WaterSupplyInput? filterTankInput,
+    WaterQualityInput? undergroundStorage,
+    PoolfilterInput? filterTankInput,
     WaterSupplyInput? connectorInput,
     WaterSupplyInput? pipeLenghtInput,
     WellStatusInput? pipeStatusInput,
@@ -224,17 +236,19 @@ class WaterSupplyEditState extends Equatable {
     WaterSupplyInput? pondLatInput,
     WaterSupplyInput? pondLongInput,
     WaterSupplyInput? pondDepthInput,
-    WaterSupplyInput? pondFilterInput,
-    WaterSupplyInput? pondTypeInput,
-    WaterSupplyInput? seasonInput,
-    WaterSupplyInput? pondStatusInput,
-    WaterSupplyInput? usingTypeInput,
-    WaterSupplyInput? capacityTypeInput,
-    WaterSupplyInput? tankStatusInput,
+    //WaterSupplyInput? pondFilterInput,
+    PondfilterInput? pondFilterInput,
+    PondTypeInput? pondTypeInput,
+    SeasonHasWaterInput? seasonInput,
+    //WaterSupplyInput? pondStatusInput,
+    PondStatusInput? pondStatusInput,
+    UsingTypeInput? usingTypeInput,
+    CapacityInput? capacityTypeInput,
+    TankStatusInput? tankStatusInput,
     WaterSupplyInput? supplierInput,
     DOCInput? supplierDateInput,
     DOCInput? dueDateInput,
-    WaterSupplyInput? filterInput,
+    PoolfilterInput? filterInput,
     WellStatusInput? airStationInput,
     WaterSupplyInput? waterSupplyCode,
     WaterSupplyInput? wqParameter1,
@@ -305,12 +319,12 @@ class WaterSupplyEditState extends Equatable {
       pipeLenghtInput: pipeLenghtInput ?? this.pipeLenghtInput,
       pipeStatusInput: pipeStatusInput ?? this.pipeStatusInput,
       coverageInput: coverageInput ?? this.coverageInput,
-      qualityWaterCheckInput:
-          qualityWaterCheckInput ?? this.qualityWaterCheckInput,
+      qualityWaterCheckInput: qualityWaterCheckInput ?? this.qualityWaterCheckInput,
       pondLatInput: pondLatInput ?? this.pondLatInput,
       pondLongInput: pondLongInput ?? this.pondLongInput,
       pondDepthInput: pondDepthInput ?? this.pondDepthInput,
       pondFilterInput: pondFilterInput ?? this.pondFilterInput,
+      //pondFilterInput: pondFilterInput ?? this.pondFilterInput,
       pondTypeInput: pondTypeInput ?? this.pondTypeInput,
       seasonInput: seasonInput ?? this.seasonInput,
       pondStatusInput: pondStatusInput ?? this.pondStatusInput,

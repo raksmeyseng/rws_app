@@ -21,7 +21,7 @@ extension PondTypeEnumExtension on PondTypeEnum {
     }
   }
 
-  String getDisplayText(BuildContext context) {
+  String getDisplayText() {
     switch (this) {
       case PondTypeEnum.concrete:
         return 'ជើងទេរបេតុង';

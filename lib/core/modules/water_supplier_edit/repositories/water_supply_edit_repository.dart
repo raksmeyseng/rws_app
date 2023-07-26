@@ -6,6 +6,10 @@ import 'package:rws_app/core/modules/water_supplier_edit/model/response_water_su
 import 'package:rws_app/core/modules/water_supply_details/model/water_supply_model.dart';
 import 'package:rws_app/core/services/rest_api_service.dart';
 
+import '../model/payload_smallpipe_model.dart';
+import '../model/payload_pond_model.dart';
+import '../model/payload_rain_model.dart';
+import '../model/payload_air_model.dart';
 import '../model/payload_water_quality_parameter_model.dart';
 import '../model/payload_well.dart';
 import '../model/qrcode_model.dart';
@@ -57,6 +61,47 @@ class WaterSupplyEditRepository extends RestApiService {
   Future<void> addWaterSupplyWellOptionValue({required PayloadWellOptionValueModel payload}) async{
     await post(ApiPath.postWellOption,data:payload);
   }
+// SmallPIPE--------------
+Future<PayloadSmallPipeModel> addWaterSupplyPipe({required PayloadSmallPipeModel payload}) async{
+  final res = await post(ApiPath.postSmallPipe, data:payload);
+  return PayloadSmallPipeModel.fromJson(res);
+
+}
+Future<void> addWaterSupplySmallPipeOptionValue({required PayloadSmallPipeOptionValueModel payload}) async{
+  await post(ApiPath.postSmallPipeOptionValue, data:payload);
+}
+//--------------
+//-------------Start Pond
+Future<PayloadPondModel> addWaterSupplyPond({required PayloadPondModel payload}) async{
+  final res = await post(ApiPath.postCommunityPond, data:payload);
+  return PayloadPondModel.fromJson(res);
+}
+
+Future<void> addWaterSupplyPondOptionValue({required PayloadPondOptionValueModel payload}) async{
+  await post(ApiPath.postSmallPipeOptionValue, data:payload);
+}
+
+//-------------End Pond
+
+//-------------Start Rain
+Future<PayloadRainModel> addWaterSupplyRain({required PayloadRainModel payload}) async{
+  final res = await post(ApiPath.postRainWaterHarvesting, data:payload);
+  return PayloadRainModel.fromJson(res);
+}
+
+//-------------End Rain
+
+//-------------Start Air
+Future<PayloadairModel> addWaterSupplyAir({required PayloadairModel payload}) async{
+  final res = await post(ApiPath.postAirWater, data:payload);
+  return PayloadairModel.fromJson(res);
+}
+
+Future<void> addWaterSupplyAirOptionValue({required PayloadairOptionValueModel payload}) async{
+  await post(ApiPath.postAirWaterOptionValue, data:payload);
+}
+
+//-------------End Air
 
   Future<void> addWaterSupplyQRCode({required PayloadWaterSupplyQRCodeModel payload}) async{
     await post(ApiPath.postWaterSupplyQRcode, data:payload);

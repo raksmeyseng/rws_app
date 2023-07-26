@@ -21,7 +21,7 @@ extension TankStatusEnumExtension on TankStatusEnum {
     }
   }
 
-  String getDisplayText(BuildContext context) {
+  String getDisplayText() {
     switch (this) {
       case TankStatusEnum.use:
         return 'ប្រើប្រាស់';

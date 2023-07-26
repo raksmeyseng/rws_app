@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 const int _ml35Code = 0;
@@ -39,7 +38,7 @@ extension CapacityTypeEnumExtension on CapacityTypeEnum {
   }
 
   /// User friendly text
-  String getDisplayText(BuildContext context) {
+  String getDisplayText() {
     switch (this) {
       case CapacityTypeEnum.ml35:
         return '៣៥ ម៣';

@@ -6,7 +6,7 @@ WaterSupplyPipeModel _$WaterSupplyPipeModelFromJson(
     WaterSupplyPipeModel(
           id: json['id'] as int,
           watersupplyId: json['watersupply_id'] as int,
-          //isActive: json['well_height'] as String,
+          isActive: json['is_active'] as bool,
           sourceTypeOfWater: json['source_type_of_water'] as String,
           abiltyOfProduceWater: json['abilty_of_produce_water'] as String,
           undergroundPoolStorage: json['underground_pool_storage'] as String,
@@ -16,6 +16,11 @@ WaterSupplyPipeModel _$WaterSupplyPipeModelFromJson(
           waterQualityCheck: json['water_quality_check'] as String,
           status: json['status'] as String,
           statusNoReason: json['status_no_reason'] as String,
+          pipeLength: json['pipe_length'] as String,
+          areaCovering: json['area_covering'] as String,
+          licenseRegisteredDate: json['license_registered_date'] as String,
+          licenseExpiredDate: json['license_expired_date'] as String,
+
           poolFilterObj: (json['pool_filter_obj'] as List<dynamic>?)
               ?.map((e) =>
               WaterSupplyOptionValueModel.fromJson(e as Map<String, dynamic>))
@@ -31,14 +36,19 @@ WaterSupplyPipeModel _$WaterSupplyPipeModelFromJson(
               WaterSupplyOptionValueModel.fromJson(e as Map<String, dynamic>))
               .toList(),
 
+          isHasLicenseObj: (json['is_has_license_obj']
+          as List<dynamic>?)
+              ?.map((e) =>
+              WaterSupplyOptionValueModel.fromJson(e as Map<String, dynamic>))
+              .toList(),
+
           watersupplypipeoptionvalueWatersupplypipe: (json['watersupplypipeoptionvalue_watersupplypipe']
           as List<dynamic>?)
               ?.map((e) =>
               WaterSupplyOptionModel.fromJson(e as Map<String, dynamic>))
               .toList(),
 
-          pipeLength: json['pipe_length'] as String,
-          areaCovering: json['area_covering'] as String,
+ 
         
     );
 
@@ -47,8 +57,8 @@ Map<String, dynamic> _$WaterSupplyPipeModelToJson(
     <String, dynamic>{
       'id': instance.id,
       'watersupply_id': instance.id,
-      //'is_active': instance.watersupplyId,
-      //'source_type_of_water': instance.isActive,
+      'is_active': instance.watersupplyId,
+      'source_type_of_water': instance.isActive,
       'abilty_of_produce_water': instance.sourceTypeOfWater,
       'underground_pool_storage': instance.abiltyOfProduceWater,
       'pool_air': instance.undergroundPoolStorage,
@@ -57,16 +67,21 @@ Map<String, dynamic> _$WaterSupplyPipeModelToJson(
       'water_quality_check': instance.waterQualityCheck,
       'status': instance.status,
       'status_no_reason': instance.statusNoReason,
+      'pipe_length': instance.pipeLength,
+      'area_covering': instance.areaCovering,
+      'license_registered_date': instance.licenseRegisteredDate,
+      'license_expired_date': instance.licenseExpiredDate,
+
       'pool_filter_obj':
       instance.poolFilterObj?.map((e) => e.toJson()).toList(),
       'water_quality_check_obj':
       instance.pipeWaterQualityCheckObj?.map((e) => e.toJson()).toList(),
       'status_obj':
       instance.pipeStatusObj?.map((e) => e.toJson()).toList(),
+      'is_has_license_obj':instance.isHasLicenseObj?.map((e) => e.toJson()).toList(),      
       'watersupplypipeoptionvalue_watersupplypipe':
       instance.watersupplypipeoptionvalueWatersupplypipe?.map((e) => e.toJson()).toList(),
-      'pipe_length': instance.pipeLength,
-      'area_covering': instance.areaCovering,
+
     };
 
 WaterSupplyOptionModel _$WaterSupplyOptionModelFromJson(

@@ -7,7 +7,7 @@ class WaterSupplyPipeModel {
   WaterSupplyPipeModel({
     required this.id,
     required this.watersupplyId,
-    //this.isActive,
+    required this.isActive,
     required this.sourceTypeOfWater,
     required this.abiltyOfProduceWater,
     required this.undergroundPoolStorage,
@@ -17,20 +17,25 @@ class WaterSupplyPipeModel {
     required this.waterQualityCheck,
     required this.status,
     required this.statusNoReason,
-    this.poolFilterObj,
-    this.pipeWaterQualityCheckObj,
-    this.pipeStatusObj,
-    this.watersupplypipeoptionvalueWatersupplypipe,
     required this.pipeLength,
     required this.areaCovering,
+    required this.licenseExpiredDate,
+    required this.licenseRegisteredDate,
+
+    required this.poolFilterObj,
+    required this.pipeWaterQualityCheckObj,
+    required this.pipeStatusObj,
+    required this.isHasLicenseObj,
+    required this.watersupplypipeoptionvalueWatersupplypipe,
+  
   });
 
   @JsonKey(name: 'id')
   int id;
   @JsonKey(name: 'watersupply_id')
   int watersupplyId;
-  // @JsonKey(name: 'is_active')
-  // String? isActive;
+  @JsonKey(name: 'is_active')
+  bool isActive;
   @JsonKey(name: 'source_type_of_water')
   String sourceTypeOfWater;
   @JsonKey(name: 'abilty_of_produce_water')
@@ -49,18 +54,26 @@ class WaterSupplyPipeModel {
   String status;
   @JsonKey(name: 'status_no_reason')
   String statusNoReason;
+  @JsonKey(name: 'pipe_length')
+  String pipeLength;
+  @JsonKey(name: 'area_covering')
+  String areaCovering;
+  @JsonKey(name: 'license_registered_date')
+  String licenseRegisteredDate;
+  @JsonKey(name: 'license_expired_date')
+  String licenseExpiredDate;
+
   @JsonKey(name: 'pool_filter_obj')
   List<WaterSupplyOptionValueModel>? poolFilterObj;
   @JsonKey(name: 'water_quality_check_obj')
   List<WaterSupplyOptionValueModel>? pipeWaterQualityCheckObj;
   @JsonKey(name: 'status_obj')
   List<WaterSupplyOptionValueModel>? pipeStatusObj;
+  @JsonKey(name: 'is_has_license_obj')
+  List<WaterSupplyOptionValueModel>? isHasLicenseObj;
+
   @JsonKey(name: 'watersupplypipeoptionvalue_watersupplypipe')
   List<WaterSupplyOptionModel>? watersupplypipeoptionvalueWatersupplypipe;
-  @JsonKey(name: 'pipe_length')
-  String pipeLength;
-  @JsonKey(name: 'area_covering')
-  String areaCovering;
 
   factory WaterSupplyPipeModel.fromJson(Map<String, dynamic> json) =>
       _$WaterSupplyPipeModelFromJson(json);

@@ -72,7 +72,7 @@ class PayloadWellOptionValueModel{
   int optionId;
   @JsonKey(name:'value_id')
   int valueId;
-  @JsonKey(name:'value_id')
+  @JsonKey(name:'is_active')
   bool isActive;
 
   factory PayloadWellOptionValueModel.fromJson(Map<String, dynamic> json) =>

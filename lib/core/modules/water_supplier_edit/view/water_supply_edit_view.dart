@@ -42,6 +42,7 @@ import 'package:rws_app/utils/helpers/date_helper.dart';
 
 import '../../../../utils/helpers/dialog_helper.dart';
 import '../model/input/check_water_quality_input.dart';
+import '../model/input/poolFilter_input.dart';
 import '../model/input/status_input.dart';
 import '../model/input/water_supply_type_input.dart';
 import '../model/location_risk_input.dart';
@@ -463,16 +464,16 @@ class _FormField3 extends StatelessWidget {
           case 1:
             return const _WellInputPage();
           case 2:
-            return const _PipeInputPage();
+            return const _SPipeInputPage();
           case 3:
             // return const _KoiskInputPage();
-            return const _PipeInputPage();
+            return const _SPipeInputPage();
           case 4:
             return const _PondInputPage();
           case 5:
             return const _RainInputPage();
           case 6:
-            return const _SmallPipeInputPage();
+            return const _PipeInputPage();
           case 7:
             return const _AirInputPage();
           default:
@@ -584,29 +585,29 @@ class _WellInputPageState extends State<_WellInputPage> {
   }
 }
 
-class _PipeInputPage extends StatelessWidget {
-  const _PipeInputPage({Key? key}) : super(key: key);
+class _SPipeInputPage extends StatelessWidget {
+  const _SPipeInputPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Row(
+         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children:const [
             Expanded(child: _WaterSupplyTypeInput()),
           ],
-        ),
+        ), 
         const SizedBox(height: 16),
-        Row(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
+         Row(
+           mainAxisSize: MainAxisSize.min,
+           crossAxisAlignment: CrossAxisAlignment.start,
+           children: const [
             Expanded(child: _ContainerInput()),
-          ],
-        ),
+           ],
+         ), 
         const SizedBox(height: 16),
         Row(
           mainAxisSize: MainAxisSize.min,
@@ -795,8 +796,8 @@ class _RainInputPage extends StatelessWidget {
   }
 }
 
-class _SmallPipeInputPage extends StatelessWidget {
-  const _SmallPipeInputPage({Key? key}) : super(key: key);
+class _PipeInputPage extends StatelessWidget {
+  const _PipeInputPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -811,6 +812,7 @@ class _SmallPipeInputPage extends StatelessWidget {
           ],
         ),
         const SizedBox(height: 16),
+        //'សមត្ថភាពផលិតទឹក(m3/h)'
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -819,6 +821,7 @@ class _SmallPipeInputPage extends StatelessWidget {
           ],
         ),
         const SizedBox(height: 16),
+        //អាងស្តុបទឹកក្រោមដី(m3)
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -827,6 +830,7 @@ class _SmallPipeInputPage extends StatelessWidget {
           ],
         ),
         const SizedBox(height: 16),
+        //'អាងអាកាស (m)'
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -836,11 +840,12 @@ class _SmallPipeInputPage extends StatelessWidget {
         ),
 
         const SizedBox(height: 16),
+        //'អាងចម្រោះ'
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children:const [
-            Expanded(child: _PondFilterInput()),
+            Expanded(child: _FilterTankInput()),
             SizedBox(width: 16),
             Expanded(child: _ConnectorInput()),
           ],
@@ -3088,7 +3093,7 @@ class _FilterTankInput extends StatelessWidget {
           focusNode: bloc.filterTankFocus,
           controller: bloc.filterTankController,
           onTap: () async {
-            final type = await DialogHelper.showAnimatedDialog<String?>(
+            final type = await DialogHelper.showAnimatedDialog<FilterEnum?>(
               animationType: DialogAnimationType.none,
               transitionDuration: const Duration(milliseconds: 200),
               pageBuilder: (context, a1, a2) {
@@ -3103,12 +3108,12 @@ class _FilterTankInput extends StatelessWidget {
                           (status) => ListTile(
                             onTap: () {
                               Navigator.of(context)
-                                  .pop(status.getDisplayText(context));
+                                  .pop(status);
                             },
                             contentPadding: const EdgeInsets.symmetric(
                               horizontal: 24.0,
                             ),
-                            title: TextWidget(status.getDisplayText(context)),
+                            title: TextWidget(status.getDisplayText()),
                           ),
                         ),
                       ],
@@ -3134,7 +3139,7 @@ class _FilterTankInput extends StatelessWidget {
   String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
     if (!state.filterTankInput.invalid) return null;
     switch (state.filterTankInput.error) {
-      case WaterSupplyInputValidationError.empty:
+      case FilterInputValidationError.empty:
         return 'សូមជ្រើសរើសអាងចម្រោះ';
       default:
         return null;
@@ -3497,7 +3502,8 @@ class _PondFilterInput extends StatelessWidget {
           focusNode: bloc.pondFilterFocus,
           controller: bloc.pondFilterController,
           onTap: () async {
-            final type = await DialogHelper.showAnimatedDialog<String?>(
+            final type = await DialogHelper.showAnimatedDialog<PondFilterEnum?>(
+            //  final type = await DialogHelper.showAnimatedDialog<FilterEnum?>(
               animationType: DialogAnimationType.none,
               transitionDuration: const Duration(milliseconds: 200),
               pageBuilder: (context, a1, a2) {
@@ -3512,12 +3518,12 @@ class _PondFilterInput extends StatelessWidget {
                           (status) => ListTile(
                             onTap: () {
                               Navigator.of(context)
-                                  .pop(status.getDisplayText(context));
+                                  .pop(status);
                             },
                             contentPadding: const EdgeInsets.symmetric(
                               horizontal: 24.0,
                             ),
-                            title: TextWidget(status.getDisplayText(context)),
+                            title: TextWidget(status.getDisplayText()),
                           ),
                         ),
                       ],
@@ -3528,6 +3534,7 @@ class _PondFilterInput extends StatelessWidget {
             );
             if (type != null) {
               bloc.add(PondFilterChanged(type));
+              //bloc.add(FilterTankChanged(type));
             }
           },
           // errorText: _handleErrorText(context, state),
@@ -3565,7 +3572,7 @@ class _PondTypeInput extends StatelessWidget {
           focusNode: bloc.pondTypeFocus,
           controller: bloc.pondTypeController,
           onTap: () async {
-            final type = await DialogHelper.showAnimatedDialog<String?>(
+            final pondType = await DialogHelper.showAnimatedDialog<PondTypeEnum?>(
               animationType: DialogAnimationType.none,
               transitionDuration: const Duration(milliseconds: 200),
               pageBuilder: (context, a1, a2) {
@@ -3577,15 +3584,15 @@ class _PondTypeInput extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         ...PondTypeEnum.values.map(
-                          (status) => ListTile(
+                          (pondType) => ListTile(
                             onTap: () {
                               Navigator.of(context)
-                                  .pop(status.getDisplayText(context));
+                                  .pop(pondType);
                             },
                             contentPadding: const EdgeInsets.symmetric(
                               horizontal: 24.0,
                             ),
-                            title: TextWidget(status.getDisplayText(context)),
+                            title: TextWidget(pondType.getDisplayText()),
                           ),
                         ),
                       ],
@@ -3594,8 +3601,8 @@ class _PondTypeInput extends StatelessWidget {
                 );
               },
             );
-            if (type != null) {
-              bloc.add(PondTypeChanged(type));
+            if (pondType != null) {
+              bloc.add(PondTypeChanged(pondType));
             }
           },
           // errorText: _handleErrorText(context, state),
@@ -3633,7 +3640,7 @@ class _SeasonInput extends StatelessWidget {
           focusNode: bloc.seasonFocus,
           controller: bloc.seasonController,
           onTap: () async {
-            final type = await DialogHelper.showAnimatedDialog<String?>(
+            final seasonHasWater = await DialogHelper.showAnimatedDialog<SeasonEnum?>(
               animationType: DialogAnimationType.none,
               transitionDuration: const Duration(milliseconds: 200),
               pageBuilder: (context, a1, a2) {
@@ -3647,13 +3654,12 @@ class _SeasonInput extends StatelessWidget {
                         ...SeasonEnum.values.map(
                           (status) => ListTile(
                             onTap: () {
-                              Navigator.of(context)
-                                  .pop(status.getDisplayText(context));
+                              Navigator.of(context).pop(status);
                             },
                             contentPadding: const EdgeInsets.symmetric(
                               horizontal: 24.0,
                             ),
-                            title: TextWidget(status.getDisplayText(context)),
+                            title: TextWidget(status.getDisplayText()),
                           ),
                         ),
                       ],
@@ -3662,11 +3668,11 @@ class _SeasonInput extends StatelessWidget {
                 );
               },
             );
-            if (type != null) {
-              bloc.add(SeasonChanged(type));
+            if (seasonHasWater != null) {
+              bloc.add(SeasonChanged(seasonHasWater));
             }
           },
-          // errorText: _handleErrorText(context, state),
+          //errorText: _handleErrorText(context, state),
           suffixIcon: const Icon(Icons.arrow_drop_down, size: 18),
           readOnly: true,
           textInputAction: TextInputAction.next,
@@ -3701,7 +3707,7 @@ class _PondStatusInput extends StatelessWidget {
           focusNode: bloc.pondStatusFocus,
           controller: bloc.pondStatusController,
           onTap: () async {
-            final type = await DialogHelper.showAnimatedDialog<String?>(
+            final pondType = await DialogHelper.showAnimatedDialog<PondStatusEnum?>(
               animationType: DialogAnimationType.none,
               transitionDuration: const Duration(milliseconds: 200),
               pageBuilder: (context, a1, a2) {
@@ -3713,15 +3719,15 @@ class _PondStatusInput extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         ...PondStatusEnum.values.map(
-                          (status) => ListTile(
+                          (pondType) => ListTile(
                             onTap: () {
                               Navigator.of(context)
-                                  .pop(status.getDisplayText(context));
+                                  .pop(pondType);
                             },
                             contentPadding: const EdgeInsets.symmetric(
                               horizontal: 24.0,
                             ),
-                            title: TextWidget(status.getDisplayText(context)),
+                            title: TextWidget(pondType.getDisplayText()),
                           ),
                         ),
                       ],
@@ -3730,8 +3736,8 @@ class _PondStatusInput extends StatelessWidget {
                 );
               },
             );
-            if (type != null) {
-              bloc.add(PondStatusChanged(type));
+            if (pondType != null) {
+              bloc.add(PondStatusChanged(pondType));
             }
           },
           // errorText: _handleErrorText(context, state),
@@ -3769,7 +3775,7 @@ class _UsingTypeInput extends StatelessWidget {
           focusNode: bloc.usingTypeFocus,
           controller: bloc.usingTypeController,
           onTap: () async {
-            final type = await DialogHelper.showAnimatedDialog<String?>(
+            final type = await DialogHelper.showAnimatedDialog<UsingTypeEnum?>(
               animationType: DialogAnimationType.none,
               transitionDuration: const Duration(milliseconds: 200),
               pageBuilder: (context, a1, a2) {
@@ -3784,12 +3790,12 @@ class _UsingTypeInput extends StatelessWidget {
                           (status) => ListTile(
                             onTap: () {
                               Navigator.of(context)
-                                  .pop(status.getDisplayText(context));
+                                  .pop(status);
                             },
                             contentPadding: const EdgeInsets.symmetric(
                               horizontal: 24.0,
                             ),
-                            title: TextWidget(status.getDisplayText(context)),
+                            title: TextWidget(status.getDisplayText()),
                           ),
                         ),
                       ],
@@ -3837,7 +3843,7 @@ class _TankStatusInput extends StatelessWidget {
           focusNode: bloc.tankStatusFocus,
           controller: bloc.tankStatusController,
           onTap: () async {
-            final type = await DialogHelper.showAnimatedDialog<String?>(
+            final type = await DialogHelper.showAnimatedDialog<TankStatusEnum?>(
               animationType: DialogAnimationType.none,
               transitionDuration: const Duration(milliseconds: 200),
               pageBuilder: (context, a1, a2) {
@@ -3852,12 +3858,12 @@ class _TankStatusInput extends StatelessWidget {
                           (status) => ListTile(
                             onTap: () {
                               Navigator.of(context)
-                                  .pop(status.getDisplayText(context));
+                                  .pop(status);
                             },
                             contentPadding: const EdgeInsets.symmetric(
                               horizontal: 24.0,
                             ),
-                            title: TextWidget(status.getDisplayText(context)),
+                            title: TextWidget(status.getDisplayText()),
                           ),
                         ),
                       ],
@@ -3905,7 +3911,7 @@ class _CapacityTypeInput extends StatelessWidget {
           focusNode: bloc.capacityTypeFocus,
           controller: bloc.capacityTypeController,
           onTap: () async {
-            final type = await DialogHelper.showAnimatedDialog<String?>(
+            final type = await DialogHelper.showAnimatedDialog<CapacityTypeEnum?>(
               animationType: DialogAnimationType.none,
               transitionDuration: const Duration(milliseconds: 200),
               pageBuilder: (context, a1, a2) {
@@ -3920,12 +3926,12 @@ class _CapacityTypeInput extends StatelessWidget {
                           (status) => ListTile(
                             onTap: () {
                               Navigator.of(context)
-                                  .pop(status.getDisplayText(context));
+                                  .pop(status);
                             },
                             contentPadding: const EdgeInsets.symmetric(
                               horizontal: 24.0,
                             ),
-                            title: TextWidget(status.getDisplayText(context)),
+                            title: TextWidget(status.getDisplayText()),
                           ),
                         ),
                       ],
@@ -3938,7 +3944,7 @@ class _CapacityTypeInput extends StatelessWidget {
               bloc.add(CapacityTypeChanged(type));
             }
           },
-          // errorText: _handleErrorText(context, state),
+          //errorText: _handleErrorText(context, state),
           suffixIcon: const Icon(Icons.arrow_drop_down, size: 18),
           readOnly: true,
           textInputAction: TextInputAction.next,
@@ -3988,12 +3994,12 @@ class _SupplierInput extends StatelessWidget {
                           (status) => ListTile(
                             onTap: () {
                               Navigator.of(context)
-                                  .pop(status.getDisplayText(context));
+                                  .pop(status.getDisplayText());
                             },
                             contentPadding: const EdgeInsets.symmetric(
                               horizontal: 24.0,
                             ),
-                            title: TextWidget(status.getDisplayText(context)),
+                            title: TextWidget(status.getDisplayText()),
                           ),
                         ),
                       ],
@@ -4160,7 +4166,7 @@ class _FilterInput extends StatelessWidget {
           focusNode: bloc.filterFocus,
           controller: bloc.filterController,
           onTap: () async {
-            final type = await DialogHelper.showAnimatedDialog<String?>(
+            final type = await DialogHelper.showAnimatedDialog<FilterEnum?>(
               animationType: DialogAnimationType.none,
               transitionDuration: const Duration(milliseconds: 200),
               pageBuilder: (context, a1, a2) {
@@ -4175,12 +4181,12 @@ class _FilterInput extends StatelessWidget {
                           (status) => ListTile(
                             onTap: () {
                               Navigator.of(context)
-                                  .pop(status.getDisplayText(context));
+                                  .pop(status);
                             },
                             contentPadding: const EdgeInsets.symmetric(
                               horizontal: 24.0,
                             ),
-                            title: TextWidget(status.getDisplayText(context)),
+                            title: TextWidget(status.getDisplayText()),
                           ),
                         ),
                       ],

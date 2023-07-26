@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 const int _notHaveCode = 0;
@@ -26,7 +25,7 @@ extension PondFilterEnumExtension on PondFilterEnum {
     }
   }
 
-  String getDisplayText(BuildContext context) {
+  String getDisplayText() {
     switch (this) {
       case PondFilterEnum.notHave:
         return 'មិនមាន';

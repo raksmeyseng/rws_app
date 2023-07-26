@@ -26,7 +26,7 @@ extension PondStatusEnumExtension on PondStatusEnum {
     }
   }
 
-  String getDisplayText(BuildContext context) {
+  String getDisplayText() {
     switch (this) {
       case PondStatusEnum.unMaintain:
         return 'មិនមានការការពារនិងថែទាំ';

@@ -32,6 +32,8 @@ class WaterSupplySmallPipeModel {
   String pool_air;
   @JsonKey(name:'pool_filter')
   String pool_filter;
+
+  
   @JsonKey(name: 'pool_filter_obj')
   List<WaterSupplyOptionValueModel> pool_filter_obj;
   @JsonKey(name: 'water_quality_check_obj')

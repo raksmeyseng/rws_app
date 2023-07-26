@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 const int _familyCode = 0;
@@ -26,7 +25,9 @@ extension UsingTypeEnumExtension on UsingTypeEnum {
     }
   }
 
-  String getDisplayText(BuildContext context) {
+  //String getDisplayText(BuildContext context) 
+  String getDisplayText() 
+  {
     switch (this) {
       case UsingTypeEnum.family:
         return 'តាមគ្រួសារ';

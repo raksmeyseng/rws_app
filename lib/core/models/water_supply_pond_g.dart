@@ -15,6 +15,7 @@ WaterSupplyPondModel _$WaterSupplyPondModelFromJson(
 
       statusObj: List<WaterSupplyOptionValueModel>.from(json['status_obj'].map((model)=>WaterSupplyOptionValueModel.fromJson(model))),
       isSummerHasWaterObj: List<WaterSupplyOptionValueModel>.from(json['is_summer_has_water_obj'].map((model)=>WaterSupplyOptionValueModel.fromJson(model))),
+      typeOfPondObj: List<WaterSupplyOptionValueModel>.from(json['type_of_pond_obj'].map((model)=>WaterSupplyOptionValueModel.fromJson(model))),
     );
 
 Map<String, dynamic> _$WaterSupplyPondModelToJson(
@@ -27,6 +28,7 @@ Map<String, dynamic> _$WaterSupplyPondModelToJson(
       'height': instance.height,
       'type_of_pond': instance.typeOfPond,
       'status_no_reason': instance.statusNoReason,
+      'type_of_pond_obj': instance.typeOfPondObj,
  
  /*      'filter_system_obj':
           instance.filter_system_obj?.map((e) => e.toJson()).toList(), */

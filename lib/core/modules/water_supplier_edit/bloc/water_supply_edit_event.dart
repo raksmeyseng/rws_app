@@ -401,7 +401,7 @@ class AirPoolChanged extends WaterSupplyEditEvent {
 class FilterTankChanged extends WaterSupplyEditEvent {
   const FilterTankChanged(this.filterTank);
 
-  final String filterTank;
+  final FilterEnum filterTank;
 
   @override
   List<Object> get props => [filterTank];
@@ -473,8 +473,8 @@ class PondLongChanged extends WaterSupplyEditEvent {
 class PondFilterChanged extends WaterSupplyEditEvent {
   const PondFilterChanged(this.pondFilter);
 
-  final String pondFilter;
-
+  //final String pondFilter;
+  final PondFilterEnum pondFilter;
   @override
   List<Object> get props => [pondFilter];
 }
@@ -482,7 +482,7 @@ class PondFilterChanged extends WaterSupplyEditEvent {
 class PondTypeChanged extends WaterSupplyEditEvent {
   const PondTypeChanged(this.pondType);
 
-  final String pondType;
+  final PondTypeEnum pondType;
 
   @override
   List<Object> get props => [pondType];
@@ -500,7 +500,8 @@ class PondDepthChanged extends WaterSupplyEditEvent {
 class PondStatusChanged extends WaterSupplyEditEvent {
   const PondStatusChanged(this.pondStatus);
 
-  final String pondStatus;
+  //final String pondStatus;
+  final PondStatusEnum pondStatus;
 
   @override
   List<Object> get props => [pondStatus];
@@ -509,7 +510,7 @@ class PondStatusChanged extends WaterSupplyEditEvent {
 class SeasonChanged extends WaterSupplyEditEvent {
   const SeasonChanged(this.season);
 
-  final String season;
+  final SeasonEnum season;
 
   @override
   List<Object> get props => [season];
@@ -518,7 +519,7 @@ class SeasonChanged extends WaterSupplyEditEvent {
 class UsingTypeChanged extends WaterSupplyEditEvent {
   const UsingTypeChanged(this.usingType);
 
-  final String usingType;
+  final UsingTypeEnum usingType;
 
   @override
   List<Object> get props => [usingType];
@@ -527,7 +528,7 @@ class UsingTypeChanged extends WaterSupplyEditEvent {
 class TankStatusChanged extends WaterSupplyEditEvent {
   const TankStatusChanged(this.tankStatus);
 
-  final String tankStatus;
+  final TankStatusEnum tankStatus;
 
   @override
   List<Object> get props => [tankStatus];
@@ -536,7 +537,7 @@ class TankStatusChanged extends WaterSupplyEditEvent {
 class CapacityTypeChanged extends WaterSupplyEditEvent {
   const CapacityTypeChanged(this.capacityType);
 
-  final String capacityType;
+  final CapacityTypeEnum capacityType;
 
   @override
   List<Object> get props => [capacityType];
@@ -572,7 +573,7 @@ class DueDateChanged extends WaterSupplyEditEvent {
 class FilterChanged extends WaterSupplyEditEvent {
   const FilterChanged(this.filter);
 
-  final String filter;
+  final FilterEnum filter;
 
   @override
   List<Object> get props => [filter];

@@ -21,7 +21,7 @@ extension FilterEnumExtension on FilterEnum {
     }
   }
 
-  String getDisplayText(BuildContext context) {
+  String getDisplayText() {
     switch (this) {
       case FilterEnum.have:
         return 'មាន';

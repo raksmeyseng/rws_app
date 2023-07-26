@@ -88,18 +88,26 @@ class ApiPath {
       '${AppConstant.mainURL}watersupply/$id/update/'; //put
   
   static String postWaterSupplyQRcode = '${AppConstant.mainURL}watersupplyqrcode/';//post
+
   static String postWell= '${AppConstant.mainURL}watersupplywell/'; //post
   static String postWellOption = '${AppConstant.mainURL}watersupplywelloptionvalue/'; //post
-  static String postPipe = '${AppConstant.mainURL}watersupplypipe/';
-  static String postPipeOptionValue = '${AppConstant.mainURL}watersupplypipoptionvalue/';
+
+  static String postSmallPipe = '${AppConstant.mainURL}watersupplypipe/';
+  static String postSmallPipeOptionValue = '${AppConstant.mainURL}watersupplypipoptionvalue/';
+
   static String postKiosk='${AppConstant.mainURL}watersupplykiosk/';
   static String postKioskOptionValue= '${AppConstant.mainURL}watersupplykioskoptionvalue/';
+
   static String postCommunityPond = '${AppConstant.mainURL}watersupplycommunitypond/';
+
   static String postRainWaterHarvesting='${AppConstant.mainURL}watersupplyrainwaterharvesting/';
+  
   static String postPipePrivate = '${AppConstant.mainURL}watersupplypipeprivate/';
   static String postPipePrivateOptionValue = '${AppConstant.mainURL}watersupplypipeprivateoptionvalue/';
+  
   static String postAirWater='${AppConstant.mainURL}watersupplyairwater/';
   static String postAirWaterOptionValue = '${AppConstant.mainURL}watersupplyairwateroptionvalue/';
+  
   static String postWaterQualityParameter = '${AppConstant.mainURL}watersupplyqualitycheckparameter/';
 
 

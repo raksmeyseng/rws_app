@@ -8,7 +8,8 @@ import '../../../models/water_supply_small_pipe.dart';
 import '../../../models/water_supply_kiosk.dart';
 import '../../../models/water_supply_pond.dart';
 import '../../../models/water_supply_rain.dart';
-import '../../../models/water_supply_model_pipe/water_supply_pipe.dart';
+import '../../../models/water_supply_air.dart';
+import '../../../models/water_supply_pipe.dart';
 import '../../../models/water_supply_qrcode.dart';
 import '../../../models/water_supply_well.dart';
 import '../../../models/water_supply_workflow.dart';
@@ -66,7 +67,7 @@ class WaterSupplyModel {
      this.waterSupplyCommunityPond,
     this.waterSupplyRainWaterHarvesting,
     // this.waterSupplyPipePrivate,
-    // this.waterSupplyAirWater,
+    this.waterSupplyAirWater,
     this.workflows,
     this.qrcode,
     this.wqcParam1,
@@ -185,6 +186,8 @@ class WaterSupplyModel {
   List<WaterSupplyRainModel>? waterSupplyRainWaterHarvesting;
   @JsonKey(name:'watersupplypipeprivate_watersupply')
   List<WaterSupplyPipeModel>? waterSupplyPipe;
+  @JsonKey(name:'watersupplyairwater_watersupply')
+  List<WaterSupplyAirModel>? waterSupplyAirWater;
   // @JsonKey(name:'watersupplyKiosk_watersupply')
   // List<WaterSupplyWellModel>? waterSupplyKiosk;
   // @JsonKey(name:'watersupplyCommunityPond_watersupply')

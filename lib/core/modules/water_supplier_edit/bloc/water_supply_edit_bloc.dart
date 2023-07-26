@@ -14,10 +14,16 @@ import 'package:rws_app/core/modules/water_supplier_edit/model/budget_type_input
 import 'package:rws_app/core/modules/water_supplier_edit/model/doc_input.dart';
 import 'package:rws_app/core/modules/water_supplier_edit/model/input/map_type_input.dart';
 import 'package:rws_app/core/modules/water_supplier_edit/model/management_type_input.dart';
+import 'package:rws_app/core/modules/water_supplier_edit/model/payload_smallpipe_model.dart';
+import 'package:rws_app/core/modules/water_supplier_edit/model/payload_pond_model.dart';
+import 'package:rws_app/core/modules/water_supplier_edit/model/payload_air_model.dart';
+import 'package:rws_app/core/modules/water_supplier_edit/model/payload_rain_model.dart';
 import 'package:rws_app/core/modules/water_supplier_edit/model/payload_water_quality_parameter_model.dart';
 import 'package:rws_app/core/modules/water_supplier_edit/model/payload_water_supply_model.dart';
 import 'package:rws_app/core/modules/water_supplier_edit/model/payload_well.dart';
+import 'package:rws_app/core/modules/water_supplier_edit/model/payload_pipe_model.dart';
 import 'package:rws_app/core/modules/water_supplier_edit/model/qrcode_model.dart';
+import 'package:rws_app/core/modules/water_supplier_edit/model/water_source_input.dart';
 import 'package:rws_app/core/modules/water_supplier_edit/model/water_supply_input.dart';
 import 'package:rws_app/core/modules/water_supplier_edit/repositories/water_supply_edit_repository.dart';
 import 'package:rws_app/core/modules/water_supply_details/model/water_supply_model.dart';
@@ -27,15 +33,31 @@ import 'package:rws_app/utils/helpers/date_helper.dart';
 import 'package:rws_app/utils/helpers/loading_helper.dart';
 
 import '../../../enum/area_enum.dart';
+import '../../../enum/filter_enum.dart';
+import '../../../enum/pond_filter_enum.dart';
+import '../../../enum/pond_status_enum.dart';
 import '../../../enum/map_type_enum.dart';
+import '../../../enum/season_enum.dart';
 import '../../../enum/water_quality_enum.dart';
 import '../../../enum/well_type_enum.dart';
+import '../../../enum/pond_type_enum.dart';
+import '../../../enum/using_type_enum.dart';
+import '../../../enum/capacity_type_enum.dart';
+import '../../../enum/tank_status_enum.dart';
 import '../model/input/check_water_quality_input.dart';
+import '../model/input/poolFilter_input.dart';
+import '../model/input/pondFilter_input.dart';
+import '../model/input/pond_status_input.dart';
+import '../model/input/pondtype_input.dart';
+import '../model/input/season_haswater_input.dart';
 import '../model/input/status_input.dart';
 import '../model/input/water_supply_type_input.dart';
 import '../model/location_risk_input.dart';
 import '../model/water_quality_input.dart';
 import '../model/well_type_input.dart';
+import '../model/input/using_type_input.dart';
+import '../model/input/capacity_input.dart';
+import '../model/input/tank_status_input.dart';
 
 part 'water_supply_edit_event.dart';
 part 'water_supply_edit_state.dart';
@@ -179,7 +201,6 @@ class WaterSupplyEditBloc
   final airStationController = TextEditingController();
 
   /* Water Quality Parameter */
-
   final FocusNode parameter1 = FocusNode();
   final parameter1Controller = TextEditingController();
 
@@ -831,8 +852,8 @@ class WaterSupplyEditBloc
     FilterTankChanged event,
     Emitter<WaterSupplyEditState> emit,
   ) {
-    final filterTank = WaterSupplyInput.pure(event.filterTank);
-    filterTankController.text = event.filterTank;
+    final filterTank = PoolfilterInput.pure(event.filterTank);
+    filterTankController.text = event.filterTank.getDisplayText();
     emit(state.copyWith(filterTankInput: filterTank));
   }
 
@@ -898,8 +919,9 @@ class WaterSupplyEditBloc
     PondTypeChanged event,
     Emitter<WaterSupplyEditState> emit,
   ) {
-    final pondType = WaterSupplyInput.pure(event.pondType);
-    pondTypeController.text = event.pondType;
+    final pondType = PondTypeInput.pure(event.pondType);
+    //pondTypeController.text = event.pondType.getDisplayText();
+    pondTypeController.text = event.pondType.getDisplayText();
     emit(state.copyWith(pondTypeInput: pondType));
   }
 
@@ -915,8 +937,11 @@ class WaterSupplyEditBloc
     PondFilterChanged event,
     Emitter<WaterSupplyEditState> emit,
   ) {
-    final pondFilter = WaterSupplyInput.pure(event.pondFilter);
-    pondFilterController.text = event.pondFilter;
+    //final pondFilter = WaterSupplyInput.pure(event.pondFilter);
+    //pondFilterController.text = event.pondFilter;
+    final pondFilter = PondfilterInput.pure(event.pondFilter);
+    pondFilterController.text = event.pondFilter.getDisplayText();
+    //pondFilterController.text = 'មិនមាន';
     emit(state.copyWith(pondFilterInput: pondFilter));
   }
 
@@ -924,8 +949,8 @@ class WaterSupplyEditBloc
     SeasonChanged event,
     Emitter<WaterSupplyEditState> emit,
   ) {
-    final season = WaterSupplyInput.pure(event.season);
-    seasonController.text = event.season;
+    final season = SeasonHasWaterInput.pure(event.season);
+    seasonController.text = event.season.getDisplayText();
     emit(state.copyWith(seasonInput: season));
   }
 
@@ -933,8 +958,10 @@ class WaterSupplyEditBloc
     PondStatusChanged event,
     Emitter<WaterSupplyEditState> emit,
   ) {
-    final pondStatus = WaterSupplyInput.pure(event.pondStatus);
-    pondStatusController.text = event.pondStatus;
+    //final pondStatus = WaterSupplyInput.pure(event.pondStatus);
+    final pondStatus = PondStatusInput.pure(event.pondStatus);
+    pondStatusController.text = event.pondStatus.getDisplayText();
+    //pondStatusController.text = 'មិនប្រើប្រាស់';
     emit(state.copyWith(pondStatusInput: pondStatus));
   }
 
@@ -942,8 +969,8 @@ class WaterSupplyEditBloc
     UsingTypeChanged event,
     Emitter<WaterSupplyEditState> emit,
   ) {
-    final usingType = WaterSupplyInput.pure(event.usingType);
-    usingTypeController.text = event.usingType;
+    final usingType = UsingTypeInput.pure(event.usingType);
+    usingTypeController.text = event.usingType.getDisplayText();
     emit(state.copyWith(usingTypeInput: usingType));
   }
 
@@ -951,8 +978,8 @@ class WaterSupplyEditBloc
     TankStatusChanged event,
     Emitter<WaterSupplyEditState> emit,
   ) {
-    final tankStatus = WaterSupplyInput.pure(event.tankStatus);
-    tankStatusController.text = event.tankStatus;
+    final tankStatus = TankStatusInput.pure(event.tankStatus);
+    tankStatusController.text = event.tankStatus.getDisplayText();
     emit(state.copyWith(tankStatusInput: tankStatus));
   }
 
@@ -960,8 +987,8 @@ class WaterSupplyEditBloc
     CapacityTypeChanged event,
     Emitter<WaterSupplyEditState> emit,
   ) {
-    final capacityType = WaterSupplyInput.pure(event.capacityType);
-    capacityTypeController.text = event.capacityType;
+    final capacityType = CapacityInput.pure(event.capacityType);
+    capacityTypeController.text = event.capacityType.getDisplayText();
     emit(state.copyWith(capacityTypeInput: capacityType));
   }
 
@@ -997,8 +1024,8 @@ class WaterSupplyEditBloc
     FilterChanged event,
     Emitter<WaterSupplyEditState> emit,
   ) {
-    final filter = WaterSupplyInput.pure(event.filter);
-    filterController.text = event.filter;
+    final filter = PoolfilterInput.pure(event.filter);
+    filterController.text = event.filter.getDisplayText();
     emit(state.copyWith(filterInput: filter));
   }
 
@@ -1026,40 +1053,25 @@ class WaterSupplyEditBloc
     final communeInput = WaterSupplyInput.dirty(state.communeInput.value);
     final villageInput = WaterSupplyInput.dirty(state.villageInput.value);
     final mapTypeInput = MapTypeInput.dirty(state.mapTypeInput.value);
-    final waterSupplyCodeInput =
-        WaterSupplyInput.dirty(state.waterSupplyCode.value);
-    final familyTotalInput =
-        WaterSupplyInput.dirty(state.familyTotalInput.value);
+    final waterSupplyCodeInput = WaterSupplyInput.dirty(state.waterSupplyCode.value);
+    final familyTotalInput = WaterSupplyInput.dirty(state.familyTotalInput.value);
     final lateitudeInput = WaterSupplyInput.dirty(state.lateitudeInput.value);
     final longtitudeInput = WaterSupplyInput.dirty(state.longtitudeInput.value);
-    final locationRickInput =
-        LocationRiskInput.dirty(state.locationRickInput.value);
+    final locationRickInput = LocationRiskInput.dirty(state.locationRickInput.value);
     final budgetTypeInput = BudgetTypeInput.dirty(state.budgetTypeInput.value);
-    final managementTypeInput =
-        ManagementTypeInput.dirty(state.managementTypeInput.value);
-    final managementNameInput =
-        WaterSupplyInput.dirty(state.managementNameInput.value);
-    final receiverTotalInput =
-        WaterSupplyInput.dirty(state.receiverTotalInput.value);
-    final receiverTotalAsFemaleInput =
-        WaterSupplyInput.dirty(state.receiverTotalAsFemaleInput.value);
-    final receiverFamilyTotalInput =
-        WaterSupplyInput.dirty(state.receiverFamilyTotalInput.value);
-    final receiverFamilyPoor1Input =
-        WaterSupplyInput.dirty(state.receiverFamilyPoor1Input.value);
-    final receiverFamilyPoor2Input =
-        WaterSupplyInput.dirty(state.receiverFamilyPoor2Input.value);
+    final managementTypeInput = ManagementTypeInput.dirty(state.managementTypeInput.value);
+    final managementNameInput = WaterSupplyInput.dirty(state.managementNameInput.value);
+    final receiverTotalInput = WaterSupplyInput.dirty(state.receiverTotalInput.value);
+    final receiverTotalAsFemaleInput = WaterSupplyInput.dirty(state.receiverTotalAsFemaleInput.value);
+    final receiverFamilyTotalInput = WaterSupplyInput.dirty(state.receiverFamilyTotalInput.value);
+    final receiverFamilyPoor1Input =  WaterSupplyInput.dirty(state.receiverFamilyPoor1Input.value);
+    final receiverFamilyPoor2Input =        WaterSupplyInput.dirty(state.receiverFamilyPoor2Input.value);
     final docInput = DOCInput.dirty(state.docInput.value);
-    final companyNameInput =
-        WaterSupplyInput.dirty(state.companyNameInput.value);
-    final constructionCodeInput =
-        WaterSupplyInput.dirty(state.constructionCodeInput.value);
-    final receiverFamilyIndigenousInput =
-        WaterSupplyInput.dirty(state.receiverFamilyIndigenousInput.value);
-    final receiverFamilyVulnearableInput =
-        WaterSupplyInput.dirty(state.receiverFamilyVulnearableInput.value);
-    final waterSupplyTypeInput =
-        WaterSupplyTypeInput.dirty(state.waterSupplyTypeInput.value);
+    final companyNameInput =        WaterSupplyInput.dirty(state.companyNameInput.value);
+    final constructionCodeInput =        WaterSupplyInput.dirty(state.constructionCodeInput.value);
+    final receiverFamilyIndigenousInput =        WaterSupplyInput.dirty(state.receiverFamilyIndigenousInput.value);
+    final receiverFamilyVulnearableInput =        WaterSupplyInput.dirty(state.receiverFamilyVulnearableInput.value);
+    final waterSupplyTypeInput = WaterSupplyTypeInput.dirty(state.waterSupplyTypeInput.value);
 
     final utmXInput = WaterSupplyInput.dirty(state.utmXInput.value);
     final utmYInput = WaterSupplyInput.dirty(state.utmYInput.value);
@@ -1075,42 +1087,68 @@ class WaterSupplyEditBloc
     final wellDepthInput = WaterSupplyInput.dirty(state.wellDepthInput.value);
     final wellScreenInput = WaterSupplyInput.dirty(state.wellScreenInput.value);
     final wellThearInput = WaterSupplyInput.dirty(state.wellThearInput.value);
-    final waterQualityInput =
-        WaterQualityInput.dirty(state.waterQualityInput.value);
+    final waterQualityInput = WaterQualityInput.dirty(state.waterQualityInput.value);
     final niVoStaticInput = WaterSupplyInput.dirty(state.niVoStaticInput.value);
-    final niVoDynamicInput =
-        WaterSupplyInput.dirty(state.niVoDynamicInput.value);
-    final checkWaterQualityInput =
-        CheckWaterQualityInput.dirty(state.checkWaterQualityInput.value);
+    final niVoDynamicInput = WaterSupplyInput.dirty(state.niVoDynamicInput.value);
+    final checkWaterQualityInput = CheckWaterQualityInput.dirty(state.checkWaterQualityInput.value);
     final wellStatusInput = WellStatusInput.dirty(state.wellStatusInput.value);
     //End Well
 
+    //Start Small Pipe
+    //final sourceOfWaterInput = WaterSupplyTypeInput.dirty(state.waterSupplyTypeInput.value);   
     final airPoolInput = WaterSupplyInput.dirty(state.airPoolInput.value);
-    final filterTankInput = WaterSupplyInput.dirty(state.filterTankInput.value);
+    final filterTankInput = PoolfilterInput.dirty(state.filterTankInput.value);
     final connectorInput = WaterSupplyInput.dirty(state.connectorInput.value);
     final containerInput = WaterSupplyInput.dirty(state.containerInput.value);
     final capacityInput = WaterSupplyInput.dirty(state.capacityInput.value);
     final pipeLenghtInput = WaterSupplyInput.dirty(state.pipeLenghtInput.value);
     final pipeStatusInput = WellStatusInput.dirty(state.pipeStatusInput.value);
     final coverageInput = WaterSupplyInput.dirty(state.coverageInput.value);
-    final qualityWaterCheckInput =
-        WaterQualityInput.dirty(state.qualityWaterCheckInput.value);
+    final qualityWaterCheckInput = WaterQualityInput.dirty(state.qualityWaterCheckInput.value);
+    //End Pipe (Small Pipe)
+
+    //Start Pond
     final pondLatInput = WaterSupplyInput.dirty(state.pondLatInput.value);
     final pondLongInput = WaterSupplyInput.dirty(state.pondLongInput.value);
     final pondDepthInput = WaterSupplyInput.dirty(state.pondDepthInput.value);
-    final pondFilterInput = WaterSupplyInput.dirty(state.pondFilterInput.value);
-    final pondTypeInput = WaterSupplyInput.dirty(state.pondTypeInput.value);
-    final seasonInput = WaterSupplyInput.dirty(state.seasonInput.value);
-    final pondStatusInput = WaterSupplyInput.dirty(state.pondStatusInput.value);
-    final usingTypeInput = WaterSupplyInput.dirty(state.usingTypeInput.value);
-    final capacityTypeInput =
-        WaterSupplyInput.dirty(state.capacityTypeInput.value);
-    final tankStatusInput = WaterSupplyInput.dirty(state.tankStatusInput.value);
+    //?
+    //final pondFilterInput = WaterSupplyInput.dirty(state.pondFilterInput.value.toString());
+    final pondFilterInput = PondfilterInput.dirty(state.pondFilterInput.value);
+    //final pondTypeInput = WaterSupplyInput.dirty(state.pondTypeInput.value);
+    final pondTypeInput = PondTypeInput.dirty(state.pondTypeInput.value);
+    final seasonInput = SeasonHasWaterInput.dirty(state.seasonInput.value);
+    //final pondStatusInput = WaterSupplyInput.dirty(state.pondStatusInput.value);
+    final pondStatusInput = PondStatusInput.dirty(state.pondStatusInput.value);
+
+   
+    final usingTypeInput = UsingTypeInput.dirty(state.usingTypeInput.value);
+    final capacityTypeInput =  CapacityInput.dirty(state.capacityTypeInput.value);
+    final tankStatusInput = TankStatusInput.dirty(state.tankStatusInput.value);
     final supplierInput = WaterSupplyInput.dirty(state.supplierInput.value);
     final supplierDateInput = DOCInput.dirty(state.supplierDateInput.value);
     final dueDateInput = DOCInput.dirty(state.dueDateInput.value);
-    final filterInput = WaterSupplyInput.dirty(state.filterInput.value);
+    final filterInput = PoolfilterInput.dirty(state.filterInput.value);
     final airStationInput = WellStatusInput.dirty(state.airStationInput.value);
+    // ------Start Pipe
+    //final waterSupplyTypeInput = WaterSupplyTypeInput.dirty(state.waterSupplyTypeInput.value);
+    //final airPoolInput = WaterSupplyInput.dirty(state.airPoolInput.value);
+    //final filterTankInput = PoolfilterInput.dirty(state.filterTankInput.value);
+    //final connectorInput = WaterSupplyInput.dirty(state.connectorInput.value);
+    //final containerInput = WaterSupplyInput.dirty(state.containerInput.value);
+    //final capacityInput = WaterSupplyInput.dirty(state.capacityInput.value);
+    //final pipeLenghtInput = WaterSupplyInput.dirty(state.pipeLenghtInput.value);
+    //final pipeStatusInput = WellStatusInput.dirty(state.pipeStatusInput.value);
+    //final coverageInput = WaterSupplyInput.dirty(state.coverageInput.value);
+    //final qualityWaterCheckInput = WaterQualityInput.dirty(state.qualityWaterCheckInput.value); 
+  
+    //final dueDateInput = DOCInput.dirty(state.dueDateInput.value);
+
+    // ------End Pipe
+    
+    //Start Air
+
+
+    //End Air
 
     final wqParameter1Input = WaterSupplyInput.dirty(state.wqParameter1.value);
 
@@ -1393,9 +1431,8 @@ class WaterSupplyEditBloc
           isActive: true,
           updatedBy: user != null ? user.id : 0,
           mainStatus: 3,
-          waterSupplyCode:
-              constructionCodeInput.value, //not yet have control yet
-              isWaterQualityCheck: is_water_quality_check
+          waterSupplyCode: constructionCodeInput.value, //not yet have control yet
+          isWaterQualityCheck: is_water_quality_check
               
         );
         //print(payload);
@@ -1447,10 +1484,8 @@ final payloadWQParameter1= PayloadWaterQualityParameterModel(
               wellNiroDynamic: niVoDynamicInput.value,
               wellStatus: wellStatusInput.value?.getCode() == 0 ? '12' : '13',
               wellStatusReason: '',
-              wellWaterQuality:
-                  waterQualityInput.value?.getCode() == 0 ? '8' : '9',
-              wellWaterQualityCheck:
-                  checkWaterQualityInput.value?.getCode() == 0 ? '10' : '11',
+              wellWaterQuality:  waterQualityInput.value?.getCode() == 0 ? '8' : '9',
+              wellWaterQualityCheck: checkWaterQualityInput.value?.getCode() == 0 ? '10' : '11',
               isActive: true,
             );
             repository.addWaterSupplyWell(payload: payloadWell).then((well) {
@@ -1466,12 +1501,123 @@ final payloadWQParameter1= PayloadWaterQualityParameterModel(
             });
             
           }
-          //PIPE
+          //Small PIPE
           else if(state.waterSupplyTypeId== 2){
+            final payloadSmallPipe = PayloadSmallPipeModel(
+             
+              waterSupplyId: waterSupplyId, 
+              isActive: true, 
+              sourceTypeOfWater: waterSupplyTypeInput.value?.getCode().toString() ?? '',
+              abilityOfProductWater: capacityInput.value, 
+              undergroupPoolStorage: containerInput.value, 
+              poolAir: airPoolInput.value, 
+              poolFilter: filterTankInput.value?.getCode()==0 ? '18':'19', 
+              numberOfLink: connectorInput.value, 
+              waterQualityCheck: qualityWaterCheckInput.value?.getCode() ==0 ? '10':'11', 
+              status: pipeStatusInput.value?.getCode() ==0 ? '22':'23', 
+              statusNoReason: '',        
+              );
+            repository.addWaterSupplyPipe(payload: payloadSmallPipe).then((smallpipe){
+              final payloadPipeOptionValue = PayloadSmallPipeOptionValueModel(
+                waterSupplyWellId: smallpipe.id?? 0, 
+                optionId: 1, 
+                valueId: waterSupplyTypeInput.value?.getCode() ?? 0, 
+                isActive: true
+                );
+            repository.addWaterSupplySmallPipeOptionValue(payload: payloadPipeOptionValue);    
+
+            });  
+          }
+          //Pond
+          else if(state.waterSupplyTypeId ==4){
+            final payloadPond = PayloadPondModel(
+              waterSupplyId: waterSupplyId, 
+              width: pondLatInput.value, 
+              length: pondLongInput.value, 
+              height: pondDepthInput.value, 
+              //poolFilter: pondFilterInput.value?.getCode()==0 ? '0':'1', wellTypeInput.value?.getCode().toString() ?? '',
+              poolFilter: pondFilterInput.value?.getCode().toString()??'',
+              status: pondStatusInput.value?.getCode().toString()??'', 
+              statusNoReason: '', 
+              isActive: true, 
+              typeOfPond: pondTypeInput.value?.getCode() ==0 ? '32':'33', 
+              isSummerHasWater: seasonInput.value?.getCode() == 0? '34':'35',  
+              //poolFilterObj: ''
+              );
+/*               repository.addWaterSupplyPond(payload: payloadPond).then((pond){
+                final payloadPondOptionValue = PayloadPondOptionValueModel(
+                  waterSupplyWellId: pond.id?? 0,
+                  optionId: 1,
+                  valueId: waterSupplyTypeInput.value?.getCode()?? 0,
+                  isActive: true);
+              repository.addWaterSupplyPondOptionValue(payload: payloadPondOptionValue);    
+              });
+              repository.addWaterSupplyPond(payload: payloadPond); */
+
+               repository.addWaterSupplyPond(payload: payloadPond);
               
+              
+          }
+          //Rain
+          else if(state.waterSupplyTypeId==5){
+            final payloadRain = PayloadRainModel(
+              waterSupplyId: waterSupplyId, 
+              typeOfUsing: usingTypeInput.value?.getCode().toString() ?? '', 
+              capacityOfRainWaterHarvesting: capacityTypeInput.value?.getCode().toString() ?? '', 
+              status: tankStatusInput.value?.getCode().toString() ?? '', 
+              statusNoReason: '', 
+              isActive: true,
+              );
+              
+              repository.addWaterSupplyRain(payload: payloadRain);
+          
+          }
+          else if(state.waterSupplyTypeId==6)
+          {
+            final payloadPipeModle = PayloadPipeModel(
+              waterSupplyId: waterSupplyId, 
+              isActive: true, 
+              sourceTypeOfWater: waterSupplyTypeInput.value?.getCode().toString() ?? '',
+              abilityOfProductWater: capacityInput.value, 
+              undergroupPoolStorage: containerInput.value, 
+              poolAir: airPoolInput.value, 
+              poolFilter: filterTankInput.value?.getCode()==0 ? '18':'19', 
+              numberOfLink: connectorInput.value, 
+              waterQualityCheck: qualityWaterCheckInput.value?.getCode() ==0 ? '10':'11', 
+              status: pipeStatusInput.value?.getCode() ==0 ? '22':'23', 
+              statusNoReason: '', 
+              pipeLength: pipeLenghtInput.value, 
+              areaCovering: coverageInput.value , 
+              isHasLicense: '', 
+              licenseExpiredDate:'2023-05-16', // docInput.value,
+              licenseRegisteredDate:'2023-05-16'); // docInput.value,
+          }
+
+          else if(state.waterSupplyTypeId==7){
+            final payloadAir = PayloadairModel(
+              waterSupplyId: waterSupplyId, 
+              sourceTypeOfWater: wellTypeInput.value?.getCode().toString() ?? '', 
+              abiltyOfProduceWater: capacityInput.value,  
+              filterSystem: filterTankInput.value?.getCode()==0 ? '0':'1', 
+              waterQualityChecking: qualityWaterCheckInput.value?.getCode() ==0 ? '10':'11', 
+               status: tankStatusInput.value?.getCode().toString() ?? '', 
+               statusNoReason: '', 
+               isActive: true
+               );
+              repository.addWaterSupplyAir(payload: payloadAir).then((pond){
+                final payloadAirOptionValue = PayloadairOptionValueModel(
+                  waterSupplyWellId: pond.id?? 0,
+                  optionId: 1,
+                  valueId: waterSupplyTypeInput.value?.getCode()?? 0,
+                  isActive: true);
+              repository.addWaterSupplyAirOptionValue(payload: payloadAirOptionValue);    
+              });
+          
           }
 
         });
+        //Air
+      
         Application.eventBus.fire(const WaterSupplyUpdated());
         emit(state.copyWith(formzStatus: FormzStatus.submissionSuccess));
       } catch (_) {

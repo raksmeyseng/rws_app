@@ -14,6 +14,7 @@ class WaterSupplyPondModel{
     required this.statusObj,
     required this.isSummerHasWaterObj,
     required this.statusNoReason,
+    required this.typeOfPondObj,
   
     });
    
@@ -37,6 +38,9 @@ class WaterSupplyPondModel{
   List<WaterSupplyOptionValueModel> isSummerHasWaterObj;
   @JsonKey(name: 'status_obj')
   List<WaterSupplyOptionValueModel> statusObj;
+  @JsonKey(name: 'type_of_pond_obj')
+  List<WaterSupplyOptionValueModel> typeOfPondObj;
+  
 
 
   factory WaterSupplyPondModel.fromJson(Map<String, dynamic> json) =>

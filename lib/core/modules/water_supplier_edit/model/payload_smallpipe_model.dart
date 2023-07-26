@@ -1,11 +1,11 @@
 import 'package:json_annotation/json_annotation.dart';
 
-part 'payload_pipe_model.g.dart';
+part 'payload_smallpipe_model.g.dart';
 
 @JsonSerializable(explicitToJson: true)
-class PayloadPipeModel{
+class PayloadSmallPipeModel{
 
-  PayloadPipeModel({
+  PayloadSmallPipeModel({
     this.id,
     required this.waterSupplyId,
     required this.isActive,
@@ -17,18 +17,14 @@ class PayloadPipeModel{
     required this.numberOfLink,
     required this.waterQualityCheck,
     required this.status,
-    required this.statusNoReason,
-    required this.pipeLength,
-    required this.areaCovering,
-    required this.isHasLicense,
-    required this.licenseExpiredDate,
-    required this.licenseRegisteredDate,
+    required this.statusNoReason
   }); 
 
   @JsonKey(name:'id')
   int? id;
   @JsonKey(name:'watersupply_id')
   int waterSupplyId;
+
   @JsonKey(name:'is_active')
   bool isActive;
   @JsonKey(name:'source_type_of_water')
@@ -46,41 +42,32 @@ class PayloadPipeModel{
   @JsonKey(name:'water_quality_check')
   String waterQualityCheck;
   @JsonKey(name:'status')
-  String status;  
+  String status;
   @JsonKey(name:'status_no_reason')
   String statusNoReason;
-  @JsonKey(name:'pipe_length')
-  String pipeLength;
-  @JsonKey(name:'area_covering')
-  String areaCovering;
-  @JsonKey(name:'is_has_license')
-  String isHasLicense;
-  @JsonKey(name:'license_registered_date')
-  String licenseRegisteredDate;
-  @JsonKey(name:'license_expired_date')
-  String licenseExpiredDate;
 
-  factory PayloadPipeModel.fromJson(Map<String, dynamic> json) =>
-      _$PayloadPipeModelFromJson(json);
+  
+  factory PayloadSmallPipeModel.fromJson(Map<String, dynamic> json) =>
+      _$PayloadSmallPipeModelFromJson(json);
 
-  Map<String, dynamic> toJson() => _$PayloadPipeModelToJson(this);
+  Map<String, dynamic> toJson() => _$PayloadSmallPipeModelToJson(this);
 
 
 }
 
 
 @JsonSerializable(explicitToJson: true)
-class PayloadPipeOptionValueModel{
+class PayloadSmallPipeOptionValueModel{
 
-  PayloadPipeOptionValueModel({
-    required this.waterSupplyPipeId,
+  PayloadSmallPipeOptionValueModel({
+    required this.waterSupplyWellId,
     required this.optionId,
     required this.valueId,
     required this.isActive
   });
 
   @JsonKey(name:'water_supply_pipe_id')
-  int waterSupplyPipeId;
+  int waterSupplyWellId;
   @JsonKey(name:'option_id')
   int optionId;
   @JsonKey(name:'value_id')
@@ -88,9 +75,9 @@ class PayloadPipeOptionValueModel{
   @JsonKey(name:'is_active')
   bool isActive;
 
-  factory PayloadPipeOptionValueModel.fromJson(Map<String, dynamic> json) =>
-      _$PayloadPipeOptionValueModelFromJson(json);
+  factory PayloadSmallPipeOptionValueModel.fromJson(Map<String, dynamic> json) =>
+      _$PayloadSmallPipeOptionValueModelFromJson(json);
 
-  Map<String, dynamic> toJson() => _$PayloadPipeOptionValueModelToJson(this);
+  Map<String, dynamic> toJson() => _$PayloadSmallPipeOptionValueModelToJson(this);
 
 }
