@@ -146,7 +146,7 @@ class _MyDraftItem extends StatelessWidget {
           ),
           _InfoItem(
             CaptionWidget('${S.of(context).village} :'),
-            TextWidget(item.village.nameEn),
+            TextWidget(item.village?.nameEn),
           ),
           _InfoItem(
             CaptionWidget('${S.of(context).commune} :'),

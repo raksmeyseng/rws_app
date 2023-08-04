@@ -9,6 +9,7 @@ import 'package:rws_app/core/modules/app/view/app.dart';
 import 'package:rws_app/core/services/local_storage_service.dart';
 import 'package:rws_app/simple_bloc_observer.dart';
 
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   HttpOverrides.global = MyHttpOverrides();
@@ -29,7 +30,7 @@ void main() async {
   }
 
   Bloc.observer = SimpleBlocObserver();
-  await FlutterDownloader.initialize();
+  //await FlutterDownloader.initialize();
   runApp(const RwsApp());
   
 }

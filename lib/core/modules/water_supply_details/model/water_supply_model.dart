@@ -28,7 +28,7 @@ class WaterSupplyModel {
     required this.address,
     required this.district,
     required this.commune,
-    required this.village,
+    this.village,
     required this.status,
     required this.waterSupplyCode,
     required this.user,
@@ -106,7 +106,7 @@ class WaterSupplyModel {
   @JsonKey(name: 'commune_id')
   CommuneModel commune;
   @JsonKey(name: 'village_id')
-  VillageModel village;
+  VillageModel? village;
   @JsonKey(name : 'main_status')
   StatusModel status;
   @JsonKey(name : 'water_supply_code')

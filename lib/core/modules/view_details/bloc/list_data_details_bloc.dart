@@ -58,13 +58,13 @@ class ListDataDetailsBloc
       final waterSupply =
           await repository.getWaterSupplyViewDetail(state.waterSupplyId);
 
-          IsolateNameServer.registerPortWithName(_port.sendPort, 'downloader_send_port');
-          _port.listen((dynamic data) {
-            String id = data[0];
-            DownloadTaskStatus status = data[1];
-            int progress = data[2];
+          // IsolateNameServer.registerPortWithName(_port.sendPort, 'downloader_send_port');
+          // _port.listen((dynamic data) {
+          //   String id = data[0];
+          //   DownloadTaskStatus status = data[1];
+          //   int progress = data[2];
             
-          });
+          // });
 
     //FlutterDownloader.registerCallback(downloadCallback);
 

@@ -121,7 +121,7 @@ class _ContentView extends StatelessWidget {
               ),
               _InfoItem(
                 CaptionWidget('${titleViews[2]} :'),
-                TextWidget(state.waterSupply?.address.nameEn),
+                TextWidget(state.waterSupply?.address.nameKh),
               ),
               const Padding(
                 padding: EdgeInsets.symmetric(vertical: 8),
@@ -129,7 +129,7 @@ class _ContentView extends StatelessWidget {
               ),
               _InfoItem(
                 CaptionWidget('${titleViews[3]} :'),
-                TextWidget(state.waterSupply?.district.nameEn),
+                TextWidget(state.waterSupply?.district.nameKh),
               ),
               const Padding(
                 padding: EdgeInsets.symmetric(vertical: 8),
@@ -137,7 +137,7 @@ class _ContentView extends StatelessWidget {
               ),
               _InfoItem(
                 CaptionWidget('${titleViews[4]} :'),
-                TextWidget(state.waterSupply?.commune.nameEn),
+                TextWidget(state.waterSupply?.commune.nameKh),
               ),
               const Padding(
                 padding: EdgeInsets.symmetric(vertical: 8),
@@ -145,7 +145,7 @@ class _ContentView extends StatelessWidget {
               ),
               _InfoItem(
                 CaptionWidget('${titleViews[5]} :'),
-                TextWidget(state.waterSupply?.village.nameEn),
+                TextWidget(state.waterSupply?.village?.nameKh),
               ),
               const Padding(
                 padding: EdgeInsets.symmetric(vertical: 8),

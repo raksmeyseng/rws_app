@@ -90,50 +90,50 @@ class _MobileViewState extends State<_MobileView> {
             if (snapshot.hasError || snapshot.data == false) {
               return const LoadDataFailed();
             }
-            return Column(
+            return const Column(
               children: [
-                const _ProgressIndicator(),
-                Expanded(
-                  child: WebView(
-                    key: Key(state.url),
-                    initialUrl: state.url,
-                    backgroundColor: Theme.of(context).cardColor,
-                    javascriptMode: JavascriptMode.unrestricted,
-                    onWebViewCreated: (controller) {
-                      webViewController = controller;
-                    },
-                    navigationDelegate: (navigation) {
-                      if (navigation.url != state.url) {
-                        // launchUrlString(navigation.url);
-                        copyTextToClipboard(context, navigation.url);
-                        return NavigationDecision.prevent;
-                      }
-                      return NavigationDecision.navigate;
-                    },
-                    onPageFinished: (url) async {
-                      if (!mounted) return;
+                 _ProgressIndicator()
+                // Expanded(
+                //   child: WebView(
+                //     key: Key(state.url),
+                //     initialUrl: state.url,
+                //     backgroundColor: Theme.of(context).cardColor,
+                //     javascriptMode: JavascriptMode.unrestricted,
+                //     onWebViewCreated: (controller) {
+                //       webViewController = controller;
+                //     },
+                //     navigationDelegate: (navigation) {
+                //       if (navigation.url != state.url) {
+                //         // launchUrlString(navigation.url);
+                //         copyTextToClipboard(context, navigation.url);
+                //         return NavigationDecision.prevent;
+                //       }
+                //       return NavigationDecision.navigate;
+                //     },
+                //     onPageFinished: (url) async {
+                //       if (!mounted) return;
 
-                      if (isAppDarkMode()) {
-                        // ignore: prefer_single_quotes
-                        await webViewController?.runJavascript("""
-                              var body = document.getElementsByTagName("body")[0];
-                              body.setAttribute("style", "padding:16px;color:#ffffff;");
-                            """);
-                      } else {
-                        // ignore: prefer_single_quotes
-                        await webViewController?.runJavascript("""
-                              var body = document.getElementsByTagName("body")[0];
-                              body.setAttribute("style", "padding:16px");
-                            """);
-                      }
-                    },
-                    onProgress: (progress) {
-                      if (mounted) {
-                        context.read<HtmlBloc>().add(ProgressChanged(progress));
-                      }
-                    },
-                  ),
-                ),
+                //       if (isAppDarkMode()) {
+                //         // ignore: prefer_single_quotes
+                //         await webViewController?.runJavascript("""
+                //               var body = document.getElementsByTagName("body")[0];
+                //               body.setAttribute("style", "padding:16px;color:#ffffff;");
+                //             """);
+                //       } else {
+                //         // ignore: prefer_single_quotes
+                //         await webViewController?.runJavascript("""
+                //               var body = document.getElementsByTagName("body")[0];
+                //               body.setAttribute("style", "padding:16px");
+                //             """);
+                //       }
+                //     },
+                //     onProgress: (progress) {
+                //       if (mounted) {
+                //         context.read<HtmlBloc>().add(ProgressChanged(progress));
+                //       }
+                //     },
+                //   ),
+                // ),
               ],
             );
           },

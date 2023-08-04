@@ -41,6 +41,7 @@ ProvinceModel _$ProvinceModelFromJson(Map<String, dynamic> json) =>
     ProvinceModel(
       id: json['id'] as int,
       nameEn: json['name_en'] as String,
+      nameKh: json['name_kh'] as String,
       provincedistrict: (json['provincedistrict'] as List<dynamic>?)
           ?.map((e) => DistrictModel.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -50,6 +51,7 @@ Map<String, dynamic> _$ProvinceModelToJson(ProvinceModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name_en': instance.nameEn,
+      'name_kh':instance.nameKh,
       'provincedistrict':
           instance.provincedistrict?.map((e) => e.toJson()).toList(),
     };
@@ -58,6 +60,7 @@ DistrictModel _$DistrictModelFromJson(Map<String, dynamic> json) =>
     DistrictModel(
       id: json['id'] as int,
       nameEn: json['name_en'] as String,
+      nameKh: json['name_kh'] as String,
       districtCommnue: (json['districtcommnue'] as List<dynamic>?)
           ?.map((e) => CommuneModel.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -67,6 +70,7 @@ Map<String, dynamic> _$DistrictModelToJson(DistrictModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name_en': instance.nameEn,
+      'name_kh': instance.nameKh,
       'districtcommnue':
           instance.districtCommnue?.map((e) => e.toJson()).toList(),
     };
@@ -74,6 +78,7 @@ Map<String, dynamic> _$DistrictModelToJson(DistrictModel instance) =>
 CommuneModel _$CommuneModelFromJson(Map<String, dynamic> json) => CommuneModel(
       id: json['id'] as int,
       nameEn: json['name_en'] as String,
+      nameKh: json['name_kh'] as String,
       commnuevillage: (json['commnuevillage'] as List<dynamic>?)
           ?.map((e) => VillageModel.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -83,6 +88,7 @@ Map<String, dynamic> _$CommuneModelToJson(CommuneModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name_en': instance.nameEn,
+      'name_kh' : instance.nameKh,
       'commnuevillage':
           instance.commnuevillage?.map((e) => e.toJson()).toList(),
     };
@@ -90,12 +96,14 @@ Map<String, dynamic> _$CommuneModelToJson(CommuneModel instance) =>
 VillageModel _$VillageModelFromJson(Map<String, dynamic> json) => VillageModel(
       id: json['id'] as int,
       nameEn: json['name_en'] as String,
+      nameKh: json['name_kh'] as String,
     );
 
 Map<String, dynamic> _$VillageModelToJson(VillageModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name_en': instance.nameEn,
+      'name_kh' : instance.nameKh
     };
 
 StatusModel _$StatusModelFromJson(Map<String, dynamic> json) => StatusModel(

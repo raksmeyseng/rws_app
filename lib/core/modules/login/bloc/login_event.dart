@@ -32,3 +32,7 @@ class LoginSubmitted extends LoginEvent {
 class PasswordVisibilityToggled extends LoginEvent {
   const PasswordVisibilityToggled();
 }
+
+class LoginStarted extends LoginEvent{
+  const LoginStarted();
+}

@@ -12,7 +12,7 @@ import 'package:rws_app/core/widgets/load_data_failed.dart';
 import 'package:rws_app/utils/common_utils.dart';
 import 'package:rws_app/utils/lifecycle_event_handler.dart';
 
-import '../../water_supply_details/model/water_supply_model.dart';
+import '../model/water_supply_map_model.dart';
 
 class MapsView extends StatefulWidget {
   const MapsView({super.key});
@@ -164,7 +164,7 @@ class _MapsViewState extends State<MapsView> {
     );
   }
 
-  Widget _buildChild(BaseStatusEnum status,List<WaterSupplyModel> waterSupplys) {
+  Widget _buildChild(BaseStatusEnum status,List<WaterSupplyMapModel> waterSupplys) {
     switch (status) {
       case BaseStatusEnum.success:
       // ignore: prefer_collection_literals

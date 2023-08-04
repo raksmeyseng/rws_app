@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:json_annotation/json_annotation.dart';
 
 part 'my_draft_model.g.dart';
@@ -58,12 +60,15 @@ class ProvinceModel {
   int id;
   @JsonKey(name: 'name_en')
   String nameEn;
+  @JsonKey(name:'name_kh')
+  String nameKh;
   @JsonKey(name: 'provincedistrict')
   List<DistrictModel>? provincedistrict;
 
   ProvinceModel({
     required this.id,
     required this.nameEn,
+    required this.nameKh,
     this.provincedistrict,
   });
 
@@ -78,12 +83,15 @@ class DistrictModel {
   int id;
   @JsonKey(name: 'name_en')
   String nameEn;
+  @JsonKey(name:'name_kh')
+  String nameKh;
   @JsonKey(name: 'districtcommnue')
   List<CommuneModel>? districtCommnue;
 
   DistrictModel({
     required this.id,
     required this.nameEn,
+    required this.nameKh,
     this.districtCommnue,
   });
 
@@ -98,12 +106,15 @@ class CommuneModel {
   int id;
   @JsonKey(name: 'name_en')
   String nameEn;
+  @JsonKey(name:'name_kh')
+  String nameKh;
   @JsonKey(name: 'commnuevillage')
   List<VillageModel>? commnuevillage;
 
   CommuneModel({
     required this.id,
     required this.nameEn,
+    required this.nameKh,
     this.commnuevillage,
   });
 
@@ -118,8 +129,10 @@ class VillageModel {
   int id;
   @JsonKey(name: 'name_en')
   String nameEn;
+  @JsonKey(name:'name_kh')
+  String nameKh;
 
-  VillageModel({required this.id, required this.nameEn});
+  VillageModel({required this.id, required this.nameEn,required this.nameKh});
   factory VillageModel.fromJson(Map<String, dynamic> json) =>
       _$VillageModelFromJson(json);
   Map<String, dynamic> toJson() => _$VillageModelToJson(this);

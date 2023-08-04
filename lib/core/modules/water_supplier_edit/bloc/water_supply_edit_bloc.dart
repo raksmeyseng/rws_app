@@ -452,14 +452,14 @@ class WaterSupplyEditBloc
           provinceInput: WaterSupplyInput.pure(waterSupply.address.id.toString()),
           districtInput: WaterSupplyInput.pure(waterSupply.district.id.toString()),
           communeInput: WaterSupplyInput.pure(waterSupply.commune.id.toString()),
-          villageInput: WaterSupplyInput.pure(waterSupply.village.id.toString()),
+          villageInput: WaterSupplyInput.pure(waterSupply.village!.id.toString()),
 
         ));
 
         provinceController.text=waterSupply.address.nameEn;
         districtController.text=waterSupply.district.nameEn;
         communeController.text=waterSupply.commune.nameEn;
-        villageController.text=waterSupply.village.nameEn;
+        villageController.text=waterSupply.village!.nameEn;
 
 
     } catch (e) {

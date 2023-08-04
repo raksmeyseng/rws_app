@@ -10,6 +10,7 @@ import 'package:rws_app/core/modules/authentication/repositories/user_repository
 import 'package:rws_app/core/modules/login/models/password_input.dart';
 import 'package:rws_app/core/modules/login/models/username_input.dart';
 
+
 part 'login_event.dart';
 part 'login_state.dart';
 
@@ -40,6 +41,14 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       return _onPasswordVisibilityToggled(event, emit);
     }
 
+    if(event is LoginStarted){
+      return _onLoginStarted(event,emit);
+    }
+
+  }
+
+  void _onLoginStarted(LoginStarted event,Emitter<LoginState> emit){
+    
   }
 
   void _onUsernameChanged(

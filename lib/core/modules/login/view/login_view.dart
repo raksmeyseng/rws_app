@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
@@ -12,6 +14,7 @@ import 'package:rws_app/core/widgets/toggle_theme_widget.dart';
 import 'package:rws_app/core/widgets/wrapper.dart';
 import 'package:rws_app/translation/generated/l10n.dart';
 import 'package:rws_app/utils/common_utils.dart';
+import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 class LoginView extends StatelessWidget {
   const LoginView({Key? key}) : super(key: key);
@@ -81,6 +84,8 @@ class _ContentView extends StatelessWidget {
                         ),
                         const SizedBox(height: 32),
                         const _LoginButton(),
+                        const SizedBox(height: 32),
+                        const _SignInWithAppleId(),
                       ],
                     ),
                   ),
@@ -204,4 +209,34 @@ class _LoginButton extends StatelessWidget {
     FocusScope.of(context).unfocus();
     context.read<LoginBloc>().add(const LoginSubmitted());
   }
+}
+
+class _SignInWithAppleId extends StatelessWidget{
+  const _SignInWithAppleId({Key? key}):super(key: key);
+  
+  @override
+  Widget build(BuildContext context) {
+    if(Platform.isIOS){
+      return SignInWithAppleButton(
+          onPressed: () async {
+            final credential = await SignInWithApple.getAppleIDCredential(
+              scopes: [
+                AppleIDAuthorizationScopes.email,
+                AppleIDAuthorizationScopes.fullName,
+              ],
+            );
+
+            print(credential);
+
+          // Now send the credential (especially `credential.authorizationCode`) to your server to create a session
+          // after they have been validated with Apple (see `Integration` section for more information on how to do this)
+        },
+      );
+    }else{
+      return const SizedBox(height: 32);
+    }
+    
+  }
+
+
 }

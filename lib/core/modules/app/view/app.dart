@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,6 +16,7 @@ import 'package:rws_app/core/widgets/update_dialog.dart';
 import 'package:rws_app/translation/generated/l10n.dart';
 import 'package:rws_app/utils/common_utils.dart';
 import 'package:rws_app/utils/helpers/dialog_helper.dart';
+//import 'package:apple_sign_in/apple_sign_in.dart';
 
 class RwsApp extends StatefulWidget {
   const RwsApp({Key? key}) : super(key: key);
@@ -28,6 +31,11 @@ class _RwsAppState extends State<RwsApp> {
     super.initState();
     listenAndHandleSystemAppearanceChanged();
     // NetworkHelper.subscribe();
+    if(Platform.isIOS){                                                      //check for ios if developing for both android & ios
+      // AppleSignIn.onCredentialRevoked.listen((_) {
+         print('Credentials revoked');
+      // });
+    }
   }
 
   @override

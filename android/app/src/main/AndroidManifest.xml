@@ -7,7 +7,7 @@
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
 
    <application
-        android:label="rws_app"
+        android:label="RWSDM"
         android:name="${applicationName}"
         android:usesCleartextTraffic="true"
         android:icon="@mipmap/ic_launcher">

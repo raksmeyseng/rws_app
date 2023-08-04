@@ -18,7 +18,7 @@ WaterSupplyModel _$WaterSupplyModelFromJson(Map<String, dynamic> json) =>
       commune:
           CommuneModel.fromJson(json['commune_id'] as Map<String, dynamic>),
       village:
-          VillageModel.fromJson(json['village_id'] as Map<String, dynamic>),
+          VillageModel.fromJson(json['village_id']),
       status: StatusModel.fromJson(json['main_status'] as Map<String, dynamic>),
       waterSupplyCode: json['water_supply_code'] as String,
       user: UserModel.fromJson(json['created_by'] as Map<String, dynamic>),
