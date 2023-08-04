@@ -60,5 +60,5 @@ class AppConstant {
   static const String inlineSeparator = '•';
   static const bool isCurvedLineChart = false;
   static const int wrongPinAttemptLimit = 5;
-  static const String mainURL = 'http://18.188.127.229/en/api/';
+  static const String mainURL = 'http://18.188.96.242/en/api/';
 }
