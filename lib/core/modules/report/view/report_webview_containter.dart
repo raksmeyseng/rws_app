@@ -38,7 +38,7 @@ class _WebViewAppState extends State<WebViewApp> {
       },
     ),
   )
-  ..loadRequest(Uri.parse('http://18.188.96.242/en/watersupply/reportwellbyprovince/'));
+  ..loadRequest(Uri.parse('http://18.188.96.242/en/watersupply/reportwellbyprovince/token/'));
     super.initState();
   }
 
