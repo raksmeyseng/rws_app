@@ -16,6 +16,9 @@ import 'package:rws_app/core/modules/view_details/view/list_data_details_page.da
 import 'package:rws_app/core/modules/water_supplier_edit/view/water_supply_edit_page.dart';
 import 'package:rws_app/core/modules/water_supply_details/view/water_supply_detials_page.dart';
 
+import '../../core/modules/report/view/report_view.dart';
+import '../../core/modules/report/view/report_webview_containter.dart';
+
 extension ObjectExtension on Object? {
   dynamic getValue(String key, dynamic alt) {
     if (this == null) return alt;
@@ -59,7 +62,7 @@ Page aboutBuilder(BuildContext context, GoRouterState state) {
 Page reportBuilder(BuildContext context, GoRouterState state) {
   return MaterialPage<void>(
     key: state.pageKey,
-    child: const ReportPage(),
+    child: const ReportView(),
   );
 }
 
@@ -132,6 +135,16 @@ Page waterSupplyViewDetailBuilder(BuildContext context, GoRouterState state) {
       title: title,
     ),
   );
+}
+
+Page reportDetailBuilder(BuildContext context, GoRouterState state){
+  final url = state.extra.getValue('url', '');
+  return MaterialPage<void>(
+    key: state.pageKey,
+    child: WebViewApp(
+      url: url,
+    ),
+  ); 
 }
 
 Page waterSupplyEditBuilder(BuildContext context, GoRouterState state) {
