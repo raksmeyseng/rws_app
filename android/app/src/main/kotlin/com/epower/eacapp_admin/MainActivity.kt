@@ -1,4 +1,4 @@
-package com.rws_app
+package io.mrd.rwsdm
 
 import io.flutter.embedding.android.FlutterActivity
 

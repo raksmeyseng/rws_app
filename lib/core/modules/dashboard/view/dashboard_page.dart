@@ -213,17 +213,17 @@ class _AppLogo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.all(24.0),
+    return  Padding(
+      padding: const EdgeInsets.all(24.0),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-           AppLogo(size: 40),
-           SizedBox(width: 16.0),
+           const AppLogo(size: 40),
+           const SizedBox(width: 16.0),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
+            children: const [
               TextWidget(
                 'ក្រសួងអភិវឌ្ឃន៍ជនបទ',
                 bold: true,

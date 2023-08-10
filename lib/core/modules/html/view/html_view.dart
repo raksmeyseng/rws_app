@@ -90,8 +90,8 @@ class _MobileViewState extends State<_MobileView> {
             if (snapshot.hasError || snapshot.data == false) {
               return const LoadDataFailed();
             }
-            return const Column(
-              children: [
+            return Column(
+              children: const [
                  _ProgressIndicator()
                 // Expanded(
                 //   child: WebView(
