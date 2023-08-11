@@ -4,6 +4,8 @@ import 'package:rws_app/core/enum/base_status_enum.dart';
 import 'package:rws_app/core/modules/water_supply_details/model/water_supply_model.dart';
 import 'package:rws_app/core/modules/water_supply_details/repositories/water_supply_detials_repository.dart';
 
+import '../model/water_supply_list_model.dart';
+
 part 'water_supply_detials_event.dart';
 part 'water_supply_detials_state.dart';
 

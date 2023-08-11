@@ -14,6 +14,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../config/routes/app_route.dart';
 import '../../../../translation/generated/l10n.dart';
+import '../model/water_supply_list_model.dart';
 
 class WaterSupplyDetialsView extends StatelessWidget {
   const WaterSupplyDetialsView({super.key});
@@ -98,7 +99,7 @@ class _LoadingView extends StatelessWidget {
 class _WaterSupplyItem extends StatelessWidget {
   const _WaterSupplyItem(this.item);
 
-  final WaterSupplyModel item;
+  final WaterSupplyListModel item;
 
   @override
   Widget build(BuildContext context) {

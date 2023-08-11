@@ -42,7 +42,7 @@ class ApiPath {
       '${AppConstant.mainURL}watersupplytype/';
 
   static String getWaterSupplyList(int id) =>
-      'https://rwsapp.free.mockoapp.net/api/water-supply/$id';
+      '${AppConstant.mainURL}watersupplylistbytype/?water_supply_type_id=$id';
 
   //Irith Part
   static String getWaterSupplyListv2(int id) =>

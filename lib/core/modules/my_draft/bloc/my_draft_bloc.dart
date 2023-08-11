@@ -45,7 +45,7 @@ class MyDraftBloc extends Bloc<MyDraftEvent, MyDraftState> {
       emit(state.copyWith(status: BaseStatusEnum.inprogress));
 
       final userId = Application.authBloc.state.userToken?.user.id;
-      print(userId);
+      
 
       final mydraft = await repository.getMyDraftList(userId ?? 0);
 
