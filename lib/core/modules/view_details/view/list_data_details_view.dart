@@ -64,18 +64,18 @@ class _TabBar extends StatelessWidget {
             tabs: const [
               Padding(
                 padding: EdgeInsets.symmetric(vertical: 4.0),
-                child: Tab(text: 'មើលលម្អិត'),
+                child: Tab(text: 'ពត៌មានទូទៅ'),
               ),
               Padding(
                 padding: EdgeInsets.symmetric(vertical: 4.0),
-                child: Tab(text: 'Specific'),
+                child: Tab(text: 'ពត៌មានលម្អិត'),
               ),
               Padding(
                   padding: EdgeInsets.symmetric(vertical: 4.0),
                   child: Tab(text: 'ប៉ារ៉ាម៉ែត្រ')),
               Padding(
                 padding: EdgeInsets.symmetric(vertical: 4.0),
-                child: Tab(text: 'QR & Maps'),
+                child: Tab(text: 'QR Code'),
               )
             ],
           );
@@ -85,15 +85,15 @@ class _TabBar extends StatelessWidget {
             tabs: const [
               Padding(
                 padding: EdgeInsets.symmetric(vertical: 4.0),
-                child: Tab(text: 'មើលលម្អិត'),
+                child: Tab(text: 'ពត៌មានទូទៅ'),
               ),
               Padding(
                 padding: EdgeInsets.symmetric(vertical: 4.0),
-                child: Tab(text: 'Specific Field'),
+                child: Tab(text: 'ពត៌មានលម្អិត'),
               ),
               Padding(
                 padding: EdgeInsets.symmetric(vertical: 4.0),
-                child: Tab(text: 'QR & Maps'),
+                child: Tab(text: 'QR Code'),
               )
             ],
           );

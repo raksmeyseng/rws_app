@@ -167,7 +167,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "district": MessageLookupByLibrary.simpleMessage("ស្រុក/ខណ្ឌ"),
         "do_not_have_acc":
             MessageLookupByLibrary.simpleMessage("មិនមានគណនីប្រើប្រាស់?"),
-        "draft": MessageLookupByLibrary.simpleMessage("ពង្រាង"),
+        "draft": MessageLookupByLibrary.simpleMessage("សេចក្តីព្រាង"),
         "edit_account":
             MessageLookupByLibrary.simpleMessage("កែប្រែគណនីប្រើប្រាស់"),
         "edit_news": MessageLookupByLibrary.simpleMessage("កែប្រែព័ត៌មាន"),
