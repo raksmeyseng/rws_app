@@ -1,7 +1,5 @@
 import 'dart:convert';
 import 'dart:io';
-
-import 'package:universal_html/html.dart' as html;
 import 'dart:typed_data';
 
 import 'package:path_provider/path_provider.dart';
@@ -107,10 +105,11 @@ class ListDataDetailRepository extends RestApiService{
 
   
   Future<void> getExcelFile() async{
+    //final res = await post(ApiPath.getReportExcel);
     final res = await post(ApiPath.getReportExcel);
     final Uint8List bytes = Uint8List.fromList(utf8.encode(res));
     //var file = await writeFile(bytes, 'name.xlsx');
-    await writeCounter(res,'name.xlsx');
+    final file =await writeCounter(res,'myname');
     // print(res);
     // excel(res);
     //return res;
@@ -182,18 +181,27 @@ class ListDataDetailRepository extends RestApiService{
   }
   
   static Future<String> get _localPath async {
-    // final directory = await getApplicationDocumentsDirectory();
-    // return directory.path;
+
+    var status = await Permission.storage.status;
+    if (!status.isGranted) {
+      // If not we will ask for permission first
+      await Permission.storage.request();
+    }
+
+    final directory = await getApplicationDocumentsDirectory();
+    return directory.path;
+
     // To get the external path from device of download folder
-    final String directory = await getExternalDocumentPath();
-    return directory;
+    //final String directory = await getExternalDocumentPath();
+    //return directory;
   }
   
 static Future<File> writeCounter(String bytes,String name) async {
   final path = await _localPath;
     // Create a file for the path of
       // device and file name with extension
-    File file= File('$path/$name');
+      final file = File('${(await getTemporaryDirectory()).path}/$name');
+    //File file= File('$path/$name');
     print("Save file");
       
       // Write the data in the file you have created
