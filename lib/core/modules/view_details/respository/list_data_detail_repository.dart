@@ -1,3 +1,9 @@
+import 'dart:convert';
+import 'dart:io';
+
+import 'package:universal_html/html.dart' as html;
+import 'dart:typed_data';
+
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:rws_app/config/routes/application.dart';
@@ -99,20 +105,99 @@ class ListDataDetailRepository extends RestApiService{
 
   }
 
-  void _downloadExcel() async{
-    final status = await Permission.storage.request();
-
-    if(status.isGranted) {
-      final externalDir = await getExternalStorageDirectory();
-
-      final id = await FlutterDownloader.enqueue(
-          url: 'http://18.222.12.231/en/api/exportcsvwatersupply/',
-          savedDir: externalDir!.path,
-        showNotification: true,
-        openFileFromNotification: true,
-      );
-    } else {
-      print('Permission Denied');
-    }
+  
+  Future<void> getExcelFile() async{
+    final res = await post(ApiPath.getReportExcel);
+    final Uint8List bytes = Uint8List.fromList(utf8.encode(res));
+    //var file = await writeFile(bytes, 'name.xlsx');
+    await writeCounter(res,'name.xlsx');
+    // print(res);
+    // excel(res);
+    //return res;
   }
+
+    Future<void> excel(
+    final dynamic response,
+  ) async {
+    final Uint8List bytes = Uint8List.fromList(utf8.encode(response));
+      //final header = response.headers.value('content-disposition');
+      //final fileName = DioHelper.extractFilename(header);
+      const fileName='sample';
+      // Create a download link in the web app
+      final dir = await getExternalStorageDirectory(); 
+      final myImagePath = dir!.path + "/myimg.xlsx"; 
+      File imageFile = File(myImagePath); 
+      if(! await imageFile.exists())
+      {   
+        imageFile.create(recursive: true); 
+        } 
+        imageFile.writeAsBytes(bytes);
+
+      // html.AnchorElement(
+      //   href: 'data:application/octet-stream;base64,${base64.encode(bytes)}',
+      // )
+      //   ..setAttribute('download', fileName)
+      //   ..click();
+  }
+
+  Future<File> writeFile(Uint8List data, String name) async {
+    // storage permission ask
+    // var status = await Permission.storage.status;
+    // if (!status.isGranted) {
+    //   await Permission.storage.request();
+    // }
+    // the downloads folder path
+    final path = await _localPath;
+
+    //String tempPath = tempDi;
+    var filePath = '$path/$name';
+    // 
+
+    // the data
+    var bytes = ByteData.view(data.buffer);
+    final buffer = bytes.buffer;
+    // save the data in the path
+    return File(filePath).writeAsBytes(buffer.asUint8List(data.offsetInBytes, data.lengthInBytes));
+  }
+
+  static Future<String> getExternalDocumentPath() async {
+    // To check whether permission is given for this app or not.
+    var status = await Permission.storage.status;
+    if (!status.isGranted) {
+      // If not we will ask for permission first
+      await Permission.storage.request();
+    }
+    Directory _directory = Directory("");
+    if (Platform.isAndroid) {
+       // Redirects it to download folder in android
+      _directory = Directory("/storage/emulated/0/Download");
+    } else {
+      _directory = await getApplicationDocumentsDirectory();
+    }
+  
+    final exPath = _directory.path;
+    print("Saved Path: $exPath");
+    await Directory(exPath).create(recursive: true);
+    return exPath;
+  }
+  
+  static Future<String> get _localPath async {
+    // final directory = await getApplicationDocumentsDirectory();
+    // return directory.path;
+    // To get the external path from device of download folder
+    final String directory = await getExternalDocumentPath();
+    return directory;
+  }
+  
+static Future<File> writeCounter(String bytes,String name) async {
+  final path = await _localPath;
+    // Create a file for the path of
+      // device and file name with extension
+    File file= File('$path/$name');
+    print("Save file");
+      
+      // Write the data in the file you have created
+    return file.writeAsString(bytes);
+  }
+
 }

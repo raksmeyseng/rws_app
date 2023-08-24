@@ -55,14 +55,16 @@ Page usersBuilder(BuildContext context, GoRouterState state) {
 Page aboutBuilder(BuildContext context, GoRouterState state) {
   return MaterialPage<void>(
     key: state.pageKey,
-    child: const AboutPage(),
+    //child: const AboutPage(),
+    child: const ReportPage(),
   );
 }
 
 Page reportBuilder(BuildContext context, GoRouterState state) {
   return MaterialPage<void>(
     key: state.pageKey,
-    child: const ReportView(),
+    //child: const ReportView(),
+    child: const ReportPage()
   );
 }
 

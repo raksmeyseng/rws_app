@@ -12,11 +12,11 @@ part 'report_event.dart';
 part 'report_state.dart';
 
 class ReportBloc extends Bloc<ReportEvent, ReportState> {
-  ReportBloc() : super(const ReportState.initial()) {
-    on<ReportEvent>(_onReportEvent, transformer: sequential());
+  ReportBloc(this.repository) : super(const ReportState.initial()) {
+    on<ReportEvent>(_onReportEvent);
   }
 
-  //final ReportRepository repository;
+  final ReportRepository repository;
 
   Future<void> _onReportEvent(
     ReportEvent event, 
@@ -35,23 +35,12 @@ class ReportBloc extends Bloc<ReportEvent, ReportState> {
 
     try{
       print('REport Start');
-      // var excel = Excel.createExcel();
-      // Sheet sheetObject = excel['Sheet1']; 
-      // var cell = sheetObject.cell(CellIndex.indexByString('A1'));
-      // cell.value = 8; // dynamic values support provided;
-
-      // List<String> data = ['Mr','Joseph', 'Isiyemi'];
-      // //Sheet sheetObject = selectedExcel['Sheet1'];
-      // sheetObject.appendRow(data);
+      
 
       // await Permission.storage.request();
 
-      //final report = repository.getExcelFile();
+      final report = repository.getExcelFile();
  
-      final taskId = await FlutterDownloader.enqueue(
-        url: 'http://18.222.12.231/en/api/exportcsvwatersupply/',
-        savedDir: 'the path of directory where you want to save downloaded files',
-      );
       emit(state.copyWith(status: BaseStatusEnum.success));
 
     }catch(e){

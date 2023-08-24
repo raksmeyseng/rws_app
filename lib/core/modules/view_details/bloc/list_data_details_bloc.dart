@@ -83,8 +83,8 @@ class ListDataDetailsBloc
       DeleteSubmited event, Emitter<ListDataDetailsState> emit) async {
     try {
       //await repository.deleteWaterSupply(state.waterSupplyId);
-      await repository.downloadExcel();
-
+      
+      await repository.getExcelFile();
       emit(state.copyWith(status: BaseStatusEnum.success));
     } catch (_) {
       emit(state.copyWith(deleteStatus: BaseStatusEnum.failure));

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rws_app/core/modules/report/bloc/report_bloc.dart';
 import 'package:rws_app/core/modules/report/view/report_view.dart';
 import 'package:rws_app/core/widgets/text_widget.dart';
+import 'package:rws_app/widgets/empty_widget.dart';
 
 import '../../../../config/themes/app_color.dart';
 import '../../../../translation/generated/l10n.dart';
@@ -17,7 +18,8 @@ class ReportPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => ReportBloc(),
+      create: (context) => ReportBloc(ReportRepository())
+      ..add(const ReportEventStated()),
       child: Scaffold(
           appBar: AppBar(
             backgroundColor: Theme.of(context).primaryColor,
@@ -33,7 +35,8 @@ class ReportPage extends StatelessWidget {
               onPressed: () => Navigator.of(context).pop(),
             ),
           ),
-          body: const ReportView(),
+          //body: const ReportView(),
+          body: const EmptyWidget(),
         ),
       );
 
