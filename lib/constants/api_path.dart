@@ -74,6 +74,7 @@ class ApiPath {
       '${AppConstant.mainURL}watersupplybyprovinceandmultiplestatus/?main_status=7%2C12&province_id=';
 
   static String getReportExcel= '${AppConstant.mainURL}download-result/excel';
+  static String getReportWord='${AppConstant.mainURL}download-result/docs';
 
 
   static String addWaterSupply =

@@ -107,13 +107,26 @@ class ListDataDetailRepository extends RestApiService{
 
   
   Future<void> getExcelFile() async{
-    final res = await post(ApiPath.getReportExcel);
+    final res = await post(ApiPath.getReportWord);
     final Uint8List bytes = Uint8List.fromList(utf8.encode(res));
     //var file = await writeFile(bytes, 'name.xlsx');
-    await writeCounter(res,'name.xlsx');
+    //await writeCounter(res,'name.xlsx');
+
+    // final filename='myname'+DateTime.now().millisecondsSinceEpoch.toString() + '.xlsx';
+    // await writeCounterAsByte(bytes, filename);
+
+
     // print(res);
     // excel(res);
     //return res;
+
+    var file;
+      try {
+          file = await writeToFile(bytes); // <= returns File
+      } catch(e) {
+          // catch errors here
+      }
+
   }
 
     Future<void> excel(
@@ -200,4 +213,48 @@ static Future<File> writeCounter(String bytes,String name) async {
     return file.writeAsString(bytes);
   }
 
+  static Future<File> writeCounterAsByte(Uint8List bytes,String name) async {
+  final path = await _localPath;
+    // Create a file for the path of
+      // device and file name with extension
+    File file= File('$path/$name');
+    print("Save file");
+      
+      // Write the data in the file you have created
+    return file.writeAsBytes(bytes);
+  }
+
+  void createFileRecursively(String folder, Uint8List response) async {// Get the image
+
+  Directory? tempDir = await getExternalStorageDirectory();
+  String extDir = tempDir!.path;
+
+  // Where folder in this case will be Tralien
+  Directory writeDir = Directory.fromUri(Uri(path: "$extDir/$folder")); // Join the folder and external storage
+  writeDir.createSync(recursive: true); // We first create the folder and file if it does not exist.
+  
+  String filename ='myfile' + DateTime.now().millisecondsSinceEpoch.toString();
+
+  File("$extDir/$folder/$filename.jpeg").writeAsBytes(response, flush: true); // Finally, we write the bytes into the file we just created
 }
+
+//=======================
+Future<File> writeToFile(Uint8List data) async {
+  var status = await Permission.storage.status;
+    if (!status.isGranted) {
+      // If not we will ask for permission first
+      await Permission.storage.request();
+    }
+    final buffer = data.buffer;
+    //Directory tempDir = await getTemporaryDirectory();
+    Directory tempDir=await getApplicationDocumentsDirectory();
+    String tempPath = tempDir.path;
+    var filePath = tempPath + '/file_01' + DateTime.now().millisecondsSinceEpoch.toString()+ '.doc'; // file_01.tmp is dump file, can be anything
+    return new File(filePath).writeAsBytes(
+        buffer.asUint8List(data.offsetInBytes, data.lengthInBytes));
+}
+//======================
+
+
+}
+
