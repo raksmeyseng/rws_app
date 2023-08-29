@@ -35,7 +35,7 @@ dependencies:
   # Translation
   flutter_localizations:
     sdk: flutter
-  intl: ^0.18.0
+  intl: ^0.17.0
   # iOS style icons
   cupertino_icons: ^1.0.2
   # State management
@@ -112,8 +112,8 @@ dependencies:
   sign_in_with_apple: ^5.0.0
   flutter_launcher_icons: ^0.13.1
   dio_helper_flutter: ^1.0.13
-  html: ^0.15.4
-  universal_html: ^2.2.3 
+  # html: ^0.15.4
+  # universal_html: ^2.2.3 
 
 
 dev_dependencies:
