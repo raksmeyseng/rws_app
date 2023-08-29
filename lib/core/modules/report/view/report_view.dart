@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rws_app/constants/app_constant.dart';
 import 'package:rws_app/core/modules/report/bloc/report_bloc.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../config/routes/app_route.dart';
 import '../../../../config/themes/app_color.dart';
@@ -23,15 +24,15 @@ class ReportView extends StatelessWidget{
       'របាយការណ៍គ្រប់ដណ្ដប់ប្រព័ន្ធផ្គត់ផ្គង់ទឹកជាផែនទី'
     ];
     List<String> reportUrls =[
-      AppConstant.defaultURL+'km/watersupply/reportwellbyprovince/',
+      AppConstant.defaultURL+'km/watersupply/reportwellbyprovince/token/',
       AppConstant.defaultURL+'km/watersupply/reportwellbyprovince/',
       AppConstant.defaultURL+'km/watersupply/reportwellbyprovince/',
       AppConstant.defaultURL+'km/watersupply/reportwellbyprovince/',
     ];
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('របាយការណ៍'),
-      ),
+      // appBar: AppBar(
+      //   title: const Text('របាយការណ៍'),
+      // ),
       body: ListView.separated(
           padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
           itemBuilder: (context, index) {
@@ -58,13 +59,14 @@ class _WaterSupplyItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return FlatCard(
       onTap: () {
-        context.goNamed(
-          AppRoute.reportDetail,
-          extra: {
+        _launchURL(url);
+        // context.goNamed(
+        //   AppRoute.reportDetail,
+        //   extra: {
             
-            'url': url,
-          },
-        );
+        //     'url': url,
+        //   },
+        // );
       },
       borderRadius: 16.0,
       side: BorderSide(
@@ -94,4 +96,20 @@ class _WaterSupplyItem extends StatelessWidget {
       ),
     );
   }
+
+  _launchURL(String url1) async {
+   final Uri url = Uri.parse(url1);
+  //  if (!await launchUrl(url)) {
+  //       throw Exception('Could not launch $url');
+  //   }
+    var urllaunchable = await canLaunch(url1); //canLaunch is from url_launcher package
+                    if(urllaunchable){
+                        await launch(url1); //launch is from url_launcher package to launch URL
+                    }else{
+                       print("URL can't be launched.");
+                    }
 }
+
+}
+
+

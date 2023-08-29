@@ -107,7 +107,7 @@ class ListDataDetailRepository extends RestApiService{
 
   
   Future<void> getExcelFile() async{
-    final res = await post(ApiPath.getReportWord);
+    final res = await post(ApiPath.getReportExcel);
     final Uint8List bytes = Uint8List.fromList(utf8.encode(res));
     //var file = await writeFile(bytes, 'name.xlsx');
     //await writeCounter(res,'name.xlsx');
@@ -120,12 +120,17 @@ class ListDataDetailRepository extends RestApiService{
     // excel(res);
     //return res;
 
+
     var file;
       try {
-          file = await writeToFile(bytes); // <= returns File
+          //file = await writeToFile(bytes); // <= returns File
+          file = await writeToFile1(bytes);
       } catch(e) {
           // catch errors here
       }
+
+
+  
 
   }
 
@@ -233,7 +238,7 @@ static Future<File> writeCounter(String bytes,String name) async {
   Directory writeDir = Directory.fromUri(Uri(path: "$extDir/$folder")); // Join the folder and external storage
   writeDir.createSync(recursive: true); // We first create the folder and file if it does not exist.
   
-  String filename ='myfile' + DateTime.now().millisecondsSinceEpoch.toString();
+  String filename ='myfile' + DateTime.now().millisecondsSinceEpoch.toString()+'.xlsx';
 
   File("$extDir/$folder/$filename.jpeg").writeAsBytes(response, flush: true); // Finally, we write the bytes into the file we just created
 }
@@ -245,16 +250,38 @@ Future<File> writeToFile(Uint8List data) async {
       // If not we will ask for permission first
       await Permission.storage.request();
     }
-    final buffer = data.buffer;
+
+     // the data
+    var bytes = ByteData.view(data.buffer);
+    final buffer = bytes.buffer;
+
+    //final buffer = data.buffer;
+
     //Directory tempDir = await getTemporaryDirectory();
     Directory tempDir=await getApplicationDocumentsDirectory();
     String tempPath = tempDir.path;
-    var filePath = tempPath + '/file_01' + DateTime.now().millisecondsSinceEpoch.toString()+ '.doc'; // file_01.tmp is dump file, can be anything
-    return new File(filePath).writeAsBytes(
-        buffer.asUint8List(data.offsetInBytes, data.lengthInBytes));
+    var filePath = tempPath + '/file_01' + DateTime.now().millisecondsSinceEpoch.toString()+'.csv'; // file_01.tmp is dump file, can be anything
+    return new File(filePath).writeAsBytes(buffer.asUint8List(data.offsetInBytes, data.lengthInBytes));
 }
 //======================
 
+//======================
+//=======================
+Future<File> writeToFile1(Uint8List data) async {
+  var status = await Permission.storage.status;
+    if (!status.isGranted) {
+      // If not we will ask for permission first
+      await Permission.storage.request();
+    }
+
+
+    //Directory tempDir = await getTemporaryDirectory();
+    Directory tempDir=await getApplicationDocumentsDirectory();
+    String tempPath = tempDir.path;
+    var filePath = tempPath + '/file_01' + DateTime.now().millisecondsSinceEpoch.toString()+'.xlsx'; // file_01.tmp is dump file, can be anything
+    return new File(filePath).writeAsBytes(data);
+}
+//======================
 
 }
 

@@ -35,8 +35,8 @@ class ReportPage extends StatelessWidget {
               onPressed: () => Navigator.of(context).pop(),
             ),
           ),
-          //body: const ReportView(),
-          body: const EmptyWidget(),
+          body: const ReportView(),
+          //body: const EmptyWidget(),
         ),
       );
 
