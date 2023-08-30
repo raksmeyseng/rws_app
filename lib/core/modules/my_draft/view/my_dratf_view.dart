@@ -53,13 +53,13 @@ class _SuccessView extends StatelessWidget {
         return ListView.separated(
           padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
           itemBuilder: (context, index) {
-            if(index==state.mydraft.length){
-              return const _LoadingView();
-            }
-            else{
-              return _MyDraftItem(state.mydraft[index]);
-            }
-            
+            // if(index==state.mydraft.length){
+            //   return const _LoadingView();
+            // }
+            // else{
+            //   return _MyDraftItem(state.mydraft[index]);
+            // }
+            return _MyDraftItem(state.mydraft[index]);
           },
           separatorBuilder: (_, __) => const SizedBox(height: 10),
           itemCount: state.mydraft.length+1,

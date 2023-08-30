@@ -58,16 +58,6 @@ class ListDataDetailsBloc
       final waterSupply =
           await repository.getWaterSupplyViewDetail(state.waterSupplyId);
 
-          // IsolateNameServer.registerPortWithName(_port.sendPort, 'downloader_send_port');
-          // _port.listen((dynamic data) {
-          //   String id = data[0];
-          //   DownloadTaskStatus status = data[1];
-          //   int progress = data[2];
-            
-          // });
-
-    //FlutterDownloader.registerCallback(downloadCallback);
-
       emit(state.copyWith(
         status: BaseStatusEnum.success,
         waterSupply: waterSupply,
@@ -82,9 +72,9 @@ class ListDataDetailsBloc
   Future<void> _onDeleteSubmited(
       DeleteSubmited event, Emitter<ListDataDetailsState> emit) async {
     try {
-      //await repository.deleteWaterSupply(state.waterSupplyId);
+      await repository.deleteWaterSupply(state.waterSupplyId);
       
-      await repository.getExcelFile();
+      //await repository.getExcelFile();
       emit(state.copyWith(status: BaseStatusEnum.success));
     } catch (_) {
       emit(state.copyWith(deleteStatus: BaseStatusEnum.failure));
@@ -125,7 +115,7 @@ class ListDataDetailsBloc
           status: BaseStatusEnum.success,
         ));
         await Future.delayed(const Duration(milliseconds: 300));
-        Application.router.goNamed(AppRoute.home);
+        Application.router.goNamed(AppRoute.myTask);
       } catch (_) {
         emit(state.copyWith(
           status: BaseStatusEnum.failure,

@@ -25,9 +25,9 @@ class ReportView extends StatelessWidget{
     ];
     List<String> reportUrls =[
       AppConstant.defaultURL+'km/watersupply/reportwellbyprovince/token/',
-      AppConstant.defaultURL+'km/watersupply/reportwellbyprovince/',
-      AppConstant.defaultURL+'km/watersupply/reportwellbyprovince/',
-      AppConstant.defaultURL+'km/watersupply/reportwellbyprovince/',
+      AppConstant.defaultURL+'km/report/wellsumbyprovince/token/',
+      AppConstant.defaultURL+'km/watersupply/reportwatersupplycoverage/token/',
+      AppConstant.defaultURL+'km/report/coverage_by_map/token/',
     ];
     return Scaffold(
       // appBar: AppBar(
@@ -59,7 +59,8 @@ class _WaterSupplyItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return FlatCard(
       onTap: () {
-        _launchURL(url);
+        //_launchURL(url);
+        openUrl(url);
         // context.goNamed(
         //   AppRoute.reportDetail,
         //   extra: {
@@ -109,6 +110,29 @@ class _WaterSupplyItem extends StatelessWidget {
                        print("URL can't be launched.");
                     }
 }
+
+  Future<void> openUrl(String url) async {
+    final _url = Uri.parse(url);
+    if (!await launchUrl(_url, mode: LaunchMode.externalApplication)) { // <--
+      throw Exception('Could not launch $_url');
+    }
+  }
+
+// enum LaunchMode {
+//   /// Leaves the decision of how to launch the URL to the platform
+//   /// implementation.
+//   
+// ,
+
+//   /// Loads the URL in an in-app web view (e.g., Safari View Controller).
+//   inAppWebView,
+
+//   /// Passes the URL to the OS to be handled by another application.
+//   externalApplication,
+
+//   /// Passes the URL to the OS to be handled by another non-browser application.
+//   externalNonBrowserApplication,
+// }
 
 }
 

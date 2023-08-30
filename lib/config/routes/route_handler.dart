@@ -55,8 +55,8 @@ Page usersBuilder(BuildContext context, GoRouterState state) {
 Page aboutBuilder(BuildContext context, GoRouterState state) {
   return MaterialPage<void>(
     key: state.pageKey,
-    //child: const AboutPage(),
-    child: const ReportPage(),
+    child: const AboutPage(),
+    //child: const ReportPage(),
   );
 }
 
