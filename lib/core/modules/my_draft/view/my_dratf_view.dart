@@ -62,7 +62,7 @@ class _SuccessView extends StatelessWidget {
             return _MyDraftItem(state.mydraft[index]);
           },
           separatorBuilder: (_, __) => const SizedBox(height: 10),
-          itemCount: state.mydraft.length+1,
+          itemCount: state.mydraft.length,
         );
       },
     );

@@ -38,14 +38,20 @@ class FloatingEvent extends StatelessWidget {
           label: 'ដាក់ស្នើ',
           labelStyle: const TextStyle(fontSize: 18.0),
           onTap: () {
-            Blurry(
-              title: 'ដាក់ស្នើ',
-              description: 'តើអ្នកចង់ដាក់ស្នើទិន្នន័យនេះមែនទេ?',
-              confirmButtonText: 'Confirm',
-              onConfirmButtonPressed:()=>_onSubmitDrated(context),
-              themeColor: AppColor.inactive,
-              icon: Icons.delete_outline_rounded,
-            ).show(context);
+            if(state.waterSupply!.status.id == 3){
+              Blurry(
+                title: 'ដាក់ស្នើ',
+                description: 'តើអ្នកចង់ដាក់ស្នើទិន្នន័យនេះមែនទេ?',
+                confirmButtonText: 'Confirm',
+                onConfirmButtonPressed:()=>_onSubmitDrated(context),
+                themeColor: AppColor.inactive,
+                icon: Icons.delete_outline_rounded,
+              ).show(context);
+            }else{
+              Navigator.pop(context);
+            }
+            
+
           },
         ),
         SpeedDialChild(

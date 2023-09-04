@@ -173,9 +173,11 @@ class _FloatingActionButton extends StatelessWidget {
       builder: (context, state) {
         if(state.status == BaseStatusEnum.success){
           if(state.waterSupply!.status.id==3){
+            
             return const FloatingEvent();
           }
           else {
+            Navigator.pop(context);
             return const SizedBox.shrink();
           }
         }

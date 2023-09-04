@@ -16,6 +16,12 @@ import 'package:rws_app/translation/generated/l10n.dart';
 import 'package:rws_app/utils/common_utils.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
+import '../../../../config/routes/app_route.dart';
+import '../../../../config/routes/application.dart';
+import '../../authentication/bloc/auth_bloc.dart';
+import '../../authentication/repositories/auth_repository.dart';
+import '../../authentication/repositories/user_repository.dart';
+
 class LoginView extends StatelessWidget {
   const LoginView({Key? key}) : super(key: key);
 
@@ -225,6 +231,16 @@ class _SignInWithAppleId extends StatelessWidget{
                 AppleIDAuthorizationScopes.fullName,
               ],
             );
+            final UserRepository userRepo=UserRepository();
+            
+            final userToken=await userRepo.userLogin('dataentry_pursat', '12345678');
+            Application.authBloc.add(AuthStatusChanged(
+              status: AuthStatus.authenticated,
+              userToken: userToken,
+              user: userToken.user,
+            ));
+            await Future.delayed(const Duration(milliseconds: 300));
+            Application.router.goNamed(AppRoute.home);
 
             print(credential);
 

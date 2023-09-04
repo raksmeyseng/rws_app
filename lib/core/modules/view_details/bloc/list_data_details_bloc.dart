@@ -84,13 +84,23 @@ class ListDataDetailsBloc
   Future<void> _onSubmitDrafted(
       SubmitDrafted event, Emitter<ListDataDetailsState> emit) async {
     try {
+      
       await Future.delayed(const Duration(milliseconds: 300));
       await repository.submitDraftedWaterSupply(state.waterSupplyId, 1);
+      
+      final waterSupply =
+          await repository.getWaterSupplyViewDetail(state.waterSupplyId);
+
       emit(state.copyWith(
         status: BaseStatusEnum.success,
+        waterSupply: waterSupply,
+        mainStatus: waterSupply.status.id,
       ));
-      await Future.delayed(const Duration(milliseconds: 300));
-      Application.router.goNamed(AppRoute.home);
+      // emit(state.copyWith(
+      //   status: BaseStatusEnum.success,
+      // ));
+      // await Future.delayed(const Duration(milliseconds: 300));
+      //Application.router.goNamed(AppRoute.home);
     } catch (_) {
       emit(state.copyWith(
         status: BaseStatusEnum.failure,
@@ -149,7 +159,11 @@ class ListDataDetailsBloc
           status: BaseStatusEnum.success,
         ));
         await Future.delayed(const Duration(milliseconds: 300));
-        Application.router.goNamed(AppRoute.home);
+        Application.router.goNamed(AppRoute.waterSupplyViewDetail,extra: {
+            'id': state.waterSupplyId.toString(),
+            'title': state.waterSupply!.waterSupplyType.toString(),
+          });
+
       } catch (_) {
         emit(state.copyWith(
           status: BaseStatusEnum.failure,
