@@ -48,7 +48,8 @@ class FloatingEvent extends StatelessWidget {
                 icon: Icons.delete_outline_rounded,
               ).show(context);
             }else{
-              Navigator.pop(context);
+              //Navigator.pop(context);
+              Navigator.of(context).pop();
             }
             
 

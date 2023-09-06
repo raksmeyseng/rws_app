@@ -21,7 +21,7 @@ class MyDraftView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<MyDraftBloc, MyDraftState>(
-      buildWhen: (previous, current) => previous.status != current.status,
+      buildWhen: (previous, current) => previous.mydraft != current.mydraft,
       builder: (context, state) {
         switch (state.status) {
           case BaseStatusEnum.success:
