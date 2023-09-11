@@ -34,113 +34,12 @@ class _MapsViewState extends State<MapsView> {
   );
   Set<Marker> markers= Set<Marker>();
   BitmapDescriptor markerIcon = BitmapDescriptor.defaultMarker;
-
-  // Set<Marker> markers = <Marker>{
-  //   const Marker(
-  //     markerId: MarkerId('Phnom Penh'),
-  //     position: LatLng(11.547740, 104.884858),
-  //     infoWindow: InfoWindow(
-  //       title: 'Phnom Penh',
-  //       snippet: 'ស្ថានីយ៍ផលិតទឹកផឹកឯកជន',
-  //     ),
-  //   ),
-  //   const Marker(
-  //     markerId: MarkerId('Banteay Meanchey'),
-  //     position: LatLng(13.695997, 102.566830),
-  //     infoWindow: InfoWindow(
-  //       title: 'Banteay Meanchey',
-  //       snippet: 'ស្ថានីយ៍ផលិតទឹកផឹកសហគមន៍',
-  //     ),
-  //   ),
-  //   const Marker(
-  //     markerId: MarkerId('Battambang'),
-  //     position: LatLng(13.101166, 105.025252),
-  //     infoWindow: InfoWindow(
-  //       title: 'Battambang',
-  //       snippet: 'ស្ថានីយ៍ផលិតទឹកផឹកសហគមន៍',
-  //     ),
-  //   ),
-  //   const Marker(
-  //     markerId: MarkerId('Kampong Cham'),
-  //     position: LatLng(12.013056, 105.441817),
-  //     infoWindow: InfoWindow(
-  //       title: 'Kampong Cham',
-  //       snippet: 'ស្ថានីយ៍ផលិតទឹកផឹកសហគមន៍',
-  //     ),
-  //   ),
-  //   const Marker(
-  //     markerId: MarkerId('Kampong Chhnang'),
-  //     position: LatLng(12.249794, 104.666290),
-  //     infoWindow: InfoWindow(
-  //       title: 'Kampong Chhnang',
-  //       snippet: 'ស្ថានីយ៍ផលិតទឹកផឹកសហគមន៍',
-  //     ),
-  //   ),
-  //   const Marker(
-  //     markerId: MarkerId('Kampong Speu'),
-  //     position: LatLng(11.520035, 104.378320),
-  //     infoWindow: InfoWindow(
-  //       title: 'Kampong Speu',
-  //       snippet: 'ស្ថានីយ៍ផលិតទឹកផឹកសហគមន៍',
-  //     ),
-  //   ),
-  //   const Marker(
-  //     markerId: MarkerId('Kampong Thom'),
-  //     position: LatLng(12.711749, 104.888535),
-  //     infoWindow: InfoWindow(
-  //       title: 'Kampong Thom',
-  //       snippet: 'ស្ថានីយ៍ផលិតទឹកផឹកសហគមន៍',
-  //     ),
-  //   ),
-  //   const Marker(
-  //     markerId: MarkerId('Kampot'),
-  //     position: LatLng(10.615895, 104.174970),
-  //     infoWindow: InfoWindow(
-  //       title: 'Kampot',
-  //       snippet: 'ស្ថានីយ៍ផលិតទឹកផឹកសហគមន៍',
-  //     ),
-  //   ),
-  //   const Marker(
-  //     markerId: MarkerId('Kandal'),
-  //     position: LatLng(11.337621, 105.031104),
-  //     infoWindow: InfoWindow(
-  //       title: 'Kandal',
-  //       snippet: 'ស្ថានីយ៍ផលិតទឹកផឹកសហគមន៍',
-  //     ),
-  //   ),
-  //   const Marker(
-  //     markerId: MarkerId('Kep'),
-  //     position: LatLng(10.482623, 104.295952),
-  //     infoWindow: InfoWindow(
-  //       title: 'Kep',
-  //       snippet: 'ស្ថានីយ៍ផលិតទឹកផឹកសហគមន៍',
-  //     ),
-  //   ),
-  //   const Marker(
-  //     markerId: MarkerId('Koh Kong'),
-  //     position: LatLng(11.612069, 102.986710),
-  //     infoWindow: InfoWindow(
-  //       title: 'Koh Kong',
-  //       snippet: 'ស្ថានីយ៍ផលិតទឹកផឹកសហគមន៍',
-  //     ),
-  //   ),
-  //   const Marker(
-  //     markerId: MarkerId('Kratié'),
-  //     position: LatLng(12.483902, 106.019973),
-  //     infoWindow: InfoWindow(
-  //       title: 'Kratié',
-  //       snippet: 'ស្ថានីយ៍ផលិតទឹកផឹកសហគមន៍',
-  //     ),
-  //   ),
-  //   const Marker(
-  //     markerId: MarkerId('Mondulkiri'),
-  //     position: LatLng(12.429527, 107.194866),
-  //     infoWindow: InfoWindow(
-  //       title: 'Mondulkiri',
-  //       snippet: 'ស្ថានីយ៍ផលិតទឹកផឹកសហគមន៍',
-  //     ),
-  //   ),
-  // };
+  BitmapDescriptor smallPipeIcon = BitmapDescriptor.defaultMarker;
+  BitmapDescriptor kioskIcon = BitmapDescriptor.defaultMarker;
+  BitmapDescriptor communityPondIcon = BitmapDescriptor.defaultMarker;
+  BitmapDescriptor airToWaterIcon = BitmapDescriptor.defaultMarker;
+  BitmapDescriptor pipeIcon = BitmapDescriptor.defaultMarker;
+  BitmapDescriptor waterRainIcon = BitmapDescriptor.defaultMarker;
 
   @override
   void initState() {
@@ -149,10 +48,12 @@ class _MapsViewState extends State<MapsView> {
     if (!kIsWeb) {
       _lifeCycleObserver = LifecycleEventHandler(
         onResumed: () async {
-          final granted = await Permission.location.isGranted;
-          if (granted) {
-            await goToCurrentUserLocation();
-          }
+
+          await goToCurrentUserLocation_1();
+          // final granted = await Permission.location.isGranted;
+          // if (granted) {
+          //   await goToCurrentUserLocation();
+          // }
         },
       );
       WidgetsBinding.instance.addObserver(_lifeCycleObserver);
@@ -175,14 +76,33 @@ class _MapsViewState extends State<MapsView> {
     switch (status) {
       case BaseStatusEnum.success:
       // ignore: prefer_collection_literals
-      //loadMarker(waterSupplys);
+      
       for(var ws in waterSupplys){
-        //loadMarker(ws);
-        // setState(() {
-          
-        // });
-        // final Uint8List customMarker=await  getBytesFromAsset('http://maps.google.com/mapfiles/ms/icons/orange-dot.png', 50);
 
+        switch(ws.waterSupplyTypeId){
+          case 1:
+          markerIcon=markerIcon;
+          break;
+          case 2:
+          markerIcon=smallPipeIcon;
+          break;
+          case 3:
+          markerIcon=kioskIcon;
+          break;
+          case 4:
+          markerIcon=communityPondIcon;
+          break;
+          case 5:
+          markerIcon=waterRainIcon;
+          break;
+          case 6:
+          markerIcon=pipeIcon;
+          break;
+          case 7:
+          markerIcon=airToWaterIcon;
+          break;
+        }
+        
         var marker = Marker(
           //icon: BitmapDescriptor.fromAssetImage(const ImageConfiguration(devicePixelRatio: 2.0),'http://maps.google.com/mapfiles/ms/icons/orange-dot.png') ,
           markerId: MarkerId(ws.address.nameEn),
@@ -194,6 +114,7 @@ class _MapsViewState extends State<MapsView> {
           //icon: BitmapDescriptor.fromBytes(customMarker)
           icon: markerIcon,
         );
+
         markers.add(marker);
       }
         return GoogleMap(
@@ -204,7 +125,8 @@ class _MapsViewState extends State<MapsView> {
           onMapCreated: (controller) {
             completer.complete(controller);
             newGoogleMapController = controller;
-            goToCurrentUserLocation();
+            //goToCurrentUserLocation();
+            goToCurrentUserLocation_1();
           },
           markers: markers,
         );
@@ -235,6 +157,26 @@ class _MapsViewState extends State<MapsView> {
     }
   }
 
+  Future<void> goToCurrentUserLocation_1({double zoom = 7}) async {
+    try {
+      final GoogleMapController controller = await completer.future;
+
+      controller.animateCamera(
+          CameraUpdate.newCameraPosition(
+            CameraPosition(
+              //target: LatLng(pos.latitude, pos.longitude),
+              target: const LatLng(11.562108, 104.888535),
+              zoom: zoom,
+            ),
+          ),
+        );
+
+    } catch (e) {
+      print(e);
+    }
+  }
+
+
   Future<Uint8List> getBytesFromAsset(String path,int width) async {
     ByteData data = await rootBundle.load(path);
     ui.Codec codec = await ui.instantiateImageCodec(
@@ -260,16 +202,64 @@ class _MapsViewState extends State<MapsView> {
         );
         markers.add(marker);
   }
+
   void addCustomIcon() {
-    BitmapDescriptor.fromAssetImage(
-            const ImageConfiguration(), 'assets/icons/info.png')
-        .then(
+    BitmapDescriptor.fromAssetImage(const ImageConfiguration(), 'assets/icons/orange-dot.png').then(
       (icon) {
         setState(() {
           markerIcon = icon;
         });
       },
     );
+
+    BitmapDescriptor.fromAssetImage(const ImageConfiguration(), 'assets/icons/yellow-dot.png').then(
+      (icon) {
+        setState(() {
+          smallPipeIcon = icon;
+        });
+      },
+    );
+
+    BitmapDescriptor.fromAssetImage(const ImageConfiguration(), 'assets/icons/green-dot.png').then(
+      (icon) {
+        setState(() {
+          kioskIcon = icon;
+        });
+      },
+    );
+
+    BitmapDescriptor.fromAssetImage(const ImageConfiguration(), 'assets/icons/red-dot.png').then(
+      (icon) {
+        setState(() {
+          communityPondIcon = icon;
+        });
+      },
+    );
+
+    BitmapDescriptor.fromAssetImage(const ImageConfiguration(), 'assets/icons/purple-dot.png').then(
+      (icon) {
+        setState(() {
+          waterRainIcon = icon;
+        });
+      },
+    );
+
+    BitmapDescriptor.fromAssetImage(const ImageConfiguration(), 'assets/icons/pink-dot.png').then(
+      (icon) {
+        setState(() {
+          pipeIcon = icon;
+        });
+      },
+    );
+
+    BitmapDescriptor.fromAssetImage(const ImageConfiguration(), 'assets/icons/ltblue-dot.png').then(
+      (icon) {
+        setState(() {
+          airToWaterIcon = icon;
+        });
+      },
+    );
+
   }
 // ====
 
