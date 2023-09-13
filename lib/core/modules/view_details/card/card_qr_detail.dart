@@ -70,11 +70,16 @@ class _SuccessView extends StatelessWidget {
       previous.waterSupply != current.waterSupply,
       builder: (context, state) {
         String url = 'http://18.222.12.231/media/';
+        if(state.waterSupply!.qrcode!.isEmpty){
+          return const _FailureView();
+        }else{
         String qrCodeName= state.waterSupply!.qrcode!.first.qrCodeImageName;
         url = url+qrCodeName;
         return Center(
           child: Image.network(url),
         );
+        }
+        
       },
     );
   }

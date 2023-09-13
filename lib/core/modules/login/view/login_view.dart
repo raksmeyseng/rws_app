@@ -91,7 +91,7 @@ class _ContentView extends StatelessWidget {
                         const SizedBox(height: 32),
                         const _LoginButton(),
                         const SizedBox(height: 32),
-                        const _SignInWithAppleId(),
+                        //const _SignInWithAppleId(),
                       ],
                     ),
                   ),

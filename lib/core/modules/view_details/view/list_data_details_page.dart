@@ -177,7 +177,7 @@ class _FloatingActionButton extends StatelessWidget {
             return const FloatingEvent();
           }
           else {
-            Navigator.pop(context);
+            //Navigator.pop(context);
             return const SizedBox.shrink();
           }
         }
