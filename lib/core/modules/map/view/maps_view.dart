@@ -14,6 +14,7 @@ import 'package:rws_app/utils/lifecycle_event_handler.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'dart:ui' as ui;
 import 'dart:typed_data';
+import 'package:latlong_to_osgrid/latlong_to_osgrid.dart';
 
 import '../model/water_supply_map_model.dart';
 
@@ -76,7 +77,7 @@ class _MapsViewState extends State<MapsView> {
     switch (status) {
       case BaseStatusEnum.success:
       // ignore: prefer_collection_literals
-      
+      LatLongConverter converter = new LatLongConverter();
       for(var ws in waterSupplys){
 
         switch(ws.waterSupplyTypeId){
@@ -102,20 +103,66 @@ class _MapsViewState extends State<MapsView> {
           markerIcon=airToWaterIcon;
           break;
         }
-        
-        var marker = Marker(
-          //icon: BitmapDescriptor.fromAssetImage(const ImageConfiguration(devicePixelRatio: 2.0),'http://maps.google.com/mapfiles/ms/icons/orange-dot.png') ,
-          markerId: MarkerId(ws.address.nameEn),
-          position: LatLng(double.parse(ws.decimalDegreeLat), double.parse(ws.decimalDegreeLng)),
-          infoWindow: InfoWindow(
-            title: ws.waterSupplyCode,
-            snippet: ws.waterSupplyType,
-          ),
-          //icon: BitmapDescriptor.fromBytes(customMarker)
-          icon: markerIcon,
-        );
+        if(ws.mapUnitId==1){
+
+          var marker = Marker(
+                  //icon: BitmapDescriptor.fromAssetImage(const ImageConfiguration(devicePixelRatio: 2.0),'http://maps.google.com/mapfiles/ms/icons/orange-dot.png') ,
+                markerId: MarkerId(ws.address.nameEn),
+                position: LatLng(ws.lat, ws.lng),
+                infoWindow: InfoWindow(
+                  title: ws.waterSupplyCode,
+                        snippet: ws.waterSupplyType,
+                      ),
+                      //icon: BitmapDescriptor.fromBytes(customMarker)
+                      icon: markerIcon,
+              );
+
+              markers.add(marker);
+
+          // try{
+          //   var utmX=double.parse(ws.utmX);
+          //   var utmY=double.parse(ws.utmY);
+          //   if(utmX>0 && utmY>0){
+          //     LatLong result = converter.getLatLongFromOSGB(utmX.toInt(),utmY.toInt());//,Datums.WGS84
+              
+          //     var lng = double.parse(result.long).abs();
+          //     print(result.lat+ ' '+lng);
+          //     var marker = Marker(
+          //         //icon: BitmapDescriptor.fromAssetImage(const ImageConfiguration(devicePixelRatio: 2.0),'http://maps.google.com/mapfiles/ms/icons/orange-dot.png') ,
+          //       markerId: MarkerId(ws.address.nameEn),
+          //       position: LatLng(double.parse(result.lat), lng),
+          //       infoWindow: InfoWindow(
+          //         title: ws.waterSupplyCode,
+          //               snippet: ws.waterSupplyType,
+          //             ),
+          //             //icon: BitmapDescriptor.fromBytes(customMarker)
+          //             icon: markerIcon,
+          //     );
+
+          //     markers.add(marker);
+          //   }
+          // }catch(_){
+
+          // }
+          
+          
+          //print("${result.lat} ${result.long}");
+        }else if(ws.mapUnitId==2){
+          var marker = Marker(
+                  //icon: BitmapDescriptor.fromAssetImage(const ImageConfiguration(devicePixelRatio: 2.0),'http://maps.google.com/mapfiles/ms/icons/orange-dot.png') ,
+            markerId: MarkerId(ws.address.nameEn),
+            position: LatLng(double.parse(ws.decimalDegreeLat), double.parse(ws.decimalDegreeLng)),
+                  infoWindow: InfoWindow(
+                    title: ws.waterSupplyCode,
+                    snippet: ws.waterSupplyType,
+                  ),
+                  //icon: BitmapDescriptor.fromBytes(customMarker)
+                  icon: markerIcon,
+          );
 
         markers.add(marker);
+        }
+        
       }
         return GoogleMap(
           mapType: MapType.normal,

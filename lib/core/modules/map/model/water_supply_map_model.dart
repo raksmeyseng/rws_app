@@ -14,6 +14,10 @@ class WaterSupplyMapModel{
     required this.decimalDegreeLng,
     required this.waterSupplyCode,
     required this.waterSupplyTypeId,
+    required this.utmX,
+    required this.utmY,
+    required this.lat,
+    required this.lng,
   });
 
   @JsonKey(name: 'id')
@@ -32,6 +36,14 @@ class WaterSupplyMapModel{
   String decimalDegreeLng;
   @JsonKey(name:'water_supply_type_id')
   int waterSupplyTypeId;
+  @JsonKey(name:'utm_x')
+  String utmX;
+  @JsonKey(name:'utm_y')
+  String utmY;
+  @JsonKey(name:'lat')
+  double lat;
+  @JsonKey(name:'lng')
+  double lng;
 
 factory WaterSupplyMapModel.fromJson(Map<String, dynamic> json) =>
       _$WaterSupplyMapModelFromJson(json);
@@ -47,5 +59,10 @@ WaterSupplyMapModel _$WaterSupplyMapModelFromJson(Map<String, dynamic> json) => 
       mapUnitId: json['map_unit'] as int,
       decimalDegreeLat: json['decimal_degress_lat'] as String,
       decimalDegreeLng: json['decimal_degress_lng'] as String,
-      waterSupplyTypeId: json['water_supply_type_id']['id'] as int
+      waterSupplyTypeId: json['water_supply_type_id']['id'] as int,
+      utmX: json['utm_x'] as String,
+      utmY: json['utm_y'] as String,
+      lat: json['lat'] as double,
+      lng: json['lng'] as double
+      
    );
