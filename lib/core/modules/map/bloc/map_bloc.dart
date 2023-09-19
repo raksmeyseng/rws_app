@@ -41,12 +41,17 @@ class MapBloc extends Bloc<MapEvent, MapState> {
       status: BaseStatusEnum.inprogress,
     ));
     try {
-      final hasPermission = await PermissionHelper.requestLocationPermission();
-      if (hasPermission) {
-        final waterSupply =
+      // final hasPermission = await PermissionHelper.requestLocationPermission();
+      // if (hasPermission) {
+      //   final waterSupply =
+      //     await repository.getWaterSupplyMapList();
+      //   emit(state.copyWith(status: BaseStatusEnum.success,waterSupplys: waterSupply));
+      // }
+
+      final waterSupply =
           await repository.getWaterSupplyMapList();
         emit(state.copyWith(status: BaseStatusEnum.success,waterSupplys: waterSupply));
-      }
+
     } catch (e) {
       emit(state.copyWith(status: BaseStatusEnum.failure));
     }

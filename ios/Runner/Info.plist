@@ -28,14 +28,16 @@
 	<false/>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+
+	<!-- <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>Always and When In use</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Allow Location to see all type of Rural Water Supply around your location.</string>
 	<key>NSLocationUsageDescripton</key>
 	<string>Older devices need location</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Allow Location to see all type of Rural Water Supply around your location.</string>
+	<string>Allow Location to see all type of Rural Water Supply around your location.</string> -->
+
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Photo</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
