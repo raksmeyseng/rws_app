@@ -133,10 +133,10 @@ class _MyDraftItem extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _InfoItem(
-            CaptionWidget('${S.of(context).news_date} :'),
-            TextWidget(item.createdDate.toString()),
-          ),
+          // _InfoItem(
+          //   CaptionWidget('${S.of(context).news_date} :'),
+          //   TextWidget(item.createdDate.toString()),
+          // ),
           _InfoItem(
             const CaptionWidget('លេខកូដសំណង់ :'),
             TextWidget(item.waterSupplyCode),
@@ -152,19 +152,19 @@ class _MyDraftItem extends StatelessWidget {
           ),
           _InfoItem(
             CaptionWidget('${S.of(context).village} :'),
-            TextWidget(item.village?.nameEn),
+            TextWidget(item.village?.nameKh),
           ),
           _InfoItem(
             CaptionWidget('${S.of(context).commune} :'),
-            TextWidget(item.commune.nameEn),
+            TextWidget(item.commune.nameKh),
           ),
           _InfoItem(
             CaptionWidget('${S.of(context).district} :'),
-            TextWidget(item.district.nameEn),
+            TextWidget(item.district.nameKh),
           ),
           _InfoItem(
             CaptionWidget('${S.of(context).province} :'),
-            TextWidget(item.address.nameEn),
+            TextWidget(item.address.nameKh),
           ),
           const Padding(
             padding: EdgeInsets.symmetric(vertical: 8),

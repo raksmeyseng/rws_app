@@ -142,19 +142,19 @@ class _MyHistoryItem extends StatelessWidget{
           ),
           _InfoItem(
             CaptionWidget('${S.of(context).village} :'),
-            TextWidget(item.village?.nameEn),
+            TextWidget(item.village?.nameKh),
           ),
           _InfoItem(
             CaptionWidget('${S.of(context).commune} :'),
-            TextWidget(item.commune.nameEn),
+            TextWidget(item.commune.nameKh),
           ),
           _InfoItem(
             CaptionWidget('${S.of(context).district} :'),
-            TextWidget(item.district.nameEn),
+            TextWidget(item.district.nameKh),
           ),
           _InfoItem(
             CaptionWidget('${S.of(context).province} :'),
-            TextWidget(item.address.nameEn),
+            TextWidget(item.address.nameKh),
           ),
           const Padding(
             padding: EdgeInsets.symmetric(vertical: 8),

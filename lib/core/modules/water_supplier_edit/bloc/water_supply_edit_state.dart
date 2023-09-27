@@ -73,13 +73,16 @@ class WaterSupplyEditState extends Equatable {
     this.usingTypeInput = const UsingTypeInput.pure(),
     this.capacityTypeInput = const CapacityInput.pure(),
     this.tankStatusInput = const TankStatusInput.pure(),
-    this.supplierInput = const WaterSupplyInput.pure(),
+    this.supplierInput = const PoolfilterInput.pure(),
     this.supplierDateInput = const DOCInput.pure(),
     this.dueDateInput = const DOCInput.pure(),
     this.filterInput = const PoolfilterInput.pure(),
     this.airStationInput = const WellStatusInput.pure(),
     this.waterSupplyCode=const WaterSupplyInput.pure(),
     this.wqParameter1=const WaterSupplyInput.pure(),
+    this.abilityProduceWaterInput= const WaterSupplyInput.pure(),
+    this.kioskStatus=const WellStatusInput.pure(),
+    this.kioskFilter=const PoolfilterInput.pure(),
   });
 
   final BaseStatusEnum status;
@@ -159,11 +162,16 @@ class WaterSupplyEditState extends Equatable {
   final UsingTypeInput usingTypeInput;
   final CapacityInput capacityTypeInput;
   final TankStatusInput tankStatusInput;
-  final WaterSupplyInput supplierInput;
+  final PoolfilterInput supplierInput;
   final DOCInput supplierDateInput;
   final DOCInput dueDateInput;
   final PoolfilterInput filterInput;
   final WellStatusInput airStationInput;
+
+  //----- KIOSK 
+  final WaterSupplyInput abilityProduceWaterInput;
+  final WellStatusInput kioskStatus;
+  final PoolfilterInput kioskFilter;
 
   final WaterSupplyInput wqParameter1;
 
@@ -245,13 +253,17 @@ class WaterSupplyEditState extends Equatable {
     UsingTypeInput? usingTypeInput,
     CapacityInput? capacityTypeInput,
     TankStatusInput? tankStatusInput,
-    WaterSupplyInput? supplierInput,
+    PoolfilterInput? supplierInput,
     DOCInput? supplierDateInput,
     DOCInput? dueDateInput,
     PoolfilterInput? filterInput,
     WellStatusInput? airStationInput,
     WaterSupplyInput? waterSupplyCode,
     WaterSupplyInput? wqParameter1,
+
+    WaterSupplyInput? abilityProduceWaterInput,
+    WellStatusInput? kioskStatus,
+    PoolfilterInput? kioskFilter,
   }) {
     return WaterSupplyEditState._(
       status: status ?? this.status,
@@ -338,6 +350,9 @@ class WaterSupplyEditState extends Equatable {
       airStationInput: airStationInput ?? this.airStationInput,
       waterSupplyCode: waterSupplyCode??this.waterSupplyCode,
       wqParameter1:wqParameter1??this.wqParameter1,
+      abilityProduceWaterInput:abilityProduceWaterInput??this.abilityProduceWaterInput,
+      kioskStatus: kioskStatus??this.kioskStatus,
+      kioskFilter: kioskFilter??this.kioskFilter,
     );
   }
 
@@ -418,5 +433,8 @@ class WaterSupplyEditState extends Equatable {
         airStationInput,
         waterSupplyCode,
         wqParameter1,
+        abilityProduceWaterInput,
+        kioskStatus,
+        kioskFilter,
       ];
 }

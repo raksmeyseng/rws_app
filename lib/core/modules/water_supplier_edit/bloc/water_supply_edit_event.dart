@@ -546,7 +546,7 @@ class CapacityTypeChanged extends WaterSupplyEditEvent {
 class SupplierChanged extends WaterSupplyEditEvent {
   const SupplierChanged(this.supplier);
 
-  final String supplier;
+  final FilterEnum supplier;
 
   @override
   List<Object> get props => [supplier];
@@ -601,4 +601,29 @@ class WaterQualityParameterChanged extends WaterSupplyEditEvent{
   @override
   List<Object> get props => [value];
 
+}
+
+//----- KIOSK
+class AbilityProduceWaterChanged extends WaterSupplyEditEvent{
+  const AbilityProduceWaterChanged(this.abilityProductWater);
+  final String abilityProductWater;
+  @override
+  List<Object> get props => [abilityProductWater];
+}
+
+class KioskStatusChanged extends WaterSupplyEditEvent{
+  const KioskStatusChanged(this.kioskStatus);
+  final WellStatusEnum kioskStatus;
+  @override
+  List<Object> get props => [kioskStatus];
+}
+
+class KioskFilterChanged extends WaterSupplyEditEvent{
+  
+  const KioskFilterChanged(this.kioskFilter);
+
+  final FilterEnum kioskFilter;
+
+  @override
+  List<Object> get props => [kioskFilter];
 }

@@ -1,5 +1,6 @@
 import 'package:rws_app/constants/api_path.dart';
 import 'package:rws_app/core/modules/my_draft/models/my_draft_model.dart';
+import 'package:rws_app/core/modules/water_supplier_edit/model/payload_pipe_model.dart';
 import 'package:rws_app/core/modules/water_supplier_edit/model/payload_water_supply_model.dart';
 import 'package:rws_app/core/modules/water_supplier_edit/model/payload_water_supply_workflow.dart';
 import 'package:rws_app/core/modules/water_supplier_edit/model/response_water_supply_model.dart';
@@ -62,7 +63,7 @@ class WaterSupplyEditRepository extends RestApiService {
     await post(ApiPath.postWellOption,data:payload);
   }
 // SmallPIPE--------------
-Future<PayloadSmallPipeModel> addWaterSupplyPipe({required PayloadSmallPipeModel payload}) async{
+Future<PayloadSmallPipeModel> addWaterSupplySmallPipe({required PayloadSmallPipeModel payload}) async{
   final res = await post(ApiPath.postSmallPipe, data:payload);
   return PayloadSmallPipeModel.fromJson(res);
 
@@ -90,6 +91,16 @@ Future<PayloadRainModel> addWaterSupplyRain({required PayloadRainModel payload})
 }
 
 //-------------End Rain
+
+//------------- Start Pipe
+Future<PayloadPipeModel> addWaterSupplyPipe({required PayloadPipeModel payload}) async{
+  final res = await post(ApiPath.postPipe, data: payload);
+  return PayloadPipeModel.fromJson(res);
+}
+Future<void> addWaterSupplyPipeOptionValue({required PayloadPipeOptionValueModel payload}) async{
+  await post(ApiPath.postPipeOptionValue, data:payload);
+}
+//------------- End Pipe
 
 //-------------Start Air
 Future<PayloadairModel> addWaterSupplyAir({required PayloadairModel payload}) async{

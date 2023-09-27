@@ -715,6 +715,10 @@ class _PipeView extends StatelessWidget {
                       '-',
                 ),
               ),
+              const Padding(
+                padding: EdgeInsets.symmetric(vertical: 8),
+                child: MyDivider(),
+              ),
               _InfoItem(
                 const CaptionWidget('ចំនួនតំណដែលបានត:'),
                 TextWidget(

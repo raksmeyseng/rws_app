@@ -106,8 +106,8 @@ class ApiPath {
 
   static String postRainWaterHarvesting='${AppConstant.mainURL}watersupplyrainwaterharvesting/';
   
-  static String postPipePrivate = '${AppConstant.mainURL}watersupplypipeprivate/';
-  static String postPipePrivateOptionValue = '${AppConstant.mainURL}watersupplypipeprivateoptionvalue/';
+  static String postPipe = '${AppConstant.mainURL}watersupplypipeprivate/';
+  static String postPipeOptionValue = '${AppConstant.mainURL}watersupplypipeprivateoptionvalue/';
   
   static String postAirWater='${AppConstant.mainURL}watersupplyairwater/';
   static String postAirWaterOptionValue = '${AppConstant.mainURL}watersupplyairwateroptionvalue/';

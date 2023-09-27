@@ -105,7 +105,13 @@ class _ContentView extends StatelessWidget {
             children: [
               _InfoItem(
                 CaptionWidget('${titleViews[0]} :'),
-                TextWidget(state.waterSupply?.waterSupplyType),
+                //TextWidget(state.waterSupply?.waterSupplyType),
+                Flexible(
+                child: TextWidget(
+                  state.waterSupply?.waterSupplyType,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
               ),
               const Padding(
                 padding: EdgeInsets.symmetric(vertical: 8),

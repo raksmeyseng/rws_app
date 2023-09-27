@@ -49,6 +49,8 @@ import '../model/location_risk_input.dart';
 import '../model/water_quality_input.dart';
 import '../model/well_type_input.dart';
 
+part 'water_supply_kiosk_view.dart';
+
 class WaterSupplyEditView extends StatelessWidget {
   const WaterSupplyEditView({super.key});
 
@@ -466,8 +468,8 @@ class _FormField3 extends StatelessWidget {
           case 2:
             return const _SPipeInputPage();
           case 3:
-            // return const _KoiskInputPage();
-            return const _SPipeInputPage();
+            return const _KoiskInputPage();
+            //return const _SPipeInputPage();
           case 4:
             return const _PondInputPage();
           case 5:
@@ -674,35 +676,58 @@ class _SPipeInputPage extends StatelessWidget {
   }
 }
 
-// class _KoiskInputPage extends StatelessWidget {
-//   const _KoiskInputPage({Key? key}) : super(key: key);
+class _KoiskInputPage extends StatelessWidget {
+  const _KoiskInputPage({Key? key}) : super(key: key);
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return Column(
-//       mainAxisSize: MainAxisSize.min,
-//       children: [
-//         Row(
-//           mainAxisSize: MainAxisSize.min,
-//           crossAxisAlignment: CrossAxisAlignment.start,
-//           children: const [
-//             Expanded(child: _WaterSupplyTypeInput()),
-//           ],
-//         ),
-//         const SizedBox(height: 16),
-//         Row(
-//           mainAxisSize: MainAxisSize.min,
-//           crossAxisAlignment: CrossAxisAlignment.start,
-//           children: const [
-//             Expanded(child: _QualityWaterCheckInput()),
-//           ],
-//         ),
-//         //bottom padding
-//         const SizedBox(height: 30),
-//       ],
-//     );
-//   }
-// }
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: const [
+            Expanded(child: _WaterSupplyTypeInput()),
+          ],
+        ),
+        const SizedBox(height: 16),
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: const [
+            Expanded(child: _AbilityProductWaterInput()),
+          ],
+        ),
+        const SizedBox(height: 16),
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: const [
+            Expanded(child: _KioskFilterInput()),
+          ],
+        ),
+        const SizedBox(height: 16),
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: const [
+            Expanded(child: _QualityWaterCheckInput()),
+          ],
+        ),
+        //bottom padding
+        const SizedBox(height: 16),
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: const [
+            Expanded(child: _KioskStatusInput()),
+          ],
+        ),
+      ],
+    );
+  }
+}
 
 class _PondInputPage extends StatelessWidget {
   const _PondInputPage({Key? key}) : super(key: key);
@@ -1073,7 +1098,7 @@ class _DistrictInput extends StatelessWidget {
                               contentPadding: const EdgeInsets.symmetric(
                                 horizontal: 24.0,
                               ),
-                              title: TextWidget(dis.nameEn),
+                              title: TextWidget(dis.nameKh),
                             ),
                           ),
                         ],
@@ -1149,7 +1174,7 @@ class _CommuneInput extends StatelessWidget {
                               contentPadding: const EdgeInsets.symmetric(
                                 horizontal: 24.0,
                               ),
-                              title: TextWidget(com.nameEn),
+                              title: TextWidget(com.nameKh),
                             ),
                           ),
                         ],
@@ -1225,7 +1250,7 @@ class _VillageInput extends StatelessWidget {
                               contentPadding: const EdgeInsets.symmetric(
                                 horizontal: 24.0,
                               ),
-                              title: TextWidget(vill.nameEn),
+                              title: TextWidget(vill.nameKh),
                             ),
                           ),
                         ],
@@ -3979,7 +4004,7 @@ class _SupplierInput extends StatelessWidget {
           focusNode: bloc.supplierFocus,
           controller: bloc.supplierController,
           onTap: () async {
-            final type = await DialogHelper.showAnimatedDialog<String?>(
+            final type = await DialogHelper.showAnimatedDialog<FilterEnum?>(
               animationType: DialogAnimationType.none,
               transitionDuration: const Duration(milliseconds: 200),
               pageBuilder: (context, a1, a2) {
@@ -3994,7 +4019,7 @@ class _SupplierInput extends StatelessWidget {
                           (status) => ListTile(
                             onTap: () {
                               Navigator.of(context)
-                                  .pop(status.getDisplayText());
+                                  .pop(status);
                             },
                             contentPadding: const EdgeInsets.symmetric(
                               horizontal: 24.0,
