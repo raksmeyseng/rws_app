@@ -37,3 +37,25 @@ extension BudgetTypeEnumExtension on BudgetTypeEnum {
     }
   }
 }
+
+BudgetTypeEnum? getBudgetTypeEnumById(int id){
+  switch (id) {
+      case 0:
+        return BudgetTypeEnum.goverment;
+      case 1:
+        return BudgetTypeEnum.organization;
+      case 3:
+        return BudgetTypeEnum.charity;
+    }
+}
+
+String getBudgetTypeEnumDisplayText(BudgetTypeEnum value) {
+    switch (value) {
+      case BudgetTypeEnum.goverment:
+        return 'រដ្ឋ';
+      case BudgetTypeEnum.organization:
+        return 'អង្គការ';
+      case BudgetTypeEnum.charity:
+        return 'សប្បុរស';
+    }
+  }

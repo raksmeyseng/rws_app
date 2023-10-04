@@ -1,5 +1,6 @@
 import 'package:rws_app/constants/api_path.dart';
 import 'package:rws_app/core/modules/my_draft/models/my_draft_model.dart';
+import 'package:rws_app/core/modules/water_supplier_edit/model/payload_kiosk_model.dart';
 import 'package:rws_app/core/modules/water_supplier_edit/model/payload_pipe_model.dart';
 import 'package:rws_app/core/modules/water_supplier_edit/model/payload_water_supply_model.dart';
 import 'package:rws_app/core/modules/water_supplier_edit/model/payload_water_supply_workflow.dart';
@@ -72,6 +73,23 @@ Future<void> addWaterSupplySmallPipeOptionValue({required PayloadSmallPipeOption
   await post(ApiPath.postSmallPipeOptionValue, data:payload);
 }
 //--------------
+
+//------------- Start KIOSK 
+Future<PayloadKioskModel> addWaterSupplyKiosk({required PayloadKioskModel payload}) async {
+  final res = await post(ApiPath.postKiosk,data: payload);
+  return PayloadKioskModel.fromJson(res);
+}
+Future<void> addWaterSupplyKioskOptionValue({required PayloadKioskOptionValueModel payload}) async{
+  try{
+    final res = await post(ApiPath.postKioskOptionValue, data:payload);
+    print(res);
+  }catch(_){
+
+  }
+  
+  //return PayloadKioskOptionValueModel.fromJson(res);
+}
+//------------- End KIOSK
 //-------------Start Pond
 Future<PayloadPondModel> addWaterSupplyPond({required PayloadPondModel payload}) async{
   final res = await post(ApiPath.postCommunityPond, data:payload);

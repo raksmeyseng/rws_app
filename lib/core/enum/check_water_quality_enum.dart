@@ -29,3 +29,21 @@ extension CheckWaterQualityEnumExtension on CheckWaterQualityEnum {
     }
   }
 }
+
+CheckWaterQualityEnum? getCheckWaterQualityEnumById(int id){
+  switch (id) {
+      case 10:
+        return CheckWaterQualityEnum.check;
+      case 11:
+        return CheckWaterQualityEnum.unCheck;
+    }
+}
+
+ String getCheckWaterQualityEnumDisplayText(CheckWaterQualityEnum value) {
+    switch (value) {
+      case CheckWaterQualityEnum.check:
+        return 'បាន';
+      case CheckWaterQualityEnum.unCheck:
+        return 'មិនបាន';
+    }
+  }

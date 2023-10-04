@@ -30,3 +30,7 @@ extension ManagementTypeEnumExtension on ManagementTypeEnum {
     }
   }
 }
+
+ManagementTypeEnum? getManagementTypeEnumById(int id){
+  
+}

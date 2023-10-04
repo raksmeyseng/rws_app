@@ -51,9 +51,12 @@ class PayloadKioskOptionValueModel{
     required this.waterSupplyKioskId,
     required this.optionId,
     required this.valueId,
-    required this.isActive
+    required this.isActive,
+    this.id
   });
 
+  @JsonKey(name:'id')
+  int? id;
   @JsonKey(name:'water_supply_kiosk_id')
   int waterSupplyKioskId;
   @JsonKey(name:'option_id')

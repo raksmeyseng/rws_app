@@ -51,3 +51,27 @@ MapTypeEnum? getEnumByString(String value) {
       return null;
   }
 }
+
+MapTypeEnum? getMapTypeEnumById(int value) {
+  switch (value) {
+    case 1:
+      return MapTypeEnum.utm;
+    case 2:
+      return MapTypeEnum.decimal;
+    case 3:
+      return MapTypeEnum.degree;
+    default:
+      return null;
+  }
+}
+
+String getDisplayTextById(MapTypeEnum value) {
+    switch (value) {
+      case MapTypeEnum.utm:
+        return 'UTM';
+      case MapTypeEnum.decimal:
+        return 'Decimal Degress';
+      case MapTypeEnum.degree:
+        return 'Degree Minutes Seconds';
+    }
+  } 

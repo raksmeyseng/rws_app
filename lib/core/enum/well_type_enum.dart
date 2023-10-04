@@ -69,4 +69,49 @@ extension WellTypeEnumExtension on WellTypeEnum {
     }
   }
 
+  
+
 }
+WellTypeEnum? getWellTypeEnumById(int id){
+    switch (id) {
+      case 1:
+        return WellTypeEnum.motor;
+      case 2:
+        return WellTypeEnum.pump;
+      case 3:
+        return WellTypeEnum.markII;
+      case 4:
+        return WellTypeEnum.markIII;
+      case 5:
+        return WellTypeEnum.pump6;
+      case 6:
+        return WellTypeEnum.drainage;
+      case 7:
+        return WellTypeEnum.mixed;
+      default:
+        return WellTypeEnum.mixed;
+    }
+  }
+
+  /// User friendly text
+  String getWellTypeDisplayText(WellTypeEnum value) {
+    switch (value) {
+      case WellTypeEnum.motor:
+        return 'អណ្ដូងបូមដោយម៉ូទ័រ';
+      case WellTypeEnum.pump:
+        return 'អណ្ដូងស្នប់អាហ្វ្រីដេហ្វ';
+      case WellTypeEnum.markII:
+        return 'អណ្ដូងMark II';
+      case WellTypeEnum.markIII:
+        return 'អណ្ដូងMark III';
+      case WellTypeEnum.pump6:
+        return 'អណ្ដូងស្នប់លេខ៦';
+      case WellTypeEnum.drainage:
+        return 'អណ្ដូងលូ';
+      case WellTypeEnum.mixed:
+        return 'អណ្ដូងចំរុះ';
+      default:
+        return 'អណ្ដូងចំរុះ';
+    }
+  }
+

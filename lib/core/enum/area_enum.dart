@@ -29,3 +29,22 @@ extension AreaEnumExtension on AreaEnum {
     }
   }
 }
+
+AreaEnum? GetAreaEnumById(bool isRisk){
+
+  if(isRisk){
+    return AreaEnum.face;
+  } 
+  else{
+    return AreaEnum.unface;
+  }
+}
+
+String getAreaEnumDisplayText(AreaEnum value){
+  switch (value) {
+      case AreaEnum.face:
+        return 'ប្រឈម';
+      case AreaEnum.unface:
+        return 'មិនប្រឈម';
+    }
+}

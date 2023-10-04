@@ -29,16 +29,18 @@ Map<String,dynamic> _$PayloadKioskModelToJson(PayloadKioskModel instance)=>
 
 PayloadKioskOptionValueModel _$PayloadKioskOptionValueModelFromJson(Map<String,dynamic> json)=>
 PayloadKioskOptionValueModel(
-  waterSupplyKioskId: json['water_supply_well_id'] as int, 
+  waterSupplyKioskId: json['water_supply_kiosk_id'] as int, 
   optionId: json['option_id'] as int, 
   valueId: json['value_id'] as int, 
-  isActive: json['is_active'] as bool
+  isActive: json['is_active'] as bool,
+  id: json['id'] as int,
   );
 
 Map<String,dynamic> _$PayloadKioskOptionValueModelToJson(PayloadKioskOptionValueModel instance)=>
 <String,dynamic>{
-  'water_supply_well_id':instance.waterSupplyKioskId,
+  'water_supply_kiosk_id':instance.waterSupplyKioskId,
   'option_id':instance.optionId,
   'value_id':instance.valueId,
-  'is_active' : instance.isActive
+  'is_active' : instance.isActive,
+  'id':instance.id
 };

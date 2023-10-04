@@ -12,6 +12,9 @@ class PayloadRainModel{
     required this.status,
     required this.statusNoReason,
     required this.isActive,
+    required this.waterQualityChecking,
+    required this.capacity35m3,
+    required this.capacity4m3,
     this.id,
   });
 
@@ -29,7 +32,12 @@ class PayloadRainModel{
   String status;
   @JsonKey(name:'status_no_reason')
   String statusNoReason;
-
+  @JsonKey(name:'water_quality_checking')
+  String waterQualityChecking;
+  @JsonKey(name: 'capacity_35m3')
+  int capacity35m3;
+  @JsonKey(name:'capacity_4m3')
+  int capacity4m3;
   
   factory PayloadRainModel.fromJson(Map<String, dynamic> json) =>
       _$PayloadRainModelFromJson(json);

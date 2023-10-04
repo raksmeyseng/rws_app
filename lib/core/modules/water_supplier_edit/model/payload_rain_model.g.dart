@@ -9,6 +9,9 @@ PayloadRainModel(
   status: json['status'] as String, 
   statusNoReason: json['status_no_reason'] as String, 
   isActive: json['is_active'] as bool,
+  waterQualityChecking: json['water_quality_checking'] as String,
+  capacity35m3: json['capacity_35m3'] as int,
+  capacity4m3: json['capacity_4m3'] as int,
   );
 
 Map<String,dynamic> _$PayloadRainModelToJson(PayloadRainModel instance)=>
@@ -19,7 +22,10 @@ Map<String,dynamic> _$PayloadRainModelToJson(PayloadRainModel instance)=>
   'status':instance.status,
   'status_no_reason':instance.statusNoReason,
   'is_active':instance.isActive,
-  'id':instance.isActive
+  'id':instance.isActive,
+  'water_quality_checking':instance.waterQualityChecking,
+  'capacity_35m3':instance.capacity35m3,
+  'capacity_4m3':instance.capacity4m3
 
 };
 

@@ -14,7 +14,7 @@ class _AbilityProductWaterInput extends StatelessWidget {
           focusNode: context.read<WaterSupplyEditBloc>().containerFocus,
           controller: context.read<WaterSupplyEditBloc>().containerController,
           onChanged: (val) =>
-              context.read<WaterSupplyEditBloc>().add(ContainerChanged(val)),
+              context.read<WaterSupplyEditBloc>().add(AbilityProduceWaterChanged(val)),
           // errorText: _handleErrorText(context, state),
           textInputAction: TextInputAction.next,
           keyboardType: TextInputType.phone,

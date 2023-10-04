@@ -16,7 +16,8 @@ PayloadairModel(
 
 Map<String,dynamic> _$PayloadairModelToJson(PayloadairModel instance)=>
 <String,dynamic>{
-  'source_type_of_water': instance.waterSupplyId,
+  'watersupply_id':instance.waterSupplyId,
+  'source_type_of_water': instance.sourceTypeOfWater,
   'abilty_of_produce_water': instance.abiltyOfProduceWater,
   'filter_system':instance.filterSystem,
   'water_quality_checking':instance.waterQualityChecking, 
@@ -24,7 +25,7 @@ Map<String,dynamic> _$PayloadairModelToJson(PayloadairModel instance)=>
   'status_no_reason':instance.statusNoReason,
   'is_active':instance.isActive,
 /*   'filter_system_obj':instance.filterSystemObj, */
-  'id':instance.isActive
+  'id':instance.id
 
 };
 
