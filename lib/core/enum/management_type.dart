@@ -32,5 +32,19 @@ extension ManagementTypeEnumExtension on ManagementTypeEnum {
 }
 
 ManagementTypeEnum? getManagementTypeEnumById(int id){
-  
+  switch (id) {
+      case 0:
+        return ManagementTypeEnum.association;
+      case 1:
+        return ManagementTypeEnum.private;
+    }
 }
+
+String getManagementTypeEnumDisplayText(ManagementTypeEnum value) {
+    switch (value) {
+      case ManagementTypeEnum.association:
+        return 'សមាគមន៍';
+      case ManagementTypeEnum.private:
+        return 'ឯកជន';
+    }
+  }

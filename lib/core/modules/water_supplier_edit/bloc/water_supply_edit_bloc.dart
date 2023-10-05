@@ -495,6 +495,7 @@ class WaterSupplyEditBloc
           constructionCodeInput: WaterSupplyInput.pure(waterSupply.waterSupplyCode),
           companyNameInput: WaterSupplyInput.pure(waterSupply.constructedBy),
           managementNameInput: WaterSupplyInput.pure(waterSupply.managedBy),
+          managementTypeInput: ManagementTypeInput.pure(getManagementTypeEnumById(waterSupply.managementType)),
         ));
 
         provinceController.text=waterSupply.address.nameKh;
@@ -520,6 +521,7 @@ class WaterSupplyEditBloc
         constructionCodeController.text=waterSupply.waterSupplyCode.toString();
         companyNameController.text=waterSupply.constructedBy;
         managementNameController.text=waterSupply.managedBy;
+        managementTypeController.text=getManagementTypeEnumDisplayText(getManagementTypeEnumById(waterSupply.managementType)??ManagementTypeEnum.association);
 
         switch(waterSupply.waterSupplyTypeId){
           case 1:
@@ -1565,7 +1567,10 @@ class WaterSupplyEditBloc
               
         );
         //print(payload);
-        repository
+
+        if(state.id==0){
+          //!-------- CREATE
+          repository
             .addOrUpdateWaterSupply(id: state.id, payload: payload)
             .then((watersupply) {
           final waterSupplyId = watersupply.waterSupplyId;
@@ -1799,6 +1804,41 @@ class WaterSupplyEditBloc
         });
         //Air
       
+        }else{
+          //!--------- EDIT
+          //START WELL
+          if (state.waterSupplyTypeId == 1) {
+
+            final payloadWell = PayloadWellModel(
+              waterSupplyId: 0,
+              wellType: wellTypeInput.value?.getCode().toString() ?? '',
+              wellHeight: wellDepthInput.value,
+              wellFilterHeight: wellScreenInput.value,
+              wellWaterSupply: wellThearInput.value,
+              wellNiroStatic: niVoStaticInput.value,
+              wellNiroDynamic: niVoDynamicInput.value,
+              wellStatus: wellStatusInput.value?.getCode() == 0 ? '12' : '13',
+              wellStatusReason: '',
+              wellWaterQuality:  waterQualityInput.value?.getCode() == 0 ? '8' : '9',
+              wellWaterQualityCheck: checkWaterQualityInput.value?.getCode() == 0 ? '10' : '11',
+              isActive: true,
+            );
+            // repository.addWaterSupplyWell(payload: payloadWell).then((well) {
+            //   //WELL TYPE
+            //   final payloadWellOptionValue = PayloadWellOptionValueModel(
+            //       waterSupplyWellId: well.id ?? 0,
+            //       optionId: 1,
+            //       valueId: wellTypeInput.value?.getCode() ?? 0,
+            //       isActive: true);
+            //   repository.addWaterSupplyWellOptionValue(
+            //     payload: payloadWellOptionValue,
+            //   );
+            // });
+            
+          }
+        }
+        
+        
         Application.eventBus.fire(const WaterSupplyUpdated());
         emit(state.copyWith(formzStatus: FormzStatus.submissionSuccess));
       } catch (_) {
