@@ -461,7 +461,7 @@ class WaterSupplyEditBloc
         
         emit(state.copyWith(
           status: BaseStatusEnum.success,
-
+        
           //!-- Tab 1
           waterSupply: waterSupply,
           provinces: provinces,
@@ -1489,6 +1489,10 @@ class WaterSupplyEditBloc
         //print(province);
         final isRiskLocation = locationRickInput.value?.getCode();
         final is_water_quality_check = checkWaterQualityInput.value?.getCode() == 0 ? true : false;
+        int editWaterSupplyId=0;
+        if(state.id>0){
+          editWaterSupplyId = state.waterSupply!.id;
+        }
 
         final payload = PayloadWaterSupplyModel(
           createdBy: user != null ? user.id : 0,
@@ -1563,14 +1567,14 @@ class WaterSupplyEditBloc
           updatedBy: user != null ? user.id : 0,
           mainStatus: 3,
           waterSupplyCode: constructionCodeInput.value, //not yet have control yet
-          isWaterQualityCheck: is_water_quality_check
+          isWaterQualityCheck: is_water_quality_check,
+          id: editWaterSupplyId,
               
         );
-        //print(payload);
+        print(payload);
 
-        if(state.id==0){
-          //!-------- CREATE
-          repository
+
+        repository
             .addOrUpdateWaterSupply(id: state.id, payload: payload)
             .then((watersupply) {
           final waterSupplyId = watersupply.waterSupplyId;
@@ -1777,7 +1781,7 @@ class WaterSupplyEditBloc
             });
 
           }
-
+          //!-- AIR to Water
           else if(state.waterSupplyTypeId==7){
             var sourceTypeOfWater = waterSupplyTypeInput.value?.getCode();
             final payloadAir = PayloadairModel(
@@ -1802,42 +1806,6 @@ class WaterSupplyEditBloc
           }
 
         });
-        //Air
-      
-        }else{
-          //!--------- EDIT
-          //START WELL
-          if (state.waterSupplyTypeId == 1) {
-
-            final payloadWell = PayloadWellModel(
-              waterSupplyId: 0,
-              wellType: wellTypeInput.value?.getCode().toString() ?? '',
-              wellHeight: wellDepthInput.value,
-              wellFilterHeight: wellScreenInput.value,
-              wellWaterSupply: wellThearInput.value,
-              wellNiroStatic: niVoStaticInput.value,
-              wellNiroDynamic: niVoDynamicInput.value,
-              wellStatus: wellStatusInput.value?.getCode() == 0 ? '12' : '13',
-              wellStatusReason: '',
-              wellWaterQuality:  waterQualityInput.value?.getCode() == 0 ? '8' : '9',
-              wellWaterQualityCheck: checkWaterQualityInput.value?.getCode() == 0 ? '10' : '11',
-              isActive: true,
-            );
-            // repository.addWaterSupplyWell(payload: payloadWell).then((well) {
-            //   //WELL TYPE
-            //   final payloadWellOptionValue = PayloadWellOptionValueModel(
-            //       waterSupplyWellId: well.id ?? 0,
-            //       optionId: 1,
-            //       valueId: wellTypeInput.value?.getCode() ?? 0,
-            //       isActive: true);
-            //   repository.addWaterSupplyWellOptionValue(
-            //     payload: payloadWellOptionValue,
-            //   );
-            // });
-            
-          }
-        }
-        
         
         Application.eventBus.fire(const WaterSupplyUpdated());
         emit(state.copyWith(formzStatus: FormzStatus.submissionSuccess));

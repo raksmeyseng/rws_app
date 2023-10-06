@@ -79,8 +79,8 @@ class ApiPath {
 
   static String addWaterSupply =
       '${AppConstant.mainURL}v2/watersupply'; //post
-  static String updateWaterSupply(int id) =>
-      '${AppConstant.mainURL}watersupply/$id';
+  static String updateWaterSupply(String id) =>
+      '${AppConstant.mainURL}v2/watersupply/$id/update/';
 
   static String deleteWaterSupply(int id) =>
       '${AppConstant.mainURL}v2/watersupply/$id/delete/'; //put

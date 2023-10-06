@@ -50,8 +50,20 @@ class WaterSupplyEditRepository extends RestApiService {
       
       
     } else {
-      final res = await put(ApiPath.updateWaterSupply(id), data: payload);
-      return ResponseWaterSupplyModel.fromJson(res);
+      final res = await put(ApiPath.updateWaterSupply(payload.id.toString()), data: payload);
+      ResponseWaterSupplyModel response=ResponseWaterSupplyModel.fromJson(res);     
+        print(res);
+        if(response.status==200){
+          //Workflow SECTION
+          final payloadWorkFlow=PayloadWaterSupplyWorkflow(
+            waterSupplyId: response.waterSupplyId,
+            status: payload.mainStatus,
+            user: payload.createdBy
+            );
+            await post(ApiPath.postWorkFlow,data:payloadWorkFlow);
+        }
+        return response;
+      //return ResponseWaterSupplyModel.fromJson(res);
     }
   }
 
