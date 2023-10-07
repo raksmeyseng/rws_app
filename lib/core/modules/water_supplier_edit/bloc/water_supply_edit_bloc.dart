@@ -548,6 +548,18 @@ class WaterSupplyEditBloc
             checkWaterQualityController.text=getCheckWaterQualityEnumDisplayText(getCheckWaterQualityEnumById(well.wellWaterQualityCheckObj!.first.id)??CheckWaterQualityEnum.check);
             wellStatusController.text=getWellStatusEnumDisplayText(getWellStatusEnumById(well.wellStatusObj!.first.id)??WellStatusEnum.active);
           break;
+          case 2: //!----- SMALL PIPE
+            final smallPipe = waterSupply.waterSupplyPipes!.first;
+            emit(state.copyWith(
+              waterSupplyTypeInput:WaterSupplyTypeInput.pure(getWaterSupplyTypeEnumById(smallPipe.source_type_of_water.first.valueId)),
+              containerInput:WaterSupplyInput.pure(smallPipe.abilityOfProductWater),
+
+            )); 
+
+            waterSupplyTypeController.text= getWaterSupplyTypeEnumDisplayText(getWaterSupplyTypeEnumById(smallPipe.source_type_of_water.first.valueId)??WaterSupplyTypeEnum.all);
+            containerController.text=smallPipe.abilityOfProductWater;
+            break;
+
         }
 
     } catch (e) {

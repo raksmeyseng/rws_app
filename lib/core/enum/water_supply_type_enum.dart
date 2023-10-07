@@ -48,3 +48,33 @@ extension WaterSupplyTypeEnumExtension on WaterSupplyTypeEnum {
     }
   }
 }
+
+WaterSupplyTypeEnum? getWaterSupplyTypeEnumById(int id){
+  switch (id) {
+      case 14:
+        return WaterSupplyTypeEnum.underWater;
+      case 15:
+        return WaterSupplyTypeEnum.onTheWater;
+      case 16:
+        return WaterSupplyTypeEnum.springWater;
+      case 17:
+        return WaterSupplyTypeEnum.all;
+      default:
+        return WaterSupplyTypeEnum.all;
+    }
+}
+
+String getWaterSupplyTypeEnumDisplayText(WaterSupplyTypeEnum value) {
+    switch (value) {
+      case WaterSupplyTypeEnum.underWater:
+        return 'ក្រោមទឹក';
+      case WaterSupplyTypeEnum.onTheWater:
+        return 'លើទឹក';
+      case WaterSupplyTypeEnum.springWater:
+        return 'ទឹកផុស';
+      case WaterSupplyTypeEnum.all:
+        return 'ប្រើរួម';
+      default:
+        return 'ប្រើរួម';
+    }
+  }
