@@ -30,3 +30,22 @@ extension FilterEnumExtension on FilterEnum {
     }
   }
 }
+
+
+FilterEnum? getFilterEnumById(int id){
+  switch (id) {
+      case 18:
+        return FilterEnum.have;
+      case 19:
+        return FilterEnum.notHave;
+    }
+}
+
+String getFilterEnumDisplayText(FilterEnum value) {
+    switch (value) {
+      case FilterEnum.have:
+        return 'មាន';
+      case FilterEnum.notHave:
+        return 'មិនមាន';
+    }
+  }

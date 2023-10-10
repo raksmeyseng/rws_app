@@ -547,17 +547,90 @@ class WaterSupplyEditBloc
             waterQualityController.text=getWaterQualityEnumDisplayText(getWaterQualityEnumById(well.wellWaterQualityObj!.first.id)??WaterQualityEnum.well);
             checkWaterQualityController.text=getCheckWaterQualityEnumDisplayText(getCheckWaterQualityEnumById(well.wellWaterQualityCheckObj!.first.id)??CheckWaterQualityEnum.check);
             wellStatusController.text=getWellStatusEnumDisplayText(getWellStatusEnumById(well.wellStatusObj!.first.id)??WellStatusEnum.active);
+            
           break;
           case 2: //!----- SMALL PIPE
             final smallPipe = waterSupply.waterSupplyPipes!.first;
             emit(state.copyWith(
               waterSupplyTypeInput:WaterSupplyTypeInput.pure(getWaterSupplyTypeEnumById(smallPipe.source_type_of_water.first.valueId)),
-              containerInput:WaterSupplyInput.pure(smallPipe.abilityOfProductWater),
-
+              containerInput:WaterSupplyInput.pure(smallPipe.underGroudPoolStorage),
+              capacityInput: WaterSupplyInput.pure(smallPipe.abilityOfProductWater),
+              airPoolInput: WaterSupplyInput.pure(smallPipe.pool_air),
+              filterTankInput: PoolfilterInput.pure(getFilterEnumById(smallPipe.pool_filter_obj.first.id)),
+              connectorInput: WaterSupplyInput.pure(smallPipe.number_of_link),
+              checkWaterQualityInput: CheckWaterQualityInput.pure(getCheckWaterQualityEnumById(smallPipe.water_quality_check_obj.first.id)),
+              pipeLenghtInput: WaterSupplyInput.pure(smallPipe.pipe_length),
+              coverageInput: WaterSupplyInput.pure(smallPipe.area_covering),
+              pipeStatusInput: WellStatusInput.pure(getWellStatusEnumById(smallPipe.status_obj.first.id)),
             )); 
 
             waterSupplyTypeController.text= getWaterSupplyTypeEnumDisplayText(getWaterSupplyTypeEnumById(smallPipe.source_type_of_water.first.valueId)??WaterSupplyTypeEnum.all);
-            containerController.text=smallPipe.abilityOfProductWater;
+            containerController.text=smallPipe.underGroudPoolStorage;
+            capacityController.text=smallPipe.abilityOfProductWater;
+            ariPoolController.text=smallPipe.pool_air;
+            filterTankController.text=getFilterEnumDisplayText(getFilterEnumById(smallPipe.pool_filter_obj.first.id)??FilterEnum.have);
+            connectorController.text=smallPipe.number_of_link;
+            checkWaterQualityController.text=getCheckWaterQualityEnumDisplayText(getCheckWaterQualityEnumById(smallPipe.water_quality_check_obj.first.id)??CheckWaterQualityEnum.check);
+            pipeLenghtController.text=smallPipe.pipe_length;
+            coverageController.text=smallPipe.area_covering;
+            pipeStatusController.text=getWellStatusEnumDisplayText(getWellStatusEnumById(smallPipe.status_obj.first.id)??WellStatusEnum.active);
+
+            break;
+            //!---- KIOSK
+            case 3:
+              final kiosk = waterSupply.watersupplykiosks!.first;
+              emit(state.copyWith(
+                waterSupplyTypeInput: WaterSupplyTypeInput.pure(getWaterSupplyTypeEnumById(kiosk.sourceTypeOfWater.first.valueId)),
+                abilityProduceWaterInput: WaterSupplyInput.pure(kiosk.abilityOfProductWater),
+                kioskFilter: PoolfilterInput.pure(getFilterEnumById(kiosk.filterSystemObj.first.id)),
+                qualityWaterCheckInput: WaterQualityInput.pure(getWaterQualityEnumById(kiosk.waterQualityCheckingObj.first.id)),
+                kioskStatus: WellStatusInput.pure(getWellStatusEnumById(kiosk.statusObj.first.id)),
+
+              ));
+              waterSupplyTypeController.text=getWaterSupplyTypeEnumDisplayText(getWaterSupplyTypeEnumById(kiosk.sourceTypeOfWater.first.valueId)??WaterSupplyTypeEnum.all);
+              abilityProductWaterController.text=kiosk.abilityOfProductWater;
+              kioskFilterController.text=getFilterEnumDisplayText(getFilterEnumById(kiosk.filterSystemObj.first.id)??FilterEnum.have);
+              qualityWaterCheckController.text= getWaterQualityEnumDisplayText(getWaterQualityEnumById(kiosk.waterQualityCheckingObj.first.id)??WaterQualityEnum.well);
+              kioskStatusController.text=getWellStatusEnumDisplayText(getWellStatusEnumById(kiosk.statusObj.first.id)??WellStatusEnum.active);
+
+            break;
+            case 4:
+            //!-- POND
+              final pond = waterSupply.waterSupplyCommunityPond!.first;
+                emit(state.copyWith(
+                  pondLatInput: WaterSupplyInput.pure(pond.width),
+                  pondLongInput: WaterSupplyInput.pure(pond.length),
+                  pondDepthInput: WaterSupplyInput.pure(pond.height),
+                  pondFilterInput: PondfilterInput.pure(getPondFilterEnumById(pond.filterSystemObj.first.id)),
+                  pondTypeInput: PondTypeInput.pure(getPondTypeEnumById(pond.typeOfPondObj.first.id)),
+                  seasonInput: SeasonHasWaterInput.pure(getSeasonEnumbyId(pond.isSummerHasWaterObj.first.id)),
+                  pondStatusInput: PondStatusInput.pure(getPondStatusEnumById(pond.statusObj.first.id)),
+                ));
+
+                pondLatController.text=pond.width;
+                pondLongController.text=pond.length;
+                pondDepthController.text=pond.height;
+                pondFilterController.text=getPondFilterEnumDisplayText(getPondFilterEnumById(pond.filterSystemObj.first.id)??PondFilterEnum.notHave);
+                pondTypeController.text=getPondTypeEnumDisplayText(getPondTypeEnumById(pond.typeOfPondObj.first.id)??PondTypeEnum.concrete);
+                seasonController.text=getSeasonEnumDisplayText(getSeasonEnumbyId(pond.isSummerHasWaterObj.first.id)??SeasonEnum.have);
+                pondStatusController.text=getPondStatusEnumDisplayText(getPondStatusEnumById(pond.statusObj.first.id)??PondStatusEnum.maintain);
+
+            break;
+            case 5:
+              final rainwaterharvesting = waterSupply.waterSupplyRainWaterHarvesting!.first;
+              emit(state.copyWith(
+                usingTypeInput: UsingTypeInput.pure(getUsingTypeEnumById(rainwaterharvesting.typeOfUsing.first.id)),
+                capacityTypeInput: CapacityInput.pure(getCapacityTypeEnumById(rainwaterharvesting.typeOfUsing.first.id)),
+                checkWaterQualityInput:CheckWaterQualityInput.pure(getCheckWaterQualityEnumById(rainwaterharvesting.waterQualityCheckObj.first.id)),
+                tankStatusInput: TankStatusInput.pure(getTankStatusEnumById(rainwaterharvesting.statusObj.first.id)),
+
+              ));
+
+              usingTypeController.text=getUsingTypeEnumDisplayText(getUsingTypeEnumById(rainwaterharvesting.typeOfUsing.first.id)??UsingTypeEnum.family);
+              capacityTypeController.text=getCapacityTypeEnumDisplayText(getCapacityTypeEnumById(rainwaterharvesting.typeOfUsing.first.id)??CapacityTypeEnum.ml1);
+              checkWaterQualityController.text=getCheckWaterQualityEnumDisplayText(getCheckWaterQualityEnumById(rainwaterharvesting.waterQualityCheckObj.first.id)??CheckWaterQualityEnum.check);
+              tankStatusController.text=getTankStatusEnumDisplayText(getTankStatusEnumById(rainwaterharvesting.statusObj.first.id)??TankStatusEnum.unUse);
+
             break;
 
         }

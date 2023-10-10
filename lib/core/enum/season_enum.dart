@@ -29,3 +29,21 @@ extension SeasonEnumExtension on SeasonEnum {
     }
   }
 }
+
+SeasonEnum? getSeasonEnumbyId(int id){
+  switch (id) {
+      case 34:
+        return SeasonEnum.have;
+      case 35:
+        return SeasonEnum.notHave;
+    }
+}
+
+String getSeasonEnumDisplayText(SeasonEnum value) {
+    switch (value) {
+      case SeasonEnum.have:
+        return 'មានទឹក';
+      case SeasonEnum.notHave:
+        return 'គ្មានទឹក';
+    }
+  }

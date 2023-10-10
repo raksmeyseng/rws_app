@@ -30,3 +30,20 @@ extension TankStatusEnumExtension on TankStatusEnum {
     }
   }
 }
+
+TankStatusEnum? getTankStatusEnumById(int id){
+  switch (id) {
+      case 42:
+        return TankStatusEnum.use;
+      case 43:
+        return TankStatusEnum.unUse;
+    }
+}
+String getTankStatusEnumDisplayText(TankStatusEnum value) {
+    switch (value) {
+      case TankStatusEnum.use:
+        return 'ប្រើប្រាស់';
+      case TankStatusEnum.unUse:
+        return 'មិនប្រើប្រាស់';
+    }
+  }

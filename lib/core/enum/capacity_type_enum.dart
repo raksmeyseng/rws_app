@@ -55,3 +55,37 @@ extension CapacityTypeEnumExtension on CapacityTypeEnum {
     }
   }
 }
+
+CapacityTypeEnum? getCapacityTypeEnumById(int id){
+  switch (id) {
+      case 45:
+        return CapacityTypeEnum.ml35;
+      case 46:
+        return CapacityTypeEnum.ml10;
+      case 47:
+        return CapacityTypeEnum.ml5;
+      case 48:
+        return CapacityTypeEnum.ml4;
+      case 49:
+        return CapacityTypeEnum.ml1;
+      default:
+        return CapacityTypeEnum.ml1;
+    }
+}
+
+String getCapacityTypeEnumDisplayText(CapacityTypeEnum? value) {
+    switch (value) {
+      case CapacityTypeEnum.ml35:
+        return '៣៥ ម៣';
+      case CapacityTypeEnum.ml10:
+        return '១០ ម៣';
+      case CapacityTypeEnum.ml5:
+        return '៥ ម៣';
+      case CapacityTypeEnum.ml4:
+        return '៤ ម៣';
+      case CapacityTypeEnum.ml1:
+        return '១ ម៣ ពាងយក្ស';
+      default:
+        return '៣៥ ម៣';
+    }
+  }

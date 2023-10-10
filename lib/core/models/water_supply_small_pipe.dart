@@ -15,7 +15,8 @@ class WaterSupplySmallPipeModel {
     required this.water_quality_check_obj,
     required this.status_obj,
     required this.source_type_of_water,
-
+    required this.pipe_length,
+    required this.area_covering,
   });
   
   @JsonKey(name:'id')
@@ -32,6 +33,11 @@ class WaterSupplySmallPipeModel {
   String pool_air;
   @JsonKey(name:'pool_filter')
   String pool_filter;
+  @JsonKey(name:'pipe_length')
+  String pipe_length;
+  @JsonKey(name:'area_covering')
+  String area_covering;
+
 
   
   @JsonKey(name: 'pool_filter_obj')

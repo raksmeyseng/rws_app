@@ -30,3 +30,21 @@ extension PondTypeEnumExtension on PondTypeEnum {
     }
   }
 }
+
+PondTypeEnum? getPondTypeEnumById(int id){
+  switch (id) {
+      case 32:
+        return PondTypeEnum.concrete;
+      case 33:
+        return PondTypeEnum.land;
+    }
+}
+
+String getPondTypeEnumDisplayText(PondTypeEnum value) {
+    switch (value) {
+      case PondTypeEnum.concrete:
+        return 'ជើងទេរបេតុង';
+      case PondTypeEnum.land:
+        return 'ជើងទេរដី';
+    }
+  }

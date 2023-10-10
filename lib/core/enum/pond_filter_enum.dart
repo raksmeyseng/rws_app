@@ -36,3 +36,25 @@ extension PondFilterEnumExtension on PondFilterEnum {
     }
   }
 }
+
+PondFilterEnum? getPondFilterEnumById(int id){
+  switch (id) {
+      case 30:
+        return PondFilterEnum.notHave;
+      case 31:
+        return PondFilterEnum.haveActive;
+      case 44:
+        return PondFilterEnum.haveInactive;
+    }
+}
+
+String getPondFilterEnumDisplayText(PondFilterEnum value) {
+    switch (value) {
+      case PondFilterEnum.notHave:
+        return 'មិនមាន';
+      case PondFilterEnum.haveActive:
+        return 'មាន(ដំណើរការ)';
+      case PondFilterEnum.haveInactive:
+        return 'មាន(មិនដំណើរការ)';
+    }
+  }

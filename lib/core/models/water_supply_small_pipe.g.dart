@@ -10,6 +10,8 @@ WaterSupplySmallPipeModel _$WaterSupplySmallPipeModelFromJson(
         number_of_link: json['number_of_link'] as String,
         pool_air: json['pool_air'] as String,
         pool_filter: json['pool_filter'] as String,
+        pipe_length: json['pipe_length'] as String,
+        area_covering: json['area_covering'] as String,
         pool_filter_obj: (json['pool_filter_obj'] as List<dynamic>)
           .map((e) => WaterSupplyOptionValueModel.fromJson(e as Map<String, dynamic>)).toList(),
         water_quality_check_obj: (json['water_quality_check_obj'] as List<dynamic>)
@@ -29,7 +31,9 @@ Map<String, dynamic> _$WaterSupplySmallPipeModelToJson(
             'underground_pool_storage': instance.underGroudPoolStorage,
             'number_of_link': instance.number_of_link,
             'pool_air': instance.pool_air,
-            'pool_filter': instance.pool_filter,           
+            'pool_filter': instance.pool_filter,     
+            'pipe_length'    :instance.pipe_length,
+            'area_covering': instance.area_covering,  
             'pool_filter_obj': instance.pool_filter_obj?.map((e) => e.toJson()).toList(),
             'water_quality_check_obj': instance.water_quality_check_obj?.map((e) => e.toJson()).toList(),
             'status_obj': instance.status_obj?.map((e) => e.toJson()).toList(),

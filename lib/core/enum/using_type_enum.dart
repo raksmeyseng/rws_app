@@ -38,3 +38,26 @@ extension UsingTypeEnumExtension on UsingTypeEnum {
     }
   }
 }
+
+UsingTypeEnum? getUsingTypeEnumById(int id){
+  switch (id) {
+      case 39:
+        return UsingTypeEnum.family;
+      case 40:
+        return UsingTypeEnum.school;
+      case 41:
+        return UsingTypeEnum.hospital;
+    }
+}
+
+String getUsingTypeEnumDisplayText(UsingTypeEnum value) 
+  {
+    switch (value) {
+      case UsingTypeEnum.family:
+        return 'តាមគ្រួសារ';
+      case UsingTypeEnum.school:
+        return 'សាលារៀន';
+      case UsingTypeEnum.hospital:
+        return 'មន្ទីរពេទ្យ';
+    }
+  }

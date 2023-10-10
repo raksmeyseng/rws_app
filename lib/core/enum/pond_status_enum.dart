@@ -36,4 +36,28 @@ extension PondStatusEnumExtension on PondStatusEnum {
         return 'មិនប្រើប្រាស់';
     }
   }
+
+  
 }
+
+PondStatusEnum? getPondStatusEnumById(int id){
+  switch (id) {
+      case 36:
+        return PondStatusEnum.unMaintain;
+      case 37:
+        return PondStatusEnum.maintain;
+      case 38:
+        return PondStatusEnum.unUse;
+    }
+}
+
+String getPondStatusEnumDisplayText(PondStatusEnum value) {
+    switch (value) {
+      case PondStatusEnum.unMaintain:
+        return 'មិនមានការការពារនិងថែទាំ';
+      case PondStatusEnum.maintain:
+        return 'មានការការពារថែទាំ';
+      case PondStatusEnum.unUse:
+        return 'មិនប្រើប្រាស់';
+    }
+  }
