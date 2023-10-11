@@ -60,6 +60,6 @@ class AppConstant {
   static const String inlineSeparator = '•';
   static const bool isCurvedLineChart = false;
   static const int wrongPinAttemptLimit = 5;
-  static const String mainURL = 'http://13.212.250.28/en/api/';
-  static const String defaultURL = 'http://13.212.250.28/';
+  static const String mainURL = 'http://3.0.166.20/en/api/';
+  static const String defaultURL = 'http://3.0.166.20/';
 }
