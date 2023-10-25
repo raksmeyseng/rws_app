@@ -9,14 +9,14 @@ class MapState extends Equatable {
 
   final BaseStatusEnum status;
   final GoogleMapController? mapController;
-  final List<WaterSupplyMapModel> waterSupplys;
+  final List<WaterSupplyMapModelV2> waterSupplys;
 
   const MapState.initial() : this._();
 
   MapState copyWith({
     BaseStatusEnum? status,
     GoogleMapController? mapController,
-    List<WaterSupplyMapModel>? waterSupplys,
+    List<WaterSupplyMapModelV2>? waterSupplys,
   }) {
     return MapState._(
       status: status ?? this.status,

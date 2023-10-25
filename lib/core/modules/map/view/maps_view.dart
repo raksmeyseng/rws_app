@@ -73,7 +73,7 @@ class _MapsViewState extends State<MapsView> {
     );
   }
 
-  Widget _buildChild(BaseStatusEnum status,List<WaterSupplyMapModel> waterSupplys) {
+  Widget _buildChild(BaseStatusEnum status,List<WaterSupplyMapModelV2> waterSupplys) {
     switch (status) {
       case BaseStatusEnum.success:
       // ignore: prefer_collection_literals
@@ -103,65 +103,80 @@ class _MapsViewState extends State<MapsView> {
           markerIcon=airToWaterIcon;
           break;
         }
-        if(ws.mapUnitId==1){
 
-          var marker = Marker(
+        var marker = Marker(
                   //icon: BitmapDescriptor.fromAssetImage(const ImageConfiguration(devicePixelRatio: 2.0),'http://maps.google.com/mapfiles/ms/icons/orange-dot.png') ,
-                markerId: MarkerId(ws.address.nameEn),
-                position: LatLng(ws.lat, ws.lng),
-                infoWindow: InfoWindow(
-                  title: ws.waterSupplyCode,
-                        snippet: ws.waterSupplyType,
-                      ),
-                      //icon: BitmapDescriptor.fromBytes(customMarker)
-                      icon: markerIcon,
-              );
-
-              markers.add(marker);
-
-          // try{
-          //   var utmX=double.parse(ws.utmX);
-          //   var utmY=double.parse(ws.utmY);
-          //   if(utmX>0 && utmY>0){
-          //     LatLong result = converter.getLatLongFromOSGB(utmX.toInt(),utmY.toInt());//,Datums.WGS84
-              
-          //     var lng = double.parse(result.long).abs();
-          //     print(result.lat+ ' '+lng);
-          //     var marker = Marker(
-          //         //icon: BitmapDescriptor.fromAssetImage(const ImageConfiguration(devicePixelRatio: 2.0),'http://maps.google.com/mapfiles/ms/icons/orange-dot.png') ,
-          //       markerId: MarkerId(ws.address.nameEn),
-          //       position: LatLng(double.parse(result.lat), lng),
-          //       infoWindow: InfoWindow(
-          //         title: ws.waterSupplyCode,
-          //               snippet: ws.waterSupplyType,
-          //             ),
-          //             //icon: BitmapDescriptor.fromBytes(customMarker)
-          //             icon: markerIcon,
-          //     );
-
-          //     markers.add(marker);
-          //   }
-          // }catch(_){
-
-          // }
-          
-          
-          //print("${result.lat} ${result.long}");
-        }else if(ws.mapUnitId==2){
-          var marker = Marker(
-                  //icon: BitmapDescriptor.fromAssetImage(const ImageConfiguration(devicePixelRatio: 2.0),'http://maps.google.com/mapfiles/ms/icons/orange-dot.png') ,
-            markerId: MarkerId(ws.address.nameEn),
+            markerId: MarkerId(ws.waterSupplyCode),
             position: LatLng(double.parse(ws.decimalDegreeLat), double.parse(ws.decimalDegreeLng)),
                   infoWindow: InfoWindow(
                     title: ws.waterSupplyCode,
-                    snippet: ws.waterSupplyType,
+                    snippet: ws.waterSupplyCode,
                   ),
                   //icon: BitmapDescriptor.fromBytes(customMarker)
                   icon: markerIcon,
           );
 
         markers.add(marker);
-        }
+
+        // if(ws.mapUnitId==1){
+
+        //   var marker = Marker(
+        //           //icon: BitmapDescriptor.fromAssetImage(const ImageConfiguration(devicePixelRatio: 2.0),'http://maps.google.com/mapfiles/ms/icons/orange-dot.png') ,
+        //         markerId: MarkerId(ws.address.nameEn),
+        //         position: LatLng(ws.lat, ws.lng),
+        //         infoWindow: InfoWindow(
+        //           title: ws.waterSupplyCode,
+        //                 snippet: ws.waterSupplyType,
+        //               ),
+        //               //icon: BitmapDescriptor.fromBytes(customMarker)
+        //               icon: markerIcon,
+        //       );
+
+        //       markers.add(marker);
+
+        //   // try{
+        //   //   var utmX=double.parse(ws.utmX);
+        //   //   var utmY=double.parse(ws.utmY);
+        //   //   if(utmX>0 && utmY>0){
+        //   //     LatLong result = converter.getLatLongFromOSGB(utmX.toInt(),utmY.toInt());//,Datums.WGS84
+              
+        //   //     var lng = double.parse(result.long).abs();
+        //   //     print(result.lat+ ' '+lng);
+        //   //     var marker = Marker(
+        //   //         //icon: BitmapDescriptor.fromAssetImage(const ImageConfiguration(devicePixelRatio: 2.0),'http://maps.google.com/mapfiles/ms/icons/orange-dot.png') ,
+        //   //       markerId: MarkerId(ws.address.nameEn),
+        //   //       position: LatLng(double.parse(result.lat), lng),
+        //   //       infoWindow: InfoWindow(
+        //   //         title: ws.waterSupplyCode,
+        //   //               snippet: ws.waterSupplyType,
+        //   //             ),
+        //   //             //icon: BitmapDescriptor.fromBytes(customMarker)
+        //   //             icon: markerIcon,
+        //   //     );
+
+        //   //     markers.add(marker);
+        //   //   }
+        //   // }catch(_){
+
+        //   // }
+          
+          
+        //   //print("${result.lat} ${result.long}");
+        // }else if(ws.mapUnitId==2){
+        //   var marker = Marker(
+        //           //icon: BitmapDescriptor.fromAssetImage(const ImageConfiguration(devicePixelRatio: 2.0),'http://maps.google.com/mapfiles/ms/icons/orange-dot.png') ,
+        //     markerId: MarkerId(ws.waterSupplyCode),
+        //     position: LatLng(double.parse(ws.decimalDegreeLat), double.parse(ws.decimalDegreeLng)),
+        //           infoWindow: InfoWindow(
+        //             title: ws.waterSupplyCode,
+        //             snippet: ws.waterSupplyCode,
+        //           ),
+        //           //icon: BitmapDescriptor.fromBytes(customMarker)
+        //           icon: markerIcon,
+        //   );
+
+        // markers.add(marker);
+        // }
         
       }
         return GoogleMap(

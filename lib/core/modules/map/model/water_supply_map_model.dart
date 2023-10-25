@@ -50,6 +50,32 @@ factory WaterSupplyMapModel.fromJson(Map<String, dynamic> json) =>
 
 }
 
+class WaterSupplyMapModelV2{
+
+  WaterSupplyMapModelV2({
+    required this.id,
+    required this.decimalDegreeLat,
+    required this.decimalDegreeLng,
+    required this.waterSupplyCode,
+    required this.waterSupplyTypeId
+  });
+
+  @JsonKey(name: 'id')
+  int id;
+  @JsonKey(name:'decimal_degress_lat')
+  String decimalDegreeLat; 
+  @JsonKey(name:'decimal_degress_lng')
+  String decimalDegreeLng;
+  @JsonKey(name:'water_supply_type_id')
+  int waterSupplyTypeId;
+  @JsonKey(name : 'water_supply_code')
+  String waterSupplyCode;
+
+  factory WaterSupplyMapModelV2.fromJson(Map<String, dynamic> json) =>
+      _$WaterSupplyMapModelV2FromJson(json);
+
+}
+
 WaterSupplyMapModel _$WaterSupplyMapModelFromJson(Map<String, dynamic> json) => WaterSupplyMapModel(
   id: json['id'] as int,
   waterSupplyType: json['water_supply_type_id']['name_kh'] as String,
@@ -64,5 +90,14 @@ WaterSupplyMapModel _$WaterSupplyMapModelFromJson(Map<String, dynamic> json) => 
       utmY: json['utm_y'] as String,
       lat: json['lat'] as double,
       lng: json['lng'] as double
+      
+   );
+
+   WaterSupplyMapModelV2 _$WaterSupplyMapModelV2FromJson(Map<String, dynamic> json) => WaterSupplyMapModelV2(
+    id: json['id'] as int,
+    waterSupplyCode: json['water_supply_code'] as String,
+      decimalDegreeLat: json['decimal_degress_lat'] as String,
+      decimalDegreeLng: json['decimal_degress_lng'] as String,
+      waterSupplyTypeId: json['water_supply_type_id'] as int,
       
    );
