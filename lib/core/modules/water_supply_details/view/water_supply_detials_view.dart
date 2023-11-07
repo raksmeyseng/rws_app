@@ -99,7 +99,7 @@ class _LoadingView extends StatelessWidget {
 class _WaterSupplyItem extends StatelessWidget {
   const _WaterSupplyItem(this.item);
 
-  final WaterSupplyListModel item;
+  final WaterSupplyListByTypeModel item;
 
   @override
   Widget build(BuildContext context) {
@@ -122,7 +122,7 @@ class _WaterSupplyItem extends StatelessWidget {
           AppRoute.waterSupplyViewDetail,
           extra: {
             'id': item.id.toString(),
-            'title': item.waterSupplyType.toString(),
+            'title': item.waterSupplyTypeKh.toString(),
           },
         );
       },
@@ -134,7 +134,7 @@ class _WaterSupplyItem extends StatelessWidget {
             CaptionWidget('${S.of(context).water_supply_type} :'),
             Flexible(
               child: TextWidget(
-                item.waterSupplyType,
+                item.waterSupplyTypeKh,
                 overflow: TextOverflow.ellipsis,
               ),
             ),
@@ -145,31 +145,31 @@ class _WaterSupplyItem extends StatelessWidget {
           ),
           _InfoItem(
             CaptionWidget('${S.of(context).village} :'),
-            TextWidget(item.village?.nameKh),
+            TextWidget(item.VillageNameKh),
           ),
           _InfoItem(
             CaptionWidget('${S.of(context).commune} :'),
-            TextWidget(item.commune.nameKh),
+            TextWidget(item.CommuneNameKh),
           ),
           _InfoItem(
             CaptionWidget('${S.of(context).district} :'),
-            TextWidget(item.district.nameKh),
+            TextWidget(item.DistrictNameKh),
           ),
           _InfoItem(
             CaptionWidget('${S.of(context).province} :'),
-            TextWidget(item.address.nameKh),
+            TextWidget(item.ProvinceNameKh),
           ),
-          const Padding(
-            padding: EdgeInsets.symmetric(vertical: 8),
-            child: MyDivider(),
-          ),
-          _InfoItem(
-            CaptionWidget('${S.of(context).status} :'),
-            TextWidget(
-              item.status.statusNameKh,
-              color: AppColor.success,
-            ),
-          ),
+          // const Padding(
+          //   padding: EdgeInsets.symmetric(vertical: 8),
+          //   child: MyDivider(),
+          // ),
+          // _InfoItem(
+          //   CaptionWidget('${S.of(context).status} :'),
+          //   TextWidget(
+          //     item.status.statusNameKh,
+          //     color: AppColor.success,
+          //   ),
+          // ),
         ],
       ),
     );

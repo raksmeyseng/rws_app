@@ -52,3 +52,51 @@ class WaterSupplyListModel{
   factory WaterSupplyListModel.fromJson(Map<String, dynamic> json) =>
       _$WaterSupplyListModelFromJson(json);
 }
+
+@JsonSerializable(explicitToJson: true)
+class WaterSupplyListByTypeModel{
+
+  WaterSupplyListByTypeModel({
+    required this.id,
+    required this.waterSupplyCode,
+    required this.waterSupplyTypeEn,
+    required this.waterSupplyTypeKh,
+    required this.ProvinceNameKh,
+    required this.ProvinceNameEn,
+    required this.DistrictNameEn,
+    required this.DistrictNameKh,
+    required this.CommuneNameEn,
+    required this.CommuneNameKh,
+    required this.VillageNameEn,
+    required this.VillageNameKh
+  });
+
+  @JsonKey(name: 'id')
+  int id;
+  @JsonKey(name : 'water_supply_code')
+  String waterSupplyCode;
+  @JsonKey(name : 'water_supply_type_id')
+  String waterSupplyTypeEn;
+  @JsonKey(name : 'water_supply_type_id')
+  String waterSupplyTypeKh;
+  @JsonKey(name : 'province_id')
+  String ProvinceNameKh;
+  @JsonKey(name : 'province_id')
+  String ProvinceNameEn;
+  @JsonKey(name : 'district_id')
+  String DistrictNameKh;
+  @JsonKey(name : 'district_id')
+  String DistrictNameEn;
+  @JsonKey(name : 'commune_id')
+  String CommuneNameEn;
+  @JsonKey(name : 'commune_id')
+  String CommuneNameKh;
+  @JsonKey(name : 'Village_id')
+  String VillageNameKh;
+  @JsonKey(name : 'Village_id')
+  String VillageNameEn;
+
+
+  factory WaterSupplyListByTypeModel.fromJson(Map<String, dynamic> json) =>
+      _$WaterSupplyListByTypeModelFromJson(json);
+}

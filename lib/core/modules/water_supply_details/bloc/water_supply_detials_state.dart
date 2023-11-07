@@ -8,7 +8,7 @@ class WaterSupplyDetialsState extends Equatable {
   });
 
   final BaseStatusEnum status;
-  final List<WaterSupplyListModel> waterSupply;
+  final List<WaterSupplyListByTypeModel> waterSupply;
   final int waterSupplyId;
 
   const WaterSupplyDetialsState.initial({required int waterSupplyId})
@@ -16,7 +16,7 @@ class WaterSupplyDetialsState extends Equatable {
 
   WaterSupplyDetialsState copyWith({
     BaseStatusEnum? status,
-    List<WaterSupplyListModel>? waterSupply,
+    List<WaterSupplyListByTypeModel>? waterSupply,
     int? waterSupplyId,
   }) {
     return WaterSupplyDetialsState._(

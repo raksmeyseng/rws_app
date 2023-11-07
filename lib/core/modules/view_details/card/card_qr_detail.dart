@@ -67,19 +67,18 @@ class _SuccessView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<ListDataDetailsBloc, ListDataDetailsState>(
       buildWhen: (previous, current) =>
-      previous.waterSupply != current.waterSupply,
+          previous.waterSupply != current.waterSupply,
       builder: (context, state) {
-        String url = 'http://18.222.12.231/media/';
-        if(state.waterSupply!.qrcode!.isEmpty){
+        String url = 'http://3.0.166.20//media/';
+        if (state.waterSupply!.qrcode!.isEmpty) {
           return const _FailureView();
-        }else{
-        String qrCodeName= state.waterSupply!.qrcode!.first.qrCodeImageName;
-        url = url+qrCodeName;
-        return Center(
-          child: Image.network(url),
-        );
+        } else {
+          String qrCodeName = state.waterSupply!.qrcode!.first.qrCodeImageName;
+          url = url + qrCodeName;
+          return Center(
+            child: Image.network(url),
+          );
         }
-        
       },
     );
   }

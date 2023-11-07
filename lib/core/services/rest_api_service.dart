@@ -96,7 +96,7 @@ class RestApiService {
   String _normalizePath(String path) =>
       path.startsWith('/') ? path.substring(1) : path;
 
-  String get _baseUrl => 'http://52.14.59.145/en';
+  String get _baseUrl => 'http://3.0.166.20//en';
 
   Future<dynamic> get(
     String path, {
@@ -189,5 +189,4 @@ class RestApiService {
       }
     }
   }
-  
 }

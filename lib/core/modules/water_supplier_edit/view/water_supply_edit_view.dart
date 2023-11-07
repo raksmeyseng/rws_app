@@ -63,7 +63,16 @@ class WaterSupplyEditView extends StatelessWidget {
           previous.formzStatus != current.formzStatus,
       listener: (context, state) {
         if (state.formzStatus == FormzStatus.submissionSuccess) {
-          Application.router.goNamed(AppRoute.home, extra: {'index': '2'});
+          //Application.router.goNamed(AppRoute.home, extra: {'index': '2'});
+          Future.delayed(
+              Duration.zero,
+              () =>
+                  _dialogBuilder(context, 'ទិន្នន័យរក្សាទុកបានជោគជ័យ។', false));
+        } else if (state.formzStatus == FormzStatus.submissionSuccess) {
+          Future.delayed(
+              Duration.zero,
+              () => _dialogBuilder(
+                  context, 'ទិន្នន័យរក្សាទុកមិនបានជោគជ័យ។', true));
         }
       },
       child: BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
@@ -79,6 +88,49 @@ class WaterSupplyEditView extends StatelessWidget {
           }
         },
       ),
+    );
+  }
+
+  Future<void> _dialogBuilder(
+      BuildContext context, String message, bool isError) {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(message),
+          // content: const Text(
+          //   '',
+          // ),
+          actions: <Widget>[
+            // TextButton(
+            //   style: TextButton.styleFrom(
+            //     textStyle: Theme.of(context).textTheme.labelLarge,
+            //   ),
+            //   child: const Text('Disable'),
+            //   onPressed: () {
+            //     Navigator.of(context).pop();
+            //   },
+            // ),
+            TextButton(
+              style: TextButton.styleFrom(
+                textStyle: Theme.of(context).textTheme.labelLarge,
+              ),
+              child: const Text('បិទ'),
+              onPressed: () {
+                if (isError) {
+                  Navigator.of(context).pop();
+                } else {
+                  Application.router
+                      .goNamed(AppRoute.home, extra: {'index': '0'});
+                }
+
+                // Application.router.goNamed(AppRoute.myTask);
+                //Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }
@@ -100,11 +152,11 @@ class _SuccessView extends StatelessWidget {
           child: Stack(
             fit: StackFit.expand,
             children: [
-               Padding(
-                padding:const EdgeInsets.only(bottom: 30.0),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 30.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children:const [
+                  children: const [
                     _TabBar(),
                     Expanded(child: _TabBarView()),
                   ],
@@ -224,7 +276,7 @@ class _FirstInputPage extends StatelessWidget {
     return SizedBox.expand(
       child: SingleChildScrollView(
         child: Padding(
-          padding:const EdgeInsets.all(16),
+          padding: const EdgeInsets.all(16),
           child: Wrapper(
             maxWidth: appSmallMaxWidth,
             child: Column(
@@ -255,7 +307,7 @@ class _SecondInputPage extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.center,
-              children:const [
+              children: const [
                 _FormField2(),
               ],
             ),
@@ -280,7 +332,7 @@ class _ThirdInputPage extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.center,
-              children:const [
+              children: const [
                 _FormField3(),
               ],
             ),
@@ -296,23 +348,23 @@ class _FormField1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Column(
+    return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children:const [
+          children: const [
             Expanded(child: _ProvinceInput()),
             SizedBox(width: 16),
             Expanded(child: _DistrictInput()),
           ],
         ),
-       const SizedBox(height: 16),
+        const SizedBox(height: 16),
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children:const [
+          children: const [
             Expanded(child: _CommuneInput()),
             SizedBox(width: 16),
             Expanded(child: _VillageInput()),
@@ -322,7 +374,7 @@ class _FormField1 extends StatelessWidget {
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children:const [
+          children: const [
             Expanded(child: _MapTypeInput()),
           ],
         ),
@@ -364,7 +416,7 @@ class _FormField2 extends StatelessWidget {
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children:const [
+          children: const [
             Expanded(child: _ManagementTypeInput()),
           ],
         ),
@@ -380,7 +432,7 @@ class _FormField2 extends StatelessWidget {
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children:const [
+          children: const [
             Expanded(child: _ReceiverTotalInput()),
             SizedBox(width: 16),
             Expanded(child: _ReceiverTotalAsFemaleInput()),
@@ -390,7 +442,7 @@ class _FormField2 extends StatelessWidget {
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children:const [
+          children: const [
             Expanded(child: _ReceiverFamilyTotalInput()),
           ],
         ),
@@ -406,7 +458,7 @@ class _FormField2 extends StatelessWidget {
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children:const [
+          children: const [
             Expanded(child: _ReceiverFamilyPoor2Input()),
           ],
         ),
@@ -414,7 +466,7 @@ class _FormField2 extends StatelessWidget {
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children:const [
+          children: const [
             Expanded(child: _ReceiverFamilyIndigenousInput()),
           ],
         ),
@@ -422,7 +474,7 @@ class _FormField2 extends StatelessWidget {
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children:const [
+          children: const [
             Expanded(child: _ReceiverFamilyVulnearableInput()),
           ],
         ),
@@ -430,7 +482,7 @@ class _FormField2 extends StatelessWidget {
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children:const [
+          children: const [
             Expanded(child: _ConstructionCodeInput()),
           ],
         ),
@@ -438,7 +490,7 @@ class _FormField2 extends StatelessWidget {
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children:const [
+          children: const [
             Expanded(child: _DateOfConstructionInput()),
           ],
         ),
@@ -446,12 +498,12 @@ class _FormField2 extends StatelessWidget {
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children:const [
+          children: const [
             Expanded(child: _CompanyNameInput()),
           ],
         ),
         //bottom padding
-       const SizedBox(height: 30),
+        const SizedBox(height: 30),
       ],
     );
   }
@@ -471,7 +523,7 @@ class _FormField3 extends StatelessWidget {
             return const _SPipeInputPage();
           case 3:
             return const _KoiskInputPage();
-            //return const _SPipeInputPage();
+          //return const _SPipeInputPage();
           case 4:
             return const _PondInputPage();
           case 5:
@@ -496,18 +548,17 @@ class _WellInputPage extends StatefulWidget {
 }
 
 class _WellInputPageState extends State<_WellInputPage> {
-
   int valueCallBack = 1;
 
   @override
   Widget build(BuildContext context) {
-    return  Column(
+    return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children:const [
+          children: const [
             Expanded(child: _WellTypeInput()),
             SizedBox(width: 16),
             Expanded(child: _WellDepthInput()),
@@ -527,7 +578,7 @@ class _WellInputPageState extends State<_WellInputPage> {
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children:const [
+          children: const [
             Expanded(child: _NiVoStaticInput()),
             SizedBox(width: 16),
             Expanded(child: _NiVoDynamicInput()),
@@ -562,7 +613,7 @@ class _WellInputPageState extends State<_WellInputPage> {
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children:const [
+          children: const [
             Expanded(child: _WellStatusInput()),
           ],
         ),
@@ -597,26 +648,26 @@ class _SPipeInputPage extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-         Row(
+        Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children:const [
+          children: const [
             Expanded(child: _WaterSupplyTypeInput()),
           ],
-        ), 
-        const SizedBox(height: 16),
-         Row(
-           mainAxisSize: MainAxisSize.min,
-           crossAxisAlignment: CrossAxisAlignment.start,
-           children: const [
-            Expanded(child: _ContainerInput()),
-           ],
-         ), 
+        ),
         const SizedBox(height: 16),
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children:const [
+          children: const [
+            Expanded(child: _ContainerInput()),
+          ],
+        ),
+        const SizedBox(height: 16),
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: const [
             Expanded(child: _CapacityInput()),
           ],
         ),
@@ -624,7 +675,7 @@ class _SPipeInputPage extends StatelessWidget {
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children:const [
+          children: const [
             Expanded(child: _AirPoolInput()),
             SizedBox(width: 16),
             Expanded(child: _FilterTankInput()),
@@ -634,7 +685,7 @@ class _SPipeInputPage extends StatelessWidget {
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children:const [
+          children: const [
             Expanded(child: _ConnectorInput()),
           ],
         ),
@@ -642,7 +693,7 @@ class _SPipeInputPage extends StatelessWidget {
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children:const [
+          children: const [
             Expanded(child: _PipeLenghtInput()),
           ],
         ),
@@ -650,7 +701,7 @@ class _SPipeInputPage extends StatelessWidget {
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children:const [
+          children: const [
             Expanded(child: _PipeStatusInput()),
           ],
         ),
@@ -658,7 +709,7 @@ class _SPipeInputPage extends StatelessWidget {
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children:const [
+          children: const [
             Expanded(child: _QualityWaterCheckInput()),
           ],
         ),
@@ -666,7 +717,7 @@ class _SPipeInputPage extends StatelessWidget {
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children:const [
+          children: const [
             Expanded(child: _CoverageInput()),
           ],
         ),
@@ -742,7 +793,7 @@ class _PondInputPage extends StatelessWidget {
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children:const [
+          children: const [
             Expanded(child: _PondLatInput()),
             SizedBox(width: 16),
             Expanded(child: _PondLongInput()),
@@ -752,7 +803,7 @@ class _PondInputPage extends StatelessWidget {
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children:const [
+          children: const [
             Expanded(child: _PondDepthInput()),
             SizedBox(width: 16),
             Expanded(child: _PondFilterInput()),
@@ -762,7 +813,7 @@ class _PondInputPage extends StatelessWidget {
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children:const [
+          children: const [
             Expanded(child: _PondTypeInput()),
             SizedBox(width: 16),
             Expanded(child: _SeasonInput()),
@@ -772,7 +823,7 @@ class _PondInputPage extends StatelessWidget {
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children:const [
+          children: const [
             Expanded(child: _PondStatusInput()),
           ],
         ),
@@ -794,7 +845,7 @@ class _RainInputPage extends StatelessWidget {
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children:const [
+          children: const [
             Expanded(child: _UsingTypeInput()),
           ],
         ),
@@ -802,7 +853,7 @@ class _RainInputPage extends StatelessWidget {
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children:const [
+          children: const [
             Expanded(child: _CapacityTypeInput()),
             SizedBox(width: 16),
             Expanded(child: _TankStatusInput()),
@@ -813,7 +864,11 @@ class _RainInputPage extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Expanded(child: _CheckWaterQualityInput(voidCallback: (value) {  },),),
+            Expanded(
+              child: _CheckWaterQualityInput(
+                voidCallback: (value) {},
+              ),
+            ),
           ],
         ),
         //bottom padding
@@ -834,7 +889,7 @@ class _PipeInputPage extends StatelessWidget {
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children:const [
+          children: const [
             Expanded(child: _WaterSupplyTypeInput()),
           ],
         ),
@@ -843,7 +898,7 @@ class _PipeInputPage extends StatelessWidget {
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children:const [
+          children: const [
             Expanded(child: _CapacityInput()),
           ],
         ),
@@ -852,7 +907,7 @@ class _PipeInputPage extends StatelessWidget {
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children:const [
+          children: const [
             Expanded(child: _ContainerInput()),
           ],
         ),
@@ -861,7 +916,7 @@ class _PipeInputPage extends StatelessWidget {
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children:const [
+          children: const [
             Expanded(child: _AirPoolInput()),
           ],
         ),
@@ -871,7 +926,7 @@ class _PipeInputPage extends StatelessWidget {
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children:const [
+          children: const [
             Expanded(child: _FilterTankInput()),
             SizedBox(width: 16),
             Expanded(child: _ConnectorInput()),
@@ -882,14 +937,17 @@ class _PipeInputPage extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Expanded(child: _CheckWaterQualityInput(voidCallback: (value) {  },)),
+            Expanded(
+                child: _CheckWaterQualityInput(
+              voidCallback: (value) {},
+            )),
           ],
         ),
         const SizedBox(height: 16),
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children:const [
+          children: const [
             Expanded(child: _CoverageInput()),
           ],
         ),
@@ -897,7 +955,7 @@ class _PipeInputPage extends StatelessWidget {
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children:const [
+          children: const [
             Expanded(child: _SupplierInput()),
           ],
         ),
@@ -905,7 +963,7 @@ class _PipeInputPage extends StatelessWidget {
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children:const [
+          children: const [
             Expanded(child: _SupplierDateInput()),
           ],
         ),
@@ -913,7 +971,7 @@ class _PipeInputPage extends StatelessWidget {
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children:const [
+          children: const [
             Expanded(child: _DueDateInput()),
           ],
         ),
@@ -921,7 +979,7 @@ class _PipeInputPage extends StatelessWidget {
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children:const [
+          children: const [
             Expanded(child: _PipeLenghtInput()),
           ],
         ),
@@ -929,7 +987,7 @@ class _PipeInputPage extends StatelessWidget {
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children:const [
+          children: const [
             Expanded(child: _PipeStatusInput()),
           ],
         ),
@@ -945,13 +1003,13 @@ class _AirInputPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Column(
+    return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children:const [
+          children: const [
             Expanded(child: _WaterSupplyTypeInput()),
           ],
         ),
@@ -959,7 +1017,7 @@ class _AirInputPage extends StatelessWidget {
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children:const [
+          children: const [
             Expanded(child: _CapacityInput()),
           ],
         ),
@@ -968,14 +1026,17 @@ class _AirInputPage extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Expanded(child: _CheckWaterQualityInput(voidCallback: (value) {  },)),
+            Expanded(
+                child: _CheckWaterQualityInput(
+              voidCallback: (value) {},
+            )),
           ],
         ),
         const SizedBox(height: 16),
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children:const [
+          children: const [
             Expanded(child: _FilterInput()),
             SizedBox(width: 16),
             Expanded(child: _AirStationInput()),
@@ -1319,8 +1380,7 @@ class _MapTypeInput extends StatelessWidget {
                         ...MapTypeEnum.values.map(
                           (mapType) => ListTile(
                             onTap: () {
-                              Navigator.of(context)
-                                  .pop(mapType);
+                              Navigator.of(context).pop(mapType);
                             },
                             contentPadding: const EdgeInsets.symmetric(
                               horizontal: 24.0,
@@ -1371,10 +1431,10 @@ class _MapTypeDynamicForm extends StatelessWidget {
         switch (mapTypeEnum) {
           case MapTypeEnum.utm:
             return const _UtmForm();
-          case MapTypeEnum.decimal:
-            return const _DecimalForm();
-          case MapTypeEnum.degree:
-            return const _DegreeForm();
+          // case MapTypeEnum.decimal:
+          //   return const _DecimalForm();
+          // case MapTypeEnum.degree:
+          //   return const _DegreeForm();
           default:
             return const SizedBox();
         }
@@ -1391,7 +1451,7 @@ class _UtmForm extends StatelessWidget {
     return Row(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
-      children:const [
+      children: const [
         Expanded(child: _LatInput()),
         SizedBox(width: 16),
         Expanded(child: _LongInput()),
@@ -1408,7 +1468,7 @@ class _DecimalForm extends StatelessWidget {
     return Row(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
-      children:const [
+      children: const [
         Expanded(child: _UTMXInput()),
         SizedBox(width: 16),
         Expanded(child: _UTMYInput()),
@@ -1422,7 +1482,7 @@ class _DegreeForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Column(
+    return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Padding(
@@ -1433,7 +1493,7 @@ class _DegreeForm extends StatelessWidget {
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children:const [
+          children: const [
             Expanded(child: _LatDegreeInput()),
             SizedBox(width: 16),
             Expanded(child: _LatMinuteInput()),
@@ -1450,7 +1510,7 @@ class _DegreeForm extends StatelessWidget {
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children:const [
+          children: const [
             Expanded(child: _LongDegreeInput()),
             SizedBox(width: 16),
             Expanded(child: _LongMinuteInput()),
@@ -2487,12 +2547,6 @@ class _ConstructionCodeInput extends StatelessWidget {
   // }
 }
 
-
-
-
-
-
-
 class _WellTypeInput extends StatelessWidget {
   const _WellTypeInput({Key? key}) : super(key: key);
 
@@ -2802,7 +2856,8 @@ class _NiVoDynamicInput extends StatelessWidget {
 }
 
 class _CheckWaterQualityInput extends StatelessWidget {
-  const _CheckWaterQualityInput({Key? key, required this.voidCallback}) : super(key: key);
+  const _CheckWaterQualityInput({Key? key, required this.voidCallback})
+      : super(key: key);
   final Function(int) voidCallback;
   @override
   Widget build(BuildContext context) {
@@ -2940,7 +2995,6 @@ class _WellStatusInput extends StatelessWidget {
   }
 }
 
-
 class _QualityWaterCheckInput extends StatelessWidget {
   const _QualityWaterCheckInput({Key? key}) : super(key: key);
 
@@ -3010,8 +3064,6 @@ class _QualityWaterCheckInput extends StatelessWidget {
   }
 }
 
-
-
 class _UsingTypeInput extends StatelessWidget {
   const _UsingTypeInput({Key? key}) : super(key: key);
 
@@ -3041,8 +3093,7 @@ class _UsingTypeInput extends StatelessWidget {
                         ...UsingTypeEnum.values.map(
                           (status) => ListTile(
                             onTap: () {
-                              Navigator.of(context)
-                                  .pop(status);
+                              Navigator.of(context).pop(status);
                             },
                             contentPadding: const EdgeInsets.symmetric(
                               horizontal: 24.0,
@@ -3109,8 +3160,7 @@ class _TankStatusInput extends StatelessWidget {
                         ...TankStatusEnum.values.map(
                           (status) => ListTile(
                             onTap: () {
-                              Navigator.of(context)
-                                  .pop(status);
+                              Navigator.of(context).pop(status);
                             },
                             contentPadding: const EdgeInsets.symmetric(
                               horizontal: 24.0,
@@ -3163,7 +3213,8 @@ class _CapacityTypeInput extends StatelessWidget {
           focusNode: bloc.capacityTypeFocus,
           controller: bloc.capacityTypeController,
           onTap: () async {
-            final type = await DialogHelper.showAnimatedDialog<CapacityTypeEnum?>(
+            final type =
+                await DialogHelper.showAnimatedDialog<CapacityTypeEnum?>(
               animationType: DialogAnimationType.none,
               transitionDuration: const Duration(milliseconds: 200),
               pageBuilder: (context, a1, a2) {
@@ -3177,8 +3228,7 @@ class _CapacityTypeInput extends StatelessWidget {
                         ...CapacityTypeEnum.values.map(
                           (status) => ListTile(
                             onTap: () {
-                              Navigator.of(context)
-                                  .pop(status);
+                              Navigator.of(context).pop(status);
                             },
                             contentPadding: const EdgeInsets.symmetric(
                               horizontal: 24.0,
@@ -3245,8 +3295,7 @@ class _SupplierInput extends StatelessWidget {
                         ...FilterEnum.values.map(
                           (status) => ListTile(
                             onTap: () {
-                              Navigator.of(context)
-                                  .pop(status);
+                              Navigator.of(context).pop(status);
                             },
                             contentPadding: const EdgeInsets.symmetric(
                               horizontal: 24.0,
@@ -3432,8 +3481,7 @@ class _FilterInput extends StatelessWidget {
                         ...FilterEnum.values.map(
                           (status) => ListTile(
                             onTap: () {
-                              Navigator.of(context)
-                                  .pop(status);
+                              Navigator.of(context).pop(status);
                             },
                             contentPadding: const EdgeInsets.symmetric(
                               horizontal: 24.0,

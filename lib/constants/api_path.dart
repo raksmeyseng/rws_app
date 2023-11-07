@@ -47,13 +47,18 @@ class ApiPath {
   //Irith Part
   static String getWaterSupplyListv2(int id) =>
       '${AppConstant.mainURL}watersupply/?water_supply_type_id=$id&main_status=9';
-    static String getWaterSupplyListAll =
-      '${AppConstant.mainURL}watersupply/?water_supply_type_id=&main_status=9'; 
-  static String getWaterSupplyMap=
-      '${AppConstant.mainURL}watersupplymap/';
-  static String getWaterSupplyMap_v2= '${AppConstant.mainURL}watersupplymap_v2';
+  static String getWaterSupplyListByType(int id) =>
+      '${AppConstant.mainURL}watersupplylist_v2?extra=water_supply_type_id,province_id,district_id,commune_id,village_id&water_supply_type_id=$id&province_id=';
+  static String getWaterSupplyListAll =
+      '${AppConstant.mainURL}watersupply/?water_supply_type_id=&main_status=9';
+  static String getWaterSupplyMap = '${AppConstant.mainURL}watersupplymap/';
+  static String getWaterSupplyMap_v2 =
+      '${AppConstant.mainURL}watersupplymap_v2';
   static String getWaterSupplyDetail(int id) =>
       '${AppConstant.mainURL}watersupply/$id';
+
+  static String getCountWaterSupplybyType(int id) =>
+      '${AppConstant.mainURL}watersupplygetcountbytype/$id/';
 
   static String getAllMyDraft(int id) =>
       '${AppConstant.mainURL}watersupplybyuserandstatus/?created_by=$id&main_status=3';
@@ -74,12 +79,10 @@ class ApiPath {
   static String getPendingApprovalDepartmentHead =
       '${AppConstant.mainURL}watersupplybyprovinceandmultiplestatus/?main_status=7%2C12&province_id=';
 
-  static String getReportExcel= '${AppConstant.mainURL}download-result/excel';
-  static String getReportWord='${AppConstant.mainURL}download-result/docs';
+  static String getReportExcel = '${AppConstant.mainURL}download-result/excel';
+  static String getReportWord = '${AppConstant.mainURL}download-result/docs';
 
-
-  static String addWaterSupply =
-      '${AppConstant.mainURL}v2/watersupply'; //post
+  static String addWaterSupply = '${AppConstant.mainURL}v2/watersupply'; //post
   static String updateWaterSupply(String id) =>
       '${AppConstant.mainURL}v2/watersupply/$id/update/';
 
@@ -91,37 +94,49 @@ class ApiPath {
 
   static String updateWaterSupplyMainStatus(int id) =>
       '${AppConstant.mainURL}watersupply/$id/update/'; //put
-  
-  static String postWaterSupplyQRcode = '${AppConstant.mainURL}watersupplyqrcode/';//post
 
-  static String postWell= '${AppConstant.mainURL}watersupplywell/'; //post
-  static String postWellOption = '${AppConstant.mainURL}watersupplywelloptionvalue/'; //post
+  static String postWaterSupplyQRcode =
+      '${AppConstant.mainURL}watersupplyqrcode/'; //post
+
+  static String postWell = '${AppConstant.mainURL}watersupplywell/'; //post
+  static String postWellOption =
+      '${AppConstant.mainURL}watersupplywelloptionvalue/'; //post
 
   static String postSmallPipe = '${AppConstant.mainURL}watersupplypipe/';
-  static String postSmallPipeOptionValue = '${AppConstant.mainURL}watersupplypipoptionvalue/';
+  static String postSmallPipeOptionValue =
+      '${AppConstant.mainURL}watersupplypipoptionvalue/';
 
-  static String postKiosk='${AppConstant.mainURL}watersupplykiosk/';
-  static String postKioskOptionValue= '${AppConstant.mainURL}watersupplykioskoptionvalue/';
+  static String postKiosk = '${AppConstant.mainURL}watersupplykiosk/';
+  static String postKioskOptionValue =
+      '${AppConstant.mainURL}watersupplykioskoptionvalue/';
 
-  static String postCommunityPond = '${AppConstant.mainURL}watersupplycommunitypond/';
+  static String postCommunityPond =
+      '${AppConstant.mainURL}watersupplycommunitypond/';
 
-  static String postRainWaterHarvesting='${AppConstant.mainURL}watersupplyrainwaterharvesting/';
-  
+  static String postRainWaterHarvesting =
+      '${AppConstant.mainURL}watersupplyrainwaterharvesting/';
+
   static String postPipe = '${AppConstant.mainURL}watersupplypipeprivate/';
-  static String postPipeOptionValue = '${AppConstant.mainURL}watersupplypipeprivateoptionvalue/';
-  
-  static String postAirWater='${AppConstant.mainURL}watersupplyairwater/';
-  static String postAirWaterOptionValue = '${AppConstant.mainURL}watersupplyairwateroptionvalue/';
-  
-  static String postWaterQualityParameter = '${AppConstant.mainURL}watersupplyqualitycheckparameter/';
+  static String postPipeOptionValue =
+      '${AppConstant.mainURL}watersupplypipeprivateoptionvalue/';
 
+  static String postAirWater = '${AppConstant.mainURL}watersupplyairwater/';
+  static String postAirWaterOptionValue =
+      '${AppConstant.mainURL}watersupplyairwateroptionvalue/';
+
+  static String postWaterQualityParameter =
+      '${AppConstant.mainURL}watersupplyqualitycheckparameter/';
 
   static String getProvince() => '${AppConstant.mainURL}province';
-  static String getProvinceByDataEntry(int id) => '${AppConstant.mainURL}province/?id=$id';
-  static String getDistrictByProvinceId(int id) => '${AppConstant.mainURL}district/?province_id__id=$id';
-  static String getCommuneByDistrictId(int id)=> '${AppConstant.mainURL}commune/?district_id__id=$id';
-  static String getVillageByCommuneId(int id) => '${AppConstant.mainURL}village/?commune_id__id=$id';
+  static String getProvinceByDataEntry(int id) =>
+      '${AppConstant.mainURL}province/?id=$id';
+  static String getDistrictByProvinceId(int id) =>
+      '${AppConstant.mainURL}district/?province_id__id=$id';
+  static String getCommuneByDistrictId(int id) =>
+      '${AppConstant.mainURL}commune/?district_id__id=$id';
+  static String getVillageByCommuneId(int id) =>
+      '${AppConstant.mainURL}village/?commune_id__id=$id';
 
-  static String generateQRCode(int id)=> '${AppConstant.mainURL}generateqrcode/$id/';
-
+  static String generateQRCode(int id) =>
+      '${AppConstant.mainURL}generateqrcode/$id/';
 }

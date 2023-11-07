@@ -1,4 +1,7 @@
+//import 'dart:js';
+
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
@@ -31,6 +34,7 @@ import 'package:rws_app/core/modules/water_supply_details/model/water_supply_mod
 import 'package:rws_app/core/modules/water_supply_details/model/watersupply.dart';
 import 'package:rws_app/utils/event/event_type.dart';
 import 'package:rws_app/utils/helpers/date_helper.dart';
+import 'package:rws_app/utils/helpers/dialog_helper.dart';
 import 'package:rws_app/utils/helpers/loading_helper.dart';
 
 import '../../../enum/area_enum.dart';
@@ -203,11 +207,11 @@ class WaterSupplyEditBloc
   final FocusNode airStationFocus = FocusNode();
   final airStationController = TextEditingController();
   final FocusNode abilityProductWaterFocus = FocusNode();
-  final abilityProductWaterController= TextEditingController();
-  final FocusNode kioskStatusFocus=FocusNode();
+  final abilityProductWaterController = TextEditingController();
+  final FocusNode kioskStatusFocus = FocusNode();
   final kioskStatusController = TextEditingController();
-  final FocusNode kioskFilterFocus=FocusNode();
-  final kioskFilterController=TextEditingController();
+  final FocusNode kioskFilterFocus = FocusNode();
+  final kioskFilterController = TextEditingController();
 
   /* Water Quality Parameter */
   final FocusNode parameter1 = FocusNode();
@@ -416,17 +420,17 @@ class WaterSupplyEditBloc
       return _onSubmitted(event, emit);
     }
 
-    if(event is WaterQualityParameterChanged){
-      return _onWaterQualityParameterChanged(event,emit);
+    if (event is WaterQualityParameterChanged) {
+      return _onWaterQualityParameterChanged(event, emit);
     }
-    if(event is AbilityProduceWaterChanged){
+    if (event is AbilityProduceWaterChanged) {
       return _onAbilityProduceWaterChanged(event, emit);
     }
-    if(event is KioskStatusChanged){
-      return _onKioskStatusChanged(event,emit);
+    if (event is KioskStatusChanged) {
+      return _onKioskStatusChanged(event, emit);
     }
-    if(event is KioskFilterChanged){
-      return _onKioskFilterChanged(event,emit);
+    if (event is KioskFilterChanged) {
+      return _onKioskFilterChanged(event, emit);
     }
   }
 
@@ -446,195 +450,381 @@ class WaterSupplyEditBloc
       } else {
         provinces = await repository.getProvinces();
       }
-      
+
       if (state.id == 0) {
         emit(state.copyWith(
           status: BaseStatusEnum.success,
           provinces: provinces,
         ));
+
         return;
       }
-      
+
       final waterSupply =
           await repository.getWaterSupplyDetail(state.waterSupplyTypeId);
 
-        
-        emit(state.copyWith(
-          status: BaseStatusEnum.success,
-        
-          //!-- Tab 1
-          waterSupply: waterSupply,
-          provinces: provinces,
-          districts: await repository.getDistrictByProvince(waterSupply.address.id),
-          communes: await repository.getCommuneByDistrictId(waterSupply.district.id),
-          villages: await repository.getVillageByCommuneId(waterSupply.commune.id),
-          //mapType: getMapTypeEnumById(waterSupply.mapUnitId),
-          waterSupplyTypeId: waterSupply.waterSupplyTypeId,
+      emit(state.copyWith(
+        status: BaseStatusEnum.success,
 
-          provinceInput: WaterSupplyInput.pure(waterSupply.address.id.toString()),
-          districtInput: WaterSupplyInput.pure(waterSupply.district.id.toString()),
-          communeInput: WaterSupplyInput.pure(waterSupply.commune.id.toString()),
-          villageInput: WaterSupplyInput.pure(waterSupply.village!.id.toString()),
-          mapTypeInput: MapTypeInput.pure(getMapTypeEnumById(waterSupply.mapUnitId)),
-          lateitudeInput: WaterSupplyInput.pure(waterSupply.decimalDegreeLat),
-          longtitudeInput: WaterSupplyInput.pure(waterSupply.decimalDegreeLng),
-          utmXInput: WaterSupplyInput.pure(waterSupply.utmX),
-          utmYInput: WaterSupplyInput.pure(waterSupply.utmY),
+        //!-- Tab 1
+        waterSupply: waterSupply,
+        provinces: provinces,
+        districts:
+            await repository.getDistrictByProvince(waterSupply.address.id),
+        communes:
+            await repository.getCommuneByDistrictId(waterSupply.district.id),
+        villages:
+            await repository.getVillageByCommuneId(waterSupply.commune.id),
+        //mapType: getMapTypeEnumById(waterSupply.mapUnitId),
+        waterSupplyTypeId: waterSupply.waterSupplyTypeId,
 
-          //!--- Tab 2
-          familyTotalInput:WaterSupplyInput.pure(waterSupply.totalFamily.toString()),
-          budgetTypeInput: BudgetTypeInput.pure(getBudgetTypeEnumById(waterSupply.sourceBudget)),
-          locationRickInput:LocationRiskInput.pure(GetAreaEnumById(waterSupply.isRiskEnviromentArea)),
-          receiverFamilyTotalInput: WaterSupplyInput.pure(waterSupply.beneficiaryTotalFamily.toString()),
-          receiverTotalAsFemaleInput: WaterSupplyInput.pure(waterSupply.beneficiaryTotalWoman.toString()),
-          receiverTotalInput: WaterSupplyInput.pure(waterSupply.beneficiaryTotalPeople.toString()),
-          receiverFamilyPoor1Input: WaterSupplyInput.pure(waterSupply.beneficiaryTotalFamilyPoor1.toString()),
-          receiverFamilyPoor2Input: WaterSupplyInput.pure(waterSupply.beneficiaryTotalFamilyPoor2.toString()),
-          receiverFamilyIndigenousInput: WaterSupplyInput.pure(waterSupply.beneficiaryTotalFamilyIndigenous.toString()),
-          receiverFamilyVulnearableInput: WaterSupplyInput.pure(waterSupply.beneficiaryTotalFamilyVulnearable.toString()),
-          constructionCodeInput: WaterSupplyInput.pure(waterSupply.waterSupplyCode),
-          companyNameInput: WaterSupplyInput.pure(waterSupply.constructedBy),
-          managementNameInput: WaterSupplyInput.pure(waterSupply.managedBy),
-          managementTypeInput: ManagementTypeInput.pure(getManagementTypeEnumById(waterSupply.managementType)),
-        ));
+        provinceInput: WaterSupplyInput.pure(waterSupply.address.id.toString()),
+        districtInput:
+            WaterSupplyInput.pure(waterSupply.district.id.toString()),
+        communeInput: WaterSupplyInput.pure(waterSupply.commune.id.toString()),
+        villageInput: WaterSupplyInput.pure(waterSupply.village!.id.toString()),
+        mapTypeInput:
+            MapTypeInput.pure(getMapTypeEnumById(waterSupply.mapUnitId)),
+        lateitudeInput: WaterSupplyInput.pure(waterSupply.decimalDegreeLat),
+        longtitudeInput: WaterSupplyInput.pure(waterSupply.decimalDegreeLng),
+        utmXInput: WaterSupplyInput.pure(waterSupply.utmX),
+        utmYInput: WaterSupplyInput.pure(waterSupply.utmY),
 
-        provinceController.text=waterSupply.address.nameKh;
-        districtController.text=waterSupply.district.nameKh;
-        communeController.text=waterSupply.commune.nameKh;
-        villageController.text=waterSupply.village!.nameKh;
-        mapTypeController.text=getDisplayTextById(getMapTypeEnumById(waterSupply.mapUnitId)??MapTypeEnum.utm);
-        latetitudeController.text=waterSupply.decimalDegreeLat.toString();
-        longtitudeController.text=waterSupply.decimalDegreeLng.toString();
-        utmXController.text=waterSupply.utmX.toString();
-        utmYController.text=waterSupply.utmY.toString();
-        //!-- Tab 2
-        familyTotalController.text=waterSupply.totalFamily.toString();
-        budgetTypeController.text=getBudgetTypeEnumDisplayText(getBudgetTypeEnumById(waterSupply.sourceBudget)??BudgetTypeEnum.goverment);
-        locationRickController.text=getAreaEnumDisplayText(GetAreaEnumById(waterSupply.isRiskEnviromentArea)??AreaEnum.face);
-        receiverFamilyTotalController.text=waterSupply.beneficiaryTotalFamily.toString();
-        receiverTotalController.text=waterSupply.beneficiaryTotalFamily.toString();
-        receiverTotalAsFemaleController.text=waterSupply.beneficiaryTotalWoman.toString();
-        receiverFamilyPoor1Controller.text=waterSupply.beneficiaryTotalFamilyPoor1.toString();
-        receiverFamilyPoor2Controller.text=waterSupply.beneficiaryTotalFamilyPoor2.toString();
-        receiverFamilyMinorityController.text=waterSupply.beneficiaryTotalFamilyIndigenous.toString();
-        receiverFamilyVictimController.text=waterSupply.beneficiaryTotalFamilyVulnearable.toString();
-        constructionCodeController.text=waterSupply.waterSupplyCode.toString();
-        companyNameController.text=waterSupply.constructedBy;
-        managementNameController.text=waterSupply.managedBy;
-        managementTypeController.text=getManagementTypeEnumDisplayText(getManagementTypeEnumById(waterSupply.managementType)??ManagementTypeEnum.association);
+        //!--- Tab 2
+        familyTotalInput:
+            WaterSupplyInput.pure(waterSupply.totalFamily.toString()),
+        budgetTypeInput: BudgetTypeInput.pure(
+            getBudgetTypeEnumById(waterSupply.sourceBudget)),
+        locationRickInput: LocationRiskInput.pure(
+            GetAreaEnumById(waterSupply.isRiskEnviromentArea)),
+        receiverFamilyTotalInput: WaterSupplyInput.pure(
+            waterSupply.beneficiaryTotalFamily.toString()),
+        receiverTotalAsFemaleInput:
+            WaterSupplyInput.pure(waterSupply.beneficiaryTotalWoman.toString()),
+        receiverTotalInput: WaterSupplyInput.pure(
+            waterSupply.beneficiaryTotalPeople.toString()),
+        receiverFamilyPoor1Input: WaterSupplyInput.pure(
+            waterSupply.beneficiaryTotalFamilyPoor1.toString()),
+        receiverFamilyPoor2Input: WaterSupplyInput.pure(
+            waterSupply.beneficiaryTotalFamilyPoor2.toString()),
+        receiverFamilyIndigenousInput: WaterSupplyInput.pure(
+            waterSupply.beneficiaryTotalFamilyIndigenous.toString()),
+        receiverFamilyVulnearableInput: WaterSupplyInput.pure(
+            waterSupply.beneficiaryTotalFamilyVulnearable.toString()),
+        constructionCodeInput:
+            WaterSupplyInput.pure(waterSupply.waterSupplyCode),
+        companyNameInput: WaterSupplyInput.pure(waterSupply.constructedBy),
+        managementNameInput: WaterSupplyInput.pure(waterSupply.managedBy),
+        managementTypeInput: ManagementTypeInput.pure(
+            getManagementTypeEnumById(waterSupply.managementType)),
+      ));
 
-        switch(waterSupply.waterSupplyTypeId){
-          case 1:
-            //----------- WELL
-            final well = waterSupply.waterSupplyWells!.first;
-            emit(state.copyWith(
-              wellTypeInput: WellTypeInput.pure(getWellTypeEnumById(well.wellTypeObj.first.valueId)),
-              wellDepthInput: WaterSupplyInput.pure(well.wellHeight),
-              wellScreenInput: WaterSupplyInput.pure(well.wellFilterHeight),
-              wellThearInput: WaterSupplyInput.pure(well.wellWaterSupply),
-              niVoStaticInput: WaterSupplyInput.pure(well.wellNirostatic),
-              niVoDynamicInput: WaterSupplyInput.pure(well.wellNirodynamic),
-              waterQualityInput: WaterQualityInput.pure(getWaterQualityEnumById(well.wellWaterQualityObj!.first.id)),
-              checkWaterQualityInput:CheckWaterQualityInput.pure(getCheckWaterQualityEnumById(well.wellWaterQualityCheckObj!.first.id)),
-              wellStatusInput: WellStatusInput.pure(getWellStatusEnumById(well.wellStatusObj!.first.id)),
-            ));
-            wellDepthController.text=well.wellHeight;
-            wellScreenController.text=well.wellFilterHeight;
-            wellThearController.text=well.wellWaterSupply;
-            niVoStaticController.text=well.wellNirostatic;
-            niVoDynamicController.text=well.wellNirodynamic;
-            wellTypeController.text=getWellTypeDisplayText(getWellTypeEnumById(well.wellTypeObj.first.valueId)??WellTypeEnum.mixed);
-            waterQualityController.text=getWaterQualityEnumDisplayText(getWaterQualityEnumById(well.wellWaterQualityObj!.first.id)??WaterQualityEnum.well);
-            checkWaterQualityController.text=getCheckWaterQualityEnumDisplayText(getCheckWaterQualityEnumById(well.wellWaterQualityCheckObj!.first.id)??CheckWaterQualityEnum.check);
-            wellStatusController.text=getWellStatusEnumDisplayText(getWellStatusEnumById(well.wellStatusObj!.first.id)??WellStatusEnum.active);
-            
+      provinceController.text = waterSupply.address.nameKh;
+      districtController.text = waterSupply.district.nameKh;
+      communeController.text = waterSupply.commune.nameKh;
+      villageController.text = waterSupply.village!.nameKh;
+      mapTypeController.text = getDisplayTextById(
+          getMapTypeEnumById(waterSupply.mapUnitId) ?? MapTypeEnum.utm);
+      latetitudeController.text = waterSupply.decimalDegreeLat.toString();
+      longtitudeController.text = waterSupply.decimalDegreeLng.toString();
+      utmXController.text = waterSupply.utmX.toString();
+      utmYController.text = waterSupply.utmY.toString();
+      //!-- Tab 2
+      familyTotalController.text = waterSupply.totalFamily.toString();
+      budgetTypeController.text = getBudgetTypeEnumDisplayText(
+          getBudgetTypeEnumById(waterSupply.sourceBudget) ??
+              BudgetTypeEnum.goverment);
+      locationRickController.text = getAreaEnumDisplayText(
+          GetAreaEnumById(waterSupply.isRiskEnviromentArea) ?? AreaEnum.face);
+      receiverFamilyTotalController.text =
+          waterSupply.beneficiaryTotalFamily.toString();
+      receiverTotalController.text =
+          waterSupply.beneficiaryTotalFamily.toString();
+      receiverTotalAsFemaleController.text =
+          waterSupply.beneficiaryTotalWoman.toString();
+      receiverFamilyPoor1Controller.text =
+          waterSupply.beneficiaryTotalFamilyPoor1.toString();
+      receiverFamilyPoor2Controller.text =
+          waterSupply.beneficiaryTotalFamilyPoor2.toString();
+      receiverFamilyMinorityController.text =
+          waterSupply.beneficiaryTotalFamilyIndigenous.toString();
+      receiverFamilyVictimController.text =
+          waterSupply.beneficiaryTotalFamilyVulnearable.toString();
+      constructionCodeController.text = waterSupply.waterSupplyCode.toString();
+      companyNameController.text = waterSupply.constructedBy;
+      managementNameController.text = waterSupply.managedBy;
+      managementTypeController.text = getManagementTypeEnumDisplayText(
+          getManagementTypeEnumById(waterSupply.managementType) ??
+              ManagementTypeEnum.association);
+
+      switch (waterSupply.waterSupplyTypeId) {
+        case 1:
+          //----------- WELL
+          final well = waterSupply.waterSupplyWells!.first;
+          emit(state.copyWith(
+            wellTypeInput: WellTypeInput.pure(
+                getWellTypeEnumById(well.wellTypeObj.first.valueId)),
+            wellDepthInput: WaterSupplyInput.pure(well.wellHeight),
+            wellScreenInput: WaterSupplyInput.pure(well.wellFilterHeight),
+            wellThearInput: WaterSupplyInput.pure(well.wellWaterSupply),
+            niVoStaticInput: WaterSupplyInput.pure(well.wellNirostatic),
+            niVoDynamicInput: WaterSupplyInput.pure(well.wellNirodynamic),
+            waterQualityInput: WaterQualityInput.pure(
+                getWaterQualityEnumById(well.wellWaterQualityObj!.first.id)),
+            checkWaterQualityInput: CheckWaterQualityInput.pure(
+                getCheckWaterQualityEnumById(
+                    well.wellWaterQualityCheckObj!.first.id)),
+            wellStatusInput: WellStatusInput.pure(
+                getWellStatusEnumById(well.wellStatusObj!.first.id)),
+          ));
+          wellDepthController.text = well.wellHeight;
+          wellScreenController.text = well.wellFilterHeight;
+          wellThearController.text = well.wellWaterSupply;
+          niVoStaticController.text = well.wellNirostatic;
+          niVoDynamicController.text = well.wellNirodynamic;
+          wellTypeController.text = getWellTypeDisplayText(
+              getWellTypeEnumById(well.wellTypeObj.first.valueId) ??
+                  WellTypeEnum.mixed);
+          waterQualityController.text = getWaterQualityEnumDisplayText(
+              getWaterQualityEnumById(well.wellWaterQualityObj!.first.id) ??
+                  WaterQualityEnum.well);
+          checkWaterQualityController.text =
+              getCheckWaterQualityEnumDisplayText(getCheckWaterQualityEnumById(
+                      well.wellWaterQualityCheckObj!.first.id) ??
+                  CheckWaterQualityEnum.check);
+          wellStatusController.text = getWellStatusEnumDisplayText(
+              getWellStatusEnumById(well.wellStatusObj!.first.id) ??
+                  WellStatusEnum.active);
+
           break;
-          case 2: //!----- SMALL PIPE
-            final smallPipe = waterSupply.waterSupplyPipes!.first;
-            emit(state.copyWith(
-              waterSupplyTypeInput:WaterSupplyTypeInput.pure(getWaterSupplyTypeEnumById(smallPipe.source_type_of_water.first.valueId)),
-              containerInput:WaterSupplyInput.pure(smallPipe.underGroudPoolStorage),
-              capacityInput: WaterSupplyInput.pure(smallPipe.abilityOfProductWater),
-              airPoolInput: WaterSupplyInput.pure(smallPipe.pool_air),
-              filterTankInput: PoolfilterInput.pure(getFilterEnumById(smallPipe.pool_filter_obj.first.id)),
-              connectorInput: WaterSupplyInput.pure(smallPipe.number_of_link),
-              checkWaterQualityInput: CheckWaterQualityInput.pure(getCheckWaterQualityEnumById(smallPipe.water_quality_check_obj.first.id)),
-              pipeLenghtInput: WaterSupplyInput.pure(smallPipe.pipe_length),
-              coverageInput: WaterSupplyInput.pure(smallPipe.area_covering),
-              pipeStatusInput: WellStatusInput.pure(getWellStatusEnumById(smallPipe.status_obj.first.id)),
-            )); 
+        case 2: //!----- SMALL PIPE
+          final smallPipe = waterSupply.waterSupplyPipes!.first;
+          emit(state.copyWith(
+            waterSupplyTypeInput: WaterSupplyTypeInput.pure(
+                getWaterSupplyTypeEnumById(
+                    smallPipe.source_type_of_water.first.valueId)),
+            containerInput:
+                WaterSupplyInput.pure(smallPipe.underGroudPoolStorage),
+            capacityInput:
+                WaterSupplyInput.pure(smallPipe.abilityOfProductWater),
+            airPoolInput: WaterSupplyInput.pure(smallPipe.pool_air),
+            filterTankInput: PoolfilterInput.pure(
+                getFilterEnumById(smallPipe.pool_filter_obj.first.id)),
+            connectorInput: WaterSupplyInput.pure(smallPipe.number_of_link),
+            checkWaterQualityInput: CheckWaterQualityInput.pure(
+                getCheckWaterQualityEnumById(
+                    smallPipe.water_quality_check_obj.first.id)),
+            pipeLenghtInput: WaterSupplyInput.pure(smallPipe.pipe_length),
+            coverageInput: WaterSupplyInput.pure(smallPipe.area_covering),
+            pipeStatusInput: WellStatusInput.pure(
+                getWellStatusEnumById(smallPipe.status_obj.first.id)),
+          ));
 
-            waterSupplyTypeController.text= getWaterSupplyTypeEnumDisplayText(getWaterSupplyTypeEnumById(smallPipe.source_type_of_water.first.valueId)??WaterSupplyTypeEnum.all);
-            containerController.text=smallPipe.underGroudPoolStorage;
-            capacityController.text=smallPipe.abilityOfProductWater;
-            ariPoolController.text=smallPipe.pool_air;
-            filterTankController.text=getFilterEnumDisplayText(getFilterEnumById(smallPipe.pool_filter_obj.first.id)??FilterEnum.have);
-            connectorController.text=smallPipe.number_of_link;
-            checkWaterQualityController.text=getCheckWaterQualityEnumDisplayText(getCheckWaterQualityEnumById(smallPipe.water_quality_check_obj.first.id)??CheckWaterQualityEnum.check);
-            pipeLenghtController.text=smallPipe.pipe_length;
-            coverageController.text=smallPipe.area_covering;
-            pipeStatusController.text=getWellStatusEnumDisplayText(getWellStatusEnumById(smallPipe.status_obj.first.id)??WellStatusEnum.active);
+          waterSupplyTypeController.text = getWaterSupplyTypeEnumDisplayText(
+              getWaterSupplyTypeEnumById(
+                      smallPipe.source_type_of_water.first.valueId) ??
+                  WaterSupplyTypeEnum.all);
+          containerController.text = smallPipe.underGroudPoolStorage;
+          capacityController.text = smallPipe.abilityOfProductWater;
+          ariPoolController.text = smallPipe.pool_air;
+          filterTankController.text = getFilterEnumDisplayText(
+              getFilterEnumById(smallPipe.pool_filter_obj.first.id) ??
+                  FilterEnum.have);
+          connectorController.text = smallPipe.number_of_link;
+          checkWaterQualityController.text =
+              getCheckWaterQualityEnumDisplayText(getCheckWaterQualityEnumById(
+                      smallPipe.water_quality_check_obj.first.id) ??
+                  CheckWaterQualityEnum.check);
+          pipeLenghtController.text = smallPipe.pipe_length;
+          coverageController.text = smallPipe.area_covering;
+          pipeStatusController.text = getWellStatusEnumDisplayText(
+              getWellStatusEnumById(smallPipe.status_obj.first.id) ??
+                  WellStatusEnum.active);
 
-            break;
-            //!---- KIOSK
-            case 3:
-              final kiosk = waterSupply.watersupplykiosks!.first;
-              emit(state.copyWith(
-                waterSupplyTypeInput: WaterSupplyTypeInput.pure(getWaterSupplyTypeEnumById(kiosk.sourceTypeOfWater.first.valueId)),
-                abilityProduceWaterInput: WaterSupplyInput.pure(kiosk.abilityOfProductWater),
-                kioskFilter: PoolfilterInput.pure(getFilterEnumById(kiosk.filterSystemObj.first.id)),
-                qualityWaterCheckInput: WaterQualityInput.pure(getWaterQualityEnumById(kiosk.waterQualityCheckingObj.first.id)),
-                kioskStatus: WellStatusInput.pure(getWellStatusEnumById(kiosk.statusObj.first.id)),
+          break;
+        //!---- KIOSK
+        case 3:
+          final kiosk = waterSupply.watersupplykiosks!.first;
+          emit(state.copyWith(
+            waterSupplyTypeInput: WaterSupplyTypeInput.pure(
+                getWaterSupplyTypeEnumById(
+                    kiosk.sourceTypeOfWater.first.valueId)),
+            abilityProduceWaterInput:
+                WaterSupplyInput.pure(kiosk.abilityOfProductWater),
+            kioskFilter: PoolfilterInput.pure(
+                getFilterEnumById(kiosk.filterSystemObj.first.id)),
+            qualityWaterCheckInput: WaterQualityInput.pure(
+                getWaterQualityEnumById(
+                    kiosk.waterQualityCheckingObj.first.id)),
+            kioskStatus: WellStatusInput.pure(
+                getWellStatusEnumById(kiosk.statusObj.first.id)),
+          ));
+          waterSupplyTypeController.text = getWaterSupplyTypeEnumDisplayText(
+              getWaterSupplyTypeEnumById(
+                      kiosk.sourceTypeOfWater.first.valueId) ??
+                  WaterSupplyTypeEnum.all);
+          abilityProductWaterController.text = kiosk.abilityOfProductWater;
+          kioskFilterController.text = getFilterEnumDisplayText(
+              getFilterEnumById(kiosk.filterSystemObj.first.id) ??
+                  FilterEnum.have);
+          qualityWaterCheckController.text = getWaterQualityEnumDisplayText(
+              getWaterQualityEnumById(kiosk.waterQualityCheckingObj.first.id) ??
+                  WaterQualityEnum.well);
+          kioskStatusController.text = getWellStatusEnumDisplayText(
+              getWellStatusEnumById(kiosk.statusObj.first.id) ??
+                  WellStatusEnum.active);
 
-              ));
-              waterSupplyTypeController.text=getWaterSupplyTypeEnumDisplayText(getWaterSupplyTypeEnumById(kiosk.sourceTypeOfWater.first.valueId)??WaterSupplyTypeEnum.all);
-              abilityProductWaterController.text=kiosk.abilityOfProductWater;
-              kioskFilterController.text=getFilterEnumDisplayText(getFilterEnumById(kiosk.filterSystemObj.first.id)??FilterEnum.have);
-              qualityWaterCheckController.text= getWaterQualityEnumDisplayText(getWaterQualityEnumById(kiosk.waterQualityCheckingObj.first.id)??WaterQualityEnum.well);
-              kioskStatusController.text=getWellStatusEnumDisplayText(getWellStatusEnumById(kiosk.statusObj.first.id)??WellStatusEnum.active);
+          break;
+        case 4:
+          //!-- POND
+          final pond = waterSupply.waterSupplyCommunityPond!.first;
+          emit(state.copyWith(
+            pondLatInput: WaterSupplyInput.pure(pond.width),
+            pondLongInput: WaterSupplyInput.pure(pond.length),
+            pondDepthInput: WaterSupplyInput.pure(pond.height),
+            pondFilterInput: PondfilterInput.pure(
+                getPondFilterEnumById(pond.filterSystemObj.first.id)),
+            pondTypeInput: PondTypeInput.pure(
+                getPondTypeEnumById(pond.typeOfPondObj.first.id)),
+            seasonInput: SeasonHasWaterInput.pure(
+                getSeasonEnumbyId(pond.isSummerHasWaterObj.first.id)),
+            pondStatusInput: PondStatusInput.pure(
+                getPondStatusEnumById(pond.statusObj.first.id)),
+          ));
 
-            break;
-            case 4:
-            //!-- POND
-              final pond = waterSupply.waterSupplyCommunityPond!.first;
-                emit(state.copyWith(
-                  pondLatInput: WaterSupplyInput.pure(pond.width),
-                  pondLongInput: WaterSupplyInput.pure(pond.length),
-                  pondDepthInput: WaterSupplyInput.pure(pond.height),
-                  pondFilterInput: PondfilterInput.pure(getPondFilterEnumById(pond.filterSystemObj.first.id)),
-                  pondTypeInput: PondTypeInput.pure(getPondTypeEnumById(pond.typeOfPondObj.first.id)),
-                  seasonInput: SeasonHasWaterInput.pure(getSeasonEnumbyId(pond.isSummerHasWaterObj.first.id)),
-                  pondStatusInput: PondStatusInput.pure(getPondStatusEnumById(pond.statusObj.first.id)),
-                ));
+          pondLatController.text = pond.width;
+          pondLongController.text = pond.length;
+          pondDepthController.text = pond.height;
+          pondFilterController.text = getPondFilterEnumDisplayText(
+              getPondFilterEnumById(pond.filterSystemObj.first.id) ??
+                  PondFilterEnum.notHave);
+          pondTypeController.text = getPondTypeEnumDisplayText(
+              getPondTypeEnumById(pond.typeOfPondObj.first.id) ??
+                  PondTypeEnum.concrete);
+          seasonController.text = getSeasonEnumDisplayText(
+              getSeasonEnumbyId(pond.isSummerHasWaterObj.first.id) ??
+                  SeasonEnum.have);
+          pondStatusController.text = getPondStatusEnumDisplayText(
+              getPondStatusEnumById(pond.statusObj.first.id) ??
+                  PondStatusEnum.maintain);
 
-                pondLatController.text=pond.width;
-                pondLongController.text=pond.length;
-                pondDepthController.text=pond.height;
-                pondFilterController.text=getPondFilterEnumDisplayText(getPondFilterEnumById(pond.filterSystemObj.first.id)??PondFilterEnum.notHave);
-                pondTypeController.text=getPondTypeEnumDisplayText(getPondTypeEnumById(pond.typeOfPondObj.first.id)??PondTypeEnum.concrete);
-                seasonController.text=getSeasonEnumDisplayText(getSeasonEnumbyId(pond.isSummerHasWaterObj.first.id)??SeasonEnum.have);
-                pondStatusController.text=getPondStatusEnumDisplayText(getPondStatusEnumById(pond.statusObj.first.id)??PondStatusEnum.maintain);
+          break;
+        case 5:
+          //!---- RAIN WATER HARVESTING
+          final rainwaterharvesting =
+              waterSupply.waterSupplyRainWaterHarvesting!.first;
+          emit(state.copyWith(
+            usingTypeInput: UsingTypeInput.pure(
+                getUsingTypeEnumById(rainwaterharvesting.typeOfUsing.first.id)),
+            capacityTypeInput: CapacityInput.pure(getCapacityTypeEnumById(
+                rainwaterharvesting.typeOfUsing.first.id)),
+            checkWaterQualityInput: CheckWaterQualityInput.pure(
+                getCheckWaterQualityEnumById(
+                    rainwaterharvesting.waterQualityCheckObj.first.id)),
+            tankStatusInput: TankStatusInput.pure(
+                getTankStatusEnumById(rainwaterharvesting.statusObj.first.id)),
+          ));
 
-            break;
-            case 5:
-              final rainwaterharvesting = waterSupply.waterSupplyRainWaterHarvesting!.first;
-              emit(state.copyWith(
-                usingTypeInput: UsingTypeInput.pure(getUsingTypeEnumById(rainwaterharvesting.typeOfUsing.first.id)),
-                capacityTypeInput: CapacityInput.pure(getCapacityTypeEnumById(rainwaterharvesting.typeOfUsing.first.id)),
-                checkWaterQualityInput:CheckWaterQualityInput.pure(getCheckWaterQualityEnumById(rainwaterharvesting.waterQualityCheckObj.first.id)),
-                tankStatusInput: TankStatusInput.pure(getTankStatusEnumById(rainwaterharvesting.statusObj.first.id)),
+          usingTypeController.text = getUsingTypeEnumDisplayText(
+              getUsingTypeEnumById(rainwaterharvesting.typeOfUsing.first.id) ??
+                  UsingTypeEnum.family);
+          capacityTypeController.text = getCapacityTypeEnumDisplayText(
+              getCapacityTypeEnumById(
+                      rainwaterharvesting.typeOfUsing.first.id) ??
+                  CapacityTypeEnum.ml1);
+          checkWaterQualityController.text =
+              getCheckWaterQualityEnumDisplayText(getCheckWaterQualityEnumById(
+                      rainwaterharvesting.waterQualityCheckObj.first.id) ??
+                  CheckWaterQualityEnum.check);
+          tankStatusController.text = getTankStatusEnumDisplayText(
+              getTankStatusEnumById(rainwaterharvesting.statusObj.first.id) ??
+                  TankStatusEnum.unUse);
 
-              ));
+          break;
+        case 6:
+          //!--------- PIPE
+          final pipe = waterSupply.waterSupplyPipe!.first;
+          emit(state.copyWith(
+            waterSupplyTypeInput: WaterSupplyTypeInput.pure(
+                getWaterSupplyTypeEnumById(pipe
+                    .watersupplypipeoptionvalueWatersupplypipe!.first.valueId)),
+            containerInput: WaterSupplyInput.pure(pipe.undergroundPoolStorage),
+            capacityInput: WaterSupplyInput.pure(pipe.abiltyOfProduceWater),
+            airPoolInput: WaterSupplyInput.pure(pipe.poolAir),
+            filterTankInput: PoolfilterInput.pure(
+                getFilterEnumById(pipe.poolFilterObj!.first.id)),
+            connectorInput: WaterSupplyInput.pure(pipe.numberOfLink),
+            checkWaterQualityInput: CheckWaterQualityInput.pure(
+                getCheckWaterQualityEnumById(
+                    pipe.pipeWaterQualityCheckObj!.first.id)),
+            pipeLenghtInput: WaterSupplyInput.pure(pipe.pipeLength),
+            coverageInput: WaterSupplyInput.pure(pipe.areaCovering),
+            pipeStatusInput: WellStatusInput.pure(
+                getWellStatusEnumById(pipe.pipeStatusObj!.first.id)),
+            supplierInput: PoolfilterInput.pure(
+              getFilterEnumById(pipe.isHasLicenseObj!.first.id),
+            ),
+            supplierDateInput:
+                DOCInput.pure(DateTime.parse(pipe.licenseRegisteredDate)),
+            dueDateInput:
+                DOCInput.pure(DateTime.parse(pipe.licenseExpiredDate)),
+          ));
+          waterSupplyTypeController.text = getWaterSupplyTypeEnumDisplayText(
+              getWaterSupplyTypeEnumById(pipe
+                      .watersupplypipeoptionvalueWatersupplypipe!
+                      .first
+                      .valueId) ??
+                  WaterSupplyTypeEnum.all);
+          containerController.text = pipe.undergroundPoolStorage;
+          capacityController.text = pipe.abiltyOfProduceWater;
+          ariPoolController.text = pipe.poolAir;
+          filterTankController.text = getFilterEnumDisplayText(
+              getFilterEnumById(pipe.poolFilterObj!.first.id) ??
+                  FilterEnum.have);
+          connectorController.text = pipe.numberOfLink;
+          checkWaterQualityController.text =
+              getCheckWaterQualityEnumDisplayText(getCheckWaterQualityEnumById(
+                      pipe.pipeWaterQualityCheckObj!.first.id) ??
+                  CheckWaterQualityEnum.check);
+          pipeLenghtController.text = pipe.pipeLength;
+          coverageController.text = pipe.areaCovering;
+          pipeStatusController.text = getWellStatusEnumDisplayText(
+              getWellStatusEnumById(pipe.pipeStatusObj!.first.id) ??
+                  WellStatusEnum.active);
+          supplierDateController.text = pipe.licenseRegisteredDate;
+          dueDateController.text = pipe.licenseExpiredDate;
+          break;
+        case 7:
+          //!----- AIR to WATER
+          final airToWater = waterSupply.waterSupplyAirWater?.first;
+          emit(state.copyWith(
+            waterSupplyTypeInput: WaterSupplyTypeInput.pure(
+                getWaterSupplyTypeEnumById(
+                    airToWater!.sourceTypeOfWater.first.valueId)),
+            capacityInput:
+                WaterSupplyInput.pure(airToWater.abiltyOfProduceWater),
+            checkWaterQualityInput: CheckWaterQualityInput.pure(
+                getCheckWaterQualityEnumById(
+                    airToWater.waterQualityCheckObj!.first.id)),
+            filterInput: PoolfilterInput.pure(
+                getFilterEnumById(airToWater.filterSystemObj!.first.id)),
+          ));
 
-              usingTypeController.text=getUsingTypeEnumDisplayText(getUsingTypeEnumById(rainwaterharvesting.typeOfUsing.first.id)??UsingTypeEnum.family);
-              capacityTypeController.text=getCapacityTypeEnumDisplayText(getCapacityTypeEnumById(rainwaterharvesting.typeOfUsing.first.id)??CapacityTypeEnum.ml1);
-              checkWaterQualityController.text=getCheckWaterQualityEnumDisplayText(getCheckWaterQualityEnumById(rainwaterharvesting.waterQualityCheckObj.first.id)??CheckWaterQualityEnum.check);
-              tankStatusController.text=getTankStatusEnumDisplayText(getTankStatusEnumById(rainwaterharvesting.statusObj.first.id)??TankStatusEnum.unUse);
+          waterSupplyTypeController.text = getWaterSupplyTypeEnumDisplayText(
+              getWaterSupplyTypeEnumById(
+                      airToWater.sourceTypeOfWater.first.valueId) ??
+                  WaterSupplyTypeEnum.all);
+          capacityController.text = airToWater.abiltyOfProduceWater;
+          checkWaterQualityController.text =
+              getCheckWaterQualityEnumDisplayText(getCheckWaterQualityEnumById(
+                      airToWater.waterQualityCheckObj!.first.id) ??
+                  CheckWaterQualityEnum.check);
+          filterController.text = getFilterEnumDisplayText(
+              getFilterEnumById(airToWater.filterSystemObj!.first.id) ??
+                  FilterEnum.notHave);
 
-            break;
-
-        }
-
+          break;
+      }
     } catch (e) {
       emit(state.copyWith(status: BaseStatusEnum.failure));
     }
@@ -643,21 +833,22 @@ class WaterSupplyEditBloc
   void _onProvinceChanged(
     ProvinceChanged event,
     Emitter<WaterSupplyEditState> emit,
-  ) async{
+  ) async {
     //final province = WaterSupplyInput.pure(event.province.nameEn);
     final province = WaterSupplyInput.pure(event.province.id.toString());
     provinceController.text = event.province.nameKh;
     districtController.text = '';
-    List<DistrictModel> districts =await repository.getDistrictByProvince(event.province.id);
+    List<DistrictModel> districts =
+        await repository.getDistrictByProvince(event.province.id);
     //provinceController.value=event.province.id as TextEditingValue;
     emit(state.copyWith(
       provinceInput: province,
       //districts: event.province.provincedistrict,
-      districts: districts ,
+      districts: districts,
     ));
   }
 
-  void _onDistrictChanged (
+  void _onDistrictChanged(
     DistrictChanged event,
     Emitter<WaterSupplyEditState> emit,
   ) async {
@@ -1013,9 +1204,12 @@ class WaterSupplyEditBloc
     emit(state.copyWith(wellStatusInput: wellStatus));
   }
 
-  void _onKioskStatusChanged(KioskStatusChanged event,Emitter<WaterSupplyEditState> emit,){
-    final kioskStatus =WellStatusInput.pure(event.kioskStatus);
-    kioskStatusController.text=event.kioskStatus.getDisplayText();
+  void _onKioskStatusChanged(
+    KioskStatusChanged event,
+    Emitter<WaterSupplyEditState> emit,
+  ) {
+    final kioskStatus = WellStatusInput.pure(event.kioskStatus);
+    kioskStatusController.text = event.kioskStatus.getDisplayText();
     emit(state.copyWith(kioskStatus: kioskStatus));
   }
 
@@ -1217,20 +1411,24 @@ class WaterSupplyEditBloc
     emit(state.copyWith(airStationInput: airStation));
   }
 
-  void _onAbilityProduceWaterChanged(AbilityProduceWaterChanged event, Emitter<WaterSupplyEditState> emit){
-    final abilityProduceWater = WaterSupplyInput.pure(event.abilityProductWater);
+  void _onAbilityProduceWaterChanged(
+      AbilityProduceWaterChanged event, Emitter<WaterSupplyEditState> emit) {
+    final abilityProduceWater =
+        WaterSupplyInput.pure(event.abilityProductWater);
     emit(state.copyWith(abilityProduceWaterInput: abilityProduceWater));
   }
 
-  void _onKioskFilterChanged(KioskFilterChanged event , Emitter<WaterSupplyEditState> emit){
-    final kioskFilter=PoolfilterInput.pure(event.kioskFilter);
-    kioskFilterController.text=event.kioskFilter.getDisplayText();
+  void _onKioskFilterChanged(
+      KioskFilterChanged event, Emitter<WaterSupplyEditState> emit) {
+    final kioskFilter = PoolfilterInput.pure(event.kioskFilter);
+    kioskFilterController.text = event.kioskFilter.getDisplayText();
     emit(state.copyWith(kioskFilter: kioskFilter));
   }
 
-  void _onWaterQualityParameterChanged(WaterQualityParameterChanged event, Emitter<WaterSupplyEditState> emit){
+  void _onWaterQualityParameterChanged(
+      WaterQualityParameterChanged event, Emitter<WaterSupplyEditState> emit) {
     final param1 = WaterSupplyInput.pure(event.value);
-    parameter1Controller.text=event.value;
+    parameter1Controller.text = event.value;
     emit(state.copyWith(wqParameter1: param1));
   }
 
@@ -1243,25 +1441,40 @@ class WaterSupplyEditBloc
     final communeInput = WaterSupplyInput.dirty(state.communeInput.value);
     final villageInput = WaterSupplyInput.dirty(state.villageInput.value);
     final mapTypeInput = MapTypeInput.dirty(state.mapTypeInput.value);
-    final waterSupplyCodeInput = WaterSupplyInput.dirty(state.waterSupplyCode.value);
-    final familyTotalInput = WaterSupplyInput.dirty(state.familyTotalInput.value);
+    final waterSupplyCodeInput =
+        WaterSupplyInput.dirty(state.waterSupplyCode.value);
+    final familyTotalInput =
+        WaterSupplyInput.dirty(state.familyTotalInput.value);
     final lateitudeInput = WaterSupplyInput.dirty(state.lateitudeInput.value);
     final longtitudeInput = WaterSupplyInput.dirty(state.longtitudeInput.value);
-    final locationRickInput = LocationRiskInput.dirty(state.locationRickInput.value);
+    final locationRickInput =
+        LocationRiskInput.dirty(state.locationRickInput.value);
     final budgetTypeInput = BudgetTypeInput.dirty(state.budgetTypeInput.value);
-    final managementTypeInput = ManagementTypeInput.dirty(state.managementTypeInput.value);
-    final managementNameInput = WaterSupplyInput.dirty(state.managementNameInput.value);
-    final receiverTotalInput = WaterSupplyInput.dirty(state.receiverTotalInput.value);
-    final receiverTotalAsFemaleInput = WaterSupplyInput.dirty(state.receiverTotalAsFemaleInput.value);
-    final receiverFamilyTotalInput = WaterSupplyInput.dirty(state.receiverFamilyTotalInput.value);
-    final receiverFamilyPoor1Input =  WaterSupplyInput.dirty(state.receiverFamilyPoor1Input.value);
-    final receiverFamilyPoor2Input =        WaterSupplyInput.dirty(state.receiverFamilyPoor2Input.value);
+    final managementTypeInput =
+        ManagementTypeInput.dirty(state.managementTypeInput.value);
+    final managementNameInput =
+        WaterSupplyInput.dirty(state.managementNameInput.value);
+    final receiverTotalInput =
+        WaterSupplyInput.dirty(state.receiverTotalInput.value);
+    final receiverTotalAsFemaleInput =
+        WaterSupplyInput.dirty(state.receiverTotalAsFemaleInput.value);
+    final receiverFamilyTotalInput =
+        WaterSupplyInput.dirty(state.receiverFamilyTotalInput.value);
+    final receiverFamilyPoor1Input =
+        WaterSupplyInput.dirty(state.receiverFamilyPoor1Input.value);
+    final receiverFamilyPoor2Input =
+        WaterSupplyInput.dirty(state.receiverFamilyPoor2Input.value);
     final docInput = DOCInput.dirty(state.docInput.value);
-    final companyNameInput =        WaterSupplyInput.dirty(state.companyNameInput.value);
-    final constructionCodeInput =        WaterSupplyInput.dirty(state.constructionCodeInput.value);
-    final receiverFamilyIndigenousInput =        WaterSupplyInput.dirty(state.receiverFamilyIndigenousInput.value);
-    final receiverFamilyVulnearableInput =        WaterSupplyInput.dirty(state.receiverFamilyVulnearableInput.value);
-    final waterSupplyTypeInput = WaterSupplyTypeInput.dirty(state.waterSupplyTypeInput.value);
+    final companyNameInput =
+        WaterSupplyInput.dirty(state.companyNameInput.value);
+    final constructionCodeInput =
+        WaterSupplyInput.dirty(state.constructionCodeInput.value);
+    final receiverFamilyIndigenousInput =
+        WaterSupplyInput.dirty(state.receiverFamilyIndigenousInput.value);
+    final receiverFamilyVulnearableInput =
+        WaterSupplyInput.dirty(state.receiverFamilyVulnearableInput.value);
+    final waterSupplyTypeInput =
+        WaterSupplyTypeInput.dirty(state.waterSupplyTypeInput.value);
 
     final utmXInput = WaterSupplyInput.dirty(state.utmXInput.value);
     final utmYInput = WaterSupplyInput.dirty(state.utmYInput.value);
@@ -1277,15 +1490,18 @@ class WaterSupplyEditBloc
     final wellDepthInput = WaterSupplyInput.dirty(state.wellDepthInput.value);
     final wellScreenInput = WaterSupplyInput.dirty(state.wellScreenInput.value);
     final wellThearInput = WaterSupplyInput.dirty(state.wellThearInput.value);
-    final waterQualityInput = WaterQualityInput.dirty(state.waterQualityInput.value);
+    final waterQualityInput =
+        WaterQualityInput.dirty(state.waterQualityInput.value);
     final niVoStaticInput = WaterSupplyInput.dirty(state.niVoStaticInput.value);
-    final niVoDynamicInput = WaterSupplyInput.dirty(state.niVoDynamicInput.value);
-    final checkWaterQualityInput = CheckWaterQualityInput.dirty(state.checkWaterQualityInput.value);
+    final niVoDynamicInput =
+        WaterSupplyInput.dirty(state.niVoDynamicInput.value);
+    final checkWaterQualityInput =
+        CheckWaterQualityInput.dirty(state.checkWaterQualityInput.value);
     final wellStatusInput = WellStatusInput.dirty(state.wellStatusInput.value);
     //End Well
 
     //Start Small Pipe
-    //final sourceOfWaterInput = WaterSupplyTypeInput.dirty(state.waterSupplyTypeInput.value);   
+    //final sourceOfWaterInput = WaterSupplyTypeInput.dirty(state.waterSupplyTypeInput.value);
     final airPoolInput = WaterSupplyInput.dirty(state.airPoolInput.value);
     final filterTankInput = PoolfilterInput.dirty(state.filterTankInput.value);
     final connectorInput = WaterSupplyInput.dirty(state.connectorInput.value);
@@ -1294,7 +1510,8 @@ class WaterSupplyEditBloc
     final pipeLenghtInput = WaterSupplyInput.dirty(state.pipeLenghtInput.value);
     final pipeStatusInput = WellStatusInput.dirty(state.pipeStatusInput.value);
     final coverageInput = WaterSupplyInput.dirty(state.coverageInput.value);
-    final qualityWaterCheckInput = WaterQualityInput.dirty(state.qualityWaterCheckInput.value);
+    final qualityWaterCheckInput =
+        WaterQualityInput.dirty(state.qualityWaterCheckInput.value);
     //End Pipe (Small Pipe)
 
     //Start Pond
@@ -1309,9 +1526,9 @@ class WaterSupplyEditBloc
     //final pondStatusInput = WaterSupplyInput.dirty(state.pondStatusInput.value);
     final pondStatusInput = PondStatusInput.dirty(state.pondStatusInput.value);
 
-   
     final usingTypeInput = UsingTypeInput.dirty(state.usingTypeInput.value);
-    final capacityTypeInput =  CapacityInput.dirty(state.capacityTypeInput.value);
+    final capacityTypeInput =
+        CapacityInput.dirty(state.capacityTypeInput.value);
     final tankStatusInput = TankStatusInput.dirty(state.tankStatusInput.value);
     final supplierInput = PoolfilterInput.dirty(state.supplierInput.value);
     final supplierDateInput = DOCInput.dirty(state.supplierDateInput.value);
@@ -1319,9 +1536,10 @@ class WaterSupplyEditBloc
     final filterInput = PoolfilterInput.dirty(state.filterInput.value);
     final airStationInput = WellStatusInput.dirty(state.airStationInput.value);
 
-    final abilityProductWaterInput=WaterSupplyInput.dirty(state.abilityProduceWaterInput.value);
-    final kioskStatusInput=WellStatusInput.dirty(state.kioskStatus.value);
-    final kioskFilterInput=PoolfilterInput.dirty(state.kioskFilter.value);
+    final abilityProductWaterInput =
+        WaterSupplyInput.dirty(state.abilityProduceWaterInput.value);
+    final kioskStatusInput = WellStatusInput.dirty(state.kioskStatus.value);
+    final kioskFilterInput = PoolfilterInput.dirty(state.kioskFilter.value);
 
     // ------Start Pipe
     //final waterSupplyTypeInput = WaterSupplyTypeInput.dirty(state.waterSupplyTypeInput.value);
@@ -1333,14 +1551,13 @@ class WaterSupplyEditBloc
     //final pipeLenghtInput = WaterSupplyInput.dirty(state.pipeLenghtInput.value);
     //final pipeStatusInput = WellStatusInput.dirty(state.pipeStatusInput.value);
     //final coverageInput = WaterSupplyInput.dirty(state.coverageInput.value);
-    //final qualityWaterCheckInput = WaterQualityInput.dirty(state.qualityWaterCheckInput.value); 
-  
+    //final qualityWaterCheckInput = WaterQualityInput.dirty(state.qualityWaterCheckInput.value);
+
     //final dueDateInput = DOCInput.dirty(state.dueDateInput.value);
 
     // ------End Pipe
-    
-    //Start Air
 
+    //Start Air
 
     //End Air
 
@@ -1392,26 +1609,25 @@ class WaterSupplyEditBloc
         pipeStatusInput,
         qualityWaterCheckInput
       ]);
-    }else if (state.waterSupplyTypeId == 3){
+    } else if (state.waterSupplyTypeId == 3) {
       validForm = Formz.validate([
-              provinceInput,
-              districtInput,
-              communeInput,
-              villageInput,
-              budgetTypeInput,
-              locationRickInput,
-              managementTypeInput,
-              receiverTotalInput,
-              receiverFamilyTotalInput,
-              receiverTotalAsFemaleInput,
-              receiverFamilyPoor1Input,
-              receiverFamilyPoor2Input,
-              receiverFamilyIndigenousInput,
-              receiverFamilyVulnearableInput,
-              docInput,
-            ]);
-    } 
-    else if (state.waterSupplyTypeId == 4) {
+        provinceInput,
+        districtInput,
+        communeInput,
+        villageInput,
+        budgetTypeInput,
+        locationRickInput,
+        managementTypeInput,
+        receiverTotalInput,
+        receiverFamilyTotalInput,
+        receiverTotalAsFemaleInput,
+        receiverFamilyPoor1Input,
+        receiverFamilyPoor2Input,
+        receiverFamilyIndigenousInput,
+        receiverFamilyVulnearableInput,
+        docInput,
+      ]);
+    } else if (state.waterSupplyTypeId == 4) {
       validForm = Formz.validate([
         provinceInput,
         districtInput,
@@ -1560,7 +1776,7 @@ class WaterSupplyEditBloc
       waterSupplyCode: waterSupplyCodeInput,
       wqParameter1: wqParameter1Input,
       abilityProduceWaterInput: abilityProductWaterInput,
-      kioskStatus:kioskStatusInput,
+      kioskStatus: kioskStatusInput,
       kioskFilter: kioskFilterInput,
     ));
 
@@ -1573,9 +1789,10 @@ class WaterSupplyEditBloc
         final province = provinceInput.value;
         //print(province);
         final isRiskLocation = locationRickInput.value?.getCode();
-        final is_water_quality_check = checkWaterQualityInput.value?.getCode() == 0 ? true : false;
-        int editWaterSupplyId=0;
-        if(state.id>0){
+        final is_water_quality_check =
+            checkWaterQualityInput.value?.getCode() == 0 ? true : false;
+        int editWaterSupplyId = 0;
+        if (state.id > 0) {
           editWaterSupplyId = state.waterSupply!.id;
         }
 
@@ -1587,7 +1804,7 @@ class WaterSupplyEditBloc
           district: int.parse(districtInput.value),
           commune: int.parse(communeInput.value),
           village: int.parse(villageInput.value),
-          mapUnitId: mapTypeInput.value?.getCode()??1,
+          mapUnitId: mapTypeInput.value?.getCode() ?? 1,
           decimalDegreeLat: latDegreeInput.value.isNotEmpty
               ? double.parse(lateitudeInput.value)
               : 0,
@@ -1651,13 +1868,12 @@ class WaterSupplyEditBloc
           isActive: true,
           updatedBy: user != null ? user.id : 0,
           mainStatus: 3,
-          waterSupplyCode: constructionCodeInput.value, //not yet have control yet
+          waterSupplyCode:
+              constructionCodeInput.value, //not yet have control yet
           isWaterQualityCheck: is_water_quality_check,
           id: editWaterSupplyId,
-              
         );
         print(payload);
-
 
         repository
             .addOrUpdateWaterSupply(id: state.id, payload: payload)
@@ -1673,30 +1889,30 @@ class WaterSupplyEditBloc
           });
 
           /* START WATER QUALITY PARAMETER */
-          if(is_water_quality_check){
-            final payloadWQParameter1= PayloadWaterQualityParameterModel(
-              value:wqParameter1Input.value==''?'0':wqParameter1Input.value,
-              isActive: true, 
-              waterSupplyId: waterSupplyId, 
-              parameterId: 1);
+          if (is_water_quality_check) {
+            final payloadWQParameter1 = PayloadWaterQualityParameterModel(
+                value: wqParameter1Input.value == ''
+                    ? '0'
+                    : wqParameter1Input.value,
+                isActive: true,
+                waterSupplyId: waterSupplyId,
+                parameterId: 1);
 
-              repository.addWaterQuanlityParameter(payload: payloadWQParameter1);
+            repository.addWaterQuanlityParameter(payload: payloadWQParameter1);
 
-            for(var i= 2;i<=16;i++){
-              final payloadWQParameter= PayloadWaterQualityParameterModel(
-              value:'0',
-              isActive: true, 
-              waterSupplyId: waterSupplyId, 
-              parameterId: i);
+            for (var i = 2; i <= 16; i++) {
+              final payloadWQParameter = PayloadWaterQualityParameterModel(
+                  value: '0',
+                  isActive: true,
+                  waterSupplyId: waterSupplyId,
+                  parameterId: i);
 
               repository.addWaterQuanlityParameter(payload: payloadWQParameter);
             }
           }
-          
 
           //START WELL
           if (state.waterSupplyTypeId == 1) {
-
             final payloadWell = PayloadWellModel(
               waterSupplyId: waterSupplyId,
               wellType: wellTypeInput.value?.getCode().toString() ?? '',
@@ -1707,8 +1923,10 @@ class WaterSupplyEditBloc
               wellNiroDynamic: niVoDynamicInput.value,
               wellStatus: wellStatusInput.value?.getCode() == 0 ? '12' : '13',
               wellStatusReason: '',
-              wellWaterQuality:  waterQualityInput.value?.getCode() == 0 ? '8' : '9',
-              wellWaterQualityCheck: checkWaterQualityInput.value?.getCode() == 0 ? '10' : '11',
+              wellWaterQuality:
+                  waterQualityInput.value?.getCode() == 0 ? '8' : '9',
+              wellWaterQualityCheck:
+                  checkWaterQualityInput.value?.getCode() == 0 ? '10' : '11',
               isActive: true,
             );
             repository.addWaterSupplyWell(payload: payloadWell).then((well) {
@@ -1722,81 +1940,85 @@ class WaterSupplyEditBloc
                 payload: payloadWellOptionValue,
               );
             });
-            
           }
           //Small PIPE
-          else if(state.waterSupplyTypeId== 2){
+          else if (state.waterSupplyTypeId == 2) {
             final payloadSmallPipe = PayloadSmallPipeModel(
-             
-              waterSupplyId: waterSupplyId, 
-              isActive: true, 
-              sourceTypeOfWater: waterSupplyTypeInput.value?.getCode().toString() ?? '',
-              abilityOfProductWater: capacityInput.value, 
-              undergroupPoolStorage: containerInput.value, 
-              poolAir: airPoolInput.value, 
-              poolFilter: filterTankInput.value?.getCode()==0 ? '18':'19', 
-              numberOfLink: connectorInput.value, 
-              waterQualityCheck: qualityWaterCheckInput.value?.getCode() ==0 ? '10':'11', 
-              status: pipeStatusInput.value?.getCode() ==0 ? '22':'23', 
-              statusNoReason: '',        
-              );
-            repository.addWaterSupplySmallPipe(payload: payloadSmallPipe).then((smallpipe){
+              waterSupplyId: waterSupplyId,
+              isActive: true,
+              sourceTypeOfWater:
+                  waterSupplyTypeInput.value?.getCode().toString() ?? '',
+              abilityOfProductWater: capacityInput.value,
+              undergroupPoolStorage: containerInput.value,
+              poolAir: airPoolInput.value,
+              poolFilter: filterTankInput.value?.getCode() == 0 ? '18' : '19',
+              numberOfLink: connectorInput.value,
+              waterQualityCheck:
+                  qualityWaterCheckInput.value?.getCode() == 0 ? '10' : '11',
+              status: pipeStatusInput.value?.getCode() == 0 ? '22' : '23',
+              statusNoReason: '',
+            );
+            repository
+                .addWaterSupplySmallPipe(payload: payloadSmallPipe)
+                .then((smallpipe) {
               final payloadPipeOptionValue = PayloadSmallPipeOptionValueModel(
-                waterSupplyWellId: smallpipe.id?? 0, 
-                optionId: 1, 
-                valueId: waterSupplyTypeInput.value?.getCode() ?? 0, 
-                isActive: true
-                );
-              repository.addWaterSupplySmallPipeOptionValue(payload: payloadPipeOptionValue);    
-
-            });  
+                  waterSupplyWellId: smallpipe.id ?? 0,
+                  optionId: 1,
+                  valueId: waterSupplyTypeInput.value?.getCode() ?? 0,
+                  isActive: true);
+              repository.addWaterSupplySmallPipeOptionValue(
+                  payload: payloadPipeOptionValue);
+            });
           }
           //KIOSK
-          else if(state.waterSupplyTypeId==3){
+          else if (state.waterSupplyTypeId == 3) {
             final payloadKiosk = PayloadKioskModel(
               waterSupplyId: waterSupplyId,
-              isActive:true,
-              sourceTypeOfWater:waterSupplyTypeInput.value?.getCode().toString() ?? '', 
-              abilityOfProductWater: abilityProductWaterInput.value, 
-              filterSystem: kioskFilterInput.value?.getCode()==0?'28':'29',
-              status: kioskStatusInput.value?.getCode()==0?'26':'27', 
-              statusNoReason: '', 
-              waterQualityChecking: qualityWaterCheckInput.value?.getCode()==0?'24':'25',
-
+              isActive: true,
+              sourceTypeOfWater:
+                  waterSupplyTypeInput.value?.getCode().toString() ?? '',
+              abilityOfProductWater: abilityProductWaterInput.value,
+              filterSystem:
+                  kioskFilterInput.value?.getCode() == 0 ? '28' : '29',
+              status: kioskStatusInput.value?.getCode() == 0 ? '26' : '27',
+              statusNoReason: '',
+              waterQualityChecking:
+                  qualityWaterCheckInput.value?.getCode() == 0 ? '24' : '25',
             );
-            repository.addWaterSupplyKiosk(payload: payloadKiosk).then((kiosk){
+            repository.addWaterSupplyKiosk(payload: payloadKiosk).then((kiosk) {
               final payloadKioskOptionValue = PayloadKioskOptionValueModel(
-                isActive: true, 
-                optionId: 11, 
+                isActive: true,
+                optionId: 11,
                 valueId: waterSupplyTypeInput.value?.getCode() ?? 0,
-                waterSupplyKioskId: kiosk.id??0,
-
+                waterSupplyKioskId: kiosk.id ?? 0,
               );
-              try{
-                repository.addWaterSupplyKioskOptionValue(payload: payloadKioskOptionValue);
-              }catch(_){
-
-              }
-              
+              try {
+                repository.addWaterSupplyKioskOptionValue(
+                    payload: payloadKioskOptionValue);
+              } catch (_) {}
             });
           }
           //Pond
-          else if(state.waterSupplyTypeId ==4){
+          else if (state.waterSupplyTypeId == 4) {
             var pondStatus = pondStatusInput.value?.getCode();
             final payloadPond = PayloadPondModel(
-              waterSupplyId: waterSupplyId, 
-              width: pondLatInput.value, 
-              length: pondLongInput.value, 
-              height: pondDepthInput.value, 
+              waterSupplyId: waterSupplyId,
+              width: pondLatInput.value,
+              length: pondLongInput.value,
+              height: pondDepthInput.value,
               //poolFilter: pondFilterInput.value?.getCode()==0 ? '0':'1', wellTypeInput.value?.getCode().toString() ?? '',
-              poolFilter: pondFilterInput.value?.getCode()==0?'30':'31',
-              status: pondStatus==0?'36':pondStatus==1?'37':'38', 
-              statusNoReason: '', 
-              isActive: true, 
-              typeOfPond:pondTypeInput.value?.getCode() ==0 ? '32':'33', 
-              isSummerHasWater: seasonInput.value?.getCode() == 0? '34':'35',  
+              poolFilter: pondFilterInput.value?.getCode() == 0 ? '30' : '31',
+              status: pondStatus == 0
+                  ? '36'
+                  : pondStatus == 1
+                      ? '37'
+                      : '38',
+              statusNoReason: '',
+              isActive: true,
+              typeOfPond: pondTypeInput.value?.getCode() == 0 ? '32' : '33',
+              isSummerHasWater: seasonInput.value?.getCode() == 0 ? '34' : '35',
               //poolFilterObj: ''
-              );
+            );
 /*               repository.addWaterSupplyPond(payload: payloadPond).then((pond){
                 final payloadPondOptionValue = PayloadPondOptionValueModel(
                   waterSupplyWellId: pond.id?? 0,
@@ -1807,97 +2029,110 @@ class WaterSupplyEditBloc
               });
               repository.addWaterSupplyPond(payload: payloadPond); */
 
-               repository.addWaterSupplyPond(payload: payloadPond);
-              
-              
+            repository.addWaterSupplyPond(payload: payloadPond);
           }
           //Rain
-          else if(state.waterSupplyTypeId==5){
+          else if (state.waterSupplyTypeId == 5) {
             var typeOfUsing = usingTypeInput.value?.getCode();
-            var capacity= capacityTypeInput.value?.getCode();
+            var capacity = capacityTypeInput.value?.getCode();
             final payloadRain = PayloadRainModel(
-              waterSupplyId: waterSupplyId, 
-              typeOfUsing: typeOfUsing==0?'39':typeOfUsing==1?'40':'41', 
-              capacityOfRainWaterHarvesting:capacity==0?'45':capacity==1?'46':capacity==2?'47':capacity==3?'48':'49', 
-              status: tankStatusInput.value?.getCode()==1?'42':'43', 
-              statusNoReason: '', 
+              waterSupplyId: waterSupplyId,
+              typeOfUsing: typeOfUsing == 0
+                  ? '39'
+                  : typeOfUsing == 1
+                      ? '40'
+                      : '41',
+              capacityOfRainWaterHarvesting: capacity == 0
+                  ? '45'
+                  : capacity == 1
+                      ? '46'
+                      : capacity == 2
+                          ? '47'
+                          : capacity == 3
+                              ? '48'
+                              : '49',
+              status: tankStatusInput.value?.getCode() == 1 ? '42' : '43',
+              statusNoReason: '',
               isActive: true,
-              waterQualityChecking: checkWaterQualityInput.value?.getCode()==0?'50':'51',
+              waterQualityChecking:
+                  checkWaterQualityInput.value?.getCode() == 0 ? '50' : '51',
               capacity35m3: 0,
               capacity4m3: 0,
-              );
-              //print(payloadRain);
-              repository.addWaterSupplyRain(payload: payloadRain);
-          
-          }
-          else if(state.waterSupplyTypeId==6)
-          {
-            var licenseRegisteredDateSplit=supplierDateInput.value.toString().split(' ');
-            var licenseExpiredDateSplit = dueDateInput.value.toString().split(' ');
+            );
+            //print(payloadRain);
+            repository.addWaterSupplyRain(payload: payloadRain);
+          } else if (state.waterSupplyTypeId == 6) {
+            var licenseRegisteredDateSplit =
+                supplierDateInput.value.toString().split(' ');
+            var licenseExpiredDateSplit =
+                dueDateInput.value.toString().split(' ');
             final payloadPipeModel = PayloadPipeModel(
-              waterSupplyId: waterSupplyId, 
-              isActive: true, 
-              sourceTypeOfWater: waterSupplyTypeInput.value?.getCode().toString() ?? '',
-              abilityOfProductWater: capacityInput.value, 
-              undergroupPoolStorage: containerInput.value, 
-              poolAir: airPoolInput.value, 
-              poolFilter: filterTankInput.value?.getCode()==0 ? '18':'19', 
-              numberOfLink: connectorInput.value, 
-              waterQualityCheck: qualityWaterCheckInput.value?.getCode() ==0 ? '10':'11', 
-              status: pipeStatusInput.value?.getCode() ==0 ? '22':'23', 
-              statusNoReason: '', 
-              pipeLength: pipeLenghtInput.value, 
-              areaCovering: coverageInput.value , 
-              isHasLicense: supplierInput.value?.getCode()==0?'52':'53', 
+              waterSupplyId: waterSupplyId,
+              isActive: true,
+              sourceTypeOfWater:
+                  waterSupplyTypeInput.value?.getCode().toString() ?? '',
+              abilityOfProductWater: capacityInput.value,
+              undergroupPoolStorage: containerInput.value,
+              poolAir: airPoolInput.value,
+              poolFilter: filterTankInput.value?.getCode() == 0 ? '18' : '19',
+              numberOfLink: connectorInput.value,
+              waterQualityCheck:
+                  qualityWaterCheckInput.value?.getCode() == 0 ? '10' : '11',
+              status: pipeStatusInput.value?.getCode() == 0 ? '22' : '23',
+              statusNoReason: '',
+              pipeLength: pipeLenghtInput.value,
+              areaCovering: coverageInput.value,
+              isHasLicense: supplierInput.value?.getCode() == 0 ? '52' : '53',
               // licenseExpiredDate:dueDateInput.value.toString(), // docInput.value,
               // licenseRegisteredDate:supplierDateInput.value.toString()
-              licenseExpiredDate:licenseExpiredDateSplit[0], // docInput.value,
-              licenseRegisteredDate:licenseRegisteredDateSplit[0],
-              );
+              licenseExpiredDate: licenseExpiredDateSplit[0], // docInput.value,
+              licenseRegisteredDate: licenseRegisteredDateSplit[0],
+            );
             print(payloadPipeModel);
-            repository.addWaterSupplyPipe(payload: payloadPipeModel).then((pipe){
+            repository
+                .addWaterSupplyPipe(payload: payloadPipeModel)
+                .then((pipe) {
               final payloadPipeOptionValue = PayloadPipeOptionValueModel(
-                waterSupplyPipeId: pipe.id?? 0, 
-                optionId: 1, 
-                valueId: waterSupplyTypeInput.value?.getCode() ?? 0, 
-                isActive: true
-                );
-              repository.addWaterSupplyPipeOptionValue(payload: payloadPipeOptionValue);
+                  waterSupplyPipeId: pipe.id ?? 0,
+                  optionId: 1,
+                  valueId: waterSupplyTypeInput.value?.getCode() ?? 0,
+                  isActive: true);
+              repository.addWaterSupplyPipeOptionValue(
+                  payload: payloadPipeOptionValue);
             });
-
           }
           //!-- AIR to Water
-          else if(state.waterSupplyTypeId==7){
+          else if (state.waterSupplyTypeId == 7) {
             var sourceTypeOfWater = waterSupplyTypeInput.value?.getCode();
             final payloadAir = PayloadairModel(
-              waterSupplyId: waterSupplyId, 
-              sourceTypeOfWater: sourceTypeOfWater.toString() ?? '', 
-              abiltyOfProduceWater: capacityInput.value,  
-              filterSystem: filterTankInput.value?.getCode()==0 ? '28':'29', 
-              waterQualityChecking: qualityWaterCheckInput.value?.getCode() ==0 ? '10':'11', 
-               status: tankStatusInput.value?.getCode()==1? '26':'27', 
-               statusNoReason: '', 
-               isActive: true
-               );
-              repository.addWaterSupplyAir(payload: payloadAir).then((pond){
-                final payloadAirOptionValue = PayloadairOptionValueModel(
-                  waterSupplyWellId: pond.id?? 0,
+                waterSupplyId: waterSupplyId,
+                sourceTypeOfWater: sourceTypeOfWater.toString() ?? '',
+                abiltyOfProduceWater: capacityInput.value,
+                filterSystem:
+                    filterTankInput.value?.getCode() == 0 ? '28' : '29',
+                waterQualityChecking:
+                    qualityWaterCheckInput.value?.getCode() == 0 ? '10' : '11',
+                status: tankStatusInput.value?.getCode() == 1 ? '26' : '27',
+                statusNoReason: '',
+                isActive: true);
+            repository.addWaterSupplyAir(payload: payloadAir).then((pond) {
+              final payloadAirOptionValue = PayloadairOptionValueModel(
+                  waterSupplyWellId: pond.id ?? 0,
                   optionId: 1,
-                  valueId: waterSupplyTypeInput.value?.getCode()?? 0,
+                  valueId: waterSupplyTypeInput.value?.getCode() ?? 0,
                   isActive: true);
-              repository.addWaterSupplyAirOptionValue(payload: payloadAirOptionValue);    
-              });
-          
+              repository.addWaterSupplyAirOptionValue(
+                  payload: payloadAirOptionValue);
+            });
           }
-
+          //DialogHelper.showAnimatedDialog(pageBuilder: );
         });
-        
-        Application.eventBus.fire(const WaterSupplyUpdated());
-        emit(state.copyWith(formzStatus: FormzStatus.submissionSuccess));
       } catch (_) {
         emit(state.copyWith(formzStatus: FormzStatus.submissionFailure));
       } finally {
         LoadingHelper.close();
+        Application.eventBus.fire(const WaterSupplyUpdated());
+        emit(state.copyWith(formzStatus: FormzStatus.submissionSuccess));
       }
     }
   }

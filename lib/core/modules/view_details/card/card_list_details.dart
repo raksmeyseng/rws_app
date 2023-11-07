@@ -107,11 +107,11 @@ class _ContentView extends StatelessWidget {
                 CaptionWidget('${titleViews[0]} :'),
                 //TextWidget(state.waterSupply?.waterSupplyType),
                 Flexible(
-                child: TextWidget(
-                  state.waterSupply?.waterSupplyType,
-                  overflow: TextOverflow.ellipsis,
+                  child: TextWidget(
+                    state.waterSupply?.waterSupplyType,
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ),
-              ),
               ),
               const Padding(
                 padding: EdgeInsets.symmetric(vertical: 8),
@@ -172,7 +172,8 @@ class _ContentView extends StatelessWidget {
               _InfoItem(
                 CaptionWidget('${titleViews[7]} :'),
                 TextWidget(state.waterSupply?.mapUnitId == 1
-                    ? state.waterSupply?.utmX
+                    ? double.parse(state.waterSupply?.utmX ?? '0')
+                        .toStringAsFixed(0)
                     : state.waterSupply?.mapUnitId == 2
                         ? state.waterSupply?.decimalDegreeLat
                         : '$state.waterSupply?.mdsXDegree:$state.waterSupply?.mdsXMinute:$state.waterSupply?.mdsXSecond'),
@@ -184,7 +185,8 @@ class _ContentView extends StatelessWidget {
               _InfoItem(
                 CaptionWidget('${titleViews[8]} :'),
                 TextWidget(state.waterSupply?.mapUnitId == 1
-                    ? state.waterSupply?.utmY
+                    ? double.parse(state.waterSupply?.utmY ?? '0')
+                        .toStringAsFixed(0)
                     : state.waterSupply?.mapUnitId == 2
                         ? state.waterSupply?.decimalDegreeLng
                         : '$state.waterSupply?.mdsYDegree:$state.waterSupply?.mdsYMinute:$state.waterSupply?.mdsYSecond'),

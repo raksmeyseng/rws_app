@@ -18,3 +18,19 @@ WaterSupplyListModel(
       user: UserModel.fromJson(json['created_by'] as Map<String, dynamic>),
       waterSupplyTypeId: json['water_supply_type_id']['id'] as int,
       );
+
+WaterSupplyListByTypeModel _$WaterSupplyListByTypeModelFromJson(Map<String, dynamic> json) =>
+WaterSupplyListByTypeModel(
+  id: json['id'] as int, 
+  waterSupplyCode: json['water_supply_code'] as String, 
+  waterSupplyTypeEn: json['water_supply_type_id']['name_en'] as String, 
+  waterSupplyTypeKh: json['water_supply_type_id']['name_kh'] as String,
+  ProvinceNameKh: json['province_id']['name_kh'] as String,
+  ProvinceNameEn: json['province_id']['name_en'] as String,
+  DistrictNameEn: json['district_id']['name_en'] as String, 
+  DistrictNameKh: json['district_id']['name_kh'] as String,
+  CommuneNameEn: json['commune_id']['name_en'] as String,
+  CommuneNameKh: json['commune_id']['name_kh'] as String,
+  VillageNameEn: json['village_id']['name_en'] as String,
+  VillageNameKh: json['village_id']['name_kh'] as String,
+  );

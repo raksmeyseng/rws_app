@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rws_app/core/modules/my_history/bloc/my_history_bloc.dart';
+import 'package:rws_app/core/modules/my_history/models/my_request_history_model.dart';
 import 'package:rws_app/core/widgets/text_widget.dart';
 import 'package:rws_app/translation/generated/l10n.dart';
 
@@ -94,13 +95,12 @@ class _LoadingView extends StatelessWidget {
   }
 }
 
-class _MyHistoryItem extends StatelessWidget{
-
+class _MyHistoryItem extends StatelessWidget {
   const _MyHistoryItem(this.item);
-   
-   final WaterSupplyModel item;
 
-   @override
+  final MyReqeustHistoryModel item;
+
+  @override
   Widget build(BuildContext context) {
     return FlatCard(
       borderRadius: 10,
@@ -127,7 +127,7 @@ class _MyHistoryItem extends StatelessWidget{
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-           _InfoItem(
+          _InfoItem(
             const CaptionWidget('លេខកូដសំណង់ :'),
             TextWidget(item.waterSupplyCode),
           ),
@@ -163,15 +163,12 @@ class _MyHistoryItem extends StatelessWidget{
           _InfoItem(
             CaptionWidget('${S.of(context).status} :'),
             TextWidget(item.status.statusNameKh.toString(),
-            color: AppColor.warning
-            ),
+                color: AppColor.warning),
           ),
         ],
       ),
     );
   }
-
-
 }
 
 class _InfoItem extends StatelessWidget {

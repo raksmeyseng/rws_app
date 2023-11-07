@@ -12,18 +12,34 @@ class WaterSupplyDetialsRepository extends RestApiService {
         .map<WaterSupplyListModel>((x) => WaterSupplyListModel.fromJson(x))
         .toList();
   }
+
   Future<List<WaterSupplyModel>> getWaterSupplyListAll() async {
     final res = await get(ApiPath.getWaterSupplyListAll);
     return res
         .map<WaterSupplyModel>((x) => WaterSupplyModel.fromJson(x))
         .toList();
   }
-  Future<List<WaterSupplyMapModelV2>> getWaterSupplyMapList() async{
+
+  Future<List<WaterSupplyMapModelV2>> getWaterSupplyMapList() async {
     //final res = await get(ApiPath.getWaterSupplyMap);
     final res = await get(ApiPath.getWaterSupplyMap_v2);
     print(res);
     return res
         .map<WaterSupplyMapModelV2>((x) => WaterSupplyMapModelV2.fromJson(x))
+        .toList();
+  }
+
+  Future<WaterSupplyCountByTypeModel> getWaterSupplyCountByType(int id) async {
+    final res = await get(ApiPath.getCountWaterSupplybyType(id));
+    return WaterSupplyCountByTypeModel.fromJson(res);
+  }
+
+  Future<List<WaterSupplyListByTypeModel>> getWaterSupplyListByType(
+      int id) async {
+    final res = await get(ApiPath.getWaterSupplyListByType(id));
+    return res
+        .map<WaterSupplyListByTypeModel>(
+            (x) => WaterSupplyListByTypeModel.fromJson(x))
         .toList();
   }
 }

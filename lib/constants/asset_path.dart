@@ -6,7 +6,7 @@ class AssetPath {
   // Images
   static const String imgFlagKhmer = 'assets/images/flag_khmer.png';
   static const String imgFlagEngland = 'assets/images/flag_england.png';
-  static const String imgLogoApp = 'assets/images/logo_app.jpg';
+  static const String imgLogoApp = 'assets/images/logo_app.png';
   static const String imgUpdate = 'assets/images/update.png';
   static const String imgTechnicalIssue = 'assets/images/technical-issue.png';
   static const String imgMaintenance = 'assets/images/maintenance.png';

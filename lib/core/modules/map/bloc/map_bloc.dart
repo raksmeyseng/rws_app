@@ -13,9 +13,7 @@ part 'map_event.dart';
 part 'map_state.dart';
 
 class MapBloc extends Bloc<MapEvent, MapState> {
-  MapBloc({
-    required this.repository
-  }) : super(const MapState.initial()) {
+  MapBloc({required this.repository}) : super(const MapState.initial()) {
     on<MapEvent>(_onMapEvent);
   }
 
@@ -48,10 +46,26 @@ class MapBloc extends Bloc<MapEvent, MapState> {
       //   emit(state.copyWith(status: BaseStatusEnum.success,waterSupplys: waterSupply));
       // }
 
-      final waterSupply =
-          await repository.getWaterSupplyMapList();
-        emit(state.copyWith(status: BaseStatusEnum.success,waterSupplys: waterSupply));
+      final waterSupply = await repository.getWaterSupplyMapList();
 
+      final countWell = await repository.getWaterSupplyCountByType(1);
+      final countSmallPipe = await repository.getWaterSupplyCountByType(2);
+      final countKiosk = await repository.getWaterSupplyCountByType(3);
+      final countCommunityPond = await repository.getWaterSupplyCountByType(4);
+      final countRainHarvesting = await repository.getWaterSupplyCountByType(5);
+      final countPipe = await repository.getWaterSupplyCountByType(6);
+      final countAirToWater = await repository.getWaterSupplyCountByType(7);
+
+      emit(state.copyWith(
+          status: BaseStatusEnum.success,
+          waterSupplys: waterSupply,
+          countWell: countWell.count,
+          countSmallPipe: countSmallPipe.count,
+          countKiosk: countKiosk.count,
+          countCommunityPond: countCommunityPond.count,
+          countRainWaterHarvesting: countRainHarvesting.count,
+          countPipe: countPipe.count,
+          countAirToWater: countAirToWater.count));
     } catch (e) {
       emit(state.copyWith(status: BaseStatusEnum.failure));
     }

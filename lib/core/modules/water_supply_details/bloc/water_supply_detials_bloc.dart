@@ -37,7 +37,7 @@ class WaterSupplyDetialsBloc
     try {
       print(state.waterSupplyId);
       final waterSupply =
-          await repository.getWaterSupplyListv2(state.waterSupplyId);
+          await repository.getWaterSupplyListByType(state.waterSupplyId);
       emit(state.copyWith(
         status: BaseStatusEnum.success,
         waterSupply: waterSupply,
