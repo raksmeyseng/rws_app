@@ -1,8 +1,8 @@
 import 'package:json_annotation/json_annotation.dart';
 
-const int _govermentCode = 1;
-const int _organizationCode = 2;
-const int _charityCode = 3;
+const int _govermentCode = 0;
+const int _organizationCode = 1;
+const int _charityCode = 2;
 
 enum BudgetTypeEnum {
   @JsonValue(_govermentCode)
@@ -38,24 +38,24 @@ extension BudgetTypeEnumExtension on BudgetTypeEnum {
   }
 }
 
-BudgetTypeEnum? getBudgetTypeEnumById(int id){
+BudgetTypeEnum? getBudgetTypeEnumById(int id) {
   switch (id) {
-      case 0:
-        return BudgetTypeEnum.goverment;
-      case 1:
-        return BudgetTypeEnum.organization;
-      case 3:
-        return BudgetTypeEnum.charity;
-    }
+    case 0:
+      return BudgetTypeEnum.goverment;
+    case 1:
+      return BudgetTypeEnum.organization;
+    case 3:
+      return BudgetTypeEnum.charity;
+  }
 }
 
 String getBudgetTypeEnumDisplayText(BudgetTypeEnum value) {
-    switch (value) {
-      case BudgetTypeEnum.goverment:
-        return 'រដ្ឋ';
-      case BudgetTypeEnum.organization:
-        return 'អង្គការ';
-      case BudgetTypeEnum.charity:
-        return 'សប្បុរស';
-    }
+  switch (value) {
+    case BudgetTypeEnum.goverment:
+      return 'រដ្ឋ';
+    case BudgetTypeEnum.organization:
+      return 'អង្គការ';
+    case BudgetTypeEnum.charity:
+      return 'សប្បុរស';
   }
+}

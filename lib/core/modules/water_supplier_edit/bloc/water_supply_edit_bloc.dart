@@ -517,6 +517,8 @@ class WaterSupplyEditBloc
         managementNameInput: WaterSupplyInput.pure(waterSupply.managedBy),
         managementTypeInput: ManagementTypeInput.pure(
             getManagementTypeEnumById(waterSupply.managementType)),
+
+        docInput: DOCInput.pure(DateTime.parse(waterSupply.constructionDate)),
       ));
 
       provinceController.text = waterSupply.address.nameKh;
@@ -537,7 +539,7 @@ class WaterSupplyEditBloc
       locationRickController.text = getAreaEnumDisplayText(
           GetAreaEnumById(waterSupply.isRiskEnviromentArea) ?? AreaEnum.face);
       receiverFamilyTotalController.text =
-          waterSupply.beneficiaryTotalFamily.toString();
+          waterSupply.beneficiaryTotalPeople.toString();
       receiverTotalController.text =
           waterSupply.beneficiaryTotalFamily.toString();
       receiverTotalAsFemaleController.text =
@@ -556,6 +558,7 @@ class WaterSupplyEditBloc
       managementTypeController.text = getManagementTypeEnumDisplayText(
           getManagementTypeEnumById(waterSupply.managementType) ??
               ManagementTypeEnum.association);
+      docController.text = waterSupply.constructionDate;
 
       switch (waterSupply.waterSupplyTypeId) {
         case 1:
@@ -1791,7 +1794,10 @@ class WaterSupplyEditBloc
         final isRiskLocation = locationRickInput.value?.getCode();
         final is_water_quality_check =
             checkWaterQualityInput.value?.getCode() == 0 ? true : false;
+
+        final constructionDateInputSplit = docInput.value.toString().split(' ');
         int editWaterSupplyId = 0;
+
         if (state.id > 0) {
           editWaterSupplyId = state.waterSupply!.id;
         }
@@ -1859,7 +1865,7 @@ class WaterSupplyEditBloc
               : 0,
           constructedBy: companyNameInput.value,
 
-          constructionDate: '2023-05-16', // docInput.value,
+          constructionDate: constructionDateInputSplit[0], //'2023-05-16', // ,
           isRiskEnviromentArea: isRiskLocation == 1 ? true : false,
           managedBy: managementNameInput.value,
           managementType: managementTypeInput.value?.getCode() ?? 0,

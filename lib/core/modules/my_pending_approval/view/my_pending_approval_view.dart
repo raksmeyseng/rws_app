@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rws_app/core/modules/my_pending_approval/bloc/my_pending_approval_bloc.dart';
+import 'package:rws_app/core/modules/my_pending_approval/model/my_pending_approval_model.dart';
 import 'package:rws_app/core/modules/water_supply_details/model/water_supply_model.dart';
 
 import '../../../../config/routes/app_route.dart';
@@ -98,7 +99,7 @@ class _LoadingView extends StatelessWidget {
 class _MyDraftItem extends StatelessWidget {
   const _MyDraftItem(this.item);
 
-  final WaterSupplyModel item;
+  final PendingApprovalModel item;
 
   @override
   Widget build(BuildContext context) {
@@ -127,14 +128,14 @@ class _MyDraftItem extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _InfoItem(
-            CaptionWidget('${S.of(context).date_of_birth} :'),
-            TextWidget(item.createdDate.toString()),
-          ),
-          _InfoItem(
-            CaptionWidget('${S.of(context).user_name} :'),
-            TextWidget('${item.user.firstName} ${item.user.lastName}'),
-          ),
+          // _InfoItem(
+          //   CaptionWidget('${S.of(context).date_of_birth} :'),
+          //   TextWidget(item.createdDate.toString()),
+          // ),
+          // _InfoItem(
+          //   CaptionWidget('${S.of(context).user_name} :'),
+          //   TextWidget('${item.user.firstName} ${item.user.lastName}'),
+          // ),
           _InfoItem(
             CaptionWidget('${S.of(context).water_supply_type} :'),
             Flexible(

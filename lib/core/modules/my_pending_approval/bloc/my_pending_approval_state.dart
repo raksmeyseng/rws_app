@@ -1,25 +1,23 @@
 part of 'my_pending_approval_bloc.dart';
 
-class MyPendingApprovalState extends Equatable{
-
+class MyPendingApprovalState extends Equatable {
   const MyPendingApprovalState._({
-    this.status=BaseStatusEnum.initial,
+    this.status = BaseStatusEnum.initial,
     this.myPendingApproval = const [],
   });
 
   final BaseStatusEnum status;
-  final List<WaterSupplyModel> myPendingApproval;
+  final List<PendingApprovalModel> myPendingApproval;
 
-  const MyPendingApprovalState.initial():this._();
+  const MyPendingApprovalState.initial() : this._();
 
-  MyPendingApprovalState copyWith({BaseStatusEnum? status,
-  List<WaterSupplyModel>? myPendingApproval}){
+  MyPendingApprovalState copyWith(
+      {BaseStatusEnum? status, List<PendingApprovalModel>? myPendingApproval}) {
     return MyPendingApprovalState._(
-      status: status??this.status,
-      myPendingApproval: myPendingApproval??this.myPendingApproval
-    );
+        status: status ?? this.status,
+        myPendingApproval: myPendingApproval ?? this.myPendingApproval);
   }
 
   @override
-  List<Object?> get props => [status,myPendingApproval];
+  List<Object?> get props => [status, myPendingApproval];
 }

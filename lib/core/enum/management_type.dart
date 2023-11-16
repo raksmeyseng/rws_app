@@ -1,7 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 
-const int _associationCode = 1;
-const int _privateCode = 2;
+const int _associationCode = 0;
+const int _privateCode = 1;
 
 enum ManagementTypeEnum {
   @JsonValue(_associationCode)
@@ -31,20 +31,20 @@ extension ManagementTypeEnumExtension on ManagementTypeEnum {
   }
 }
 
-ManagementTypeEnum? getManagementTypeEnumById(int id){
+ManagementTypeEnum? getManagementTypeEnumById(int id) {
   switch (id) {
-      case 0:
-        return ManagementTypeEnum.association;
-      case 1:
-        return ManagementTypeEnum.private;
-    }
+    case 0:
+      return ManagementTypeEnum.association;
+    case 1:
+      return ManagementTypeEnum.private;
+  }
 }
 
 String getManagementTypeEnumDisplayText(ManagementTypeEnum value) {
-    switch (value) {
-      case ManagementTypeEnum.association:
-        return 'សមាគមន៍';
-      case ManagementTypeEnum.private:
-        return 'ឯកជន';
-    }
+  switch (value) {
+    case ManagementTypeEnum.association:
+      return 'សមាគមន៍';
+    case ManagementTypeEnum.private:
+      return 'ឯកជន';
   }
+}
