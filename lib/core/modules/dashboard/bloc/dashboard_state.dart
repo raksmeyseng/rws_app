@@ -5,15 +5,16 @@ class DashboardState extends Equatable {
     this.status = BaseStatusEnum.initial,
     this.selectedMenu = MainMenuEnum.home,
     this.currentIndex = 0,
-    this.index = 0,
+    //this.index = 0,
   });
 
   final BaseStatusEnum status;
   final MainMenuEnum selectedMenu;
   final int currentIndex;
-  final int index;
+  //final int index;
 
-  const DashboardState.initial({required int index}) : this._(index: index);
+  const DashboardState.initial({required int index})
+      : this._(currentIndex: index);
 
   DashboardState copyWith({
     BaseStatusEnum? status,

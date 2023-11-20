@@ -121,7 +121,7 @@ class WaterSupplyEditView extends StatelessWidget {
                   Navigator.of(context).pop();
                 } else {
                   Application.router
-                      .goNamed(AppRoute.home, extra: {'index': '0'});
+                      .goNamed(AppRoute.home, extra: {'index': '2'});
                 }
 
                 // Application.router.goNamed(AppRoute.myTask);

@@ -37,7 +37,7 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
     try {
       emit(state.copyWith(
         status: BaseStatusEnum.success,
-        currentIndex: state.index,
+        currentIndex: state.currentIndex,
       ));
     } catch (e) {
       emit(state.copyWith(status: BaseStatusEnum.failure));

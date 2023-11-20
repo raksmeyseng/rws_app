@@ -453,13 +453,20 @@ class WaterSupplyEditBloc
 
       if (state.id == 0) {
         emit(state.copyWith(
-          status: BaseStatusEnum.success,
-          provinces: provinces,
-          mapTypeInput: MapTypeInput.pure(getMapTypeEnumById(1)),
-        ));
+            status: BaseStatusEnum.success,
+            provinces: provinces,
+            mapTypeInput: MapTypeInput.pure(getMapTypeEnumById(1)),
+            utmXInput: const WaterSupplyInput.pure('0'),
+            utmYInput: const WaterSupplyInput.pure('0'),
+            lateitudeInput: const WaterSupplyInput.pure('0'),
+            longtitudeInput: const WaterSupplyInput.pure('0')));
 
         mapTypeController.text =
             getDisplayTextById(getMapTypeEnumById(1) ?? MapTypeEnum.utm);
+        utmXController.text = '0';
+        utmYController.text = '0';
+        latetitudeController.text = '0';
+        longtitudeController.text = '0';
 
         return;
       }
@@ -531,10 +538,12 @@ class WaterSupplyEditBloc
       villageController.text = waterSupply.village!.nameKh;
       mapTypeController.text = getDisplayTextById(
           getMapTypeEnumById(waterSupply.mapUnitId) ?? MapTypeEnum.utm);
-      latetitudeController.text = waterSupply.decimalDegreeLat.toString();
-      longtitudeController.text = waterSupply.decimalDegreeLng.toString();
-      utmXController.text = waterSupply.utmX.toString();
-      utmYController.text = waterSupply.utmY.toString();
+      latetitudeController.text =
+          double.parse(waterSupply.decimalDegreeLat).toStringAsFixed(0);
+      longtitudeController.text =
+          double.parse(waterSupply.decimalDegreeLng).toStringAsFixed(0);
+      utmXController.text = double.parse(waterSupply.utmX).toStringAsFixed(0);
+      utmYController.text = double.parse(waterSupply.utmY).toStringAsFixed(0);
       //!-- Tab 2
       familyTotalController.text = waterSupply.totalFamily.toString();
       budgetTypeController.text = getBudgetTypeEnumDisplayText(
