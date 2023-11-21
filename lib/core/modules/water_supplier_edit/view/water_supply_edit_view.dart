@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 import 'package:rws_app/config/routes/app_route.dart';
 import 'package:rws_app/config/routes/application.dart';
+import 'package:rws_app/config/themes/app_color.dart';
 import 'package:rws_app/core/enum/area_enum.dart';
 import 'package:rws_app/core/enum/base_status_enum.dart';
 import 'package:rws_app/core/enum/budget_type.dart';
@@ -27,11 +28,13 @@ import 'package:rws_app/core/modules/water_supplier_edit/model/budget_type_input
 import 'package:rws_app/core/modules/water_supplier_edit/model/doc_input.dart';
 import 'package:rws_app/core/modules/water_supplier_edit/model/management_type_input.dart';
 import 'package:rws_app/core/modules/water_supplier_edit/model/water_supply_input.dart';
+import 'package:rws_app/core/modules/water_supplier_edit/view/water_supply_edit_page.dart';
 import 'package:rws_app/core/modules/water_supply_edit_manage/view/water_supply_edit_manage_view.dart';
 import 'package:rws_app/core/widgets/caption_widget.dart';
 import 'package:rws_app/core/widgets/flat_card.dart';
 import 'package:rws_app/core/widgets/load_data_failed.dart';
 import 'package:rws_app/core/widgets/my_button.dart';
+import 'package:rws_app/core/widgets/my_outlined_button.dart';
 import 'package:rws_app/core/widgets/my_simple_dialog.dart';
 import 'package:rws_app/core/widgets/my_text_input.dart';
 import 'package:rws_app/core/widgets/text_widget.dart';
@@ -66,13 +69,13 @@ class WaterSupplyEditView extends StatelessWidget {
           //Application.router.goNamed(AppRoute.home, extra: {'index': '2'});
           Future.delayed(
               Duration.zero,
-              () =>
-                  _dialogBuilder(context, 'ទិន្នន័យរក្សាទុកបានជោគជ័យ។', false));
+              () => _dialogBuilder(context, 'ទិន្នន័យរក្សាទុកបានជោគជ័យ។', false,
+                  state.waterSupplyTypeId));
         } else if (state.formzStatus == FormzStatus.submissionSuccess) {
           Future.delayed(
               Duration.zero,
-              () => _dialogBuilder(
-                  context, 'ទិន្នន័យរក្សាទុកមិនបានជោគជ័យ។', true));
+              () => _dialogBuilder(context, 'ទិន្នន័យរក្សាទុកមិនបានជោគជ័យ។',
+                  true, state.waterSupplyTypeId));
         }
       },
       child: BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
@@ -91,8 +94,8 @@ class WaterSupplyEditView extends StatelessWidget {
     );
   }
 
-  Future<void> _dialogBuilder(
-      BuildContext context, String message, bool isError) {
+  Future<void> _dialogBuilder(BuildContext context, String message,
+      bool isError, int? waterSupplyTypeId) {
     return showDialog<void>(
       context: context,
       builder: (BuildContext context) {
@@ -102,15 +105,30 @@ class WaterSupplyEditView extends StatelessWidget {
           //   '',
           // ),
           actions: <Widget>[
-            // TextButton(
-            //   style: TextButton.styleFrom(
-            //     textStyle: Theme.of(context).textTheme.labelLarge,
-            //   ),
-            //   child: const Text('Disable'),
-            //   onPressed: () {
-            //     Navigator.of(context).pop();
-            //   },
-            // ),
+            TextButton(
+              style: TextButton.styleFrom(
+                textStyle: Theme.of(context).textTheme.labelLarge,
+              ),
+              child: const Text('បង្កើតថ្មី'),
+              onPressed: () {
+                if (isError) {
+                  Navigator.of(context).pop();
+                } else {
+                  // Application.router
+                  //     .goNamed(AppRoute.home, extra: {'currentIndex': '2'});
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (_) {
+                        return WaterSupplyEditPage(
+                          title: 'បង្កើតថ្មី',
+                          waterSupplyId: waterSupplyTypeId ?? 1,
+                        );
+                      },
+                    ),
+                  );
+                }
+              },
+            ),
             TextButton(
               style: TextButton.styleFrom(
                 textStyle: Theme.of(context).textTheme.labelLarge,
@@ -121,7 +139,17 @@ class WaterSupplyEditView extends StatelessWidget {
                   Navigator.of(context).pop();
                 } else {
                   Application.router
-                      .goNamed(AppRoute.home, extra: {'index': '2'});
+                      .goNamed(AppRoute.home, extra: {'currentIndex': '2'});
+                  // Navigator.of(context).push(
+                  //   MaterialPageRoute(
+                  //     builder: (_) {
+                  //       return const WaterSupplyEditPage(
+                  //         title: 'បង្កើតថ្មី',
+                  //         waterSupplyId: 1,
+                  //       );
+                  //     },
+                  //   ),
+                  // );
                 }
 
                 // Application.router.goNamed(AppRoute.myTask);
@@ -168,19 +196,53 @@ class _SuccessView extends StatelessWidget {
                 right: 0,
                 child: FlatCard(
                   padding: const EdgeInsets.symmetric(
-                    horizontal: 16,
-                    vertical: 10,
+                    horizontal: 0,
+                    vertical: 0,
                   ),
                   child: state.formzStatus == FormzStatus.submissionInProgress
                       ? const CircularProgressIndicator()
-                      : MyButton(
-                          title: S.of(context).button_ok,
-                          onPressed: () {
-                            context
-                                .read<WaterSupplyEditBloc>()
-                                .add(const Submitted());
-                          },
+                      : Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 0,
+                            vertical: 0,
+                          ),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: MyButton(
+                                    title: 'រក្សាទុកសេចក្ដីព្រាង',
+                                    color: AppColor.active,
+                                    onPressed: () {
+                                      context
+                                          .read<WaterSupplyEditBloc>()
+                                          .add(const Submitted(3));
+                                    }),
+                              ),
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              Expanded(
+                                child: MyButton(
+                                  title: 'ដាក់ស្នើ',
+                                  color: AppColor.active,
+                                  onPressed: () {
+                                    context
+                                        .read<WaterSupplyEditBloc>()
+                                        .add(const Submitted(1));
+                                  },
+                                ),
+                              )
+                            ],
+                          ),
                         ),
+                  // : MyButton(
+                  //     title: S.of(context).button_ok,
+                  //     onPressed: () {
+                  //       context
+                  //           .read<WaterSupplyEditBloc>()
+                  //           .add(const Submitted());
+                  //     },
+                  //   ),
                 ),
               ),
             ],

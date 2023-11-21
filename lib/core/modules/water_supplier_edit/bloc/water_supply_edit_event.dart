@@ -589,37 +589,39 @@ class AirStationChanged extends WaterSupplyEditEvent {
 }
 
 class Submitted extends WaterSupplyEditEvent {
-  const Submitted();
+  const Submitted(this.waterSupplyStatus);
+
+  final int waterSupplyStatus;
+
+  @override
+  List<Object> get props => [waterSupplyStatus];
 }
 
 /* Water Quality Paramter  */
-class WaterQualityParameterChanged extends WaterSupplyEditEvent{
-  
+class WaterQualityParameterChanged extends WaterSupplyEditEvent {
   const WaterQualityParameterChanged(this.value);
-  final String value ;
+  final String value;
 
   @override
   List<Object> get props => [value];
-
 }
 
 //----- KIOSK
-class AbilityProduceWaterChanged extends WaterSupplyEditEvent{
+class AbilityProduceWaterChanged extends WaterSupplyEditEvent {
   const AbilityProduceWaterChanged(this.abilityProductWater);
   final String abilityProductWater;
   @override
   List<Object> get props => [abilityProductWater];
 }
 
-class KioskStatusChanged extends WaterSupplyEditEvent{
+class KioskStatusChanged extends WaterSupplyEditEvent {
   const KioskStatusChanged(this.kioskStatus);
   final WellStatusEnum kioskStatus;
   @override
   List<Object> get props => [kioskStatus];
 }
 
-class KioskFilterChanged extends WaterSupplyEditEvent{
-  
+class KioskFilterChanged extends WaterSupplyEditEvent {
   const KioskFilterChanged(this.kioskFilter);
 
   final FilterEnum kioskFilter;

@@ -65,6 +65,7 @@ import '../model/well_type_input.dart';
 import '../model/input/using_type_input.dart';
 import '../model/input/capacity_input.dart';
 import '../model/input/tank_status_input.dart';
+import 'package:intl/intl.dart';
 
 part 'water_supply_edit_event.dart';
 part 'water_supply_edit_state.dart';
@@ -452,14 +453,18 @@ class WaterSupplyEditBloc
       }
 
       if (state.id == 0) {
+        DateTime now = DateTime.now();
+        String formattedDate = DateFormat('yyyy-MM-dd').format(now);
         emit(state.copyWith(
-            status: BaseStatusEnum.success,
-            provinces: provinces,
-            mapTypeInput: MapTypeInput.pure(getMapTypeEnumById(1)),
-            utmXInput: const WaterSupplyInput.pure('0'),
-            utmYInput: const WaterSupplyInput.pure('0'),
-            lateitudeInput: const WaterSupplyInput.pure('0'),
-            longtitudeInput: const WaterSupplyInput.pure('0')));
+          status: BaseStatusEnum.success,
+          provinces: provinces,
+          mapTypeInput: MapTypeInput.pure(getMapTypeEnumById(1)),
+          utmXInput: const WaterSupplyInput.pure('0'),
+          utmYInput: const WaterSupplyInput.pure('0'),
+          lateitudeInput: const WaterSupplyInput.pure('0'),
+          longtitudeInput: const WaterSupplyInput.pure('0'),
+          docInput: DOCInput.pure(DateTime.parse(formattedDate)),
+        ));
 
         mapTypeController.text =
             getDisplayTextById(getMapTypeEnumById(1) ?? MapTypeEnum.utm);
@@ -467,6 +472,7 @@ class WaterSupplyEditBloc
         utmYController.text = '0';
         latetitudeController.text = '0';
         longtitudeController.text = '0';
+        docController.text = formattedDate;
 
         return;
       }
@@ -1452,6 +1458,7 @@ class WaterSupplyEditBloc
     Submitted event,
     Emitter<WaterSupplyEditState> emit,
   ) {
+    final waterSupplyStatus = event.waterSupplyStatus;
     final provinceInput = WaterSupplyInput.dirty(state.provinceInput.value);
     final districtInput = WaterSupplyInput.dirty(state.districtInput.value);
     final communeInput = WaterSupplyInput.dirty(state.communeInput.value);
@@ -1799,251 +1806,247 @@ class WaterSupplyEditBloc
     if (state.formzStatus.isValidated) {
       LoadingHelper.show();
       emit(state.copyWith(formzStatus: FormzStatus.submissionInProgress));
-      Future.delayed(const Duration(microseconds: 300));
-      try {
-        final user = Application.authBloc.state.user;
-        final province = provinceInput.value;
-        //print(province);
-        final isRiskLocation = locationRickInput.value?.getCode();
+      Future.delayed(const Duration(microseconds: 500));
 
-        final is_water_quality_check =
-            checkWaterQualityInput.value?.getCode() == 0 ? true : false;
+      //try {
 
-        final constructionDateInputSplit = docInput.value.toString().split(' ');
-        int editWaterSupplyId = 0;
+      final user = Application.authBloc.state.user;
+      final province = provinceInput.value;
+      //print(province);
+      final isRiskLocation = locationRickInput.value?.getCode();
 
-        if (state.id > 0) {
-          editWaterSupplyId = state.waterSupply!.id;
-        }
+      final is_water_quality_check =
+          checkWaterQualityInput.value?.getCode() == 0 ? true : false;
 
-        final payload = PayloadWaterSupplyModel(
-          createdBy: user != null ? user.id : 0,
-          // createdAt: DateTime.now(),
-          // createdAt1: DateTime.now(),
-          province: int.parse(province),
-          district: int.parse(districtInput.value),
-          commune: int.parse(communeInput.value),
-          village: int.parse(villageInput.value),
-          mapUnitId: mapTypeInput.value?.getCode() ?? 1,
-          decimalDegreeLat: latDegreeInput.value.isNotEmpty
-              ? double.parse(lateitudeInput.value)
-              : 0,
-          decimalDegreeLng: longtitudeInput.value.isNotEmpty
-              ? double.parse(longtitudeInput.value)
-              : 0,
-          utmX: utmXInput.value.isNotEmpty ? double.parse(utmXInput.value) : 0,
-          utmY: utmYInput.value.isNotEmpty ? double.parse(utmYInput.value) : 0,
-          mdsXDegree: latDegreeInput.value.isNotEmpty
-              ? double.parse(latDegreeInput.value)
-              : 0,
-          mdsXMinute: latMinuteInput.value.isNotEmpty
-              ? double.parse(latMinuteInput.value)
-              : 0,
-          mdsXSecond: latSecondInput.value.isNotEmpty
-              ? double.parse(latSecondInput.value)
-              : 0,
-          mdsYDegree: longDegreeInput.value.isNotEmpty
-              ? double.parse(longDegreeInput.value)
-              : 0,
-          mdsYMinute: longMinuteInput.value.isNotEmpty
-              ? double.parse(longMinuteInput.value)
-              : 0,
-          mdsYSecond: longSecondInput.value.isNotEmpty
-              ? double.parse(longSecondInput.value)
-              : 0,
-          totalFamily: familyTotalInput.value.isNotEmpty
-              ? int.parse(familyTotalInput.value)
-              : 0,
-          beneficiaryTotalFamily: receiverFamilyTotalInput.value.isNotEmpty
-              ? int.parse(receiverFamilyTotalInput.value)
-              : 0,
-          beneficiaryTotalFamilyIndigenous:
-              receiverFamilyIndigenousInput.value.isNotEmpty
-                  ? int.parse(receiverFamilyIndigenousInput.value)
-                  : 0,
-          beneficiaryTotalFamilyPoor1: receiverFamilyPoor1Input.value.isNotEmpty
-              ? int.parse(receiverFamilyPoor1Input.value)
-              : 0,
-          beneficiaryTotalFamilyPoor2: receiverFamilyPoor2Input.value.isNotEmpty
-              ? int.parse(receiverFamilyPoor2Input.value)
-              : 0,
-          beneficiaryTotalFamilyVulnearable:
-              receiverFamilyVulnearableInput.value.isNotEmpty
-                  ? int.parse(receiverFamilyVulnearableInput.value)
-                  : 0,
-          beneficiaryTotalPeople: receiverTotalInput.value.isNotEmpty
-              ? int.parse(receiverTotalInput.value)
-              : 0,
-          beneficiaryTotalWoman: receiverTotalAsFemaleInput.value.isNotEmpty
-              ? int.parse(receiverTotalAsFemaleInput.value)
-              : 0,
-          constructedBy: companyNameInput.value,
+      final constructionDateInputSplit = docInput.value.toString().split(' ');
+      int editWaterSupplyId = 0;
 
-          constructionDate: constructionDateInputSplit[0], //'2023-05-16', // ,
-          isRiskEnviromentArea: isRiskLocation == 1 ? true : false,
-          managedBy: managementNameInput.value,
-          managementType: managementTypeInput.value?.getCode() ?? 0,
-          sourceBudget: budgetTypeInput.value?.getCode() ?? 0,
-          waterSupplyTypeId: state.waterSupplyTypeId,
-          isActive: true,
-          updatedBy: user != null ? user.id : 0,
-          mainStatus: 3,
-          waterSupplyCode:
-              constructionCodeInput.value, //not yet have control yet
-          isWaterQualityCheck: is_water_quality_check,
-          id: editWaterSupplyId,
-        );
+      if (state.id > 0) {
+        editWaterSupplyId = state.waterSupply!.id;
+      }
 
-        print(payload);
+      final payload = PayloadWaterSupplyModel(
+        createdBy: user != null ? user.id : 0,
+        // createdAt: DateTime.now(),
+        // createdAt1: DateTime.now(),
+        province: int.parse(province),
+        district: int.parse(districtInput.value),
+        commune: int.parse(communeInput.value),
+        village: int.parse(villageInput.value),
+        mapUnitId: mapTypeInput.value?.getCode() ?? 1,
+        decimalDegreeLat: latDegreeInput.value.isNotEmpty
+            ? double.parse(lateitudeInput.value)
+            : 0,
+        decimalDegreeLng: longtitudeInput.value.isNotEmpty
+            ? double.parse(longtitudeInput.value)
+            : 0,
+        utmX: utmXInput.value.isNotEmpty ? double.parse(utmXInput.value) : 0,
+        utmY: utmYInput.value.isNotEmpty ? double.parse(utmYInput.value) : 0,
+        mdsXDegree: latDegreeInput.value.isNotEmpty
+            ? double.parse(latDegreeInput.value)
+            : 0,
+        mdsXMinute: latMinuteInput.value.isNotEmpty
+            ? double.parse(latMinuteInput.value)
+            : 0,
+        mdsXSecond: latSecondInput.value.isNotEmpty
+            ? double.parse(latSecondInput.value)
+            : 0,
+        mdsYDegree: longDegreeInput.value.isNotEmpty
+            ? double.parse(longDegreeInput.value)
+            : 0,
+        mdsYMinute: longMinuteInput.value.isNotEmpty
+            ? double.parse(longMinuteInput.value)
+            : 0,
+        mdsYSecond: longSecondInput.value.isNotEmpty
+            ? double.parse(longSecondInput.value)
+            : 0,
+        totalFamily: familyTotalInput.value.isNotEmpty
+            ? int.parse(familyTotalInput.value)
+            : 0,
+        beneficiaryTotalFamily: receiverFamilyTotalInput.value.isNotEmpty
+            ? int.parse(receiverFamilyTotalInput.value)
+            : 0,
+        beneficiaryTotalFamilyIndigenous:
+            receiverFamilyIndigenousInput.value.isNotEmpty
+                ? int.parse(receiverFamilyIndigenousInput.value)
+                : 0,
+        beneficiaryTotalFamilyPoor1: receiverFamilyPoor1Input.value.isNotEmpty
+            ? int.parse(receiverFamilyPoor1Input.value)
+            : 0,
+        beneficiaryTotalFamilyPoor2: receiverFamilyPoor2Input.value.isNotEmpty
+            ? int.parse(receiverFamilyPoor2Input.value)
+            : 0,
+        beneficiaryTotalFamilyVulnearable:
+            receiverFamilyVulnearableInput.value.isNotEmpty
+                ? int.parse(receiverFamilyVulnearableInput.value)
+                : 0,
+        beneficiaryTotalPeople: receiverTotalInput.value.isNotEmpty
+            ? int.parse(receiverTotalInput.value)
+            : 0,
+        beneficiaryTotalWoman: receiverTotalAsFemaleInput.value.isNotEmpty
+            ? int.parse(receiverTotalAsFemaleInput.value)
+            : 0,
+        constructedBy: companyNameInput.value,
 
-        repository
-            .addOrUpdateWaterSupply(id: state.id, payload: payload)
-            .then((watersupply) {
-          final waterSupplyId = watersupply.waterSupplyId;
-          //print(waterSupplyId);
+        constructionDate: constructionDateInputSplit[0], //'2023-05-16', // ,
+        isRiskEnviromentArea: isRiskLocation == 1 ? true : false,
+        managedBy: managementNameInput.value,
+        managementType: managementTypeInput.value?.getCode() ?? 0,
+        sourceBudget: budgetTypeInput.value?.getCode() ?? 0,
+        waterSupplyTypeId: state.waterSupplyTypeId,
+        isActive: true,
+        updatedBy: user != null ? user.id : 0,
+        mainStatus: waterSupplyStatus,
+        waterSupplyCode: constructionCodeInput.value, //not yet have control yet
+        isWaterQualityCheck: is_water_quality_check,
+        id: editWaterSupplyId,
+      );
 
-          /* QRCODE SECTION */
-          repository.getGenerateQRCodeResponse(waterSupplyId).then((qrcode) {
-            final payloadWaterSupplyQRCode = PayloadWaterSupplyQRCodeModel(
-                waterSupplyId: waterSupplyId, qrCodeImageName: qrcode.qrName);
-            repository.addWaterSupplyQRCode(payload: payloadWaterSupplyQRCode);
+      print(payload);
 
-            /* START WATER QUALITY PARAMETER */
-            if (is_water_quality_check) {
-              final payloadWQParameter1 = PayloadWaterQualityParameterModel(
-                  value: wqParameter1Input.value == ''
-                      ? '0'
-                      : wqParameter1Input.value,
+      repository
+          .addOrUpdateWaterSupply(id: state.id, payload: payload)
+          .then((watersupply) {
+        final waterSupplyId = watersupply.waterSupplyId;
+        //print(waterSupplyId);
+
+        /* QRCODE SECTION */
+        repository.getGenerateQRCodeResponse(waterSupplyId).then((qrcode) {
+          final payloadWaterSupplyQRCode = PayloadWaterSupplyQRCodeModel(
+              waterSupplyId: waterSupplyId, qrCodeImageName: qrcode.qrName);
+          repository.addWaterSupplyQRCode(payload: payloadWaterSupplyQRCode);
+
+          /* START WATER QUALITY PARAMETER */
+          if (is_water_quality_check) {
+            final payloadWQParameter1 = PayloadWaterQualityParameterModel(
+                value: wqParameter1Input.value == ''
+                    ? '0'
+                    : wqParameter1Input.value,
+                isActive: true,
+                waterSupplyId: waterSupplyId,
+                parameterId: 1);
+
+            repository.addWaterQuanlityParameter(payload: payloadWQParameter1);
+
+            for (var i = 2; i <= 16; i++) {
+              final payloadWQParameter = PayloadWaterQualityParameterModel(
+                  value: '0',
                   isActive: true,
                   waterSupplyId: waterSupplyId,
-                  parameterId: 1);
+                  parameterId: i);
 
-              repository.addWaterQuanlityParameter(
-                  payload: payloadWQParameter1);
-
-              for (var i = 2; i <= 16; i++) {
-                final payloadWQParameter = PayloadWaterQualityParameterModel(
-                    value: '0',
-                    isActive: true,
-                    waterSupplyId: waterSupplyId,
-                    parameterId: i);
-
-                repository.addWaterQuanlityParameter(
-                    payload: payloadWQParameter);
-              }
+              repository.addWaterQuanlityParameter(payload: payloadWQParameter);
             }
+          }
 
-            //START WELL
-            if (state.waterSupplyTypeId == 1) {
-              final payloadWell = PayloadWellModel(
-                waterSupplyId: waterSupplyId,
-                wellType: wellTypeInput.value?.getCode().toString() ?? '',
-                wellHeight: wellDepthInput.value,
-                wellFilterHeight: wellScreenInput.value,
-                wellWaterSupply: wellThearInput.value,
-                wellNiroStatic: niVoStaticInput.value,
-                wellNiroDynamic: niVoDynamicInput.value,
-                wellStatus: wellStatusInput.value?.getCode() == 0 ? '12' : '13',
-                wellStatusReason: '',
-                wellWaterQuality:
-                    waterQualityInput.value?.getCode() == 0 ? '8' : '9',
-                wellWaterQualityCheck:
-                    checkWaterQualityInput.value?.getCode() == 0 ? '10' : '11',
-                isActive: true,
+          //START WELL
+          if (state.waterSupplyTypeId == 1) {
+            final payloadWell = PayloadWellModel(
+              waterSupplyId: waterSupplyId,
+              wellType: wellTypeInput.value?.getCode().toString() ?? '',
+              wellHeight: wellDepthInput.value,
+              wellFilterHeight: wellScreenInput.value,
+              wellWaterSupply: wellThearInput.value,
+              wellNiroStatic: niVoStaticInput.value,
+              wellNiroDynamic: niVoDynamicInput.value,
+              wellStatus: wellStatusInput.value?.getCode() == 0 ? '12' : '13',
+              wellStatusReason: '',
+              wellWaterQuality:
+                  waterQualityInput.value?.getCode() == 0 ? '8' : '9',
+              wellWaterQualityCheck:
+                  checkWaterQualityInput.value?.getCode() == 0 ? '10' : '11',
+              isActive: true,
+            );
+            repository.addWaterSupplyWell(payload: payloadWell).then((well) {
+              //WELL TYPE
+              final payloadWellOptionValue = PayloadWellOptionValueModel(
+                  waterSupplyWellId: well.id ?? 0,
+                  optionId: 1,
+                  valueId: wellTypeInput.value?.getCode() ?? 0,
+                  isActive: true);
+              repository.addWaterSupplyWellOptionValue(
+                payload: payloadWellOptionValue,
               );
-              repository.addWaterSupplyWell(payload: payloadWell).then((well) {
-                //WELL TYPE
-                final payloadWellOptionValue = PayloadWellOptionValueModel(
-                    waterSupplyWellId: well.id ?? 0,
-                    optionId: 1,
-                    valueId: wellTypeInput.value?.getCode() ?? 0,
-                    isActive: true);
-                repository.addWaterSupplyWellOptionValue(
-                  payload: payloadWellOptionValue,
-                );
-              });
-            }
-            //Small PIPE
-            else if (state.waterSupplyTypeId == 2) {
-              final payloadSmallPipe = PayloadSmallPipeModel(
-                waterSupplyId: waterSupplyId,
-                isActive: true,
-                sourceTypeOfWater:
-                    waterSupplyTypeInput.value?.getCode().toString() ?? '',
-                abilityOfProductWater: capacityInput.value,
-                undergroupPoolStorage: containerInput.value,
-                poolAir: airPoolInput.value,
-                poolFilter: filterTankInput.value?.getCode() == 0 ? '18' : '19',
-                numberOfLink: connectorInput.value,
-                waterQualityCheck:
-                    qualityWaterCheckInput.value?.getCode() == 0 ? '10' : '11',
-                status: pipeStatusInput.value?.getCode() == 0 ? '22' : '23',
-                statusNoReason: '',
-              );
-              repository
-                  .addWaterSupplySmallPipe(payload: payloadSmallPipe)
-                  .then((smallpipe) {
-                final payloadPipeOptionValue = PayloadSmallPipeOptionValueModel(
-                    waterSupplyWellId: smallpipe.id ?? 0,
-                    optionId: 1,
-                    valueId: waterSupplyTypeInput.value?.getCode() ?? 0,
-                    isActive: true);
-                repository.addWaterSupplySmallPipeOptionValue(
-                    payload: payloadPipeOptionValue);
-              });
-            }
-            //KIOSK
-            else if (state.waterSupplyTypeId == 3) {
-              final payloadKiosk = PayloadKioskModel(
-                waterSupplyId: waterSupplyId,
-                isActive: true,
-                sourceTypeOfWater:
-                    waterSupplyTypeInput.value?.getCode().toString() ?? '',
-                abilityOfProductWater: abilityProductWaterInput.value,
-                filterSystem:
-                    kioskFilterInput.value?.getCode() == 0 ? '28' : '29',
-                status: kioskStatusInput.value?.getCode() == 0 ? '26' : '27',
-                statusNoReason: '',
-                waterQualityChecking:
-                    qualityWaterCheckInput.value?.getCode() == 0 ? '24' : '25',
-              );
-              repository
-                  .addWaterSupplyKiosk(payload: payloadKiosk)
-                  .then((kiosk) {
-                final payloadKioskOptionValue = PayloadKioskOptionValueModel(
-                  isActive: true,
-                  optionId: 11,
+            });
+          }
+          //Small PIPE
+          else if (state.waterSupplyTypeId == 2) {
+            final payloadSmallPipe = PayloadSmallPipeModel(
+              waterSupplyId: waterSupplyId,
+              isActive: true,
+              sourceTypeOfWater:
+                  waterSupplyTypeInput.value?.getCode().toString() ?? '',
+              abilityOfProductWater: capacityInput.value,
+              undergroupPoolStorage: containerInput.value,
+              poolAir: airPoolInput.value,
+              poolFilter: filterTankInput.value?.getCode() == 0 ? '18' : '19',
+              numberOfLink: connectorInput.value,
+              waterQualityCheck:
+                  qualityWaterCheckInput.value?.getCode() == 0 ? '10' : '11',
+              status: pipeStatusInput.value?.getCode() == 0 ? '22' : '23',
+              statusNoReason: '',
+            );
+            repository
+                .addWaterSupplySmallPipe(payload: payloadSmallPipe)
+                .then((smallpipe) {
+              final payloadPipeOptionValue = PayloadSmallPipeOptionValueModel(
+                  waterSupplyWellId: smallpipe.id ?? 0,
+                  optionId: 1,
                   valueId: waterSupplyTypeInput.value?.getCode() ?? 0,
-                  waterSupplyKioskId: kiosk.id ?? 0,
-                );
-                try {
-                  repository.addWaterSupplyKioskOptionValue(
-                      payload: payloadKioskOptionValue);
-                } catch (_) {}
-              });
-            }
-            //Pond
-            else if (state.waterSupplyTypeId == 4) {
-              var pondStatus = pondStatusInput.value?.getCode();
-              final payloadPond = PayloadPondModel(
-                waterSupplyId: waterSupplyId,
-                width: pondLatInput.value,
-                length: pondLongInput.value,
-                height: pondDepthInput.value,
-                //poolFilter: pondFilterInput.value?.getCode()==0 ? '0':'1', wellTypeInput.value?.getCode().toString() ?? '',
-                poolFilter: pondFilterInput.value?.getCode() == 0 ? '30' : '31',
-                status: pondStatus == 0
-                    ? '36'
-                    : pondStatus == 1
-                        ? '37'
-                        : '38',
-                statusNoReason: '',
+                  isActive: true);
+              repository.addWaterSupplySmallPipeOptionValue(
+                  payload: payloadPipeOptionValue);
+            });
+          }
+          //KIOSK
+          else if (state.waterSupplyTypeId == 3) {
+            final payloadKiosk = PayloadKioskModel(
+              waterSupplyId: waterSupplyId,
+              isActive: true,
+              sourceTypeOfWater:
+                  waterSupplyTypeInput.value?.getCode().toString() ?? '',
+              abilityOfProductWater: abilityProductWaterInput.value,
+              filterSystem:
+                  kioskFilterInput.value?.getCode() == 0 ? '28' : '29',
+              status: kioskStatusInput.value?.getCode() == 0 ? '26' : '27',
+              statusNoReason: '',
+              waterQualityChecking:
+                  qualityWaterCheckInput.value?.getCode() == 0 ? '24' : '25',
+            );
+            repository.addWaterSupplyKiosk(payload: payloadKiosk).then((kiosk) {
+              final payloadKioskOptionValue = PayloadKioskOptionValueModel(
                 isActive: true,
-                typeOfPond: pondTypeInput.value?.getCode() == 0 ? '32' : '33',
-                isSummerHasWater:
-                    seasonInput.value?.getCode() == 0 ? '34' : '35',
-                //poolFilterObj: ''
+                optionId: 11,
+                valueId: waterSupplyTypeInput.value?.getCode() ?? 0,
+                waterSupplyKioskId: kiosk.id ?? 0,
               );
+              try {
+                repository.addWaterSupplyKioskOptionValue(
+                    payload: payloadKioskOptionValue);
+              } catch (_) {}
+            });
+          }
+          //Pond
+          else if (state.waterSupplyTypeId == 4) {
+            var pondStatus = pondStatusInput.value?.getCode();
+            final payloadPond = PayloadPondModel(
+              waterSupplyId: waterSupplyId,
+              width: pondLatInput.value,
+              length: pondLongInput.value,
+              height: pondDepthInput.value,
+              //poolFilter: pondFilterInput.value?.getCode()==0 ? '0':'1', wellTypeInput.value?.getCode().toString() ?? '',
+              poolFilter: pondFilterInput.value?.getCode() == 0 ? '30' : '31',
+              status: pondStatus == 0
+                  ? '36'
+                  : pondStatus == 1
+                      ? '37'
+                      : '38',
+              statusNoReason: '',
+              isActive: true,
+              typeOfPond: pondTypeInput.value?.getCode() == 0 ? '32' : '33',
+              isSummerHasWater: seasonInput.value?.getCode() == 0 ? '34' : '35',
+              //poolFilterObj: ''
+            );
 /*               repository.addWaterSupplyPond(payload: payloadPond).then((pond){
                 final payloadPondOptionValue = PayloadPondOptionValueModel(
                   waterSupplyWellId: pond.id?? 0,
@@ -2054,115 +2057,120 @@ class WaterSupplyEditBloc
               });
               repository.addWaterSupplyPond(payload: payloadPond); */
 
-              repository.addWaterSupplyPond(payload: payloadPond);
-            }
-            //Rain
-            else if (state.waterSupplyTypeId == 5) {
-              var typeOfUsing = usingTypeInput.value?.getCode();
-              var capacity = capacityTypeInput.value?.getCode();
-              final payloadRain = PayloadRainModel(
-                waterSupplyId: waterSupplyId,
-                typeOfUsing: typeOfUsing == 0
-                    ? '39'
-                    : typeOfUsing == 1
-                        ? '40'
-                        : '41',
-                capacityOfRainWaterHarvesting: capacity == 0
-                    ? '45'
-                    : capacity == 1
-                        ? '46'
-                        : capacity == 2
-                            ? '47'
-                            : capacity == 3
-                                ? '48'
-                                : '49',
-                status: tankStatusInput.value?.getCode() == 1 ? '42' : '43',
-                statusNoReason: '',
-                isActive: true,
-                waterQualityChecking:
-                    checkWaterQualityInput.value?.getCode() == 0 ? '50' : '51',
-                capacity35m3: 0,
-                capacity4m3: 0,
-              );
-              //print(payloadRain);
-              repository.addWaterSupplyRain(payload: payloadRain);
-            } else if (state.waterSupplyTypeId == 6) {
-              var licenseRegisteredDateSplit =
-                  supplierDateInput.value.toString().split(' ');
-              var licenseExpiredDateSplit =
-                  dueDateInput.value.toString().split(' ');
-              final payloadPipeModel = PayloadPipeModel(
-                waterSupplyId: waterSupplyId,
-                isActive: true,
-                sourceTypeOfWater:
-                    waterSupplyTypeInput.value?.getCode().toString() ?? '',
-                abilityOfProductWater: capacityInput.value,
-                undergroupPoolStorage: containerInput.value,
-                poolAir: airPoolInput.value,
-                poolFilter: filterTankInput.value?.getCode() == 0 ? '18' : '19',
-                numberOfLink: connectorInput.value,
-                waterQualityCheck:
-                    qualityWaterCheckInput.value?.getCode() == 0 ? '10' : '11',
-                status: pipeStatusInput.value?.getCode() == 0 ? '22' : '23',
-                statusNoReason: '',
-                pipeLength: pipeLenghtInput.value,
-                areaCovering: coverageInput.value,
-                isHasLicense: supplierInput.value?.getCode() == 0 ? '52' : '53',
-                // licenseExpiredDate:dueDateInput.value.toString(), // docInput.value,
-                // licenseRegisteredDate:supplierDateInput.value.toString()
-                licenseExpiredDate:
-                    licenseExpiredDateSplit[0], // docInput.value,
-                licenseRegisteredDate: licenseRegisteredDateSplit[0],
-              );
-              print(payloadPipeModel);
-              repository
-                  .addWaterSupplyPipe(payload: payloadPipeModel)
-                  .then((pipe) {
-                final payloadPipeOptionValue = PayloadPipeOptionValueModel(
-                    waterSupplyPipeId: pipe.id ?? 0,
-                    optionId: 1,
-                    valueId: waterSupplyTypeInput.value?.getCode() ?? 0,
-                    isActive: true);
-                repository.addWaterSupplyPipeOptionValue(
-                    payload: payloadPipeOptionValue);
-              });
-            }
-            //!-- AIR to Water
-            else if (state.waterSupplyTypeId == 7) {
-              var sourceTypeOfWater = waterSupplyTypeInput.value?.getCode();
-              final payloadAir = PayloadairModel(
-                  waterSupplyId: waterSupplyId,
-                  sourceTypeOfWater: sourceTypeOfWater.toString() ?? '',
-                  abiltyOfProduceWater: capacityInput.value,
-                  filterSystem:
-                      filterTankInput.value?.getCode() == 0 ? '28' : '29',
-                  waterQualityChecking:
-                      qualityWaterCheckInput.value?.getCode() == 0
-                          ? '10'
-                          : '11',
-                  status: tankStatusInput.value?.getCode() == 1 ? '26' : '27',
-                  statusNoReason: '',
+            repository.addWaterSupplyPond(payload: payloadPond);
+          }
+          //Rain
+          else if (state.waterSupplyTypeId == 5) {
+            var typeOfUsing = usingTypeInput.value?.getCode();
+            var capacity = capacityTypeInput.value?.getCode();
+            final payloadRain = PayloadRainModel(
+              waterSupplyId: waterSupplyId,
+              typeOfUsing: typeOfUsing == 0
+                  ? '39'
+                  : typeOfUsing == 1
+                      ? '40'
+                      : '41',
+              capacityOfRainWaterHarvesting: capacity == 0
+                  ? '45'
+                  : capacity == 1
+                      ? '46'
+                      : capacity == 2
+                          ? '47'
+                          : capacity == 3
+                              ? '48'
+                              : '49',
+              status: tankStatusInput.value?.getCode() == 1 ? '42' : '43',
+              statusNoReason: '',
+              isActive: true,
+              waterQualityChecking:
+                  checkWaterQualityInput.value?.getCode() == 0 ? '50' : '51',
+              capacity35m3: 0,
+              capacity4m3: 0,
+            );
+            //print(payloadRain);
+            repository.addWaterSupplyRain(payload: payloadRain);
+          } else if (state.waterSupplyTypeId == 6) {
+            var licenseRegisteredDateSplit =
+                supplierDateInput.value.toString().split(' ');
+            var licenseExpiredDateSplit =
+                dueDateInput.value.toString().split(' ');
+            final payloadPipeModel = PayloadPipeModel(
+              waterSupplyId: waterSupplyId,
+              isActive: true,
+              sourceTypeOfWater:
+                  waterSupplyTypeInput.value?.getCode().toString() ?? '',
+              abilityOfProductWater: capacityInput.value,
+              undergroupPoolStorage: containerInput.value,
+              poolAir: airPoolInput.value,
+              poolFilter: filterTankInput.value?.getCode() == 0 ? '18' : '19',
+              numberOfLink: connectorInput.value,
+              waterQualityCheck:
+                  qualityWaterCheckInput.value?.getCode() == 0 ? '10' : '11',
+              status: pipeStatusInput.value?.getCode() == 0 ? '22' : '23',
+              statusNoReason: '',
+              pipeLength: pipeLenghtInput.value,
+              areaCovering: coverageInput.value,
+              isHasLicense: supplierInput.value?.getCode() == 0 ? '52' : '53',
+              // licenseExpiredDate:dueDateInput.value.toString(), // docInput.value,
+              // licenseRegisteredDate:supplierDateInput.value.toString()
+              licenseExpiredDate: licenseExpiredDateSplit[0], // docInput.value,
+              licenseRegisteredDate: licenseRegisteredDateSplit[0],
+            );
+            print(payloadPipeModel);
+            repository
+                .addWaterSupplyPipe(payload: payloadPipeModel)
+                .then((pipe) {
+              final payloadPipeOptionValue = PayloadPipeOptionValueModel(
+                  waterSupplyPipeId: pipe.id ?? 0,
+                  optionId: 1,
+                  valueId: waterSupplyTypeInput.value?.getCode() ?? 0,
                   isActive: true);
-              repository.addWaterSupplyAir(payload: payloadAir).then((pond) {
-                final payloadAirOptionValue = PayloadairOptionValueModel(
-                    waterSupplyWellId: pond.id ?? 0,
-                    optionId: 1,
-                    valueId: waterSupplyTypeInput.value?.getCode() ?? 0,
-                    isActive: true);
-                repository.addWaterSupplyAirOptionValue(
-                    payload: payloadAirOptionValue);
-              });
-            }
-            //DialogHelper.showAnimatedDialog(pageBuilder: );
-          });
+              repository.addWaterSupplyPipeOptionValue(
+                  payload: payloadPipeOptionValue);
+            });
+          }
+          //!-- AIR to Water
+          else if (state.waterSupplyTypeId == 7) {
+            var sourceTypeOfWater = waterSupplyTypeInput.value?.getCode();
+            final payloadAir = PayloadairModel(
+                waterSupplyId: waterSupplyId,
+                sourceTypeOfWater: sourceTypeOfWater.toString() ?? '',
+                abiltyOfProduceWater: capacityInput.value,
+                filterSystem:
+                    filterTankInput.value?.getCode() == 0 ? '28' : '29',
+                waterQualityChecking:
+                    qualityWaterCheckInput.value?.getCode() == 0 ? '10' : '11',
+                status: tankStatusInput.value?.getCode() == 1 ? '26' : '27',
+                statusNoReason: '',
+                isActive: true);
+            repository.addWaterSupplyAir(payload: payloadAir).then((pond) {
+              final payloadAirOptionValue = PayloadairOptionValueModel(
+                  waterSupplyWellId: pond.id ?? 0,
+                  optionId: 1,
+                  valueId: waterSupplyTypeInput.value?.getCode() ?? 0,
+                  isActive: true);
+              repository.addWaterSupplyAirOptionValue(
+                  payload: payloadAirOptionValue);
+            });
+          }
+          //DialogHelper.showAnimatedDialog(pageBuilder: );
         });
-      } catch (_) {
-        emit(state.copyWith(formzStatus: FormzStatus.submissionFailure));
-      } finally {
-        LoadingHelper.close();
-        Application.eventBus.fire(const WaterSupplyUpdated());
-        emit(state.copyWith(formzStatus: FormzStatus.submissionSuccess));
-      }
+      });
+
+      LoadingHelper.close();
+      Application.eventBus.fire(const WaterSupplyUpdated());
+      emit(state.copyWith(
+          formzStatus: FormzStatus.submissionSuccess,
+          waterSupplyTypeId: state.waterSupplyTypeId));
+
+      // } catch (_) {
+      //   emit(state.copyWith(formzStatus: FormzStatus.submissionFailure));
+      // } finally {
+      //   LoadingHelper.close();
+
+      //   Application.eventBus.fire(const WaterSupplyUpdated());
+      //   emit(state.copyWith(formzStatus: FormzStatus.submissionSuccess));
+      // }
     }
   }
 }

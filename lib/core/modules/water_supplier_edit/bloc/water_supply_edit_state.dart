@@ -7,6 +7,7 @@ class WaterSupplyEditState extends Equatable {
     this.waterSupply,
     this.waterSupplyTypeId = 0,
     this.id = 0,
+    this.waterSupplyStatus = 3,
     this.provinceInput = const WaterSupplyInput.pure(),
     this.districtInput = const WaterSupplyInput.pure(),
     this.communeInput = const WaterSupplyInput.pure(),
@@ -64,7 +65,6 @@ class WaterSupplyEditState extends Equatable {
     this.pondLatInput = const WaterSupplyInput.pure(),
     this.pondLongInput = const WaterSupplyInput.pure(),
     this.pondFilterInput = const PondfilterInput.pure(),
-   
     this.pondDepthInput = const WaterSupplyInput.pure(),
     this.pondTypeInput = const PondTypeInput.pure(),
     this.seasonInput = const SeasonHasWaterInput.pure(),
@@ -78,11 +78,11 @@ class WaterSupplyEditState extends Equatable {
     this.dueDateInput = const DOCInput.pure(),
     this.filterInput = const PoolfilterInput.pure(),
     this.airStationInput = const WellStatusInput.pure(),
-    this.waterSupplyCode=const WaterSupplyInput.pure(),
-    this.wqParameter1=const WaterSupplyInput.pure(),
-    this.abilityProduceWaterInput= const WaterSupplyInput.pure(),
-    this.kioskStatus=const WellStatusInput.pure(),
-    this.kioskFilter=const PoolfilterInput.pure(),
+    this.waterSupplyCode = const WaterSupplyInput.pure(),
+    this.wqParameter1 = const WaterSupplyInput.pure(),
+    this.abilityProduceWaterInput = const WaterSupplyInput.pure(),
+    this.kioskStatus = const WellStatusInput.pure(),
+    this.kioskFilter = const PoolfilterInput.pure(),
   });
 
   final BaseStatusEnum status;
@@ -120,6 +120,7 @@ class WaterSupplyEditState extends Equatable {
   final WaterSupplyTypeInput waterSupplyTypeInput;
   final WaterSupplyInput containerInput;
   final WaterSupplyInput capacityInput;
+  final int waterSupplyStatus;
 
   //Well?
   final WellTypeInput wellTypeInput;
@@ -139,9 +140,9 @@ class WaterSupplyEditState extends Equatable {
   final WaterSupplyInput niVoDynamicInput;
   final CheckWaterQualityInput checkWaterQualityInput;
   final WellStatusInput wellStatusInput;
-  
+
   //small pipe
-  final WaterSupplyInput airPoolInput;  
+  final WaterSupplyInput airPoolInput;
   final PoolfilterInput filterTankInput;
   final WaterSupplyInput connectorInput;
   final WaterSupplyInput pipeLenghtInput;
@@ -157,7 +158,7 @@ class WaterSupplyEditState extends Equatable {
   final PondfilterInput pondFilterInput;
   final PondTypeInput pondTypeInput;
   final SeasonHasWaterInput seasonInput;
- // final WaterSupplyInput pondStatusInput;
+  // final WaterSupplyInput pondStatusInput;
   final PondStatusInput pondStatusInput;
   final UsingTypeInput usingTypeInput;
   final CapacityInput capacityTypeInput;
@@ -168,13 +169,12 @@ class WaterSupplyEditState extends Equatable {
   final PoolfilterInput filterInput;
   final WellStatusInput airStationInput;
 
-  //----- KIOSK 
+  //----- KIOSK
   final WaterSupplyInput abilityProduceWaterInput;
   final WellStatusInput kioskStatus;
   final PoolfilterInput kioskFilter;
 
   final WaterSupplyInput wqParameter1;
-
 
   const WaterSupplyEditState.initial({
     required int waterSupplyTypeId,
@@ -187,6 +187,7 @@ class WaterSupplyEditState extends Equatable {
     WaterSupplyModel? waterSupply,
     int? waterSupplyTypeId,
     int? id,
+    int? waterSupplyStatus,
     WaterSupplyInput? provinceInput,
     WaterSupplyInput? districtInput,
     WaterSupplyInput? communeInput,
@@ -260,7 +261,6 @@ class WaterSupplyEditState extends Equatable {
     WellStatusInput? airStationInput,
     WaterSupplyInput? waterSupplyCode,
     WaterSupplyInput? wqParameter1,
-
     WaterSupplyInput? abilityProduceWaterInput,
     WellStatusInput? kioskStatus,
     PoolfilterInput? kioskFilter,
@@ -271,6 +271,7 @@ class WaterSupplyEditState extends Equatable {
       waterSupply: waterSupply ?? this.waterSupply,
       waterSupplyTypeId: waterSupplyTypeId ?? this.waterSupplyTypeId,
       id: id ?? this.id,
+      waterSupplyStatus: waterSupplyStatus ?? this.waterSupplyStatus,
       provinceInput: provinceInput ?? this.provinceInput,
       districtInput: districtInput ?? this.districtInput,
       communeInput: communeInput ?? this.communeInput,
@@ -331,7 +332,8 @@ class WaterSupplyEditState extends Equatable {
       pipeLenghtInput: pipeLenghtInput ?? this.pipeLenghtInput,
       pipeStatusInput: pipeStatusInput ?? this.pipeStatusInput,
       coverageInput: coverageInput ?? this.coverageInput,
-      qualityWaterCheckInput: qualityWaterCheckInput ?? this.qualityWaterCheckInput,
+      qualityWaterCheckInput:
+          qualityWaterCheckInput ?? this.qualityWaterCheckInput,
       pondLatInput: pondLatInput ?? this.pondLatInput,
       pondLongInput: pondLongInput ?? this.pondLongInput,
       pondDepthInput: pondDepthInput ?? this.pondDepthInput,
@@ -348,11 +350,12 @@ class WaterSupplyEditState extends Equatable {
       dueDateInput: dueDateInput ?? this.dueDateInput,
       filterInput: filterInput ?? this.filterInput,
       airStationInput: airStationInput ?? this.airStationInput,
-      waterSupplyCode: waterSupplyCode??this.waterSupplyCode,
-      wqParameter1:wqParameter1??this.wqParameter1,
-      abilityProduceWaterInput:abilityProduceWaterInput??this.abilityProduceWaterInput,
-      kioskStatus: kioskStatus??this.kioskStatus,
-      kioskFilter: kioskFilter??this.kioskFilter,
+      waterSupplyCode: waterSupplyCode ?? this.waterSupplyCode,
+      wqParameter1: wqParameter1 ?? this.wqParameter1,
+      abilityProduceWaterInput:
+          abilityProduceWaterInput ?? this.abilityProduceWaterInput,
+      kioskStatus: kioskStatus ?? this.kioskStatus,
+      kioskFilter: kioskFilter ?? this.kioskFilter,
     );
   }
 
@@ -363,6 +366,7 @@ class WaterSupplyEditState extends Equatable {
         waterSupply,
         waterSupplyTypeId,
         id,
+        waterSupplyStatus,
         provinceInput,
         districtInput,
         communeInput,
