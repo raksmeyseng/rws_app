@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
@@ -51,6 +52,7 @@ import '../model/input/water_supply_type_input.dart';
 import '../model/location_risk_input.dart';
 import '../model/water_quality_input.dart';
 import '../model/well_type_input.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 part 'water_supply_kiosk_view.dart';
 part 'water_supply_small_pipe_view.dart';
@@ -410,42 +412,97 @@ class _FormField1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Row(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
-            Expanded(child: _ProvinceInput()),
-            SizedBox(width: 16),
-            Expanded(child: _DistrictInput()),
-          ],
+    return Column(mainAxisSize: MainAxisSize.min, children: [
+      Row(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: const [
+          Expanded(child: _ProvinceInput()),
+          SizedBox(width: 16),
+          Expanded(child: _DistrictInput()),
+        ],
+      ),
+      const SizedBox(height: 16),
+      Row(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: const [
+          Expanded(child: _CommuneInput()),
+          SizedBox(width: 16),
+          Expanded(child: _VillageInput()),
+        ],
+      ),
+      const SizedBox(height: 16),
+      Row(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: const [
+          Expanded(child: _MapTypeInput()),
+        ],
+      ),
+      const SizedBox(height: 16),
+      const _MapTypeDynamicForm(),
+      //bottom padding
+      const SizedBox(height: 30),
+      _buildMap()
+    ]);
+  }
+}
+
+Widget _buildMap() {
+  Completer<GoogleMapController> completer = Completer();
+  late GoogleMapController newGoogleMapController;
+  final CameraPosition position = const CameraPosition(
+    target: LatLng(11.5564, 104.9282),
+    zoom: 0,
+  );
+
+  return Stack(
+    children: <Widget>[
+      SizedBox(
+        height: 200, // This line solved the issue
+        child: GoogleMap(
+          mapType: MapType.normal,
+          myLocationButtonEnabled: true,
+          myLocationEnabled: true,
+          initialCameraPosition: position,
+          onMapCreated: (controller) {
+            completer.complete(controller);
+            newGoogleMapController = controller;
+            //goToCurrentUserLocation();
+            goToCurrentUserLocation_1(completer);
+          },
+          onTap: (LatLng latLng) {
+            // you have latitude and longitude here
+            var latitude = latLng.latitude;
+            var longitude = latLng.longitude;
+          },
+          //markers: markers,
+        ), // Mapbox
+      ),
+    ],
+  );
+}
+
+Future<void> goToCurrentUserLocation_1(Completer<GoogleMapController> completer,
+    {double zoom = 9}) async {
+  try {
+    final GoogleMapController controller = await completer.future;
+
+    final pos = await getCurrentPosition();
+    if (pos != null) {
+      controller.animateCamera(
+        CameraUpdate.newCameraPosition(
+          CameraPosition(
+            target: LatLng(pos.latitude, pos.longitude),
+            //target: const LatLng(11.562108, 104.888535),
+            zoom: zoom,
+          ),
         ),
-        const SizedBox(height: 16),
-        Row(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
-            Expanded(child: _CommuneInput()),
-            SizedBox(width: 16),
-            Expanded(child: _VillageInput()),
-          ],
-        ),
-        const SizedBox(height: 16),
-        Row(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
-            Expanded(child: _MapTypeInput()),
-          ],
-        ),
-        const SizedBox(height: 16),
-        const _MapTypeDynamicForm(),
-        //bottom padding
-        const SizedBox(height: 30),
-      ],
-    );
+      );
+    }
+  } catch (e) {
+    print(e);
   }
 }
 
