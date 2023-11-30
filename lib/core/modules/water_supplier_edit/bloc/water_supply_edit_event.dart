@@ -629,3 +629,12 @@ class KioskFilterChanged extends WaterSupplyEditEvent {
   @override
   List<Object> get props => [kioskFilter];
 }
+
+class GoogleMapPinChanged extends WaterSupplyEditEvent {
+  const GoogleMapPinChanged(this.latLng);
+
+  final LatLng latLng;
+
+  @override
+  List<Object> get props => [latLng];
+}

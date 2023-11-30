@@ -1,4 +1,6 @@
 import 'dart:async';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
@@ -449,43 +451,121 @@ class _FormField1 extends StatelessWidget {
   }
 }
 
-Widget _buildMap() {
+class _buildMap extends StatelessWidget {
+  _buildMap({Key? key}) : super(key: key);
+
   Completer<GoogleMapController> completer = Completer();
   late GoogleMapController newGoogleMapController;
+
+  final pos = getCurrentPosition();
+
   final CameraPosition position = const CameraPosition(
     target: LatLng(11.5564, 104.9282),
     zoom: 0,
   );
 
-  return Stack(
-    children: <Widget>[
-      SizedBox(
-        height: 200, // This line solved the issue
-        child: GoogleMap(
-          mapType: MapType.normal,
-          myLocationButtonEnabled: true,
-          myLocationEnabled: true,
-          initialCameraPosition: position,
-          onMapCreated: (controller) {
-            completer.complete(controller);
-            newGoogleMapController = controller;
-            //goToCurrentUserLocation();
-            goToCurrentUserLocation_1(completer);
-          },
-          onTap: (LatLng latLng) {
-            // you have latitude and longitude here
-            var latitude = latLng.latitude;
-            var longitude = latLng.longitude;
-          },
-          //markers: markers,
-        ), // Mapbox
-      ),
-    ],
-  );
+  // var marker = Marker(
+  //           //icon: BitmapDescriptor.fromAssetImage(const ImageConfiguration(devicePixelRatio: 2.0),'http://maps.google.com/mapfiles/ms/icons/orange-dot.png') ,
+  //           markerId: const MarkerId('Current Position'),
+  //           position: LatLng(double.parse(ws.decimalDegreeLat),
+  //               double.parse(ws.decimalDegreeLng)),
+  //           // infoWindow: InfoWindow(
+  //           //   title: ws.waterSupplyCode,
+  //           //   snippet: ws.waterSupplyCode,
+  //           // ),
+  //           //icon: BitmapDescriptor.fromBytes(customMarker)
+  //           icon: markerIcon,
+  //         );
+  //         markers.add(marker);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
+      buildWhen: (previous, current) => previous.latLng != current.latLng,
+      builder: (context, state) {
+        return Stack(
+          children: <Widget>[
+            SizedBox(
+              height: 200, // This line solved the issue
+              child: GoogleMap(
+                mapType: MapType.normal,
+                myLocationButtonEnabled: true,
+                myLocationEnabled: true,
+                tiltGesturesEnabled: true,
+                scrollGesturesEnabled: true,
+                //initialCameraPosition: position,
+                initialCameraPosition: CameraPosition(
+                  target: LatLng(state.latLng.latitude, state.latLng.longitude),
+                  zoom: 0,
+                ),
+                gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>[
+                  new Factory<OneSequenceGestureRecognizer>(
+                    () => new EagerGestureRecognizer(),
+                  ),
+                ].toSet(),
+                onMapCreated: (controller) {
+                  completer.complete(controller);
+                  newGoogleMapController = controller;
+                  //goToCurrentUserLocation();
+                  goToCurrentUserLocation_1(completer, context);
+                },
+                onTap: (LatLng latLng) => context
+                    .read<WaterSupplyEditBloc>()
+                    .add(GoogleMapPinChanged(latLng)),
+                markers: {
+                  Marker(
+                    markerId: const MarkerId('current position'),
+                    position:
+                        LatLng(state.latLng.latitude, state.latLng.longitude),
+                  ), // Marker
+                },
+              ), // Mapbox
+            ),
+          ],
+        );
+      },
+    );
+  }
 }
 
-Future<void> goToCurrentUserLocation_1(Completer<GoogleMapController> completer,
-    {double zoom = 9}) async {
+// Widget _buildMap() {
+//   Completer<GoogleMapController> completer = Completer();
+//   late GoogleMapController newGoogleMapController;
+//   final CameraPosition position = const CameraPosition(
+//     target: LatLng(11.5564, 104.9282),
+//     zoom: 0,
+//   );
+
+//   return Stack(
+//     children: <Widget>[
+//       SizedBox(
+//         height: 200, // This line solved the issue
+//         child: GoogleMap(
+//           mapType: MapType.normal,
+//           myLocationButtonEnabled: true,
+//           myLocationEnabled: true,
+//           initialCameraPosition: position,
+//           onMapCreated: (controller) {
+//             completer.complete(controller);
+//             newGoogleMapController = controller;
+//             //goToCurrentUserLocation();
+//             goToCurrentUserLocation_1(completer);
+//           },
+//           onTap: (LatLng latLng) {
+//             // you have latitude and longitude here
+//             var latitude = latLng.latitude;
+//             var longitude = latLng.longitude;
+//           },
+//           //markers: markers,
+//         ), // Mapbox
+//       ),
+//     ],
+//   );
+// }
+
+Future<void> goToCurrentUserLocation_1(
+    Completer<GoogleMapController> completer, BuildContext context,
+    {double zoom = 10}) async {
   try {
     final GoogleMapController controller = await completer.future;
 
@@ -500,10 +580,36 @@ Future<void> goToCurrentUserLocation_1(Completer<GoogleMapController> completer,
           ),
         ),
       );
+      context
+          .read<WaterSupplyEditBloc>()
+          .add(GoogleMapPinChanged(LatLng(pos.latitude, pos.longitude)));
+      //GoogleMapPinChanged(LatLng(pos.latitude, pos.longitude));
     }
   } catch (e) {
     print(e);
   }
+}
+
+Future<Set<Marker>> getMapMarker() async {
+  Set<Marker> markers = Set<Marker>();
+  try {
+    final pos = await getCurrentPosition();
+    if (pos != null) {
+      var marker = Marker(
+        //icon: BitmapDescriptor.fromAssetImage(const ImageConfiguration(devicePixelRatio: 2.0),'http://maps.google.com/mapfiles/ms/icons/orange-dot.png') ,
+        markerId: const MarkerId('Current Postion'),
+        position: LatLng(pos.latitude, pos.longitude),
+
+        // //icon: BitmapDescriptor.fromBytes(customMarker)
+        // icon: markerIcon,
+      );
+
+      markers.add(marker);
+    }
+  } catch (e) {
+    print(e);
+  }
+  return markers;
 }
 
 class _FormField2 extends StatelessWidget {

@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:latlong_to_osgrid/latlong_to_osgrid.dart';
 import 'package:rws_app/config/routes/application.dart';
 import 'package:rws_app/config/routes/route_handler.dart';
 import 'package:rws_app/core/enum/base_status_enum.dart';
@@ -432,6 +434,10 @@ class WaterSupplyEditBloc
     }
     if (event is KioskFilterChanged) {
       return _onKioskFilterChanged(event, emit);
+    }
+
+    if (event is GoogleMapPinChanged) {
+      return _onGoogleMapPinChanged(event, emit);
     }
   }
 
@@ -1454,6 +1460,26 @@ class WaterSupplyEditBloc
     emit(state.copyWith(wqParameter1: param1));
   }
 
+  void _onGoogleMapPinChanged(
+      GoogleMapPinChanged event, Emitter<WaterSupplyEditState> emit) {
+    LatLng latLng = event.latLng;
+    LatLongConverter converter = new LatLongConverter();
+    OSRef result = converter.getOSGBfromDec(
+        latLng.latitude, latLng.longitude, Datums.WGS84);
+    latetitudeController.text = result.northing.toString();
+    longtitudeController.text = result.easting.toString();
+    utmXController.text = latLng.latitude.toString();
+    utmYController.text = latLng.longitude.toString();
+    // latetitudeController.text = latLng.latitude.toString();
+    // longtitudeController.text = latLng.longitude.toString();
+    emit(state.copyWith(
+        latLng: latLng,
+        lateitudeInput: WaterSupplyInput.pure(result.northing.toString()),
+        longtitudeInput: WaterSupplyInput.pure(result.easting.toString()),
+        utmXInput: WaterSupplyInput.pure(latLng.latitude.toString()),
+        utmYInput: WaterSupplyInput.pure(latLng.longitude.toString())));
+  }
+
   void _onSubmitted(
     Submitted event,
     Emitter<WaterSupplyEditState> emit,
@@ -1834,7 +1860,7 @@ class WaterSupplyEditBloc
         commune: int.parse(communeInput.value),
         village: int.parse(villageInput.value),
         mapUnitId: mapTypeInput.value?.getCode() ?? 1,
-        decimalDegreeLat: latDegreeInput.value.isNotEmpty
+        decimalDegreeLat: lateitudeInput.value.isNotEmpty
             ? double.parse(lateitudeInput.value)
             : 0,
         decimalDegreeLng: longtitudeInput.value.isNotEmpty
