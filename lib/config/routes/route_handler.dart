@@ -4,6 +4,7 @@ import 'package:rws_app/core/modules/app/view/about_page.dart';
 import 'package:rws_app/core/modules/change_password/view/change_password_page.dart';
 import 'package:rws_app/core/modules/dashboard/view/dashboard_page.dart';
 import 'package:rws_app/core/modules/edit_profile/view/edit_profile_page.dart';
+import 'package:rws_app/core/modules/filter/view/filter_page.dart';
 import 'package:rws_app/core/modules/login/view/login_page.dart';
 import 'package:rws_app/core/modules/my_task/view/my_task_page.dart';
 import 'package:rws_app/core/modules/not_found/not_found_screen.dart';
@@ -47,9 +48,8 @@ Page settingBuilder(BuildContext context, GoRouterState state) {
 
 Page usersBuilder(BuildContext context, GoRouterState state) {
   return MaterialPage<void>(
-    key: state.pageKey,
-    child: const AboutPage()// const UserPage(),
-  );
+      key: state.pageKey, child: const AboutPage() // const UserPage(),
+      );
 }
 
 Page aboutBuilder(BuildContext context, GoRouterState state) {
@@ -62,10 +62,9 @@ Page aboutBuilder(BuildContext context, GoRouterState state) {
 
 Page reportBuilder(BuildContext context, GoRouterState state) {
   return MaterialPage<void>(
-    key: state.pageKey,
-    //child: const ReportView(),
-    child: const ReportPage()
-  );
+      key: state.pageKey,
+      //child: const ReportView(),
+      child: const ReportPage());
 }
 
 Page loginBuilder(BuildContext context, GoRouterState state) {
@@ -139,14 +138,22 @@ Page waterSupplyViewDetailBuilder(BuildContext context, GoRouterState state) {
   );
 }
 
-Page reportDetailBuilder(BuildContext context, GoRouterState state){
+Page WaterSupplyFilerBuilder(BuildContext context, GoRouterState state) {
+  final waterSupplyTypeId =
+      int.tryParse(state.extra.getValue('watersupplytypeid', '1'));
+  return MaterialPage<void>(
+      key: state.pageKey,
+      child: FilterWaterSupplyPage(waterSupplyTypeId: waterSupplyTypeId ?? 0));
+}
+
+Page reportDetailBuilder(BuildContext context, GoRouterState state) {
   final url = state.extra.getValue('url', '');
   return MaterialPage<void>(
     key: state.pageKey,
     child: WebViewApp(
       url: url,
     ),
-  ); 
+  );
 }
 
 Page waterSupplyEditBuilder(BuildContext context, GoRouterState state) {

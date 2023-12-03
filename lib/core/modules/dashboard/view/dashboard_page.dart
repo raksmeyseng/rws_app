@@ -4,12 +4,14 @@ import 'package:go_router/go_router.dart';
 import 'package:rws_app/config/themes/app_color.dart';
 import 'package:rws_app/core/modules/dashboard/bloc/dashboard_bloc.dart';
 import 'package:rws_app/core/modules/dashboard/enum/main_menu_enum.dart';
+import 'package:rws_app/core/modules/filter/view/filter_page.dart';
 import 'package:rws_app/core/modules/login/widgets/app_logo.dart';
 import 'package:rws_app/core/modules/map/view/maps_page.dart';
 import 'package:rws_app/core/modules/my_task/view/my_task_page.dart';
 import 'package:rws_app/core/modules/water_supply/view/water_supply_page.dart';
 import 'package:rws_app/core/widgets/flat_card.dart';
 import 'package:rws_app/core/widgets/text_widget.dart';
+import 'package:rws_app/core/widgets/textbutton_icon.dart';
 import 'package:rws_app/translation/generated/l10n.dart';
 
 class DashboardPage extends StatelessWidget {
@@ -31,6 +33,26 @@ class DashboardPage extends StatelessWidget {
               title: const _TitleWidget(),
               centerTitle: true,
               iconTheme: const IconThemeData(color: AppColor.white),
+              actions: <Widget>[
+                IconButton(
+                  color: AppColor.white,
+                  icon: const Icon(Icons.search),
+                  tooltip: 'Search here',
+                  onPressed: () {
+                    // handle the press
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (_) {
+                          return const FilterWaterSupplyPage(
+                            //title: title,
+                            waterSupplyTypeId: 0,
+                          );
+                        },
+                      ),
+                    );
+                  },
+                ),
+              ],
             ),
             drawer: const _DrawerMenu(),
             bottomNavigationBar: const _BottomNavigationBar(),
@@ -213,17 +235,17 @@ class _AppLogo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Padding(
+    return Padding(
       padding: const EdgeInsets.all(24.0),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-           const AppLogo(size: 40),
-           const SizedBox(width: 16.0),
-          Column(
+          const AppLogo(size: 40),
+          const SizedBox(width: 16.0),
+          const Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
+            children: [
               TextWidget(
                 'ក្រសួងអភិវឌ្ឃន៍ជនបទ',
                 bold: true,
@@ -236,6 +258,13 @@ class _AppLogo extends StatelessWidget {
                 size: 10,
               ),
             ],
+          ),
+          IconButton(
+            icon: const Icon(Icons.search),
+            tooltip: 'Search here',
+            onPressed: () {
+              // handle the press
+            },
           ),
         ],
       ),
