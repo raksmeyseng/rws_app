@@ -34,6 +34,7 @@ class WaterSupplyDetialsBloc
     Emitter<WaterSupplyDetialsState> emit,
   ) async {
     emit(state.copyWith(status: BaseStatusEnum.inprogress));
+
     try {
       print(state.waterSupplyId);
       final waterSupply =

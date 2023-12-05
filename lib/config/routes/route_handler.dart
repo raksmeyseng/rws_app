@@ -5,6 +5,7 @@ import 'package:rws_app/core/modules/change_password/view/change_password_page.d
 import 'package:rws_app/core/modules/dashboard/view/dashboard_page.dart';
 import 'package:rws_app/core/modules/edit_profile/view/edit_profile_page.dart';
 import 'package:rws_app/core/modules/filter/view/filter_page.dart';
+import 'package:rws_app/core/modules/filter_result/view/filter_result_page.dart';
 import 'package:rws_app/core/modules/login/view/login_page.dart';
 import 'package:rws_app/core/modules/my_task/view/my_task_page.dart';
 import 'package:rws_app/core/modules/not_found/not_found_screen.dart';
@@ -144,6 +145,20 @@ Page WaterSupplyFilerBuilder(BuildContext context, GoRouterState state) {
   return MaterialPage<void>(
       key: state.pageKey,
       child: FilterWaterSupplyPage(waterSupplyTypeId: waterSupplyTypeId ?? 0));
+}
+
+Page WaterSupplyFilerResultBuilder(BuildContext context, GoRouterState state) {
+  final provinceId = state.extra.getValue('waterSupplyTypeId', '');
+  return MaterialPage<void>(
+      key: state.pageKey,
+      child: FilterResultPage(
+        provinceId: provinceId ?? '',
+        waterSupplyTypeId: 0,
+        waterSupplyCode: '',
+        districtId: '',
+        communeId: '',
+        villageId: '',
+      ));
 }
 
 Page reportDetailBuilder(BuildContext context, GoRouterState state) {

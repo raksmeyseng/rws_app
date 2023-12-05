@@ -11,10 +11,18 @@ class FilterResultBloc extends Bloc<FilterResultEvent, FilterResultState> {
   FilterResultBloc(
       {required int waterSupplyTypeId,
       required String waterSupplyCode,
+      required String provinceId,
+      required String districtId,
+      required String communeId,
+      required String villageId,
       required this.repository})
       : super(FilterResultState.initial(
             waterSupplyTypeId: waterSupplyTypeId,
-            waterSupplyCode: waterSupplyCode)) {
+            waterSupplyCode: waterSupplyCode,
+            provinceId: provinceId,
+            districtId: districtId,
+            communeId: communeId,
+            villageId: villageId)) {
     on<FilterResultEvent>(_onFilterResultEvent);
   }
 
@@ -32,8 +40,8 @@ class FilterResultBloc extends Bloc<FilterResultEvent, FilterResultState> {
     emit(state.copyWith(status: BaseStatusEnum.inprogress));
     try {
       //emit(state.copyWith(status: BaseStatusEnum.success));
-      final waterSupply =
-          await repository.getWaterSupplyListByType(state.waterSupplyTypeId);
+      final waterSupply = await repository.getWaterSupplyFilterResultList(
+          state.provinceId, state.districtId, state.communeId, state.villageId);
       emit(state.copyWith(
         status: BaseStatusEnum.success,
         waterSupply: waterSupply,

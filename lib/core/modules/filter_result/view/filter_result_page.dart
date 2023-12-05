@@ -10,9 +10,18 @@ class FilterResultPage extends StatelessWidget {
   const FilterResultPage(
       {super.key,
       required this.waterSupplyTypeId,
-      required this.waterSupplyCode});
+      required this.waterSupplyCode,
+      required this.provinceId,
+      required this.districtId,
+      required this.communeId,
+      required this.villageId});
+
   final int waterSupplyTypeId;
   final String waterSupplyCode;
+  final String provinceId;
+  final String districtId;
+  final String communeId;
+  final String villageId;
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +29,10 @@ class FilterResultPage extends StatelessWidget {
       create: (context) => FilterResultBloc(
           waterSupplyTypeId: waterSupplyTypeId,
           waterSupplyCode: waterSupplyCode,
+          provinceId: provinceId,
+          districtId: districtId,
+          communeId: communeId,
+          villageId: villageId,
           repository: FilterResultRepository())
         ..add(const FilterResultStarted()),
       child: Scaffold(
