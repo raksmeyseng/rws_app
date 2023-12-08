@@ -22,7 +22,7 @@ class WaterSupplyDetialsRepository extends RestApiService {
 
   Future<List<WaterSupplyMapModelV2>> getWaterSupplyMapList() async {
     //final res = await get(ApiPath.getWaterSupplyMap);
-    final res = await get(ApiPath.getWaterSupplyMap_v2);
+    final res = await get(ApiPath.getWaterSupplyMapV2);
     print(res);
     return res
         .map<WaterSupplyMapModelV2>((x) => WaterSupplyMapModelV2.fromJson(x))

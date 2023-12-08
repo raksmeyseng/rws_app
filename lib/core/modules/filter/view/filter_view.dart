@@ -4,7 +4,6 @@ import 'package:rws_app/core/enum/base_status_enum.dart';
 import 'package:rws_app/core/modules/filter/bloc/filter_bloc.dart';
 import 'package:rws_app/core/modules/filter_result/view/filter_result_page.dart';
 import 'package:rws_app/core/modules/my_draft/models/my_draft_model.dart';
-import 'package:rws_app/core/modules/water_supplier_edit/model/water_supply_input.dart';
 import 'package:rws_app/core/widgets/load_data_failed.dart';
 import 'package:rws_app/core/widgets/my_simple_dialog.dart';
 import 'package:rws_app/core/widgets/my_text_input.dart';
@@ -17,7 +16,6 @@ class FilterWataerSupplyView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return BlocBuilder<FilterBloc, FilterState>(
         buildWhen: (previous, current) => previous.status != current.status,
         builder: (context, state) {
@@ -80,7 +78,7 @@ class _SuccessView extends StatelessWidget {
                       Expanded(child: _VillageInput()),
                     ],
                   ),
-                  const SizedBox(height: 16),
+                  SizedBox(height: 16),
                 ],
               ),
             ),
@@ -134,46 +132,44 @@ class _LoadingView extends StatelessWidget {
   }
 }
 
-class _ConstructionCodeInput extends StatelessWidget {
-  const _ConstructionCodeInput({Key? key}) : super(key: key);
+// class _ConstructionCodeInput extends StatelessWidget {
+//   const _ConstructionCodeInput({Key? key}) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<FilterBloc, FilterState>(
-      buildWhen: (previous, current) =>
-          previous.waterSupplyCodeInput != current.waterSupplyCodeInput,
-      builder: (context, state) {
-        return MyTextInput(
-          label: 'លេខកូដសំណង់',
-          focusNode: context.read<FilterBloc>().waterSupplyCodeFocus,
-          controller: context.read<FilterBloc>().waterSupplyCodeController,
-          onChanged: (value) =>
-              context.read<FilterBloc>().add(WaterSupplyCodeChanged(value)),
-          // errorText: _handleErrorText(context, state),
-          textInputAction: TextInputAction.next,
-        );
-      },
-    );
-  }
+//   @override
+//   Widget build(BuildContext context) {
+//     return BlocBuilder<FilterBloc, FilterState>(
+//       buildWhen: (previous, current) =>
+//           previous.waterSupplyCodeInput != current.waterSupplyCodeInput,
+//       builder: (context, state) {
+//         return MyTextInput(
+//           label: 'លេខកូដសំណង់',
+//           focusNode: context.read<FilterBloc>().waterSupplyCodeFocus,
+//           controller: context.read<FilterBloc>().waterSupplyCodeController,
+//           onChanged: (value) =>
+//               context.read<FilterBloc>().add(WaterSupplyCodeChanged(value)),
+//           // errorText: _handleErrorText(context, state),
+//           textInputAction: TextInputAction.next,
+//         );
+//       },
+//     );
+//   }
 
-  // String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
-  //   if (!state.constructionCodeInput.invalid) return null;
-  //   switch (state.constructionCodeInput.error) {
-  //     case WaterSupplyInputValidationError.empty:
-  //       return 'សូមបញ្ចូលលេខកូដសំណង់';
-  //     default:
-  //       return null;
-  //   }
-  // }
-}
+// String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
+//   if (!state.constructionCodeInput.invalid) return null;
+//   switch (state.constructionCodeInput.error) {
+//     case WaterSupplyInputValidationError.empty:
+//       return 'សូមបញ្ចូលលេខកូដសំណង់';
+//     default:
+//       return null;
+//   }
+// }
+// }
 
 class _SearchButton extends StatelessWidget {
   const _SearchButton({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    final bloc = context.read<FilterBloc>();
     return BlocBuilder<FilterBloc, FilterState>(
       buildWhen: (previous, current) =>
           previous.provinceId != current.provinceId ||
@@ -421,15 +417,15 @@ class _CommuneInput extends StatelessWidget {
     );
   }
 
-  String? _handleErrorText(BuildContext context, FilterState state) {
-    if (!state.communeInput.invalid) return null;
-    switch (state.communeInput.error) {
-      case WaterSupplyInputValidationError.empty:
-        return S.of(context).pls_input_commune;
-      default:
-        return null;
-    }
-  }
+  // String? _handleErrorText(BuildContext context, FilterState state) {
+  //   if (!state.communeInput.invalid) return null;
+  //   switch (state.communeInput.error) {
+  //     case WaterSupplyInputValidationError.empty:
+  //       return S.of(context).pls_input_commune;
+  //     default:
+  //       return null;
+  //   }
+  // }
 }
 
 class _VillageInput extends StatelessWidget {
@@ -497,13 +493,13 @@ class _VillageInput extends StatelessWidget {
     );
   }
 
-  String? _handleErrorText(BuildContext context, FilterState state) {
-    if (!state.villageInput.invalid) return null;
-    switch (state.villageInput.error) {
-      case WaterSupplyInputValidationError.empty:
-        return S.of(context).pls_input_village;
-      default:
-        return null;
-    }
-  }
+  // String? _handleErrorText(BuildContext context, FilterState state) {
+  //   if (!state.villageInput.invalid) return null;
+  //   switch (state.villageInput.error) {
+  //     case WaterSupplyInputValidationError.empty:
+  //       return S.of(context).pls_input_village;
+  //     default:
+  //       return null;
+  //   }
+  // }
 }

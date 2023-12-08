@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 const int _haveCode = 0;
@@ -31,21 +30,21 @@ extension FilterEnumExtension on FilterEnum {
   }
 }
 
-
-FilterEnum? getFilterEnumById(int id){
+FilterEnum? getFilterEnumById(int id) {
   switch (id) {
-      case 18:
-        return FilterEnum.have;
-      case 19:
-        return FilterEnum.notHave;
-    }
+    case 18:
+      return FilterEnum.have;
+    case 19:
+      return FilterEnum.notHave;
+  }
+  return null;
 }
 
 String getFilterEnumDisplayText(FilterEnum value) {
-    switch (value) {
-      case FilterEnum.have:
-        return 'មាន';
-      case FilterEnum.notHave:
-        return 'មិនមាន';
-    }
+  switch (value) {
+    case FilterEnum.have:
+      return 'មាន';
+    case FilterEnum.notHave:
+      return 'មិនមាន';
   }
+}

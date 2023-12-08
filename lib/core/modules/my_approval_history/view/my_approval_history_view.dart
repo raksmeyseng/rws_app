@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -16,12 +15,12 @@ import '../../../widgets/my_divider.dart';
 import '../../../widgets/text_widget.dart';
 import '../models/my_approval_history_model.dart';
 
-class MyApprovalHistoryView extends StatelessWidget{
+class MyApprovalHistoryView extends StatelessWidget {
   const MyApprovalHistoryView({super.key});
 
   @override
-Widget build(BuildContext context){
-  return BlocBuilder<MyApprovalHistoryBloc, MyApprovalHistoryState>(
+  Widget build(BuildContext context) {
+    return BlocBuilder<MyApprovalHistoryBloc, MyApprovalHistoryState>(
       buildWhen: (previous, current) => previous.status != current.status,
       builder: (context, state) {
         switch (state.status) {
@@ -34,8 +33,7 @@ Widget build(BuildContext context){
         }
       },
     );
-}
-
+  }
 }
 
 // ===================
@@ -47,7 +45,8 @@ class _SuccessView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<MyApprovalHistoryBloc, MyApprovalHistoryState>(
-      buildWhen: (previous, current) => previous.myApprovalHistory != current.myApprovalHistory,
+      buildWhen: (previous, current) =>
+          previous.myApprovalHistory != current.myApprovalHistory,
       builder: (context, state) {
         if (state.myApprovalHistory.isEmpty) {
           return const Center(child: EmptyWidget());
@@ -151,11 +150,11 @@ class _MyDraftItem extends StatelessWidget {
           ),
           _InfoItem(
             CaptionWidget('${S.of(context).commune} :'),
-            TextWidget(item.waterSupply.commune?.nameEn),
+            TextWidget(item.waterSupply.commune.nameEn),
           ),
           _InfoItem(
             CaptionWidget('${S.of(context).district} :'),
-            TextWidget(item.waterSupply.district?.nameEn),
+            TextWidget(item.waterSupply.district.nameEn),
           ),
           _InfoItem(
             CaptionWidget('${S.of(context).province} :'),
@@ -168,14 +167,12 @@ class _MyDraftItem extends StatelessWidget {
           _InfoItem(
             CaptionWidget('${S.of(context).status} :'),
             TextWidget(item.status.statusNameKh.toString(),
-            color: AppColor.warning
-            ),
+                color: AppColor.warning),
           ),
         ],
       ),
     );
   }
-
 }
 
 class _InfoItem extends StatelessWidget {

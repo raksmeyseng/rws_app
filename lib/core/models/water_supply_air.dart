@@ -1,5 +1,4 @@
 import 'package:json_annotation/json_annotation.dart';
-
 part 'water_supply_air_g.dart';
 
 @JsonSerializable(explicitToJson: true)
@@ -7,8 +6,8 @@ class WaterSupplyAirModel {
   WaterSupplyAirModel({
     required this.id,
     required this.waterSupplyId,
-    required this.statusNoReason,
     required this.abiltyOfProduceWater,
+    required this.statusNoReason,
     required this.filterSystemObj,
     required this.statusObj,
     required this.waterQualityCheckObj,

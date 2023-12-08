@@ -29,9 +29,9 @@ class ListDataDetailsView extends StatelessWidget {
             int length = state.waterSupply!.isWaterQualityCheck ? 4 : 3;
             return DefaultTabController(
               length: length,
-              child: Column(
+              child: const Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children:const [
+                children:[
                   _TabBar(),
                   Expanded(child: _TabBarView()),
                 ],

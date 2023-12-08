@@ -7,9 +7,7 @@ import 'package:rws_app/widgets/empty_widget.dart';
 
 import '../../../../translation/generated/l10n.dart';
 import '../../../../widgets/load_data_failed.dart';
-import '../../../models/water_supply_well.dart';
 import '../../../widgets/caption_widget.dart';
-import '../../../widgets/flat_card.dart';
 import '../../../widgets/my_divider.dart';
 
 class CardDataFields extends StatelessWidget {
@@ -184,9 +182,8 @@ class _WellView extends StatelessWidget {
               _InfoItem(
                 const CaptionWidget('ត្រួតពិនិត្យគុណភាពទឹក'),
                 TextWidget(
-                  state.waterSupply?.waterSupplyWells?.first
-                              .wellWaterQualityCheckObj?.length ==
-                          0
+                  state.waterSupply!.waterSupplyWells!.first
+                          .wellWaterQualityCheckObj!.isEmpty
                       ? '-'
                       : state.waterSupply?.waterSupplyWells?.first
                               .wellWaterQualityCheckObj?.first.nameKh ??
@@ -247,8 +244,8 @@ class _SmallPipeView extends StatelessWidget {
               _InfoItem(
                 const CaptionWidget('ប្រភេទប្រភពទឹក'),
                 TextWidget(
-                  state.waterSupply?.waterSupplyPipes?.first
-                          .source_type_of_water.first.valueObjs.first.nameKh ??
+                  state.waterSupply?.waterSupplyPipes?.first.sourceTypeOfWater
+                          .first.valueObjs.first.nameKh ??
                       '-',
                 ),
               ),
@@ -281,7 +278,7 @@ class _SmallPipeView extends StatelessWidget {
               _InfoItem(
                 const CaptionWidget('អាងអាកាស(m3)'),
                 TextWidget(
-                  state.waterSupply?.waterSupplyPipes?.first.pool_air,
+                  state.waterSupply?.waterSupplyPipes?.first.poolAir,
                 ),
               ),
               const Padding(
@@ -291,8 +288,8 @@ class _SmallPipeView extends StatelessWidget {
               _InfoItem(
                 const CaptionWidget('អាងចម្រោះ'),
                 TextWidget(
-                  state.waterSupply?.waterSupplyPipes?.first.pool_filter_obj
-                          .first.nameKh ??
+                  state.waterSupply?.waterSupplyPipes?.first.poolFilterObj.first
+                          .nameKh ??
                       '-',
                 ),
               ),
@@ -303,7 +300,7 @@ class _SmallPipeView extends StatelessWidget {
               _InfoItem(
                 const CaptionWidget('ចំនួនតំណដែលបានត'),
                 TextWidget(
-                  state.waterSupply?.waterSupplyPipes?.first.number_of_link,
+                  state.waterSupply?.waterSupplyPipes?.first.numberOfLink,
                 ),
               ),
               const Padding(
@@ -313,8 +310,8 @@ class _SmallPipeView extends StatelessWidget {
               _InfoItem(
                 const CaptionWidget('ការត្រួតពិនិត្យគុណភាពទឹក'),
                 TextWidget(
-                  state.waterSupply?.waterSupplyPipes?.first
-                          .water_quality_check_obj.first.nameKh ??
+                  state.waterSupply?.waterSupplyPipes?.first.wateQualityCheckObj
+                          .first.nameKh ??
                       '-',
                 ),
               ),
@@ -325,7 +322,7 @@ class _SmallPipeView extends StatelessWidget {
               _InfoItem(
                 const CaptionWidget('ស្ថានភាពបណ្ដាញទឹក'),
                 TextWidget(
-                  state.waterSupply?.waterSupplyPipes?.first.status_obj.first
+                  state.waterSupply?.waterSupplyPipes?.first.statusObj.first
                           .nameKh ??
                       '-',
                 ),
@@ -910,7 +907,7 @@ class _AirView extends StatelessWidget {
               _InfoItem(
                 const CaptionWidget('មូលហេតុ:'),
                 TextWidget(
-                  state.waterSupply?.waterSupplyRainWaterHarvesting?.length == 0
+                  state.waterSupply!.waterSupplyRainWaterHarvesting!.isEmpty
                       ? '-'
                       : state.waterSupply?.waterSupplyRainWaterHarvesting?.first
                           .statusNoReason,
@@ -1219,53 +1216,53 @@ class _InfoItem extends StatelessWidget {
   }
 }
 
-class _WellTypeItem extends StatelessWidget {
-  const _WellTypeItem(this.item, {Key? key}) : super(key: key);
+// class _WellTypeItem extends StatelessWidget {
+//   const _WellTypeItem(this.item, {Key? key}) : super(key: key);
 
-  final WaterSupplyOptionModel? item;
+//   final WaterSupplyOptionModel? item;
 
-  @override
-  Widget build(Object context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        const CaptionWidget('Well Type'),
-        TextWidget(item?.valueObjs.first.nameKh),
-      ],
-    );
-  }
-}
+//   @override
+//   Widget build(Object context) {
+//     return Row(
+//       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//       children: [
+//         const CaptionWidget('Well Type'),
+//         TextWidget(item?.valueObjs.first.nameKh),
+//       ],
+//     );
+//   }
+// }
 
-class _WaterQualityParameterItem extends StatelessWidget {
-  //const _WaterSupplyItem(this.item);
+// class _WaterQualityParameterItem extends StatelessWidget {
+//   //const _WaterSupplyItem(this.item);
 
-  //final WaterSupplyModel item;
+//   //final WaterSupplyModel item;
 
-  @override
-  Widget build(BuildContext context) {
-    return FlatCard(
-      borderRadius: 10,
-      color: Theme.of(context).dividerColor.withOpacity(0.05),
-      onTap: () {},
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          _InfoItem(
-            CaptionWidget('${S.of(context).water_supply_code} :'),
-            const TextWidget('Code'),
-          ),
-          _InfoItem(
-            CaptionWidget('${S.of(context).water_supply_type} :'),
-            const Flexible(
-              child: TextWidget(
-                'TTT',
-                overflow: TextOverflow.ellipsis,
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return FlatCard(
+//       borderRadius: 10,
+//       color: Theme.of(context).dividerColor.withOpacity(0.05),
+//       onTap: () {},
+//       child: Column(
+//         mainAxisSize: MainAxisSize.min,
+//         crossAxisAlignment: CrossAxisAlignment.start,
+//         children: [
+//           _InfoItem(
+//             CaptionWidget('${S.of(context).water_supply_code} :'),
+//             const TextWidget('Code'),
+//           ),
+//           _InfoItem(
+//             CaptionWidget('${S.of(context).water_supply_type} :'),
+//             const Flexible(
+//               child: TextWidget(
+//                 'TTT',
+//                 overflow: TextOverflow.ellipsis,
+//               ),
+//             ),
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+// }

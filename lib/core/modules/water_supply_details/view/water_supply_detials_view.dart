@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:rws_app/config/themes/app_color.dart';
+import 'package:go_router/go_router.dart';
 import 'package:rws_app/core/enum/base_status_enum.dart';
 import 'package:rws_app/core/modules/water_supply_details/bloc/water_supply_detials_bloc.dart';
-import 'package:rws_app/core/modules/water_supply_details/model/water_supply_model.dart';
 import 'package:rws_app/core/widgets/caption_widget.dart';
 import 'package:rws_app/core/widgets/flat_card.dart';
 import 'package:rws_app/core/widgets/load_data_failed.dart';
-import 'package:rws_app/core/widgets/my_divider.dart';
 import 'package:rws_app/core/widgets/text_widget.dart';
 import 'package:rws_app/widgets/empty_widget.dart';
-import 'package:go_router/go_router.dart';
 
 import '../../../../config/routes/app_route.dart';
 import '../../../../translation/generated/l10n.dart';
@@ -145,19 +142,19 @@ class _WaterSupplyItem extends StatelessWidget {
           ),
           _InfoItem(
             CaptionWidget('${S.of(context).village} :'),
-            TextWidget(item.VillageNameKh),
+            TextWidget(item.villageNameKh),
           ),
           _InfoItem(
             CaptionWidget('${S.of(context).commune} :'),
-            TextWidget(item.CommuneNameKh),
+            TextWidget(item.communeNameKh),
           ),
           _InfoItem(
             CaptionWidget('${S.of(context).district} :'),
-            TextWidget(item.DistrictNameKh),
+            TextWidget(item.districtNameKh),
           ),
           _InfoItem(
             CaptionWidget('${S.of(context).province} :'),
-            TextWidget(item.ProvinceNameKh),
+            TextWidget(item.provinceNameKh),
           ),
           // const Padding(
           //   padding: EdgeInsets.symmetric(vertical: 8),

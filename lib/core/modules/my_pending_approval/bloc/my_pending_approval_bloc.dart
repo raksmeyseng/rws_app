@@ -6,7 +6,6 @@ import 'package:rws_app/core/modules/my_pending_approval/model/my_pending_approv
 import 'package:rws_app/core/modules/my_pending_approval/repositories/my_pending_approval_repository.dart';
 
 import '../../../../config/routes/application.dart';
-import '../../water_supply_details/model/water_supply_model.dart';
 
 part 'my_pending_approval_event.dart';
 part 'my_pending_approval_state.dart';

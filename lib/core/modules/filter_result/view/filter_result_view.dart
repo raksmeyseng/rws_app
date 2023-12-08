@@ -141,19 +141,19 @@ class _WaterSupplyItem extends StatelessWidget {
           ),
           _InfoItem(
             CaptionWidget('${S.of(context).village} :'),
-            TextWidget(item.VillageNameKh),
+            TextWidget(item.villageNameKh),
           ),
           _InfoItem(
             CaptionWidget('${S.of(context).commune} :'),
-            TextWidget(item.CommuneNameKh),
+            TextWidget(item.communeNameKh),
           ),
           _InfoItem(
             CaptionWidget('${S.of(context).district} :'),
-            TextWidget(item.DistrictNameKh),
+            TextWidget(item.districtNameKh),
           ),
           _InfoItem(
             CaptionWidget('${S.of(context).province} :'),
-            TextWidget(item.ProvinceNameKh),
+            TextWidget(item.provinceNameKh),
           ),
           // const Padding(
           //   padding: EdgeInsets.symmetric(vertical: 8),

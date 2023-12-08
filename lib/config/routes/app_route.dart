@@ -103,11 +103,11 @@ class AppRoute {
         GoRoute(
             name: waterSupplyFilter,
             path: 'water-supply-filter',
-            pageBuilder: WaterSupplyFilerBuilder),
+            pageBuilder: waterSupplyFilerBuilder),
         GoRoute(
             name: waterSupplyFilterResult,
             path: 'water-supply-filter-result',
-            pageBuilder: WaterSupplyFilerResultBuilder)
+            pageBuilder: waterSupplyFilerResultBuilder)
       ],
     ),
   ];

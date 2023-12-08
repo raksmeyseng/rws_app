@@ -6,7 +6,6 @@ import 'package:rws_app/config/themes/app_color.dart';
 import 'package:rws_app/core/enum/base_status_enum.dart';
 import 'package:rws_app/core/modules/my_request/bloc/my_request_bloc.dart';
 import 'package:rws_app/core/modules/my_request/model/my_request_model.dart';
-import 'package:rws_app/core/modules/water_supply_details/model/water_supply_model.dart';
 import 'package:rws_app/core/widgets/caption_widget.dart';
 import 'package:rws_app/core/widgets/flat_card.dart';
 import 'package:rws_app/core/widgets/my_divider.dart';
@@ -140,11 +139,11 @@ class _MyRequestItem extends StatelessWidget {
           ),
           _InfoItem(
             CaptionWidget('${S.of(context).commune} :'),
-            TextWidget(item.waterSupply.commune?.nameEn),
+            TextWidget(item.waterSupply.commune.nameEn),
           ),
           _InfoItem(
             CaptionWidget('${S.of(context).district} :'),
-            TextWidget(item.waterSupply.district?.nameEn),
+            TextWidget(item.waterSupply.district.nameEn),
           ),
           _InfoItem(
             CaptionWidget('${S.of(context).province} :'),
@@ -157,14 +156,12 @@ class _MyRequestItem extends StatelessWidget {
           _InfoItem(
             CaptionWidget('${S.of(context).status} :'),
             TextWidget(item.status.statusNameKh.toString(),
-                color: AppColor.warning
-            ),
+                color: AppColor.warning),
           ),
         ],
       ),
     );
   }
-
 }
 
 class _InfoItem extends StatelessWidget {

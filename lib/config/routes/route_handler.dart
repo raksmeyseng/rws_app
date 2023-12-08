@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rws_app/core/modules/app/view/about_page.dart';
-import 'package:rws_app/core/modules/change_password/view/change_password_page.dart';
 import 'package:rws_app/core/modules/dashboard/view/dashboard_page.dart';
 import 'package:rws_app/core/modules/edit_profile/view/edit_profile_page.dart';
 import 'package:rws_app/core/modules/filter/view/filter_page.dart';
@@ -13,12 +12,10 @@ import 'package:rws_app/core/modules/register/view/register_page.dart';
 import 'package:rws_app/core/modules/report/view/report_page.dart';
 import 'package:rws_app/core/modules/setting/view/setting_page.dart';
 import 'package:rws_app/core/modules/splashscreen/splashscreen_page.dart';
-import 'package:rws_app/core/modules/user_information/view/user_page.dart';
 import 'package:rws_app/core/modules/view_details/view/list_data_details_page.dart';
 import 'package:rws_app/core/modules/water_supplier_edit/view/water_supply_edit_page.dart';
 import 'package:rws_app/core/modules/water_supply_details/view/water_supply_detials_page.dart';
 
-import '../../core/modules/report/view/report_view.dart';
 import '../../core/modules/report/view/report_webview_containter.dart';
 
 extension ObjectExtension on Object? {
@@ -139,7 +136,7 @@ Page waterSupplyViewDetailBuilder(BuildContext context, GoRouterState state) {
   );
 }
 
-Page WaterSupplyFilerBuilder(BuildContext context, GoRouterState state) {
+Page waterSupplyFilerBuilder(BuildContext context, GoRouterState state) {
   final waterSupplyTypeId =
       int.tryParse(state.extra.getValue('watersupplytypeid', '1'));
   return MaterialPage<void>(
@@ -147,7 +144,7 @@ Page WaterSupplyFilerBuilder(BuildContext context, GoRouterState state) {
       child: FilterWaterSupplyPage(waterSupplyTypeId: waterSupplyTypeId ?? 0));
 }
 
-Page WaterSupplyFilerResultBuilder(BuildContext context, GoRouterState state) {
+Page waterSupplyFilerResultBuilder(BuildContext context, GoRouterState state) {
   final provinceId = state.extra.getValue('waterSupplyTypeId', '');
   return MaterialPage<void>(
       key: state.pageKey,

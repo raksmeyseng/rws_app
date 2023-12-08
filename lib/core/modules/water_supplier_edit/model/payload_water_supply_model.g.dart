@@ -10,23 +10,21 @@ PayloadWaterSupplyModel _$PayloadWaterSupplyModelFromJson(
         Map<String, dynamic> json) =>
     PayloadWaterSupplyModel(
       createdBy: json['created_by'] as int,
-      // createdAt: DateTime.parse(json['created_at'] as String),
-      // createdAt1: DateTime.parse(json['crated_at_1'] as String),
       province: json['province_id'] as int,
       district: json['district_id'] as int,
       commune: json['commune_id'] as int,
       village: json['village_id'] as int,
       mapUnitId: json['map_unit'] as int,
-      decimalDegreeLat: json['decimal_degress_lat'] as double,
-      decimalDegreeLng: json['decimal_degress_lng'] as double,
-      utmX: json['utm_x'] as double,
-      utmY: json['utm_y'] as double,
-      mdsXDegree: json['mds_x_degress'] as double,
-      mdsXMinute: json['mds_x_minute'] as double,
-      mdsXSecond: json['mds_x_second'] as double,
-      mdsYDegree: json['mds_y_degree'] as double,
-      mdsYMinute: json['mds_y_minute'] as double,
-      mdsYSecond: json['mds_y_second'] as double,
+      decimalDegreeLat: (json['decimal_degress_lat'] as num).toDouble(),
+      decimalDegreeLng: (json['decimal_degress_lng'] as num).toDouble(),
+      utmX: (json['utm_x'] as num).toDouble(),
+      utmY: (json['utm_y'] as num).toDouble(),
+      mdsXDegree: (json['mds_x_degress'] as num).toDouble(),
+      mdsXMinute: (json['mds_x_minute'] as num).toDouble(),
+      mdsXSecond: (json['mds_x_second'] as num).toDouble(),
+      mdsYDegree: (json['mds_y_degree'] as num).toDouble(),
+      mdsYMinute: (json['mds_y_minute'] as num).toDouble(),
+      mdsYSecond: (json['mds_y_second'] as num).toDouble(),
       totalFamily: json['total_family'] as int,
       beneficiaryTotalFamily: json['beneficiary_total_family'] as int,
       beneficiaryTotalFamilyIndigenous:
@@ -40,12 +38,7 @@ PayloadWaterSupplyModel _$PayloadWaterSupplyModelFromJson(
       beneficiaryTotalPeople: json['beneficiary_total_people'] as int,
       beneficiaryTotalWoman: json['beneficiary_total_women'] as int,
       constructedBy: json['constructed_by'] as String,
-      // constructionDate: json['construction_date'] == null
-      //     ? null
-      //     : DateTime.parse(json['construction_date'] as String),
-      constructionDate: json['construction_date'] == null
-          ? '2023-01-01'
-          : json['construction_date'] as String,
+      constructionDate: json['construction_date'] as String,
       isRiskEnviromentArea: json['is_risk_enviroment_area'] as bool,
       managedBy: json['managed_by'] as String,
       managementType: json['management_type'] as int,
@@ -55,16 +48,17 @@ PayloadWaterSupplyModel _$PayloadWaterSupplyModelFromJson(
       mainStatus: json['main_status'] as int,
       updatedBy: json['updated_by'] as int,
       waterSupplyCode: json['water_supply_code'] as String,
-      id: json['id'] as int,
-      isWaterQualityCheck:  json['is_water_quality_check'] as bool,
+      isWaterQualityCheck: json['is_water_quality_check'] as bool,
+      id: json['id'] as int?,
     );
 
 Map<String, dynamic> _$PayloadWaterSupplyModelToJson(
         PayloadWaterSupplyModel instance) =>
     <String, dynamic>{
+      'id': instance.id,
       'created_by': instance.createdBy,
-      // 'created_at': instance.createdAt.toIso8601String(),
-      // 'crated_at_1': instance.createdAt1.toIso8601String(),
+      'updated_by': instance.updatedBy,
+      'is_active': instance.isActive,
       'water_supply_type_id': instance.waterSupplyTypeId,
       'province_id': instance.province,
       'district_id': instance.district,
@@ -83,8 +77,8 @@ Map<String, dynamic> _$PayloadWaterSupplyModelToJson(
       'mds_y_second': instance.mdsYSecond,
       'total_family': instance.totalFamily,
       'is_risk_enviroment_area': instance.isRiskEnviromentArea,
-      //'construction_date': instance.constructionDate?.toIso8601String(),
       'construction_date': instance.constructionDate,
+      'water_supply_code': instance.waterSupplyCode,
       'source_budget': instance.sourceBudget,
       'constructed_by': instance.constructedBy,
       'management_type': instance.managementType,
@@ -98,9 +92,6 @@ Map<String, dynamic> _$PayloadWaterSupplyModelToJson(
           instance.beneficiaryTotalFamilyVulnearable,
       'beneficiary_total_family_indigenous':
           instance.beneficiaryTotalFamilyIndigenous,
-      'is_active':instance.isActive,
-      'main_status':instance.mainStatus,
-      'updated_by':instance.updatedBy,
-      'water_supply_code':instance.waterSupplyCode,
-      'is_water_quality_check':instance.isWaterQualityCheck
+      'main_status': instance.mainStatus,
+      'is_water_quality_check': instance.isWaterQualityCheck,
     };

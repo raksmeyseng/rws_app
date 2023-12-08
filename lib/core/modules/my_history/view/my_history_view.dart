@@ -14,7 +14,6 @@ import '../../../enum/base_status_enum.dart';
 import '../../../widgets/caption_widget.dart';
 import '../../../widgets/flat_card.dart';
 import '../../../widgets/my_divider.dart';
-import '../../water_supply_details/model/water_supply_model.dart';
 
 class MyHistoryView extends StatelessWidget {
   const MyHistoryView({super.key});

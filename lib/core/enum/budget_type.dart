@@ -47,6 +47,7 @@ BudgetTypeEnum? getBudgetTypeEnumById(int id) {
     case 3:
       return BudgetTypeEnum.charity;
   }
+  return null;
 }
 
 String getBudgetTypeEnumDisplayText(BudgetTypeEnum value) {

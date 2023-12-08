@@ -1,5 +1,4 @@
 import 'package:rws_app/core/modules/my_history/models/my_request_history_model.dart';
-import 'package:rws_app/core/modules/water_supply_details/model/water_supply_model.dart';
 
 import '../../../../constants/api_path.dart';
 import '../../../services/rest_api_service.dart';

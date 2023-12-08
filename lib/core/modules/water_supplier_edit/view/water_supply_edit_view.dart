@@ -1,9 +1,11 @@
 import 'dart:async';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:rws_app/config/routes/app_route.dart';
 import 'package:rws_app/config/routes/application.dart';
 import 'package:rws_app/config/themes/app_color.dart';
@@ -33,11 +35,9 @@ import 'package:rws_app/core/modules/water_supplier_edit/model/management_type_i
 import 'package:rws_app/core/modules/water_supplier_edit/model/water_supply_input.dart';
 import 'package:rws_app/core/modules/water_supplier_edit/view/water_supply_edit_page.dart';
 import 'package:rws_app/core/modules/water_supply_edit_manage/view/water_supply_edit_manage_view.dart';
-import 'package:rws_app/core/widgets/caption_widget.dart';
 import 'package:rws_app/core/widgets/flat_card.dart';
 import 'package:rws_app/core/widgets/load_data_failed.dart';
 import 'package:rws_app/core/widgets/my_button.dart';
-import 'package:rws_app/core/widgets/my_outlined_button.dart';
 import 'package:rws_app/core/widgets/my_simple_dialog.dart';
 import 'package:rws_app/core/widgets/my_text_input.dart';
 import 'package:rws_app/core/widgets/text_widget.dart';
@@ -48,17 +48,16 @@ import 'package:rws_app/utils/helpers/date_helper.dart';
 
 import '../../../../utils/helpers/dialog_helper.dart';
 import '../model/input/check_water_quality_input.dart';
-import '../model/input/poolFilter_input.dart';
+import '../model/input/poolfilter_input.dart';
 import '../model/input/status_input.dart';
 import '../model/input/water_supply_type_input.dart';
 import '../model/location_risk_input.dart';
 import '../model/water_quality_input.dart';
 import '../model/well_type_input.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 part 'water_supply_kiosk_view.dart';
-part 'water_supply_small_pipe_view.dart';
 part 'water_supply_pond_view.dart';
+part 'water_supply_small_pipe_view.dart';
 
 class WaterSupplyEditView extends StatelessWidget {
   const WaterSupplyEditView({super.key});
@@ -184,11 +183,11 @@ class _SuccessView extends StatelessWidget {
           child: Stack(
             fit: StackFit.expand,
             children: [
-              Padding(
-                padding: const EdgeInsets.only(bottom: 30.0),
+              const Padding(
+                padding: EdgeInsets.only(bottom: 30.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
+                  children: [
                     _TabBar(),
                     Expanded(child: _TabBarView()),
                   ],
@@ -339,16 +338,16 @@ class _FirstInputPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox.expand(
+    return const SizedBox.expand(
       child: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(16),
+          padding: EdgeInsets.all(16),
           child: Wrapper(
             maxWidth: appSmallMaxWidth,
             child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.center,
-              children: const [
+              children: [
                 _FormField1(),
               ],
             ),
@@ -364,16 +363,16 @@ class _SecondInputPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox.expand(
+    return const SizedBox.expand(
       child: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(16),
+          padding: EdgeInsets.all(16),
           child: Wrapper(
             maxWidth: appSmallMaxWidth,
             child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.center,
-              children: const [
+              children: [
                 _FormField2(),
               ],
             ),
@@ -389,16 +388,16 @@ class _ThirdInputPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox.expand(
+    return const SizedBox.expand(
       child: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(16),
+          padding: EdgeInsets.all(16),
           child: Wrapper(
             maxWidth: appSmallMaxWidth,
             child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.center,
-              children: const [
+              children: [
                 _FormField3(),
               ],
             ),
@@ -415,30 +414,30 @@ class _FormField1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(mainAxisSize: MainAxisSize.min, children: [
-      Row(
+      const Row(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: const [
+        children: [
           Expanded(child: _ProvinceInput()),
           SizedBox(width: 16),
           Expanded(child: _DistrictInput()),
         ],
       ),
       const SizedBox(height: 16),
-      Row(
+      const Row(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: const [
+        children: [
           Expanded(child: _CommuneInput()),
           SizedBox(width: 16),
           Expanded(child: _VillageInput()),
         ],
       ),
       const SizedBox(height: 16),
-      Row(
+      const Row(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: const [
+        children: [
           Expanded(child: _MapTypeInput()),
         ],
       ),
@@ -446,16 +445,13 @@ class _FormField1 extends StatelessWidget {
       const _MapTypeDynamicForm(),
       //bottom padding
       const SizedBox(height: 30),
-      _buildMap()
+      _BuildMap()
     ]);
   }
 }
 
-class _buildMap extends StatelessWidget {
-  _buildMap({Key? key}) : super(key: key);
-
-  Completer<GoogleMapController> completer = Completer();
-  late GoogleMapController newGoogleMapController;
+class _BuildMap extends StatelessWidget {
+  _BuildMap({Key? key}) : super(key: key);
 
   final pos = getCurrentPosition();
 
@@ -480,6 +476,7 @@ class _buildMap extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Completer<GoogleMapController> completer = Completer();
     return BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
       buildWhen: (previous, current) => previous.latLng != current.latLng,
       builder: (context, state) {
@@ -498,14 +495,13 @@ class _buildMap extends StatelessWidget {
                   target: LatLng(state.latLng.latitude, state.latLng.longitude),
                   zoom: 0,
                 ),
-                gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>[
-                  new Factory<OneSequenceGestureRecognizer>(
-                    () => new EagerGestureRecognizer(),
+                gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{
+                  Factory<OneSequenceGestureRecognizer>(
+                    () => EagerGestureRecognizer(),
                   ),
-                ].toSet(),
+                },
                 onMapCreated: (controller) {
                   completer.complete(controller);
-                  newGoogleMapController = controller;
                   //goToCurrentUserLocation();
                   goToCurrentUserLocation_1(completer, context);
                 },
@@ -567,6 +563,7 @@ Future<void> goToCurrentUserLocation_1(
     Completer<GoogleMapController> completer, BuildContext context,
     {double zoom = 10}) async {
   try {
+    final bloc = context.read<WaterSupplyEditBloc>();
     final GoogleMapController controller = await completer.future;
 
     final pos = await getCurrentPosition();
@@ -580,9 +577,7 @@ Future<void> goToCurrentUserLocation_1(
           ),
         ),
       );
-      context
-          .read<WaterSupplyEditBloc>()
-          .add(GoogleMapPinChanged(LatLng(pos.latitude, pos.longitude)));
+      bloc.add(GoogleMapPinChanged(LatLng(pos.latitude, pos.longitude)));
       //GoogleMapPinChanged(LatLng(pos.latitude, pos.longitude));
     }
   } catch (e) {
@@ -591,7 +586,7 @@ Future<void> goToCurrentUserLocation_1(
 }
 
 Future<Set<Marker>> getMapMarker() async {
-  Set<Marker> markers = Set<Marker>();
+  Set<Marker> markers = <Marker>{};
   try {
     final pos = await getCurrentPosition();
     if (pos != null) {
@@ -617,118 +612,118 @@ class _FormField2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return const Column(
       mainAxisSize: MainAxisSize.min,
       children: [
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
+          children: [
             Expanded(child: _FamilyTotalInput()),
             SizedBox(width: 16),
             Expanded(child: _BudgetTypeInput()),
           ],
         ),
-        const SizedBox(height: 16),
+        SizedBox(height: 16),
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
+          children: [
             Expanded(child: _LocationRiskInput()),
           ],
         ),
-        const SizedBox(height: 16),
+        SizedBox(height: 16),
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
+          children: [
             Expanded(child: _ManagementTypeInput()),
           ],
         ),
-        const SizedBox(height: 16),
+        SizedBox(height: 16),
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
+          children: [
             Expanded(child: _ManagamentNameInput()),
           ],
         ),
-        const SizedBox(height: 16),
+        SizedBox(height: 16),
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
+          children: [
             Expanded(child: _ReceiverTotalInput()),
             SizedBox(width: 16),
             Expanded(child: _ReceiverTotalAsFemaleInput()),
           ],
         ),
-        const SizedBox(height: 16),
+        SizedBox(height: 16),
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
+          children: [
             Expanded(child: _ReceiverFamilyTotalInput()),
           ],
         ),
-        const SizedBox(height: 16),
+        SizedBox(height: 16),
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
+          children: [
             Expanded(child: _ReceiverFamilyPoor1Input()),
           ],
         ),
-        const SizedBox(height: 16),
+        SizedBox(height: 16),
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
+          children: [
             Expanded(child: _ReceiverFamilyPoor2Input()),
           ],
         ),
-        const SizedBox(height: 16),
+        SizedBox(height: 16),
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
+          children: [
             Expanded(child: _ReceiverFamilyIndigenousInput()),
           ],
         ),
-        const SizedBox(height: 16),
+        SizedBox(height: 16),
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
+          children: [
             Expanded(child: _ReceiverFamilyVulnearableInput()),
           ],
         ),
-        const SizedBox(height: 16),
+        SizedBox(height: 16),
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
+          children: [
             Expanded(child: _ConstructionCodeInput()),
           ],
         ),
-        const SizedBox(height: 16),
+        SizedBox(height: 16),
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
+          children: [
             Expanded(child: _DateOfConstructionInput()),
           ],
         ),
-        const SizedBox(height: 16),
+        SizedBox(height: 16),
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
+          children: [
             Expanded(child: _CompanyNameInput()),
           ],
         ),
         //bottom padding
-        const SizedBox(height: 30),
+        SizedBox(height: 30),
       ],
     );
   }
@@ -780,40 +775,40 @@ class _WellInputPageState extends State<_WellInputPage> {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Row(
+        const Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
+          children: [
             Expanded(child: _WellTypeInput()),
             SizedBox(width: 16),
             Expanded(child: _WellDepthInput()),
           ],
         ),
         const SizedBox(height: 16),
-        Row(
+        const Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
+          children: [
             Expanded(child: _WellScreenInput()),
             SizedBox(width: 16),
             Expanded(child: _WellThearInput()),
           ],
         ),
         const SizedBox(height: 16),
-        Row(
+        const Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
+          children: [
             Expanded(child: _NiVoStaticInput()),
             SizedBox(width: 16),
             Expanded(child: _NiVoDynamicInput()),
           ],
         ),
         const SizedBox(height: 16),
-        Row(
+        const Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
+          children: [
             Expanded(child: _WaterQualityInput()),
           ],
         ),
@@ -835,22 +830,22 @@ class _WellInputPageState extends State<_WellInputPage> {
           ],
         ),
         const SizedBox(height: 16),
-        Row(
+        const Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
+          children: [
             Expanded(child: _WellStatusInput()),
           ],
         ),
         const SizedBox(height: 16),
         Visibility(
           visible: valueCallBack == 0 ? true : false,
-          child: Padding(
-            padding: const EdgeInsets.only(left: 5.0, right: 5.0),
+          child: const Padding(
+            padding: EdgeInsets.only(left: 5.0, right: 5.0),
             child: Row(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
+              children: [
                 Expanded(child: WaterSupplyEditManageView()),
                 SizedBox(width: 16),
                 Expanded(child: WaterSupplyEditManageTextBox()),
@@ -870,85 +865,85 @@ class _SPipeInputPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return const Column(
       mainAxisSize: MainAxisSize.min,
       children: [
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
+          children: [
             Expanded(child: _WaterSupplyTypeInput()),
           ],
         ),
-        const SizedBox(height: 16),
+        SizedBox(height: 16),
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
+          children: [
             Expanded(child: _ContainerInput()),
           ],
         ),
-        const SizedBox(height: 16),
+        SizedBox(height: 16),
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
+          children: [
             Expanded(child: _CapacityInput()),
           ],
         ),
-        const SizedBox(height: 16),
+        SizedBox(height: 16),
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
+          children: [
             Expanded(child: _AirPoolInput()),
             SizedBox(width: 16),
             Expanded(child: _FilterTankInput()),
           ],
         ),
-        const SizedBox(height: 16),
+        SizedBox(height: 16),
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
+          children: [
             Expanded(child: _ConnectorInput()),
           ],
         ),
-        const SizedBox(height: 16),
+        SizedBox(height: 16),
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
+          children: [
             Expanded(child: _PipeLenghtInput()),
           ],
         ),
-        const SizedBox(height: 16),
+        SizedBox(height: 16),
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
+          children: [
             Expanded(child: _PipeStatusInput()),
           ],
         ),
-        const SizedBox(height: 16),
+        SizedBox(height: 16),
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
+          children: [
             Expanded(child: _QualityWaterCheckInput()),
           ],
         ),
-        const SizedBox(height: 16),
+        SizedBox(height: 16),
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
+          children: [
             Expanded(child: _CoverageInput()),
           ],
         ),
 
         //bottom padding
-        const SizedBox(height: 30),
+        SizedBox(height: 30),
       ],
     );
   }
@@ -959,46 +954,46 @@ class _KoiskInputPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return const Column(
       mainAxisSize: MainAxisSize.min,
       children: [
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
+          children: [
             Expanded(child: _WaterSupplyTypeInput()),
           ],
         ),
-        const SizedBox(height: 16),
+        SizedBox(height: 16),
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
+          children: [
             Expanded(child: _AbilityProductWaterInput()),
           ],
         ),
-        const SizedBox(height: 16),
+        SizedBox(height: 16),
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
+          children: [
             Expanded(child: _KioskFilterInput()),
           ],
         ),
-        const SizedBox(height: 16),
+        SizedBox(height: 16),
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
+          children: [
             Expanded(child: _QualityWaterCheckInput()),
           ],
         ),
         //bottom padding
-        const SizedBox(height: 16),
+        SizedBox(height: 16),
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
+          children: [
             Expanded(child: _KioskStatusInput()),
           ],
         ),
@@ -1012,48 +1007,48 @@ class _PondInputPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return const Column(
       mainAxisSize: MainAxisSize.min,
       children: [
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
+          children: [
             Expanded(child: _PondLatInput()),
             SizedBox(width: 16),
             Expanded(child: _PondLongInput()),
           ],
         ),
-        const SizedBox(height: 16),
+        SizedBox(height: 16),
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
+          children: [
             Expanded(child: _PondDepthInput()),
             SizedBox(width: 16),
             Expanded(child: _PondFilterInput()),
           ],
         ),
-        const SizedBox(height: 16),
+        SizedBox(height: 16),
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
+          children: [
             Expanded(child: _PondTypeInput()),
             SizedBox(width: 16),
             Expanded(child: _SeasonInput()),
           ],
         ),
-        const SizedBox(height: 16),
+        SizedBox(height: 16),
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
+          children: [
             Expanded(child: _PondStatusInput()),
           ],
         ),
         //bottom padding
-        const SizedBox(height: 30),
+        SizedBox(height: 30),
       ],
     );
   }
@@ -1067,18 +1062,18 @@ class _RainInputPage extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Row(
+        const Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
+          children: [
             Expanded(child: _UsingTypeInput()),
           ],
         ),
         const SizedBox(height: 16),
-        Row(
+        const Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
+          children: [
             Expanded(child: _CapacityTypeInput()),
             SizedBox(width: 16),
             Expanded(child: _TankStatusInput()),
@@ -1111,47 +1106,47 @@ class _PipeInputPage extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Row(
+        const Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
+          children: [
             Expanded(child: _WaterSupplyTypeInput()),
           ],
         ),
         const SizedBox(height: 16),
         //'សមត្ថភាពផលិតទឹក(m3/h)'
-        Row(
+        const Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
+          children: [
             Expanded(child: _CapacityInput()),
           ],
         ),
         const SizedBox(height: 16),
         //អាងស្តុបទឹកក្រោមដី(m3)
-        Row(
+        const Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
+          children: [
             Expanded(child: _ContainerInput()),
           ],
         ),
         const SizedBox(height: 16),
         //'អាងអាកាស (m)'
-        Row(
+        const Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
+          children: [
             Expanded(child: _AirPoolInput()),
           ],
         ),
 
         const SizedBox(height: 16),
         //'អាងចម្រោះ'
-        Row(
+        const Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
+          children: [
             Expanded(child: _FilterTankInput()),
             SizedBox(width: 16),
             Expanded(child: _ConnectorInput()),
@@ -1169,50 +1164,50 @@ class _PipeInputPage extends StatelessWidget {
           ],
         ),
         const SizedBox(height: 16),
-        Row(
+        const Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
+          children: [
             Expanded(child: _CoverageInput()),
           ],
         ),
         const SizedBox(height: 16),
-        Row(
+        const Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
+          children: [
             Expanded(child: _SupplierInput()),
           ],
         ),
         const SizedBox(height: 16),
-        Row(
+        const Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
+          children: [
             Expanded(child: _SupplierDateInput()),
           ],
         ),
         const SizedBox(height: 16),
-        Row(
+        const Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
+          children: [
             Expanded(child: _DueDateInput()),
           ],
         ),
         const SizedBox(height: 16),
-        Row(
+        const Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
+          children: [
             Expanded(child: _PipeLenghtInput()),
           ],
         ),
         const SizedBox(height: 16),
-        Row(
+        const Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
+          children: [
             Expanded(child: _PipeStatusInput()),
           ],
         ),
@@ -1231,18 +1226,18 @@ class _AirInputPage extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Row(
+        const Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
+          children: [
             Expanded(child: _WaterSupplyTypeInput()),
           ],
         ),
         const SizedBox(height: 16),
-        Row(
+        const Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
+          children: [
             Expanded(child: _CapacityInput()),
           ],
         ),
@@ -1258,10 +1253,10 @@ class _AirInputPage extends StatelessWidget {
           ],
         ),
         const SizedBox(height: 16),
-        Row(
+        const Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
+          children: [
             Expanded(child: _FilterInput()),
             SizedBox(width: 16),
             Expanded(child: _AirStationInput()),
@@ -1673,10 +1668,10 @@ class _UtmForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return const Row(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: const [
+      children: [
         Expanded(child: _LatInput()),
         SizedBox(width: 16),
         Expanded(child: _LongInput()),
@@ -1685,68 +1680,68 @@ class _UtmForm extends StatelessWidget {
   }
 }
 
-class _DecimalForm extends StatelessWidget {
-  const _DecimalForm();
+// class _DecimalForm extends StatelessWidget {
+//   const _DecimalForm();
 
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: const [
-        Expanded(child: _UTMXInput()),
-        SizedBox(width: 16),
-        Expanded(child: _UTMYInput()),
-      ],
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return const Row(
+//       mainAxisSize: MainAxisSize.min,
+//       crossAxisAlignment: CrossAxisAlignment.start,
+//       children: [
+//         Expanded(child: _UTMXInput()),
+//         SizedBox(width: 16),
+//         Expanded(child: _UTMYInput()),
+//       ],
+//     );
+//   }
+// }
 
-class _DegreeForm extends StatelessWidget {
-  const _DegreeForm();
+// class _DegreeForm extends StatelessWidget {
+//   const _DegreeForm();
 
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Padding(
-          padding: EdgeInsets.only(left: 8.0),
-          child: CaptionWidget('រយៈទទឹង'),
-        ),
-        const SizedBox(height: 10),
-        Row(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
-            Expanded(child: _LatDegreeInput()),
-            SizedBox(width: 16),
-            Expanded(child: _LatMinuteInput()),
-            SizedBox(width: 16),
-            Expanded(child: _LatSecondInput()),
-          ],
-        ),
-        const SizedBox(height: 16),
-        const Padding(
-          padding: EdgeInsets.only(left: 8.0),
-          child: CaptionWidget('រយៈបណ្តោយ'),
-        ),
-        const SizedBox(height: 10),
-        Row(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
-            Expanded(child: _LongDegreeInput()),
-            SizedBox(width: 16),
-            Expanded(child: _LongMinuteInput()),
-            SizedBox(width: 16),
-            Expanded(child: _LongSecondInput()),
-          ],
-        ),
-      ],
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return const Column(
+//       crossAxisAlignment: CrossAxisAlignment.start,
+//       children: [
+//         Padding(
+//           padding: EdgeInsets.only(left: 8.0),
+//           child: CaptionWidget('រយៈទទឹង'),
+//         ),
+//         SizedBox(height: 10),
+//         Row(
+//           mainAxisSize: MainAxisSize.min,
+//           crossAxisAlignment: CrossAxisAlignment.start,
+//           children: [
+//             Expanded(child: _LatDegreeInput()),
+//             SizedBox(width: 16),
+//             Expanded(child: _LatMinuteInput()),
+//             SizedBox(width: 16),
+//             Expanded(child: _LatSecondInput()),
+//           ],
+//         ),
+//         SizedBox(height: 16),
+//         Padding(
+//           padding: EdgeInsets.only(left: 8.0),
+//           child: CaptionWidget('រយៈបណ្តោយ'),
+//         ),
+//         SizedBox(height: 10),
+//         Row(
+//           mainAxisSize: MainAxisSize.min,
+//           crossAxisAlignment: CrossAxisAlignment.start,
+//           children: [
+//             Expanded(child: _LongDegreeInput()),
+//             SizedBox(width: 16),
+//             Expanded(child: _LongMinuteInput()),
+//             SizedBox(width: 16),
+//             Expanded(child: _LongSecondInput()),
+//           ],
+//         ),
+//       ],
+//     );
+//   }
+// }
 
 class _LatInput extends StatelessWidget {
   const _LatInput({Key? key}) : super(key: key);
@@ -1816,276 +1811,276 @@ class _LongInput extends StatelessWidget {
   // }
 }
 
-class _UTMXInput extends StatelessWidget {
-  const _UTMXInput({Key? key}) : super(key: key);
+// class _UTMXInput extends StatelessWidget {
+//   const _UTMXInput({Key? key}) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
-      buildWhen: (previous, current) => previous.utmXInput != current.utmXInput,
-      builder: (context, state) {
-        return MyTextInput(
-          label: 'កូអរដោនេ UTMX',
-          focusNode: context.read<WaterSupplyEditBloc>().utmXFocus,
-          controller: context.read<WaterSupplyEditBloc>().utmXController,
-          onChanged: (y) =>
-              context.read<WaterSupplyEditBloc>().add(UTMXChanged(y)),
-          // errorText: _handleErrorText(context, state),
-          textInputAction: TextInputAction.next,
-          keyboardType: TextInputType.phone,
-        );
-      },
-    );
-  }
+//   @override
+//   Widget build(BuildContext context) {
+//     return BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
+//       buildWhen: (previous, current) => previous.utmXInput != current.utmXInput,
+//       builder: (context, state) {
+//         return MyTextInput(
+//           label: 'កូអរដោនេ UTMX',
+//           focusNode: context.read<WaterSupplyEditBloc>().utmXFocus,
+//           controller: context.read<WaterSupplyEditBloc>().utmXController,
+//           onChanged: (y) =>
+//               context.read<WaterSupplyEditBloc>().add(UTMXChanged(y)),
+//           // errorText: _handleErrorText(context, state),
+//           textInputAction: TextInputAction.next,
+//           keyboardType: TextInputType.phone,
+//         );
+//       },
+//     );
+//   }
 
-  // String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
-  //   if (!state.utmXInput.invalid) return null;
-  //   switch (state.utmXInput.error) {
-  //     case WaterSupplyInputValidationError.empty:
-  //       return 'សូមបញ្ចូលកូអរដោនេ UTMX';
-  //     default:
-  //       return null;
-  //   }
-  // }
-}
+// String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
+//   if (!state.utmXInput.invalid) return null;
+//   switch (state.utmXInput.error) {
+//     case WaterSupplyInputValidationError.empty:
+//       return 'សូមបញ្ចូលកូអរដោនេ UTMX';
+//     default:
+//       return null;
+//   }
+// }
+// }
 
-class _UTMYInput extends StatelessWidget {
-  const _UTMYInput({Key? key}) : super(key: key);
+// class _UTMYInput extends StatelessWidget {
+//   const _UTMYInput({Key? key}) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
-      buildWhen: (previous, current) => previous.utmYInput != current.utmYInput,
-      builder: (context, state) {
-        return MyTextInput(
-          label: 'កូអរដោនេ UTMY',
-          focusNode: context.read<WaterSupplyEditBloc>().utmYFocus,
-          controller: context.read<WaterSupplyEditBloc>().utmYController,
-          onChanged: (y) =>
-              context.read<WaterSupplyEditBloc>().add(UTMYChanged(y)),
-          // errorText: _handleErrorText(context, state),
-          textInputAction: TextInputAction.next,
-          keyboardType: TextInputType.phone,
-        );
-      },
-    );
-  }
+//   @override
+//   Widget build(BuildContext context) {
+//     return BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
+//       buildWhen: (previous, current) => previous.utmYInput != current.utmYInput,
+//       builder: (context, state) {
+//         return MyTextInput(
+//           label: 'កូអរដោនេ UTMY',
+//           focusNode: context.read<WaterSupplyEditBloc>().utmYFocus,
+//           controller: context.read<WaterSupplyEditBloc>().utmYController,
+//           onChanged: (y) =>
+//               context.read<WaterSupplyEditBloc>().add(UTMYChanged(y)),
+//           // errorText: _handleErrorText(context, state),
+//           textInputAction: TextInputAction.next,
+//           keyboardType: TextInputType.phone,
+//         );
+//       },
+//     );
+//   }
 
-  // String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
-  //   if (!state.utmYInput.invalid) return null;
-  //   switch (state.utmYInput.error) {
-  //     case WaterSupplyInputValidationError.empty:
-  //       return 'សូមបញ្ចូលកូអរដោនេ UTMY';
-  //     default:
-  //       return null;
-  //   }
-  // }
-}
+// String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
+//   if (!state.utmYInput.invalid) return null;
+//   switch (state.utmYInput.error) {
+//     case WaterSupplyInputValidationError.empty:
+//       return 'សូមបញ្ចូលកូអរដោនេ UTMY';
+//     default:
+//       return null;
+//   }
+// }
+// }
 
-class _LatDegreeInput extends StatelessWidget {
-  const _LatDegreeInput({Key? key}) : super(key: key);
+// class _LatDegreeInput extends StatelessWidget {
+//   const _LatDegreeInput({Key? key}) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
-      buildWhen: (previous, current) =>
-          previous.latDegreeInput != current.latDegreeInput,
-      builder: (context, state) {
-        return MyTextInput(
-          label: 'Degree',
-          focusNode: context.read<WaterSupplyEditBloc>().latDegreeFocus,
-          controller: context.read<WaterSupplyEditBloc>().latDegreeController,
-          onChanged: (degree) =>
-              context.read<WaterSupplyEditBloc>().add(LatDegreeChanged(degree)),
-          // errorText: _handleErrorText(context, state),
-          textInputAction: TextInputAction.next,
-          keyboardType: TextInputType.phone,
-        );
-      },
-    );
-  }
+//   @override
+//   Widget build(BuildContext context) {
+//     return BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
+//       buildWhen: (previous, current) =>
+//           previous.latDegreeInput != current.latDegreeInput,
+//       builder: (context, state) {
+//         return MyTextInput(
+//           label: 'Degree',
+//           focusNode: context.read<WaterSupplyEditBloc>().latDegreeFocus,
+//           controller: context.read<WaterSupplyEditBloc>().latDegreeController,
+//           onChanged: (degree) =>
+//               context.read<WaterSupplyEditBloc>().add(LatDegreeChanged(degree)),
+//           // errorText: _handleErrorText(context, state),
+//           textInputAction: TextInputAction.next,
+//           keyboardType: TextInputType.phone,
+//         );
+//       },
+//     );
+//   }
 
-  // String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
-  //   if (!state.latDegreeInput.invalid) return null;
-  //   switch (state.latDegreeInput.error) {
-  //     case WaterSupplyInputValidationError.empty:
-  //       return 'សូមបញ្ចូល Degree';
-  //     default:
-  //       return null;
-  //   }
-  // }
-}
+// String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
+//   if (!state.latDegreeInput.invalid) return null;
+//   switch (state.latDegreeInput.error) {
+//     case WaterSupplyInputValidationError.empty:
+//       return 'សូមបញ្ចូល Degree';
+//     default:
+//       return null;
+//   }
+// }
+// }
 
-class _LatSecondInput extends StatelessWidget {
-  const _LatSecondInput({Key? key}) : super(key: key);
+// class _LatSecondInput extends StatelessWidget {
+//   const _LatSecondInput({Key? key}) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
-      buildWhen: (previous, current) =>
-          previous.latSecondInput != current.latSecondInput,
-      builder: (context, state) {
-        return MyTextInput(
-          label: 'Second',
-          focusNode: context.read<WaterSupplyEditBloc>().latSecondFocus,
-          controller: context.read<WaterSupplyEditBloc>().latSecondController,
-          onChanged: (sec) =>
-              context.read<WaterSupplyEditBloc>().add(LatSecondChanged(sec)),
-          // errorText: _handleErrorText(context, state),
-          textInputAction: TextInputAction.next,
-          keyboardType: TextInputType.phone,
-        );
-      },
-    );
-  }
+//   @override
+//   Widget build(BuildContext context) {
+//     return BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
+//       buildWhen: (previous, current) =>
+//           previous.latSecondInput != current.latSecondInput,
+//       builder: (context, state) {
+//         return MyTextInput(
+//           label: 'Second',
+//           focusNode: context.read<WaterSupplyEditBloc>().latSecondFocus,
+//           controller: context.read<WaterSupplyEditBloc>().latSecondController,
+//           onChanged: (sec) =>
+//               context.read<WaterSupplyEditBloc>().add(LatSecondChanged(sec)),
+//           // errorText: _handleErrorText(context, state),
+//           textInputAction: TextInputAction.next,
+//           keyboardType: TextInputType.phone,
+//         );
+//       },
+//     );
+//   }
 
-  // String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
-  //   if (!state.latSecondInput.invalid) return null;
-  //   switch (state.latSecondInput.error) {
-  //     case WaterSupplyInputValidationError.empty:
-  //       return 'សូមបញ្ចូល Second';
-  //     default:
-  //       return null;
-  //   }
-  // }
-}
+// String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
+//   if (!state.latSecondInput.invalid) return null;
+//   switch (state.latSecondInput.error) {
+//     case WaterSupplyInputValidationError.empty:
+//       return 'សូមបញ្ចូល Second';
+//     default:
+//       return null;
+//   }
+// }
+// }
 
-class _LongDegreeInput extends StatelessWidget {
-  const _LongDegreeInput({Key? key}) : super(key: key);
+// class _LongDegreeInput extends StatelessWidget {
+//   const _LongDegreeInput({Key? key}) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
-      buildWhen: (previous, current) =>
-          previous.longDegreeInput != current.longDegreeInput,
-      builder: (context, state) {
-        return MyTextInput(
-          label: 'Degree',
-          focusNode: context.read<WaterSupplyEditBloc>().longDegreeFocus,
-          controller: context.read<WaterSupplyEditBloc>().longDegreeController,
-          onChanged: (degree) => context
-              .read<WaterSupplyEditBloc>()
-              .add(LongDegreeChanged(degree)),
-          // errorText: _handleErrorText(context, state),
-          textInputAction: TextInputAction.next,
-          keyboardType: TextInputType.phone,
-        );
-      },
-    );
-  }
+//   @override
+//   Widget build(BuildContext context) {
+//     return BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
+//       buildWhen: (previous, current) =>
+//           previous.longDegreeInput != current.longDegreeInput,
+//       builder: (context, state) {
+//         return MyTextInput(
+//           label: 'Degree',
+//           focusNode: context.read<WaterSupplyEditBloc>().longDegreeFocus,
+//           controller: context.read<WaterSupplyEditBloc>().longDegreeController,
+//           onChanged: (degree) => context
+//               .read<WaterSupplyEditBloc>()
+//               .add(LongDegreeChanged(degree)),
+//           // errorText: _handleErrorText(context, state),
+//           textInputAction: TextInputAction.next,
+//           keyboardType: TextInputType.phone,
+//         );
+//       },
+//     );
+//   }
 
-  // String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
-  //   if (!state.longDegreeInput.invalid) return null;
-  //   switch (state.longDegreeInput.error) {
-  //     case WaterSupplyInputValidationError.empty:
-  //       return 'សូមបញ្ចូល Degree';
-  //     default:
-  //       return null;
-  //   }
-  // }
-}
+// String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
+//   if (!state.longDegreeInput.invalid) return null;
+//   switch (state.longDegreeInput.error) {
+//     case WaterSupplyInputValidationError.empty:
+//       return 'សូមបញ្ចូល Degree';
+//     default:
+//       return null;
+//   }
+// }
+// }
 
-class _LongSecondInput extends StatelessWidget {
-  const _LongSecondInput({Key? key}) : super(key: key);
+// class _LongSecondInput extends StatelessWidget {
+//   const _LongSecondInput({Key? key}) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
-      buildWhen: (previous, current) =>
-          previous.longSecondInput != current.longSecondInput,
-      builder: (context, state) {
-        return MyTextInput(
-          label: 'Second',
-          focusNode: context.read<WaterSupplyEditBloc>().longSecondFocus,
-          controller: context.read<WaterSupplyEditBloc>().longSecondController,
-          onChanged: (sec) =>
-              context.read<WaterSupplyEditBloc>().add(LongSecondChanged(sec)),
-          // errorText: _handleErrorText(context, state),
-          textInputAction: TextInputAction.next,
-          keyboardType: TextInputType.phone,
-        );
-      },
-    );
-  }
+//   @override
+//   Widget build(BuildContext context) {
+//     return BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
+//       buildWhen: (previous, current) =>
+//           previous.longSecondInput != current.longSecondInput,
+//       builder: (context, state) {
+//         return MyTextInput(
+//           label: 'Second',
+//           focusNode: context.read<WaterSupplyEditBloc>().longSecondFocus,
+//           controller: context.read<WaterSupplyEditBloc>().longSecondController,
+//           onChanged: (sec) =>
+//               context.read<WaterSupplyEditBloc>().add(LongSecondChanged(sec)),
+//           // errorText: _handleErrorText(context, state),
+//           textInputAction: TextInputAction.next,
+//           keyboardType: TextInputType.phone,
+//         );
+//       },
+//     );
+//   }
 
-  // String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
-  //   if (!state.longSecondInput.invalid) return null;
-  //   switch (state.longSecondInput.error) {
-  //     case WaterSupplyInputValidationError.empty:
-  //       return 'សូមបញ្ចូល Second';
-  //     default:
-  //       return null;
-  //   }
-  // }
-}
+// String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
+//   if (!state.longSecondInput.invalid) return null;
+//   switch (state.longSecondInput.error) {
+//     case WaterSupplyInputValidationError.empty:
+//       return 'សូមបញ្ចូល Second';
+//     default:
+//       return null;
+//   }
+// }
+// }
 
-class _LatMinuteInput extends StatelessWidget {
-  const _LatMinuteInput({Key? key}) : super(key: key);
+// class _LatMinuteInput extends StatelessWidget {
+//   const _LatMinuteInput({Key? key}) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
-      buildWhen: (previous, current) =>
-          previous.latMinuteInput != current.latMinuteInput,
-      builder: (context, state) {
-        return MyTextInput(
-          label: 'Minute',
-          focusNode: context.read<WaterSupplyEditBloc>().latMinuteFocus,
-          controller: context.read<WaterSupplyEditBloc>().latMinuteController,
-          onChanged: (min) =>
-              context.read<WaterSupplyEditBloc>().add(LatMinuteChanged(min)),
-          // errorText: _handleErrorText(context, state),
-          textInputAction: TextInputAction.next,
-          keyboardType: TextInputType.phone,
-        );
-      },
-    );
-  }
+//   @override
+//   Widget build(BuildContext context) {
+//     return BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
+//       buildWhen: (previous, current) =>
+//           previous.latMinuteInput != current.latMinuteInput,
+//       builder: (context, state) {
+//         return MyTextInput(
+//           label: 'Minute',
+//           focusNode: context.read<WaterSupplyEditBloc>().latMinuteFocus,
+//           controller: context.read<WaterSupplyEditBloc>().latMinuteController,
+//           onChanged: (min) =>
+//               context.read<WaterSupplyEditBloc>().add(LatMinuteChanged(min)),
+//           // errorText: _handleErrorText(context, state),
+//           textInputAction: TextInputAction.next,
+//           keyboardType: TextInputType.phone,
+//         );
+//       },
+//     );
+//   }
 
-  // String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
-  //   if (!state.latMinuteInput.invalid) return null;
-  //   switch (state.latMinuteInput.error) {
-  //     case WaterSupplyInputValidationError.empty:
-  //       return 'សូមបញ្ចូល Minute';
-  //     default:
-  //       return null;
-  //   }
-  // }
-}
+// String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
+//   if (!state.latMinuteInput.invalid) return null;
+//   switch (state.latMinuteInput.error) {
+//     case WaterSupplyInputValidationError.empty:
+//       return 'សូមបញ្ចូល Minute';
+//     default:
+//       return null;
+//   }
+// }
+// }
 
-class _LongMinuteInput extends StatelessWidget {
-  const _LongMinuteInput({Key? key}) : super(key: key);
+// class _LongMinuteInput extends StatelessWidget {
+//   const _LongMinuteInput({Key? key}) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
-      buildWhen: (previous, current) =>
-          previous.longMinuteInput != current.longMinuteInput,
-      builder: (context, state) {
-        return MyTextInput(
-          label: 'Minute',
-          focusNode: context.read<WaterSupplyEditBloc>().longMinuteFocus,
-          controller: context.read<WaterSupplyEditBloc>().longMinuteController,
-          onChanged: (min) =>
-              context.read<WaterSupplyEditBloc>().add(LongMinuteChanged(min)),
-          // errorText: _handleErrorText(context, state),
-          textInputAction: TextInputAction.next,
-          keyboardType: TextInputType.phone,
-        );
-      },
-    );
-  }
+//   @override
+//   Widget build(BuildContext context) {
+//     return BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
+//       buildWhen: (previous, current) =>
+//           previous.longMinuteInput != current.longMinuteInput,
+//       builder: (context, state) {
+//         return MyTextInput(
+//           label: 'Minute',
+//           focusNode: context.read<WaterSupplyEditBloc>().longMinuteFocus,
+//           controller: context.read<WaterSupplyEditBloc>().longMinuteController,
+//           onChanged: (min) =>
+//               context.read<WaterSupplyEditBloc>().add(LongMinuteChanged(min)),
+//           // errorText: _handleErrorText(context, state),
+//           textInputAction: TextInputAction.next,
+//           keyboardType: TextInputType.phone,
+//         );
+//       },
+//     );
+//   }
 
-  // String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
-  //   if (!state.longMinuteInput.invalid) return null;
-  //   switch (state.longMinuteInput.error) {
-  //     case WaterSupplyInputValidationError.empty:
-  //       return 'សូមបញ្ចូល Minute';
-  //     default:
-  //       return null;
-  //   }
-  // }
-}
+// String? _handleErrorText(BuildContext context, WaterSupplyEditState state) {
+//   if (!state.longMinuteInput.invalid) return null;
+//   switch (state.longMinuteInput.error) {
+//     case WaterSupplyInputValidationError.empty:
+//       return 'សូមបញ្ចូល Minute';
+//     default:
+//       return null;
+//   }
+// }
+// }
 
 class _FamilyTotalInput extends StatelessWidget {
   const _FamilyTotalInput({Key? key}) : super(key: key);

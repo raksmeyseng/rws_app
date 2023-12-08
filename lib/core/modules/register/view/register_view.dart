@@ -26,23 +26,23 @@ class RegisterView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  SizedBox.expand(
+    return  const SizedBox.expand(
       child: SingleChildScrollView(
         child: SafeArea(
           child: Wrapper(
             maxWidth: appSmallMaxWidth,
             child: Padding(
-              padding:const EdgeInsets.all(16.0),
+              padding:EdgeInsets.all(16.0),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                 const _RegisterIcon(),
-                  const _Title(),
-                  const SizedBox(height: 24.0),
-                  const _FullNameInput(),
-                  const SizedBox(height: 16.0),
+                 _RegisterIcon(),
+                  _Title(),
+                  SizedBox(height: 24.0),
+                  _FullNameInput(),
+                  SizedBox(height: 16.0),
                   Row(
-                    children:const [
+                    children:[
                       Expanded(
                         flex: 2,
                         child: _DOBInput(),
@@ -54,14 +54,14 @@ class RegisterView extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 16.0),
-                  const _PhoneNumberInput(),
-                  const SizedBox(height: 16.0),
-                  const _EmailInput(),
-                  const SizedBox(height: 16.0),
-                  const _CheckBoxPrivacyAgreement(),
-                  const SizedBox(height: 48.0),
-                  const _SubmitButton(),
+                  SizedBox(height: 16.0),
+                  _PhoneNumberInput(),
+                  SizedBox(height: 16.0),
+                  _EmailInput(),
+                  SizedBox(height: 16.0),
+                  _CheckBoxPrivacyAgreement(),
+                  SizedBox(height: 48.0),
+                  _SubmitButton(),
                 ],
               ),
             ),

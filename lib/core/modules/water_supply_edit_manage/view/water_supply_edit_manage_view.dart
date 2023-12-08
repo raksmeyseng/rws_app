@@ -5,93 +5,128 @@ import 'package:rws_app/core/widgets/my_text_input.dart';
 import '../../water_supplier_edit/bloc/water_supply_edit_bloc.dart';
 
 class WaterSupplyEditManageView extends StatelessWidget {
-  const WaterSupplyEditManageView({Key? key}): super(key: key);
+  const WaterSupplyEditManageView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Visibility(
+    return const Visibility(
       visible: true,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
-        children: const [
-          Text('Parameter Code', style: TextStyle(fontWeight: FontWeight.bold),),
-          SizedBox(height: 15,),
+        children: [
+          Text(
+            'Parameter Code',
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+          SizedBox(
+            height: 15,
+          ),
           SizedBox(
             height: 50,
             child: Text('PA000010'),
           ),
-          SizedBox(height: 5,),
+          SizedBox(
+            height: 5,
+          ),
           SizedBox(
             height: 50,
             child: Text('PA000020'),
           ),
-          SizedBox(height: 5,),
+          SizedBox(
+            height: 5,
+          ),
           SizedBox(
             height: 50,
             child: Text('PA000030'),
           ),
-          SizedBox(height: 5,),
+          SizedBox(
+            height: 5,
+          ),
           SizedBox(
             height: 50,
             child: Text('PA000040'),
           ),
-          SizedBox(height: 5,),
+          SizedBox(
+            height: 5,
+          ),
           SizedBox(
             height: 50,
             child: Text('PA000050'),
           ),
-          SizedBox(height: 5,),
+          SizedBox(
+            height: 5,
+          ),
           SizedBox(
             height: 50,
             child: Text('PA000060'),
           ),
-          SizedBox(height: 5,),
+          SizedBox(
+            height: 5,
+          ),
           SizedBox(
             height: 50,
             child: Text('PA000070'),
           ),
-          SizedBox(height: 5,),
+          SizedBox(
+            height: 5,
+          ),
           SizedBox(
             height: 50,
             child: Text('PA000080'),
           ),
-          SizedBox(height: 5,),
+          SizedBox(
+            height: 5,
+          ),
           SizedBox(
             height: 50,
             child: Text('PA000090'),
           ),
-          SizedBox(height: 5,),
+          SizedBox(
+            height: 5,
+          ),
           SizedBox(
             height: 50,
             child: Text('PA000100'),
           ),
-          SizedBox(height: 5,),
+          SizedBox(
+            height: 5,
+          ),
           SizedBox(
             height: 50,
             child: Text('PA000110'),
           ),
-          SizedBox(height: 5,),
+          SizedBox(
+            height: 5,
+          ),
           SizedBox(
             height: 50,
             child: Text('PA000120'),
           ),
-          SizedBox(height: 5,),
+          SizedBox(
+            height: 5,
+          ),
           SizedBox(
             height: 50,
             child: Text('PA000130'),
           ),
-          SizedBox(height: 5,),
+          SizedBox(
+            height: 5,
+          ),
           SizedBox(
             height: 50,
             child: Text('PA000140'),
           ),
-          SizedBox(height: 5,),
+          SizedBox(
+            height: 5,
+          ),
           SizedBox(
             height: 50,
             child: Text('PA000150'),
           ),
-          SizedBox(height: 5,),
+          SizedBox(
+            height: 5,
+          ),
           SizedBox(
             height: 50,
             child: Text('PA000160'),
@@ -103,19 +138,23 @@ class WaterSupplyEditManageView extends StatelessWidget {
 }
 
 class WaterSupplyEditManageTextBox extends StatelessWidget {
-
-  const WaterSupplyEditManageTextBox({Key? key}): super(key: key);
+  const WaterSupplyEditManageTextBox({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Visibility(
+    return const Visibility(
       visible: true,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
-        children: const[
-          Text('Value', style: TextStyle(fontWeight: FontWeight.bold),),
-          SizedBox(height: 15,),
+        children: [
+          Text(
+            'Value',
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+          SizedBox(
+            height: 15,
+          ),
           SizedBox(
             height: 50,
             // child: MyTextInput(
@@ -123,9 +162,11 @@ class WaterSupplyEditManageTextBox extends StatelessWidget {
             //   textInputAction: TextInputAction.next,
             //   keyboardType: TextInputType.number,
             // ),
-            child: _wqParameter1(),
+            child: _WQParameter1(),
           ),
-          SizedBox(height: 5,),
+          SizedBox(
+            height: 5,
+          ),
           SizedBox(
             height: 50,
             child: MyTextInput(
@@ -136,7 +177,9 @@ class WaterSupplyEditManageTextBox extends StatelessWidget {
               keyboardType: TextInputType.number,
             ),
           ),
-          SizedBox(height: 5,),
+          SizedBox(
+            height: 5,
+          ),
           SizedBox(
             height: 50,
             child: MyTextInput(
@@ -147,7 +190,9 @@ class WaterSupplyEditManageTextBox extends StatelessWidget {
               keyboardType: TextInputType.number,
             ),
           ),
-          SizedBox(height: 5,),
+          SizedBox(
+            height: 5,
+          ),
           SizedBox(
             height: 50,
             child: MyTextInput(
@@ -158,7 +203,9 @@ class WaterSupplyEditManageTextBox extends StatelessWidget {
               keyboardType: TextInputType.number,
             ),
           ),
-          SizedBox(height: 5,),
+          SizedBox(
+            height: 5,
+          ),
           SizedBox(
             height: 50,
             child: MyTextInput(
@@ -169,7 +216,9 @@ class WaterSupplyEditManageTextBox extends StatelessWidget {
               keyboardType: TextInputType.number,
             ),
           ),
-          SizedBox(height: 5,),
+          SizedBox(
+            height: 5,
+          ),
           SizedBox(
             height: 50,
             child: MyTextInput(
@@ -180,7 +229,9 @@ class WaterSupplyEditManageTextBox extends StatelessWidget {
               keyboardType: TextInputType.number,
             ),
           ),
-          SizedBox(height: 5,),
+          SizedBox(
+            height: 5,
+          ),
           SizedBox(
             height: 50,
             child: MyTextInput(
@@ -191,7 +242,9 @@ class WaterSupplyEditManageTextBox extends StatelessWidget {
               keyboardType: TextInputType.number,
             ),
           ),
-          SizedBox(height: 5,),
+          SizedBox(
+            height: 5,
+          ),
           SizedBox(
             height: 50,
             child: MyTextInput(
@@ -202,7 +255,9 @@ class WaterSupplyEditManageTextBox extends StatelessWidget {
               keyboardType: TextInputType.number,
             ),
           ),
-          SizedBox(height: 5,),
+          SizedBox(
+            height: 5,
+          ),
           SizedBox(
             height: 50,
             child: MyTextInput(
@@ -213,7 +268,9 @@ class WaterSupplyEditManageTextBox extends StatelessWidget {
               keyboardType: TextInputType.number,
             ),
           ),
-          SizedBox(height: 5,),
+          SizedBox(
+            height: 5,
+          ),
           SizedBox(
             height: 50,
             child: MyTextInput(
@@ -224,7 +281,9 @@ class WaterSupplyEditManageTextBox extends StatelessWidget {
               keyboardType: TextInputType.number,
             ),
           ),
-          SizedBox(height: 5,),
+          SizedBox(
+            height: 5,
+          ),
           SizedBox(
             height: 50,
             child: MyTextInput(
@@ -235,7 +294,9 @@ class WaterSupplyEditManageTextBox extends StatelessWidget {
               keyboardType: TextInputType.number,
             ),
           ),
-          SizedBox(height: 5,),
+          SizedBox(
+            height: 5,
+          ),
           SizedBox(
             height: 50,
             child: MyTextInput(
@@ -246,7 +307,9 @@ class WaterSupplyEditManageTextBox extends StatelessWidget {
               keyboardType: TextInputType.number,
             ),
           ),
-          SizedBox(height: 5,),
+          SizedBox(
+            height: 5,
+          ),
           SizedBox(
             height: 50,
             child: MyTextInput(
@@ -257,7 +320,9 @@ class WaterSupplyEditManageTextBox extends StatelessWidget {
               keyboardType: TextInputType.number,
             ),
           ),
-          SizedBox(height: 5,),
+          SizedBox(
+            height: 5,
+          ),
           SizedBox(
             height: 50,
             child: MyTextInput(
@@ -268,7 +333,9 @@ class WaterSupplyEditManageTextBox extends StatelessWidget {
               keyboardType: TextInputType.number,
             ),
           ),
-          SizedBox(height: 5,),
+          SizedBox(
+            height: 5,
+          ),
           SizedBox(
             height: 50,
             child: MyTextInput(
@@ -279,7 +346,9 @@ class WaterSupplyEditManageTextBox extends StatelessWidget {
               keyboardType: TextInputType.number,
             ),
           ),
-          SizedBox(height: 5,),
+          SizedBox(
+            height: 5,
+          ),
           SizedBox(
             height: 50,
             child: MyTextInput(
@@ -296,12 +365,11 @@ class WaterSupplyEditManageTextBox extends StatelessWidget {
   }
 }
 
-class _wqParameter1 extends StatelessWidget{
-  const _wqParameter1({Key? key}):super(key:key);
+class _WQParameter1 extends StatelessWidget {
+  const _WQParameter1({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
       buildWhen: (previous, current) =>
           previous.wqParameter1 != current.wqParameter1,
@@ -310,8 +378,9 @@ class _wqParameter1 extends StatelessWidget{
           //label: 'អាងអាកាស (m)',
           focusNode: context.read<WaterSupplyEditBloc>().parameter1,
           controller: context.read<WaterSupplyEditBloc>().parameter1Controller,
-          onChanged: (val) =>
-              context.read<WaterSupplyEditBloc>().add(WaterQualityParameterChanged(val)),
+          onChanged: (val) => context
+              .read<WaterSupplyEditBloc>()
+              .add(WaterQualityParameterChanged(val)),
           // errorText: _handleErrorText(context, state),
           textInputAction: TextInputAction.next,
           keyboardType: TextInputType.phone,
@@ -319,5 +388,4 @@ class _wqParameter1 extends StatelessWidget{
       },
     );
   }
-
 }

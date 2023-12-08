@@ -164,7 +164,7 @@ class WaterSupplyEditRepository extends RestApiService {
 
   Future<void> addWaterQuanlityParameter(
       {required PayloadWaterQualityParameterModel payload}) async {
-    var res = await post(ApiPath.postWaterQualityParameter, data: payload);
+    await post(ApiPath.postWaterQualityParameter, data: payload);
   }
 
   Future<List<ProvinceModel>> getProvinces() async {
