@@ -250,6 +250,26 @@ class S {
     );
   }
 
+  /// `Draft`
+  String get button_draft {
+    return Intl.message(
+      'Draft',
+      name: 'button_draft',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Submit`
+  String get button_submit_request {
+    return Intl.message(
+      'Submit',
+      name: 'button_submit_request',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Upload Logo`
   String get button_upload_logo {
     return Intl.message(
@@ -2225,6 +2245,306 @@ class S {
     return Intl.message(
       'Please input village',
       name: 'pls_input_village',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `View History`
+  String get view_history {
+    return Intl.message(
+      'View History',
+      name: 'view_history',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `General`
+  String get tab_general {
+    return Intl.message(
+      'General',
+      name: 'tab_general',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Specific`
+  String get tab_specific {
+    return Intl.message(
+      'Specific',
+      name: 'tab_specific',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Map Unit`
+  String get map_unit {
+    return Intl.message(
+      'Map Unit',
+      name: 'map_unit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Coordidate UTMX`
+  String get utm_x {
+    return Intl.message(
+      'Coordidate UTMX',
+      name: 'utm_x',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Coordidate UTMY`
+  String get utm_y {
+    return Intl.message(
+      'Coordidate UTMY',
+      name: 'utm_y',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Total Family`
+  String get total_family {
+    return Intl.message(
+      'Total Family',
+      name: 'total_family',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Risk Enviroment`
+  String get risk_enviroment {
+    return Intl.message(
+      'Risk Enviroment',
+      name: 'risk_enviroment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Construction Date`
+  String get construction_date {
+    return Intl.message(
+      'Construction Date',
+      name: 'construction_date',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Budget Source`
+  String get budget_source {
+    return Intl.message(
+      'Budget Source',
+      name: 'budget_source',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Constrction By`
+  String get construction_by {
+    return Intl.message(
+      'Constrction By',
+      name: 'construction_by',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Management Type`
+  String get management_type {
+    return Intl.message(
+      'Management Type',
+      name: 'management_type',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Managed By`
+  String get managed_by {
+    return Intl.message(
+      'Managed By',
+      name: 'managed_by',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Beneficiary Total People`
+  String get beneficiary_total_people {
+    return Intl.message(
+      'Beneficiary Total People',
+      name: 'beneficiary_total_people',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Beneficiary Total Women`
+  String get beneficiary_total_women {
+    return Intl.message(
+      'Beneficiary Total Women',
+      name: 'beneficiary_total_women',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Beneficiary Total Family`
+  String get beneficiary_total_family {
+    return Intl.message(
+      'Beneficiary Total Family',
+      name: 'beneficiary_total_family',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Beneficiary Total Family Poor 1`
+  String get beneficiary_total_family_poor_1 {
+    return Intl.message(
+      'Beneficiary Total Family Poor 1',
+      name: 'beneficiary_total_family_poor_1',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Beneficiary Total Family Poor 2`
+  String get beneficiary_total_family_poor_2 {
+    return Intl.message(
+      'Beneficiary Total Family Poor 2',
+      name: 'beneficiary_total_family_poor_2',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Beneficiary Total Family Vulnerable`
+  String get beneficiary_total_family_vulnerable {
+    return Intl.message(
+      'Beneficiary Total Family Vulnerable',
+      name: 'beneficiary_total_family_vulnerable',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Beneficiary Total Family Indigenous`
+  String get beneficiary_total_family_indigenous {
+    return Intl.message(
+      'Beneficiary Total Family Indigenous',
+      name: 'beneficiary_total_family_indigenous',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Well Type`
+  String get well_type {
+    return Intl.message(
+      'Well Type',
+      name: 'well_type',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Well Height(m)`
+  String get well_depth {
+    return Intl.message(
+      'Well Height(m)',
+      name: 'well_depth',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Filter (Screen) (m)`
+  String get well_screen {
+    return Intl.message(
+      'Filter (Screen) (m)',
+      name: 'well_screen',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Water Supply (m3/h)`
+  String get well_water_supply {
+    return Intl.message(
+      'Water Supply (m3/h)',
+      name: 'well_water_supply',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Quality`
+  String get water_quality {
+    return Intl.message(
+      'Quality',
+      name: 'water_quality',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Niro Static (m)`
+  String get well_nirostatic {
+    return Intl.message(
+      'Niro Static (m)',
+      name: 'well_nirostatic',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Niro Dynamic (m)`
+  String get well_nirodynamic {
+    return Intl.message(
+      'Niro Dynamic (m)',
+      name: 'well_nirodynamic',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Water Quality Check`
+  String get well_check_water_quality {
+    return Intl.message(
+      'Water Quality Check',
+      name: 'well_check_water_quality',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Status`
+  String get well_status {
+    return Intl.message(
+      'Status',
+      name: 'well_status',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reason`
+  String get reason {
+    return Intl.message(
+      'Reason',
+      name: 'reason',
       desc: '',
       args: [],
     );

@@ -1,13 +1,7 @@
 import 'package:rws_app/translation/generated/l10n.dart';
 import 'package:flutter/material.dart';
 
-enum MainMenuEnum {
-  home,
-  users,
-  settings,
-  about,
-  report,
-}
+enum MainMenuEnum { home, users, settings, about, report, language }
 
 extension MainMenuEnumExtension on MainMenuEnum {
   String getTitle(BuildContext context) {
@@ -21,7 +15,9 @@ extension MainMenuEnumExtension on MainMenuEnum {
       case MainMenuEnum.about:
         return S.of(context).about_app;
       case MainMenuEnum.report:
-         return S.of(context).report;
+        return S.of(context).report;
+      case MainMenuEnum.language:
+        return S.of(context).language;
     }
   }
 
@@ -35,8 +31,10 @@ extension MainMenuEnumExtension on MainMenuEnum {
         return Icons.settings;
       case MainMenuEnum.about:
         return Icons.info;
-       case MainMenuEnum.report:
-         return Icons.report;
+      case MainMenuEnum.report:
+        return Icons.report;
+      case MainMenuEnum.language:
+        return Icons.language;
     }
   }
 

@@ -33,26 +33,26 @@ class DashboardPage extends StatelessWidget {
               title: const _TitleWidget(),
               centerTitle: true,
               iconTheme: const IconThemeData(color: AppColor.white),
-              actions: <Widget>[
-                IconButton(
-                  color: AppColor.white,
-                  icon: const Icon(Icons.search),
-                  tooltip: 'Search here',
-                  onPressed: () {
-                    // handle the press
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (_) {
-                          return const FilterWaterSupplyPage(
-                            //title: title,
-                            waterSupplyTypeId: 0,
-                          );
-                        },
-                      ),
-                    );
-                  },
-                ),
-              ],
+              // actions: <Widget>[
+              //   IconButton(
+              //     color: AppColor.white,
+              //     icon: const Icon(Icons.search),
+              //     tooltip: 'Search here',
+              //     onPressed: () {
+              //       // handle the press
+              //       Navigator.of(context).push(
+              //         MaterialPageRoute(
+              //           builder: (_) {
+              //             return const FilterWaterSupplyPage(
+              //               //title: title,
+              //               waterSupplyTypeId: 0,
+              //             );
+              //           },
+              //         ),
+              //       );
+              //     },
+              //   ),
+              // ],
             ),
             drawer: const _DrawerMenu(),
             bottomNavigationBar: const _BottomNavigationBar(),
@@ -235,7 +235,7 @@ class _AppLogo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return const Padding(
       padding: const EdgeInsets.all(24.0),
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -259,13 +259,13 @@ class _AppLogo extends StatelessWidget {
               ),
             ],
           ),
-          IconButton(
-            icon: const Icon(Icons.search),
-            tooltip: 'Search here',
-            onPressed: () {
-              // handle the press
-            },
-          ),
+          // IconButton(
+          //   icon: const Icon(Icons.search),
+          //   tooltip: 'Search here',
+          //   onPressed: () {
+          //     // handle the press
+          //   },
+          // ),
         ],
       ),
     );

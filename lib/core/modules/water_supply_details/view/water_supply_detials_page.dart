@@ -8,6 +8,7 @@ import 'package:rws_app/core/modules/water_supply_details/repositories/water_sup
 import 'package:rws_app/core/modules/water_supply_details/view/water_supply_detials_view.dart';
 import 'package:rws_app/core/widgets/text_widget.dart';
 import 'package:rws_app/core/widgets/textbutton_icon.dart';
+import 'package:rws_app/translation/generated/l10n.dart';
 
 class WaterSupplyPage extends StatelessWidget {
   const WaterSupplyPage({
@@ -52,6 +53,24 @@ class WaterSupplyPage extends StatelessWidget {
             //     title: 'Search',
             //   ),
             // ),
+            IconButton(
+              color: AppColor.white,
+              icon: const Icon(Icons.search),
+              tooltip: 'Search here',
+              onPressed: () {
+                // handle the press
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (_) {
+                      return FilterWaterSupplyPage(
+                        //title: title,
+                        waterSupplyTypeId: waterSupplyId,
+                      );
+                    },
+                  ),
+                );
+              },
+            ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: AddNewWaterManageSystem(
@@ -68,7 +87,7 @@ class WaterSupplyPage extends StatelessWidget {
                   );
                 },
                 icon: Icons.add_circle_outlined,
-                title: 'បង្កើតថ្មី',
+                title: S.of(context).button_create,
               ),
             ),
           ],

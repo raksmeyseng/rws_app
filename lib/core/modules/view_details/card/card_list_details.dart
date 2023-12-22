@@ -5,6 +5,7 @@ import 'package:rws_app/core/modules/view_details/bloc/list_data_details_bloc.da
 import 'package:rws_app/core/widgets/caption_widget.dart';
 import 'package:rws_app/core/widgets/load_data_failed.dart';
 import 'package:rws_app/core/widgets/text_widget.dart';
+import 'package:rws_app/translation/generated/l10n.dart';
 
 import '../../../widgets/my_divider.dart';
 
@@ -66,30 +67,31 @@ class _ContentView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<String> titleViews = [
-      'ប្រភេទ', //0
-      'លេខកូដសំនង់', //1
-      'ខេត្ត/រាជធានី', //2
-      'ស្រុក/ក្រុង', //3
-      'ឃុំ/សង្កាត់', //4
-      'ភូមិ', //5
-      'ខ្នាតផែនទី', //6
-      'កូអរដោនេ UTMX', //7
-      'កូអរដោនេ UTMY', //8
-      'គ្រួសារសរុប', //9
-      'តំបន់ប្រឈមផ្នែកបរិស្ថាន', //10
-      'កាលបរិច្ឆេទសាងសង់', //11
-      'ប្រភពថវិកា', //12
-      'សាងសង់ដោយក្រុមហ៊ុន', //13
-      'ប្រភេទនៃការគ្រប់គ្រង', //14
-      'ឈ្មោះអ្នកគ្រប់គ្រង', //15
-      'អ្នកទទួលផលសរុប', //16
-      'អ្នកទទួលផលសរុបស្រី', //17
-      'អ្នកទទួលផលគ្រួសារសរុប', //18
-      'អ្នកទទួលផលគ្រួសារក្រ១', //19
-      'អ្នកទទួលផលគ្រួសារក្រ២', //20
-      'អ្នកទទួលផលគ្រួសារជនងាយរងគ្រោះ', //21
-      'អ្នកទទួលផលគ្រួសារជនជាតិដើមភាគតិច' //22
+      S.of(context).water_supply_type, //0
+      S.of(context).water_supply_code, //1
+      S.of(context).province, //2
+      S.of(context).district, //3
+      S.of(context).commune, //4
+      S.of(context).village, //5
+      S.of(context).map_unit, //6
+      S.of(context).utm_x, //7
+      S.of(context).utm_y, //8
+      S.of(context).total_family, //9
+      S.of(context).risk_enviroment, //10
+      S.of(context).construction_date, //11
+      S.of(context).budget_source, //12
+      S.of(context).construction_by, //13
+      S.of(context).management_type, //14
+      S.of(context).managed_by, //15
+      S.of(context).beneficiary_total_people, //16
+      S.of(context).beneficiary_total_women, //17
+      S.of(context).beneficiary_total_family, //18
+      S.of(context).beneficiary_total_family_poor_1, //19
+      S.of(context).beneficiary_total_family_poor_2, //20
+      S.of(context).beneficiary_total_family_indigenous, //21
+      S.of(context).beneficiary_total_family_vulnerable //22
     ];
+
     return BlocBuilder<ListDataDetailsBloc, ListDataDetailsState>(
       buildWhen: (previous, current) =>
           previous.waterSupply != current.waterSupply,

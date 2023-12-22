@@ -11,6 +11,7 @@ WaterSupplyTypeModel _$WaterSupplyTypeModelFromJson(
     WaterSupplyTypeModel(
       id: json['id'] as int,
       name: json['name_kh'] as String,
+      name_en: json['name_en'] as String,
     );
 
 Map<String, dynamic> _$WaterSupplyTypeModelToJson(
@@ -18,4 +19,5 @@ Map<String, dynamic> _$WaterSupplyTypeModelToJson(
     <String, dynamic>{
       'id': instance.id,
       'name_kh': instance.name,
+      'name_en': instance.name_en
     };

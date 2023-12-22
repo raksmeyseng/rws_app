@@ -41,7 +41,11 @@ class FilterResultBloc extends Bloc<FilterResultEvent, FilterResultState> {
     try {
       //emit(state.copyWith(status: BaseStatusEnum.success));
       final waterSupply = await repository.getWaterSupplyFilterResultList(
-          state.provinceId, state.districtId, state.communeId, state.villageId);
+          state.waterSupplyTypeId,
+          state.provinceId,
+          state.districtId,
+          state.communeId,
+          state.villageId);
       emit(state.copyWith(
         status: BaseStatusEnum.success,
         waterSupply: waterSupply,

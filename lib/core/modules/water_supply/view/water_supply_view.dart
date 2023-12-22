@@ -98,13 +98,16 @@ class _WaterSupplyItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Locale appLocale = Localizations.localeOf(context);
     return FlatCard(
       onTap: () {
         context.goNamed(
           AppRoute.waterSupplyDetail,
           extra: {
             'id': item.id.toString(),
-            'title': item.name.toString(),
+            'title': appLocale.languageCode == 'en'
+                ? item.name_en.toString()
+                : item.name.toString(),
           },
         );
       },
@@ -130,7 +133,11 @@ class _WaterSupplyItem extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      TextWidget(item.name.toString(), height: 1.8),
+                      TextWidget(
+                          appLocale.languageCode == 'en'
+                              ? item.name_en.toString()
+                              : item.name.toString(),
+                          height: 1.8),
                     ],
                   ),
                 ),

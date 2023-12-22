@@ -84,12 +84,29 @@ class MessageLookup extends MessageLookupByLibrary {
         "app_load_config_failed": MessageLookupByLibrary.simpleMessage(
             "- Please check your internet connection\n- Encountered technical issues - we are working to resolve\n\nWe apologize and try again later."),
         "appearance": MessageLookupByLibrary.simpleMessage("Appearance"),
+        "beneficiary_total_family":
+            MessageLookupByLibrary.simpleMessage("Beneficiary Total Family"),
+        "beneficiary_total_family_indigenous":
+            MessageLookupByLibrary.simpleMessage(
+                "Beneficiary Total Family Indigenous"),
+        "beneficiary_total_family_poor_1": MessageLookupByLibrary.simpleMessage(
+            "Beneficiary Total Family Poor 1"),
+        "beneficiary_total_family_poor_2": MessageLookupByLibrary.simpleMessage(
+            "Beneficiary Total Family Poor 2"),
+        "beneficiary_total_family_vulnerable":
+            MessageLookupByLibrary.simpleMessage(
+                "Beneficiary Total Family Vulnerable"),
+        "beneficiary_total_people":
+            MessageLookupByLibrary.simpleMessage("Beneficiary Total People"),
+        "beneficiary_total_women":
+            MessageLookupByLibrary.simpleMessage("Beneficiary Total Women"),
         "biometric_enabled":
             MessageLookupByLibrary.simpleMessage("Biometric Enabled"),
         "biometric_enabled_desc": MessageLookupByLibrary.simpleMessage(
             "To login and access any sensitive functions."),
         "biometric_enabling":
             MessageLookupByLibrary.simpleMessage("Biometric Enabling"),
+        "budget_source": MessageLookupByLibrary.simpleMessage("Budget Source"),
         "button_add": MessageLookupByLibrary.simpleMessage("Add"),
         "button_cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "button_choose_file":
@@ -100,6 +117,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "button_create": MessageLookupByLibrary.simpleMessage("Create"),
         "button_delete": MessageLookupByLibrary.simpleMessage("Delete"),
         "button_done": MessageLookupByLibrary.simpleMessage("Done"),
+        "button_draft": MessageLookupByLibrary.simpleMessage("Draft"),
         "button_edit": MessageLookupByLibrary.simpleMessage("Edit"),
         "button_enable": MessageLookupByLibrary.simpleMessage("Enable"),
         "button_leave": MessageLookupByLibrary.simpleMessage("Leave"),
@@ -114,6 +132,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "button_save": MessageLookupByLibrary.simpleMessage("Save"),
         "button_settings": MessageLookupByLibrary.simpleMessage("Settings"),
         "button_submit": MessageLookupByLibrary.simpleMessage("Submit"),
+        "button_submit_request": MessageLookupByLibrary.simpleMessage("Submit"),
         "button_update": MessageLookupByLibrary.simpleMessage("Update"),
         "button_upload_logo":
             MessageLookupByLibrary.simpleMessage("Upload Logo"),
@@ -138,6 +157,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Confirm Password"),
         "confirm_password_mismatch":
             MessageLookupByLibrary.simpleMessage("Confirm password mismatch"),
+        "construction_by":
+            MessageLookupByLibrary.simpleMessage("Constrction By"),
+        "construction_date":
+            MessageLookupByLibrary.simpleMessage("Construction Date"),
         "copied": MessageLookupByLibrary.simpleMessage("Copied"),
         "copyright_": m0,
         "count_plural_day_": m1,
@@ -224,6 +247,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "login": MessageLookupByLibrary.simpleMessage("Login"),
         "logout": MessageLookupByLibrary.simpleMessage("Logout"),
         "longitude": MessageLookupByLibrary.simpleMessage("Longitude"),
+        "managed_by": MessageLookupByLibrary.simpleMessage("Managed By"),
+        "management_type":
+            MessageLookupByLibrary.simpleMessage("Management Type"),
+        "map_unit": MessageLookupByLibrary.simpleMessage("Map Unit"),
         "msg_allow_camera_permission": MessageLookupByLibrary.simpleMessage(
             "Allow the app to access your camera in app setting."),
         "msg_allow_location_permission": MessageLookupByLibrary.simpleMessage(
@@ -324,10 +351,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "province": MessageLookupByLibrary.simpleMessage("Province"),
         "real_time_date_format": MessageLookupByLibrary.simpleMessage(
             "EEEE, MMMM dd, yyyy | hh:mm:ss a"),
+        "reason": MessageLookupByLibrary.simpleMessage("Reason"),
         "register_date":
             MessageLookupByLibrary.simpleMessage("Registered Date"),
         "report": MessageLookupByLibrary.simpleMessage("Report"),
         "request": MessageLookupByLibrary.simpleMessage("My Request"),
+        "risk_enviroment":
+            MessageLookupByLibrary.simpleMessage("Risk Enviroment"),
         "save_profile_failed":
             MessageLookupByLibrary.simpleMessage("Save profile failed!"),
         "scan_to_authenticate": MessageLookupByLibrary.simpleMessage(
@@ -346,6 +376,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Grant Storage Access"),
         "success": MessageLookupByLibrary.simpleMessage("Success!"),
         "system": MessageLookupByLibrary.simpleMessage("System"),
+        "tab_general": MessageLookupByLibrary.simpleMessage("General"),
+        "tab_specific": MessageLookupByLibrary.simpleMessage("Specific"),
         "terms_and_conditions":
             MessageLookupByLibrary.simpleMessage("Terms and Conditions"),
         "testing_environment": MessageLookupByLibrary.simpleMessage("DEMO"),
@@ -368,6 +400,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "title_settings": MessageLookupByLibrary.simpleMessage("Settings"),
         "title_version_update":
             MessageLookupByLibrary.simpleMessage("Update Available"),
+        "total_family": MessageLookupByLibrary.simpleMessage("Total Family"),
         "under_maintenance":
             MessageLookupByLibrary.simpleMessage("System Maintenance"),
         "under_maintenance_description": MessageLookupByLibrary.simpleMessage(
@@ -375,13 +408,30 @@ class MessageLookup extends MessageLookupByLibrary {
         "upload_image_failure":
             MessageLookupByLibrary.simpleMessage("Image uploading failed!"),
         "user_name": MessageLookupByLibrary.simpleMessage("Username"),
+        "utm_x": MessageLookupByLibrary.simpleMessage("Coordidate UTMX"),
+        "utm_y": MessageLookupByLibrary.simpleMessage("Coordidate UTMY"),
         "version": MessageLookupByLibrary.simpleMessage("Version"),
+        "view_history": MessageLookupByLibrary.simpleMessage("View History"),
         "village": MessageLookupByLibrary.simpleMessage("Village"),
+        "water_quality": MessageLookupByLibrary.simpleMessage("Quality"),
         "water_supply": MessageLookupByLibrary.simpleMessage("Water Supply"),
         "water_supply_code":
             MessageLookupByLibrary.simpleMessage("Water Supply Code"),
         "water_supply_type":
             MessageLookupByLibrary.simpleMessage("Water Supply Type"),
+        "well_check_water_quality":
+            MessageLookupByLibrary.simpleMessage("Water Quality Check"),
+        "well_depth": MessageLookupByLibrary.simpleMessage("Well Height(m)"),
+        "well_nirodynamic":
+            MessageLookupByLibrary.simpleMessage("Niro Dynamic (m)"),
+        "well_nirostatic":
+            MessageLookupByLibrary.simpleMessage("Niro Static (m)"),
+        "well_screen":
+            MessageLookupByLibrary.simpleMessage("Filter (Screen) (m)"),
+        "well_status": MessageLookupByLibrary.simpleMessage("Status"),
+        "well_type": MessageLookupByLibrary.simpleMessage("Well Type"),
+        "well_water_supply":
+            MessageLookupByLibrary.simpleMessage("Water Supply (m3/h)"),
         "your_account_has_been_deleted": MessageLookupByLibrary.simpleMessage(
             "Your user account has been deleted"),
         "your_password_changed_successfuly":

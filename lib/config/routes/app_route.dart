@@ -27,6 +27,7 @@ class AppRoute {
   static final String settings = MainMenuEnum.settings.name;
   static final String about = MainMenuEnum.about.name;
   static final String report = MainMenuEnum.report.name;
+  static final String language = MainMenuEnum.language.name;
 
   static final List<RouteBase> configs = [
     GoRoute(
@@ -80,6 +81,7 @@ class AppRoute {
           path: 'report',
           pageBuilder: reportBuilder,
         ),
+        GoRoute(name: language, path: 'language', pageBuilder: languageBuilder),
         GoRoute(
           name: waterSupplyDetail,
           path: 'water-supply-detail',

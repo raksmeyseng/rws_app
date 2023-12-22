@@ -214,7 +214,7 @@ class _SuccessView extends StatelessWidget {
                             children: [
                               Expanded(
                                 child: MyButton(
-                                    title: 'រក្សាទុកសេចក្ដីព្រាង',
+                                    title: S.of(context).button_draft,
                                     color: AppColor.active,
                                     onPressed: () {
                                       context
@@ -227,7 +227,7 @@ class _SuccessView extends StatelessWidget {
                               ),
                               Expanded(
                                 child: MyButton(
-                                  title: 'ដាក់ស្នើ',
+                                  title: S.of(context).button_submit,
                                   color: AppColor.active,
                                   onPressed: () {
                                     context
@@ -298,18 +298,18 @@ class _TabBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return TabBar(
       indicatorColor: Theme.of(context).primaryColor,
-      tabs: const [
+      tabs: [
         Padding(
           padding: EdgeInsets.symmetric(vertical: 4.0),
-          child: Tab(text: 'ទីតាំង'),
+          child: Tab(text: S.of(context).location_on_map),
         ),
         Padding(
-          padding: EdgeInsets.symmetric(vertical: 4.0),
-          child: Tab(text: 'ព័ត៌មានផ្សេងៗ'),
+          padding: const EdgeInsets.symmetric(vertical: 4.0),
+          child: Tab(text: S.of(context).tab_general),
         ),
         Padding(
-          padding: EdgeInsets.symmetric(vertical: 4.0),
-          child: Tab(text: 'ប្រព័ន្ធផ្គត់ផ្គង់ទឹក'),
+          padding: const EdgeInsets.symmetric(vertical: 4.0),
+          child: Tab(text: S.of(context).tab_specific),
         )
       ],
     );
@@ -617,13 +617,13 @@ class _FormField2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return const Column(
       mainAxisSize: MainAxisSize.min,
       children: [
         Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
+          children: [
             Expanded(child: _FamilyTotalInput()),
             SizedBox(width: 16),
             Expanded(child: _BudgetTypeInput()),
@@ -1587,7 +1587,7 @@ class _MapTypeInput extends StatelessWidget {
           previous.mapTypeInput != current.mapTypeInput,
       builder: (context, state) {
         return MyTextInput(
-          label: 'ខ្នាតផែនទី',
+          label: S.of(context).map_unit,
           focusNode: bloc.mapTypeFocus,
           controller: bloc.mapTypeController,
           onTap: () async {
@@ -1596,7 +1596,7 @@ class _MapTypeInput extends StatelessWidget {
               transitionDuration: const Duration(milliseconds: 200),
               pageBuilder: (context, a1, a2) {
                 return MySimpleDialog(
-                  title: 'ខ្នាតផែនទី',
+                  title: S.of(context).map_unit,
                   content: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 24.0),
                     child: Column(
@@ -1758,7 +1758,7 @@ class _LatInput extends StatelessWidget {
           previous.lateitudeInput != current.lateitudeInput,
       builder: (context, state) {
         return MyTextInput(
-          label: 'រយៈទទឹង',
+          label: S.of(context).utm_x,
           focusNode: context.read<WaterSupplyEditBloc>().latetitudeFocus,
           controller: context.read<WaterSupplyEditBloc>().latetitudeController,
           onChanged: (lat) =>
@@ -1792,7 +1792,7 @@ class _LongInput extends StatelessWidget {
           previous.longtitudeInput != current.longtitudeInput,
       builder: (context, state) {
         return MyTextInput(
-          label: 'រយៈបណ្តោយ',
+          label: S.of(context).utm_y,
           focusNode: context.read<WaterSupplyEditBloc>().longtitudeFocus,
           controller: context.read<WaterSupplyEditBloc>().longtitudeController,
           onChanged: (long) =>
@@ -1825,7 +1825,7 @@ class _UTMXInput extends StatelessWidget {
       buildWhen: (previous, current) => previous.utmXInput != current.utmXInput,
       builder: (context, state) {
         return MyTextInput(
-          label: 'កូអរដោនេ UTMX',
+          label: S.of(context).utm_x,
           focusNode: context.read<WaterSupplyEditBloc>().utmXFocus,
           controller: context.read<WaterSupplyEditBloc>().utmXController,
           onChanged: (y) =>
@@ -1858,7 +1858,7 @@ class _UTMYInput extends StatelessWidget {
       buildWhen: (previous, current) => previous.utmYInput != current.utmYInput,
       builder: (context, state) {
         return MyTextInput(
-          label: 'កូអរដោនេ UTMY',
+          label: S.of(context).utm_y,
           focusNode: context.read<WaterSupplyEditBloc>().utmYFocus,
           controller: context.read<WaterSupplyEditBloc>().utmYController,
           onChanged: (y) =>
@@ -2097,7 +2097,7 @@ class _FamilyTotalInput extends StatelessWidget {
           previous.familyTotalInput != current.familyTotalInput,
       builder: (context, state) {
         return MyTextInput(
-          label: 'គ្រួសារសរុប',
+          label: S.of(context).total_family,
           focusNode: context.read<WaterSupplyEditBloc>().familyTotalFocus,
           controller: context.read<WaterSupplyEditBloc>().familyTotalController,
           onChanged: (total) => context
@@ -2133,7 +2133,7 @@ class _LocationRiskInput extends StatelessWidget {
           previous.locationRickInput != current.locationRickInput,
       builder: (context, state) {
         return MyTextInput(
-          label: 'តំបន់ប្រឈមផ្នែកបរិស្ថាន',
+          label: S.of(context).risk_enviroment,
           focusNode: context.read<WaterSupplyEditBloc>().locationRickFocus,
           controller:
               context.read<WaterSupplyEditBloc>().locationRickController,
@@ -2205,7 +2205,7 @@ class _BudgetTypeInput extends StatelessWidget {
           previous.budgetTypeInput != current.budgetTypeInput,
       builder: (context, state) {
         return MyTextInput(
-          label: 'ប្រភេទថវិកា',
+          label: S.of(context).budget_source,
           focusNode: context.read<WaterSupplyEditBloc>().budgetTypeFocus,
           controller: context.read<WaterSupplyEditBloc>().budgetTypeController,
           onTap: () async {
@@ -2277,7 +2277,7 @@ class _ManagementTypeInput extends StatelessWidget {
           previous.managementTypeInput != current.managementTypeInput,
       builder: (context, state) {
         return MyTextInput(
-          label: 'ប្រភេទនៃការគ្រប់គ្រង',
+          label: S.of(context).management_type,
           focusNode: context.read<WaterSupplyEditBloc>().managementTypeFocus,
           controller:
               context.read<WaterSupplyEditBloc>().managementTypeController,
@@ -2288,7 +2288,7 @@ class _ManagementTypeInput extends StatelessWidget {
               transitionDuration: const Duration(milliseconds: 200),
               pageBuilder: (context, a1, a2) {
                 return MySimpleDialog(
-                  title: 'ប្រភេទនៃការគ្រប់គ្រង',
+                  title: S.of(context).management_type,
                   content: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 24.0),
                     child: Column(
@@ -2349,7 +2349,7 @@ class _ManagamentNameInput extends StatelessWidget {
           previous.managementNameInput != current.managementNameInput,
       builder: (context, state) {
         return MyTextInput(
-          label: 'ឈ្មោះអ្នកគ្រប់គ្រង',
+          label: S.of(context).managed_by,
           focusNode: context.read<WaterSupplyEditBloc>().managementNameFocus,
           controller:
               context.read<WaterSupplyEditBloc>().managementNameController,
@@ -2384,7 +2384,7 @@ class _ReceiverTotalInput extends StatelessWidget {
           previous.receiverTotalInput != current.receiverTotalInput,
       builder: (context, state) {
         return MyTextInput(
-          label: 'អ្នកទទួលផលសរុប',
+          label: S.of(context).beneficiary_total_people,
           focusNode: context.read<WaterSupplyEditBloc>().receiverTotalFocus,
           controller:
               context.read<WaterSupplyEditBloc>().receiverTotalController,
@@ -2422,7 +2422,7 @@ class _ReceiverTotalAsFemaleInput extends StatelessWidget {
           current.receiverTotalAsFemaleInput,
       builder: (context, state) {
         return MyTextInput(
-          label: 'អ្នកទទួលផលសរុបស្រី',
+          label: S.of(context).beneficiary_total_women,
           focusNode:
               context.read<WaterSupplyEditBloc>().receiverTotalAsFemaleFocus,
           controller: context
@@ -2461,7 +2461,7 @@ class _ReceiverFamilyTotalInput extends StatelessWidget {
           previous.receiverFamilyTotalInput != current.receiverFamilyTotalInput,
       builder: (context, state) {
         return MyTextInput(
-          label: 'អ្នកទទួលផលគ្រួសារសរុប',
+          label: S.of(context).beneficiary_total_family,
           focusNode:
               context.read<WaterSupplyEditBloc>().receiverFamilyTotalFocus,
           controller:
@@ -2499,7 +2499,7 @@ class _ReceiverFamilyPoor1Input extends StatelessWidget {
           previous.receiverFamilyPoor1Input != current.receiverFamilyPoor1Input,
       builder: (context, state) {
         return MyTextInput(
-          label: 'អ្នកទទួលផលគ្រួសារក្រ១',
+          label: S.of(context).beneficiary_total_family_poor_1,
           focusNode:
               context.read<WaterSupplyEditBloc>().receiverFamilyPoor1Focus,
           controller:
@@ -2537,7 +2537,7 @@ class _ReceiverFamilyPoor2Input extends StatelessWidget {
           previous.receiverFamilyPoor2Input != current.receiverFamilyPoor2Input,
       builder: (context, state) {
         return MyTextInput(
-          label: 'អ្នកទទួលផលគ្រួសារក្រ២',
+          label: S.of(context).beneficiary_total_family_poor_2,
           focusNode:
               context.read<WaterSupplyEditBloc>().receiverFamilyPoor2Focus,
           controller:
@@ -2576,7 +2576,7 @@ class _ReceiverFamilyIndigenousInput extends StatelessWidget {
           current.receiverFamilyIndigenousInput,
       builder: (context, state) {
         return MyTextInput(
-          label: 'អ្នកទទួលផលគ្រួសារជនជាតិភាគតិច',
+          label: S.of(context).beneficiary_total_family_indigenous,
           focusNode:
               context.read<WaterSupplyEditBloc>().receiverFamilyMinorityFocus,
           controller: context
@@ -2616,7 +2616,7 @@ class _ReceiverFamilyVulnearableInput extends StatelessWidget {
           current.receiverFamilyVulnearableInput,
       builder: (context, state) {
         return MyTextInput(
-          label: 'អ្នកទទួលផលគ្រួសារជនងាយរងគ្រោះ',
+          label: S.of(context).beneficiary_total_family_vulnerable,
           focusNode:
               context.read<WaterSupplyEditBloc>().receiverFamilyVictimFocus,
           controller: context
@@ -2659,7 +2659,7 @@ class _DateOfConstructionInput extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             MyTextInput(
-              label: 'កាលបរិច្ឆេទសំណង់',
+              label: S.of(context).construction_date,
               controller: context.read<WaterSupplyEditBloc>().docController,
               onTap: () async {
                 final date = await _pickDate(context);
@@ -2713,7 +2713,7 @@ class _CompanyNameInput extends StatelessWidget {
           previous.companyNameInput != current.companyNameInput,
       builder: (context, state) {
         return MyTextInput(
-          label: 'សាងសង់ដោយក្រុមហ៊ុន',
+          label: S.of(context).construction_by,
           focusNode: context.read<WaterSupplyEditBloc>().companyNameFocus,
           controller: context.read<WaterSupplyEditBloc>().companyNameController,
           onChanged: (value) => context
@@ -2747,7 +2747,7 @@ class _ConstructionCodeInput extends StatelessWidget {
           previous.constructionCodeInput != current.constructionCodeInput,
       builder: (context, state) {
         return MyTextInput(
-          label: 'លេខកូដសំណង់',
+          label: S.of(context).water_supply_code,
           focusNode: context.read<WaterSupplyEditBloc>().constructionCodeFocus,
           controller:
               context.read<WaterSupplyEditBloc>().constructionCodeController,
@@ -2783,7 +2783,7 @@ class _WellTypeInput extends StatelessWidget {
           previous.wellTypeInput != current.wellTypeInput,
       builder: (context, state) {
         return MyTextInput(
-          label: 'ប្រភេទអណ្តូង',
+          label: S.of(context).well_type,
           focusNode: bloc.wellTypeFocus,
           controller: bloc.wellTypeController,
           onTap: () async {
@@ -2793,7 +2793,7 @@ class _WellTypeInput extends StatelessWidget {
               transitionDuration: const Duration(milliseconds: 200),
               pageBuilder: (context, a1, a2) {
                 return MySimpleDialog(
-                  title: 'ប្រភេទអណ្តូង',
+                  title: S.of(context).well_type,
                   content: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 24.0),
                     child: Column(
@@ -2851,7 +2851,7 @@ class _WellDepthInput extends StatelessWidget {
           previous.wellDepthInput != current.wellDepthInput,
       builder: (context, state) {
         return MyTextInput(
-          label: 'ជម្រៅអណ្តូង(m)',
+          label: S.of(context).well_depth,
           focusNode: context.read<WaterSupplyEditBloc>().wellDepthFocus,
           controller: context.read<WaterSupplyEditBloc>().wellDepthController,
           onChanged: (val) =>
@@ -2885,7 +2885,7 @@ class _WellScreenInput extends StatelessWidget {
           previous.wellScreenInput != current.wellScreenInput,
       builder: (context, state) {
         return MyTextInput(
-          label: 'ជម្រៅតម្រង (Screen) (m)',
+          label: S.of(context).well_screen,
           focusNode: context.read<WaterSupplyEditBloc>().wellScreenFocus,
           controller: context.read<WaterSupplyEditBloc>().wellScreenController,
           onChanged: (val) =>
@@ -2919,7 +2919,7 @@ class _WellThearInput extends StatelessWidget {
           previous.wellThearInput != current.wellThearInput,
       builder: (context, state) {
         return MyTextInput(
-          label: 'ធារទឹក (m3/h)',
+          label: S.of(context).well_water_supply,
           focusNode: context.read<WaterSupplyEditBloc>().wellThearFocus,
           controller: context.read<WaterSupplyEditBloc>().wellThearController,
           onChanged: (val) =>
@@ -2954,7 +2954,7 @@ class _WaterQualityInput extends StatelessWidget {
           previous.waterQualityInput != current.waterQualityInput,
       builder: (context, state) {
         return MyTextInput(
-          label: 'គុណភាពទឹក',
+          label: S.of(context).water_quality,
           focusNode: bloc.waterQualityFocus,
           controller: bloc.waterQualityController,
           onTap: () async {
@@ -2964,7 +2964,7 @@ class _WaterQualityInput extends StatelessWidget {
               transitionDuration: const Duration(milliseconds: 200),
               pageBuilder: (context, a1, a2) {
                 return MySimpleDialog(
-                  title: 'គុណភាពទឹក',
+                  title: S.of(context).water_quality,
                   content: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 24.0),
                     child: Column(
@@ -3022,7 +3022,7 @@ class _NiVoStaticInput extends StatelessWidget {
           previous.niVoStaticInput != current.niVoStaticInput,
       builder: (context, state) {
         return MyTextInput(
-          label: 'នីវ៉ូស្តាទិច (m)',
+          label: S.of(context).well_nirostatic,
           focusNode: context.read<WaterSupplyEditBloc>().niVoStaticFocus,
           controller: context.read<WaterSupplyEditBloc>().niVoStaticController,
           onChanged: (val) =>
@@ -3056,7 +3056,7 @@ class _NiVoDynamicInput extends StatelessWidget {
           previous.niVoDynamicInput != current.niVoDynamicInput,
       builder: (context, state) {
         return MyTextInput(
-          label: 'នីវ៉ូឌីណាមិច (m)',
+          label: S.of(context).well_nirodynamic,
           focusNode: context.read<WaterSupplyEditBloc>().niVoDynamicFocus,
           controller: context.read<WaterSupplyEditBloc>().niVoDynamicController,
           onChanged: (val) =>
@@ -3092,7 +3092,7 @@ class _CheckWaterQualityInput extends StatelessWidget {
           previous.checkWaterQualityInput != current.checkWaterQualityInput,
       builder: (context, state) {
         return MyTextInput(
-          label: 'ត្រួតពិនិត្យគុណភាពទឹក',
+          label: S.of(context).well_check_water_quality,
           focusNode: bloc.checkWaterQualityFocus,
           controller: bloc.checkWaterQualityController,
           onTap: () async {
@@ -3102,7 +3102,7 @@ class _CheckWaterQualityInput extends StatelessWidget {
               transitionDuration: const Duration(milliseconds: 200),
               pageBuilder: (context, a1, a2) {
                 return MySimpleDialog(
-                  title: 'ត្រួតពិនិត្យគុណភាពទឹក',
+                  title: S.of(context).well_check_water_quality,
                   content: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 24.0),
                     child: Column(
@@ -3163,7 +3163,7 @@ class _WellStatusInput extends StatelessWidget {
           previous.wellStatusInput != current.wellStatusInput,
       builder: (context, state) {
         return MyTextInput(
-          label: 'ស្ថានភាពអណ្តូង',
+          label: S.of(context).well_status,
           focusNode: bloc.wellStatusFocus,
           controller: bloc.wellStatusController,
           onTap: () async {
@@ -3172,7 +3172,7 @@ class _WellStatusInput extends StatelessWidget {
               transitionDuration: const Duration(milliseconds: 200),
               pageBuilder: (context, a1, a2) {
                 return MySimpleDialog(
-                  title: 'ស្ថានភាពអណ្តូង',
+                  title: S.of(context).well_status,
                   content: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 24.0),
                     child: Column(
@@ -3231,7 +3231,7 @@ class _QualityWaterCheckInput extends StatelessWidget {
           previous.qualityWaterCheckInput != current.qualityWaterCheckInput,
       builder: (context, state) {
         return MyTextInput(
-          label: 'ការត្រួតពិនិត្យគុណភាពទឹក',
+          label: S.of(context).well_check_water_quality,
           focusNode: bloc.qualityWaterCheckFocus,
           controller: bloc.qualityWaterCheckController,
           onTap: () async {
@@ -3241,7 +3241,7 @@ class _QualityWaterCheckInput extends StatelessWidget {
               transitionDuration: const Duration(milliseconds: 200),
               pageBuilder: (context, a1, a2) {
                 return MySimpleDialog(
-                  title: 'ការត្រួតពិនិត្យគុណភាពទឹក',
+                  title: S.of(context).well_check_water_quality,
                   content: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 24.0),
                     child: Column(

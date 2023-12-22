@@ -128,7 +128,7 @@ class _MyHistoryItem extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _InfoItem(
-            const CaptionWidget('លេខកូដសំណង់ :'),
+            CaptionWidget('${S.of(context).water_supply_code} :'),
             TextWidget(item.waterSupplyCode),
           ),
           _InfoItem(

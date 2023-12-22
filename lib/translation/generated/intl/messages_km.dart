@@ -84,12 +84,29 @@ class MessageLookup extends MessageLookupByLibrary {
         "app_load_config_failed": MessageLookupByLibrary.simpleMessage(
             "- សូមពិនិត្យថាឧបករណ៍របស់អ្នកមានអុីនធឺណិត\n- មានបញ្ហាបច្ចេកទេសដែលក្រុមការងារយើងខ្ញុំកំពុងរកដំណោះស្រាយ\n\nសូមអធ្យាស្រ័យនិងសូមព្យាយាមម្ដងទៀត។"),
         "appearance": MessageLookupByLibrary.simpleMessage("ទំរង់កម្មវិធី"),
+        "beneficiary_total_family":
+            MessageLookupByLibrary.simpleMessage("អ្នកទទួលផលគ្រួសារសរុប"),
+        "beneficiary_total_family_indigenous":
+            MessageLookupByLibrary.simpleMessage(
+                "អ្នកទទួលផលគ្រួសារជនជាតិដើមភាគតិច"),
+        "beneficiary_total_family_poor_1":
+            MessageLookupByLibrary.simpleMessage("អ្នកទទួលផលគ្រួសារក្រ១"),
+        "beneficiary_total_family_poor_2":
+            MessageLookupByLibrary.simpleMessage("អ្នកទទួលផលគ្រួសារក្រ២"),
+        "beneficiary_total_family_vulnerable":
+            MessageLookupByLibrary.simpleMessage(
+                "អ្នកទទួលផលគ្រួសារជនងាយរងគ្រោះ"),
+        "beneficiary_total_people":
+            MessageLookupByLibrary.simpleMessage("អ្នកទទួលផលសរុប"),
+        "beneficiary_total_women":
+            MessageLookupByLibrary.simpleMessage("អ្នកទទួលផលសរុបស្រី"),
         "biometric_enabled":
             MessageLookupByLibrary.simpleMessage("មុខងារស្កេនម្រាមដៃ/មុខ"),
         "biometric_enabled_desc": MessageLookupByLibrary.simpleMessage(
             "ដើម្បីចូលប្រើប្រាស់ និងធ្វើប្រតិបត្តិការមុខងារសំខាន់ៗ។"),
         "biometric_enabling":
             MessageLookupByLibrary.simpleMessage("បើកមុខងារស្កេនម្រាមដៃ/មុខ"),
+        "budget_source": MessageLookupByLibrary.simpleMessage("ប្រភពថវិកា"),
         "button_add": MessageLookupByLibrary.simpleMessage("បន្ថែម"),
         "button_cancel": MessageLookupByLibrary.simpleMessage("បោះបង់"),
         "button_choose_file":
@@ -100,6 +117,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "button_create": MessageLookupByLibrary.simpleMessage("បង្កើត"),
         "button_delete": MessageLookupByLibrary.simpleMessage("លុប"),
         "button_done": MessageLookupByLibrary.simpleMessage("រួចរាល់"),
+        "button_draft":
+            MessageLookupByLibrary.simpleMessage("រក្សាទុកសេចក្ដីព្រាង"),
         "button_edit": MessageLookupByLibrary.simpleMessage("កែប្រែ"),
         "button_enable": MessageLookupByLibrary.simpleMessage("បើកដំណើការ"),
         "button_leave": MessageLookupByLibrary.simpleMessage("ចាកចេញ"),
@@ -113,6 +132,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "button_save": MessageLookupByLibrary.simpleMessage("រក្សាទុក"),
         "button_settings": MessageLookupByLibrary.simpleMessage("ការកំណត់"),
         "button_submit": MessageLookupByLibrary.simpleMessage("យល់ព្រម"),
+        "button_submit_request":
+            MessageLookupByLibrary.simpleMessage("ដាក់ស្នើ"),
         "button_update":
             MessageLookupByLibrary.simpleMessage("ធ្វើបច្ចុប្បន្នភាព"),
         "button_upload_logo":
@@ -138,6 +159,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("បញ្ជាក់ពាក្យសម្ងាត់"),
         "confirm_password_mismatch":
             MessageLookupByLibrary.simpleMessage("ពាក្យសម្ងាត់មិនត្រូវគ្នា"),
+        "construction_by":
+            MessageLookupByLibrary.simpleMessage("សាងសង់ដោយក្រុមហ៊ុន"),
+        "construction_date":
+            MessageLookupByLibrary.simpleMessage("កាលបរិច្ឆេទសាងសង់"),
         "copied": MessageLookupByLibrary.simpleMessage("ចម្លង"),
         "copyright_": m0,
         "count_plural_day_": m1,
@@ -231,6 +256,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "login": MessageLookupByLibrary.simpleMessage("ចូលប្រើប្រាស់"),
         "logout": MessageLookupByLibrary.simpleMessage("ចាកចេញ"),
         "longitude": MessageLookupByLibrary.simpleMessage("រយៈទទឹង"),
+        "managed_by":
+            MessageLookupByLibrary.simpleMessage("ឈ្មោះអ្នកគ្រប់គ្រង"),
+        "management_type":
+            MessageLookupByLibrary.simpleMessage("ប្រភេទនៃការគ្រប់គ្រង"),
+        "map_unit": MessageLookupByLibrary.simpleMessage("ខ្នាតផែនទី"),
         "msg_allow_camera_permission": MessageLookupByLibrary.simpleMessage(
             "សូមអនុញ្ញាតមុខងារថតរូបនៅក្នុងការកំណត់កម្មវិធី។"),
         "msg_allow_location_permission": MessageLookupByLibrary.simpleMessage(
@@ -333,9 +363,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "province": MessageLookupByLibrary.simpleMessage("ខេត្ត/ក្រុង"),
         "real_time_date_format": MessageLookupByLibrary.simpleMessage(
             "ថ្ងៃEEEE dd MMMM yyyy | hh:mm:ss a"),
+        "reason": MessageLookupByLibrary.simpleMessage("ហេតុអ្វី"),
         "register_date": MessageLookupByLibrary.simpleMessage("ថ្ងៃចុះឈ្មោះ"),
         "report": MessageLookupByLibrary.simpleMessage("របាយការណ៍"),
         "request": MessageLookupByLibrary.simpleMessage("ការស្នើសុំរបស់ខ្ញុំ"),
+        "risk_enviroment":
+            MessageLookupByLibrary.simpleMessage("តំបន់ប្រឈមផ្នែកបរិស្ថាន"),
         "save_profile_failed":
             MessageLookupByLibrary.simpleMessage("ការរក្សាទុក បរាជ័យ"),
         "scan_to_authenticate": MessageLookupByLibrary.simpleMessage(
@@ -354,6 +387,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("អង្គផ្ទុកទិន្នន័យ"),
         "success": MessageLookupByLibrary.simpleMessage("ជោគជ័យ!"),
         "system": MessageLookupByLibrary.simpleMessage("ប្រព័ន្ធ"),
+        "tab_general": MessageLookupByLibrary.simpleMessage("ពត៌មានទូទៅ"),
+        "tab_specific": MessageLookupByLibrary.simpleMessage("ពត៌មានលម្អិត"),
         "terms_and_conditions": MessageLookupByLibrary.simpleMessage(
             "លក្ខខណ្ឌនៃការប្រើប្រាស់កម្មវិធី"),
         "testing_environment":
@@ -378,6 +413,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "title_settings": MessageLookupByLibrary.simpleMessage("ការកំណត់"),
         "title_version_update":
             MessageLookupByLibrary.simpleMessage("មានកំណែជំនាន់ថ្មី"),
+        "total_family": MessageLookupByLibrary.simpleMessage("គ្រួសារសរុប"),
         "under_maintenance":
             MessageLookupByLibrary.simpleMessage("ប្រព័ន្ធស្ថិតក្រោមការថែទាំ"),
         "under_maintenance_description": MessageLookupByLibrary.simpleMessage(
@@ -385,14 +421,31 @@ class MessageLookup extends MessageLookupByLibrary {
         "upload_image_failure":
             MessageLookupByLibrary.simpleMessage("រក្សាទុករូបភាពបរាជ័យ"),
         "user_name": MessageLookupByLibrary.simpleMessage("អ្នកប្រើប្រាស់"),
+        "utm_x": MessageLookupByLibrary.simpleMessage("កូអរដោនេ UTMX"),
+        "utm_y": MessageLookupByLibrary.simpleMessage("កូអរដោនេ UTMY"),
         "version": MessageLookupByLibrary.simpleMessage("ជំនាន់កម្មវិធី"),
+        "view_history": MessageLookupByLibrary.simpleMessage("លំហូរដំណើរការ"),
         "village": MessageLookupByLibrary.simpleMessage("ភូមិ"),
+        "water_quality": MessageLookupByLibrary.simpleMessage("គុណភាពទឹក"),
         "water_supply":
             MessageLookupByLibrary.simpleMessage("ប្រព័ន្ធផ្គត់ផ្គង់ទឹក"),
         "water_supply_code":
             MessageLookupByLibrary.simpleMessage("លេខកូដសំណង់"),
         "water_supply_type":
             MessageLookupByLibrary.simpleMessage("ប្រភេទផ្គត់ផ្គត់ទឹក"),
+        "well_check_water_quality":
+            MessageLookupByLibrary.simpleMessage("ត្រួតពិនិត្យគុណភាពទឹក"),
+        "well_depth": MessageLookupByLibrary.simpleMessage("ជម្រៅអណ្តូង(m)"),
+        "well_nirodynamic":
+            MessageLookupByLibrary.simpleMessage("នីវ៉ូឌីណាមិច (m)"),
+        "well_nirostatic":
+            MessageLookupByLibrary.simpleMessage("នីវ៉ូស្តាទិច (m)"),
+        "well_screen":
+            MessageLookupByLibrary.simpleMessage("ជម្រៅតម្រង (Screen) (m)"),
+        "well_status": MessageLookupByLibrary.simpleMessage("ស្ថានភាពអណ្តូង"),
+        "well_type": MessageLookupByLibrary.simpleMessage("ប្រភេទអណ្តូង"),
+        "well_water_supply":
+            MessageLookupByLibrary.simpleMessage("ធារទឹក (m3/h)"),
         "your_password_changed_successfuly":
             MessageLookupByLibrary.simpleMessage(
                 "ពាក្យសម្ងាត់របស់អ្នកត្រូវបានផ្លាស់ប្ដូររួចរាល់!"),

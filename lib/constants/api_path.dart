@@ -49,9 +49,9 @@ class ApiPath {
       '${AppConstant.mainURL}watersupply/?water_supply_type_id=$id&main_status=9';
   static String getWaterSupplyListByType(int id) =>
       '${AppConstant.mainURL}watersupplylist_v2?extra=water_supply_type_id,province_id,district_id,commune_id,village_id&water_supply_type_id=$id&province_id=';
-  static String getWaterSupplyFilterResultList(String provinceId,
+  static String getWaterSupplyFilterResultList(int id, String provinceId,
           String districtId, String communeId, String villageId) =>
-      '${AppConstant.mainURL}watersupplylist_v2?extra=water_supply_type_id,province_id,district_id,commune_id,village_id&water_supply_type_id=&province_id=$provinceId&district_id=$districtId&commune_id=$communeId&village_id=$villageId';
+      '${AppConstant.mainURL}watersupplylist_v2?extra=water_supply_type_id,province_id,district_id,commune_id,village_id&water_supply_type_id=$id&province_id=$provinceId&district_id=$districtId&commune_id=$communeId&village_id=$villageId';
   static String getWaterSupplyListAll =
       '${AppConstant.mainURL}watersupply/?water_supply_type_id=&main_status=9';
   static String getWaterSupplyMap = '${AppConstant.mainURL}watersupplymap/';

@@ -13,12 +13,13 @@ class FilterResultRepository extends RestApiService {
   }
 
   Future<List<WaterSupplyListByTypeModel>> getWaterSupplyFilterResultList(
+      int id,
       String provinceId,
       String districtId,
       String communeId,
       String villageId) async {
     final res = await get(ApiPath.getWaterSupplyFilterResultList(
-        provinceId, districtId, communeId, villageId));
+        id, provinceId, districtId, communeId, villageId));
     return res
         .map<WaterSupplyListByTypeModel>(
             (x) => WaterSupplyListByTypeModel.fromJson(x))

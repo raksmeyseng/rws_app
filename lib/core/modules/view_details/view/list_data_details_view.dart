@@ -4,6 +4,7 @@ import 'package:rws_app/core/modules/view_details/card/card_data_field.dart';
 import 'package:rws_app/core/modules/view_details/card/card_list_details.dart';
 import 'package:rws_app/core/modules/view_details/card/card_qr_detail.dart';
 import 'package:rws_app/core/modules/view_details/card/card_water_quality.dart';
+import 'package:rws_app/translation/generated/l10n.dart';
 
 import '../../../enum/base_status_enum.dart';
 import '../bloc/list_data_details_bloc.dart';
@@ -31,7 +32,7 @@ class ListDataDetailsView extends StatelessWidget {
               length: length,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children:const [
+                children: const [
                   _TabBar(),
                   Expanded(child: _TabBarView()),
                 ],
@@ -61,19 +62,19 @@ class _TabBar extends StatelessWidget {
         if (state.waterSupply!.isWaterQualityCheck) {
           return TabBar(
             indicatorColor: Theme.of(context).primaryColor,
-            tabs: const [
+            tabs: [
               Padding(
-                padding: EdgeInsets.symmetric(vertical: 4.0),
-                child: Tab(text: 'ពត៌មានទូទៅ'),
+                padding: const EdgeInsets.symmetric(vertical: 4.0),
+                child: Tab(text: S.of(context).tab_general),
               ),
               Padding(
-                padding: EdgeInsets.symmetric(vertical: 4.0),
-                child: Tab(text: 'ពត៌មានលម្អិត'),
+                padding: const EdgeInsets.symmetric(vertical: 4.0),
+                child: Tab(text: S.of(context).tab_specific),
               ),
-              Padding(
+              const Padding(
                   padding: EdgeInsets.symmetric(vertical: 4.0),
-                  child: Tab(text: 'ប៉ារ៉ាម៉ែត្រ')),
-              Padding(
+                  child: Tab(text: 'Paramater')),
+              const Padding(
                 padding: EdgeInsets.symmetric(vertical: 4.0),
                 child: Tab(text: 'QR Code'),
               )
@@ -82,16 +83,16 @@ class _TabBar extends StatelessWidget {
         } else {
           return TabBar(
             indicatorColor: Theme.of(context).primaryColor,
-            tabs: const [
+            tabs: [
               Padding(
-                padding: EdgeInsets.symmetric(vertical: 4.0),
-                child: Tab(text: 'ពត៌មានទូទៅ'),
+                padding: const EdgeInsets.symmetric(vertical: 4.0),
+                child: Tab(text: S.of(context).tab_general),
               ),
               Padding(
-                padding: EdgeInsets.symmetric(vertical: 4.0),
-                child: Tab(text: 'ពត៌មានលម្អិត'),
+                padding: const EdgeInsets.symmetric(vertical: 4.0),
+                child: Tab(text: S.of(context).tab_specific),
               ),
-              Padding(
+              const Padding(
                 padding: EdgeInsets.symmetric(vertical: 4.0),
                 child: Tab(text: 'QR Code'),
               )

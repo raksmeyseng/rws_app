@@ -138,7 +138,7 @@ class _MyDraftItem extends StatelessWidget {
           //   TextWidget(item.createdDate.toString()),
           // ),
           _InfoItem(
-            const CaptionWidget('លេខកូដសំណង់ :'),
+            CaptionWidget('${S.of(context).water_supply_code} :'),
             TextWidget(item.waterSupplyCode),
           ),
           _InfoItem(
@@ -173,14 +173,12 @@ class _MyDraftItem extends StatelessWidget {
           _InfoItem(
             CaptionWidget('${S.of(context).status} :'),
             TextWidget(item.status.statusNameKh.toString(),
-            color: AppColor.warning
-            ),
+                color: AppColor.warning),
           ),
         ],
       ),
     );
   }
-
 }
 
 class _InfoItem extends StatelessWidget {

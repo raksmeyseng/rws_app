@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rws_app/core/modules/app/view/about_page.dart';
+import 'package:rws_app/core/modules/app/view/language_page.dart';
 import 'package:rws_app/core/modules/change_password/view/change_password_page.dart';
 import 'package:rws_app/core/modules/dashboard/view/dashboard_page.dart';
 import 'package:rws_app/core/modules/edit_profile/view/edit_profile_page.dart';
@@ -58,6 +59,7 @@ Page aboutBuilder(BuildContext context, GoRouterState state) {
     key: state.pageKey,
     child: const AboutPage(),
     //child: const ReportPage(),
+    //child: const LanguagePage(),
   );
 }
 
@@ -66,6 +68,13 @@ Page reportBuilder(BuildContext context, GoRouterState state) {
       key: state.pageKey,
       //child: const ReportView(),
       child: const ReportPage());
+}
+
+Page languageBuilder(BuildContext context, GoRouterState state) {
+  return MaterialPage<void>(
+      key: state.pageKey,
+      //child: const ReportView(),
+      child: const LanguagePage());
 }
 
 Page loginBuilder(BuildContext context, GoRouterState state) {
