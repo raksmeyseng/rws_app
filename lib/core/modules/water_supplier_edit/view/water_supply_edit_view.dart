@@ -3295,7 +3295,7 @@ class _UsingTypeInput extends StatelessWidget {
           previous.usingTypeInput != current.usingTypeInput,
       builder: (context, state) {
         return MyTextInput(
-          label: 'ប្រភេទនៃការប្រើប្រាស់',
+          label: S.of(context).type_of_using,
           focusNode: bloc.usingTypeFocus,
           controller: bloc.usingTypeController,
           onTap: () async {
@@ -3362,7 +3362,7 @@ class _TankStatusInput extends StatelessWidget {
           previous.tankStatusInput != current.tankStatusInput,
       builder: (context, state) {
         return MyTextInput(
-          label: 'ស្ថានភាពអាង',
+          label: S.of(context).status_rain_water_harvesting,
           focusNode: bloc.tankStatusFocus,
           controller: bloc.tankStatusController,
           onTap: () async {
@@ -3371,7 +3371,7 @@ class _TankStatusInput extends StatelessWidget {
               transitionDuration: const Duration(milliseconds: 200),
               pageBuilder: (context, a1, a2) {
                 return MySimpleDialog(
-                  title: 'ស្ថានភាពអាង',
+                  title: S.of(context).status_rain_water_harvesting,
                   content: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 24.0),
                     child: Column(
@@ -3429,7 +3429,7 @@ class _CapacityTypeInput extends StatelessWidget {
           previous.capacityTypeInput != current.capacityTypeInput,
       builder: (context, state) {
         return MyTextInput(
-          label: 'ចំណុះ',
+          label: S.of(context).capacity_of_rain_water_harvesting,
           focusNode: bloc.capacityTypeFocus,
           controller: bloc.capacityTypeController,
           onTap: () async {
@@ -3439,7 +3439,7 @@ class _CapacityTypeInput extends StatelessWidget {
               transitionDuration: const Duration(milliseconds: 200),
               pageBuilder: (context, a1, a2) {
                 return MySimpleDialog(
-                  title: 'ចំណុះ',
+                  title: S.of(context).capacity_of_rain_water_harvesting,
                   content: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 24.0),
                     child: Column(
@@ -3497,7 +3497,7 @@ class _SupplierInput extends StatelessWidget {
           previous.supplierInput != current.supplierInput,
       builder: (context, state) {
         return MyTextInput(
-          label: 'អាជ្ញាបណ្ណ',
+          label: S.of(context).label_is_has_license,
           focusNode: bloc.supplierFocus,
           controller: bloc.supplierController,
           onTap: () async {
@@ -3506,7 +3506,7 @@ class _SupplierInput extends StatelessWidget {
               transitionDuration: const Duration(milliseconds: 200),
               pageBuilder: (context, a1, a2) {
                 return MySimpleDialog(
-                  title: 'អាជ្ញាបណ្ណ',
+                  title: S.of(context).label_is_has_license,
                   content: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 24.0),
                     child: Column(
@@ -3568,7 +3568,7 @@ class _SupplierDateInput extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             MyTextInput(
-              label: 'ថ្ងៃ ខែ ឆ្នាំទទួលបានអាជ្ញាបណ្ណ',
+              label: S.of(context).label_license_registered_date,
               controller:
                   context.read<WaterSupplyEditBloc>().supplierDateController,
               onTap: () async {
@@ -3628,7 +3628,7 @@ class _DueDateInput extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             MyTextInput(
-              label: 'ថ្ងៃ ខែ ឆ្នាំផុតកំណត់អាជ្ញាបណ្ណ',
+              label: S.of(context).label_license_expired_date,
               controller: context.read<WaterSupplyEditBloc>().dueDateController,
               onTap: () async {
                 final date = await _pickDate(context);
@@ -3683,7 +3683,7 @@ class _FilterInput extends StatelessWidget {
           previous.filterInput != current.filterInput,
       builder: (context, state) {
         return MyTextInput(
-          label: 'ប្រព័ន្ធចម្រោះទឹក',
+          label: S.of(context).pool_filter,
           focusNode: bloc.filterFocus,
           controller: bloc.filterController,
           onTap: () async {
@@ -3692,7 +3692,7 @@ class _FilterInput extends StatelessWidget {
               transitionDuration: const Duration(milliseconds: 200),
               pageBuilder: (context, a1, a2) {
                 return MySimpleDialog(
-                  title: 'ប្រព័ន្ធចម្រោះទឹក',
+                  title: S.of(context).pool_filter,
                   content: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 24.0),
                     child: Column(
@@ -3750,7 +3750,7 @@ class _AirStationInput extends StatelessWidget {
           previous.airStationInput != current.airStationInput,
       builder: (context, state) {
         return MyTextInput(
-          label: 'ស្ថានភាពស្ថានីយ',
+          label: S.of(context).status_pipe,
           focusNode: bloc.airStationFocus,
           controller: bloc.airStationController,
           onTap: () async {
@@ -3759,7 +3759,7 @@ class _AirStationInput extends StatelessWidget {
               transitionDuration: const Duration(milliseconds: 200),
               pageBuilder: (context, a1, a2) {
                 return MySimpleDialog(
-                  title: 'ស្ថានភាពស្ថានីយ',
+                  title: S.of(context).status_pipe,
                   content: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 24.0),
                     child: Column(

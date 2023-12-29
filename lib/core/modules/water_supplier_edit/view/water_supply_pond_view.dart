@@ -10,7 +10,7 @@ class _PondLatInput extends StatelessWidget {
           previous.pondLatInput != current.pondLatInput,
       builder: (context, state) {
         return MyTextInput(
-          label: 'ទទឹងស្រះ (ម៉ែត្រ)',
+          label: S.of(context).width,
           focusNode: context.read<WaterSupplyEditBloc>().pondLatFocus,
           controller: context.read<WaterSupplyEditBloc>().pondLatController,
           onChanged: (val) =>
@@ -44,7 +44,7 @@ class _PondLongInput extends StatelessWidget {
           previous.pondLongInput != current.pondLongInput,
       builder: (context, state) {
         return MyTextInput(
-          label: 'បណ្តោយស្រះ (ម៉ែត្រ)',
+          label: S.of(context).length,
           focusNode: context.read<WaterSupplyEditBloc>().pondLongFocus,
           controller: context.read<WaterSupplyEditBloc>().pondLongController,
           onChanged: (val) =>
@@ -78,7 +78,7 @@ class _PondDepthInput extends StatelessWidget {
           previous.pondDepthInput != current.pondDepthInput,
       builder: (context, state) {
         return MyTextInput(
-          label: 'ជម្រៅស្រះ (ម៉ែត្រ)',
+          label: S.of(context).height,
           focusNode: context.read<WaterSupplyEditBloc>().pondDepthFocus,
           controller: context.read<WaterSupplyEditBloc>().pondDepthController,
           onChanged: (val) =>
@@ -113,17 +113,17 @@ class _PondFilterInput extends StatelessWidget {
           previous.pondFilterInput != current.pondFilterInput,
       builder: (context, state) {
         return MyTextInput(
-          label: 'អាងចម្រោះ',
+          label: S.of(context).pool_filter,
           focusNode: bloc.pondFilterFocus,
           controller: bloc.pondFilterController,
           onTap: () async {
             final type = await DialogHelper.showAnimatedDialog<PondFilterEnum?>(
-            //  final type = await DialogHelper.showAnimatedDialog<FilterEnum?>(
+              //  final type = await DialogHelper.showAnimatedDialog<FilterEnum?>(
               animationType: DialogAnimationType.none,
               transitionDuration: const Duration(milliseconds: 200),
               pageBuilder: (context, a1, a2) {
                 return MySimpleDialog(
-                  title: 'អាងចម្រោះ',
+                  title: S.of(context).pool_filter,
                   content: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 24.0),
                     child: Column(
@@ -132,8 +132,7 @@ class _PondFilterInput extends StatelessWidget {
                         ...PondFilterEnum.values.map(
                           (status) => ListTile(
                             onTap: () {
-                              Navigator.of(context)
-                                  .pop(status);
+                              Navigator.of(context).pop(status);
                             },
                             contentPadding: const EdgeInsets.symmetric(
                               horizontal: 24.0,
@@ -183,16 +182,17 @@ class _PondTypeInput extends StatelessWidget {
           previous.pondTypeInput != current.pondTypeInput,
       builder: (context, state) {
         return MyTextInput(
-          label: 'ប្រភេទស្រះ',
+          label: S.of(context).type_of_pond,
           focusNode: bloc.pondTypeFocus,
           controller: bloc.pondTypeController,
           onTap: () async {
-            final pondType = await DialogHelper.showAnimatedDialog<PondTypeEnum?>(
+            final pondType =
+                await DialogHelper.showAnimatedDialog<PondTypeEnum?>(
               animationType: DialogAnimationType.none,
               transitionDuration: const Duration(milliseconds: 200),
               pageBuilder: (context, a1, a2) {
                 return MySimpleDialog(
-                  title: 'ប្រភេទស្រះ',
+                  title: S.of(context).type_of_pond,
                   content: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 24.0),
                     child: Column(
@@ -201,8 +201,7 @@ class _PondTypeInput extends StatelessWidget {
                         ...PondTypeEnum.values.map(
                           (pondType) => ListTile(
                             onTap: () {
-                              Navigator.of(context)
-                                  .pop(pondType);
+                              Navigator.of(context).pop(pondType);
                             },
                             contentPadding: const EdgeInsets.symmetric(
                               horizontal: 24.0,
@@ -251,16 +250,17 @@ class _SeasonInput extends StatelessWidget {
           previous.seasonInput != current.seasonInput,
       builder: (context, state) {
         return MyTextInput(
-          label: 'រដូវប្រាំង',
+          label: S.of(context).is_summer_has_water,
           focusNode: bloc.seasonFocus,
           controller: bloc.seasonController,
           onTap: () async {
-            final seasonHasWater = await DialogHelper.showAnimatedDialog<SeasonEnum?>(
+            final seasonHasWater =
+                await DialogHelper.showAnimatedDialog<SeasonEnum?>(
               animationType: DialogAnimationType.none,
               transitionDuration: const Duration(milliseconds: 200),
               pageBuilder: (context, a1, a2) {
                 return MySimpleDialog(
-                  title: 'រដូវប្រាំង',
+                  title: S.of(context).is_summer_has_water,
                   content: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 24.0),
                     child: Column(
@@ -318,16 +318,17 @@ class _PondStatusInput extends StatelessWidget {
           previous.pondStatusInput != current.pondStatusInput,
       builder: (context, state) {
         return MyTextInput(
-          label: 'ស្ថានភាពស្រះ',
+          label: S.of(context).status_pipe,
           focusNode: bloc.pondStatusFocus,
           controller: bloc.pondStatusController,
           onTap: () async {
-            final pondType = await DialogHelper.showAnimatedDialog<PondStatusEnum?>(
+            final pondType =
+                await DialogHelper.showAnimatedDialog<PondStatusEnum?>(
               animationType: DialogAnimationType.none,
               transitionDuration: const Duration(milliseconds: 200),
               pageBuilder: (context, a1, a2) {
                 return MySimpleDialog(
-                  title: 'ស្ថានភាពស្រះ',
+                  title: S.of(context).status_pipe,
                   content: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 24.0),
                     child: Column(
@@ -336,8 +337,7 @@ class _PondStatusInput extends StatelessWidget {
                         ...PondStatusEnum.values.map(
                           (pondType) => ListTile(
                             onTap: () {
-                              Navigator.of(context)
-                                  .pop(pondType);
+                              Navigator.of(context).pop(pondType);
                             },
                             contentPadding: const EdgeInsets.symmetric(
                               horizontal: 24.0,

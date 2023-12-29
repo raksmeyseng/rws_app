@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:rws_app/config/themes/app_color.dart';
 import 'package:rws_app/core/modules/dashboard/bloc/dashboard_bloc.dart';
 import 'package:rws_app/core/modules/dashboard/enum/main_menu_enum.dart';
-import 'package:rws_app/core/modules/filter/view/filter_page.dart';
+//import 'package:rws_app/core/modules/filter/view/filter_page.dart';
 import 'package:rws_app/core/modules/login/widgets/app_logo.dart';
 import 'package:rws_app/core/modules/map/view/maps_page.dart';
 import 'package:rws_app/core/modules/my_task/view/my_task_page.dart';
@@ -237,14 +237,14 @@ class _AppLogo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Padding(
-      padding: const EdgeInsets.all(24.0),
+      padding: EdgeInsets.all(24.0),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const AppLogo(size: 40),
-          const SizedBox(width: 16.0),
-          const Column(
+          AppLogo(size: 40),
+          SizedBox(width: 16.0),
+          Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               TextWidget(

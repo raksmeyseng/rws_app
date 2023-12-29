@@ -250,5 +250,34 @@
   "well_nirodynamic":"នីវ៉ូឌីណាមិច (m)",
   "well_check_water_quality":"ត្រួតពិនិត្យគុណភាពទឹក",
   "well_status":"ស្ថានភាពអណ្តូង",
-  "reason":"ហេតុអ្វី"
+  "reason":"ហេតុអ្វី",
+
+  "source_type_of_water":"ប្រភេទប្រភពទឹក",
+  "abilty_of_produce_water":"សមត្ថភាពផលិតទឹក(m3/h)",
+  "underground_pool_storage": "អាងស្តុកទឹកក្រោមដី(m3)",
+  "pool_air":"អាងអាកាស(m3)",
+  "pool_filter": "អាងចម្រោះ *",
+  "number_of_link":"ចំនួនតំណដែលបានត",
+  "pipe_length": "ប្រវែងបណ្ដាញទុយោ​មេ (m)",
+  "area_covering":"ភូមិ/ឃុំគ្របដណ្ដប់",
+  "water_quality_check":"ការត្រួតពិនិត្យគុណភាពទឹក *",
+  "status_pipe": "ស្ថានភាពបណ្ដាញទឹក *",
+
+  "label_is_has_license":"អាជ្ញាប័ណ្ណ",
+  "label_license_registered_date":"ថ្ងៃ ខែ ឆ្នាំទទួលបានអាជ្ញាប័ណ្ណ",
+  "label_license_expired_date":"ថ្ងៃ ខែ ឆ្នាំផុតកំណត់អាជ្ញាប័ណ្ណ",
+  "status_water_kiosk":"ស្ថានភាពស្ថានីយ",
+  "width":"ទទឹងស្រះ(ម៉ែត្រ)",
+  "length":"បណ្ដោយស្រះ(ម៉ែត្រ)",
+  "height":"ជម្រៅស្រះ(ម៉ែត្រ)",
+  "type_of_pond":"ប្រភេទស្រះ",
+  "is_summer_has_water":"រដូវប្រាំង",
+  "type_of_using":"ប្រភេទនៃការប្រើប្រាស់",
+  "capacity_of_rain_water_harvesting":"ចំណុះ",
+  "status_rain_water_harvesting":"ស្ថានភាពអាង",
+  
+  "have":"មាន",
+  "nohave":"មិនមាន"
+  
+
 }

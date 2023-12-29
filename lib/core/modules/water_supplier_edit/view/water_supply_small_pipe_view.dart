@@ -11,7 +11,7 @@ class _WaterSupplyTypeInput extends StatelessWidget {
           previous.waterSupplyTypeInput != current.waterSupplyTypeInput,
       builder: (context, state) {
         return MyTextInput(
-          label: 'ប្រភេទប្រភពទឹក',
+          label: S.of(context).source_type_of_water,
           focusNode: bloc.waterSupplyTypeFocus,
           controller: bloc.waterSupplyTypeController,
           onTap: () async {
@@ -21,7 +21,7 @@ class _WaterSupplyTypeInput extends StatelessWidget {
               transitionDuration: const Duration(milliseconds: 200),
               pageBuilder: (context, a1, a2) {
                 return MySimpleDialog(
-                  title: 'ប្រភេទប្រភពទឹក',
+                  title: S.of(context).source_type_of_water,
                   content: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 24.0),
                     child: Column(
@@ -79,7 +79,7 @@ class _ContainerInput extends StatelessWidget {
           previous.containerInput != current.containerInput,
       builder: (context, state) {
         return MyTextInput(
-          label: 'អាងស្តុបទឹកក្រោមដី(m3)',
+          label: S.of(context).underground_pool_storage,
           focusNode: context.read<WaterSupplyEditBloc>().containerFocus,
           controller: context.read<WaterSupplyEditBloc>().containerController,
           onChanged: (val) =>
@@ -113,7 +113,7 @@ class _CapacityInput extends StatelessWidget {
           previous.capacityInput != current.capacityInput,
       builder: (context, state) {
         return MyTextInput(
-          label: 'សមត្ថភាពផលិតទឹក(m3/h)',
+          label: S.of(context).abilty_of_produce_water,
           focusNode: context.read<WaterSupplyEditBloc>().capacityFocus,
           controller: context.read<WaterSupplyEditBloc>().capacityController,
           onChanged: (val) =>
@@ -147,7 +147,7 @@ class _AirPoolInput extends StatelessWidget {
           previous.airPoolInput != current.airPoolInput,
       builder: (context, state) {
         return MyTextInput(
-          label: 'អាងអាកាស (m)',
+          label: S.of(context).pool_air,
           focusNode: context.read<WaterSupplyEditBloc>().ariPoolFocus,
           controller: context.read<WaterSupplyEditBloc>().ariPoolController,
           onChanged: (val) =>
@@ -182,7 +182,7 @@ class _FilterTankInput extends StatelessWidget {
           previous.filterTankInput != current.filterTankInput,
       builder: (context, state) {
         return MyTextInput(
-          label: 'អាងចម្រោះ',
+          label: S.of(context).pool_filter,
           focusNode: bloc.filterTankFocus,
           controller: bloc.filterTankController,
           onTap: () async {
@@ -191,7 +191,7 @@ class _FilterTankInput extends StatelessWidget {
               transitionDuration: const Duration(milliseconds: 200),
               pageBuilder: (context, a1, a2) {
                 return MySimpleDialog(
-                  title: 'អាងចម្រោះ',
+                  title: S.of(context).pool_filter,
                   content: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 24.0),
                     child: Column(
@@ -200,8 +200,7 @@ class _FilterTankInput extends StatelessWidget {
                         ...FilterEnum.values.map(
                           (status) => ListTile(
                             onTap: () {
-                              Navigator.of(context)
-                                  .pop(status);
+                              Navigator.of(context).pop(status);
                             },
                             contentPadding: const EdgeInsets.symmetric(
                               horizontal: 24.0,
@@ -250,7 +249,7 @@ class _ConnectorInput extends StatelessWidget {
           previous.connectorInput != current.connectorInput,
       builder: (context, state) {
         return MyTextInput(
-          label: 'ចំនួនតំណដែលបានត',
+          label: S.of(context).number_of_link,
           focusNode: context.read<WaterSupplyEditBloc>().connectorFocus,
           controller: context.read<WaterSupplyEditBloc>().connectorController,
           onChanged: (val) =>
@@ -284,7 +283,7 @@ class _PipeLenghtInput extends StatelessWidget {
           previous.pipeLenghtInput != current.pipeLenghtInput,
       builder: (context, state) {
         return MyTextInput(
-          label: 'ប្រវែងបណ្តោយទុយោមេ (m)',
+          label: S.of(context).pipe_length,
           focusNode: context.read<WaterSupplyEditBloc>().pipeLenghtFocus,
           controller: context.read<WaterSupplyEditBloc>().pipeLenghtController,
           onChanged: (val) =>
@@ -318,7 +317,7 @@ class _CoverageInput extends StatelessWidget {
           previous.coverageInput != current.coverageInput,
       builder: (context, state) {
         return MyTextInput(
-          label: 'ភូមិ/ឃុំគ្របដណ្តប់',
+          label: S.of(context).area_covering,
           focusNode: context.read<WaterSupplyEditBloc>().coverageFocus,
           controller: context.read<WaterSupplyEditBloc>().coverageController,
           onChanged: (val) =>
@@ -352,7 +351,7 @@ class _PipeStatusInput extends StatelessWidget {
           previous.pipeStatusInput != current.pipeStatusInput,
       builder: (context, state) {
         return MyTextInput(
-          label: 'ស្ថានភាពបណ្តាញទឹក',
+          label: S.of(context).status_pipe,
           focusNode: bloc.pipeStatusFocus,
           controller: bloc.pipeStatusController,
           onTap: () async {
@@ -361,7 +360,7 @@ class _PipeStatusInput extends StatelessWidget {
               transitionDuration: const Duration(milliseconds: 200),
               pageBuilder: (context, a1, a2) {
                 return MySimpleDialog(
-                  title: 'ស្ថានភាពបណ្តាញទឹក',
+                  title: S.of(context).status_pipe,
                   content: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 24.0),
                     child: Column(

@@ -65,7 +65,7 @@ Map<String, dynamic> _$WaterSupplyWellModelToJson(
 WaterSupplyOptionModel _$WaterSupplyOptionModelFromJson(
         Map<String, dynamic> json) =>
     WaterSupplyOptionModel(
-      id: json['id'] as int,
+      id: json['id'] == null ? 0 : json['id'] as int,
       waterSupplyWellId: json['water_supply_well_id'] as int,
       optionId: json['option_id'] as int,
       valueId: json['value_id'] as int,

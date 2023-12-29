@@ -23,7 +23,7 @@ class WaterSupplyModel {
   WaterSupplyModel({
     required this.id,
     //required this.createdBy,
-    required this.createdDate,
+    this.createdDate,
     required this.waterSupplyType,
     required this.address,
     required this.district,
@@ -64,7 +64,7 @@ class WaterSupplyModel {
     this.watersupplykiosks,
     this.waterSupplyPipe,
     // this.waterSupplyKiosk,
-     this.waterSupplyCommunityPond,
+    this.waterSupplyCommunityPond,
     this.waterSupplyRainWaterHarvesting,
     // this.waterSupplyPipePrivate,
     this.waterSupplyAirWater,
@@ -94,8 +94,8 @@ class WaterSupplyModel {
   // @JsonKey(name: 'created_by')
   // String createdBy;
   @JsonKey(name: 'created_date')
-  DateTime createdDate;
-  @JsonKey(name:'water_supply_type_id')
+  DateTime? createdDate;
+  @JsonKey(name: 'water_supply_type_id')
   int waterSupplyTypeId;
   @JsonKey(name: 'water_supply_type')
   String waterSupplyType;
@@ -107,86 +107,86 @@ class WaterSupplyModel {
   CommuneModel commune;
   @JsonKey(name: 'village_id')
   VillageModel? village;
-  @JsonKey(name : 'main_status')
+  @JsonKey(name: 'main_status')
   StatusModel status;
-  @JsonKey(name : 'water_supply_code')
+  @JsonKey(name: 'water_supply_code')
   String waterSupplyCode;
-  @JsonKey(name:'created_by')
+  @JsonKey(name: 'created_by')
   UserModel user;
 
-  @JsonKey(name:'map_unit')
+  @JsonKey(name: 'map_unit')
   int mapUnitId;
-  @JsonKey(name:'decimal_degress_lat')
-  String decimalDegreeLat; 
-  @JsonKey(name:'decimal_degress_lng')
+  @JsonKey(name: 'decimal_degress_lat')
+  String decimalDegreeLat;
+  @JsonKey(name: 'decimal_degress_lng')
   String decimalDegreeLng;
-  @JsonKey(name:'utm_x')
+  @JsonKey(name: 'utm_x')
   String utmX;
-  @JsonKey(name:'utm_y')
+  @JsonKey(name: 'utm_y')
   String utmY;
-  @JsonKey(name:'mds_x_degress')
+  @JsonKey(name: 'mds_x_degress')
   String mdsXDegree;
   @JsonKey(name: 'mds_x_minute')
   String mdsXMinute;
-  @JsonKey(name:'mds_x_second')
+  @JsonKey(name: 'mds_x_second')
   String mdsXSecond;
-  @JsonKey(name:'mds_y_degree')
+  @JsonKey(name: 'mds_y_degree')
   String mdsYDegree;
-  @JsonKey(name:'mds_y_minute')
+  @JsonKey(name: 'mds_y_minute')
   String mdsYMinute;
-  @JsonKey(name:'mds_y_second')
+  @JsonKey(name: 'mds_y_second')
   String mdsYSecond;
 
   @JsonKey(name: 'total_family')
   int totalFamily;
-  @JsonKey(name:'is_risk_enviroment_area')
+  @JsonKey(name: 'is_risk_enviroment_area')
   bool isRiskEnviromentArea;
-  @JsonKey(name:'construction_date')
+  @JsonKey(name: 'construction_date')
   String constructionDate;
-  @JsonKey(name:'source_budget')
+  @JsonKey(name: 'source_budget')
   int sourceBudget;
-  @JsonKey(name:'constructed_by')
+  @JsonKey(name: 'constructed_by')
   String constructedBy;
-  @JsonKey(name:'management_type')
+  @JsonKey(name: 'management_type')
   int managementType;
-  @JsonKey(name:'managed_by')
+  @JsonKey(name: 'managed_by')
   String managedBy;
   @JsonKey(name: 'beneficiary_total_people')
   int beneficiaryTotalPeople;
-   @JsonKey(name: 'beneficiary_total_women')
+  @JsonKey(name: 'beneficiary_total_women')
   int beneficiaryTotalWoman;
-   @JsonKey(name: 'beneficiary_total_family')
+  @JsonKey(name: 'beneficiary_total_family')
   int beneficiaryTotalFamily;
-   @JsonKey(name: 'beneficiary_total_family_poor_1')
+  @JsonKey(name: 'beneficiary_total_family_poor_1')
   int beneficiaryTotalFamilyPoor1;
-   @JsonKey(name: 'beneficiary_total_family_poor_2')
+  @JsonKey(name: 'beneficiary_total_family_poor_2')
   int beneficiaryTotalFamilyPoor2;
-   @JsonKey(name: 'beneficiary_total_family_vulnerable')
+  @JsonKey(name: 'beneficiary_total_family_vulnerable')
   int beneficiaryTotalFamilyVulnearable;
-   @JsonKey(name: 'beneficiary_total_family_indigenous')
+  @JsonKey(name: 'beneficiary_total_family_indigenous')
   int beneficiaryTotalFamilyIndigenous;
-  @JsonKey(name:'is_water_quality_check')
+  @JsonKey(name: 'is_water_quality_check')
   bool isWaterQualityCheck;
   // @JsonKey(name:'watersupplyworkflow_watersupply')
   // List<MyApprovalHistoryModel> workflow;
-  @JsonKey(name:'watersupplyworkflow_watersupply')
+  @JsonKey(name: 'watersupplyworkflow_watersupply')
   List<WaterSupplyWorkFlowModel>? workflows;
-  @JsonKey(name:'watersupplyqrcode_watersupply')
+  @JsonKey(name: 'watersupplyqrcode_watersupply')
   List<WaterSupplyQRCodeModel>? qrcode;
 
-  @JsonKey(name:'watersupplywell_watersupply')
+  @JsonKey(name: 'watersupplywell_watersupply')
   List<WaterSupplyWellModel>? waterSupplyWells;
-  @JsonKey(name:'watersupplypipe_watersupply')
+  @JsonKey(name: 'watersupplypipe_watersupply')
   List<WaterSupplySmallPipeModel>? waterSupplyPipes;
-  @JsonKey(name:'watersupplyKiosk_watersupply')
+  @JsonKey(name: 'watersupplyKiosk_watersupply')
   List<WaterSupplyKioskModel>? watersupplykiosks;
-  @JsonKey(name:'watersupplyCommunityPond_watersupply')
+  @JsonKey(name: 'watersupplyCommunityPond_watersupply')
   List<WaterSupplyPondModel>? waterSupplyCommunityPond;
-  @JsonKey(name:'watersupplyRainWaterHarvesting_watersupply')
+  @JsonKey(name: 'watersupplyRainWaterHarvesting_watersupply')
   List<WaterSupplyRainModel>? waterSupplyRainWaterHarvesting;
-  @JsonKey(name:'watersupplypipeprivate_watersupply')
+  @JsonKey(name: 'watersupplypipeprivate_watersupply')
   List<WaterSupplyPipeModel>? waterSupplyPipe;
-  @JsonKey(name:'watersupplyairwater_watersupply')
+  @JsonKey(name: 'watersupplyairwater_watersupply')
   List<WaterSupplyAirModel>? waterSupplyAirWater;
   // @JsonKey(name:'watersupplyKiosk_watersupply')
   // List<WaterSupplyWellModel>? waterSupplyKiosk;
@@ -231,7 +231,6 @@ class WaterSupplyModel {
   List<WaterSupplyWaterQualityParameterModel>? wqcParam15;
   @JsonKey(name: 'wqc_param16_obj')
   List<WaterSupplyWaterQualityParameterModel>? wqcParam16;
-
 
   factory WaterSupplyModel.fromJson(Map<String, dynamic> json) =>
       _$WaterSupplyModelFromJson(json);

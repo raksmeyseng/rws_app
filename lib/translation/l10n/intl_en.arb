@@ -248,5 +248,29 @@
   "well_nirodynamic":"Niro Dynamic (m)",
   "well_check_water_quality":"Water Quality Check",
   "well_status":"Status",
-  "reason":"Reason"
+  "reason":"Reason",
+
+  "source_type_of_water":"Type of water source",
+  "abilty_of_produce_water":"Water production capacity (m3/h)",
+  "underground_pool_storage": "Groundwater tank (m3)",
+  "pool_air":"Air tank (m3)",
+  "pool_filter": "Filter tank *",
+  "number_of_link":"Number of links",
+  "pipe_length": "Main pipe length (m)",
+  "area_covering":"Cover village/commune",
+  "water_quality_check":"Water quality check *",
+  "status_pipe": "Water network status *",
+
+  "label_is_has_license":"License",
+  "label_license_registered_date":"Issue license date",
+  "label_license_expired_date":"Expiration license date",
+  "status_water_kiosk":"Water network status",
+  "width":"Pond width",
+  "length":"Pond length",
+  "height":"Pond depth",
+  "type_of_pond":"Pond Type",
+  "is_summer_has_water":"Dry season",
+  "type_of_using":"Type of Use",
+  "capacity_of_rain_water_harvesting":"Capacity",
+  "status_rain_water_harvesting":"Terminal status"
 }

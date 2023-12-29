@@ -10,11 +10,12 @@ class _AbilityProductWaterInput extends StatelessWidget {
           previous.abilityProduceWaterInput != current.abilityProduceWaterInput,
       builder: (context, state) {
         return MyTextInput(
-          label: 'សមត្ថភាពផលិតទឹក(ចំនួនប៊ីដុង/មួយថ្ងៃ)',
+          label: S.of(context).abilty_of_produce_water,
           focusNode: context.read<WaterSupplyEditBloc>().containerFocus,
           controller: context.read<WaterSupplyEditBloc>().containerController,
-          onChanged: (val) =>
-              context.read<WaterSupplyEditBloc>().add(AbilityProduceWaterChanged(val)),
+          onChanged: (val) => context
+              .read<WaterSupplyEditBloc>()
+              .add(AbilityProduceWaterChanged(val)),
           // errorText: _handleErrorText(context, state),
           textInputAction: TextInputAction.next,
           keyboardType: TextInputType.phone,
@@ -35,16 +36,17 @@ class _KioskStatusInput extends StatelessWidget {
           previous.kioskStatus != current.kioskStatus,
       builder: (context, state) {
         return MyTextInput(
-          label: 'ស្ថានភាពស្ថានីយ',
+          label: S.of(context).status_water_kiosk,
           focusNode: bloc.kioskStatusFocus,
           controller: bloc.kioskStatusController,
           onTap: () async {
-            final pondType = await DialogHelper.showAnimatedDialog<WellStatusEnum?>(
+            final pondType =
+                await DialogHelper.showAnimatedDialog<WellStatusEnum?>(
               animationType: DialogAnimationType.none,
               transitionDuration: const Duration(milliseconds: 200),
               pageBuilder: (context, a1, a2) {
                 return MySimpleDialog(
-                  title: 'ស្ថានភាពស្ថានីយ',
+                  title: S.of(context).status_water_kiosk,
                   content: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 24.0),
                     child: Column(
@@ -53,8 +55,7 @@ class _KioskStatusInput extends StatelessWidget {
                         ...WellStatusEnum.values.map(
                           (pondType) => ListTile(
                             onTap: () {
-                              Navigator.of(context)
-                                  .pop(pondType);
+                              Navigator.of(context).pop(pondType);
                             },
                             contentPadding: const EdgeInsets.symmetric(
                               horizontal: 24.0,
@@ -93,7 +94,7 @@ class _KioskFilterInput extends StatelessWidget {
           previous.kioskFilter != current.kioskFilter,
       builder: (context, state) {
         return MyTextInput(
-          label: 'អាងចម្រោះ',
+          label: S.of(context).pool_filter,
           focusNode: bloc.kioskFilterFocus,
           controller: bloc.kioskFilterController,
           onTap: () async {
@@ -102,7 +103,7 @@ class _KioskFilterInput extends StatelessWidget {
               transitionDuration: const Duration(milliseconds: 200),
               pageBuilder: (context, a1, a2) {
                 return MySimpleDialog(
-                  title: 'អាងចម្រោះ',
+                  title: S.of(context).pool_filter,
                   content: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 24.0),
                     child: Column(
@@ -111,8 +112,7 @@ class _KioskFilterInput extends StatelessWidget {
                         ...FilterEnum.values.map(
                           (status) => ListTile(
                             onTap: () {
-                              Navigator.of(context)
-                                  .pop(status);
+                              Navigator.of(context).pop(status);
                             },
                             contentPadding: const EdgeInsets.symmetric(
                               horizontal: 24.0,
@@ -130,7 +130,6 @@ class _KioskFilterInput extends StatelessWidget {
               bloc.add(KioskFilterChanged(type));
             }
           },
-          
           suffixIcon: const Icon(Icons.arrow_drop_down, size: 18),
           readOnly: true,
           isRequired: true,
@@ -139,6 +138,4 @@ class _KioskFilterInput extends StatelessWidget {
       },
     );
   }
-
 }
-

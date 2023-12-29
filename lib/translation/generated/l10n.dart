@@ -2549,6 +2549,226 @@ class S {
       args: [],
     );
   }
+
+  /// `Type of water source`
+  String get source_type_of_water {
+    return Intl.message(
+      'Type of water source',
+      name: 'source_type_of_water',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Water production capacity (m3/h)`
+  String get abilty_of_produce_water {
+    return Intl.message(
+      'Water production capacity (m3/h)',
+      name: 'abilty_of_produce_water',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Groundwater tank (m3)`
+  String get underground_pool_storage {
+    return Intl.message(
+      'Groundwater tank (m3)',
+      name: 'underground_pool_storage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Air tank (m3)`
+  String get pool_air {
+    return Intl.message(
+      'Air tank (m3)',
+      name: 'pool_air',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Filter tank *`
+  String get pool_filter {
+    return Intl.message(
+      'Filter tank *',
+      name: 'pool_filter',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Number of links`
+  String get number_of_link {
+    return Intl.message(
+      'Number of links',
+      name: 'number_of_link',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Main pipe length (m)`
+  String get pipe_length {
+    return Intl.message(
+      'Main pipe length (m)',
+      name: 'pipe_length',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cover village/commune`
+  String get area_covering {
+    return Intl.message(
+      'Cover village/commune',
+      name: 'area_covering',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Water quality check *`
+  String get water_quality_check {
+    return Intl.message(
+      'Water quality check *',
+      name: 'water_quality_check',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Water network status *`
+  String get status_pipe {
+    return Intl.message(
+      'Water network status *',
+      name: 'status_pipe',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `License`
+  String get label_is_has_license {
+    return Intl.message(
+      'License',
+      name: 'label_is_has_license',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Issue license date`
+  String get label_license_registered_date {
+    return Intl.message(
+      'Issue license date',
+      name: 'label_license_registered_date',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Expiration license date`
+  String get label_license_expired_date {
+    return Intl.message(
+      'Expiration license date',
+      name: 'label_license_expired_date',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Water network status`
+  String get status_water_kiosk {
+    return Intl.message(
+      'Water network status',
+      name: 'status_water_kiosk',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pond width`
+  String get width {
+    return Intl.message(
+      'Pond width',
+      name: 'width',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pond length`
+  String get length {
+    return Intl.message(
+      'Pond length',
+      name: 'length',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pond depth`
+  String get height {
+    return Intl.message(
+      'Pond depth',
+      name: 'height',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pond Type`
+  String get type_of_pond {
+    return Intl.message(
+      'Pond Type',
+      name: 'type_of_pond',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Dry season`
+  String get is_summer_has_water {
+    return Intl.message(
+      'Dry season',
+      name: 'is_summer_has_water',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Type of Use`
+  String get type_of_using {
+    return Intl.message(
+      'Type of Use',
+      name: 'type_of_using',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Capacity`
+  String get capacity_of_rain_water_harvesting {
+    return Intl.message(
+      'Capacity',
+      name: 'capacity_of_rain_water_harvesting',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Terminal status`
+  String get status_rain_water_harvesting {
+    return Intl.message(
+      'Terminal status',
+      name: 'status_rain_water_harvesting',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

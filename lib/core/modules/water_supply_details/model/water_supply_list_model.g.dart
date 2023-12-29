@@ -48,16 +48,16 @@ WaterSupplyListByTypeModel _$WaterSupplyListByTypeModelFromJson(
     WaterSupplyListByTypeModel(
       id: json['id'] as int,
       waterSupplyCode: json['water_supply_code'] as String,
-      waterSupplyTypeEn: json['water_supply_type_en'] as String,
-      waterSupplyTypeKh: json['water_supply_type_kh'] as String,
-      provinceNameKh: json['province_name_kh'] as String,
-      provinceNameEn: json['province_name_en'] as String,
-      districtNameEn: json['district_name_en'] as String,
-      districtNameKh: json['district_name_kh'] as String,
-      communeNameEn: json['commune_name_en'] as String,
-      communeNameKh: json['commune_name_kh'] as String,
-      villageNameEn: json['Village_name_en'] as String,
-      villageNameKh: json['Village_name_kh'] as String,
+      waterSupplyTypeEn: json['water_supply_type_id']['name_en'] as String,
+      waterSupplyTypeKh: json['water_supply_type_id']['name_kh'] as String,
+      provinceNameKh: json['province_id']['name_kh'] as String,
+      provinceNameEn: json['province_id']['name_en'] as String,
+      districtNameEn: json['district_id']['name_en'] as String,
+      districtNameKh: json['district_id']['name_kh'] as String,
+      communeNameEn: json['commune_id']['name_en'] as String,
+      communeNameKh: json['commune_id']['name_kh'] as String,
+      villageNameEn: json['village_id']['name_en'] as String,
+      villageNameKh: json['village_id']['name_kh'] as String,
     );
 
 Map<String, dynamic> _$WaterSupplyListByTypeModelToJson(
