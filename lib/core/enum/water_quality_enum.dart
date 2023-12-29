@@ -30,22 +30,21 @@ extension WaterQualityEnumExtension on WaterQualityEnum {
   }
 }
 
-WaterQualityEnum? getWaterQualityEnumById(int id){
+WaterQualityEnum? getWaterQualityEnumById(int id) {
   switch (id) {
-      case 8:
-        return WaterQualityEnum.well;
-      case 9:
-        return WaterQualityEnum.unWell;
-    }
+    case 8:
+      return WaterQualityEnum.well;
+    case 9:
+      return WaterQualityEnum.unWell;
+  }
+  return null;
 }
 
 String getWaterQualityEnumDisplayText(WaterQualityEnum value) {
-    switch (value) {
-      case WaterQualityEnum.well:
-        return 'ល្អ';
-      case WaterQualityEnum.unWell:
-        return 'មិនល្អ';
-    }
+  switch (value) {
+    case WaterQualityEnum.well:
+      return 'ល្អ';
+    case WaterQualityEnum.unWell:
+      return 'មិនល្អ';
   }
-
-
+}

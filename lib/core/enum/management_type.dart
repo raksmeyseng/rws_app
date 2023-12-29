@@ -38,6 +38,7 @@ ManagementTypeEnum? getManagementTypeEnumById(int id) {
     case 1:
       return ManagementTypeEnum.private;
   }
+  return null;
 }
 
 String getManagementTypeEnumDisplayText(ManagementTypeEnum value) {

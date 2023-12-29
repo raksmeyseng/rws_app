@@ -1,6 +1,4 @@
-
 import 'package:json_annotation/json_annotation.dart';
-import 'package:rws_app/core/modules/app/widgets/theme_item.dart';
 
 import '../../authentication/models/user_model.dart';
 import '../../my_draft/models/my_draft_model.dart';
@@ -8,8 +6,7 @@ import '../../my_draft/models/my_draft_model.dart';
 part 'water_supply_list_model.g.dart';
 
 @JsonSerializable(explicitToJson: true)
-class WaterSupplyListModel{
-
+class WaterSupplyListModel {
   WaterSupplyListModel({
     required this.id,
     required this.createdDate,
@@ -21,16 +18,14 @@ class WaterSupplyListModel{
     this.village,
     required this.status,
     required this.waterSupplyCode,
-    required this.user
+    required this.user,
   });
 
   @JsonKey(name: 'id')
   int id;
-  // @JsonKey(name: 'created_by')
-  // String createdBy;
   @JsonKey(name: 'created_date')
   DateTime createdDate;
-  @JsonKey(name:'water_supply_type_id')
+  @JsonKey(name: 'water_supply_type_id')
   int waterSupplyTypeId;
   @JsonKey(name: 'water_supply_type')
   String waterSupplyType;
@@ -42,61 +37,61 @@ class WaterSupplyListModel{
   CommuneModel commune;
   @JsonKey(name: 'village_id')
   VillageModel? village;
-  @JsonKey(name : 'main_status')
+  @JsonKey(name: 'main_status')
   StatusModel status;
-  @JsonKey(name : 'water_supply_code')
+  @JsonKey(name: 'water_supply_code')
   String waterSupplyCode;
-  @JsonKey(name:'created_by')
+  @JsonKey(name: 'created_by')
   UserModel user;
 
   factory WaterSupplyListModel.fromJson(Map<String, dynamic> json) =>
       _$WaterSupplyListModelFromJson(json);
+  Map<String, dynamic> toJson() => _$WaterSupplyListModelToJson(this);
 }
 
-@JsonSerializable(explicitToJson: true)
-class WaterSupplyListByTypeModel{
-
+@JsonSerializable()
+class WaterSupplyListByTypeModel {
   WaterSupplyListByTypeModel({
     required this.id,
     required this.waterSupplyCode,
     required this.waterSupplyTypeEn,
     required this.waterSupplyTypeKh,
-    required this.ProvinceNameKh,
-    required this.ProvinceNameEn,
-    required this.DistrictNameEn,
-    required this.DistrictNameKh,
-    required this.CommuneNameEn,
-    required this.CommuneNameKh,
-    required this.VillageNameEn,
-    required this.VillageNameKh
+    required this.provinceNameKh,
+    required this.provinceNameEn,
+    required this.districtNameEn,
+    required this.districtNameKh,
+    required this.communeNameEn,
+    required this.communeNameKh,
+    required this.villageNameEn,
+    required this.villageNameKh,
   });
 
   @JsonKey(name: 'id')
   int id;
-  @JsonKey(name : 'water_supply_code')
+  @JsonKey(name: 'water_supply_code')
   String waterSupplyCode;
-  @JsonKey(name : 'water_supply_type_id')
+  @JsonKey(name: 'water_supply_type_en')
   String waterSupplyTypeEn;
-  @JsonKey(name : 'water_supply_type_id')
+  @JsonKey(name: 'water_supply_type_kh')
   String waterSupplyTypeKh;
-  @JsonKey(name : 'province_id')
-  String ProvinceNameKh;
-  @JsonKey(name : 'province_id')
-  String ProvinceNameEn;
-  @JsonKey(name : 'district_id')
-  String DistrictNameKh;
-  @JsonKey(name : 'district_id')
-  String DistrictNameEn;
-  @JsonKey(name : 'commune_id')
-  String CommuneNameEn;
-  @JsonKey(name : 'commune_id')
-  String CommuneNameKh;
-  @JsonKey(name : 'Village_id')
-  String VillageNameKh;
-  @JsonKey(name : 'Village_id')
-  String VillageNameEn;
-
+  @JsonKey(name: 'province_name_kh')
+  String provinceNameKh;
+  @JsonKey(name: 'province_name_en')
+  String provinceNameEn;
+  @JsonKey(name: 'district_name_kh')
+  String districtNameKh;
+  @JsonKey(name: 'district_name_en')
+  String districtNameEn;
+  @JsonKey(name: 'commune_name_en')
+  String communeNameEn;
+  @JsonKey(name: 'commune_name_kh')
+  String communeNameKh;
+  @JsonKey(name: 'Village_name_kh')
+  String villageNameKh;
+  @JsonKey(name: 'Village_name_en')
+  String villageNameEn;
 
   factory WaterSupplyListByTypeModel.fromJson(Map<String, dynamic> json) =>
       _$WaterSupplyListByTypeModelFromJson(json);
+  Map<String, dynamic> toJson() => _$WaterSupplyListByTypeModelToJson(this);
 }

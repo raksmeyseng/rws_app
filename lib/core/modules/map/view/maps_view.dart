@@ -1,20 +1,17 @@
 import 'dart:async';
+import 'dart:ui' as ui;
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:rws_app/core/animation/my_animated_switcher.dart';
 import 'package:rws_app/core/enum/base_status_enum.dart';
 import 'package:rws_app/core/modules/map/bloc/map_bloc.dart';
 import 'package:rws_app/core/widgets/load_data_failed.dart';
 import 'package:rws_app/utils/common_utils.dart';
 import 'package:rws_app/utils/lifecycle_event_handler.dart';
-import 'package:flutter/services.dart' show rootBundle;
-import 'dart:ui' as ui;
-import 'dart:typed_data';
-import 'package:latlong_to_osgrid/latlong_to_osgrid.dart';
 
 import '../model/water_supply_map_model.dart';
 
@@ -33,7 +30,7 @@ class _MapsViewState extends State<MapsView> {
     target: LatLng(11.5564, 104.9282),
     zoom: 0,
   );
-  Set<Marker> markers = Set<Marker>();
+  Set<Marker> markers = <Marker>{};
   BitmapDescriptor markerIcon = BitmapDescriptor.defaultMarker;
   BitmapDescriptor smallPipeIcon = BitmapDescriptor.defaultMarker;
   BitmapDescriptor kioskIcon = BitmapDescriptor.defaultMarker;
@@ -95,7 +92,7 @@ class _MapsViewState extends State<MapsView> {
     switch (status) {
       case BaseStatusEnum.success:
         // ignore: prefer_collection_literals
-        LatLongConverter converter = new LatLongConverter();
+        // LatLongConverter converter = LatLongConverter();
         for (var ws in waterSupplys) {
           switch (ws.waterSupplyTypeId) {
             case 1:

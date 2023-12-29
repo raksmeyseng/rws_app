@@ -37,6 +37,7 @@ CheckWaterQualityEnum? getCheckWaterQualityEnumById(int id){
       case 11:
         return CheckWaterQualityEnum.unCheck;
     }
+  return null;
 }
 
  String getCheckWaterQualityEnumDisplayText(CheckWaterQualityEnum value) {

@@ -24,7 +24,7 @@ class SettingView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox.expand(
+    return const SizedBox.expand(
       child: SingleChildScrollView(
         child: Wrapper(
           maxWidth: appSmallMaxWidth,
@@ -32,12 +32,12 @@ class SettingView extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const _UserProfile(),
-              const SizedBox(height: 10.0),
+              _UserProfile(),
+              SizedBox(height: 10.0),
               Padding(
-                padding:const EdgeInsets.all(16.0),
+                padding:EdgeInsets.all(16.0),
                 child: Column(
-                  children:const [
+                  children:[
                     _AppTheme(),
                     // SizedBox(height: 14.0),
                     // _LanguageItem(),

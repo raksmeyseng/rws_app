@@ -14,9 +14,9 @@ class LanguagePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: AppBarTitle(title: S.of(context).language)),
-      body: Column(
+      body: const Column(
         mainAxisSize: MainAxisSize.min,
-        children:const [
+        children:[
           SizedBox(height: 12.0),
           _Content(),
         ],

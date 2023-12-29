@@ -11,7 +11,6 @@ import 'package:rws_app/core/modules/my_task/view/my_task_page.dart';
 import 'package:rws_app/core/modules/water_supply/view/water_supply_page.dart';
 import 'package:rws_app/core/widgets/flat_card.dart';
 import 'package:rws_app/core/widgets/text_widget.dart';
-import 'package:rws_app/core/widgets/textbutton_icon.dart';
 import 'package:rws_app/translation/generated/l10n.dart';
 
 class DashboardPage extends StatelessWidget {
@@ -100,6 +99,8 @@ class _BottomNavigationBar extends StatelessWidget {
           selectedFontSize: 12,
           unselectedItemColor: Theme.of(context).dividerColor,
           currentIndex: state.currentIndex,
+          backgroundColor: Theme.of(context).cardColor,
+          selectedItemColor: Theme.of(context).primaryColor,
           onTap: (index) {
             context.read<DashboardBloc>().add(TabTapped(index));
           },
@@ -132,14 +133,14 @@ class _TitleWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return const Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        const AppLogo(size: 30),
-        const SizedBox(width: 16.0),
+        AppLogo(size: 30),
+        SizedBox(width: 16.0),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
+          children: [
             TextWidget(
               'ក្រសួងអភិវឌ្ឃន៍ជនបទ',
               bold: true,

@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rws_app/core/modules/my_pending_approval/bloc/my_pending_approval_bloc.dart';
 import 'package:rws_app/core/modules/my_pending_approval/model/my_pending_approval_model.dart';
-import 'package:rws_app/core/modules/water_supply_details/model/water_supply_model.dart';
 
 import '../../../../config/routes/app_route.dart';
 import '../../../../config/themes/app_color.dart';

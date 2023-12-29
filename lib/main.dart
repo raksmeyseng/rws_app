@@ -3,18 +3,14 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:rws_app/constants/app_constant.dart';
 import 'package:rws_app/core/modules/app/view/app.dart';
 import 'package:rws_app/core/services/local_storage_service.dart';
 import 'package:rws_app/simple_bloc_observer.dart';
 
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   HttpOverrides.global = MyHttpOverrides();
-  //WidgetsFlutterBinding.ensureInitialized();
-  
 
   // Set background color of status bar
   SystemChrome.setSystemUIOverlayStyle(
@@ -32,7 +28,6 @@ void main() async {
   Bloc.observer = SimpleBlocObserver();
   //await FlutterDownloader.initialize();
   runApp(const RwsApp());
-  
 }
 
 class MyHttpOverrides extends HttpOverrides {
@@ -43,6 +38,3 @@ class MyHttpOverrides extends HttpOverrides {
           (X509Certificate cert, String host, int port) => true;
   }
 }
-
-
-

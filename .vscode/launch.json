@@ -1,43 +1,39 @@
 {
-    // Use IntelliSense to learn about possible attributes.
-    // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "args": [
-                "--extensionDevelopmentPath=${workspaceFolder}"
-            ],
-            "name": "Launch Extension",
-            "outFiles": [
-                "${workspaceFolder}/out/**/*.js"
-            ],
-            "preLaunchTask": "npm",
-            "request": "launch",
-            "type": "extensionHost"
-        },
-        {
-            "name": "rws_app",
-            "request": "launch",
-            "type": "dart"
-        },
-        {
-            "name": "rws_app (chrome)",
-            "request": "launch",
-            "type": "dart",
-            "args": ["-d", "chrome", "--web-port", "8000"]
-          },
-        {
-            "name": "rws_app (profile mode)",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "profile"
-        },
-        {
-            "name": "rws_app (release mode)",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "release"
-        }
-    ]
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "args": ["--extensionDevelopmentPath=${workspaceFolder}"],
+      "name": "Launch Extension",
+      "outFiles": ["${workspaceFolder}/out/**/*.js"],
+      "preLaunchTask": "npm",
+      "request": "launch",
+      "type": "extensionHost"
+    },
+    {
+      "name": "rws_app",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "rws_app (chrome)",
+      "request": "launch",
+      "type": "dart",
+      "args": ["-d", "chrome", "--web-port", "8000"]
+    },
+    {
+      "name": "rws_app (profile mode)",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "rws_app (release mode)",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    }
+  ]
 }

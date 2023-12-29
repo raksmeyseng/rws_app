@@ -30,20 +30,21 @@ extension WellStatusEnumExtension on WellStatusEnum {
   }
 }
 
-WellStatusEnum? getWellStatusEnumById(int id){
+WellStatusEnum? getWellStatusEnumById(int id) {
   switch (id) {
-      case 12:
-        return WellStatusEnum.active;
-      case 13:
-        return WellStatusEnum.inActive;
-    }
+    case 12:
+      return WellStatusEnum.active;
+    case 13:
+      return WellStatusEnum.inActive;
+  }
+  return null;
 }
 
 String getWellStatusEnumDisplayText(WellStatusEnum value) {
-    switch (value) {
-      case WellStatusEnum.active:
-        return 'ដំណើរការ';
-      case WellStatusEnum.inActive:
-        return 'មិនដំណើរការ';
-    }
+  switch (value) {
+    case WellStatusEnum.active:
+      return 'ដំណើរការ';
+    case WellStatusEnum.inActive:
+      return 'មិនដំណើរការ';
   }
+}

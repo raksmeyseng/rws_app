@@ -6,9 +6,9 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:intl/intl.dart';
 import 'package:latlong_to_osgrid/latlong_to_osgrid.dart';
 import 'package:rws_app/config/routes/application.dart';
-import 'package:rws_app/config/routes/route_handler.dart';
 import 'package:rws_app/core/enum/base_status_enum.dart';
 import 'package:rws_app/core/enum/budget_type.dart';
 import 'package:rws_app/core/enum/check_water_quality_enum.dart';
@@ -20,54 +20,49 @@ import 'package:rws_app/core/modules/water_supplier_edit/model/budget_type_input
 import 'package:rws_app/core/modules/water_supplier_edit/model/doc_input.dart';
 import 'package:rws_app/core/modules/water_supplier_edit/model/input/map_type_input.dart';
 import 'package:rws_app/core/modules/water_supplier_edit/model/management_type_input.dart';
-import 'package:rws_app/core/modules/water_supplier_edit/model/payload_smallpipe_model.dart';
-import 'package:rws_app/core/modules/water_supplier_edit/model/payload_pond_model.dart';
 import 'package:rws_app/core/modules/water_supplier_edit/model/payload_air_model.dart';
+import 'package:rws_app/core/modules/water_supplier_edit/model/payload_pipe_model.dart';
+import 'package:rws_app/core/modules/water_supplier_edit/model/payload_pond_model.dart';
 import 'package:rws_app/core/modules/water_supplier_edit/model/payload_rain_model.dart';
+import 'package:rws_app/core/modules/water_supplier_edit/model/payload_smallpipe_model.dart';
 import 'package:rws_app/core/modules/water_supplier_edit/model/payload_water_quality_parameter_model.dart';
 import 'package:rws_app/core/modules/water_supplier_edit/model/payload_water_supply_model.dart';
 import 'package:rws_app/core/modules/water_supplier_edit/model/payload_well.dart';
-import 'package:rws_app/core/modules/water_supplier_edit/model/payload_pipe_model.dart';
 import 'package:rws_app/core/modules/water_supplier_edit/model/qrcode_model.dart';
-import 'package:rws_app/core/modules/water_supplier_edit/model/water_source_input.dart';
 import 'package:rws_app/core/modules/water_supplier_edit/model/water_supply_input.dart';
 import 'package:rws_app/core/modules/water_supplier_edit/repositories/water_supply_edit_repository.dart';
 import 'package:rws_app/core/modules/water_supply_details/model/water_supply_model.dart';
-import 'package:rws_app/core/modules/water_supply_details/model/watersupply.dart';
 import 'package:rws_app/utils/event/event_type.dart';
 import 'package:rws_app/utils/helpers/date_helper.dart';
-import 'package:rws_app/utils/helpers/dialog_helper.dart';
 import 'package:rws_app/utils/helpers/loading_helper.dart';
 
 import '../../../enum/area_enum.dart';
+import '../../../enum/capacity_type_enum.dart';
 import '../../../enum/filter_enum.dart';
+import '../../../enum/map_type_enum.dart';
 import '../../../enum/pond_filter_enum.dart';
 import '../../../enum/pond_status_enum.dart';
-import '../../../enum/map_type_enum.dart';
+import '../../../enum/pond_type_enum.dart';
 import '../../../enum/season_enum.dart';
+import '../../../enum/tank_status_enum.dart';
+import '../../../enum/using_type_enum.dart';
 import '../../../enum/water_quality_enum.dart';
 import '../../../enum/well_type_enum.dart';
-import '../../../enum/pond_type_enum.dart';
-import '../../../enum/using_type_enum.dart';
-import '../../../enum/capacity_type_enum.dart';
-import '../../../enum/tank_status_enum.dart';
-import '../../../enum/well_type_enum.dart';
+import '../model/input/capacity_input.dart';
 import '../model/input/check_water_quality_input.dart';
-import '../model/input/poolFilter_input.dart';
-import '../model/input/pondFilter_input.dart';
 import '../model/input/pond_status_input.dart';
+import '../model/input/pondfilter_input.dart';
 import '../model/input/pondtype_input.dart';
+import '../model/input/poolfilter_input.dart';
 import '../model/input/season_haswater_input.dart';
 import '../model/input/status_input.dart';
+import '../model/input/tank_status_input.dart';
+import '../model/input/using_type_input.dart';
 import '../model/input/water_supply_type_input.dart';
 import '../model/location_risk_input.dart';
 import '../model/payload_kiosk_model.dart';
 import '../model/water_quality_input.dart';
 import '../model/well_type_input.dart';
-import '../model/input/using_type_input.dart';
-import '../model/input/capacity_input.dart';
-import '../model/input/tank_status_input.dart';
-import 'package:intl/intl.dart';
 
 part 'water_supply_edit_event.dart';
 part 'water_supply_edit_state.dart';
@@ -519,7 +514,7 @@ class WaterSupplyEditBloc
         budgetTypeInput: BudgetTypeInput.pure(
             getBudgetTypeEnumById(waterSupply.sourceBudget)),
         locationRickInput: LocationRiskInput.pure(
-            GetAreaEnumById(waterSupply.isRiskEnviromentArea)),
+            getAreaEnumById(waterSupply.isRiskEnviromentArea)),
         receiverFamilyTotalInput: WaterSupplyInput.pure(
             waterSupply.beneficiaryTotalFamily.toString()),
         receiverTotalAsFemaleInput:
@@ -562,7 +557,7 @@ class WaterSupplyEditBloc
           getBudgetTypeEnumById(waterSupply.sourceBudget) ??
               BudgetTypeEnum.goverment);
       locationRickController.text = getAreaEnumDisplayText(
-          GetAreaEnumById(waterSupply.isRiskEnviromentArea) ?? AreaEnum.face);
+          getAreaEnumById(waterSupply.isRiskEnviromentArea) ?? AreaEnum.face);
       receiverFamilyTotalController.text =
           waterSupply.beneficiaryTotalPeople.toString();
       receiverTotalController.text =
@@ -630,43 +625,43 @@ class WaterSupplyEditBloc
           emit(state.copyWith(
             waterSupplyTypeInput: WaterSupplyTypeInput.pure(
                 getWaterSupplyTypeEnumById(
-                    smallPipe.source_type_of_water.first.valueId)),
+                    smallPipe.sourceTypeOfWater.first.valueId)),
             containerInput:
                 WaterSupplyInput.pure(smallPipe.underGroudPoolStorage),
             capacityInput:
                 WaterSupplyInput.pure(smallPipe.abilityOfProductWater),
-            airPoolInput: WaterSupplyInput.pure(smallPipe.pool_air),
+            airPoolInput: WaterSupplyInput.pure(smallPipe.poolAir),
             filterTankInput: PoolfilterInput.pure(
-                getFilterEnumById(smallPipe.pool_filter_obj.first.id)),
-            connectorInput: WaterSupplyInput.pure(smallPipe.number_of_link),
+                getFilterEnumById(smallPipe.poolFilterObj.first.id)),
+            connectorInput: WaterSupplyInput.pure(smallPipe.numberOfLink),
             checkWaterQualityInput: CheckWaterQualityInput.pure(
                 getCheckWaterQualityEnumById(
-                    smallPipe.water_quality_check_obj.first.id)),
-            pipeLenghtInput: WaterSupplyInput.pure(smallPipe.pipe_length),
-            coverageInput: WaterSupplyInput.pure(smallPipe.area_covering),
+                    smallPipe.wateQualityCheckObj.first.id)),
+            pipeLenghtInput: WaterSupplyInput.pure(smallPipe.pipeLength),
+            coverageInput: WaterSupplyInput.pure(smallPipe.areaCovering),
             pipeStatusInput: WellStatusInput.pure(
-                getWellStatusEnumById(smallPipe.status_obj.first.id)),
+                getWellStatusEnumById(smallPipe.statusObj.first.id)),
           ));
 
           waterSupplyTypeController.text = getWaterSupplyTypeEnumDisplayText(
               getWaterSupplyTypeEnumById(
-                      smallPipe.source_type_of_water.first.valueId) ??
+                      smallPipe.sourceTypeOfWater.first.valueId) ??
                   WaterSupplyTypeEnum.all);
           containerController.text = smallPipe.underGroudPoolStorage;
           capacityController.text = smallPipe.abilityOfProductWater;
-          ariPoolController.text = smallPipe.pool_air;
+          ariPoolController.text = smallPipe.poolAir;
           filterTankController.text = getFilterEnumDisplayText(
-              getFilterEnumById(smallPipe.pool_filter_obj.first.id) ??
+              getFilterEnumById(smallPipe.poolFilterObj.first.id) ??
                   FilterEnum.have);
-          connectorController.text = smallPipe.number_of_link;
+          connectorController.text = smallPipe.numberOfLink;
           checkWaterQualityController.text =
               getCheckWaterQualityEnumDisplayText(getCheckWaterQualityEnumById(
-                      smallPipe.water_quality_check_obj.first.id) ??
+                      smallPipe.wateQualityCheckObj.first.id) ??
                   CheckWaterQualityEnum.check);
-          pipeLenghtController.text = smallPipe.pipe_length;
-          coverageController.text = smallPipe.area_covering;
+          pipeLenghtController.text = smallPipe.pipeLength;
+          coverageController.text = smallPipe.areaCovering;
           pipeStatusController.text = getWellStatusEnumDisplayText(
-              getWellStatusEnumById(smallPipe.status_obj.first.id) ??
+              getWellStatusEnumById(smallPipe.statusObj.first.id) ??
                   WellStatusEnum.active);
 
           break;
@@ -1463,7 +1458,7 @@ class WaterSupplyEditBloc
   void _onGoogleMapPinChanged(
       GoogleMapPinChanged event, Emitter<WaterSupplyEditState> emit) {
     LatLng latLng = event.latLng;
-    LatLongConverter converter = new LatLongConverter();
+    LatLongConverter converter = LatLongConverter();
     OSRef result = converter.getOSGBfromDec(
         latLng.latitude, latLng.longitude, Datums.WGS84);
     latetitudeController.text = result.northing.toString();
@@ -1841,7 +1836,7 @@ class WaterSupplyEditBloc
       //print(province);
       final isRiskLocation = locationRickInput.value?.getCode();
 
-      final is_water_quality_check =
+      final isWaterQualityCheck =
           checkWaterQualityInput.value?.getCode() == 0 ? true : false;
 
       final constructionDateInputSplit = docInput.value.toString().split(' ');
@@ -1924,7 +1919,7 @@ class WaterSupplyEditBloc
         updatedBy: user != null ? user.id : 0,
         mainStatus: waterSupplyStatus,
         waterSupplyCode: constructionCodeInput.value, //not yet have control yet
-        isWaterQualityCheck: is_water_quality_check,
+        isWaterQualityCheck: isWaterQualityCheck,
         id: editWaterSupplyId,
       );
 
@@ -1943,7 +1938,7 @@ class WaterSupplyEditBloc
           repository.addWaterSupplyQRCode(payload: payloadWaterSupplyQRCode);
 
           /* START WATER QUALITY PARAMETER */
-          if (is_water_quality_check) {
+          if (isWaterQualityCheck) {
             final payloadWQParameter1 = PayloadWaterQualityParameterModel(
                 value: wqParameter1Input.value == ''
                     ? '0'
@@ -2160,7 +2155,7 @@ class WaterSupplyEditBloc
             var sourceTypeOfWater = waterSupplyTypeInput.value?.getCode();
             final payloadAir = PayloadairModel(
                 waterSupplyId: waterSupplyId,
-                sourceTypeOfWater: sourceTypeOfWater.toString() ?? '',
+                sourceTypeOfWater: sourceTypeOfWater.toString(),
                 abiltyOfProduceWater: capacityInput.value,
                 filterSystem:
                     filterTankInput.value?.getCode() == 0 ? '28' : '29',

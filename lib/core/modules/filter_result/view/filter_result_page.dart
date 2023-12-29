@@ -40,7 +40,7 @@ class FilterResultPage extends StatelessWidget {
           title:
               TextWidget(waterSupplyTypeId.toString(), color: AppColor.white),
           backgroundColor: Theme.of(context).primaryColor,
-          actions: [
+          actions: const [
             // Padding(
             //   padding: const EdgeInsets.all(8.0),
             //   child: AddNewWaterManageSystem(

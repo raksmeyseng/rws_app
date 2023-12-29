@@ -51,7 +51,7 @@ Map<String, dynamic> _$ProvinceModelToJson(ProvinceModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name_en': instance.nameEn,
-      'name_kh':instance.nameKh,
+      'name_kh': instance.nameKh,
       'provincedistrict':
           instance.provincedistrict?.map((e) => e.toJson()).toList(),
     };
@@ -88,7 +88,7 @@ Map<String, dynamic> _$CommuneModelToJson(CommuneModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name_en': instance.nameEn,
-      'name_kh' : instance.nameKh,
+      'name_kh': instance.nameKh,
       'commnuevillage':
           instance.commnuevillage?.map((e) => e.toJson()).toList(),
     };
@@ -103,7 +103,7 @@ Map<String, dynamic> _$VillageModelToJson(VillageModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name_en': instance.nameEn,
-      'name_kh' : instance.nameKh
+      'name_kh': instance.nameKh,
     };
 
 StatusModel _$StatusModelFromJson(Map<String, dynamic> json) => StatusModel(

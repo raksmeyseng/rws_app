@@ -30,21 +30,19 @@ extension AreaEnumExtension on AreaEnum {
   }
 }
 
-AreaEnum? GetAreaEnumById(bool isRisk){
-
-  if(isRisk){
+AreaEnum? getAreaEnumById(bool isRisk) {
+  if (isRisk) {
     return AreaEnum.face;
-  } 
-  else{
+  } else {
     return AreaEnum.unface;
   }
 }
 
-String getAreaEnumDisplayText(AreaEnum value){
+String getAreaEnumDisplayText(AreaEnum value) {
   switch (value) {
-      case AreaEnum.face:
-        return 'ប្រឈម';
-      case AreaEnum.unface:
-        return 'មិនប្រឈម';
-    }
+    case AreaEnum.face:
+      return 'ប្រឈម';
+    case AreaEnum.unface:
+      return 'មិនប្រឈម';
+  }
 }

@@ -6,7 +6,6 @@ import 'package:rws_app/core/modules/my_history/models/my_request_history_model.
 import 'package:rws_app/core/modules/my_history/repositories/my_history_repository.dart';
 
 import '../../../../config/routes/application.dart';
-import '../../water_supply_details/model/water_supply_model.dart';
 
 part 'my_history_event.dart';
 part 'my_history_state.dart';

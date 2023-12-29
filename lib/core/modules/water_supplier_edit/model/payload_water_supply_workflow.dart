@@ -2,9 +2,8 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'payload_water_supply_workflow.g.dart';
 
-@JsonSerializable(explicitToJson: true)
-class PayloadWaterSupplyWorkflow{
-
+@JsonSerializable()
+class PayloadWaterSupplyWorkflow {
   PayloadWaterSupplyWorkflow({
     required this.waterSupplyId,
     required this.status,
@@ -22,7 +21,6 @@ class PayloadWaterSupplyWorkflow{
   String? remark;
 
   factory PayloadWaterSupplyWorkflow.fromJson(Map<String, dynamic> json) =>
-      _$PayloadWaterSupplyModelFromJson(json);
+      _$PayloadWaterSupplyWorkflowFromJson(json);
   Map<String, dynamic> toJson() => _$PayloadWaterSupplyWorkflowToJson(this);
-
 }

@@ -1,13 +1,12 @@
-import 'package:rws_app/core/animation/my_animated_switcher.dart';
-import 'package:rws_app/core/modules/html/bloc/html_bloc.dart';
-import 'package:rws_app/core/services/rest_api_service.dart';
-import 'package:rws_app/core/widgets/load_data_failed.dart';
-import 'package:rws_app/utils/common_utils.dart';
-import 'package:rws_app/utils/helpers/network_helper.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_html/flutter_html.dart';
+import 'package:rws_app/core/animation/my_animated_switcher.dart';
+import 'package:rws_app/core/modules/html/bloc/html_bloc.dart';
+import 'package:rws_app/core/services/rest_api_service.dart';
+import 'package:rws_app/core/widgets/load_data_failed.dart';
+import 'package:rws_app/utils/helpers/network_helper.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class HtmlView extends StatelessWidget {
@@ -90,9 +89,9 @@ class _MobileViewState extends State<_MobileView> {
             if (snapshot.hasError || snapshot.data == false) {
               return const LoadDataFailed();
             }
-            return Column(
-              children: const [
-                 _ProgressIndicator()
+            return const Column(
+              children: [
+                _ProgressIndicator()
                 // Expanded(
                 //   child: WebView(
                 //     key: Key(state.url),

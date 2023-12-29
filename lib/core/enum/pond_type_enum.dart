@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 const int _concreteCode = 0;
@@ -31,20 +30,21 @@ extension PondTypeEnumExtension on PondTypeEnum {
   }
 }
 
-PondTypeEnum? getPondTypeEnumById(int id){
+PondTypeEnum? getPondTypeEnumById(int id) {
   switch (id) {
-      case 32:
-        return PondTypeEnum.concrete;
-      case 33:
-        return PondTypeEnum.land;
-    }
+    case 32:
+      return PondTypeEnum.concrete;
+    case 33:
+      return PondTypeEnum.land;
+  }
+  return null;
 }
 
 String getPondTypeEnumDisplayText(PondTypeEnum value) {
-    switch (value) {
-      case PondTypeEnum.concrete:
-        return 'ជើងទេរបេតុង';
-      case PondTypeEnum.land:
-        return 'ជើងទេរដី';
-    }
+  switch (value) {
+    case PondTypeEnum.concrete:
+      return 'ជើងទេរបេតុង';
+    case PondTypeEnum.land:
+      return 'ជើងទេរដី';
   }
+}

@@ -4,7 +4,6 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:rws_app/core/enum/base_status_enum.dart';
-import 'package:rws_app/utils/helpers/permission_helper.dart';
 
 import '../../water_supply_details/repositories/water_supply_detials_repository.dart';
 import '../model/water_supply_map_model.dart';

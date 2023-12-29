@@ -55,8 +55,7 @@ class ApiPath {
   static String getWaterSupplyListAll =
       '${AppConstant.mainURL}watersupply/?water_supply_type_id=&main_status=9';
   static String getWaterSupplyMap = '${AppConstant.mainURL}watersupplymap/';
-  static String getWaterSupplyMap_v2 =
-      '${AppConstant.mainURL}watersupplymap_v2';
+  static String getWaterSupplyMapV2 = '${AppConstant.mainURL}watersupplymap_v2';
   static String getWaterSupplyDetail(int id) =>
       '${AppConstant.mainURL}watersupply/$id';
 
