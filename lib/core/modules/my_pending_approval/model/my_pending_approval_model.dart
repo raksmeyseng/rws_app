@@ -20,6 +20,8 @@ class PendingApprovalModel {
   int waterSupplyTypeId;
   @JsonKey(name: 'water_supply_type')
   String waterSupplyType;
+  @JsonKey(name: 'water_supply_type')
+  String waterSupplyTypeEn;
   @JsonKey(name: 'province_id')
   ProvinceModel address;
   @JsonKey(name: 'district_id')

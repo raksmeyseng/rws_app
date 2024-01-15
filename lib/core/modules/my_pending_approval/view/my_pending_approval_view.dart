@@ -102,6 +102,7 @@ class _MyDraftItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Locale appLocale = Localizations.localeOf(context);
     return FlatCard(
       borderRadius: 10,
       color: Theme.of(context).dividerColor.withOpacity(0.05),
@@ -139,7 +140,9 @@ class _MyDraftItem extends StatelessWidget {
             CaptionWidget('${S.of(context).water_supply_type} :'),
             Flexible(
               child: TextWidget(
-                item.waterSupplyType,
+                appLocale.languageCode == 'en'
+                    ? item.waterSupplyType
+                    : item.waterSupplyType,
                 overflow: TextOverflow.ellipsis,
               ),
             ),
