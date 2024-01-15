@@ -66,13 +66,17 @@ WaterSupplyOptionModel _$WaterSupplyOptionModelFromJson(
         Map<String, dynamic> json) =>
     WaterSupplyOptionModel(
       id: json['id'] == null ? 0 : json['id'] as int,
-      waterSupplyWellId: json['water_supply_well_id'] as int,
+      waterSupplyWellId: json['water_supply_well_id'] == null
+          ? 0
+          : json['water_supply_well_id'] as int,
       optionId: json['option_id'] as int,
       valueId: json['value_id'] as int,
-      valueObjs: (json['value_obj'] as List<dynamic>)
-          .map((e) =>
-              WaterSupplyOptionValueModel.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      valueObjs: json['value_obj'] == null
+          ? new List.empty()
+          : (json['value_obj'] as List<dynamic>)
+              .map((e) => WaterSupplyOptionValueModel.fromJson(
+                  e as Map<String, dynamic>))
+              .toList(),
     );
 
 Map<String, dynamic> _$WaterSupplyOptionModelToJson(

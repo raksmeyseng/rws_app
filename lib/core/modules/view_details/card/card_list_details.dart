@@ -96,6 +96,7 @@ class _ContentView extends StatelessWidget {
       buildWhen: (previous, current) =>
           previous.waterSupply != current.waterSupply,
       builder: (context, state) {
+        final Locale appLocale = Localizations.localeOf(context);
         return SingleChildScrollView(
           padding: const EdgeInsets.symmetric(
             vertical: 10,
@@ -110,7 +111,9 @@ class _ContentView extends StatelessWidget {
                 //TextWidget(state.waterSupply?.waterSupplyType),
                 Flexible(
                   child: TextWidget(
-                    state.waterSupply?.waterSupplyType,
+                    appLocale.languageCode == 'en'
+                        ? state.waterSupply?.waterSupplyTypeEn
+                        : state.waterSupply?.waterSupplyType,
                     overflow: TextOverflow.ellipsis,
                   ),
                 ),
@@ -129,7 +132,9 @@ class _ContentView extends StatelessWidget {
               ),
               _InfoItem(
                 CaptionWidget('${titleViews[2]} :'),
-                TextWidget(state.waterSupply?.address.nameKh),
+                TextWidget(appLocale.languageCode == 'en'
+                    ? state.waterSupply?.address.nameEn
+                    : state.waterSupply?.address.nameKh),
               ),
               const Padding(
                 padding: EdgeInsets.symmetric(vertical: 8),
@@ -137,7 +142,9 @@ class _ContentView extends StatelessWidget {
               ),
               _InfoItem(
                 CaptionWidget('${titleViews[3]} :'),
-                TextWidget(state.waterSupply?.district.nameKh),
+                TextWidget(appLocale.languageCode == 'en'
+                    ? state.waterSupply?.district.nameEn
+                    : state.waterSupply?.district.nameKh),
               ),
               const Padding(
                 padding: EdgeInsets.symmetric(vertical: 8),
@@ -145,7 +152,9 @@ class _ContentView extends StatelessWidget {
               ),
               _InfoItem(
                 CaptionWidget('${titleViews[4]} :'),
-                TextWidget(state.waterSupply?.commune.nameKh),
+                TextWidget(appLocale.languageCode == 'en'
+                    ? state.waterSupply?.commune.nameEn
+                    : state.waterSupply?.commune.nameKh),
               ),
               const Padding(
                 padding: EdgeInsets.symmetric(vertical: 8),
@@ -153,7 +162,9 @@ class _ContentView extends StatelessWidget {
               ),
               _InfoItem(
                 CaptionWidget('${titleViews[5]} :'),
-                TextWidget(state.waterSupply?.village?.nameKh),
+                TextWidget(appLocale.languageCode == 'en'
+                    ? state.waterSupply?.village?.nameEn
+                    : state.waterSupply?.village?.nameKh),
               ),
               const Padding(
                 padding: EdgeInsets.symmetric(vertical: 8),

@@ -28,10 +28,14 @@ WaterSupplySmallPipeModel _$WaterSupplySmallPipeModelFromJson(
           .map((e) =>
               WaterSupplyOptionValueModel.fromJson(e as Map<String, dynamic>))
           .toList(),
-      sourceTypeOfWater: (json['source_type_of_water'] as List<dynamic>)
-          .map(
-              (e) => WaterSupplyOptionModel.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      sourceTypeOfWater: json['watersupplypipeoptionvalue_watersupplypipe'] ==
+              null
+          ? List.empty()
+          : (json['watersupplypipeoptionvalue_watersupplypipe']
+                  as List<dynamic>)
+              .map((e) =>
+                  WaterSupplyOptionModel.fromJson(e as Map<String, dynamic>))
+              .toList(),
       pipeLength: json['pipe_length'] as String,
       areaCovering: json['area_covering'] as String,
     );

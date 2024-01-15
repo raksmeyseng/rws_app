@@ -13,6 +13,7 @@ WaterSupplyModel _$WaterSupplyModelFromJson(Map<String, dynamic> json) =>
           ? DateTime.now()
           : DateTime.parse(json['created_date'] as String),
       waterSupplyType: json['water_supply_type_id']['name_kh'] as String,
+      waterSupplyTypeEn: json['water_supply_type_id']['name_en'] as String,
       address:
           ProvinceModel.fromJson(json['province_id'] as Map<String, dynamic>),
       district:

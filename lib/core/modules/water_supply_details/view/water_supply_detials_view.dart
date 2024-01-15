@@ -100,6 +100,7 @@ class _WaterSupplyItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Locale appLocale = Localizations.localeOf(context);
     return FlatCard(
       borderRadius: 10,
       color: Theme.of(context).dividerColor.withOpacity(0.05),
@@ -131,7 +132,9 @@ class _WaterSupplyItem extends StatelessWidget {
             CaptionWidget('${S.of(context).water_supply_type} :'),
             Flexible(
               child: TextWidget(
-                item.waterSupplyTypeKh,
+                appLocale.languageCode == 'en'
+                    ? item.waterSupplyTypeEn
+                    : item.waterSupplyTypeKh,
                 overflow: TextOverflow.ellipsis,
               ),
             ),
@@ -142,19 +145,27 @@ class _WaterSupplyItem extends StatelessWidget {
           ),
           _InfoItem(
             CaptionWidget('${S.of(context).village} :'),
-            TextWidget(item.villageNameKh),
+            TextWidget(appLocale.languageCode == 'en'
+                ? item.villageNameEn
+                : item.villageNameKh),
           ),
           _InfoItem(
             CaptionWidget('${S.of(context).commune} :'),
-            TextWidget(item.communeNameKh),
+            TextWidget(appLocale.languageCode == 'en'
+                ? item.communeNameEn
+                : item.communeNameKh),
           ),
           _InfoItem(
             CaptionWidget('${S.of(context).district} :'),
-            TextWidget(item.districtNameKh),
+            TextWidget(appLocale.languageCode == 'en'
+                ? item.districtNameEn
+                : item.districtNameKh),
           ),
           _InfoItem(
             CaptionWidget('${S.of(context).province} :'),
-            TextWidget(item.provinceNameKh),
+            TextWidget(appLocale.languageCode == 'en'
+                ? item.provinceNameEn
+                : item.provinceNameKh),
           ),
           // const Padding(
           //   padding: EdgeInsets.symmetric(vertical: 8),

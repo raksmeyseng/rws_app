@@ -25,6 +25,7 @@ class WaterSupplyModel {
     //required this.createdBy,
     this.createdDate,
     required this.waterSupplyType,
+    required this.waterSupplyTypeEn,
     required this.address,
     required this.district,
     required this.commune,
@@ -99,6 +100,8 @@ class WaterSupplyModel {
   int waterSupplyTypeId;
   @JsonKey(name: 'water_supply_type')
   String waterSupplyType;
+  @JsonKey(name: 'water_supply_type')
+  String waterSupplyTypeEn;
   @JsonKey(name: 'province_id')
   ProvinceModel address;
   @JsonKey(name: 'district_id')
