@@ -74,6 +74,9 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "ability_of_produce_water_report_viewer":
+            MessageLookupByLibrary.simpleMessage(
+                "Ability Produce Water(ចំនួនប៊ីដុង/មួយថ្ងៃ):"),
         "abilty_of_produce_water": MessageLookupByLibrary.simpleMessage(
             "Water production capacity (m3/h)"),
         "about_app": MessageLookupByLibrary.simpleMessage("About App"),
@@ -88,6 +91,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "appearance": MessageLookupByLibrary.simpleMessage("Appearance"),
         "area_covering":
             MessageLookupByLibrary.simpleMessage("Cover village/commune"),
+        "area_covering_report_viewer":
+            MessageLookupByLibrary.simpleMessage("Cover village/commune:"),
         "beneficiary_total_family":
             MessageLookupByLibrary.simpleMessage("Beneficiary Total Family"),
         "beneficiary_total_family_indigenous":
@@ -147,6 +152,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Grant Camera Access"),
         "capacity_of_rain_water_harvesting":
             MessageLookupByLibrary.simpleMessage("Capacity"),
+        "capacity_of_rain_water_harvesting_report_viewer":
+            MessageLookupByLibrary.simpleMessage("Capacity:"),
         "change_password":
             MessageLookupByLibrary.simpleMessage("Change Password"),
         "change_password_failure":
@@ -222,6 +229,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("General Information"),
         "greeting": MessageLookupByLibrary.simpleMessage("Hello"),
         "height": MessageLookupByLibrary.simpleMessage("Pond depth"),
+        "height_report_viewer":
+            MessageLookupByLibrary.simpleMessage("Height(m):"),
         "history": MessageLookupByLibrary.simpleMessage("History"),
         "home": MessageLookupByLibrary.simpleMessage("Home"),
         "inactive": MessageLookupByLibrary.simpleMessage("Inactive"),
@@ -239,18 +248,28 @@ class MessageLookup extends MessageLookupByLibrary {
         "invalid_url": MessageLookupByLibrary.simpleMessage("Invalid url"),
         "is_summer_has_water":
             MessageLookupByLibrary.simpleMessage("Dry season"),
+        "is_summer_has_water_report_viewer":
+            MessageLookupByLibrary.simpleMessage("Summer Has Water:"),
         "just_now": MessageLookupByLibrary.simpleMessage("Just now"),
         "label_is_has_license": MessageLookupByLibrary.simpleMessage("License"),
         "label_license_expired_date":
             MessageLookupByLibrary.simpleMessage("Expiration license date"),
+        "label_license_expired_date_report_viewer":
+            MessageLookupByLibrary.simpleMessage("License Expired Data:"),
         "label_license_registered_date":
             MessageLookupByLibrary.simpleMessage("Issue license date"),
+        "label_license_registered_date_report_viewer":
+            MessageLookupByLibrary.simpleMessage("License Registered Date:"),
         "lang_english": MessageLookupByLibrary.simpleMessage("English"),
         "lang_khmer": MessageLookupByLibrary.simpleMessage("Khmer"),
         "language": MessageLookupByLibrary.simpleMessage("Language"),
         "latitude": MessageLookupByLibrary.simpleMessage("Latitude"),
         "length": MessageLookupByLibrary.simpleMessage("Pond length"),
+        "length_report_viewer":
+            MessageLookupByLibrary.simpleMessage("Length(m):"),
         "licensee": MessageLookupByLibrary.simpleMessage("Licensee"),
+        "licensee_report_viewer":
+            MessageLookupByLibrary.simpleMessage("License:"),
         "light": MessageLookupByLibrary.simpleMessage("Light"),
         "linked_customers":
             MessageLookupByLibrary.simpleMessage("Linked Customers"),
@@ -304,6 +323,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "notification": MessageLookupByLibrary.simpleMessage("Notification"),
         "number_of_link":
             MessageLookupByLibrary.simpleMessage("Number of links"),
+        "number_of_link_report_viewer":
+            MessageLookupByLibrary.simpleMessage("Number of Link:"),
         "page_not_found": MessageLookupByLibrary.simpleMessage(
             "This page could not be found"),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
@@ -314,6 +335,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Grant Photo Access"),
         "pipe_length":
             MessageLookupByLibrary.simpleMessage("Main pipe length (m)"),
+        "pipe_length_report_viewer":
+            MessageLookupByLibrary.simpleMessage("Main Pipe Length (m):"),
         "please_input_the_secret_code": MessageLookupByLibrary.simpleMessage(
             "Input the developer secret code"),
         "please_setup_biometric": MessageLookupByLibrary.simpleMessage(
@@ -366,13 +389,20 @@ class MessageLookup extends MessageLookupByLibrary {
         "plural_month_ago_": m16,
         "plural_week_ago_": m17,
         "plural_year_ago_": m18,
+        "pond_status_report_viewer":
+            MessageLookupByLibrary.simpleMessage("Status:"),
         "pool_air": MessageLookupByLibrary.simpleMessage("Air tank (m3)"),
+        "pool_air_report_viewer":
+            MessageLookupByLibrary.simpleMessage("Pool Air(m3):"),
         "pool_filter": MessageLookupByLibrary.simpleMessage("Filter tank *"),
+        "pool_filter_report_viewer":
+            MessageLookupByLibrary.simpleMessage("Pool Filter:"),
         "primary_color": MessageLookupByLibrary.simpleMessage("Primary Color"),
         "province": MessageLookupByLibrary.simpleMessage("Province"),
         "real_time_date_format": MessageLookupByLibrary.simpleMessage(
             "EEEE, MMMM dd, yyyy | hh:mm:ss a"),
         "reason": MessageLookupByLibrary.simpleMessage("Reason"),
+        "reason_report_viewer": MessageLookupByLibrary.simpleMessage("Reason:"),
         "register_date":
             MessageLookupByLibrary.simpleMessage("Registered Date"),
         "report": MessageLookupByLibrary.simpleMessage("Report"),
@@ -394,13 +424,25 @@ class MessageLookup extends MessageLookupByLibrary {
         "single_year_ago_": m24,
         "source_type_of_water":
             MessageLookupByLibrary.simpleMessage("Type of water source"),
+        "source_type_of_water_report_viewer":
+            MessageLookupByLibrary.simpleMessage("Source Type of Water:"),
         "status": MessageLookupByLibrary.simpleMessage("Status"),
+        "status_kiosk_report_viewer":
+            MessageLookupByLibrary.simpleMessage("Status:"),
         "status_pipe":
             MessageLookupByLibrary.simpleMessage("Water network status *"),
+        "status_pipe_report_viewer":
+            MessageLookupByLibrary.simpleMessage("Pipe:"),
         "status_rain_water_harvesting":
             MessageLookupByLibrary.simpleMessage("Terminal status"),
+        "status_rain_water_harvesting_report_viewer":
+            MessageLookupByLibrary.simpleMessage("Status:"),
         "status_water_kiosk":
             MessageLookupByLibrary.simpleMessage("Water network status"),
+        "status_water_kiosk_report_viewer":
+            MessageLookupByLibrary.simpleMessage("Status:"),
+        "status_well_report_viewer":
+            MessageLookupByLibrary.simpleMessage("Status:"),
         "storage_permission":
             MessageLookupByLibrary.simpleMessage("Grant Storage Access"),
         "success": MessageLookupByLibrary.simpleMessage("Success!"),
@@ -431,13 +473,20 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Update Available"),
         "total_family": MessageLookupByLibrary.simpleMessage("Total Family"),
         "type_of_pond": MessageLookupByLibrary.simpleMessage("Pond Type"),
+        "type_of_pond_report_viewer":
+            MessageLookupByLibrary.simpleMessage("Type of Pond:"),
         "type_of_using": MessageLookupByLibrary.simpleMessage("Type of Use"),
+        "type_of_using_report_viewer":
+            MessageLookupByLibrary.simpleMessage("Type of Using:"),
         "under_maintenance":
             MessageLookupByLibrary.simpleMessage("System Maintenance"),
         "under_maintenance_description": MessageLookupByLibrary.simpleMessage(
             "We apologize for the service interruption due to system maintenance. The service will be back online shortly."),
         "underground_pool_storage":
             MessageLookupByLibrary.simpleMessage("Groundwater tank (m3)"),
+        "underground_pool_storage_report_viewer":
+            MessageLookupByLibrary.simpleMessage(
+                "Underground Pool Storage(m3):"),
         "upload_image_failure":
             MessageLookupByLibrary.simpleMessage("Image uploading failed!"),
         "user_name": MessageLookupByLibrary.simpleMessage("Username"),
@@ -449,6 +498,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "water_quality": MessageLookupByLibrary.simpleMessage("Quality"),
         "water_quality_check":
             MessageLookupByLibrary.simpleMessage("Water quality check *"),
+        "water_quality_check_report_viewer":
+            MessageLookupByLibrary.simpleMessage("Water Quality:"),
+        "water_quality_checking_report_viewer":
+            MessageLookupByLibrary.simpleMessage("Water Quality Checking:"),
+        "water_quality_report_viewer":
+            MessageLookupByLibrary.simpleMessage("Water Quality:"),
         "water_supply": MessageLookupByLibrary.simpleMessage("Water Supply"),
         "water_supply_code":
             MessageLookupByLibrary.simpleMessage("Water Supply Code"),
@@ -457,17 +512,31 @@ class MessageLookup extends MessageLookupByLibrary {
         "well_check_water_quality":
             MessageLookupByLibrary.simpleMessage("Water Quality Check"),
         "well_depth": MessageLookupByLibrary.simpleMessage("Well Height(m)"),
+        "well_heigth_filter_report_viewer":
+            MessageLookupByLibrary.simpleMessage("Heigth Filter:"),
+        "well_heigth_report_viewer":
+            MessageLookupByLibrary.simpleMessage("Heigth:"),
         "well_nirodynamic":
             MessageLookupByLibrary.simpleMessage("Niro Dynamic (m)"),
+        "well_nirodynamic_report_viewer":
+            MessageLookupByLibrary.simpleMessage("Niro Dynamic:"),
         "well_nirostatic":
             MessageLookupByLibrary.simpleMessage("Niro Static (m)"),
+        "well_nirostatic_report_viewer":
+            MessageLookupByLibrary.simpleMessage("Nirostatic:"),
         "well_screen":
             MessageLookupByLibrary.simpleMessage("Filter (Screen) (m)"),
         "well_status": MessageLookupByLibrary.simpleMessage("Status"),
         "well_type": MessageLookupByLibrary.simpleMessage("Well Type"),
+        "well_type_report_viewer":
+            MessageLookupByLibrary.simpleMessage("Well Type:"),
         "well_water_supply":
             MessageLookupByLibrary.simpleMessage("Water Supply (m3/h)"),
+        "well_water_supply_report_viewer":
+            MessageLookupByLibrary.simpleMessage("Water Supply:"),
         "width": MessageLookupByLibrary.simpleMessage("Pond width"),
+        "width_report_viewer":
+            MessageLookupByLibrary.simpleMessage("Width(m):"),
         "your_account_has_been_deleted": MessageLookupByLibrary.simpleMessage(
             "Your user account has been deleted"),
         "your_password_changed_successfuly":

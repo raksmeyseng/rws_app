@@ -74,6 +74,9 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "ability_of_produce_water_report_viewer":
+            MessageLookupByLibrary.simpleMessage(
+                "សមត្ថភាពផលិតទឹក(ចំនួនប៊ីដុង/មួយថ្ងៃ):"),
         "abilty_of_produce_water":
             MessageLookupByLibrary.simpleMessage("សមត្ថភាពផលិតទឹក(m3/h)"),
         "about_app": MessageLookupByLibrary.simpleMessage("អំពីកម្មវិធី"),
@@ -88,6 +91,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "appearance": MessageLookupByLibrary.simpleMessage("ទំរង់កម្មវិធី"),
         "area_covering":
             MessageLookupByLibrary.simpleMessage("ភូមិ/ឃុំគ្របដណ្ដប់"),
+        "area_covering_report_viewer":
+            MessageLookupByLibrary.simpleMessage("ភូមិ/ឃុំគ្របដណ្ដប់:"),
         "beneficiary_total_family":
             MessageLookupByLibrary.simpleMessage("អ្នកទទួលផលគ្រួសារសរុប"),
         "beneficiary_total_family_indigenous":
@@ -149,6 +154,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("មុខងារថតរូប"),
         "capacity_of_rain_water_harvesting":
             MessageLookupByLibrary.simpleMessage("ចំណុះ"),
+        "capacity_of_rain_water_harvesting_report_viewer":
+            MessageLookupByLibrary.simpleMessage("ចំណុះ:"),
         "change_password":
             MessageLookupByLibrary.simpleMessage("ប្ដូរពាក្យសម្ងាត់"),
         "change_password_failure":
@@ -229,6 +236,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("ព័ត៌មានលម្អិត"),
         "greeting": MessageLookupByLibrary.simpleMessage("សួស្ដី"),
         "height": MessageLookupByLibrary.simpleMessage("ជម្រៅស្រះ(ម៉ែត្រ)"),
+        "height_report_viewer":
+            MessageLookupByLibrary.simpleMessage("ជម្រៅស្រះ(ម៉ែត្រ):"),
         "history": MessageLookupByLibrary.simpleMessage("ប្រវត្តិការស្នើសុំ"),
         "home": MessageLookupByLibrary.simpleMessage("ទំព័រដើម"),
         "inactive": MessageLookupByLibrary.simpleMessage("លុប"),
@@ -248,19 +257,31 @@ class MessageLookup extends MessageLookupByLibrary {
             "ទម្រង់នៃតំណភ្ជាប់ មិនត្រឹមត្រូវ"),
         "is_summer_has_water":
             MessageLookupByLibrary.simpleMessage("រដូវប្រាំង"),
+        "is_summer_has_water_report_viewer":
+            MessageLookupByLibrary.simpleMessage("រដូវប្រាំង:"),
         "just_now": MessageLookupByLibrary.simpleMessage("ភ្លាម​ៗ​នេះ"),
         "label_is_has_license":
             MessageLookupByLibrary.simpleMessage("អាជ្ញាប័ណ្ណ"),
         "label_license_expired_date": MessageLookupByLibrary.simpleMessage(
             "ថ្ងៃ ខែ ឆ្នាំផុតកំណត់អាជ្ញាប័ណ្ណ"),
+        "label_license_expired_date_report_viewer":
+            MessageLookupByLibrary.simpleMessage(
+                "ថ្ងៃ ខែ ឆ្នាំផុតកំណត់អាជ្ញាប័ណ្ណ:"),
         "label_license_registered_date": MessageLookupByLibrary.simpleMessage(
             "ថ្ងៃ ខែ ឆ្នាំទទួលបានអាជ្ញាប័ណ្ណ"),
+        "label_license_registered_date_report_viewer":
+            MessageLookupByLibrary.simpleMessage(
+                "ថ្ងៃ ខែ ឆ្នាំទទួលបានអាជ្ញាប័ណ្ណ:"),
         "lang_english": MessageLookupByLibrary.simpleMessage("ភាសាអង់គ្លេស"),
         "lang_khmer": MessageLookupByLibrary.simpleMessage("ភាសាខ្មែរ"),
         "language": MessageLookupByLibrary.simpleMessage("ភាសា"),
         "latitude": MessageLookupByLibrary.simpleMessage("រយៈបណ្ដោយ"),
         "length": MessageLookupByLibrary.simpleMessage("បណ្ដោយស្រះ(ម៉ែត្រ)"),
+        "length_report_viewer":
+            MessageLookupByLibrary.simpleMessage("បណ្ដោយស្រះ(ម៉ែត្រ):"),
         "licensee": MessageLookupByLibrary.simpleMessage("អាជ្ញាបណ្ណ"),
+        "licensee_report_viewer":
+            MessageLookupByLibrary.simpleMessage("អាជ្ញាប័ណ្ណ:"),
         "light": MessageLookupByLibrary.simpleMessage("ភ្លឺ"),
         "linked_customers":
             MessageLookupByLibrary.simpleMessage("អតិថិជនដែលបានភ្ជាប់"),
@@ -317,6 +338,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "notification": MessageLookupByLibrary.simpleMessage("សារជូនដំណឹង"),
         "number_of_link":
             MessageLookupByLibrary.simpleMessage("ចំនួនតំណដែលបានត"),
+        "number_of_link_report_viewer":
+            MessageLookupByLibrary.simpleMessage("ចំនួនតំណដែលបានត:"),
         "page_not_found":
             MessageLookupByLibrary.simpleMessage("រកមិនឃើញទំព័រនេះទេ"),
         "password": MessageLookupByLibrary.simpleMessage("ពាក្យសម្ងាត់"),
@@ -327,6 +350,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("មុខងារជ្រើសរើសរូបភាព"),
         "pipe_length":
             MessageLookupByLibrary.simpleMessage("ប្រវែងបណ្ដាញទុយោ​មេ (m)"),
+        "pipe_length_report_viewer":
+            MessageLookupByLibrary.simpleMessage("ប្រវែងបណ្ដាញទុយោមេ​(m):"),
         "please_input_the_secret_code": MessageLookupByLibrary.simpleMessage(
             "សូមបញ្ចូលលេខកូដសម្ងាត់របស់អ្នកអភិវឌ្ឍន៏កម្មវិធី"),
         "please_setup_biometric": MessageLookupByLibrary.simpleMessage(
@@ -379,13 +404,21 @@ class MessageLookup extends MessageLookupByLibrary {
         "plural_month_ago_": m16,
         "plural_week_ago_": m17,
         "plural_year_ago_": m18,
+        "pond_status_report_viewer":
+            MessageLookupByLibrary.simpleMessage("ស្ថានភាពស្រះ:"),
         "pool_air": MessageLookupByLibrary.simpleMessage("អាងអាកាស(m3)"),
+        "pool_air_report_viewer":
+            MessageLookupByLibrary.simpleMessage("អាងអាកាស(m3):"),
         "pool_filter": MessageLookupByLibrary.simpleMessage("អាងចម្រោះ *"),
+        "pool_filter_report_viewer":
+            MessageLookupByLibrary.simpleMessage("អាងចម្រោះ:"),
         "primary_color": MessageLookupByLibrary.simpleMessage("ពណ៌កម្មវិធី"),
         "province": MessageLookupByLibrary.simpleMessage("ខេត្ត/ក្រុង"),
         "real_time_date_format": MessageLookupByLibrary.simpleMessage(
             "ថ្ងៃEEEE dd MMMM yyyy | hh:mm:ss a"),
         "reason": MessageLookupByLibrary.simpleMessage("ហេតុអ្វី"),
+        "reason_report_viewer":
+            MessageLookupByLibrary.simpleMessage("មូលហេតុ:"),
         "register_date": MessageLookupByLibrary.simpleMessage("ថ្ងៃចុះឈ្មោះ"),
         "report": MessageLookupByLibrary.simpleMessage("របាយការណ៍"),
         "request": MessageLookupByLibrary.simpleMessage("ការស្នើសុំរបស់ខ្ញុំ"),
@@ -406,13 +439,25 @@ class MessageLookup extends MessageLookupByLibrary {
         "single_year_ago_": m24,
         "source_type_of_water":
             MessageLookupByLibrary.simpleMessage("ប្រភេទប្រភពទឹក"),
+        "source_type_of_water_report_viewer":
+            MessageLookupByLibrary.simpleMessage("ប្រភេទប្រភពទឹក:"),
         "status": MessageLookupByLibrary.simpleMessage("ស្ថានភាព"),
+        "status_kiosk_report_viewer":
+            MessageLookupByLibrary.simpleMessage("ស្ថានភាពបណ្ដាញទឹក:"),
         "status_pipe":
             MessageLookupByLibrary.simpleMessage("ស្ថានភាពបណ្ដាញទឹក *"),
+        "status_pipe_report_viewer":
+            MessageLookupByLibrary.simpleMessage("ស្ថានភាពបណ្ដាញទឹក:"),
         "status_rain_water_harvesting":
             MessageLookupByLibrary.simpleMessage("ស្ថានភាពអាង"),
+        "status_rain_water_harvesting_report_viewer":
+            MessageLookupByLibrary.simpleMessage("ស្ថានភាពអាង:"),
         "status_water_kiosk":
             MessageLookupByLibrary.simpleMessage("ស្ថានភាពស្ថានីយ"),
+        "status_water_kiosk_report_viewer":
+            MessageLookupByLibrary.simpleMessage("ស្ថានភាពស្ថានីយ:"),
+        "status_well_report_viewer":
+            MessageLookupByLibrary.simpleMessage("ស្ថានភាពអណ្ដូងទឹក"),
         "storage_permission":
             MessageLookupByLibrary.simpleMessage("អង្គផ្ទុកទិន្នន័យ"),
         "success": MessageLookupByLibrary.simpleMessage("ជោគជ័យ!"),
@@ -445,14 +490,20 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("មានកំណែជំនាន់ថ្មី"),
         "total_family": MessageLookupByLibrary.simpleMessage("គ្រួសារសរុប"),
         "type_of_pond": MessageLookupByLibrary.simpleMessage("ប្រភេទស្រះ"),
+        "type_of_pond_report_viewer":
+            MessageLookupByLibrary.simpleMessage("ប្រភេទស្រះ:"),
         "type_of_using":
             MessageLookupByLibrary.simpleMessage("ប្រភេទនៃការប្រើប្រាស់"),
+        "type_of_using_report_viewer":
+            MessageLookupByLibrary.simpleMessage("ប្រភេទនៃការប្រើប្រាស់:"),
         "under_maintenance":
             MessageLookupByLibrary.simpleMessage("ប្រព័ន្ធស្ថិតក្រោមការថែទាំ"),
         "under_maintenance_description": MessageLookupByLibrary.simpleMessage(
             "សូមអធ្យាស្រ័យ ចំពោះការអាក់ខាន យើងខ្ញុំ សូមផ្អាកការផ្ដល់សេវាកម្មរយៈពេលខ្លី។ ប្រព័ន្ធនឹងដំណើរការឡើងវិញក្នុងពេលដ៏ខ្លីខាងមុខ។"),
         "underground_pool_storage":
             MessageLookupByLibrary.simpleMessage("អាងស្តុកទឹកក្រោមដី(m3)"),
+        "underground_pool_storage_report_viewer":
+            MessageLookupByLibrary.simpleMessage("អាងទឹកក្រោមដី(m3):"),
         "upload_image_failure":
             MessageLookupByLibrary.simpleMessage("រក្សាទុករូបភាពបរាជ័យ"),
         "user_name": MessageLookupByLibrary.simpleMessage("អ្នកប្រើប្រាស់"),
@@ -464,6 +515,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "water_quality": MessageLookupByLibrary.simpleMessage("គុណភាពទឹក"),
         "water_quality_check":
             MessageLookupByLibrary.simpleMessage("ការត្រួតពិនិត្យគុណភាពទឹក *"),
+        "water_quality_check_report_viewer":
+            MessageLookupByLibrary.simpleMessage("គុណភាពទឹក:"),
+        "water_quality_checking_report_viewer":
+            MessageLookupByLibrary.simpleMessage("ត្រួតពិនិត្យគុណភាពទឹក:"),
+        "water_quality_report_viewer":
+            MessageLookupByLibrary.simpleMessage("ប្រព័ន្ធចម្រោះទឹក:"),
         "water_supply":
             MessageLookupByLibrary.simpleMessage("ប្រព័ន្ធផ្គត់ផ្គង់ទឹក"),
         "water_supply_code":
@@ -473,17 +530,31 @@ class MessageLookup extends MessageLookupByLibrary {
         "well_check_water_quality":
             MessageLookupByLibrary.simpleMessage("ត្រួតពិនិត្យគុណភាពទឹក"),
         "well_depth": MessageLookupByLibrary.simpleMessage("ជម្រៅអណ្តូង(m)"),
+        "well_heigth_filter_report_viewer":
+            MessageLookupByLibrary.simpleMessage("ជម្រៅតម្រង (Screen) (m):"),
+        "well_heigth_report_viewer":
+            MessageLookupByLibrary.simpleMessage("ជម្រៅអណ្ដូង (m):"),
         "well_nirodynamic":
             MessageLookupByLibrary.simpleMessage("នីវ៉ូឌីណាមិច (m)"),
+        "well_nirodynamic_report_viewer":
+            MessageLookupByLibrary.simpleMessage("នីរ៉ូឌីណាមិច (m):"),
         "well_nirostatic":
             MessageLookupByLibrary.simpleMessage("នីវ៉ូស្តាទិច (m)"),
+        "well_nirostatic_report_viewer":
+            MessageLookupByLibrary.simpleMessage("នីរ៉ូស្តាទិច (m):"),
         "well_screen":
             MessageLookupByLibrary.simpleMessage("ជម្រៅតម្រង (Screen) (m)"),
         "well_status": MessageLookupByLibrary.simpleMessage("ស្ថានភាពអណ្តូង"),
         "well_type": MessageLookupByLibrary.simpleMessage("ប្រភេទអណ្តូង"),
+        "well_type_report_viewer":
+            MessageLookupByLibrary.simpleMessage("ប្រភេទអណ្ដូង:"),
         "well_water_supply":
             MessageLookupByLibrary.simpleMessage("ធារទឹក (m3/h)"),
+        "well_water_supply_report_viewer":
+            MessageLookupByLibrary.simpleMessage("ធារទឹក (m3/h):"),
         "width": MessageLookupByLibrary.simpleMessage("ទទឹងស្រះ(ម៉ែត្រ)"),
+        "width_report_viewer":
+            MessageLookupByLibrary.simpleMessage("ទទឹងស្រះ(ម៉ែត្រ):"),
         "your_password_changed_successfuly":
             MessageLookupByLibrary.simpleMessage(
                 "ពាក្យសម្ងាត់របស់អ្នកត្រូវបានផ្លាស់ប្ដូររួចរាល់!"),

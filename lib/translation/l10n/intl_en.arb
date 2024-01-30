@@ -272,5 +272,46 @@
   "is_summer_has_water":"Dry season",
   "type_of_using":"Type of Use",
   "capacity_of_rain_water_harvesting":"Capacity",
-  "status_rain_water_harvesting":"Terminal status"
+  "status_rain_water_harvesting":"Terminal status",
+
+  "source_type_of_water_report_viewer":"Source Type of Water:",
+  "ability_of_produce_water_report_viewer":"Ability Produce Water(ចំនួនប៊ីដុង/មួយថ្ងៃ):",
+  "underground_pool_storage_report_viewer": "Underground Pool Storage(m3):",
+  "pool_air_report_viewer": "Pool Air(m3):",
+  "pool_filter_report_viewer": "Pool Filter:",
+  "number_of_link_report_viewer": "Number of Link:",
+  "water_quality_check_report_viewer": "Water Quality:",
+  "status_pipe_report_viewer": "Pipe:",
+
+  "water_quality_report_viewer": "Water Quality:",
+  "water_quality_checking_report_viewer": "Water Quality Checking:",
+  "status_kiosk_report_viewer": "Status:",
+
+  "reason_report_viewer": "Reason:",
+
+  "width_report_viewer": "Width(m):",
+  "length_report_viewer": "Length(m):",
+  "height_report_viewer": "Height(m):",
+  "type_of_pond_report_viewer": "Type of Pond:",
+  "is_summer_has_water_report_viewer": "Summer Has Water:",
+  "pond_status_report_viewer": "Status:",
+
+  "type_of_using_report_viewer": "Type of Using:",
+  "capacity_of_rain_water_harvesting_report_viewer": "Capacity:",
+  "status_rain_water_harvesting_report_viewer": "Status:",
+  "pipe_length_report_viewer": "Main Pipe Length (m):",
+  "area_covering_report_viewer": "Cover village/commune:",
+  "licensee_report_viewer": "License:",
+  "label_license_registered_date_report_viewer": "License Registered Date:",
+  "label_license_expired_date_report_viewer": "License Expired Data:",
+
+  "status_water_kiosk_report_viewer":"Status:",
+
+  "well_type_report_viewer": "Well Type:",
+  "status_well_report_viewer":"Status:",
+  "well_nirostatic_report_viewer":"Nirostatic:",
+  "well_nirodynamic_report_viewer":"Niro Dynamic:",
+  "well_heigth_filter_report_viewer":"Heigth Filter:",
+  "well_heigth_report_viewer":"Heigth:",
+  "well_water_supply_report_viewer":"Water Supply:"
 }

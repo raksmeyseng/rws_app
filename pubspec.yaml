@@ -97,7 +97,7 @@ dependencies:
   crypto: ^3.0.2
   # Handle material design animation
   animations: ^2.0.7
-  # Browse for attachment fiels
+  # Browse for attachment fields
   file_picker: ^5.2.5
   firebase_core: ^2.7.0
   # google map

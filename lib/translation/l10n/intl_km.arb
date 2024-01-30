@@ -277,7 +277,48 @@
   "status_rain_water_harvesting":"ស្ថានភាពអាង",
   
   "have":"មាន",
-  "nohave":"មិនមាន"
+  "nohave":"មិនមាន",
+
+  "source_type_of_water_report_viewer":"ប្រភេទប្រភពទឹក:",
+  "ability_of_produce_water_report_viewer": "សមត្ថភាពផលិតទឹក(ចំនួនប៊ីដុង/មួយថ្ងៃ):",
+  "underground_pool_storage_report_viewer": "អាងទឹកក្រោមដី(m3):",
+  "pool_air_report_viewer": "អាងអាកាស(m3):",
+  "pool_filter_report_viewer": "អាងចម្រោះ:",
+  "number_of_link_report_viewer": "ចំនួនតំណដែលបានត:",
+  "water_quality_check_report_viewer": "គុណភាពទឹក:",
+  "status_pipe_report_viewer": "ស្ថានភាពបណ្ដាញទឹក:",
+
+  "water_quality_report_viewer": "ប្រព័ន្ធចម្រោះទឹក:",
+  "water_quality_checking_report_viewer": "ត្រួតពិនិត្យគុណភាពទឹក:",
+  "status_kiosk_report_viewer": "ស្ថានភាពបណ្ដាញទឹក:",
+
+  "reason_report_viewer": "មូលហេតុ:",
+
+  "width_report_viewer": "ទទឹងស្រះ(ម៉ែត្រ):",
+  "length_report_viewer": "បណ្ដោយស្រះ(ម៉ែត្រ):",
+  "height_report_viewer": "ជម្រៅស្រះ(ម៉ែត្រ):",
+  "type_of_pond_report_viewer": "ប្រភេទស្រះ:",
+  "is_summer_has_water_report_viewer": "រដូវប្រាំង:",
+  "pond_status_report_viewer": "ស្ថានភាពស្រះ:",
+
+  "type_of_using_report_viewer": "ប្រភេទនៃការប្រើប្រាស់:",
+  "capacity_of_rain_water_harvesting_report_viewer": "ចំណុះ:",
+  "status_rain_water_harvesting_report_viewer": "ស្ថានភាពអាង:",
+  "pipe_length_report_viewer": "ប្រវែងបណ្ដាញទុយោមេ​(m):",
+  "area_covering_report_viewer": "ភូមិ/ឃុំគ្របដណ្ដប់:",
+  "licensee_report_viewer": "អាជ្ញាប័ណ្ណ:",
+  "label_license_registered_date_report_viewer": "ថ្ងៃ ខែ ឆ្នាំទទួលបានអាជ្ញាប័ណ្ណ:",
+  "label_license_expired_date_report_viewer": "ថ្ងៃ ខែ ឆ្នាំផុតកំណត់អាជ្ញាប័ណ្ណ:",
+
+  "status_water_kiosk_report_viewer":"ស្ថានភាពស្ថានីយ:",
+
+  "well_type_report_viewer": "ប្រភេទអណ្ដូង:",
+  "status_well_report_viewer":"ស្ថានភាពអណ្ដូងទឹក",
+  "well_nirostatic_report_viewer":"នីរ៉ូស្តាទិច (m):",
+  "well_nirodynamic_report_viewer":"នីរ៉ូឌីណាមិច (m):",
+  "well_heigth_filter_report_viewer":"ជម្រៅតម្រង (Screen) (m):",
+  "well_heigth_report_viewer":"ជម្រៅអណ្ដូង (m):",
+  "well_water_supply_report_viewer":"ធារទឹក (m3/h):"
   
 
 }
