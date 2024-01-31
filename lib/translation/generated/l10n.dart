@@ -2769,6 +2769,346 @@ class S {
       args: [],
     );
   }
+
+  /// `Source Type of Water:`
+  String get source_type_of_water_report_viewer {
+    return Intl.message(
+      'Source Type of Water:',
+      name: 'source_type_of_water_report_viewer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ability Produce Water(ចំនួនប៊ីដុង/មួយថ្ងៃ):`
+  String get ability_of_produce_water_report_viewer {
+    return Intl.message(
+      'Ability Produce Water(ចំនួនប៊ីដុង/មួយថ្ងៃ):',
+      name: 'ability_of_produce_water_report_viewer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Underground Pool Storage(m3):`
+  String get underground_pool_storage_report_viewer {
+    return Intl.message(
+      'Underground Pool Storage(m3):',
+      name: 'underground_pool_storage_report_viewer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pool Air(m3):`
+  String get pool_air_report_viewer {
+    return Intl.message(
+      'Pool Air(m3):',
+      name: 'pool_air_report_viewer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pool Filter:`
+  String get pool_filter_report_viewer {
+    return Intl.message(
+      'Pool Filter:',
+      name: 'pool_filter_report_viewer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Number of Link:`
+  String get number_of_link_report_viewer {
+    return Intl.message(
+      'Number of Link:',
+      name: 'number_of_link_report_viewer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Water Quality:`
+  String get water_quality_check_report_viewer {
+    return Intl.message(
+      'Water Quality:',
+      name: 'water_quality_check_report_viewer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pipe:`
+  String get status_pipe_report_viewer {
+    return Intl.message(
+      'Pipe:',
+      name: 'status_pipe_report_viewer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Water Quality:`
+  String get water_quality_report_viewer {
+    return Intl.message(
+      'Water Quality:',
+      name: 'water_quality_report_viewer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Water Quality Checking:`
+  String get water_quality_checking_report_viewer {
+    return Intl.message(
+      'Water Quality Checking:',
+      name: 'water_quality_checking_report_viewer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Status:`
+  String get status_kiosk_report_viewer {
+    return Intl.message(
+      'Status:',
+      name: 'status_kiosk_report_viewer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reason:`
+  String get reason_report_viewer {
+    return Intl.message(
+      'Reason:',
+      name: 'reason_report_viewer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Width(m):`
+  String get width_report_viewer {
+    return Intl.message(
+      'Width(m):',
+      name: 'width_report_viewer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Length(m):`
+  String get length_report_viewer {
+    return Intl.message(
+      'Length(m):',
+      name: 'length_report_viewer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Height(m):`
+  String get height_report_viewer {
+    return Intl.message(
+      'Height(m):',
+      name: 'height_report_viewer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Type of Pond:`
+  String get type_of_pond_report_viewer {
+    return Intl.message(
+      'Type of Pond:',
+      name: 'type_of_pond_report_viewer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Summer Has Water:`
+  String get is_summer_has_water_report_viewer {
+    return Intl.message(
+      'Summer Has Water:',
+      name: 'is_summer_has_water_report_viewer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Status:`
+  String get pond_status_report_viewer {
+    return Intl.message(
+      'Status:',
+      name: 'pond_status_report_viewer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Type of Using:`
+  String get type_of_using_report_viewer {
+    return Intl.message(
+      'Type of Using:',
+      name: 'type_of_using_report_viewer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Capacity:`
+  String get capacity_of_rain_water_harvesting_report_viewer {
+    return Intl.message(
+      'Capacity:',
+      name: 'capacity_of_rain_water_harvesting_report_viewer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Status:`
+  String get status_rain_water_harvesting_report_viewer {
+    return Intl.message(
+      'Status:',
+      name: 'status_rain_water_harvesting_report_viewer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Main Pipe Length (m):`
+  String get pipe_length_report_viewer {
+    return Intl.message(
+      'Main Pipe Length (m):',
+      name: 'pipe_length_report_viewer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cover village/commune:`
+  String get area_covering_report_viewer {
+    return Intl.message(
+      'Cover village/commune:',
+      name: 'area_covering_report_viewer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `License:`
+  String get licensee_report_viewer {
+    return Intl.message(
+      'License:',
+      name: 'licensee_report_viewer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `License Registered Date:`
+  String get label_license_registered_date_report_viewer {
+    return Intl.message(
+      'License Registered Date:',
+      name: 'label_license_registered_date_report_viewer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `License Expired Data:`
+  String get label_license_expired_date_report_viewer {
+    return Intl.message(
+      'License Expired Data:',
+      name: 'label_license_expired_date_report_viewer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Status:`
+  String get status_water_kiosk_report_viewer {
+    return Intl.message(
+      'Status:',
+      name: 'status_water_kiosk_report_viewer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Well Type:`
+  String get well_type_report_viewer {
+    return Intl.message(
+      'Well Type:',
+      name: 'well_type_report_viewer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Status:`
+  String get status_well_report_viewer {
+    return Intl.message(
+      'Status:',
+      name: 'status_well_report_viewer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Nirostatic:`
+  String get well_nirostatic_report_viewer {
+    return Intl.message(
+      'Nirostatic:',
+      name: 'well_nirostatic_report_viewer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Niro Dynamic:`
+  String get well_nirodynamic_report_viewer {
+    return Intl.message(
+      'Niro Dynamic:',
+      name: 'well_nirodynamic_report_viewer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Heigth Filter:`
+  String get well_heigth_filter_report_viewer {
+    return Intl.message(
+      'Heigth Filter:',
+      name: 'well_heigth_filter_report_viewer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Heigth:`
+  String get well_heigth_report_viewer {
+    return Intl.message(
+      'Heigth:',
+      name: 'well_heigth_report_viewer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Water Supply:`
+  String get well_water_supply_report_viewer {
+    return Intl.message(
+      'Water Supply:',
+      name: 'well_water_supply_report_viewer',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
