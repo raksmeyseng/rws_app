@@ -160,7 +160,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("ប្ដូរពាក្យសម្ងាត់"),
         "change_password_failure":
             MessageLookupByLibrary.simpleMessage("ប្ដូរពាក្យសម្ងាត់បរាជ័យ"),
+        "charity": MessageLookupByLibrary.simpleMessage("សប្បុរស"),
         "commune": MessageLookupByLibrary.simpleMessage("ឃុំ/សង្កាត់"),
+        "community": MessageLookupByLibrary.simpleMessage("សហគមន៍"),
         "confirm": MessageLookupByLibrary.simpleMessage("បញ្ជាក់"),
         "confirm_delete_news":
             MessageLookupByLibrary.simpleMessage("តើអ្នកចង់លុបព័ត៌មានមួយនេះឬ?"),
@@ -223,7 +225,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "error_logout_failure":
             MessageLookupByLibrary.simpleMessage("ការចាកចេញ មិនបានជោគជ័យ។"),
         "error_unauthorized": MessageLookupByLibrary.simpleMessage(
-            "អ្នកពុំមានសិទ្ធិប្រើប្រាស់ ហើយអ្នកនឹងត្រូវបានចាកចេញដោយស្វ័យប្រវត្ថិ សូមចូលប្រើប្រាស់សារជាថ្មី។"),
+            "អ្នកពុំមានសិទ្ធិប្រើប្រាស់ ហើយអ្នកនឹងត្រូវបានចាកចេញដោយស្វ័យប្រវត្ត សូមចូលប្រើប្រាស់សារជាថ្មី។"),
         "expired_today":
             MessageLookupByLibrary.simpleMessage("ផុតកំណត់ថ្ងៃនេះ"),
         "full_name":
@@ -234,6 +236,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "gender_other": MessageLookupByLibrary.simpleMessage("ផ្សេងទៀត"),
         "general_information":
             MessageLookupByLibrary.simpleMessage("ព័ត៌មានលម្អិត"),
+        "government": MessageLookupByLibrary.simpleMessage("រដ្ឋ"),
         "greeting": MessageLookupByLibrary.simpleMessage("សួស្ដី"),
         "height": MessageLookupByLibrary.simpleMessage("ជម្រៅស្រះ(ម៉ែត្រ)"),
         "height_report_viewer":
@@ -318,7 +321,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "តើអ្នកពិតជាចង់បោះបង់ការកែប្រែឬ?"),
         "msg_privacy_agreement_": m12,
         "msg_reenable_biometric": MessageLookupByLibrary.simpleMessage(
-            "មុខងារស្កេនម្រាមដៃ/មុខ ត្រូវបានផ្អាកបណ្ដោះអាសន្ន។ សូមចាក់សោ និងបើកសោឧបករណ៍របស់អ្នកឡើងវិញម្ដងទៀត។"),
+            "មុខងារស្កេនម្រាមដៃ/មុខ ត្រូវបានផ្អាកបណ្ដោះអាសន្ន។ សូមចាក់សោរ និងបើកសោរឧបករណ៍របស់អ្នកឡើងវិញម្ដងទៀត។"),
         "msg_remove_profile": MessageLookupByLibrary.simpleMessage(
             "រូបភាពរបស់អ្នកនឹងត្រូវលុបចេញ។ រូបតំណាងនេះនឹងត្រូវបានប្រើជំនួសអោយរូបភាពផ្ទាល់ខ្លួនរបស់អ្នក។"),
         "msg_title_remove_profile": MessageLookupByLibrary.simpleMessage(
@@ -335,11 +338,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "no_history":
             MessageLookupByLibrary.simpleMessage("មិនមានប្រវត្តិការស្នើសុំ"),
         "no_task": MessageLookupByLibrary.simpleMessage("មិនមានសំណើរ"),
+        "norisk": MessageLookupByLibrary.simpleMessage("មិនប្រឈម"),
         "notification": MessageLookupByLibrary.simpleMessage("សារជូនដំណឹង"),
         "number_of_link":
             MessageLookupByLibrary.simpleMessage("ចំនួនតំណដែលបានត"),
         "number_of_link_report_viewer":
             MessageLookupByLibrary.simpleMessage("ចំនួនតំណដែលបានត:"),
+        "organization": MessageLookupByLibrary.simpleMessage("អង្គការ"),
         "page_not_found":
             MessageLookupByLibrary.simpleMessage("រកមិនឃើញទំព័រនេះទេ"),
         "password": MessageLookupByLibrary.simpleMessage("ពាក្យសម្ងាត់"),
@@ -357,7 +362,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "please_setup_biometric": MessageLookupByLibrary.simpleMessage(
             "សូមកំណត់មុខងារស្កេនម្រាមដៃ/មុខ នៅលើឧបករណ៍របស់អ្នក។"),
         "pls_input_address":
-            MessageLookupByLibrary.simpleMessage("សូមបញ្ចូលអាសយដ្ឋាន"),
+            MessageLookupByLibrary.simpleMessage("សូមបញ្ចូលអាស័យដ្ឋាន"),
         "pls_input_commune":
             MessageLookupByLibrary.simpleMessage("សូមជ្រើសរើសឃុំ/សង្កាត់"),
         "pls_input_confirm_password":
@@ -413,6 +418,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "pool_filter_report_viewer":
             MessageLookupByLibrary.simpleMessage("អាងចម្រោះ:"),
         "primary_color": MessageLookupByLibrary.simpleMessage("ពណ៌កម្មវិធី"),
+        "private": MessageLookupByLibrary.simpleMessage("ឯកជន"),
         "province": MessageLookupByLibrary.simpleMessage("ខេត្ត/ក្រុង"),
         "real_time_date_format": MessageLookupByLibrary.simpleMessage(
             "ថ្ងៃEEEE dd MMMM yyyy | hh:mm:ss a"),
@@ -422,6 +428,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "register_date": MessageLookupByLibrary.simpleMessage("ថ្ងៃចុះឈ្មោះ"),
         "report": MessageLookupByLibrary.simpleMessage("របាយការណ៍"),
         "request": MessageLookupByLibrary.simpleMessage("ការស្នើសុំរបស់ខ្ញុំ"),
+        "risk": MessageLookupByLibrary.simpleMessage("ប្រឈម"),
         "risk_enviroment":
             MessageLookupByLibrary.simpleMessage("តំបន់ប្រឈមផ្នែកបរិស្ថាន"),
         "save_profile_failed":
@@ -462,8 +469,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("អង្គផ្ទុកទិន្នន័យ"),
         "success": MessageLookupByLibrary.simpleMessage("ជោគជ័យ!"),
         "system": MessageLookupByLibrary.simpleMessage("ប្រព័ន្ធ"),
-        "tab_general": MessageLookupByLibrary.simpleMessage("ពត៌មានទូទៅ"),
-        "tab_specific": MessageLookupByLibrary.simpleMessage("ពត៌មានលម្អិត"),
+        "tab_general": MessageLookupByLibrary.simpleMessage("ព័ត៌មានទូទៅ"),
+        "tab_specific": MessageLookupByLibrary.simpleMessage("ព័ត៌មានលម្អិត"),
         "terms_and_conditions": MessageLookupByLibrary.simpleMessage(
             "លក្ខខណ្ឌនៃការប្រើប្រាស់កម្មវិធី"),
         "testing_environment":
@@ -530,9 +537,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "well_check_water_quality":
             MessageLookupByLibrary.simpleMessage("ត្រួតពិនិត្យគុណភាពទឹក"),
         "well_depth": MessageLookupByLibrary.simpleMessage("ជម្រៅអណ្តូង(m)"),
-        "well_heigth_filter_report_viewer":
+        "well_height_filter_report_viewer":
             MessageLookupByLibrary.simpleMessage("ជម្រៅតម្រង (Screen) (m):"),
-        "well_heigth_report_viewer":
+        "well_height_report_viewer":
             MessageLookupByLibrary.simpleMessage("ជម្រៅអណ្ដូង (m):"),
         "well_nirodynamic":
             MessageLookupByLibrary.simpleMessage("នីវ៉ូឌីណាមិច (m)"),

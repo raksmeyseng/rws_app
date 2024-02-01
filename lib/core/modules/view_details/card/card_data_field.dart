@@ -114,7 +114,7 @@ class _WellView extends StatelessWidget {
                 child: MyDivider(),
               ),
               _InfoItem(
-                CaptionWidget(S.of(context).well_heigth_report_viewer),
+                CaptionWidget(S.of(context).well_height_report_viewer),
                 TextWidget(
                   state.waterSupply?.waterSupplyWells?.first.wellHeight ?? '-',
                 ),
@@ -124,7 +124,7 @@ class _WellView extends StatelessWidget {
                 child: MyDivider(),
               ),
               _InfoItem(
-                CaptionWidget(S.of(context).well_heigth_report_viewer),
+                CaptionWidget(S.of(context).well_height_report_viewer),
                 TextWidget(
                   state.waterSupply?.waterSupplyWells?.first.wellFilterHeight ??
                       '-',

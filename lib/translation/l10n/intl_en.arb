@@ -223,13 +223,13 @@
   "tab_general": "General",
   "tab_specific":"Specific",
   "map_unit":"Map Unit",
-  "utm_x":"Coordidate UTMX",
-  "utm_y":"Coordidate UTMY",
+  "utm_x":"Coordinate UTMX",
+  "utm_y":"Coordinate UTMY",
   "total_family": "Total Family",
-  "risk_enviroment": "Risk Enviroment",
+  "risk_enviroment": "Risk Environment",
   "construction_date":"Construction Date",
   "budget_source": "Budget Source",
-  "construction_by": "Constrction By",
+  "construction_by": "Construction By",
   "management_type":"Management Type",
   "managed_by":"Managed By",
   "beneficiary_total_people": "Beneficiary Total People",
@@ -311,7 +311,17 @@
   "status_well_report_viewer":"Status:",
   "well_nirostatic_report_viewer":"Nirostatic:",
   "well_nirodynamic_report_viewer":"Niro Dynamic:",
-  "well_heigth_filter_report_viewer":"Heigth Filter:",
-  "well_heigth_report_viewer":"Heigth:",
-  "well_water_supply_report_viewer":"Water Supply:"
+  "well_height_filter_report_viewer":"Height Filter:",
+  "well_height_report_viewer":"Height:",
+  "well_water_supply_report_viewer":"Water Supply:",
+
+  "risk": "Risk",
+  "norisk": "No risk",
+
+  "government": "Government",
+  "organization": "Organization",
+  "charity": "Charity",
+
+  "community": "Community",
+  "private": "Private"
 }

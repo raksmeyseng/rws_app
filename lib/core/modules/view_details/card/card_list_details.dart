@@ -219,8 +219,8 @@ class _ContentView extends StatelessWidget {
               _InfoItem(
                 CaptionWidget('${titleViews[10]} :'),
                 TextWidget(state.waterSupply?.isRiskEnviromentArea == true
-                    ? 'ប្រឈម'
-                    : 'មិនប្រឈម'),
+                    ? S.of(context).risk
+                    : S.of(context).norisk),
               ),
               const Padding(
                 padding: EdgeInsets.symmetric(vertical: 8),
@@ -237,10 +237,10 @@ class _ContentView extends StatelessWidget {
               _InfoItem(
                 CaptionWidget('${titleViews[12]} :'),
                 TextWidget(state.waterSupply?.sourceBudget == 0
-                    ? 'រដ្ខ'
+                    ? S.of(context).government
                     : state.waterSupply?.sourceBudget == 1
-                        ? 'អង្គការ'
-                        : 'សប្បុរស'),
+                        ? S.of(context).organization
+                        : S.of(context).charity),
               ),
               const Padding(
                 padding: EdgeInsets.symmetric(vertical: 8),
@@ -257,7 +257,7 @@ class _ContentView extends StatelessWidget {
               _InfoItem(
                 CaptionWidget('${titleViews[14]} :'),
                 TextWidget(
-                    state.waterSupply?.managementType == 0 ? 'សហគមន៍' : 'ឯកជន'),
+                    state.waterSupply?.managementType == 0 ? S.of(context).community : S.of(context).private),
               ),
               const Padding(
                 padding: EdgeInsets.symmetric(vertical: 8),

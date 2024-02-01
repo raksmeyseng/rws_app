@@ -2290,20 +2290,20 @@ class S {
     );
   }
 
-  /// `Coordidate UTMX`
+  /// `Coordinate UTMX`
   String get utm_x {
     return Intl.message(
-      'Coordidate UTMX',
+      'Coordinate UTMX',
       name: 'utm_x',
       desc: '',
       args: [],
     );
   }
 
-  /// `Coordidate UTMY`
+  /// `Coordinate UTMY`
   String get utm_y {
     return Intl.message(
-      'Coordidate UTMY',
+      'Coordinate UTMY',
       name: 'utm_y',
       desc: '',
       args: [],
@@ -2320,10 +2320,10 @@ class S {
     );
   }
 
-  /// `Risk Enviroment`
+  /// `Risk Environment`
   String get risk_enviroment {
     return Intl.message(
-      'Risk Enviroment',
+      'Risk Environment',
       name: 'risk_enviroment',
       desc: '',
       args: [],
@@ -2350,10 +2350,10 @@ class S {
     );
   }
 
-  /// `Constrction By`
+  /// `Construction By`
   String get construction_by {
     return Intl.message(
-      'Constrction By',
+      'Construction By',
       name: 'construction_by',
       desc: '',
       args: [],
@@ -3080,21 +3080,21 @@ class S {
     );
   }
 
-  /// `Heigth Filter:`
-  String get well_heigth_filter_report_viewer {
+  /// `Height Filter:`
+  String get well_height_filter_report_viewer {
     return Intl.message(
-      'Heigth Filter:',
-      name: 'well_heigth_filter_report_viewer',
+      'Height Filter:',
+      name: 'well_height_filter_report_viewer',
       desc: '',
       args: [],
     );
   }
 
-  /// `Heigth:`
-  String get well_heigth_report_viewer {
+  /// `Height:`
+  String get well_height_report_viewer {
     return Intl.message(
-      'Heigth:',
-      name: 'well_heigth_report_viewer',
+      'Height:',
+      name: 'well_height_report_viewer',
       desc: '',
       args: [],
     );
@@ -3105,6 +3105,76 @@ class S {
     return Intl.message(
       'Water Supply:',
       name: 'well_water_supply_report_viewer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Risk`
+  String get risk {
+    return Intl.message(
+      'Risk',
+      name: 'risk',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No risk`
+  String get norisk {
+    return Intl.message(
+      'No risk',
+      name: 'norisk',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Government`
+  String get government {
+    return Intl.message(
+      'Government',
+      name: 'government',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Organization`
+  String get organization {
+    return Intl.message(
+      'Organization',
+      name: 'organization',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Charity`
+  String get charity {
+    return Intl.message(
+      'Charity',
+      name: 'charity',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Community`
+  String get community {
+    return Intl.message(
+      'Community',
+      name: 'community',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Private`
+  String get private {
+    return Intl.message(
+      'Private',
+      name: 'private',
       desc: '',
       args: [],
     );

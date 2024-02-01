@@ -42,7 +42,7 @@
   "biometric_enabled_desc": "ដើម្បីចូលប្រើប្រាស់ និងធ្វើប្រតិបត្តិការមុខងារសំខាន់ៗ។",
   "enable_biometric_tips": "សូមប្រាកដថា ឧបករណ៍នេះប្រើតែស្នាមម្រាមដៃ/មុខ របស់អ្នកតែម្នាក់ប៉ុណ្ណោះ។\n\nប្រសិនបើអ្នកប្រើឧបករណ៍នេះជាមួយអ្នកផ្សេង យើង​ខ្ញុំស្នើអោយអ្នកប្រើលេខកូដ PIN ដើម្បីចូលប្រើប្រាស់ជំនួសវិញ។ អ្នកអាចផ្លាស់ប្តូរជម្រើសនៃការចូលប្រើប្រាស់ពេលក្រោយ នៅត្រង់កន្លែង ការកំណត់។",
   "scan_to_authenticate": "សូមស្កេនម្រាមដៃ/មុខរបស់អ្នកដើម្បីបន្ត",
-  "msg_reenable_biometric": "មុខងារស្កេនម្រាមដៃ/មុខ ត្រូវបានផ្អាកបណ្ដោះអាសន្ន។ សូមចាក់សោ និងបើកសោឧបករណ៍របស់អ្នកឡើងវិញម្ដងទៀត។",
+  "msg_reenable_biometric": "មុខងារស្កេនម្រាមដៃ/មុខ ត្រូវបានផ្អាកបណ្ដោះអាសន្ន។ សូមចាក់សោរ និងបើកសោរឧបករណ៍របស់អ្នកឡើងវិញម្ដងទៀត។",
   "please_setup_biometric": "សូមកំណត់មុខងារស្កេនម្រាមដៃ/មុខ នៅលើឧបករណ៍របស់អ្នក។",
   "enable_biometric_success": "មុខងារស្កេនម្រាមដៃ/មុខ បានបើកដំណើរការ!",
   "msg_biometric_disabled_by_system": "មុខងារស្កេនម្រាមដៃ/មុខ ត្រូវបានបិទ ដោយសារមានការកែប្រែនៅក្នុងការកំណត់របស់ឧបករណ៍។",
@@ -50,7 +50,7 @@
   "msg_confirm_disable_biometric": "តើអ្នកពិតជាចង់ បិទមុខងារស្កេនម្រាមដៃ/មុខឬ?",
   "title_no_internet_access": "មិនមានបណ្ដាញអុីនធឺណិត",
   "msg_check_your_internet_connection": "សូមពិនិត្យមើលអុីនធឺណិតរបស់អ្នក និងព្យាយាមម្ដងទៀត។",
-  "error_unauthorized": "អ្នកពុំមានសិទ្ធិប្រើប្រាស់ ហើយអ្នកនឹងត្រូវបានចាកចេញដោយស្វ័យប្រវត្ថិ សូមចូលប្រើប្រាស់សារជាថ្មី។",
+  "error_unauthorized": "អ្នកពុំមានសិទ្ធិប្រើប្រាស់ ហើយអ្នកនឹងត្រូវបានចាកចេញដោយស្វ័យប្រវត្ត សូមចូលប្រើប្រាស់សារជាថ្មី។",
   "success": "ជោគជ័យ!",
   "password_mismatch": "ពាក្យសម្ងាត់មិនត្រូវគ្នា",
   "confirm": "បញ្ជាក់",
@@ -177,7 +177,7 @@
   "longitude": "រយៈទទឹង",
   "pls_input_latitude": "សូមបញ្ចូលរយៈបណ្ដោយ",
   "pls_input_longitude": "សូមបញ្ចូលរយៈទទឹក",
-  "pls_input_address": "សូមបញ្ចូលអាសយដ្ឋាន",
+  "pls_input_address": "សូមបញ្ចូលអាស័យដ្ឋាន",
   "add_news": "បន្ថែមព័ត៌មាន",
   "edit_news": "កែប្រែព័ត៌មាន",
   "thumbnail": "រូបភាពខាងមុខ",
@@ -221,8 +221,8 @@
   "pls_input_commune":"សូមជ្រើសរើសឃុំ/សង្កាត់",
   "pls_input_village":"សូមជ្រើសរើសភូមិ",
   "view_history":"លំហូរដំណើរការ",
-  "tab_general": "ពត៌មានទូទៅ",
-  "tab_specific":"ពត៌មានលម្អិត",
+  "tab_general": "ព័ត៌មានទូទៅ",
+  "tab_specific":"ព័ត៌មានលម្អិត",
   "map_unit":"ខ្នាតផែនទី",
   "utm_x":"កូអរដោនេ UTMX",
   "utm_y":"កូអរដោនេ UTMY",
@@ -316,9 +316,19 @@
   "status_well_report_viewer":"ស្ថានភាពអណ្ដូងទឹក",
   "well_nirostatic_report_viewer":"នីរ៉ូស្តាទិច (m):",
   "well_nirodynamic_report_viewer":"នីរ៉ូឌីណាមិច (m):",
-  "well_heigth_filter_report_viewer":"ជម្រៅតម្រង (Screen) (m):",
-  "well_heigth_report_viewer":"ជម្រៅអណ្ដូង (m):",
-  "well_water_supply_report_viewer":"ធារទឹក (m3/h):"
+  "well_height_filter_report_viewer":"ជម្រៅតម្រង (Screen) (m):",
+  "well_height_report_viewer":"ជម្រៅអណ្ដូង (m):",
+  "well_water_supply_report_viewer":"ធារទឹក (m3/h):",
+
+  "risk": "ប្រឈម",
+  "norisk": "មិនប្រឈម",
+
+  "government": "រដ្ឋ",
+  "organization": "អង្គការ",
+  "charity": "សប្បុរស",
+
+  "community": "សហគមន៍",
+  "private": "ឯកជន"
   
 
 }

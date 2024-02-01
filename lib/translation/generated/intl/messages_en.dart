@@ -158,7 +158,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Change Password"),
         "change_password_failure":
             MessageLookupByLibrary.simpleMessage("Change password failure"),
+        "charity": MessageLookupByLibrary.simpleMessage("Charity"),
         "commune": MessageLookupByLibrary.simpleMessage("Commune"),
+        "community": MessageLookupByLibrary.simpleMessage("Community"),
         "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
         "confirm_delete_news": MessageLookupByLibrary.simpleMessage(
             "Do you want to delete this news?"),
@@ -171,7 +173,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "confirm_password_mismatch":
             MessageLookupByLibrary.simpleMessage("Confirm password mismatch"),
         "construction_by":
-            MessageLookupByLibrary.simpleMessage("Constrction By"),
+            MessageLookupByLibrary.simpleMessage("Construction By"),
         "construction_date":
             MessageLookupByLibrary.simpleMessage("Construction Date"),
         "copied": MessageLookupByLibrary.simpleMessage("Copied"),
@@ -227,6 +229,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "gender_other": MessageLookupByLibrary.simpleMessage("Other"),
         "general_information":
             MessageLookupByLibrary.simpleMessage("General Information"),
+        "government": MessageLookupByLibrary.simpleMessage("Government"),
         "greeting": MessageLookupByLibrary.simpleMessage("Hello"),
         "height": MessageLookupByLibrary.simpleMessage("Pond depth"),
         "height_report_viewer":
@@ -320,11 +323,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "news_date": MessageLookupByLibrary.simpleMessage("Date"),
         "no_history": MessageLookupByLibrary.simpleMessage("No History"),
         "no_task": MessageLookupByLibrary.simpleMessage("No Task"),
+        "norisk": MessageLookupByLibrary.simpleMessage("No risk"),
         "notification": MessageLookupByLibrary.simpleMessage("Notification"),
         "number_of_link":
             MessageLookupByLibrary.simpleMessage("Number of links"),
         "number_of_link_report_viewer":
             MessageLookupByLibrary.simpleMessage("Number of Link:"),
+        "organization": MessageLookupByLibrary.simpleMessage("Organization"),
         "page_not_found": MessageLookupByLibrary.simpleMessage(
             "This page could not be found"),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
@@ -398,6 +403,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "pool_filter_report_viewer":
             MessageLookupByLibrary.simpleMessage("Pool Filter:"),
         "primary_color": MessageLookupByLibrary.simpleMessage("Primary Color"),
+        "private": MessageLookupByLibrary.simpleMessage("Private"),
         "province": MessageLookupByLibrary.simpleMessage("Province"),
         "real_time_date_format": MessageLookupByLibrary.simpleMessage(
             "EEEE, MMMM dd, yyyy | hh:mm:ss a"),
@@ -407,8 +413,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Registered Date"),
         "report": MessageLookupByLibrary.simpleMessage("Report"),
         "request": MessageLookupByLibrary.simpleMessage("My Request"),
+        "risk": MessageLookupByLibrary.simpleMessage("Risk"),
         "risk_enviroment":
-            MessageLookupByLibrary.simpleMessage("Risk Enviroment"),
+            MessageLookupByLibrary.simpleMessage("Risk Environment"),
         "save_profile_failed":
             MessageLookupByLibrary.simpleMessage("Save profile failed!"),
         "scan_to_authenticate": MessageLookupByLibrary.simpleMessage(
@@ -490,8 +497,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "upload_image_failure":
             MessageLookupByLibrary.simpleMessage("Image uploading failed!"),
         "user_name": MessageLookupByLibrary.simpleMessage("Username"),
-        "utm_x": MessageLookupByLibrary.simpleMessage("Coordidate UTMX"),
-        "utm_y": MessageLookupByLibrary.simpleMessage("Coordidate UTMY"),
+        "utm_x": MessageLookupByLibrary.simpleMessage("Coordinate UTMX"),
+        "utm_y": MessageLookupByLibrary.simpleMessage("Coordinate UTMY"),
         "version": MessageLookupByLibrary.simpleMessage("Version"),
         "view_history": MessageLookupByLibrary.simpleMessage("View History"),
         "village": MessageLookupByLibrary.simpleMessage("Village"),
@@ -512,10 +519,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "well_check_water_quality":
             MessageLookupByLibrary.simpleMessage("Water Quality Check"),
         "well_depth": MessageLookupByLibrary.simpleMessage("Well Height(m)"),
-        "well_heigth_filter_report_viewer":
-            MessageLookupByLibrary.simpleMessage("Heigth Filter:"),
-        "well_heigth_report_viewer":
-            MessageLookupByLibrary.simpleMessage("Heigth:"),
+        "well_height_filter_report_viewer":
+            MessageLookupByLibrary.simpleMessage("Height Filter:"),
+        "well_height_report_viewer":
+            MessageLookupByLibrary.simpleMessage("Height:"),
         "well_nirodynamic":
             MessageLookupByLibrary.simpleMessage("Niro Dynamic (m)"),
         "well_nirodynamic_report_viewer":
