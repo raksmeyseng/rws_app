@@ -62,7 +62,7 @@ class _WaterSupplyTypeInput extends StatelessWidget {
     if (!state.waterSupplyTypeInput.invalid) return null;
     switch (state.waterSupplyTypeInput.error) {
       case WaterSupplyTypeInputValidationError.empty:
-        return 'សូមជ្រើសរើសប្រភេទប្រភពទឹក';
+        return S.of(context).select_source_type_of_water_error;
       default:
         return null;
     }
@@ -232,7 +232,7 @@ class _FilterTankInput extends StatelessWidget {
     if (!state.filterTankInput.invalid) return null;
     switch (state.filterTankInput.error) {
       case FilterInputValidationError.empty:
-        return 'សូមជ្រើសរើសអាងចម្រោះ';
+        return S.of(context).select_pool_filter_error;
       default:
         return null;
     }
@@ -401,7 +401,7 @@ class _PipeStatusInput extends StatelessWidget {
     if (!state.pipeStatusInput.invalid) return null;
     switch (state.pipeStatusInput.error) {
       case WellStatusInputValidationError.empty:
-        return 'សូមជ្រើសរើសស្ថានភាពបណ្តាញទឹក';
+        return S.of(context).select_status_pipe_error;
       default:
         return null;
     }

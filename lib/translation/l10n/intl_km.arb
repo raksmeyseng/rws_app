@@ -328,7 +328,34 @@
   "charity": "សប្បុរស",
 
   "community": "សហគមន៍",
-  "private": "ឯកជន"
-  
+  "private": "ឯកជន",
+
+  "data_saved_successfully": "ទិន្នន័យរក្សាទុកបានជោគជ័យ។",
+  "data_save_failed": "ការរក្សាទុកទិន្នន័យបានបរាជ័យ។",
+  "add_new_data": "បង្កើតថ្មី",
+  "close": "បិទ",
+  "environmental_risk_area": "តំបន់ប្រឈមផ្នែកបរិស្ថាន",
+  "select_environmental_risk_area_error": "សូមជ្រើសរើសតំបន់ប្រឈមផ្នែកបរិស្ថាន",
+  "budget_type": "ប្រភេទថវិកា",
+  "select_budget_type_error": "សូមជ្រើសរើសប្រភេទថវិកា",
+  "select_management_type_error": "សូមជ្រើសរើសប្រភេទនៃការគ្រប់គ្រង",
+  "input_total_people_benefice_error": "សូមបញ្ចូលអ្នកទទួលផលសរុប",
+  "beneficiary_total_women_error": "សូមបញ្ចូលអ្នកទទួលផលសរុបស្រី",
+  "beneficiary_total_family_error": "សូមបញ្ចូលអ្នកទទួលផលគ្រួសារសរុប",
+  "beneficiary_total_family_poor_1_error": "សូមបញ្ចូលអ្នកទទួលផលគ្រួសារក្រ១",
+  "beneficiary_total_family_poor_2_error": "សូមបញ្ចូលអ្នកទទួលផលគ្រួសារក្រ២",
+  "beneficiary_total_family_indigenous_error": "សូមបញ្ចូលអ្នកទទួលផលជនជាតិភាគតិច",
+  "beneficiary_total_family_vulnerable_error": "សូមបញ្ចូលអ្នកទទួលផលគ្រួសារជនងាយរងគ្រោះ",
+  "select_construction_date_error": "សូមជ្រើសរើសកាលបរិច្ឆេទសំណង់",
+  "well_type_error": "សូមជ្រើសរើសប្រភេទអណ្តូង",
+  "select_water_quality_error": "សូមជ្រើសរើសគុណភាពទឹក",
+  "select_well_check_water_quality_error": "សូមជ្រើសរើសត្រួតពិនិត្យគុណភាពទឹក",
+  "select_well_status_error": "សូមជ្រើសរើសស្ថានភាពអណ្តូង",
+  "select_source_type_of_water_error": "សូមជ្រើសរើសប្រភេទប្រភពទឹក",
+  "select_pool_filter_error": "សូមជ្រើសរើសអាងចម្រោះ",
+  "select_status_pipe_error": "សូមជ្រើសរើសស្ថានភាពបណ្តាញទឹក",
+  "view_history_data": "មើលលំហូរដំណើរការ",
+
+  "water_supply_coverage_report": "របាយការណ៍គ្រប់ដណ្ដប់ប្រព័ន្ធផ្គត់ផ្គង់ទឹក"
 
 }

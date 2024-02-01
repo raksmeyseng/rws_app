@@ -3179,6 +3179,266 @@ class S {
       args: [],
     );
   }
+
+  /// `Data Saved Successfully.`
+  String get data_saved_successfully {
+    return Intl.message(
+      'Data Saved Successfully.',
+      name: 'data_saved_successfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Data Save Failed.`
+  String get data_save_failed {
+    return Intl.message(
+      'Data Save Failed.',
+      name: 'data_save_failed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add New`
+  String get add_new_data {
+    return Intl.message(
+      'Add New',
+      name: 'add_new_data',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Close`
+  String get close {
+    return Intl.message(
+      'Close',
+      name: 'close',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Environment Risk`
+  String get environmental_risk_area {
+    return Intl.message(
+      'Environment Risk',
+      name: 'environmental_risk_area',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please select an environmental risk area`
+  String get select_environmental_risk_area_error {
+    return Intl.message(
+      'Please select an environmental risk area',
+      name: 'select_environmental_risk_area_error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Budget Source`
+  String get budget_type {
+    return Intl.message(
+      'Budget Source',
+      name: 'budget_type',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please select a budget source`
+  String get select_budget_type_error {
+    return Intl.message(
+      'Please select a budget source',
+      name: 'select_budget_type_error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please select management type`
+  String get select_management_type_error {
+    return Intl.message(
+      'Please select management type',
+      name: 'select_management_type_error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please input beneficiaries total people`
+  String get input_total_people_benefice_error {
+    return Intl.message(
+      'Please input beneficiaries total people',
+      name: 'input_total_people_benefice_error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please input female total beneficiaries`
+  String get beneficiary_total_women_error {
+    return Intl.message(
+      'Please input female total beneficiaries',
+      name: 'beneficiary_total_women_error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please input beneficiaries total family`
+  String get beneficiary_total_family_error {
+    return Intl.message(
+      'Please input beneficiaries total family',
+      name: 'beneficiary_total_family_error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please input beneficiaries total family poor 1`
+  String get beneficiary_total_family_poor_1_error {
+    return Intl.message(
+      'Please input beneficiaries total family poor 1',
+      name: 'beneficiary_total_family_poor_1_error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please input beneficiaries total family poor 2`
+  String get beneficiary_total_family_poor_2_error {
+    return Intl.message(
+      'Please input beneficiaries total family poor 2',
+      name: 'beneficiary_total_family_poor_2_error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please input beneficiaries total family indigenous`
+  String get beneficiary_total_family_indigenous_error {
+    return Intl.message(
+      'Please input beneficiaries total family indigenous',
+      name: 'beneficiary_total_family_indigenous_error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please input beneficiaries total family vulnerable`
+  String get beneficiary_total_family_vulnerable_error {
+    return Intl.message(
+      'Please input beneficiaries total family vulnerable',
+      name: 'beneficiary_total_family_vulnerable_error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please select construction date`
+  String get select_construction_date_error {
+    return Intl.message(
+      'Please select construction date',
+      name: 'select_construction_date_error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please select type of well`
+  String get well_type_error {
+    return Intl.message(
+      'Please select type of well',
+      name: 'well_type_error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please select water quality`
+  String get select_water_quality_error {
+    return Intl.message(
+      'Please select water quality',
+      name: 'select_water_quality_error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please select water quality check`
+  String get select_well_check_water_quality_error {
+    return Intl.message(
+      'Please select water quality check',
+      name: 'select_well_check_water_quality_error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please select well status`
+  String get select_well_status_error {
+    return Intl.message(
+      'Please select well status',
+      name: 'select_well_status_error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please select type of water source`
+  String get select_source_type_of_water_error {
+    return Intl.message(
+      'Please select type of water source',
+      name: 'select_source_type_of_water_error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please select filter tank`
+  String get select_pool_filter_error {
+    return Intl.message(
+      'Please select filter tank',
+      name: 'select_pool_filter_error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please select pipe status`
+  String get select_status_pipe_error {
+    return Intl.message(
+      'Please select pipe status',
+      name: 'select_status_pipe_error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `View History`
+  String get view_history_data {
+    return Intl.message(
+      'View History',
+      name: 'view_history_data',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Water Supply Coverage Report`
+  String get water_supply_coverage_report {
+    return Intl.message(
+      'Water Supply Coverage Report',
+      name: 'water_supply_coverage_report',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

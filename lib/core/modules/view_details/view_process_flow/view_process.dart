@@ -22,8 +22,8 @@ class ViewProcessFlow extends StatelessWidget {
           appBar: AppBar(
             backgroundColor: Theme.of(context).primaryColor,
             iconTheme: const IconThemeData(color: AppColor.white),
-            title: const TextWidget(
-              'មើលលំហូរដំណើរការ',
+            title: TextWidget(
+              S.of(context).view_history_data,
               //id.toString(),
               color: AppColor.white,
             ),

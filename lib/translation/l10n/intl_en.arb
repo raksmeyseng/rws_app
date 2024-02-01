@@ -323,5 +323,35 @@
   "charity": "Charity",
 
   "community": "Community",
-  "private": "Private"
+  "private": "Private",
+
+  "data_saved_successfully": "Data Saved Successfully.",
+  "data_save_failed": "Data Save Failed.",
+  "add_new_data": "Add New",
+  "close": "Close",
+  "environmental_risk_area": "Environment Risk",
+  "select_environmental_risk_area_error": "Please select an environmental risk area",
+  "budget_type": "Budget Source",
+  "select_budget_type_error": "Please select a budget source",
+  "select_management_type_error": "Please select management type",
+  "input_total_people_benefice_error": "Please input beneficiaries total people",
+  "beneficiary_total_women_error": "Please input female total beneficiaries",
+  "beneficiary_total_family_error": "Please input beneficiaries total family",
+  "beneficiary_total_family_poor_1_error": "Please input beneficiaries total family poor 1",
+  "beneficiary_total_family_poor_2_error": "Please input beneficiaries total family poor 2",
+  "beneficiary_total_family_indigenous_error": "Please input beneficiaries total family indigenous",
+  "beneficiary_total_family_vulnerable_error": "Please input beneficiaries total family vulnerable",
+  "select_construction_date_error": "Please select construction date",
+  "well_type_error": "Please select type of well",
+  "select_water_quality_error": "Please select water quality",
+  "select_well_check_water_quality_error": "Please select water quality check",
+  "select_well_status_error": "Please select well status",
+  "select_source_type_of_water_error": "Please select type of water source",
+  "select_pool_filter_error": "Please select filter tank",
+  "select_status_pipe_error": "Please select pipe status",
+
+  "view_history_data": "View History",
+
+  "water_supply_coverage_report": "Water Supply Coverage Report"
+
 }

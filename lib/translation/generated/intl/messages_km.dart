@@ -82,6 +82,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "about_app": MessageLookupByLibrary.simpleMessage("អំពីកម្មវិធី"),
         "account": MessageLookupByLibrary.simpleMessage("គណនីប្រើប្រាស់"),
         "active": MessageLookupByLibrary.simpleMessage("កំពុងប្រើប្រាស់"),
+        "add_new_data": MessageLookupByLibrary.simpleMessage("បង្កើតថ្មី"),
         "add_news": MessageLookupByLibrary.simpleMessage("បន្ថែមព័ត៌មាន"),
         "all": MessageLookupByLibrary.simpleMessage("ទាំងអស់"),
         "all_customer": MessageLookupByLibrary.simpleMessage("អតិថិជនទាំងអស់"),
@@ -95,20 +96,36 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("ភូមិ/ឃុំគ្របដណ្ដប់:"),
         "beneficiary_total_family":
             MessageLookupByLibrary.simpleMessage("អ្នកទទួលផលគ្រួសារសរុប"),
+        "beneficiary_total_family_error": MessageLookupByLibrary.simpleMessage(
+            "សូមបញ្ចូលអ្នកទទួលផលគ្រួសារសរុប"),
         "beneficiary_total_family_indigenous":
             MessageLookupByLibrary.simpleMessage(
                 "អ្នកទទួលផលគ្រួសារជនជាតិដើមភាគតិច"),
+        "beneficiary_total_family_indigenous_error":
+            MessageLookupByLibrary.simpleMessage(
+                "សូមបញ្ចូលអ្នកទទួលផលជនជាតិភាគតិច"),
         "beneficiary_total_family_poor_1":
             MessageLookupByLibrary.simpleMessage("អ្នកទទួលផលគ្រួសារក្រ១"),
+        "beneficiary_total_family_poor_1_error":
+            MessageLookupByLibrary.simpleMessage(
+                "សូមបញ្ចូលអ្នកទទួលផលគ្រួសារក្រ១"),
         "beneficiary_total_family_poor_2":
             MessageLookupByLibrary.simpleMessage("អ្នកទទួលផលគ្រួសារក្រ២"),
+        "beneficiary_total_family_poor_2_error":
+            MessageLookupByLibrary.simpleMessage(
+                "សូមបញ្ចូលអ្នកទទួលផលគ្រួសារក្រ២"),
         "beneficiary_total_family_vulnerable":
             MessageLookupByLibrary.simpleMessage(
                 "អ្នកទទួលផលគ្រួសារជនងាយរងគ្រោះ"),
+        "beneficiary_total_family_vulnerable_error":
+            MessageLookupByLibrary.simpleMessage(
+                "សូមបញ្ចូលអ្នកទទួលផលគ្រួសារជនងាយរងគ្រោះ"),
         "beneficiary_total_people":
             MessageLookupByLibrary.simpleMessage("អ្នកទទួលផលសរុប"),
         "beneficiary_total_women":
             MessageLookupByLibrary.simpleMessage("អ្នកទទួលផលសរុបស្រី"),
+        "beneficiary_total_women_error":
+            MessageLookupByLibrary.simpleMessage("សូមបញ្ចូលអ្នកទទួលផលសរុបស្រី"),
         "biometric_enabled":
             MessageLookupByLibrary.simpleMessage("មុខងារស្កេនម្រាមដៃ/មុខ"),
         "biometric_enabled_desc": MessageLookupByLibrary.simpleMessage(
@@ -116,6 +133,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "biometric_enabling":
             MessageLookupByLibrary.simpleMessage("បើកមុខងារស្កេនម្រាមដៃ/មុខ"),
         "budget_source": MessageLookupByLibrary.simpleMessage("ប្រភពថវិកា"),
+        "budget_type": MessageLookupByLibrary.simpleMessage("ប្រភេទថវិកា"),
         "button_add": MessageLookupByLibrary.simpleMessage("បន្ថែម"),
         "button_cancel": MessageLookupByLibrary.simpleMessage("បោះបង់"),
         "button_choose_file":
@@ -161,6 +179,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "change_password_failure":
             MessageLookupByLibrary.simpleMessage("ប្ដូរពាក្យសម្ងាត់បរាជ័យ"),
         "charity": MessageLookupByLibrary.simpleMessage("សប្បុរស"),
+        "close": MessageLookupByLibrary.simpleMessage("បិទ"),
         "commune": MessageLookupByLibrary.simpleMessage("ឃុំ/សង្កាត់"),
         "community": MessageLookupByLibrary.simpleMessage("សហគមន៍"),
         "confirm": MessageLookupByLibrary.simpleMessage("បញ្ជាក់"),
@@ -201,6 +220,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "customer_name": MessageLookupByLibrary.simpleMessage("ឈ្មោះអតិថិជន"),
         "dark": MessageLookupByLibrary.simpleMessage("ងងឹត"),
         "dashboard": MessageLookupByLibrary.simpleMessage("ទំព័រដើម"),
+        "data_save_failed": MessageLookupByLibrary.simpleMessage(
+            "ការរក្សាទុកទិន្នន័យបានបរាជ័យ។"),
+        "data_saved_successfully":
+            MessageLookupByLibrary.simpleMessage("ទិន្នន័យរក្សាទុកបានជោគជ័យ។"),
         "date_of_birth":
             MessageLookupByLibrary.simpleMessage("ថ្ងៃខែឆ្នាំកំណើត"),
         "deactivate_account": MessageLookupByLibrary.simpleMessage("លុបគណនី"),
@@ -222,6 +245,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "មុខងារស្កេនម្រាមដៃ/មុខ បានបើកដំណើរការ!"),
         "enable_biometric_tips": MessageLookupByLibrary.simpleMessage(
             "សូមប្រាកដថា ឧបករណ៍នេះប្រើតែស្នាមម្រាមដៃ/មុខ របស់អ្នកតែម្នាក់ប៉ុណ្ណោះ។\n\nប្រសិនបើអ្នកប្រើឧបករណ៍នេះជាមួយអ្នកផ្សេង យើង​ខ្ញុំស្នើអោយអ្នកប្រើលេខកូដ PIN ដើម្បីចូលប្រើប្រាស់ជំនួសវិញ។ អ្នកអាចផ្លាស់ប្តូរជម្រើសនៃការចូលប្រើប្រាស់ពេលក្រោយ នៅត្រង់កន្លែង ការកំណត់។"),
+        "environmental_risk_area":
+            MessageLookupByLibrary.simpleMessage("តំបន់ប្រឈមផ្នែកបរិស្ថាន"),
         "error_logout_failure":
             MessageLookupByLibrary.simpleMessage("ការចាកចេញ មិនបានជោគជ័យ។"),
         "error_unauthorized": MessageLookupByLibrary.simpleMessage(
@@ -248,6 +273,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "បញ្ចូលពាក្យសម្ងាត់បច្ចុប្បន្ន"),
         "input_new_password":
             MessageLookupByLibrary.simpleMessage("បញ្ចូលពាក្យសម្ងាត់ថ្មី"),
+        "input_total_people_benefice_error":
+            MessageLookupByLibrary.simpleMessage("សូមបញ្ចូលអ្នកទទួលផលសរុប"),
         "installation_address":
             MessageLookupByLibrary.simpleMessage("ទីតាំងភ្ជាប់ចរន្ត"),
         "invalid_email":
@@ -436,6 +463,28 @@ class MessageLookup extends MessageLookupByLibrary {
         "scan_to_authenticate": MessageLookupByLibrary.simpleMessage(
             "សូមស្កេនម្រាមដៃ/មុខរបស់អ្នកដើម្បីបន្ត"),
         "search": MessageLookupByLibrary.simpleMessage("ស្វែងរក"),
+        "select_budget_type_error":
+            MessageLookupByLibrary.simpleMessage("សូមជ្រើសរើសប្រភេទថវិកា"),
+        "select_construction_date_error":
+            MessageLookupByLibrary.simpleMessage("សូមជ្រើសរើសកាលបរិច្ឆេទសំណង់"),
+        "select_environmental_risk_area_error":
+            MessageLookupByLibrary.simpleMessage(
+                "សូមជ្រើសរើសតំបន់ប្រឈមផ្នែកបរិស្ថាន"),
+        "select_management_type_error": MessageLookupByLibrary.simpleMessage(
+            "សូមជ្រើសរើសប្រភេទនៃការគ្រប់គ្រង"),
+        "select_pool_filter_error":
+            MessageLookupByLibrary.simpleMessage("សូមជ្រើសរើសអាងចម្រោះ"),
+        "select_source_type_of_water_error":
+            MessageLookupByLibrary.simpleMessage("សូមជ្រើសរើសប្រភេទប្រភពទឹក"),
+        "select_status_pipe_error": MessageLookupByLibrary.simpleMessage(
+            "សូមជ្រើសរើសស្ថានភាពបណ្តាញទឹក"),
+        "select_water_quality_error":
+            MessageLookupByLibrary.simpleMessage("សូមជ្រើសរើសគុណភាពទឹក"),
+        "select_well_check_water_quality_error":
+            MessageLookupByLibrary.simpleMessage(
+                "សូមជ្រើសរើសត្រួតពិនិត្យគុណភាពទឹក"),
+        "select_well_status_error":
+            MessageLookupByLibrary.simpleMessage("សូមជ្រើសរើសស្ថានភាពអណ្តូង"),
         "server": MessageLookupByLibrary.simpleMessage("ម៉ាស៊ីនមេ"),
         "show_more": MessageLookupByLibrary.simpleMessage("មើលបន្ថែម"),
         "single_day_ago_": m19,
@@ -518,6 +567,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "utm_y": MessageLookupByLibrary.simpleMessage("កូអរដោនេ UTMY"),
         "version": MessageLookupByLibrary.simpleMessage("ជំនាន់កម្មវិធី"),
         "view_history": MessageLookupByLibrary.simpleMessage("លំហូរដំណើរការ"),
+        "view_history_data":
+            MessageLookupByLibrary.simpleMessage("មើលលំហូរដំណើរការ"),
         "village": MessageLookupByLibrary.simpleMessage("ភូមិ"),
         "water_quality": MessageLookupByLibrary.simpleMessage("គុណភាពទឹក"),
         "water_quality_check":
@@ -532,6 +583,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("ប្រព័ន្ធផ្គត់ផ្គង់ទឹក"),
         "water_supply_code":
             MessageLookupByLibrary.simpleMessage("លេខកូដសំណង់"),
+        "water_supply_coverage_report": MessageLookupByLibrary.simpleMessage(
+            "របាយការណ៍គ្រប់ដណ្ដប់ប្រព័ន្ធផ្គត់ផ្គង់ទឹក"),
         "water_supply_type":
             MessageLookupByLibrary.simpleMessage("ប្រភេទផ្គត់ផ្គត់ទឹក"),
         "well_check_water_quality":
@@ -553,6 +606,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("ជម្រៅតម្រង (Screen) (m)"),
         "well_status": MessageLookupByLibrary.simpleMessage("ស្ថានភាពអណ្តូង"),
         "well_type": MessageLookupByLibrary.simpleMessage("ប្រភេទអណ្តូង"),
+        "well_type_error":
+            MessageLookupByLibrary.simpleMessage("សូមជ្រើសរើសប្រភេទអណ្តូង"),
         "well_type_report_viewer":
             MessageLookupByLibrary.simpleMessage("ប្រភេទអណ្ដូង:"),
         "well_water_supply":

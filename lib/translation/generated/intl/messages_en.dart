@@ -82,6 +82,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "about_app": MessageLookupByLibrary.simpleMessage("About App"),
         "account": MessageLookupByLibrary.simpleMessage("Account"),
         "active": MessageLookupByLibrary.simpleMessage("Active"),
+        "add_new_data": MessageLookupByLibrary.simpleMessage("Add New"),
         "add_news": MessageLookupByLibrary.simpleMessage("Add News"),
         "all": MessageLookupByLibrary.simpleMessage("All"),
         "all_customer": MessageLookupByLibrary.simpleMessage("All customer"),
@@ -95,20 +96,36 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Cover village/commune:"),
         "beneficiary_total_family":
             MessageLookupByLibrary.simpleMessage("Beneficiary Total Family"),
+        "beneficiary_total_family_error": MessageLookupByLibrary.simpleMessage(
+            "Please input beneficiaries total family"),
         "beneficiary_total_family_indigenous":
             MessageLookupByLibrary.simpleMessage(
                 "Beneficiary Total Family Indigenous"),
+        "beneficiary_total_family_indigenous_error":
+            MessageLookupByLibrary.simpleMessage(
+                "Please input beneficiaries total family indigenous"),
         "beneficiary_total_family_poor_1": MessageLookupByLibrary.simpleMessage(
             "Beneficiary Total Family Poor 1"),
+        "beneficiary_total_family_poor_1_error":
+            MessageLookupByLibrary.simpleMessage(
+                "Please input beneficiaries total family poor 1"),
         "beneficiary_total_family_poor_2": MessageLookupByLibrary.simpleMessage(
             "Beneficiary Total Family Poor 2"),
+        "beneficiary_total_family_poor_2_error":
+            MessageLookupByLibrary.simpleMessage(
+                "Please input beneficiaries total family poor 2"),
         "beneficiary_total_family_vulnerable":
             MessageLookupByLibrary.simpleMessage(
                 "Beneficiary Total Family Vulnerable"),
+        "beneficiary_total_family_vulnerable_error":
+            MessageLookupByLibrary.simpleMessage(
+                "Please input beneficiaries total family vulnerable"),
         "beneficiary_total_people":
             MessageLookupByLibrary.simpleMessage("Beneficiary Total People"),
         "beneficiary_total_women":
             MessageLookupByLibrary.simpleMessage("Beneficiary Total Women"),
+        "beneficiary_total_women_error": MessageLookupByLibrary.simpleMessage(
+            "Please input female total beneficiaries"),
         "biometric_enabled":
             MessageLookupByLibrary.simpleMessage("Biometric Enabled"),
         "biometric_enabled_desc": MessageLookupByLibrary.simpleMessage(
@@ -116,6 +133,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "biometric_enabling":
             MessageLookupByLibrary.simpleMessage("Biometric Enabling"),
         "budget_source": MessageLookupByLibrary.simpleMessage("Budget Source"),
+        "budget_type": MessageLookupByLibrary.simpleMessage("Budget Source"),
         "button_add": MessageLookupByLibrary.simpleMessage("Add"),
         "button_cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "button_choose_file":
@@ -159,6 +177,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "change_password_failure":
             MessageLookupByLibrary.simpleMessage("Change password failure"),
         "charity": MessageLookupByLibrary.simpleMessage("Charity"),
+        "close": MessageLookupByLibrary.simpleMessage("Close"),
         "commune": MessageLookupByLibrary.simpleMessage("Commune"),
         "community": MessageLookupByLibrary.simpleMessage("Community"),
         "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
@@ -199,6 +218,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "customer_name": MessageLookupByLibrary.simpleMessage("Customer name"),
         "dark": MessageLookupByLibrary.simpleMessage("Dark"),
         "dashboard": MessageLookupByLibrary.simpleMessage("Dashboard"),
+        "data_save_failed":
+            MessageLookupByLibrary.simpleMessage("Data Save Failed."),
+        "data_saved_successfully":
+            MessageLookupByLibrary.simpleMessage("Data Saved Successfully."),
         "date_of_birth": MessageLookupByLibrary.simpleMessage("Date of birth"),
         "deactivate_account":
             MessageLookupByLibrary.simpleMessage("Delete Account"),
@@ -217,6 +240,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Biometric authentication enabled!"),
         "enable_biometric_tips": MessageLookupByLibrary.simpleMessage(
             "Please make sure this device uses only your fingerprint/face.\n\nIf you use this device with others, we suggest you to use the PIN to login. Anyway, you can change this option later in settings."),
+        "environmental_risk_area":
+            MessageLookupByLibrary.simpleMessage("Environment Risk"),
         "error_logout_failure":
             MessageLookupByLibrary.simpleMessage("Your logout attempt failed."),
         "error_unauthorized": MessageLookupByLibrary.simpleMessage(
@@ -241,6 +266,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Input current password"),
         "input_new_password":
             MessageLookupByLibrary.simpleMessage("Input new password"),
+        "input_total_people_benefice_error":
+            MessageLookupByLibrary.simpleMessage(
+                "Please input beneficiaries total people"),
         "installation_address":
             MessageLookupByLibrary.simpleMessage("Installation address"),
         "invalid_email": MessageLookupByLibrary.simpleMessage("Invalid email"),
@@ -421,6 +449,29 @@ class MessageLookup extends MessageLookupByLibrary {
         "scan_to_authenticate": MessageLookupByLibrary.simpleMessage(
             "Please verify your biometric to continue"),
         "search": MessageLookupByLibrary.simpleMessage("Search"),
+        "select_budget_type_error": MessageLookupByLibrary.simpleMessage(
+            "Please select a budget source"),
+        "select_construction_date_error": MessageLookupByLibrary.simpleMessage(
+            "Please select construction date"),
+        "select_environmental_risk_area_error":
+            MessageLookupByLibrary.simpleMessage(
+                "Please select an environmental risk area"),
+        "select_management_type_error": MessageLookupByLibrary.simpleMessage(
+            "Please select management type"),
+        "select_pool_filter_error":
+            MessageLookupByLibrary.simpleMessage("Please select filter tank"),
+        "select_source_type_of_water_error":
+            MessageLookupByLibrary.simpleMessage(
+                "Please select type of water source"),
+        "select_status_pipe_error":
+            MessageLookupByLibrary.simpleMessage("Please select pipe status"),
+        "select_water_quality_error":
+            MessageLookupByLibrary.simpleMessage("Please select water quality"),
+        "select_well_check_water_quality_error":
+            MessageLookupByLibrary.simpleMessage(
+                "Please select water quality check"),
+        "select_well_status_error":
+            MessageLookupByLibrary.simpleMessage("Please select well status"),
         "server": MessageLookupByLibrary.simpleMessage("Server"),
         "show_more": MessageLookupByLibrary.simpleMessage("Shore more"),
         "single_day_ago_": m19,
@@ -501,6 +552,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "utm_y": MessageLookupByLibrary.simpleMessage("Coordinate UTMY"),
         "version": MessageLookupByLibrary.simpleMessage("Version"),
         "view_history": MessageLookupByLibrary.simpleMessage("View History"),
+        "view_history_data":
+            MessageLookupByLibrary.simpleMessage("View History"),
         "village": MessageLookupByLibrary.simpleMessage("Village"),
         "water_quality": MessageLookupByLibrary.simpleMessage("Quality"),
         "water_quality_check":
@@ -514,6 +567,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "water_supply": MessageLookupByLibrary.simpleMessage("Water Supply"),
         "water_supply_code":
             MessageLookupByLibrary.simpleMessage("Water Supply Code"),
+        "water_supply_coverage_report": MessageLookupByLibrary.simpleMessage(
+            "Water Supply Coverage Report"),
         "water_supply_type":
             MessageLookupByLibrary.simpleMessage("Water Supply Type"),
         "well_check_water_quality":
@@ -535,6 +590,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Filter (Screen) (m)"),
         "well_status": MessageLookupByLibrary.simpleMessage("Status"),
         "well_type": MessageLookupByLibrary.simpleMessage("Well Type"),
+        "well_type_error":
+            MessageLookupByLibrary.simpleMessage("Please select type of well"),
         "well_type_report_viewer":
             MessageLookupByLibrary.simpleMessage("Well Type:"),
         "well_water_supply":
