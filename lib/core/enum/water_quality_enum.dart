@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:rws_app/translation/generated/l10n.dart';
 
 const int _wellCode = 0;
 const int _unWellCode = 1;
@@ -23,9 +24,9 @@ extension WaterQualityEnumExtension on WaterQualityEnum {
   String getDisplayText() {
     switch (this) {
       case WaterQualityEnum.well:
-        return 'ល្អ';
+        return S.current.good;
       case WaterQualityEnum.unWell:
-        return 'មិនល្អ';
+        return S.current.bad;
     }
   }
 }

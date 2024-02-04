@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:rws_app/translation/generated/l10n.dart';
 
 const int _familyCode = 0;
 const int _schoolCode = 1;
@@ -29,11 +30,11 @@ extension UsingTypeEnumExtension on UsingTypeEnum {
   String getDisplayText() {
     switch (this) {
       case UsingTypeEnum.family:
-        return 'តាមគ្រួសារ';
+        return S.current.family;
       case UsingTypeEnum.school:
-        return 'សាលារៀន';
+        return S.current.school;
       case UsingTypeEnum.hospital:
-        return 'មន្ទីរពេទ្យ';
+        return S.current.hospital;
     }
   }
 }

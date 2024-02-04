@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:rws_app/translation/generated/l10n.dart';
 
 const int _useCode = 1;
 const int _unUseCode = 2;
@@ -23,9 +24,9 @@ extension TankStatusEnumExtension on TankStatusEnum {
   String getDisplayText() {
     switch (this) {
       case TankStatusEnum.use:
-        return 'ប្រើប្រាស់';
+        return S.current.using;
       case TankStatusEnum.unUse:
-        return 'មិនប្រើប្រាស់';
+        return S.current.not_using;
     }
   }
 }

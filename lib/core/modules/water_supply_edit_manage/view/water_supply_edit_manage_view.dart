@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rws_app/core/widgets/my_text_input.dart';
+import 'package:rws_app/translation/generated/l10n.dart';
 
 import '../../water_supplier_edit/bloc/water_supply_edit_bloc.dart';
 
@@ -9,125 +10,125 @@ class WaterSupplyEditManageView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Visibility(
+    return Visibility(
       visible: true,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
-            'Parameter Code',
-            style: TextStyle(fontWeight: FontWeight.bold),
+            S.of(context).parameter_code,
+            style: const TextStyle(fontWeight: FontWeight.bold),
           ),
-          SizedBox(
+          const SizedBox(
             height: 15,
           ),
-          SizedBox(
+          const SizedBox(
             height: 50,
             child: Text('PA000010'),
           ),
-          SizedBox(
+          const SizedBox(
             height: 5,
           ),
-          SizedBox(
+          const SizedBox(
             height: 50,
             child: Text('PA000020'),
           ),
-          SizedBox(
+          const SizedBox(
             height: 5,
           ),
-          SizedBox(
+          const SizedBox(
             height: 50,
             child: Text('PA000030'),
           ),
-          SizedBox(
+          const SizedBox(
             height: 5,
           ),
-          SizedBox(
+          const SizedBox(
             height: 50,
             child: Text('PA000040'),
           ),
-          SizedBox(
+          const SizedBox(
             height: 5,
           ),
-          SizedBox(
+          const SizedBox(
             height: 50,
             child: Text('PA000050'),
           ),
-          SizedBox(
+          const SizedBox(
             height: 5,
           ),
-          SizedBox(
+          const SizedBox(
             height: 50,
             child: Text('PA000060'),
           ),
-          SizedBox(
+          const SizedBox(
             height: 5,
           ),
-          SizedBox(
+          const SizedBox(
             height: 50,
             child: Text('PA000070'),
           ),
-          SizedBox(
+          const SizedBox(
             height: 5,
           ),
-          SizedBox(
+          const SizedBox(
             height: 50,
             child: Text('PA000080'),
           ),
-          SizedBox(
+          const SizedBox(
             height: 5,
           ),
-          SizedBox(
+          const SizedBox(
             height: 50,
             child: Text('PA000090'),
           ),
-          SizedBox(
+          const SizedBox(
             height: 5,
           ),
-          SizedBox(
+          const SizedBox(
             height: 50,
             child: Text('PA000100'),
           ),
-          SizedBox(
+          const SizedBox(
             height: 5,
           ),
-          SizedBox(
+          const SizedBox(
             height: 50,
             child: Text('PA000110'),
           ),
-          SizedBox(
+          const SizedBox(
             height: 5,
           ),
-          SizedBox(
+          const SizedBox(
             height: 50,
             child: Text('PA000120'),
           ),
-          SizedBox(
+          const SizedBox(
             height: 5,
           ),
-          SizedBox(
+          const SizedBox(
             height: 50,
             child: Text('PA000130'),
           ),
-          SizedBox(
+          const SizedBox(
             height: 5,
           ),
-          SizedBox(
+          const SizedBox(
             height: 50,
             child: Text('PA000140'),
           ),
-          SizedBox(
+          const SizedBox(
             height: 5,
           ),
-          SizedBox(
+          const SizedBox(
             height: 50,
             child: Text('PA000150'),
           ),
-          SizedBox(
+          const SizedBox(
             height: 5,
           ),
-          SizedBox(
+          const SizedBox(
             height: 50,
             child: Text('PA000160'),
           ),
@@ -142,20 +143,20 @@ class WaterSupplyEditManageTextBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Visibility(
+    return Visibility(
       visible: true,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
-            'Value',
-            style: TextStyle(fontWeight: FontWeight.bold),
+            S.of(context).value,
+            style: const TextStyle(fontWeight: FontWeight.bold),
           ),
-          SizedBox(
+          const SizedBox(
             height: 15,
           ),
-          SizedBox(
+          const SizedBox(
             height: 50,
             // child: MyTextInput(
             //   // errorText: _handleErrorText(context, state),
@@ -164,10 +165,10 @@ class WaterSupplyEditManageTextBox extends StatelessWidget {
             // ),
             child: _WQParameter1(),
           ),
-          SizedBox(
+          const SizedBox(
             height: 5,
           ),
-          SizedBox(
+          const SizedBox(
             height: 50,
             child: MyTextInput(
               // errorText: _handleErrorText(context, state),
@@ -177,10 +178,10 @@ class WaterSupplyEditManageTextBox extends StatelessWidget {
               keyboardType: TextInputType.number,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 5,
           ),
-          SizedBox(
+          const SizedBox(
             height: 50,
             child: MyTextInput(
               // errorText: _handleErrorText(context, state),
@@ -190,10 +191,10 @@ class WaterSupplyEditManageTextBox extends StatelessWidget {
               keyboardType: TextInputType.number,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 5,
           ),
-          SizedBox(
+          const SizedBox(
             height: 50,
             child: MyTextInput(
               // errorText: _handleErrorText(context, state),
@@ -203,10 +204,10 @@ class WaterSupplyEditManageTextBox extends StatelessWidget {
               keyboardType: TextInputType.number,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 5,
           ),
-          SizedBox(
+          const SizedBox(
             height: 50,
             child: MyTextInput(
               // errorText: _handleErrorText(context, state),
@@ -216,10 +217,10 @@ class WaterSupplyEditManageTextBox extends StatelessWidget {
               keyboardType: TextInputType.number,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 5,
           ),
-          SizedBox(
+          const SizedBox(
             height: 50,
             child: MyTextInput(
               // errorText: _handleErrorText(context, state),
@@ -229,10 +230,10 @@ class WaterSupplyEditManageTextBox extends StatelessWidget {
               keyboardType: TextInputType.number,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 5,
           ),
-          SizedBox(
+          const SizedBox(
             height: 50,
             child: MyTextInput(
               // errorText: _handleErrorText(context, state),
@@ -242,10 +243,10 @@ class WaterSupplyEditManageTextBox extends StatelessWidget {
               keyboardType: TextInputType.number,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 5,
           ),
-          SizedBox(
+          const SizedBox(
             height: 50,
             child: MyTextInput(
               // errorText: _handleErrorText(context, state),
@@ -255,10 +256,10 @@ class WaterSupplyEditManageTextBox extends StatelessWidget {
               keyboardType: TextInputType.number,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 5,
           ),
-          SizedBox(
+          const SizedBox(
             height: 50,
             child: MyTextInput(
               // errorText: _handleErrorText(context, state),
@@ -268,10 +269,10 @@ class WaterSupplyEditManageTextBox extends StatelessWidget {
               keyboardType: TextInputType.number,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 5,
           ),
-          SizedBox(
+          const SizedBox(
             height: 50,
             child: MyTextInput(
               // errorText: _handleErrorText(context, state),
@@ -281,10 +282,10 @@ class WaterSupplyEditManageTextBox extends StatelessWidget {
               keyboardType: TextInputType.number,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 5,
           ),
-          SizedBox(
+          const SizedBox(
             height: 50,
             child: MyTextInput(
               // errorText: _handleErrorText(context, state),
@@ -294,10 +295,10 @@ class WaterSupplyEditManageTextBox extends StatelessWidget {
               keyboardType: TextInputType.number,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 5,
           ),
-          SizedBox(
+          const SizedBox(
             height: 50,
             child: MyTextInput(
               // errorText: _handleErrorText(context, state),
@@ -307,10 +308,10 @@ class WaterSupplyEditManageTextBox extends StatelessWidget {
               keyboardType: TextInputType.number,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 5,
           ),
-          SizedBox(
+          const SizedBox(
             height: 50,
             child: MyTextInput(
               // errorText: _handleErrorText(context, state),
@@ -320,10 +321,10 @@ class WaterSupplyEditManageTextBox extends StatelessWidget {
               keyboardType: TextInputType.number,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 5,
           ),
-          SizedBox(
+          const SizedBox(
             height: 50,
             child: MyTextInput(
               // errorText: _handleErrorText(context, state),
@@ -333,10 +334,10 @@ class WaterSupplyEditManageTextBox extends StatelessWidget {
               keyboardType: TextInputType.number,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 5,
           ),
-          SizedBox(
+          const SizedBox(
             height: 50,
             child: MyTextInput(
               // errorText: _handleErrorText(context, state),
@@ -346,10 +347,10 @@ class WaterSupplyEditManageTextBox extends StatelessWidget {
               keyboardType: TextInputType.number,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 5,
           ),
-          SizedBox(
+          const SizedBox(
             height: 50,
             child: MyTextInput(
               // errorText: _handleErrorText(context, state),

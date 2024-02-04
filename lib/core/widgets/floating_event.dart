@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:rws_app/config/themes/app_color.dart';
 import 'package:rws_app/core/modules/view_details/bloc/list_data_details_bloc.dart';
+import 'package:rws_app/translation/generated/l10n.dart';
 
 import '../modules/water_supplier_edit/view/water_supply_edit_page.dart';
 
@@ -35,14 +36,14 @@ class FloatingEvent extends StatelessWidget {
           child: const Icon(Icons.save),
           backgroundColor: AppColor.active,
           foregroundColor: AppColor.white,
-          label: 'ដាក់ស្នើ',
+          label: S.of(context).submit,
           labelStyle: const TextStyle(fontSize: 18.0),
           onTap: () {
             if(state.waterSupply!.status.id == 3){
               Blurry(
-                title: 'ដាក់ស្នើ',
-                description: 'តើអ្នកចង់ដាក់ស្នើទិន្នន័យនេះមែនទេ?',
-                confirmButtonText: 'Confirm',
+                title: S.of(context).submit,
+                description: S.of(context).do_you_want_to_submit_this_data,
+                confirmButtonText: S.of(context).confirm,
                 onConfirmButtonPressed:()=>_onSubmitDrated(context),
                 themeColor: AppColor.inactive,
                 icon: Icons.delete_outline_rounded,
@@ -59,14 +60,14 @@ class FloatingEvent extends StatelessWidget {
           child: const Icon(Icons.edit),
           backgroundColor: Colors.blue,
           foregroundColor: AppColor.white,
-          label: 'កែតម្រូវ',
+          label: S.of(context).edit,
           labelStyle: const TextStyle(fontSize: 18.0),
           onTap: () {
             Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (_) {
                         return WaterSupplyEditPage(
-                          title: 'Edit',
+                          title: S.of(context).edit,
                           waterSupplyId: state.waterSupplyId,
                           id: 1,
                         );
@@ -79,13 +80,13 @@ class FloatingEvent extends StatelessWidget {
           child: const Icon(Icons.delete),
           foregroundColor: AppColor.white,
           backgroundColor: AppColor.inactive,
-          label: 'លុប',
+          label: S.of(context).delete,
           labelStyle: const TextStyle(fontSize: 18.0),
           onTap: () {
             Blurry(
-              title: 'Delete',
-              description: 'Do you want to delete this Draft?',
-              confirmButtonText: 'Confirm',
+              title: S.of(context).delete,
+              description: S.of(context).do_you_want_to_delete_this_draft,
+              confirmButtonText: S.of(context).confirm,
               onConfirmButtonPressed:()=>_onDeleteSubmited(context),
               themeColor: AppColor.inactive,
               icon: Icons.delete_outline_rounded,

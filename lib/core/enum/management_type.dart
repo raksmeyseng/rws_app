@@ -1,4 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:rws_app/translation/generated/l10n.dart';
+import 'package:flutter/material.dart';
 
 const int _associationCode = 0;
 const int _privateCode = 1;
@@ -24,9 +26,9 @@ extension ManagementTypeEnumExtension on ManagementTypeEnum {
   String getDisplayText() {
     switch (this) {
       case ManagementTypeEnum.association:
-        return 'សមាគមន៍';
+        return S.current.community;
       case ManagementTypeEnum.private:
-        return 'ឯកជន';
+        return S.current.private;
     }
   }
 }

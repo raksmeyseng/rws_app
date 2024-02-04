@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:rws_app/translation/generated/l10n.dart';
 
 const int _haveCode = 0;
 const int _notHaveCode = 1;
@@ -23,9 +24,9 @@ extension SeasonEnumExtension on SeasonEnum {
   String getDisplayText() {
     switch (this) {
       case SeasonEnum.have:
-        return 'មានទឹក';
+        return S.current.have_water;
       case SeasonEnum.notHave:
-        return 'គ្មានទឹក';
+        return S.current.no_water;
     }
   }
 }

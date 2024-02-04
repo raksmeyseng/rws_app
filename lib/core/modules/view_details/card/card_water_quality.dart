@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rws_app/core/models/water_quality_parameter.dart';
+import 'package:rws_app/translation/generated/l10n.dart';
 
 import '../../../widgets/caption_widget.dart';
 import '../../../widgets/flat_card.dart';
@@ -135,11 +136,11 @@ class _ParameterItem extends StatelessWidget{
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _InfoItem(
-            const CaptionWidget('Parameter Code :'),
+            CaptionWidget(S.of(context).parameter_code_report_viewer),
             TextWidget(item.parameter?.parameterCode),
           ),
           _InfoItem(
-            const CaptionWidget('Parameter :'),
+            CaptionWidget(S.of(context).parameter_report_viewer),
             Flexible(
               child: TextWidget(
                 item.parameter?.parameter,
@@ -149,15 +150,15 @@ class _ParameterItem extends StatelessWidget{
           ),
           
           _InfoItem(
-            const CaptionWidget('Unit :'),
+            CaptionWidget(S.of(context).unit_report_viewer),
             TextWidget(item.parameter?.unit),
           ),
           _InfoItem(
-            const CaptionWidget('Standard Water :'),
+            CaptionWidget(S.of(context).standard_water_report_viewer),
             TextWidget(item.parameter?.standartOfDrinkingWater),
           ),
           _InfoItem(
-            const CaptionWidget('Value :'),
+            CaptionWidget(S.of(context).value_report_viewer),
             TextWidget(item.value),
           ),
           

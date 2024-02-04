@@ -5,6 +5,7 @@ import 'package:rws_app/core/modules/filter/bloc/filter_bloc.dart';
 import 'package:rws_app/core/modules/filter/repositories/filter_water_supply_repository.dart';
 import 'package:rws_app/core/modules/filter/view/filter_view.dart';
 import 'package:rws_app/core/widgets/text_widget.dart';
+import '../../../../translation/generated/l10n.dart';
 
 class FilterWaterSupplyPage extends StatelessWidget {
   const FilterWaterSupplyPage({super.key, required this.waterSupplyTypeId});
@@ -19,7 +20,7 @@ class FilterWaterSupplyPage extends StatelessWidget {
         ..add(const FilterStarted()),
       child: Scaffold(
         appBar: AppBar(
-          title: const TextWidget('ស្វែងរក', color: AppColor.white),
+          title: TextWidget(S.of(context).search, color: AppColor.white),
           backgroundColor: Theme.of(context).primaryColor,
           leading: IconButton(
             icon: const Icon(

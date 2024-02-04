@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:rws_app/translation/generated/l10n.dart';
 
 const int _concreteCode = 0;
 const int _landCode = 1;

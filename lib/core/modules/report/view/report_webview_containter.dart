@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+import 'package:rws_app/translation/generated/l10n.dart';
 
 class WebViewApp extends StatefulWidget {
   const WebViewApp({
@@ -46,7 +47,7 @@ class _WebViewAppState extends State<WebViewApp> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('របាយការណ៍'),
+        title: Text(S.of(context).report),
       ),
       body: WebViewWidget(
         controller: controller,

@@ -1,4 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:rws_app/translation/generated/l10n.dart';
+import 'package:flutter/material.dart';
 
 const int _motorCode = 1;
 const int _pumpCode = 2;
@@ -51,21 +53,21 @@ extension WellTypeEnumExtension on WellTypeEnum {
   String getDisplayText() {
     switch (this) {
       case WellTypeEnum.motor:
-        return 'អណ្ដូងបូមដោយម៉ូទ័រ';
+        return S.current.motorized_pump_well;
       case WellTypeEnum.pump:
-        return 'អណ្ដូងស្នប់អាហ្វ្រីដេហ្វ';
+        return S.current.afridef_pump_well;
       case WellTypeEnum.markII:
-        return 'អណ្ដូងMark II';
+        return  S.current.mark_II_well;
       case WellTypeEnum.markIII:
-        return 'អណ្ដូងMark III';
+        return S.current.mark_III_well;
       case WellTypeEnum.pump6:
-        return 'អណ្ដូងស្នប់លេខ៦';
+        return S.current.no_6_pump_well;
       case WellTypeEnum.drainage:
-        return 'អណ្ដូងលូ';
+        return S.current.drainage_well;
       case WellTypeEnum.mixed:
-        return 'អណ្ដូងចំរុះ';
+        return S.current.mixed_wells;
       default:
-        return 'អណ្ដូងចំរុះ';
+        return S.current.mixed_wells;
     }
   }
 

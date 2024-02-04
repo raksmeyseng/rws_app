@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:rws_app/translation/generated/l10n.dart';
 
 const int _underWaterCode = 14;
 const int _onTheWaterCode = 15;
@@ -36,15 +37,15 @@ extension WaterSupplyTypeEnumExtension on WaterSupplyTypeEnum {
   String getDisplayText() {
     switch (this) {
       case WaterSupplyTypeEnum.underWater:
-        return 'ក្រោមទឹក';
+        return S.current.underground_water;
       case WaterSupplyTypeEnum.onTheWater:
-        return 'លើទឹក';
+        return S.current.surface_water;
       case WaterSupplyTypeEnum.springWater:
-        return 'ទឹកផុស';
+        return S.current.spring_water;
       case WaterSupplyTypeEnum.all:
-        return 'ប្រើរួម';
+        return S.current.all_water;
       default:
-        return 'ប្រើរួម';
+        return S.current.all_water;
     }
   }
 }

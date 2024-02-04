@@ -299,7 +299,7 @@ class _TabBar extends StatelessWidget {
       indicatorColor: Theme.of(context).primaryColor,
       tabs: [
         Padding(
-          padding: EdgeInsets.symmetric(vertical: 4.0),
+          padding: const EdgeInsets.symmetric(vertical: 4.0),
           child: Tab(text: S.of(context).location_on_map),
         ),
         Padding(

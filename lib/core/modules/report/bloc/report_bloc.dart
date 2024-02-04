@@ -32,7 +32,7 @@ class ReportBloc extends Bloc<ReportEvent, ReportState> {
     
 
     try{
-      print('REport Start');
+      print('Report Start');
       
 
       // await Permission.storage.request();

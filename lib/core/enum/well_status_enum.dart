@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:rws_app/translation/generated/l10n.dart';
 
 const int _activeCode = 0;
 const int _inactiveCode = 1;
@@ -23,9 +24,9 @@ extension WellStatusEnumExtension on WellStatusEnum {
   String getDisplayText() {
     switch (this) {
       case WellStatusEnum.active:
-        return 'ដំណើរការ';
+        return S.current.active_status;
       case WellStatusEnum.inActive:
-        return 'មិនដំណើរការ';
+        return S.current.inactive_status;
     }
   }
 }

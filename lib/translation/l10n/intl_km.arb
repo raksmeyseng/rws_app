@@ -356,6 +356,62 @@
   "select_status_pipe_error": "សូមជ្រើសរើសស្ថានភាពបណ្តាញទឹក",
   "view_history_data": "មើលលំហូរដំណើរការ",
 
-  "water_supply_coverage_report": "របាយការណ៍គ្រប់ដណ្ដប់ប្រព័ន្ធផ្គត់ផ្គង់ទឹក"
+  "water_supply_coverage_report": "របាយការណ៍គ្រប់ដណ្ដប់ប្រព័ន្ធផ្គត់ផ្គង់ទឹក",
+  "water_supply_detail_report": "របាយការណ៍អណ្ដូងលម្អិត",
+  "water_support_report_on_map": "របាយការណ៍គ្របដណ្ដប់ប្រព័ន្ធគ្រប់គ្រងទឹកជនបទលើផែនទី",
+  "water_supply_coverage_report_by_type": "របាយការណ៍អណ្ដូងគ្របដណ្ដប់លម្អិត",
+
+  "parameter_code_report_viewer": "លេខកូដប៉ារ៉ាម៉ែត្រ :",
+  "parameter_report_viewer": "ប៉ារ៉ាម៉ែត្រ :",
+  "unit_report_viewer": "ឯកតា :",
+  "standard_water_report_viewer": "ស្តង់ដាគុណភាពទឹកផឹក :",
+  "value_report_viewer": "តម្លៃ :",
+
+  "parameter_code": "លេខកូដប៉ារ៉ាម៉ែត្រ",
+  "value": "តម្លៃ",
+
+  "submit": "ដាក់ស្នើ",
+  "do_you_want_to_submit_this_data": "តើអ្នកចង់ដាក់ស្នើទិន្នន័យនេះមែនទេ?",
+  "edit": "កែតម្រូវ",
+  "delete": "លុប",
+  "do_you_want_to_delete_this_draft": "តើអ្នកចង់លុបសេចក្តីព្រាងនេះទេ?",
+
+  "have_active": "មាន(ដំណើរការ)",
+  "have_inactive": "មាន(មិនដំណើរការ)",
+
+  "no_protection_and_maintenance": "មិនមានការការពារនិងថែទាំ",
+  "protected_and_maintained": "មានការការពារថែទាំ",
+  "not_used": "មិនប្រើប្រាស់",
+
+  "have_water": "មានទឹក",
+  "no_water": "មិនមានទឹក",
+
+  "using": "ប្រើប្រាស់",
+  "not_using": "មិនប្រើប្រាស់",
+
+  "family": "តាមគ្រួសារ",
+  "school": "សាលារៀន",
+  "hospital": "មន្ទីរពេទ្យ",
+
+  "good": "ល្អ",
+  "bad": "មិនល្អ",
+
+  "underground_water": "ទឹកក្រោមដី",
+  "surface_water": "ទឹកលើដី",
+  "spring_water": "ទឹកផុស",
+  "all_water": "ប្រើរួម",
+
+  "active_status": "ដំណើរការ",
+  "inactive_status": "មិនដំណើរការ",
+
+  "motorized_pump_well": "អណ្ដូងបូមដោយម៉ូទ័រ",
+  "afridef_pump_well": "អណ្ដូងស្នប់អាហ្វ្រីដេហ្វ",
+  "mark_II_well": "អណ្ដូងMark II",
+  "mark_III_well": "អណ្ដូងMark III",
+  "no_6_pump_well": "អណ្ដូងស្នប់លេខ៦",
+  "drainage_well": "អណ្ដូងលូ",
+  "mixed_wells": "អណ្ដូងចំរុះ",
+  "parameter": "ប៉ារ៉ាម៉ែត្រ",
+  "qr_code": "QR កូដ"
 
 }

@@ -3439,6 +3439,466 @@ class S {
       args: [],
     );
   }
+
+  /// `Water Supply Detail Report`
+  String get water_supply_detail_report {
+    return Intl.message(
+      'Water Supply Detail Report',
+      name: 'water_supply_detail_report',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Water Support Report on Map`
+  String get water_support_report_on_map {
+    return Intl.message(
+      'Water Support Report on Map',
+      name: 'water_support_report_on_map',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Water Supply Coverage Report by Type`
+  String get water_supply_coverage_report_by_type {
+    return Intl.message(
+      'Water Supply Coverage Report by Type',
+      name: 'water_supply_coverage_report_by_type',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Parameter Code :`
+  String get parameter_code_report_viewer {
+    return Intl.message(
+      'Parameter Code :',
+      name: 'parameter_code_report_viewer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Parameter :`
+  String get parameter_report_viewer {
+    return Intl.message(
+      'Parameter :',
+      name: 'parameter_report_viewer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Unit :`
+  String get unit_report_viewer {
+    return Intl.message(
+      'Unit :',
+      name: 'unit_report_viewer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Standard Water :`
+  String get standard_water_report_viewer {
+    return Intl.message(
+      'Standard Water :',
+      name: 'standard_water_report_viewer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Value :`
+  String get value_report_viewer {
+    return Intl.message(
+      'Value :',
+      name: 'value_report_viewer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Yes`
+  String get have {
+    return Intl.message(
+      'Yes',
+      name: 'have',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No`
+  String get nohave {
+    return Intl.message(
+      'No',
+      name: 'nohave',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Parameter Code`
+  String get parameter_code {
+    return Intl.message(
+      'Parameter Code',
+      name: 'parameter_code',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Value`
+  String get value {
+    return Intl.message(
+      'Value',
+      name: 'value',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Submit`
+  String get submit {
+    return Intl.message(
+      'Submit',
+      name: 'submit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Do you want to submit this data?`
+  String get do_you_want_to_submit_this_data {
+    return Intl.message(
+      'Do you want to submit this data?',
+      name: 'do_you_want_to_submit_this_data',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit`
+  String get edit {
+    return Intl.message(
+      'Edit',
+      name: 'edit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete`
+  String get delete {
+    return Intl.message(
+      'Delete',
+      name: 'delete',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Do you want to delete this Draft?`
+  String get do_you_want_to_delete_this_draft {
+    return Intl.message(
+      'Do you want to delete this Draft?',
+      name: 'do_you_want_to_delete_this_draft',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Active`
+  String get have_active {
+    return Intl.message(
+      'Active',
+      name: 'have_active',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Inactive`
+  String get have_inactive {
+    return Intl.message(
+      'Inactive',
+      name: 'have_inactive',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No protection and maintenance`
+  String get no_protection_and_maintenance {
+    return Intl.message(
+      'No protection and maintenance',
+      name: 'no_protection_and_maintenance',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Protected and maintained`
+  String get protected_and_maintained {
+    return Intl.message(
+      'Protected and maintained',
+      name: 'protected_and_maintained',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Unused`
+  String get not_used {
+    return Intl.message(
+      'Unused',
+      name: 'not_used',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Have Water`
+  String get have_water {
+    return Intl.message(
+      'Have Water',
+      name: 'have_water',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No Water`
+  String get no_water {
+    return Intl.message(
+      'No Water',
+      name: 'no_water',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Using`
+  String get using {
+    return Intl.message(
+      'Using',
+      name: 'using',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Unused`
+  String get not_using {
+    return Intl.message(
+      'Unused',
+      name: 'not_using',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Family`
+  String get family {
+    return Intl.message(
+      'Family',
+      name: 'family',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `School`
+  String get school {
+    return Intl.message(
+      'School',
+      name: 'school',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Hospital`
+  String get hospital {
+    return Intl.message(
+      'Hospital',
+      name: 'hospital',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Good`
+  String get good {
+    return Intl.message(
+      'Good',
+      name: 'good',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Bad`
+  String get bad {
+    return Intl.message(
+      'Bad',
+      name: 'bad',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Underground Water`
+  String get underground_water {
+    return Intl.message(
+      'Underground Water',
+      name: 'underground_water',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Surface water`
+  String get surface_water {
+    return Intl.message(
+      'Surface water',
+      name: 'surface_water',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Spring Water`
+  String get spring_water {
+    return Intl.message(
+      'Spring Water',
+      name: 'spring_water',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `All`
+  String get all_water {
+    return Intl.message(
+      'All',
+      name: 'all_water',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Active`
+  String get active_status {
+    return Intl.message(
+      'Active',
+      name: 'active_status',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Inactive`
+  String get inactive_status {
+    return Intl.message(
+      'Inactive',
+      name: 'inactive_status',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Motorized Pump Well`
+  String get motorized_pump_well {
+    return Intl.message(
+      'Motorized Pump Well',
+      name: 'motorized_pump_well',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Afridef Pump Well`
+  String get afridef_pump_well {
+    return Intl.message(
+      'Afridef Pump Well',
+      name: 'afridef_pump_well',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Mark II Well`
+  String get mark_II_well {
+    return Intl.message(
+      'Mark II Well',
+      name: 'mark_II_well',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Mark III Well`
+  String get mark_III_well {
+    return Intl.message(
+      'Mark III Well',
+      name: 'mark_III_well',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No.6 Pump Well`
+  String get no_6_pump_well {
+    return Intl.message(
+      'No.6 Pump Well',
+      name: 'no_6_pump_well',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Drainage Well`
+  String get drainage_well {
+    return Intl.message(
+      'Drainage Well',
+      name: 'drainage_well',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Mixed Wells`
+  String get mixed_wells {
+    return Intl.message(
+      'Mixed Wells',
+      name: 'mixed_wells',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Parameter`
+  String get parameter {
+    return Intl.message(
+      'Parameter',
+      name: 'parameter',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `QR Code`
+  String get qr_code {
+    return Intl.message(
+      'QR Code',
+      name: 'qr_code',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

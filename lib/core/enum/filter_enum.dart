@@ -1,4 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:rws_app/translation/generated/l10n.dart';
+import 'package:flutter/material.dart';
 
 const int _haveCode = 0;
 const int _notHaveCode = 1;
@@ -23,9 +25,9 @@ extension FilterEnumExtension on FilterEnum {
   String getDisplayText() {
     switch (this) {
       case FilterEnum.have:
-        return 'មាន';
+        return S.current.have;
       case FilterEnum.notHave:
-        return 'មិនមាន';
+        return S.current.nohave;
     }
   }
 }

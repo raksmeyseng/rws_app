@@ -1,4 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:rws_app/translation/generated/l10n.dart';
+import 'package:flutter/material.dart';
 
 const int _faceCode = 1;
 const int _unfaceCode = 2;
@@ -23,9 +25,9 @@ extension AreaEnumExtension on AreaEnum {
   String getDisplayText() {
     switch (this) {
       case AreaEnum.face:
-        return 'ប្រឈម';
+        return S.current.risk;
       case AreaEnum.unface:
-        return 'មិនប្រឈម';
+        return S.current.norisk;
     }
   }
 }

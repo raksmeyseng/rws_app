@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:rws_app/constants/app_constant.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';
+import 'package:rws_app/translation/generated/l10n.dart';
 
 import '../../../widgets/flat_card.dart';
 import '../../../widgets/text_widget.dart';
@@ -12,10 +13,10 @@ class ReportView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<String> reportTitle = [
-      'របាយការណ៍អណ្ដូងលម្អិត',
-      'របាយការណ៍អណ្ដូងគ្របដណ្ដប់លម្អិត',
-      'របាយការណ៍គ្រប់ដណ្ដប់ប្រព័ន្ធផ្គត់ផ្គង់ទឹក',
-      'របាយការណ៍គ្រប់ដណ្ដប់ប្រព័ន្ធផ្គត់ផ្គង់ទឹកជាផែនទី'
+      S.of(context).water_supply_detail_report,
+      S.of(context).water_supply_coverage_report_by_type,
+      S.of(context).water_supply_coverage_report,
+      S.of(context).water_support_report_on_map
     ];
     List<String> reportUrls = [
       '${AppConstant.defaultURL}km/watersupply/reportwellbyprovince/token/',

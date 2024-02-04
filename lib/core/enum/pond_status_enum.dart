@@ -1,4 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:flutter/material.dart';
+import 'package:rws_app/translation/generated/l10n.dart';
 
 const int _unMaintainCode = 0;
 const int _maintainCode = 1;
@@ -28,11 +30,11 @@ extension PondStatusEnumExtension on PondStatusEnum {
   String getDisplayText() {
     switch (this) {
       case PondStatusEnum.unMaintain:
-        return 'មិនមានការការពារនិងថែទាំ';
+        return S.current.no_protection_and_maintenance;
       case PondStatusEnum.maintain:
-        return 'មានការការពារថែទាំ';
+        return S.current.protected_and_maintained;
       case PondStatusEnum.unUse:
-        return 'មិនប្រើប្រាស់';
+        return S.current.not_used;
     }
   }
 }

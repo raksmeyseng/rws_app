@@ -1,4 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:flutter/material.dart';
+import 'package:rws_app/translation/generated/l10n.dart';
 
 const int _notHaveCode = 0;
 const int _haveActiveCode = 1;
@@ -28,11 +30,11 @@ extension PondFilterEnumExtension on PondFilterEnum {
   String getDisplayText() {
     switch (this) {
       case PondFilterEnum.notHave:
-        return 'មិនមាន';
+        return S.current.nohave;
       case PondFilterEnum.haveActive:
-        return 'មាន(ដំណើរការ)';
+        return S.current.have_active;
       case PondFilterEnum.haveInactive:
-        return 'មាន(មិនដំណើរការ)';
+        return S.current.have_inactive;
     }
   }
 }

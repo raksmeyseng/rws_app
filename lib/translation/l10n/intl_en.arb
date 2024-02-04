@@ -352,6 +352,64 @@
 
   "view_history_data": "View History",
 
-  "water_supply_coverage_report": "Water Supply Coverage Report"
+  "water_supply_coverage_report": "Water Supply Coverage Report",
+  "water_supply_detail_report": "Water Supply Detail Report",
+  "water_support_report_on_map": "Water Support Report on Map",
+  "water_supply_coverage_report_by_type": "Water Supply Coverage Report by Type",
 
+  "parameter_code_report_viewer": "Parameter Code :",
+  "parameter_report_viewer": "Parameter :",
+  "unit_report_viewer": "Unit :",
+  "standard_water_report_viewer": "Standard Water :",
+  "value_report_viewer": "Value :",
+
+  "have": "Yes",
+  "nohave": "No",
+
+  "parameter_code": "Parameter Code",
+  "value": "Value",
+
+  "submit": "Submit",
+  "do_you_want_to_submit_this_data": "Do you want to submit this data?",
+  "edit": "Edit",
+  "delete": "Delete",
+  "do_you_want_to_delete_this_draft": "Do you want to delete this Draft?",
+
+  "have_active": "Active",
+  "have_inactive": "Inactive",
+
+  "no_protection_and_maintenance": "No protection and maintenance",
+  "protected_and_maintained": "Protected and maintained",
+  "not_used": "Unused",
+
+  "have_water": "Have Water",
+  "no_water": "No Water",
+
+  "using": "Using",
+  "not_using": "Unused",
+
+  "family": "Family",
+  "school": "School",
+  "hospital": "Hospital",
+
+  "good": "Good",
+  "bad": "Bad",
+
+  "underground_water": "Underground Water",
+  "surface_water": "Surface water",
+  "spring_water": "Spring Water",
+  "all_water": "All",
+
+  "active_status": "Active",
+  "inactive_status": "Inactive",
+
+  "motorized_pump_well": "Motorized Pump Well",
+  "afridef_pump_well": "Afridef Pump Well",
+  "mark_II_well": "Mark II Well",
+  "mark_III_well": "Mark III Well",
+  "no_6_pump_well": "No.6 Pump Well",
+  "drainage_well": "Drainage Well",
+  "mixed_wells": "Mixed Wells",
+  "parameter": "Parameter",
+  "qr_code": "QR Code"
 }

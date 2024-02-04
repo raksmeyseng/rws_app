@@ -71,12 +71,12 @@ class _TabBar extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(vertical: 4.0),
                 child: Tab(text: S.of(context).tab_specific),
               ),
-              const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 4.0),
-                  child: Tab(text: 'Paramater')),
-              const Padding(
-                padding: EdgeInsets.symmetric(vertical: 4.0),
-                child: Tab(text: 'QR Code'),
+               Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 4.0),
+                  child: Tab(text: S.of(context).parameter)),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 4.0),
+                child: Tab(text: S.of(context).qr_code),
               )
             ],
           );
