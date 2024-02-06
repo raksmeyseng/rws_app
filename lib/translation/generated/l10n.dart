@@ -2840,10 +2840,10 @@ class S {
     );
   }
 
-  /// `Pipe:`
+  /// `Pipe Status:`
   String get status_pipe_report_viewer {
     return Intl.message(
-      'Pipe:',
+      'Pipe Status:',
       name: 'status_pipe_report_viewer',
       desc: '',
       args: [],
@@ -3110,30 +3110,30 @@ class S {
     );
   }
 
-  /// `Risk`
+  /// `Yes`
   String get risk {
     return Intl.message(
-      'Risk',
+      'Yes',
       name: 'risk',
       desc: '',
       args: [],
     );
   }
 
-  /// `No risk`
+  /// `No`
   String get norisk {
     return Intl.message(
-      'No risk',
+      'No',
       name: 'norisk',
       desc: '',
       args: [],
     );
   }
 
-  /// `Government`
+  /// `State`
   String get government {
     return Intl.message(
-      'Government',
+      'State',
       name: 'government',
       desc: '',
       args: [],
@@ -3170,10 +3170,10 @@ class S {
     );
   }
 
-  /// `Private`
+  /// `Personal`
   String get private {
     return Intl.message(
-      'Private',
+      'Personal',
       name: 'private',
       desc: '',
       args: [],
@@ -3520,20 +3520,20 @@ class S {
     );
   }
 
-  /// `Yes`
+  /// `Have`
   String get have {
     return Intl.message(
-      'Yes',
+      'Have',
       name: 'have',
       desc: '',
       args: [],
     );
   }
 
-  /// `No`
+  /// `None`
   String get nohave {
     return Intl.message(
-      'No',
+      'None',
       name: 'nohave',
       desc: '',
       args: [],
@@ -3610,20 +3610,20 @@ class S {
     );
   }
 
-  /// `Active`
+  /// `Have (Working)`
   String get have_active {
     return Intl.message(
-      'Active',
+      'Have (Working)',
       name: 'have_active',
       desc: '',
       args: [],
     );
   }
 
-  /// `Inactive`
+  /// `Have (Not Working)`
   String get have_inactive {
     return Intl.message(
-      'Inactive',
+      'Have (Not Working)',
       name: 'have_inactive',
       desc: '',
       args: [],
@@ -3660,10 +3660,10 @@ class S {
     );
   }
 
-  /// `Have Water`
+  /// `Has Water`
   String get have_water {
     return Intl.message(
-      'Have Water',
+      'Has Water',
       name: 'have_water',
       desc: '',
       args: [],

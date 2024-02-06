@@ -102,6 +102,7 @@ class _MyDraftItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Locale appLocale = Localizations.localeOf(context);
     return FlatCard(
       borderRadius: 10,
       color: Theme.of(context).dividerColor.withOpacity(0.05),
@@ -146,19 +147,36 @@ class _MyDraftItem extends StatelessWidget {
           ),
           _InfoItem(
             CaptionWidget('${S.of(context).village} :'),
-            TextWidget(item.waterSupply.village?.nameEn),
+            TextWidget(
+              appLocale.languageCode == 'en'
+                  ? item.waterSupply.village?.nameEn
+                  : item.waterSupply.village?.nameKh
+            ),
           ),
           _InfoItem(
             CaptionWidget('${S.of(context).commune} :'),
-            TextWidget(item.waterSupply.commune.nameEn),
+            TextWidget(
+              appLocale.languageCode == 'en'
+                  ? item.waterSupply.commune.nameEn
+                  : item.waterSupply.commune.nameKh,
+
+            ),
           ),
           _InfoItem(
             CaptionWidget('${S.of(context).district} :'),
-            TextWidget(item.waterSupply.district.nameEn),
+            TextWidget(
+              appLocale.languageCode == 'en'
+                  ? item.waterSupply.district.nameEn
+                  : item.waterSupply.district.nameKh,
+            ),
           ),
           _InfoItem(
             CaptionWidget('${S.of(context).province} :'),
-            TextWidget(item.waterSupply.address.nameEn),
+            TextWidget(
+                appLocale.languageCode == 'en'
+                ? item.waterSupply.address.nameEn
+                : item.waterSupply.address.nameKh,
+            ),
           ),
           const Padding(
             padding: EdgeInsets.symmetric(vertical: 8),
@@ -166,8 +184,12 @@ class _MyDraftItem extends StatelessWidget {
           ),
           _InfoItem(
             CaptionWidget('${S.of(context).status} :'),
-            TextWidget(item.status.statusNameKh.toString(),
-                color: AppColor.warning),
+            TextWidget(
+              appLocale.languageCode == 'en'
+              ? item.status.statusName.toString()
+              : item.status.statusNameKh.toString(),
+                color: AppColor.warning
+            ),
           ),
         ],
       ),

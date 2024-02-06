@@ -10,7 +10,7 @@ ResponseWaterSupplyModel _$ResponseWaterSupplyModelFromJson(
         Map<String, dynamic> json) =>
     ResponseWaterSupplyModel(
       status: json['status'] as int,
-      waterSupplyId: json['data'] as int,
+      waterSupplyId: json['data']['id'] as int,
     );
 
 Map<String, dynamic> _$ResponseWaterSupplyModelToJson(

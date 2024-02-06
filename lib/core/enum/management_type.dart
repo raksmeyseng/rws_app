@@ -1,6 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:rws_app/translation/generated/l10n.dart';
-import 'package:flutter/material.dart';
 
 const int _associationCode = 0;
 const int _privateCode = 1;

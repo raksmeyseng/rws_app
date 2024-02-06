@@ -562,7 +562,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "status_water_kiosk_report_viewer":
             MessageLookupByLibrary.simpleMessage("ស្ថានភាពស្ថានីយ:"),
         "status_well_report_viewer":
-            MessageLookupByLibrary.simpleMessage("ស្ថានភាពអណ្ដូងទឹក"),
+            MessageLookupByLibrary.simpleMessage("ស្ថានភាពអណ្ដូងទឹក:"),
         "storage_permission":
             MessageLookupByLibrary.simpleMessage("អង្គផ្ទុកទិន្នន័យ"),
         "submit": MessageLookupByLibrary.simpleMessage("ដាក់ស្នើ"),

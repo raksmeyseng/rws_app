@@ -162,6 +162,7 @@ class _WaterSupplyWorkFlowItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Locale appLocale = Localizations.localeOf(context);
     return FlatCard(
       borderRadius: 10,
       color: Theme.of(context).dividerColor.withOpacity(0.05),
@@ -183,7 +184,11 @@ class _WaterSupplyWorkFlowItem extends StatelessWidget {
           ),
           _InfoItem(
             CaptionWidget('${S.of(context).status} :'),
-            TextWidget(item.status.statusNameKh),
+            TextWidget(
+              appLocale.languageCode == 'en'
+                ? item.status.statusName
+                : item.status.statusNameKh
+            ),
           ),
           _InfoItem(
             CaptionWidget('${S.of(context).user_name} :'),

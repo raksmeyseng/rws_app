@@ -9,6 +9,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:latlong_to_osgrid/latlong_to_osgrid.dart';
 import 'package:rws_app/config/routes/application.dart';
+import 'package:rws_app/constants/app_constant.dart';
 import 'package:rws_app/core/enum/base_status_enum.dart';
 import 'package:rws_app/core/enum/budget_type.dart';
 import 'package:rws_app/core/enum/check_water_quality_enum.dart';
@@ -436,6 +437,7 @@ class WaterSupplyEditBloc
     }
   }
 
+//On start App
   Future<void> _onWaterSupplyStarted(
     WaterSupplyStarted event,
     Emitter<WaterSupplyEditState> emit,
@@ -854,15 +856,19 @@ class WaterSupplyEditBloc
   }
 
   void _onProvinceChanged(
-    ProvinceChanged event,
-    Emitter<WaterSupplyEditState> emit,
-  ) async {
+      ProvinceChanged event,
+      Emitter<WaterSupplyEditState> emit,
+      ) async {
+    final language = Application.appBloc.state.language;
+    //final userLocale = language.getLocale();
     //final province = WaterSupplyInput.pure(event.province.nameEn);
     final province = WaterSupplyInput.pure(event.province.id.toString());
-    provinceController.text = event.province.nameKh;
+    provinceController.text = language.name == 'khmer'
+        ? event.province.nameKh
+        : event.province.nameEn;
     districtController.text = '';
     List<DistrictModel> districts =
-        await repository.getDistrictByProvince(event.province.id);
+    await repository.getDistrictByProvince(event.province.id);
     //provinceController.value=event.province.id as TextEditingValue;
     emit(state.copyWith(
       provinceInput: province,
@@ -875,13 +881,17 @@ class WaterSupplyEditBloc
     DistrictChanged event,
     Emitter<WaterSupplyEditState> emit,
   ) async {
+    final language = Application.appBloc.state.language;
     final distict = WaterSupplyInput.pure(event.district.id.toString());
-    districtController.text = event.district.nameKh;
+    districtController.text = language.name == 'khmer'
+        ? event.district.nameKh
+        : event.district.nameEn;
     communeController.text = '';
+    List<CommuneModel> communes =  await repository.getCommuneByDistrictId(event.district.id);
     emit(state.copyWith(
       districtInput: distict,
       //communes: event.district.districtCommnue,
-      communes: await repository.getCommuneByDistrictId(event.district.id),
+      communes: communes,
     ));
   }
 
@@ -889,13 +899,17 @@ class WaterSupplyEditBloc
     CommnueChanged event,
     Emitter<WaterSupplyEditState> emit,
   ) async {
+    final language = Application.appBloc.state.language;
     final commune = WaterSupplyInput.pure(event.commnue.id.toString());
-    communeController.text = event.commnue.nameKh;
+    communeController.text = language.name == 'khmer'
+        ? event.commnue.nameKh
+        : event.commnue.nameEn;
     villageController.text = '';
+    List<VillageModel> villages =  await repository.getVillageByCommuneId(event.commnue.id);
     emit(state.copyWith(
       communeInput: commune,
       //villages: event.commnue.commnuevillage,
-      villages: await repository.getVillageByCommuneId(event.commnue.id),
+      villages: villages,
     ));
   }
 
@@ -903,8 +917,11 @@ class WaterSupplyEditBloc
     VillageChanged event,
     Emitter<WaterSupplyEditState> emit,
   ) {
+    final language = Application.appBloc.state.language;
     final village = WaterSupplyInput.pure(event.village.id.toString());
-    villageController.text = event.village.nameKh;
+    villageController.text = language.name == 'khmer'
+        ? event.village.nameKh
+        : event.village.nameEn;
     emit(state.copyWith(villageInput: village));
   }
 

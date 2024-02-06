@@ -66,18 +66,21 @@ class WaterSupplyEditView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocListener<WaterSupplyEditBloc, WaterSupplyEditState>(
       listenWhen: (previous, current) =>
-      previous.formzStatus != current.formzStatus,
+          previous.formzStatus != current.formzStatus,
       listener: (context, state) {
         if (state.formzStatus == FormzStatus.submissionSuccess) {
           //Application.router.goNamed(AppRoute.home, extra: {'index': '2'});
           Future.delayed(
               Duration.zero,
-                  () => _dialogBuilder(context, S.of(context).data_saved_successfully, false,
+              () => _dialogBuilder(
+                  context,
+                  S.of(context).data_saved_successfully,
+                  false,
                   state.waterSupplyTypeId));
         } else if (state.formzStatus == FormzStatus.submissionSuccess) {
           Future.delayed(
               Duration.zero,
-                  () => _dialogBuilder(context, S.of(context).data_save_failed,
+              () => _dialogBuilder(context, S.of(context).data_save_failed,
                   true, state.waterSupplyTypeId));
         }
       },
@@ -176,7 +179,7 @@ class _SuccessView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
       buildWhen: (previous, current) =>
-      previous.formzStatus != current.formzStatus,
+          previous.formzStatus != current.formzStatus,
       builder: (context, state) {
         return DefaultTabController(
           length: 3,
@@ -205,39 +208,39 @@ class _SuccessView extends StatelessWidget {
                   child: state.formzStatus == FormzStatus.submissionInProgress
                       ? const CircularProgressIndicator()
                       : Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 0,
-                      vertical: 0,
-                    ),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: MyButton(
-                              title: S.of(context).button_draft,
-                              color: AppColor.active,
-                              onPressed: () {
-                                context
-                                    .read<WaterSupplyEditBloc>()
-                                    .add(const Submitted(3));
-                              }),
-                        ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        Expanded(
-                          child: MyButton(
-                            title: S.of(context).button_submit,
-                            color: AppColor.active,
-                            onPressed: () {
-                              context
-                                  .read<WaterSupplyEditBloc>()
-                                  .add(const Submitted(1));
-                            },
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 0,
+                            vertical: 0,
                           ),
-                        )
-                      ],
-                    ),
-                  ),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: MyButton(
+                                    title: S.of(context).button_draft,
+                                    color: AppColor.active,
+                                    onPressed: () {
+                                      context
+                                          .read<WaterSupplyEditBloc>()
+                                          .add(const Submitted(3));
+                                    }),
+                              ),
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              Expanded(
+                                child: MyButton(
+                                  title: S.of(context).button_submit,
+                                  color: AppColor.active,
+                                  onPressed: () {
+                                    context
+                                        .read<WaterSupplyEditBloc>()
+                                        .add(const Submitted(1));
+                                  },
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
                   // : MyButton(
                   //     title: S.of(context).button_ok,
                   //     onPressed: () {
@@ -497,7 +500,7 @@ class _BuildMap extends StatelessWidget {
                 ),
                 gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{
                   Factory<OneSequenceGestureRecognizer>(
-                        () => EagerGestureRecognizer(),
+                    () => EagerGestureRecognizer(),
                   ),
                 },
                 onMapCreated: (controller) {
@@ -512,7 +515,7 @@ class _BuildMap extends StatelessWidget {
                   Marker(
                     markerId: const MarkerId('current position'),
                     position:
-                    LatLng(state.latLng.latitude, state.latLng.longitude),
+                        LatLng(state.latLng.latitude, state.latLng.longitude),
                   ), // Marker
                 },
               ), // Mapbox
@@ -743,7 +746,7 @@ class _FormField3 extends StatelessWidget {
             return const _SPipeInputPage();
           case 3:
             return const _KoiskInputPage();
-        //return const _SPipeInputPage();
+          //return const _SPipeInputPage();
           case 4:
             return const _PondInputPage();
           case 5:
@@ -1159,8 +1162,8 @@ class _PipeInputPage extends StatelessWidget {
           children: [
             Expanded(
                 child: _CheckWaterQualityInput(
-                  voidCallback: (value) {},
-                )),
+              voidCallback: (value) {},
+            )),
           ],
         ),
         const SizedBox(height: 16),
@@ -1248,8 +1251,8 @@ class _AirInputPage extends StatelessWidget {
           children: [
             Expanded(
                 child: _CheckWaterQualityInput(
-                  voidCallback: (value) {},
-                )),
+              voidCallback: (value) {},
+            )),
           ],
         ),
         const SizedBox(height: 16),
@@ -1277,7 +1280,7 @@ class _ProvinceInput extends StatelessWidget {
     final bloc = context.read<WaterSupplyEditBloc>();
     return BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
       buildWhen: (previous, current) =>
-      previous.provinceInput != current.provinceInput ||
+          previous.provinceInput != current.provinceInput ||
           previous.provinces != current.provinces,
       builder: (context, state) {
         return MyTextInput(
@@ -1286,10 +1289,11 @@ class _ProvinceInput extends StatelessWidget {
           controller: context.read<WaterSupplyEditBloc>().provinceController,
           onTap: () async {
             final province =
-            await DialogHelper.showAnimatedDialog<ProvinceModel?>(
+                await DialogHelper.showAnimatedDialog<ProvinceModel?>(
               animationType: DialogAnimationType.none,
               transitionDuration: const Duration(milliseconds: 200),
               pageBuilder: (context, a1, a2) {
+                final Locale appLocale = Localizations.localeOf(context);
                 return MySimpleDialog(
                     title: S.of(context).province,
                     content: SingleChildScrollView(
@@ -1299,14 +1303,18 @@ class _ProvinceInput extends StatelessWidget {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             ...state.provinces.map(
-                                  (pro) => ListTile(
+                              (pro) => ListTile(
                                 onTap: () {
                                   Navigator.of(context).pop(pro);
                                 },
                                 contentPadding: const EdgeInsets.symmetric(
                                   horizontal: 24.0,
                                 ),
-                                title: TextWidget(pro.nameEn),
+                                title: TextWidget(
+                                  appLocale.languageCode == 'en'
+                                      ? pro.nameEn
+                                      : pro.nameKh,
+                                ),
                               ),
                             ),
                           ],
@@ -1351,7 +1359,7 @@ class _DistrictInput extends StatelessWidget {
     final bloc = context.read<WaterSupplyEditBloc>();
     return BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
       buildWhen: (previous, current) =>
-      previous.districtInput != current.districtInput ||
+          previous.districtInput != current.districtInput ||
           previous.districts != current.districts,
       builder: (context, state) {
         return MyTextInput(
@@ -1361,10 +1369,11 @@ class _DistrictInput extends StatelessWidget {
           onTap: () async {
             if (state.districts.isEmpty) return;
             final district =
-            await DialogHelper.showAnimatedDialog<DistrictModel?>(
+                await DialogHelper.showAnimatedDialog<DistrictModel?>(
               animationType: DialogAnimationType.none,
               transitionDuration: const Duration(milliseconds: 200),
               pageBuilder: (context, a1, a2) {
+                final Locale appLocale = Localizations.localeOf(context);
                 return MySimpleDialog(
                   title: S.of(context).district,
                   content: SingleChildScrollView(
@@ -1374,14 +1383,18 @@ class _DistrictInput extends StatelessWidget {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           ...state.districts.map(
-                                (dis) => ListTile(
+                            (dis) => ListTile(
                               onTap: () {
                                 Navigator.of(context).pop(dis);
                               },
                               contentPadding: const EdgeInsets.symmetric(
                                 horizontal: 24.0,
                               ),
-                              title: TextWidget(dis.nameKh),
+                              title: TextWidget(
+                                  appLocale.languageCode == 'en'
+                                      ? dis.nameEn
+                                      : dis.nameKh,
+                              ),
                             ),
                           ),
                         ],
@@ -1427,7 +1440,7 @@ class _CommuneInput extends StatelessWidget {
     final bloc = context.read<WaterSupplyEditBloc>();
     return BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
       buildWhen: (previous, current) =>
-      previous.communeInput != current.communeInput ||
+          previous.communeInput != current.communeInput ||
           previous.communes != current.communes,
       builder: (context, state) {
         return MyTextInput(
@@ -1437,10 +1450,11 @@ class _CommuneInput extends StatelessWidget {
           onTap: () async {
             if (state.communes.isEmpty) return;
             final commnue =
-            await DialogHelper.showAnimatedDialog<CommuneModel?>(
+                await DialogHelper.showAnimatedDialog<CommuneModel?>(
               animationType: DialogAnimationType.none,
               transitionDuration: const Duration(milliseconds: 200),
               pageBuilder: (context, a1, a2) {
+                final Locale appLocale = Localizations.localeOf(context);
                 return MySimpleDialog(
                   title: S.of(context).commune,
                   content: SingleChildScrollView(
@@ -1450,14 +1464,18 @@ class _CommuneInput extends StatelessWidget {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           ...state.communes.map(
-                                (com) => ListTile(
+                            (com) => ListTile(
                               onTap: () {
                                 Navigator.of(context).pop(com);
                               },
                               contentPadding: const EdgeInsets.symmetric(
                                 horizontal: 24.0,
                               ),
-                              title: TextWidget(com.nameKh),
+                              title: TextWidget(
+                                  appLocale.languageCode == 'en'
+                                  ? com.nameEn
+                                      : com.nameKh,
+                              ),
                             ),
                           ),
                         ],
@@ -1503,9 +1521,10 @@ class _VillageInput extends StatelessWidget {
     final bloc = context.read<WaterSupplyEditBloc>();
     return BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
       buildWhen: (previous, current) =>
-      previous.villageInput != current.villageInput ||
+          previous.villageInput != current.villageInput ||
           previous.villages != current.villages,
       builder: (context, state) {
+        final Locale appLocale = Localizations.localeOf(context);
         return MyTextInput(
           label: S.of(context).village,
           focusNode: context.read<WaterSupplyEditBloc>().villageFocus,
@@ -1513,7 +1532,7 @@ class _VillageInput extends StatelessWidget {
           onTap: () async {
             if (state.villages.isEmpty) return;
             final village =
-            await DialogHelper.showAnimatedDialog<VillageModel?>(
+                await DialogHelper.showAnimatedDialog<VillageModel?>(
               animationType: DialogAnimationType.none,
               transitionDuration: const Duration(milliseconds: 200),
               pageBuilder: (context, a1, a2) {
@@ -1526,14 +1545,18 @@ class _VillageInput extends StatelessWidget {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           ...state.villages.map(
-                                (vill) => ListTile(
+                            (vill) => ListTile(
                               onTap: () {
                                 Navigator.of(context).pop(vill);
                               },
                               contentPadding: const EdgeInsets.symmetric(
                                 horizontal: 24.0,
                               ),
-                              title: TextWidget(vill.nameKh),
+                              title: TextWidget(
+                                appLocale.languageCode == 'en'
+                                  ? vill.nameEn
+                                  : vill.nameKh,
+                              ),
                             ),
                           ),
                         ],
@@ -1579,7 +1602,7 @@ class _MapTypeInput extends StatelessWidget {
     final bloc = context.read<WaterSupplyEditBloc>();
     return BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
       buildWhen: (previous, current) =>
-      previous.mapTypeInput != current.mapTypeInput,
+          previous.mapTypeInput != current.mapTypeInput,
       builder: (context, state) {
         return MyTextInput(
           label: S.of(context).map_unit,
@@ -1598,7 +1621,7 @@ class _MapTypeInput extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         ...MapTypeEnum.values.map(
-                              (mapType) => ListTile(
+                          (mapType) => ListTile(
                             onTap: () {
                               Navigator.of(context).pop(mapType);
                             },
@@ -1645,16 +1668,16 @@ class _MapTypeDynamicForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
       buildWhen: (previous, current) =>
-      previous.mapTypeInput != current.mapTypeInput,
+          previous.mapTypeInput != current.mapTypeInput,
       builder: (context, state) {
         final mapTypeEnum = state.mapTypeInput.value;
         switch (mapTypeEnum) {
           case MapTypeEnum.utm:
             return const _UtmForm();
-        // case MapTypeEnum.decimal:
-        //   return const _DecimalForm();
-        // case MapTypeEnum.degree:
-        //   return const _DegreeForm();
+          // case MapTypeEnum.decimal:
+          //   return const _DecimalForm();
+          // case MapTypeEnum.degree:
+          //   return const _DegreeForm();
           default:
             return const SizedBox();
         }
@@ -1750,7 +1773,7 @@ class _LatInput extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
       buildWhen: (previous, current) =>
-      previous.lateitudeInput != current.lateitudeInput,
+          previous.lateitudeInput != current.lateitudeInput,
       builder: (context, state) {
         return MyTextInput(
           label: S.of(context).utm_x,
@@ -1784,7 +1807,7 @@ class _LongInput extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
       buildWhen: (previous, current) =>
-      previous.longtitudeInput != current.longtitudeInput,
+          previous.longtitudeInput != current.longtitudeInput,
       builder: (context, state) {
         return MyTextInput(
           label: S.of(context).utm_y,
@@ -2089,7 +2112,7 @@ class _FamilyTotalInput extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
       buildWhen: (previous, current) =>
-      previous.familyTotalInput != current.familyTotalInput,
+          previous.familyTotalInput != current.familyTotalInput,
       builder: (context, state) {
         return MyTextInput(
           label: S.of(context).total_family,
@@ -2125,13 +2148,13 @@ class _LocationRiskInput extends StatelessWidget {
     final bloc = context.read<WaterSupplyEditBloc>();
     return BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
       buildWhen: (previous, current) =>
-      previous.locationRickInput != current.locationRickInput,
+          previous.locationRickInput != current.locationRickInput,
       builder: (context, state) {
         return MyTextInput(
           label: S.of(context).risk_enviroment,
           focusNode: context.read<WaterSupplyEditBloc>().locationRickFocus,
           controller:
-          context.read<WaterSupplyEditBloc>().locationRickController,
+              context.read<WaterSupplyEditBloc>().locationRickController,
           onTap: () async {
             final area = await DialogHelper.showAnimatedDialog<AreaEnum?>(
               animationType: DialogAnimationType.none,
@@ -2145,7 +2168,7 @@ class _LocationRiskInput extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         ...AreaEnum.values.map(
-                              (areaType) => ListTile(
+                          (areaType) => ListTile(
                             onTap: () {
                               Navigator.of(context).pop(areaType);
                             },
@@ -2197,7 +2220,7 @@ class _BudgetTypeInput extends StatelessWidget {
     final bloc = context.read<WaterSupplyEditBloc>();
     return BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
       buildWhen: (previous, current) =>
-      previous.budgetTypeInput != current.budgetTypeInput,
+          previous.budgetTypeInput != current.budgetTypeInput,
       builder: (context, state) {
         return MyTextInput(
           label: S.of(context).budget_source,
@@ -2205,7 +2228,7 @@ class _BudgetTypeInput extends StatelessWidget {
           controller: context.read<WaterSupplyEditBloc>().budgetTypeController,
           onTap: () async {
             final budget =
-            await DialogHelper.showAnimatedDialog<BudgetTypeEnum?>(
+                await DialogHelper.showAnimatedDialog<BudgetTypeEnum?>(
               animationType: DialogAnimationType.none,
               transitionDuration: const Duration(milliseconds: 200),
               pageBuilder: (context, a1, a2) {
@@ -2217,7 +2240,7 @@ class _BudgetTypeInput extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         ...BudgetTypeEnum.values.map(
-                              (budgetType) => ListTile(
+                          (budgetType) => ListTile(
                             onTap: () {
                               Navigator.of(context).pop(budgetType);
                             },
@@ -2269,16 +2292,16 @@ class _ManagementTypeInput extends StatelessWidget {
     final bloc = context.read<WaterSupplyEditBloc>();
     return BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
       buildWhen: (previous, current) =>
-      previous.managementTypeInput != current.managementTypeInput,
+          previous.managementTypeInput != current.managementTypeInput,
       builder: (context, state) {
         return MyTextInput(
           label: S.of(context).management_type,
           focusNode: context.read<WaterSupplyEditBloc>().managementTypeFocus,
           controller:
-          context.read<WaterSupplyEditBloc>().managementTypeController,
+              context.read<WaterSupplyEditBloc>().managementTypeController,
           onTap: () async {
             final manage =
-            await DialogHelper.showAnimatedDialog<ManagementTypeEnum?>(
+                await DialogHelper.showAnimatedDialog<ManagementTypeEnum?>(
               animationType: DialogAnimationType.none,
               transitionDuration: const Duration(milliseconds: 200),
               pageBuilder: (context, a1, a2) {
@@ -2290,7 +2313,7 @@ class _ManagementTypeInput extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         ...ManagementTypeEnum.values.map(
-                              (manageType) => ListTile(
+                          (manageType) => ListTile(
                             onTap: () {
                               Navigator.of(context).pop(manageType);
                             },
@@ -2341,13 +2364,13 @@ class _ManagamentNameInput extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
       buildWhen: (previous, current) =>
-      previous.managementNameInput != current.managementNameInput,
+          previous.managementNameInput != current.managementNameInput,
       builder: (context, state) {
         return MyTextInput(
           label: S.of(context).managed_by,
           focusNode: context.read<WaterSupplyEditBloc>().managementNameFocus,
           controller:
-          context.read<WaterSupplyEditBloc>().managementNameController,
+              context.read<WaterSupplyEditBloc>().managementNameController,
           onChanged: (value) => context
               .read<WaterSupplyEditBloc>()
               .add(ManagementNameChanged(value)),
@@ -2376,13 +2399,13 @@ class _ReceiverTotalInput extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
       buildWhen: (previous, current) =>
-      previous.receiverTotalInput != current.receiverTotalInput,
+          previous.receiverTotalInput != current.receiverTotalInput,
       builder: (context, state) {
         return MyTextInput(
           label: S.of(context).beneficiary_total_people,
           focusNode: context.read<WaterSupplyEditBloc>().receiverTotalFocus,
           controller:
-          context.read<WaterSupplyEditBloc>().receiverTotalController,
+              context.read<WaterSupplyEditBloc>().receiverTotalController,
           onChanged: (value) => context
               .read<WaterSupplyEditBloc>()
               .add(ReceiverTotalChanged(value)),
@@ -2413,13 +2436,13 @@ class _ReceiverTotalAsFemaleInput extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
       buildWhen: (previous, current) =>
-      previous.receiverTotalAsFemaleInput !=
+          previous.receiverTotalAsFemaleInput !=
           current.receiverTotalAsFemaleInput,
       builder: (context, state) {
         return MyTextInput(
           label: S.of(context).beneficiary_total_women,
           focusNode:
-          context.read<WaterSupplyEditBloc>().receiverTotalAsFemaleFocus,
+              context.read<WaterSupplyEditBloc>().receiverTotalAsFemaleFocus,
           controller: context
               .read<WaterSupplyEditBloc>()
               .receiverTotalAsFemaleController,
@@ -2453,14 +2476,14 @@ class _ReceiverFamilyTotalInput extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
       buildWhen: (previous, current) =>
-      previous.receiverFamilyTotalInput != current.receiverFamilyTotalInput,
+          previous.receiverFamilyTotalInput != current.receiverFamilyTotalInput,
       builder: (context, state) {
         return MyTextInput(
           label: S.of(context).beneficiary_total_family,
           focusNode:
-          context.read<WaterSupplyEditBloc>().receiverFamilyTotalFocus,
+              context.read<WaterSupplyEditBloc>().receiverFamilyTotalFocus,
           controller:
-          context.read<WaterSupplyEditBloc>().receiverFamilyTotalController,
+              context.read<WaterSupplyEditBloc>().receiverFamilyTotalController,
           onChanged: (value) => context
               .read<WaterSupplyEditBloc>()
               .add(ReceiverFamilyTotalChanged(value)),
@@ -2491,14 +2514,14 @@ class _ReceiverFamilyPoor1Input extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
       buildWhen: (previous, current) =>
-      previous.receiverFamilyPoor1Input != current.receiverFamilyPoor1Input,
+          previous.receiverFamilyPoor1Input != current.receiverFamilyPoor1Input,
       builder: (context, state) {
         return MyTextInput(
           label: S.of(context).beneficiary_total_family_poor_1,
           focusNode:
-          context.read<WaterSupplyEditBloc>().receiverFamilyPoor1Focus,
+              context.read<WaterSupplyEditBloc>().receiverFamilyPoor1Focus,
           controller:
-          context.read<WaterSupplyEditBloc>().receiverFamilyPoor1Controller,
+              context.read<WaterSupplyEditBloc>().receiverFamilyPoor1Controller,
           onChanged: (value) => context
               .read<WaterSupplyEditBloc>()
               .add(ReceiverFamilyPoor1Changed(value)),
@@ -2529,14 +2552,14 @@ class _ReceiverFamilyPoor2Input extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
       buildWhen: (previous, current) =>
-      previous.receiverFamilyPoor2Input != current.receiverFamilyPoor2Input,
+          previous.receiverFamilyPoor2Input != current.receiverFamilyPoor2Input,
       builder: (context, state) {
         return MyTextInput(
           label: S.of(context).beneficiary_total_family_poor_2,
           focusNode:
-          context.read<WaterSupplyEditBloc>().receiverFamilyPoor2Focus,
+              context.read<WaterSupplyEditBloc>().receiverFamilyPoor2Focus,
           controller:
-          context.read<WaterSupplyEditBloc>().receiverFamilyPoor2Controller,
+              context.read<WaterSupplyEditBloc>().receiverFamilyPoor2Controller,
           onChanged: (value) => context
               .read<WaterSupplyEditBloc>()
               .add(ReceiverFamilyPoor2Changed(value)),
@@ -2567,13 +2590,13 @@ class _ReceiverFamilyIndigenousInput extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
       buildWhen: (previous, current) =>
-      previous.receiverFamilyIndigenousInput !=
+          previous.receiverFamilyIndigenousInput !=
           current.receiverFamilyIndigenousInput,
       builder: (context, state) {
         return MyTextInput(
           label: S.of(context).beneficiary_total_family_indigenous,
           focusNode:
-          context.read<WaterSupplyEditBloc>().receiverFamilyMinorityFocus,
+              context.read<WaterSupplyEditBloc>().receiverFamilyMinorityFocus,
           controller: context
               .read<WaterSupplyEditBloc>()
               .receiverFamilyMinorityController,
@@ -2607,13 +2630,13 @@ class _ReceiverFamilyVulnearableInput extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
       buildWhen: (previous, current) =>
-      previous.receiverFamilyVulnearableInput !=
+          previous.receiverFamilyVulnearableInput !=
           current.receiverFamilyVulnearableInput,
       builder: (context, state) {
         return MyTextInput(
           label: S.of(context).beneficiary_total_family_vulnerable,
           focusNode:
-          context.read<WaterSupplyEditBloc>().receiverFamilyVictimFocus,
+              context.read<WaterSupplyEditBloc>().receiverFamilyVictimFocus,
           controller: context
               .read<WaterSupplyEditBloc>()
               .receiverFamilyVictimController,
@@ -2705,7 +2728,7 @@ class _CompanyNameInput extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
       buildWhen: (previous, current) =>
-      previous.companyNameInput != current.companyNameInput,
+          previous.companyNameInput != current.companyNameInput,
       builder: (context, state) {
         return MyTextInput(
           label: S.of(context).construction_by,
@@ -2739,13 +2762,13 @@ class _ConstructionCodeInput extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
       buildWhen: (previous, current) =>
-      previous.constructionCodeInput != current.constructionCodeInput,
+          previous.constructionCodeInput != current.constructionCodeInput,
       builder: (context, state) {
         return MyTextInput(
           label: S.of(context).water_supply_code,
           focusNode: context.read<WaterSupplyEditBloc>().constructionCodeFocus,
           controller:
-          context.read<WaterSupplyEditBloc>().constructionCodeController,
+              context.read<WaterSupplyEditBloc>().constructionCodeController,
           onChanged: (value) => context
               .read<WaterSupplyEditBloc>()
               .add(ConstructionCodeChanged(value)),
@@ -2775,7 +2798,7 @@ class _WellTypeInput extends StatelessWidget {
     final bloc = context.read<WaterSupplyEditBloc>();
     return BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
       buildWhen: (previous, current) =>
-      previous.wellTypeInput != current.wellTypeInput,
+          previous.wellTypeInput != current.wellTypeInput,
       builder: (context, state) {
         return MyTextInput(
           label: S.of(context).well_type,
@@ -2783,7 +2806,7 @@ class _WellTypeInput extends StatelessWidget {
           controller: bloc.wellTypeController,
           onTap: () async {
             final wellType =
-            await DialogHelper.showAnimatedDialog<WellTypeEnum?>(
+                await DialogHelper.showAnimatedDialog<WellTypeEnum?>(
               animationType: DialogAnimationType.none,
               transitionDuration: const Duration(milliseconds: 200),
               pageBuilder: (context, a1, a2) {
@@ -2795,7 +2818,7 @@ class _WellTypeInput extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         ...WellTypeEnum.values.map(
-                              (wellType) => ListTile(
+                          (wellType) => ListTile(
                             onTap: () {
                               Navigator.of(context).pop(wellType);
                             },
@@ -2843,7 +2866,7 @@ class _WellDepthInput extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
       buildWhen: (previous, current) =>
-      previous.wellDepthInput != current.wellDepthInput,
+          previous.wellDepthInput != current.wellDepthInput,
       builder: (context, state) {
         return MyTextInput(
           label: S.of(context).well_depth,
@@ -2877,7 +2900,7 @@ class _WellScreenInput extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
       buildWhen: (previous, current) =>
-      previous.wellScreenInput != current.wellScreenInput,
+          previous.wellScreenInput != current.wellScreenInput,
       builder: (context, state) {
         return MyTextInput(
           label: S.of(context).well_screen,
@@ -2911,7 +2934,7 @@ class _WellThearInput extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
       buildWhen: (previous, current) =>
-      previous.wellThearInput != current.wellThearInput,
+          previous.wellThearInput != current.wellThearInput,
       builder: (context, state) {
         return MyTextInput(
           label: S.of(context).well_water_supply,
@@ -2946,7 +2969,7 @@ class _WaterQualityInput extends StatelessWidget {
     final bloc = context.read<WaterSupplyEditBloc>();
     return BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
       buildWhen: (previous, current) =>
-      previous.waterQualityInput != current.waterQualityInput,
+          previous.waterQualityInput != current.waterQualityInput,
       builder: (context, state) {
         return MyTextInput(
           label: S.of(context).water_quality,
@@ -2954,7 +2977,7 @@ class _WaterQualityInput extends StatelessWidget {
           controller: bloc.waterQualityController,
           onTap: () async {
             final type =
-            await DialogHelper.showAnimatedDialog<WaterQualityEnum?>(
+                await DialogHelper.showAnimatedDialog<WaterQualityEnum?>(
               animationType: DialogAnimationType.none,
               transitionDuration: const Duration(milliseconds: 200),
               pageBuilder: (context, a1, a2) {
@@ -2966,7 +2989,7 @@ class _WaterQualityInput extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         ...WaterQualityEnum.values.map(
-                              (quality) => ListTile(
+                          (quality) => ListTile(
                             onTap: () {
                               Navigator.of(context).pop(quality);
                             },
@@ -3014,7 +3037,7 @@ class _NiVoStaticInput extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
       buildWhen: (previous, current) =>
-      previous.niVoStaticInput != current.niVoStaticInput,
+          previous.niVoStaticInput != current.niVoStaticInput,
       builder: (context, state) {
         return MyTextInput(
           label: S.of(context).well_nirostatic,
@@ -3048,7 +3071,7 @@ class _NiVoDynamicInput extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
       buildWhen: (previous, current) =>
-      previous.niVoDynamicInput != current.niVoDynamicInput,
+          previous.niVoDynamicInput != current.niVoDynamicInput,
       builder: (context, state) {
         return MyTextInput(
           label: S.of(context).well_nirodynamic,
@@ -3084,7 +3107,7 @@ class _CheckWaterQualityInput extends StatelessWidget {
     final bloc = context.read<WaterSupplyEditBloc>();
     return BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
       buildWhen: (previous, current) =>
-      previous.checkWaterQualityInput != current.checkWaterQualityInput,
+          previous.checkWaterQualityInput != current.checkWaterQualityInput,
       builder: (context, state) {
         return MyTextInput(
           label: S.of(context).well_check_water_quality,
@@ -3092,7 +3115,7 @@ class _CheckWaterQualityInput extends StatelessWidget {
           controller: bloc.checkWaterQualityController,
           onTap: () async {
             final type =
-            await DialogHelper.showAnimatedDialog<CheckWaterQualityEnum?>(
+                await DialogHelper.showAnimatedDialog<CheckWaterQualityEnum?>(
               animationType: DialogAnimationType.none,
               transitionDuration: const Duration(milliseconds: 200),
               pageBuilder: (context, a1, a2) {
@@ -3104,7 +3127,7 @@ class _CheckWaterQualityInput extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         ...CheckWaterQualityEnum.values.map(
-                              (check) => ListTile(
+                          (check) => ListTile(
                             onTap: () {
                               voidCallback(check.index);
                               Navigator.of(context).pop(check);
@@ -3155,7 +3178,7 @@ class _WellStatusInput extends StatelessWidget {
     final bloc = context.read<WaterSupplyEditBloc>();
     return BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
       buildWhen: (previous, current) =>
-      previous.wellStatusInput != current.wellStatusInput,
+          previous.wellStatusInput != current.wellStatusInput,
       builder: (context, state) {
         return MyTextInput(
           label: S.of(context).well_status,
@@ -3174,7 +3197,7 @@ class _WellStatusInput extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         ...WellStatusEnum.values.map(
-                              (status) => ListTile(
+                          (status) => ListTile(
                             onTap: () {
                               Navigator.of(context).pop(status);
                             },
@@ -3223,7 +3246,7 @@ class _QualityWaterCheckInput extends StatelessWidget {
     final bloc = context.read<WaterSupplyEditBloc>();
     return BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
       buildWhen: (previous, current) =>
-      previous.qualityWaterCheckInput != current.qualityWaterCheckInput,
+          previous.qualityWaterCheckInput != current.qualityWaterCheckInput,
       builder: (context, state) {
         return MyTextInput(
           label: S.of(context).well_check_water_quality,
@@ -3231,7 +3254,7 @@ class _QualityWaterCheckInput extends StatelessWidget {
           controller: bloc.qualityWaterCheckController,
           onTap: () async {
             final type =
-            await DialogHelper.showAnimatedDialog<WaterQualityEnum?>(
+                await DialogHelper.showAnimatedDialog<WaterQualityEnum?>(
               animationType: DialogAnimationType.none,
               transitionDuration: const Duration(milliseconds: 200),
               pageBuilder: (context, a1, a2) {
@@ -3243,7 +3266,7 @@ class _QualityWaterCheckInput extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         ...WaterQualityEnum.values.map(
-                              (status) => ListTile(
+                          (status) => ListTile(
                             onTap: () {
                               Navigator.of(context).pop(status);
                             },
@@ -3292,7 +3315,7 @@ class _UsingTypeInput extends StatelessWidget {
     final bloc = context.read<WaterSupplyEditBloc>();
     return BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
       buildWhen: (previous, current) =>
-      previous.usingTypeInput != current.usingTypeInput,
+          previous.usingTypeInput != current.usingTypeInput,
       builder: (context, state) {
         return MyTextInput(
           label: S.of(context).type_of_using,
@@ -3311,7 +3334,7 @@ class _UsingTypeInput extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         ...UsingTypeEnum.values.map(
-                              (status) => ListTile(
+                          (status) => ListTile(
                             onTap: () {
                               Navigator.of(context).pop(status);
                             },
@@ -3359,7 +3382,7 @@ class _TankStatusInput extends StatelessWidget {
     final bloc = context.read<WaterSupplyEditBloc>();
     return BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
       buildWhen: (previous, current) =>
-      previous.tankStatusInput != current.tankStatusInput,
+          previous.tankStatusInput != current.tankStatusInput,
       builder: (context, state) {
         return MyTextInput(
           label: S.of(context).status_rain_water_harvesting,
@@ -3378,7 +3401,7 @@ class _TankStatusInput extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         ...TankStatusEnum.values.map(
-                              (status) => ListTile(
+                          (status) => ListTile(
                             onTap: () {
                               Navigator.of(context).pop(status);
                             },
@@ -3426,7 +3449,7 @@ class _CapacityTypeInput extends StatelessWidget {
     final bloc = context.read<WaterSupplyEditBloc>();
     return BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
       buildWhen: (previous, current) =>
-      previous.capacityTypeInput != current.capacityTypeInput,
+          previous.capacityTypeInput != current.capacityTypeInput,
       builder: (context, state) {
         return MyTextInput(
           label: S.of(context).capacity_of_rain_water_harvesting,
@@ -3434,7 +3457,7 @@ class _CapacityTypeInput extends StatelessWidget {
           controller: bloc.capacityTypeController,
           onTap: () async {
             final type =
-            await DialogHelper.showAnimatedDialog<CapacityTypeEnum?>(
+                await DialogHelper.showAnimatedDialog<CapacityTypeEnum?>(
               animationType: DialogAnimationType.none,
               transitionDuration: const Duration(milliseconds: 200),
               pageBuilder: (context, a1, a2) {
@@ -3446,7 +3469,7 @@ class _CapacityTypeInput extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         ...CapacityTypeEnum.values.map(
-                              (status) => ListTile(
+                          (status) => ListTile(
                             onTap: () {
                               Navigator.of(context).pop(status);
                             },
@@ -3494,7 +3517,7 @@ class _SupplierInput extends StatelessWidget {
     final bloc = context.read<WaterSupplyEditBloc>();
     return BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
       buildWhen: (previous, current) =>
-      previous.supplierInput != current.supplierInput,
+          previous.supplierInput != current.supplierInput,
       builder: (context, state) {
         return MyTextInput(
           label: S.of(context).label_is_has_license,
@@ -3513,7 +3536,7 @@ class _SupplierInput extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         ...FilterEnum.values.map(
-                              (status) => ListTile(
+                          (status) => ListTile(
                             onTap: () {
                               Navigator.of(context).pop(status);
                             },
@@ -3560,7 +3583,7 @@ class _SupplierDateInput extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
       buildWhen: (previous, current) =>
-      previous.supplierDateInput != current.supplierDateInput,
+          previous.supplierDateInput != current.supplierDateInput,
       builder: (context, state) {
         final bloc = context.read<WaterSupplyEditBloc>();
         return Column(
@@ -3570,7 +3593,7 @@ class _SupplierDateInput extends StatelessWidget {
             MyTextInput(
               label: S.of(context).label_license_registered_date,
               controller:
-              context.read<WaterSupplyEditBloc>().supplierDateController,
+                  context.read<WaterSupplyEditBloc>().supplierDateController,
               onTap: () async {
                 final date = await _pickDate(context);
                 if (date != null) {
@@ -3604,8 +3627,8 @@ class _SupplierDateInput extends StatelessWidget {
     final DateTime? date = await showDatePicker(
       context: context,
       initialDate:
-      context.read<WaterSupplyEditBloc>().state.supplierDateInput.value ??
-          DateTime.now(),
+          context.read<WaterSupplyEditBloc>().state.supplierDateInput.value ??
+              DateTime.now(),
       firstDate: DateHelper.calendarFirstDate(),
       lastDate: DateHelper.calendarLastDate(),
     );
@@ -3620,7 +3643,7 @@ class _DueDateInput extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
       buildWhen: (previous, current) =>
-      previous.dueDateInput != current.dueDateInput,
+          previous.dueDateInput != current.dueDateInput,
       builder: (context, state) {
         final bloc = context.read<WaterSupplyEditBloc>();
         return Column(
@@ -3663,8 +3686,8 @@ class _DueDateInput extends StatelessWidget {
     final DateTime? date = await showDatePicker(
       context: context,
       initialDate:
-      context.read<WaterSupplyEditBloc>().state.dueDateInput.value ??
-          DateTime.now(),
+          context.read<WaterSupplyEditBloc>().state.dueDateInput.value ??
+              DateTime.now(),
       firstDate: DateHelper.calendarFirstDate(),
       lastDate: DateHelper.calendarLastDate(),
     );
@@ -3680,7 +3703,7 @@ class _FilterInput extends StatelessWidget {
     final bloc = context.read<WaterSupplyEditBloc>();
     return BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
       buildWhen: (previous, current) =>
-      previous.filterInput != current.filterInput,
+          previous.filterInput != current.filterInput,
       builder: (context, state) {
         return MyTextInput(
           label: S.of(context).pool_filter,
@@ -3699,7 +3722,7 @@ class _FilterInput extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         ...FilterEnum.values.map(
-                              (status) => ListTile(
+                          (status) => ListTile(
                             onTap: () {
                               Navigator.of(context).pop(status);
                             },
@@ -3747,7 +3770,7 @@ class _AirStationInput extends StatelessWidget {
     final bloc = context.read<WaterSupplyEditBloc>();
     return BlocBuilder<WaterSupplyEditBloc, WaterSupplyEditState>(
       buildWhen: (previous, current) =>
-      previous.airStationInput != current.airStationInput,
+          previous.airStationInput != current.airStationInput,
       builder: (context, state) {
         return MyTextInput(
           label: S.of(context).status_pipe,
@@ -3766,7 +3789,7 @@ class _AirStationInput extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         ...WellStatusEnum.values.map(
-                              (status) => ListTile(
+                          (status) => ListTile(
                             onTap: () {
                               Navigator.of(context).pop(status);
                             },

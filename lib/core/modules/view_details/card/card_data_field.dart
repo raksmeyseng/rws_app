@@ -89,6 +89,7 @@ class _WellView extends StatelessWidget {
       buildWhen: (previous, current) =>
           previous.waterSupply != current.waterSupply,
       builder: (context, state) {
+        final Locale appLocale = Localizations.localeOf(context);
         if (state.waterSupply?.waterSupplyWells?.isEmpty ?? true) {
           return const Center(child: EmptyWidget());
         }
@@ -104,7 +105,10 @@ class _WellView extends StatelessWidget {
               _InfoItem(
                 CaptionWidget(S.of(context).well_type_report_viewer),
                 TextWidget(
-                  state.waterSupply?.waterSupplyWells?.first.wellTypeObj.first
+                  appLocale.languageCode == 'en'
+                  ? state.waterSupply?.waterSupplyWells?.first.wellTypeObj.first
+                      .valueObjs.first.nameEn
+                  : state.waterSupply?.waterSupplyWells?.first.wellTypeObj.first
                           .valueObjs.first.nameKh ??
                       '-',
                 ),
@@ -170,7 +174,10 @@ class _WellView extends StatelessWidget {
               _InfoItem(
                 CaptionWidget(S.of(context).water_quality_check_report_viewer),
                 TextWidget(
-                  state.waterSupply?.waterSupplyWells?.first.wellWaterQualityObj
+                  appLocale.languageCode == 'en'
+                  ? state.waterSupply?.waterSupplyWells?.first.wellWaterQualityObj
+                      ?.first.nameEn
+                  : state.waterSupply?.waterSupplyWells?.first.wellWaterQualityObj
                           ?.first.nameKh ??
                       '-',
                 ),
@@ -185,7 +192,10 @@ class _WellView extends StatelessWidget {
                   state.waterSupply!.waterSupplyWells!.first
                           .wellWaterQualityCheckObj!.isEmpty
                       ? '-'
-                      : state.waterSupply?.waterSupplyWells?.first
+                      : appLocale.languageCode == 'en'
+                        ? state.waterSupply?.waterSupplyWells?.first
+                                .wellWaterQualityCheckObj?.first.nameEn
+                        : state.waterSupply?.waterSupplyWells?.first
                               .wellWaterQualityCheckObj?.first.nameKh ??
                           '-',
                 ),
@@ -197,7 +207,10 @@ class _WellView extends StatelessWidget {
               _InfoItem(
                 CaptionWidget(S.of(context).status_well_report_viewer),
                 TextWidget(
-                  state.waterSupply?.waterSupplyWells?.first.wellStatusObj
+                  appLocale.languageCode == 'en'
+                  ? state.waterSupply?.waterSupplyWells?.first.wellStatusObj
+                      ?.first.nameEn
+                  : state.waterSupply?.waterSupplyWells?.first.wellStatusObj
                           ?.first.nameKh ??
                       '-',
                 ),
@@ -229,6 +242,7 @@ class _SmallPipeView extends StatelessWidget {
       buildWhen: (previous, current) =>
           previous.waterSupply != current.waterSupply,
       builder: (context, state) {
+        final Locale appLocale = Localizations.localeOf(context);
         if (state.waterSupply?.waterSupplyPipes?.isEmpty ?? true) {
           return const Center(child: EmptyWidget());
         }
@@ -244,8 +258,9 @@ class _SmallPipeView extends StatelessWidget {
               _InfoItem(
                 CaptionWidget(S.of(context).source_type_of_water_report_viewer),
                 TextWidget(
-                  state.waterSupply?.waterSupplyPipes?.first.sourceTypeOfWater
-                          .first.valueObjs.first.nameKh ??
+                  appLocale.languageCode == 'en'
+                  ? state.waterSupply?.waterSupplyPipes?.first.sourceTypeOfWater.first.valueObjs.first.nameEn
+                  :state.waterSupply?.waterSupplyPipes?.first.sourceTypeOfWater.first.valueObjs.first.nameKh ??
                       '-',
                 ),
               ),
@@ -288,8 +303,11 @@ class _SmallPipeView extends StatelessWidget {
               _InfoItem(
                 CaptionWidget(S.of(context).pool_filter_report_viewer),
                 TextWidget(
-                  state.waterSupply?.waterSupplyPipes?.first.poolFilterObj.first
-                          .nameKh ??
+                  appLocale.languageCode == 'en'
+                  ? state.waterSupply?.waterSupplyPipes?.first.poolFilterObj.first
+                          .nameEn
+                  : state.waterSupply?.waterSupplyPipes?.first.poolFilterObj.first
+                      .nameKh ??
                       '-',
                 ),
               ),
@@ -310,9 +328,12 @@ class _SmallPipeView extends StatelessWidget {
               _InfoItem(
                 CaptionWidget(S.of(context).water_quality_report_viewer),
                 TextWidget(
-                  state.waterSupply?.waterSupplyPipes?.first.wateQualityCheckObj
-                          .first.nameKh ??
-                      '-',
+                  appLocale.languageCode == 'en'
+                  ? state.waterSupply?.waterSupplyPipes?.first.wateQualityCheckObj
+                          .first.nameEn
+                  : state.waterSupply?.waterSupplyPipes?.first.wateQualityCheckObj
+                      .first.nameKh ??
+                  '-',
                 ),
               ),
               const Padding(
@@ -322,7 +343,10 @@ class _SmallPipeView extends StatelessWidget {
               _InfoItem(
                 CaptionWidget(S.of(context).status_pipe_report_viewer),
                 TextWidget(
-                  state.waterSupply?.waterSupplyPipes?.first.statusObj.first
+                  appLocale.languageCode == 'en'
+                  ? state.waterSupply?.waterSupplyPipes?.first.statusObj.first
+                      .nameEn
+                  : state.waterSupply?.waterSupplyPipes?.first.statusObj.first
                           .nameKh ??
                       '-',
                 ),
@@ -344,6 +368,7 @@ class _KioskView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Locale appLocale = Localizations.localeOf(context);
     return BlocBuilder<ListDataDetailsBloc, ListDataDetailsState>(
       buildWhen: (previous, current) =>
           previous.waterSupply != current.waterSupply,
@@ -363,8 +388,11 @@ class _KioskView extends StatelessWidget {
               _InfoItem(
                 CaptionWidget(S.of(context).source_type_of_water_report_viewer),
                 TextWidget(
-                  state.waterSupply?.watersupplykiosks?.first.sourceTypeOfWater
-                          .first.valueObjs.first.nameKh ??
+                  appLocale.languageCode == 'en'
+                  ? state.waterSupply?.watersupplykiosks?.first.sourceTypeOfWater
+                          .first.valueObjs.first.nameEn
+                  : state.waterSupply?.watersupplykiosks?.first.sourceTypeOfWater
+                      .first.valueObjs.first.nameKh ??
                       '-',
                 ),
               ),
@@ -386,8 +414,11 @@ class _KioskView extends StatelessWidget {
               _InfoItem(
                 CaptionWidget(S.of(context).water_quality_report_viewer),
                 TextWidget(
-                  state.waterSupply?.watersupplykiosks?.first.filterSystemObj
-                          .first.nameKh ??
+                  appLocale.languageCode == 'en'
+                  ? state.waterSupply?.watersupplykiosks?.first.filterSystemObj
+                          .first.nameEn
+                  : state.waterSupply?.watersupplykiosks?.first.filterSystemObj
+                      .first.nameKh ??
                       '-',
                 ),
               ),
@@ -398,7 +429,10 @@ class _KioskView extends StatelessWidget {
               _InfoItem(
                 CaptionWidget(S.of(context).water_quality_checking_report_viewer),
                 TextWidget(
-                  state.waterSupply?.watersupplykiosks?.first
+                  appLocale.languageCode == 'en'
+                  ? state.waterSupply?.watersupplykiosks?.first
+                      .waterQualityCheckingObj.first.nameEn
+                  : state.waterSupply?.watersupplykiosks?.first
                           .waterQualityCheckingObj.first.nameKh ??
                       '-',
                 ),
@@ -410,7 +444,10 @@ class _KioskView extends StatelessWidget {
               _InfoItem(
                 CaptionWidget(S.of(context).status_kiosk_report_viewer),
                 TextWidget(
-                  state.waterSupply?.watersupplykiosks?.first.statusObj.first
+                  appLocale.languageCode == 'en'
+                  ? state.waterSupply?.watersupplykiosks?.first.statusObj.first
+                      .nameEn
+                  : state.waterSupply?.watersupplykiosks?.first.statusObj.first
                           .nameKh ??
                       '-',
                 ),
@@ -442,6 +479,7 @@ class _PondView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Locale appLocale = Localizations.localeOf(context);
     return BlocBuilder<ListDataDetailsBloc, ListDataDetailsState>(
       buildWhen: (previous, current) =>
           previous.waterSupply != current.waterSupply,
@@ -491,7 +529,10 @@ class _PondView extends StatelessWidget {
               _InfoItem(
                 CaptionWidget(S.of(context).pool_filter_report_viewer),
                 TextWidget(
-                  state.waterSupply?.waterSupplyCommunityPond?.first
+                  appLocale.languageCode == 'en'
+                  ? state.waterSupply?.waterSupplyCommunityPond?.first
+                      .filterSystemObj.first.nameEn
+                  : state.waterSupply?.waterSupplyCommunityPond?.first
                           .filterSystemObj.first.nameKh ??
                       '-',
                 ),
@@ -503,7 +544,10 @@ class _PondView extends StatelessWidget {
               _InfoItem(
                 CaptionWidget(S.of(context).type_of_pond_report_viewer),
                 TextWidget(
-                  state.waterSupply?.waterSupplyCommunityPond?.first
+                  appLocale.languageCode == 'en'
+                  ? state.waterSupply?.waterSupplyCommunityPond?.first
+                      .typeOfPondObj.first.nameEn
+                  : state.waterSupply?.waterSupplyCommunityPond?.first
                           .typeOfPondObj.first.nameKh ??
                       '-',
                 ),
@@ -515,7 +559,10 @@ class _PondView extends StatelessWidget {
               _InfoItem(
                 CaptionWidget(S.of(context).is_summer_has_water_report_viewer),
                 TextWidget(
-                  state.waterSupply?.waterSupplyCommunityPond?.first
+                  appLocale.languageCode == 'en'
+                  ? state.waterSupply?.waterSupplyCommunityPond?.first
+                      .isSummerHasWaterObj.first.nameEn
+                  : state.waterSupply?.waterSupplyCommunityPond?.first
                           .isSummerHasWaterObj.first.nameKh ??
                       '-',
                 ),
@@ -527,7 +574,10 @@ class _PondView extends StatelessWidget {
               _InfoItem(
                 CaptionWidget(S.of(context).pond_status_report_viewer),
                 TextWidget(
-                  state.waterSupply?.waterSupplyCommunityPond?.first.statusObj
+                  appLocale.languageCode == 'en'
+                  ? state.waterSupply?.waterSupplyCommunityPond?.first.statusObj
+                      .first.nameKh
+                  : state.waterSupply?.waterSupplyCommunityPond?.first.statusObj
                           .first.nameKh ??
                       '-',
                 ),
@@ -564,6 +614,7 @@ class _RainView extends StatelessWidget {
       buildWhen: (previous, current) =>
           previous.waterSupply != current.waterSupply,
       builder: (context, state) {
+        final Locale appLocale = Localizations.localeOf(context);
         if (state.waterSupply?.waterSupplyRainWaterHarvesting?.isEmpty ??
             true) {
           return const Center(child: EmptyWidget());
@@ -580,7 +631,10 @@ class _RainView extends StatelessWidget {
               _InfoItem(
                 CaptionWidget(S.of(context).type_of_using_report_viewer),
                 TextWidget(
-                  state.waterSupply?.waterSupplyRainWaterHarvesting?.first
+                  appLocale.languageCode == 'en'
+                  ? state.waterSupply?.waterSupplyRainWaterHarvesting?.first
+                      .typeOfUsing.first.nameEn
+                  : state.waterSupply?.waterSupplyRainWaterHarvesting?.first
                           .typeOfUsing.first.nameKh ??
                       '-',
                 ),
@@ -592,7 +646,10 @@ class _RainView extends StatelessWidget {
               _InfoItem(
                 CaptionWidget(S.of(context).capacity_of_rain_water_harvesting_report_viewer),
                 TextWidget(
-                  state.waterSupply?.waterSupplyRainWaterHarvesting?.first
+                  appLocale.languageCode == 'en'
+                  ? state.waterSupply?.waterSupplyRainWaterHarvesting?.first
+                      .capacityOfRainWaterHarvesting.first.nameEn
+                  : state.waterSupply?.waterSupplyRainWaterHarvesting?.first
                           .capacityOfRainWaterHarvesting.first.nameKh ??
                       '-',
                 ),
@@ -604,7 +661,10 @@ class _RainView extends StatelessWidget {
               _InfoItem(
                 CaptionWidget(S.of(context).water_quality_checking_report_viewer),
                 TextWidget(
-                  state.waterSupply?.waterSupplyRainWaterHarvesting?.first
+                  appLocale.languageCode == 'en'
+                  ? state.waterSupply?.waterSupplyRainWaterHarvesting?.first
+                      .waterQualityCheckObj.first.nameEn
+                  : state.waterSupply?.waterSupplyRainWaterHarvesting?.first
                           .waterQualityCheckObj.first.nameKh ??
                       '-',
                 ),
@@ -616,7 +676,10 @@ class _RainView extends StatelessWidget {
               _InfoItem(
                 CaptionWidget(S.of(context).status_rain_water_harvesting_report_viewer),
                 TextWidget(
-                  state.waterSupply?.waterSupplyRainWaterHarvesting?.first
+                  appLocale.languageCode == 'en'
+                  ? state.waterSupply?.waterSupplyRainWaterHarvesting?.first
+                      .statusObj.first.nameEn
+                  : state.waterSupply?.waterSupplyRainWaterHarvesting?.first
                           .statusObj.first.nameKh ??
                       '-',
                 ),
@@ -653,6 +716,7 @@ class _PipeView extends StatelessWidget {
       buildWhen: (previous, current) =>
           previous.waterSupply != current.waterSupply,
       builder: (context, state) {
+        final Locale appLocale = Localizations.localeOf(context);
         if (state.waterSupply?.waterSupplyPipe?.isEmpty ?? true) {
           return const Center(child: EmptyWidget());
         }
@@ -700,7 +764,10 @@ class _PipeView extends StatelessWidget {
               _InfoItem(
                 CaptionWidget(S.of(context).pool_filter_report_viewer),
                 TextWidget(
-                  state.waterSupply?.waterSupplyPipe?.first.poolFilterObj?.first
+                  appLocale.languageCode == 'en'
+                  ? state.waterSupply?.waterSupplyPipe?.first.poolFilterObj?.first
+                      .nameEn
+                  : state.waterSupply?.waterSupplyPipe?.first.poolFilterObj?.first
                           .nameKh ??
                       '-',
                 ),
@@ -742,7 +809,10 @@ class _PipeView extends StatelessWidget {
               _InfoItem(
                 CaptionWidget(S.of(context).water_quality_report_viewer),
                 TextWidget(
-                  state.waterSupply?.waterSupplyPipe?.first.poolFilterObj?.first
+                  appLocale.languageCode == 'en'
+                  ? state.waterSupply?.waterSupplyPipe?.first.poolFilterObj?.first
+                      .nameEn
+                  : state.waterSupply?.waterSupplyPipe?.first.poolFilterObj?.first
                           .nameKh ??
                       '-',
                 ),
@@ -754,8 +824,11 @@ class _PipeView extends StatelessWidget {
               _InfoItem(
                 CaptionWidget(S.of(context).licensee_report_viewer),
                 TextWidget(
-                  state.waterSupply?.waterSupplyPipe?.first.isHasLicenseObj
-                          ?.first.nameKh ??
+                  appLocale.languageCode == 'en'
+                  ? state.waterSupply?.waterSupplyPipe?.first.isHasLicenseObj
+                          ?.first.nameEn
+                  : state.waterSupply?.waterSupplyPipe?.first.isHasLicenseObj
+                      ?.first.nameKh ??
                       '-',
                 ),
               ),
@@ -833,6 +906,7 @@ class _AirView extends StatelessWidget {
       buildWhen: (previous, current) =>
           previous.waterSupply != current.waterSupply,
       builder: (context, state) {
+        final Locale appLocale = Localizations.localeOf(context);
         if (state.waterSupply?.waterSupplyAirWater?.isEmpty ?? true) {
           return const Center(child: EmptyWidget());
         }
@@ -859,7 +933,10 @@ class _AirView extends StatelessWidget {
               _InfoItem(
                 CaptionWidget(S.of(context).water_quality_checking_report_viewer),
                 TextWidget(
-                  state.waterSupply?.waterSupplyAirWater?.first
+                  appLocale.languageCode == 'en'
+                  ? state.waterSupply?.waterSupplyAirWater?.first
+                      .waterQualityCheckObj?.first.nameEn
+                  : state.waterSupply?.waterSupplyAirWater?.first
                           .waterQualityCheckObj?.first.nameKh ??
                       '-',
                 ),
@@ -871,7 +948,10 @@ class _AirView extends StatelessWidget {
               _InfoItem(
                 CaptionWidget(S.of(context).water_quality_report_viewer),
                 TextWidget(
-                  state.waterSupply?.waterSupplyAirWater?.first.filterSystemObj
+                  appLocale.countryCode == 'en'
+                  ? state.waterSupply?.waterSupplyAirWater?.first.filterSystemObj
+                      ?.first.nameEn
+                  : state.waterSupply?.waterSupplyAirWater?.first.filterSystemObj
                           ?.first.nameKh ??
                       '-',
                 ),
@@ -883,7 +963,10 @@ class _AirView extends StatelessWidget {
               _InfoItem(
                 CaptionWidget(S.of(context).water_quality_checking_report_viewer),
                 TextWidget(
-                  state.waterSupply?.waterSupplyAirWater?.first
+                  appLocale.languageCode == 'en'
+                  ? state.waterSupply?.waterSupplyAirWater?.first
+                      .waterQualityCheckObj?.first.nameEn
+                  : state.waterSupply?.waterSupplyAirWater?.first
                           .waterQualityCheckObj?.first.nameKh ??
                       '-',
                 ),
@@ -895,7 +978,10 @@ class _AirView extends StatelessWidget {
               _InfoItem(
                 CaptionWidget(S.of(context).status_water_kiosk_report_viewer),
                 TextWidget(
-                  state.waterSupply?.waterSupplyAirWater?.first.statusObj?.first
+                  appLocale.languageCode == 'en'
+                  ? state.waterSupply?.waterSupplyAirWater?.first.statusObj?.first
+                      .nameEn
+                  : state.waterSupply?.waterSupplyAirWater?.first.statusObj?.first
                           .nameKh ??
                       '-',
                 ),

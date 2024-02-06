@@ -1,6 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:rws_app/translation/generated/l10n.dart';
-import 'package:flutter/material.dart';
 
 const int _checkCode = 0;
 const int _unCheckCode = 1;
@@ -32,21 +31,21 @@ extension CheckWaterQualityEnumExtension on CheckWaterQualityEnum {
   }
 }
 
-CheckWaterQualityEnum? getCheckWaterQualityEnumById(int id){
+CheckWaterQualityEnum? getCheckWaterQualityEnumById(int id) {
   switch (id) {
-      case 10:
-        return CheckWaterQualityEnum.check;
-      case 11:
-        return CheckWaterQualityEnum.unCheck;
-    }
+    case 10:
+      return CheckWaterQualityEnum.check;
+    case 11:
+      return CheckWaterQualityEnum.unCheck;
+  }
   return null;
 }
 
- String getCheckWaterQualityEnumDisplayText(CheckWaterQualityEnum value) {
-    switch (value) {
-      case CheckWaterQualityEnum.check:
-        return 'បាន';
-      case CheckWaterQualityEnum.unCheck:
-        return 'មិនបាន';
-    }
+String getCheckWaterQualityEnumDisplayText(CheckWaterQualityEnum value) {
+  switch (value) {
+    case CheckWaterQualityEnum.check:
+      return 'បាន';
+    case CheckWaterQualityEnum.unCheck:
+      return 'មិនបាន';
   }
+}

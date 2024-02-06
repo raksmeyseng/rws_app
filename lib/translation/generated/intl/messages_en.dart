@@ -269,12 +269,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "general_information":
             MessageLookupByLibrary.simpleMessage("General Information"),
         "good": MessageLookupByLibrary.simpleMessage("Good"),
-        "government": MessageLookupByLibrary.simpleMessage("Government"),
+        "government": MessageLookupByLibrary.simpleMessage("State"),
         "greeting": MessageLookupByLibrary.simpleMessage("Hello"),
-        "have": MessageLookupByLibrary.simpleMessage("Yes"),
-        "have_active": MessageLookupByLibrary.simpleMessage("Active"),
-        "have_inactive": MessageLookupByLibrary.simpleMessage("Inactive"),
-        "have_water": MessageLookupByLibrary.simpleMessage("Have Water"),
+        "have": MessageLookupByLibrary.simpleMessage("Have"),
+        "have_active": MessageLookupByLibrary.simpleMessage("Have (Working)"),
+        "have_inactive":
+            MessageLookupByLibrary.simpleMessage("Have (Not Working)"),
+        "have_water": MessageLookupByLibrary.simpleMessage("Has Water"),
         "height": MessageLookupByLibrary.simpleMessage("Pond depth"),
         "height_report_viewer":
             MessageLookupByLibrary.simpleMessage("Height(m):"),
@@ -382,8 +383,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "No protection and maintenance"),
         "no_task": MessageLookupByLibrary.simpleMessage("No Task"),
         "no_water": MessageLookupByLibrary.simpleMessage("No Water"),
-        "nohave": MessageLookupByLibrary.simpleMessage("No"),
-        "norisk": MessageLookupByLibrary.simpleMessage("No risk"),
+        "nohave": MessageLookupByLibrary.simpleMessage("None"),
+        "norisk": MessageLookupByLibrary.simpleMessage("No"),
         "not_used": MessageLookupByLibrary.simpleMessage("Unused"),
         "not_using": MessageLookupByLibrary.simpleMessage("Unused"),
         "notification": MessageLookupByLibrary.simpleMessage("Notification"),
@@ -472,7 +473,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "pool_filter_report_viewer":
             MessageLookupByLibrary.simpleMessage("Pool Filter:"),
         "primary_color": MessageLookupByLibrary.simpleMessage("Primary Color"),
-        "private": MessageLookupByLibrary.simpleMessage("Private"),
+        "private": MessageLookupByLibrary.simpleMessage("Personal"),
         "protected_and_maintained":
             MessageLookupByLibrary.simpleMessage("Protected and maintained"),
         "province": MessageLookupByLibrary.simpleMessage("Province"),
@@ -485,7 +486,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Registered Date"),
         "report": MessageLookupByLibrary.simpleMessage("Report"),
         "request": MessageLookupByLibrary.simpleMessage("My Request"),
-        "risk": MessageLookupByLibrary.simpleMessage("Risk"),
+        "risk": MessageLookupByLibrary.simpleMessage("Yes"),
         "risk_enviroment":
             MessageLookupByLibrary.simpleMessage("Risk Environment"),
         "save_profile_failed":
@@ -538,7 +539,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "status_pipe":
             MessageLookupByLibrary.simpleMessage("Water network status *"),
         "status_pipe_report_viewer":
-            MessageLookupByLibrary.simpleMessage("Pipe:"),
+            MessageLookupByLibrary.simpleMessage("Pipe Status:"),
         "status_rain_water_harvesting":
             MessageLookupByLibrary.simpleMessage("Terminal status"),
         "status_rain_water_harvesting_report_viewer":

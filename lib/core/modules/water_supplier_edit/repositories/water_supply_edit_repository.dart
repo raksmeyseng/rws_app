@@ -26,7 +26,7 @@ class WaterSupplyEditRepository extends RestApiService {
     final res = await get(ApiPath.generateQRCode(id));
     return ResponseGenerateQRCode.fromJson(res);
   }
-
+// submit data function
   Future<ResponseWaterSupplyModel> addOrUpdateWaterSupply({
     required int id,
     required PayloadWaterSupplyModel payload,

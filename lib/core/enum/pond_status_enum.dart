@@ -1,5 +1,4 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:flutter/material.dart';
 import 'package:rws_app/translation/generated/l10n.dart';
 
 const int _unMaintainCode = 0;

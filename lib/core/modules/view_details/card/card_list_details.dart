@@ -256,8 +256,9 @@ class _ContentView extends StatelessWidget {
               ),
               _InfoItem(
                 CaptionWidget('${titleViews[14]} :'),
-                TextWidget(
-                    state.waterSupply?.managementType == 0 ? S.of(context).community : S.of(context).private),
+                TextWidget(state.waterSupply?.managementType == 0
+                    ? S.of(context).community
+                    : S.of(context).private),
               ),
               const Padding(
                 padding: EdgeInsets.symmetric(vertical: 8),

@@ -281,7 +281,7 @@
   "pool_filter_report_viewer": "Pool Filter:",
   "number_of_link_report_viewer": "Number of Link:",
   "water_quality_check_report_viewer": "Water Quality:",
-  "status_pipe_report_viewer": "Pipe:",
+  "status_pipe_report_viewer": "Pipe Status:",
 
   "water_quality_report_viewer": "Water Quality:",
   "water_quality_checking_report_viewer": "Water Quality Checking:",
@@ -315,15 +315,15 @@
   "well_height_report_viewer":"Height:",
   "well_water_supply_report_viewer":"Water Supply:",
 
-  "risk": "Risk",
-  "norisk": "No risk",
+  "risk": "Yes",
+  "norisk": "No",
 
-  "government": "Government",
+  "government": "State",
   "organization": "Organization",
   "charity": "Charity",
 
   "community": "Community",
-  "private": "Private",
+  "private": "Personal",
 
   "data_saved_successfully": "Data Saved Successfully.",
   "data_save_failed": "Data Save Failed.",
@@ -363,8 +363,8 @@
   "standard_water_report_viewer": "Standard Water :",
   "value_report_viewer": "Value :",
 
-  "have": "Yes",
-  "nohave": "No",
+  "have": "Have",
+  "nohave": "None",
 
   "parameter_code": "Parameter Code",
   "value": "Value",
@@ -375,14 +375,14 @@
   "delete": "Delete",
   "do_you_want_to_delete_this_draft": "Do you want to delete this Draft?",
 
-  "have_active": "Active",
-  "have_inactive": "Inactive",
+  "have_active": "Have (Working)",
+  "have_inactive": "Have (Not Working)",
 
   "no_protection_and_maintenance": "No protection and maintenance",
   "protected_and_maintained": "Protected and maintained",
   "not_used": "Unused",
 
-  "have_water": "Have Water",
+  "have_water": "Has Water",
   "no_water": "No Water",
 
   "using": "Using",
