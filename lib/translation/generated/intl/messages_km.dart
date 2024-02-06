@@ -187,6 +187,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "close": MessageLookupByLibrary.simpleMessage("បិទ"),
         "commune": MessageLookupByLibrary.simpleMessage("ឃុំ/សង្កាត់"),
         "community": MessageLookupByLibrary.simpleMessage("សហគមន៍"),
+        "concrete_underlayment":
+            MessageLookupByLibrary.simpleMessage("ជើងទេរបេតុង"),
         "confirm": MessageLookupByLibrary.simpleMessage("បញ្ជាក់"),
         "confirm_delete_news":
             MessageLookupByLibrary.simpleMessage("តើអ្នកចង់លុបព័ត៌មានមួយនេះឬ?"),
@@ -233,6 +235,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("ថ្ងៃខែឆ្នាំកំណើត"),
         "deactivate_account": MessageLookupByLibrary.simpleMessage("លុបគណនី"),
         "delete": MessageLookupByLibrary.simpleMessage("លុប"),
+        "dirt_underlayment": MessageLookupByLibrary.simpleMessage("ជើងទេរដី"),
         "district": MessageLookupByLibrary.simpleMessage("ស្រុក/ខណ្ឌ"),
         "do_not_have_acc":
             MessageLookupByLibrary.simpleMessage("មិនមានគណនីប្រើប្រាស់?"),

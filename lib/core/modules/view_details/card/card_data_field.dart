@@ -576,7 +576,7 @@ class _PondView extends StatelessWidget {
                 TextWidget(
                   appLocale.languageCode == 'en'
                   ? state.waterSupply?.waterSupplyCommunityPond?.first.statusObj
-                      .first.nameKh
+                      .first.nameEn
                   : state.waterSupply?.waterSupplyCommunityPond?.first.statusObj
                           .first.nameKh ??
                       '-',

@@ -3899,6 +3899,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Dirt Underlayment`
+  String get dirt_underlayment {
+    return Intl.message(
+      'Dirt Underlayment',
+      name: 'dirt_underlayment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Concrete Underlayment`
+  String get concrete_underlayment {
+    return Intl.message(
+      'Concrete Underlayment',
+      name: 'concrete_underlayment',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -412,6 +412,9 @@
   "drainage_well": "អណ្ដូងលូ",
   "mixed_wells": "អណ្ដូងចំរុះ",
   "parameter": "ប៉ារ៉ាម៉ែត្រ",
-  "qr_code": "QR កូដ"
+  "qr_code": "QR កូដ",
+
+  "dirt_underlayment": "ជើងទេរដី",
+  "concrete_underlayment": "ជើងទេរបេតុង"
 
 }

@@ -411,5 +411,8 @@
   "drainage_well": "Drainage Well",
   "mixed_wells": "Mixed Wells",
   "parameter": "Parameter",
-  "qr_code": "QR Code"
+  "qr_code": "QR Code",
+
+  "dirt_underlayment" : "Dirt Underlayment",
+  "concrete_underlayment": "Concrete Underlayment"
 }
