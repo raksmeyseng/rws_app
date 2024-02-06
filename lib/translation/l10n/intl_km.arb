@@ -415,6 +415,15 @@
   "qr_code": "QR កូដ",
 
   "dirt_underlayment": "ជើងទេរដី",
-  "concrete_underlayment": "ជើងទេរបេតុង"
+  "concrete_underlayment": "ជើងទេរបេតុង",
+
+  "reject": "បដិសេធអនុម័ត",
+  "do_you_want_to_reject_this_request": "តើអ្នកចង់បដិសេធសំណើនេះទេ?",
+
+  "approve": "បានឃើញនិងឯកភាព",
+  "do_you_want_to_approve_this_request": "តើអ្នកចង់អនុម័តសំណើនេះទេ?",
+
+  "edit_request": "ស្នើសុំកែសម្រួល",
+  "do_you_want_to_request_edit_this_request": "តើអ្នកចង់ស្នើសុំកែសម្រួលសំណើនេះទេ?"
 
 }

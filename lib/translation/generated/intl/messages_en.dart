@@ -94,6 +94,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "app_load_config_failed": MessageLookupByLibrary.simpleMessage(
             "- Please check your internet connection\n- Encountered technical issues - we are working to resolve\n\nWe apologize and try again later."),
         "appearance": MessageLookupByLibrary.simpleMessage("Appearance"),
+        "approve": MessageLookupByLibrary.simpleMessage("Approve"),
         "area_covering":
             MessageLookupByLibrary.simpleMessage("Cover village/commune"),
         "area_covering_report_viewer":
@@ -238,9 +239,18 @@ class MessageLookup extends MessageLookupByLibrary {
         "district": MessageLookupByLibrary.simpleMessage("District"),
         "do_not_have_acc":
             MessageLookupByLibrary.simpleMessage("Do not have an account?"),
+        "do_you_want_to_approve_this_request":
+            MessageLookupByLibrary.simpleMessage(
+                "Do you want to approve this request?"),
         "do_you_want_to_delete_this_draft":
             MessageLookupByLibrary.simpleMessage(
                 "Do you want to delete this Draft?"),
+        "do_you_want_to_reject_this_request":
+            MessageLookupByLibrary.simpleMessage(
+                "Do you want to reject this request?"),
+        "do_you_want_to_request_edit_this_request":
+            MessageLookupByLibrary.simpleMessage(
+                "Do you want to request edit this request?"),
         "do_you_want_to_submit_this_data": MessageLookupByLibrary.simpleMessage(
             "Do you want to submit this data?"),
         "draft": MessageLookupByLibrary.simpleMessage("Draft"),
@@ -249,6 +259,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "edit_account": MessageLookupByLibrary.simpleMessage("Edit Account"),
         "edit_news": MessageLookupByLibrary.simpleMessage("Edit News"),
         "edit_profile": MessageLookupByLibrary.simpleMessage("Edit Profile"),
+        "edit_request": MessageLookupByLibrary.simpleMessage("Request Edit"),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
         "empty_data": MessageLookupByLibrary.simpleMessage("No data"),
         "empty_linked_customer": MessageLookupByLibrary.simpleMessage(
@@ -488,6 +499,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "reason_report_viewer": MessageLookupByLibrary.simpleMessage("Reason:"),
         "register_date":
             MessageLookupByLibrary.simpleMessage("Registered Date"),
+        "reject": MessageLookupByLibrary.simpleMessage("Reject"),
         "report": MessageLookupByLibrary.simpleMessage("Report"),
         "request": MessageLookupByLibrary.simpleMessage("My Request"),
         "risk": MessageLookupByLibrary.simpleMessage("Yes"),

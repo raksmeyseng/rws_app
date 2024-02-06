@@ -414,5 +414,14 @@
   "qr_code": "QR Code",
 
   "dirt_underlayment" : "Dirt Underlayment",
-  "concrete_underlayment": "Concrete Underlayment"
+  "concrete_underlayment": "Concrete Underlayment",
+
+  "reject": "Reject",
+  "do_you_want_to_reject_this_request": "Do you want to reject this request?",
+
+  "approve": "Approve",
+  "do_you_want_to_approve_this_request": "Do you want to approve this request?",
+
+  "edit_request": "Request Edit",
+  "do_you_want_to_request_edit_this_request": "Do you want to request edit this request?"
 }

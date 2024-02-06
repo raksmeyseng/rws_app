@@ -94,6 +94,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "app_load_config_failed": MessageLookupByLibrary.simpleMessage(
             "- សូមពិនិត្យថាឧបករណ៍របស់អ្នកមានអុីនធឺណិត\n- មានបញ្ហាបច្ចេកទេសដែលក្រុមការងារយើងខ្ញុំកំពុងរកដំណោះស្រាយ\n\nសូមអធ្យាស្រ័យនិងសូមព្យាយាមម្ដងទៀត។"),
         "appearance": MessageLookupByLibrary.simpleMessage("ទំរង់កម្មវិធី"),
+        "approve": MessageLookupByLibrary.simpleMessage("បានឃើញនិងឯកភាព"),
         "area_covering":
             MessageLookupByLibrary.simpleMessage("ភូមិ/ឃុំគ្របដណ្ដប់"),
         "area_covering_report_viewer":
@@ -239,9 +240,16 @@ class MessageLookup extends MessageLookupByLibrary {
         "district": MessageLookupByLibrary.simpleMessage("ស្រុក/ខណ្ឌ"),
         "do_not_have_acc":
             MessageLookupByLibrary.simpleMessage("មិនមានគណនីប្រើប្រាស់?"),
+        "do_you_want_to_approve_this_request":
+            MessageLookupByLibrary.simpleMessage("តើអ្នកចង់អនុម័តសំណើនេះទេ?"),
         "do_you_want_to_delete_this_draft":
             MessageLookupByLibrary.simpleMessage(
                 "តើអ្នកចង់លុបសេចក្តីព្រាងនេះទេ?"),
+        "do_you_want_to_reject_this_request":
+            MessageLookupByLibrary.simpleMessage("តើអ្នកចង់បដិសេធសំណើនេះទេ?"),
+        "do_you_want_to_request_edit_this_request":
+            MessageLookupByLibrary.simpleMessage(
+                "តើអ្នកចង់ស្នើសុំកែសម្រួលសំណើនេះទេ?"),
         "do_you_want_to_submit_this_data": MessageLookupByLibrary.simpleMessage(
             "តើអ្នកចង់ដាក់ស្នើទិន្នន័យនេះមែនទេ?"),
         "draft": MessageLookupByLibrary.simpleMessage("សេចក្តីព្រាង"),
@@ -252,6 +260,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "edit_news": MessageLookupByLibrary.simpleMessage("កែប្រែព័ត៌មាន"),
         "edit_profile":
             MessageLookupByLibrary.simpleMessage("កែប្រែព័ត៌មានផ្ទាល់ខ្លួន"),
+        "edit_request": MessageLookupByLibrary.simpleMessage("ស្នើសុំកែសម្រួល"),
         "email": MessageLookupByLibrary.simpleMessage("អ៊ីមែល"),
         "empty_data":
             MessageLookupByLibrary.simpleMessage("មិនមានទិន្នន័យត្រូវបង្ហាញ"),
@@ -501,6 +510,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "reason_report_viewer":
             MessageLookupByLibrary.simpleMessage("មូលហេតុ:"),
         "register_date": MessageLookupByLibrary.simpleMessage("ថ្ងៃចុះឈ្មោះ"),
+        "reject": MessageLookupByLibrary.simpleMessage("បដិសេធអនុម័ត"),
         "report": MessageLookupByLibrary.simpleMessage("របាយការណ៍"),
         "request": MessageLookupByLibrary.simpleMessage("ការស្នើសុំរបស់ខ្ញុំ"),
         "risk": MessageLookupByLibrary.simpleMessage("ប្រឈម"),

@@ -3919,6 +3919,66 @@ class S {
       args: [],
     );
   }
+
+  /// `Reject`
+  String get reject {
+    return Intl.message(
+      'Reject',
+      name: 'reject',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Do you want to reject this request?`
+  String get do_you_want_to_reject_this_request {
+    return Intl.message(
+      'Do you want to reject this request?',
+      name: 'do_you_want_to_reject_this_request',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Approve`
+  String get approve {
+    return Intl.message(
+      'Approve',
+      name: 'approve',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Do you want to approve this request?`
+  String get do_you_want_to_approve_this_request {
+    return Intl.message(
+      'Do you want to approve this request?',
+      name: 'do_you_want_to_approve_this_request',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Request Edit`
+  String get edit_request {
+    return Intl.message(
+      'Request Edit',
+      name: 'edit_request',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Do you want to request edit this request?`
+  String get do_you_want_to_request_edit_this_request {
+    return Intl.message(
+      'Do you want to request edit this request?',
+      name: 'do_you_want_to_request_edit_this_request',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

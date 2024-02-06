@@ -252,14 +252,14 @@ class _ApprovalButtonBar extends StatelessWidget {
             children: [
               Expanded(
                 child: MyOutlinedButton(
-                    title: 'Reject',
+                    title: S.of(context).reject,
                     color: AppColor.inactive,
                     onPressed: () {
                       //print('reject!');
                       Blurry(
-                        title: 'Reject',
-                        description: 'Do you want to reject this request?',
-                        confirmButtonText: 'Confirm',
+                        title: S.of(context).reject,
+                        description: S.of(context).do_you_want_to_reject_this_request,
+                        confirmButtonText: S.of(context).confirm,
                         onConfirmButtonPressed: () => _onRejected(context),
                         themeColor: AppColor.danger,
                         icon: Icons.crop_square_sharp,
@@ -276,9 +276,9 @@ class _ApprovalButtonBar extends StatelessWidget {
                   color: AppColor.active,
                   onPressed: () {
                     Blurry(
-                      title: 'Approve',
-                      description: 'Do you want to approve this request?',
-                      confirmButtonText: 'Confirm',
+                      title: S.of(context).approve,
+                      description: S.of(context).do_you_want_to_approve_this_request,
+                      confirmButtonText: S.of(context).confirm,
                       onConfirmButtonPressed: () => _onApproved(context),
                       themeColor: AppColor.success,
                       icon: Icons.check_circle,
@@ -324,15 +324,15 @@ class _RequestEditButtonBar extends StatelessWidget {
             children: [
               Expanded(
                 child: MyOutlinedButton(
-                    title: 'Request Edit',
+                    title: S.of(context).edit_request,
                     color: AppColor.inactive,
                     onPressed: () {
                       //print('reject!');
                       Blurry(
-                        title: 'Request Edit',
+                        title: S.of(context).edit_request,
                         description:
-                            'Do you want to request edit this request?',
-                        confirmButtonText: 'Confirm',
+                            S.of(context).do_you_want_to_request_edit_this_request,
+                        confirmButtonText: S.of(context).confirm,
                         onConfirmButtonPressed: () => _onRequestEdit(context),
                         themeColor: AppColor.primary,
                         icon: Icons.info,
