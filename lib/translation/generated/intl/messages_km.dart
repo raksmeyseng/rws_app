@@ -279,6 +279,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "expired_today":
             MessageLookupByLibrary.simpleMessage("ផុតកំណត់ថ្ងៃនេះ"),
         "family": MessageLookupByLibrary.simpleMessage("តាមគ្រួសារ"),
+        "five_m3": MessageLookupByLibrary.simpleMessage("៥ ម៣"),
+        "four_m3": MessageLookupByLibrary.simpleMessage("៤ ម៣"),
         "full_name":
             MessageLookupByLibrary.simpleMessage("ឈ្មោះអ្នកប្រើប្រាស់"),
         "gender": MessageLookupByLibrary.simpleMessage("ភេទ"),
@@ -418,6 +420,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("ចំនួនតំណដែលបានត"),
         "number_of_link_report_viewer":
             MessageLookupByLibrary.simpleMessage("ចំនួនតំណដែលបានត:"),
+        "one_m3_giant_jar":
+            MessageLookupByLibrary.simpleMessage("១ ម៣ ពាងយក្ស"),
         "organization": MessageLookupByLibrary.simpleMessage("អង្គការ"),
         "page_not_found":
             MessageLookupByLibrary.simpleMessage("រកមិនឃើញទំព័រនេះទេ"),
@@ -584,10 +588,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "system": MessageLookupByLibrary.simpleMessage("ប្រព័ន្ធ"),
         "tab_general": MessageLookupByLibrary.simpleMessage("ព័ត៌មានទូទៅ"),
         "tab_specific": MessageLookupByLibrary.simpleMessage("ព័ត៌មានលម្អិត"),
+        "ten_m3": MessageLookupByLibrary.simpleMessage("១០ ម៣"),
         "terms_and_conditions": MessageLookupByLibrary.simpleMessage(
             "លក្ខខណ្ឌនៃការប្រើប្រាស់កម្មវិធី"),
         "testing_environment":
             MessageLookupByLibrary.simpleMessage("កម្មវិធីសាកល្បង"),
+        "thirty_five_m3": MessageLookupByLibrary.simpleMessage("៣៥ ម៣"),
         "thumbnail": MessageLookupByLibrary.simpleMessage("រូបភាពខាងមុខ"),
         "thumbnail_title":
             MessageLookupByLibrary.simpleMessage("ចំណងជើងរូបភាព"),

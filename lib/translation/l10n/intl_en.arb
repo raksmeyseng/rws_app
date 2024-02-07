@@ -423,5 +423,11 @@
   "do_you_want_to_approve_this_request": "Do you want to approve this request?",
 
   "edit_request": "Request Edit",
-  "do_you_want_to_request_edit_this_request": "Do you want to request edit this request?"
+  "do_you_want_to_request_edit_this_request": "Do you want to request edit this request?",
+
+  "thirty_five_m3": "35 m3",
+  "ten_m3": "10 m3",
+  "five_m3": "5 m3",
+  "four_m3": "4 m3",
+  "one_m3_giant_jar": "1 m3 Giant Jar"
 }
