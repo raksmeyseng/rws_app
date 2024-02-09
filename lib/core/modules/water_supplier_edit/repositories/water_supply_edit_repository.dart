@@ -26,6 +26,7 @@ class WaterSupplyEditRepository extends RestApiService {
     final res = await get(ApiPath.generateQRCode(id));
     return ResponseGenerateQRCode.fromJson(res);
   }
+
 // submit data function
   Future<ResponseWaterSupplyModel> addOrUpdateWaterSupply({
     required int id,
@@ -73,7 +74,12 @@ class WaterSupplyEditRepository extends RestApiService {
 
   Future<void> addWaterSupplyWellOptionValue(
       {required PayloadWellOptionValueModel payload}) async {
-    await post(ApiPath.postWellOption, data: payload);
+    try {
+      final res = await post(ApiPath.postWellOption, data: payload);
+      print(res);
+    } catch (_) {
+      print('Error');
+    }
   }
 
 // SmallPIPE--------------
@@ -85,7 +91,12 @@ class WaterSupplyEditRepository extends RestApiService {
 
   Future<void> addWaterSupplySmallPipeOptionValue(
       {required PayloadSmallPipeOptionValueModel payload}) async {
-    await post(ApiPath.postSmallPipeOptionValue, data: payload);
+    try {
+      final res = await post(ApiPath.postSmallPipeOptionValue, data: payload);
+      print(res);
+    } catch (e) {
+      print('Error${e.toString()}');
+    }
   }
 //--------------
 

@@ -20,7 +20,8 @@ WaterSupplyWellModel _$WaterSupplyWellModelFromJson(
       wellWaterQuality: json['well_watar_quality'] as String,
       wellWaterQualityCheck: json['well_water_quality_check'] as String,
       wellWaterSupply: json['well_water_supply'] as String,
-      wellTypeObj: (json['well_type_obj'] as List<dynamic>)
+      wellTypeObj: (json['watersupplywelloptionvalue_watersupplywell']
+              as List<dynamic>)
           .map(
               (e) => WaterSupplyOptionModel.fromJson(e as Map<String, dynamic>))
           .toList(),
