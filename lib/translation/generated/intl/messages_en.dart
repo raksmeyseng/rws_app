@@ -276,6 +276,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Unauthorized users - system will be automatically logout! Please try again."),
         "expired_today": MessageLookupByLibrary.simpleMessage("expired today"),
         "family": MessageLookupByLibrary.simpleMessage("Family"),
+        "five_m3": MessageLookupByLibrary.simpleMessage("5 m3"),
+        "four_m3": MessageLookupByLibrary.simpleMessage("4 m3"),
         "full_name": MessageLookupByLibrary.simpleMessage("Full name"),
         "gender": MessageLookupByLibrary.simpleMessage("Gender"),
         "gender_female": MessageLookupByLibrary.simpleMessage("Female"),
@@ -407,6 +409,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Number of links"),
         "number_of_link_report_viewer":
             MessageLookupByLibrary.simpleMessage("Number of Link:"),
+        "one_m3_giant_jar":
+            MessageLookupByLibrary.simpleMessage("1 m3 Giant Jar"),
         "organization": MessageLookupByLibrary.simpleMessage("Organization"),
         "page_not_found": MessageLookupByLibrary.simpleMessage(
             "This page could not be found"),
@@ -574,9 +578,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "system": MessageLookupByLibrary.simpleMessage("System"),
         "tab_general": MessageLookupByLibrary.simpleMessage("General"),
         "tab_specific": MessageLookupByLibrary.simpleMessage("Specific"),
+        "ten_m3": MessageLookupByLibrary.simpleMessage("10 m3"),
         "terms_and_conditions":
             MessageLookupByLibrary.simpleMessage("Terms and Conditions"),
         "testing_environment": MessageLookupByLibrary.simpleMessage("DEMO"),
+        "thirty_five_m3": MessageLookupByLibrary.simpleMessage("35 m3"),
         "thumbnail": MessageLookupByLibrary.simpleMessage("Thumbnail"),
         "thumbnail_title":
             MessageLookupByLibrary.simpleMessage("Thumbnail Title"),

@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-
+import 'package:rws_app/translation/generated/l10n.dart';
 const int _ml35Code = 0;
 const int _ml10Code = 1;
 const int _ml5Code = 2;
@@ -41,17 +41,17 @@ extension CapacityTypeEnumExtension on CapacityTypeEnum {
   String getDisplayText() {
     switch (this) {
       case CapacityTypeEnum.ml35:
-        return '៣៥ ម៣';
+        return S.current.thirty_five_m3;
       case CapacityTypeEnum.ml10:
-        return '១០ ម៣';
+        return S.current.ten_m3;
       case CapacityTypeEnum.ml5:
-        return '៥ ម៣';
+        return S.current.five_m3;
       case CapacityTypeEnum.ml4:
-        return '៤ ម៣';
+        return S.current.four_m3;
       case CapacityTypeEnum.ml1:
-        return '១ ម៣ ពាងយក្ស';
+        return S.current.one_m3_giant_jar;
       default:
-        return '៣៥ ម៣';
+        return S.current.thirty_five_m3;
     }
   }
 }

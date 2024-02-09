@@ -424,6 +424,12 @@
   "do_you_want_to_approve_this_request": "តើអ្នកចង់អនុម័តសំណើនេះទេ?",
 
   "edit_request": "ស្នើសុំកែសម្រួល",
-  "do_you_want_to_request_edit_this_request": "តើអ្នកចង់ស្នើសុំកែសម្រួលសំណើនេះទេ?"
+  "do_you_want_to_request_edit_this_request": "តើអ្នកចង់ស្នើសុំកែសម្រួលសំណើនេះទេ?",
+
+  "thirty_five_m3": "៣៥ ម៣",
+  "ten_m3": "១០ ម៣",
+  "five_m3": "៥ ម៣",
+  "four_m3": "៤ ម៣",
+  "one_m3_giant_jar": "១ ម៣ ពាងយក្ស"
 
 }

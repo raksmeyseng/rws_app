@@ -3979,6 +3979,56 @@ class S {
       args: [],
     );
   }
+
+  /// `35 m3`
+  String get thirty_five_m3 {
+    return Intl.message(
+      '35 m3',
+      name: 'thirty_five_m3',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `10 m3`
+  String get ten_m3 {
+    return Intl.message(
+      '10 m3',
+      name: 'ten_m3',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `5 m3`
+  String get five_m3 {
+    return Intl.message(
+      '5 m3',
+      name: 'five_m3',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `4 m3`
+  String get four_m3 {
+    return Intl.message(
+      '4 m3',
+      name: 'four_m3',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `1 m3 Giant Jar`
+  String get one_m3_giant_jar {
+    return Intl.message(
+      '1 m3 Giant Jar',
+      name: 'one_m3_giant_jar',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
