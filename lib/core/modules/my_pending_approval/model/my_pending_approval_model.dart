@@ -6,6 +6,7 @@ class PendingApprovalModel {
   PendingApprovalModel(
       {required this.id,
       required this.waterSupplyType,
+        required this.waterSupplyTypeEn,
       required this.address,
       required this.district,
       required this.commune,
@@ -20,8 +21,7 @@ class PendingApprovalModel {
   int waterSupplyTypeId;
   @JsonKey(name: 'water_supply_type')
   String waterSupplyType;
-  @JsonKey(name: 'water_supply_type')
-  late String waterSupplyTypeEn;
+  String waterSupplyTypeEn;
   @JsonKey(name: 'province_id')
   ProvinceModel address;
   @JsonKey(name: 'district_id')
@@ -45,6 +45,7 @@ PendingApprovalModel _$PendingApprovalModelFromJson(
     PendingApprovalModel(
       id: json['id'] as int,
       waterSupplyType: json['water_supply_type_id']['name_kh'] as String,
+      waterSupplyTypeEn : json['water_supply_type_id']['name_en'] as String,
       address:
           ProvinceModel.fromJson(json['province_id'] as Map<String, dynamic>),
       district:
