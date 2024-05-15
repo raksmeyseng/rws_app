@@ -25,7 +25,9 @@ WaterSupplyModel _$WaterSupplyModelFromJson(Map<String, dynamic> json) =>
           : VillageModel.fromJson(json['village_id'] as Map<String, dynamic>),
       status: StatusModel.fromJson(json['main_status'] as Map<String, dynamic>),
       waterSupplyCode: json['water_supply_code'] as String,
-      user: UserModel.fromJson(json['created_by'] as Map<String, dynamic>),
+      user: json['created_by'] == null
+          ? null
+          : UserModel.fromJson(json['created_by'] as Map<String, dynamic>),
       mapUnitId: json['map_unit'] as int,
       decimalDegreeLat: json['decimal_degress_lat'] as String,
       decimalDegreeLng: json['decimal_degress_lng'] as String,
@@ -174,7 +176,7 @@ Map<String, dynamic> _$WaterSupplyModelToJson(WaterSupplyModel instance) =>
       'village_id': instance.village?.toJson(),
       'main_status': instance.status.toJson(),
       'water_supply_code': instance.waterSupplyCode,
-      'created_by': instance.user.toJson(),
+      'created_by': instance.user?.toJson(),
       'map_unit': instance.mapUnitId,
       'decimal_degress_lat': instance.decimalDegreeLat,
       'decimal_degress_lng': instance.decimalDegreeLng,

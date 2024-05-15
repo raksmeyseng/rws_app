@@ -32,7 +32,7 @@ class WaterSupplyModel {
     this.village,
     required this.status,
     required this.waterSupplyCode,
-    required this.user,
+    this.user,
     required this.mapUnitId,
     required this.decimalDegreeLat,
     required this.decimalDegreeLng,
@@ -115,7 +115,7 @@ class WaterSupplyModel {
   @JsonKey(name: 'water_supply_code')
   String waterSupplyCode;
   @JsonKey(name: 'created_by')
-  UserModel user;
+  UserModel? user;
 
   @JsonKey(name: 'map_unit')
   int mapUnitId;

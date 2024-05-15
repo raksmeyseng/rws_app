@@ -32,38 +32,44 @@ class WaterSupplyEditRepository extends RestApiService {
     required int id,
     required PayloadWaterSupplyModel payload,
   }) async {
-    if (id == 0) {
-      //print(ApiPath.addWaterSupply);
-      final res = await post(ApiPath.addWaterSupply, data: payload);
-      ResponseWaterSupplyModel response =
-          ResponseWaterSupplyModel.fromJson(res);
-      print(res);
-      if (response.status == 200) {
-        //Workflow SECTION
-        final payloadWorkFlow = PayloadWaterSupplyWorkflow(
-            waterSupplyId: response.waterSupplyId,
-            status: payload.mainStatus,
-            user: payload.createdBy);
-        await post(ApiPath.postWorkFlow, data: payloadWorkFlow);
+    try {
+      if (id == 0) {
+        //print(ApiPath.addWaterSupply);
+        final res = await post(ApiPath.addWaterSupply, data: payload);
+        ResponseWaterSupplyModel response =
+            ResponseWaterSupplyModel.fromJson(res);
+        print(res);
+        if (response.status == 200) {
+          //Workflow SECTION
+          final payloadWorkFlow = PayloadWaterSupplyWorkflow(
+              waterSupplyId: response.waterSupplyId,
+              status: payload.mainStatus,
+              user: payload.createdBy);
+          await post(ApiPath.postWorkFlow, data: payloadWorkFlow);
+        }
+        return response;
+      } else {
+        final res = await put(ApiPath.updateWaterSupply(payload.id.toString()),
+            data: payload);
+        ResponseWaterSupplyModel response =
+            ResponseWaterSupplyModel.fromJson(res);
+        print(res);
+        if (response.status == 200) {
+          //Workflow SECTION
+          final payloadWorkFlow = PayloadWaterSupplyWorkflow(
+              waterSupplyId: response.waterSupplyId,
+              status: payload.mainStatus,
+              user: payload.createdBy);
+          await post(ApiPath.postWorkFlow, data: payloadWorkFlow);
+        }
+        return response;
+        //return ResponseWaterSupplyModel.fromJson(res);
       }
-      return response;
-    } else {
-      final res = await put(ApiPath.updateWaterSupply(payload.id.toString()),
-          data: payload);
-      ResponseWaterSupplyModel response =
-          ResponseWaterSupplyModel.fromJson(res);
-      print(res);
-      if (response.status == 200) {
-        //Workflow SECTION
-        final payloadWorkFlow = PayloadWaterSupplyWorkflow(
-            waterSupplyId: response.waterSupplyId,
-            status: payload.mainStatus,
-            user: payload.createdBy);
-        await post(ApiPath.postWorkFlow, data: payloadWorkFlow);
-      }
-      return response;
-      //return ResponseWaterSupplyModel.fromJson(res);
+    } catch (_) {
+      print(_.toString());
     }
+
+    return ResponseWaterSupplyModel(status: 404, waterSupplyId: 0);
   }
 
   Future<PayloadWellModel> addWaterSupplyWell(

@@ -9,6 +9,7 @@ import 'package:rws_app/core/services/local_storage_service.dart';
 import 'package:rws_app/translation/generated/l10n.dart';
 
 class AppRepository {
+  
   Future<bool> saveTheme(String key) {
     return LocalStorageService.instance.saveString(AppConstant.theme, key);
   }

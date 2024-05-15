@@ -35,9 +35,9 @@ class SettingView extends StatelessWidget {
               _UserProfile(),
               SizedBox(height: 10.0),
               Padding(
-                padding:EdgeInsets.all(16.0),
+                padding: EdgeInsets.all(16.0),
                 child: Column(
-                  children:[
+                  children: [
                     _AppTheme(),
                     // SizedBox(height: 14.0),
                     // _LanguageItem(),
@@ -66,8 +66,8 @@ class _UserProfile extends StatelessWidget {
         return state.user;
       },
       builder: (context, user) {
-        String firstName =user?.firstName??'';
-        String lastName= user?.lastName??''; 
+        String firstName = user?.firstName ?? '';
+        String lastName = user?.lastName ?? '';
         return FlatCard(
           color: Theme.of(context).primaryColor,
           child: Stack(
@@ -126,7 +126,6 @@ class _UserProfile extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Flexible(
-                          
                           child: TextWidget(
                             '$firstName $lastName',
                             bold: true,
@@ -261,7 +260,7 @@ class _LogOutButton extends StatelessWidget {
         return _SettingItem(
           iconSvg: AssetPath.iconLogout,
           label: S.of(context).logout,
-          color: Theme.of(context).primaryColor,
+          color: AppColor.white,
           onTap: processing ? null : () => _logout(context),
           processing: processing,
         );

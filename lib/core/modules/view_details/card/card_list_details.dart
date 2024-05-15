@@ -185,10 +185,10 @@ class _ContentView extends StatelessWidget {
               _InfoItem(
                 CaptionWidget('${titleViews[7]} :'),
                 TextWidget(state.waterSupply?.mapUnitId == 1
-                    ? double.parse(state.waterSupply?.utmX ?? '0')
+                    ? double.parse(state.waterSupply?.decimalDegreeLat ?? '0')
                         .toStringAsFixed(0)
                     : state.waterSupply?.mapUnitId == 2
-                        ? state.waterSupply?.decimalDegreeLat
+                        ? state.waterSupply?.utmX
                         : '$state.waterSupply?.mdsXDegree:$state.waterSupply?.mdsXMinute:$state.waterSupply?.mdsXSecond'),
               ),
               const Padding(
@@ -198,10 +198,10 @@ class _ContentView extends StatelessWidget {
               _InfoItem(
                 CaptionWidget('${titleViews[8]} :'),
                 TextWidget(state.waterSupply?.mapUnitId == 1
-                    ? double.parse(state.waterSupply?.utmY ?? '0')
+                    ? double.parse(state.waterSupply?.decimalDegreeLng ?? '0')
                         .toStringAsFixed(0)
                     : state.waterSupply?.mapUnitId == 2
-                        ? state.waterSupply?.decimalDegreeLng
+                        ? state.waterSupply?.utmY
                         : '$state.waterSupply?.mdsYDegree:$state.waterSupply?.mdsYMinute:$state.waterSupply?.mdsYSecond'),
               ),
               const Padding(

@@ -229,7 +229,7 @@ class _SuccessView extends StatelessWidget {
                               ),
                               Expanded(
                                 child: MyButton(
-                                  title: S.of(context).button_submit,
+                                  title: S.of(context).button_submit_request,
                                   color: AppColor.active,
                                   onPressed: () {
                                     context
@@ -1057,8 +1057,15 @@ class _PondInputPage extends StatelessWidget {
   }
 }
 
-class _RainInputPage extends StatelessWidget {
+class _RainInputPage extends StatefulWidget {
   const _RainInputPage({Key? key}) : super(key: key);
+
+  @override
+  State<_RainInputPage> createState() => _RainInputPageState();
+}
+
+class _RainInputPageState extends State<_RainInputPage> {
+  int valueCallBack = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -1089,10 +1096,31 @@ class _RainInputPage extends StatelessWidget {
           children: [
             Expanded(
               child: _CheckWaterQualityInput(
-                voidCallback: (value) {},
+                voidCallback: (value) {
+                  setState(() {
+                    valueCallBack = value;
+                    print('value is : $valueCallBack');
+                  });
+                },
               ),
             ),
           ],
+        ),
+        const SizedBox(height: 16),
+        Visibility(
+          visible: valueCallBack == 0 ? true : false,
+          child: const Padding(
+            padding: EdgeInsets.only(left: 5.0, right: 5.0),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(child: WaterSupplyEditManageView()),
+                SizedBox(width: 16),
+                Expanded(child: WaterSupplyEditManageTextBox()),
+              ],
+            ),
+          ),
         ),
         //bottom padding
         const SizedBox(height: 30),
@@ -1101,9 +1129,15 @@ class _RainInputPage extends StatelessWidget {
   }
 }
 
-class _PipeInputPage extends StatelessWidget {
+class _PipeInputPage extends StatefulWidget {
   const _PipeInputPage({Key? key}) : super(key: key);
 
+  @override
+  State<_PipeInputPage> createState() => _PipeInputPageState();
+}
+
+class _PipeInputPageState extends State<_PipeInputPage> {
+  int valueCallBack = 1;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -1161,9 +1195,15 @@ class _PipeInputPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Expanded(
-                child: _CheckWaterQualityInput(
-              voidCallback: (value) {},
-            )),
+              child: _CheckWaterQualityInput(
+                voidCallback: (value) {
+                  setState(() {
+                    valueCallBack = value;
+                    print('value is : $valueCallBack');
+                  });
+                },
+              ),
+            ),
           ],
         ),
         const SizedBox(height: 16),
@@ -1213,6 +1253,22 @@ class _PipeInputPage extends StatelessWidget {
           children: [
             Expanded(child: _PipeStatusInput()),
           ],
+        ),
+        const SizedBox(height: 16),
+        Visibility(
+          visible: valueCallBack == 0 ? true : false,
+          child: const Padding(
+            padding: EdgeInsets.only(left: 5.0, right: 5.0),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(child: WaterSupplyEditManageView()),
+                SizedBox(width: 16),
+                Expanded(child: WaterSupplyEditManageTextBox()),
+              ],
+            ),
+          ),
         ),
         //bottom padding
         const SizedBox(height: 30),
@@ -1391,9 +1447,9 @@ class _DistrictInput extends StatelessWidget {
                                 horizontal: 24.0,
                               ),
                               title: TextWidget(
-                                  appLocale.languageCode == 'en'
-                                      ? dis.nameEn
-                                      : dis.nameKh,
+                                appLocale.languageCode == 'en'
+                                    ? dis.nameEn
+                                    : dis.nameKh,
                               ),
                             ),
                           ),
@@ -1472,9 +1528,9 @@ class _CommuneInput extends StatelessWidget {
                                 horizontal: 24.0,
                               ),
                               title: TextWidget(
-                                  appLocale.languageCode == 'en'
-                                  ? com.nameEn
-                                      : com.nameKh,
+                                appLocale.languageCode == 'en'
+                                    ? com.nameEn
+                                    : com.nameKh,
                               ),
                             ),
                           ),
@@ -1554,8 +1610,8 @@ class _VillageInput extends StatelessWidget {
                               ),
                               title: TextWidget(
                                 appLocale.languageCode == 'en'
-                                  ? vill.nameEn
-                                  : vill.nameKh,
+                                    ? vill.nameEn
+                                    : vill.nameKh,
                               ),
                             ),
                           ),
@@ -2711,12 +2767,38 @@ class _DateOfConstructionInput extends StatelessWidget {
 
   Future<DateTime?> _pickDate(BuildContext context) async {
     final DateTime? date = await showDatePicker(
-      context: context,
-      initialDate: context.read<WaterSupplyEditBloc>().state.docInput.value ??
-          DateTime.now(),
-      firstDate: DateHelper.calendarFirstDate(),
-      lastDate: DateHelper.calendarLastDate(),
-    );
+        context: context,
+        initialDate: context.read<WaterSupplyEditBloc>().state.docInput.value ??
+            DateTime.now(),
+        firstDate: DateHelper.calendarFirstDate(),
+        lastDate: DateHelper.calendarLastDate(),
+        builder: (context, child) {
+          return Theme(
+            data: ThemeData.dark().copyWith(
+                colorScheme: const ColorScheme.dark(
+                    onPrimary: Colors.black, // selected text color
+                    onSurface: Colors.amberAccent, // default text color
+                    primary: Colors.amberAccent // circle color
+                    ),
+                dialogBackgroundColor: Colors.black54,
+                textButtonTheme: TextButtonThemeData(
+                    style: TextButton.styleFrom(
+                        textStyle: const TextStyle(
+                            color: Colors.amber,
+                            fontWeight: FontWeight.normal,
+                            fontSize: 12,
+                            fontFamily: 'Quicksand'),
+                        primary: Colors.amber, // color of button's letters
+                        backgroundColor: Colors.black54, // Background color
+                        shape: RoundedRectangleBorder(
+                            side: const BorderSide(
+                                color: Colors.transparent,
+                                width: 1,
+                                style: BorderStyle.solid),
+                            borderRadius: BorderRadius.circular(50))))),
+            child: child!,
+          );
+        });
     return date;
   }
 }
@@ -3586,29 +3668,39 @@ class _SupplierDateInput extends StatelessWidget {
           previous.supplierDateInput != current.supplierDateInput,
       builder: (context, state) {
         final bloc = context.read<WaterSupplyEditBloc>();
-        return Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            MyTextInput(
-              label: S.of(context).label_license_registered_date,
-              controller:
-                  context.read<WaterSupplyEditBloc>().supplierDateController,
-              onTap: () async {
-                final date = await _pickDate(context);
-                if (date != null) {
-                  bloc.add(SupplierDateChanged(date));
-                }
-              },
-              readOnly: true,
-              suffixIcon: const Icon(
-                Icons.calendar_today_outlined,
-                size: 18,
-              ),
-              // errorText: _handleErrorText(context, state),
+        return Theme(
+            data: Theme.of(context).copyWith(
+              primaryColor: const Color(0xFFFF3661), //color of the main banner
+              //accentColor: Color(0xFFFF3661), //color of circle indicating the selected date
+              buttonTheme: const ButtonThemeData(
+                  textTheme: ButtonTextTheme
+                      .accent //color of the text in the button "OK/CANCEL"
+                  ),
             ),
-          ],
-        );
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                MyTextInput(
+                  label: S.of(context).label_license_registered_date,
+                  controller: context
+                      .read<WaterSupplyEditBloc>()
+                      .supplierDateController,
+                  onTap: () async {
+                    final date = await _pickDate(context);
+                    if (date != null) {
+                      bloc.add(SupplierDateChanged(date));
+                    }
+                  },
+                  readOnly: true,
+                  suffixIcon: const Icon(
+                    Icons.calendar_today_outlined,
+                    size: 18,
+                  ),
+                  // errorText: _handleErrorText(context, state),
+                ),
+              ],
+            ));
       },
     );
   }
@@ -3625,13 +3717,39 @@ class _SupplierDateInput extends StatelessWidget {
 
   Future<DateTime?> _pickDate(BuildContext context) async {
     final DateTime? date = await showDatePicker(
-      context: context,
-      initialDate:
-          context.read<WaterSupplyEditBloc>().state.supplierDateInput.value ??
-              DateTime.now(),
-      firstDate: DateHelper.calendarFirstDate(),
-      lastDate: DateHelper.calendarLastDate(),
-    );
+        context: context,
+        initialDate:
+            context.read<WaterSupplyEditBloc>().state.supplierDateInput.value ??
+                DateTime.now(),
+        firstDate: DateHelper.calendarFirstDate(),
+        lastDate: DateHelper.calendarLastDate(),
+        builder: (context, child) {
+          return Theme(
+            data: ThemeData.dark().copyWith(
+                colorScheme: const ColorScheme.dark(
+                    onPrimary: Colors.black, // selected text color
+                    onSurface: Colors.amberAccent, // default text color
+                    primary: Colors.amberAccent // circle color
+                    ),
+                dialogBackgroundColor: Colors.black54,
+                textButtonTheme: TextButtonThemeData(
+                    style: TextButton.styleFrom(
+                        textStyle: const TextStyle(
+                            color: Colors.amber,
+                            fontWeight: FontWeight.normal,
+                            fontSize: 12,
+                            fontFamily: 'Quicksand'),
+                        primary: Colors.amber, // color of button's letters
+                        backgroundColor: Colors.black54, // Background color
+                        shape: RoundedRectangleBorder(
+                            side: const BorderSide(
+                                color: Colors.transparent,
+                                width: 1,
+                                style: BorderStyle.solid),
+                            borderRadius: BorderRadius.circular(50))))),
+            child: child!,
+          );
+        });
     return date;
   }
 }
@@ -3684,13 +3802,39 @@ class _DueDateInput extends StatelessWidget {
 
   Future<DateTime?> _pickDate(BuildContext context) async {
     final DateTime? date = await showDatePicker(
-      context: context,
-      initialDate:
-          context.read<WaterSupplyEditBloc>().state.dueDateInput.value ??
-              DateTime.now(),
-      firstDate: DateHelper.calendarFirstDate(),
-      lastDate: DateHelper.calendarLastDate(),
-    );
+        context: context,
+        initialDate:
+            context.read<WaterSupplyEditBloc>().state.dueDateInput.value ??
+                DateTime.now(),
+        firstDate: DateHelper.calendarFirstDate(),
+        lastDate: DateHelper.calendarLastDate(),
+        builder: (context, child) {
+          return Theme(
+            data: ThemeData.dark().copyWith(
+                colorScheme: const ColorScheme.dark(
+                    onPrimary: Colors.black, // selected text color
+                    onSurface: Colors.amberAccent, // default text color
+                    primary: Colors.amberAccent // circle color
+                    ),
+                dialogBackgroundColor: Colors.black54,
+                textButtonTheme: TextButtonThemeData(
+                    style: TextButton.styleFrom(
+                        textStyle: const TextStyle(
+                            color: Colors.amber,
+                            fontWeight: FontWeight.normal,
+                            fontSize: 12,
+                            fontFamily: 'Quicksand'),
+                        primary: Colors.amber, // color of button's letters
+                        backgroundColor: Colors.black54, // Background color
+                        shape: RoundedRectangleBorder(
+                            side: const BorderSide(
+                                color: Colors.transparent,
+                                width: 1,
+                                style: BorderStyle.solid),
+                            borderRadius: BorderRadius.circular(50))))),
+            child: child!,
+          );
+        });
     return date;
   }
 }

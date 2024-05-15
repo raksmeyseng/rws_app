@@ -39,7 +39,7 @@ Map<String, dynamic> _$AddressToJson(Address instance) => <String, dynamic>{
 
 ProvinceModel _$ProvinceModelFromJson(Map<String, dynamic> json) =>
     ProvinceModel(
-      id: json['id'] as int,
+      id: json['id'] == null ? 0 : json['id'] as int,
       nameEn: json['name_en'] as String,
       nameKh: json['name_kh'] as String,
       provincedistrict: (json['provincedistrict'] as List<dynamic>?)
@@ -58,7 +58,7 @@ Map<String, dynamic> _$ProvinceModelToJson(ProvinceModel instance) =>
 
 DistrictModel _$DistrictModelFromJson(Map<String, dynamic> json) =>
     DistrictModel(
-      id: json['id'] as int,
+      id: json['id'] == null ? 0 : json['id'] as int,
       nameEn: json['name_en'] as String,
       nameKh: json['name_kh'] as String,
       districtCommnue: (json['districtcommnue'] as List<dynamic>?)
@@ -76,7 +76,7 @@ Map<String, dynamic> _$DistrictModelToJson(DistrictModel instance) =>
     };
 
 CommuneModel _$CommuneModelFromJson(Map<String, dynamic> json) => CommuneModel(
-      id: json['id'] as int,
+      id: json['id'] == null ? 0 : json['id'] as int,
       nameEn: json['name_en'] as String,
       nameKh: json['name_kh'] as String,
       commnuevillage: (json['commnuevillage'] as List<dynamic>?)
@@ -94,7 +94,7 @@ Map<String, dynamic> _$CommuneModelToJson(CommuneModel instance) =>
     };
 
 VillageModel _$VillageModelFromJson(Map<String, dynamic> json) => VillageModel(
-      id: json['id'] as int,
+      id: json['id'] == null ? 0 : json['id'] as int,
       nameEn: json['name_en'] as String,
       nameKh: json['name_kh'] as String,
     );

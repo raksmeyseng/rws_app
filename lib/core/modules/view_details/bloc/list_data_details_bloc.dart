@@ -70,10 +70,19 @@ class ListDataDetailsBloc
   Future<void> _onDeleteSubmited(
       DeleteSubmited event, Emitter<ListDataDetailsState> emit) async {
     try {
+      // final waterSupply =
+      //     await repository.getWaterSupplyViewDetail(state.waterSupplyId);
       await repository.deleteWaterSupply(state.waterSupplyId);
 
+      //final waterSupply =await repository.getWaterSupplyViewDetail(state.waterSupplyId);
+
+      emit(state.copyWith(
+        status: BaseStatusEnum.success,
+        waterSupply: null,
+        mainStatus: 0,
+      ));
       //await repository.getExcelFile();
-      emit(state.copyWith(status: BaseStatusEnum.success));
+      //emit(state.copyWith(status: BaseStatusEnum.success));
     } catch (_) {
       emit(state.copyWith(deleteStatus: BaseStatusEnum.failure));
     }
@@ -154,14 +163,25 @@ class ListDataDetailsBloc
       try {
         await Future.delayed(const Duration(milliseconds: 300));
         await repository.submitDraftedWaterSupply(state.waterSupplyId, status);
+
+        // emit(state.copyWith(
+        //   status: BaseStatusEnum.success,
+        // ));
+
+        final waterSupply =
+            await repository.getWaterSupplyViewDetail(state.waterSupplyId);
+
         emit(state.copyWith(
           status: BaseStatusEnum.success,
+          waterSupply: waterSupply,
+          mainStatus: waterSupply.status.id,
         ));
-        await Future.delayed(const Duration(milliseconds: 300));
-        Application.router.goNamed(AppRoute.waterSupplyViewDetail, extra: {
-          'id': state.waterSupplyId.toString(),
-          'title': state.waterSupply!.waterSupplyType.toString(),
-        });
+
+        // await Future.delayed(const Duration(milliseconds: 300));
+        // Application.router.goNamed(AppRoute.waterSupplyViewDetail, extra: {
+        //   'id': state.waterSupplyId.toString(),
+        //   'title': state.waterSupply!.waterSupplyType.toString(),
+        // });
       } catch (_) {
         emit(state.copyWith(
           status: BaseStatusEnum.failure,
@@ -194,8 +214,13 @@ class ListDataDetailsBloc
       try {
         await Future.delayed(const Duration(milliseconds: 300));
         await repository.submitDraftedWaterSupply(state.waterSupplyId, status);
+        final waterSupply =
+            await repository.getWaterSupplyViewDetail(state.waterSupplyId);
+
         emit(state.copyWith(
           status: BaseStatusEnum.success,
+          waterSupply: waterSupply,
+          mainStatus: waterSupply.status.id,
         ));
         await Future.delayed(const Duration(milliseconds: 300));
         Application.router.goNamed(AppRoute.home);

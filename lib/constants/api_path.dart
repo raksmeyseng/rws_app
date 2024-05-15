@@ -63,11 +63,11 @@ class ApiPath {
       '${AppConstant.mainURL}watersupplygetcountbytype/$id/';
 
   static String getAllMyDraft(int id) =>
-      '${AppConstant.mainURL}watersupplybyuserandstatus/?created_by=$id&main_status=3';
+      '${AppConstant.mainURL}v2/watersupplybyuserandstatus?extra=main_status,water_supply_type_id,province_id,district_id,commune_id,village_id&created_by=$id&main_status=3';
   static String getRequestProvincialHeadDepartment(int id) =>
       '${AppConstant.mainURL}watersupplybyuserandstatus/?created_by=$id&main_status=12';
   static String getAllMyRequestedHistory(int id) =>
-      '${AppConstant.mainURL}watersupplybyuser/?search=$id';
+      '${AppConstant.mainURL}v2/watersupplybyuser?extra=main_status,water_supply_type_id,province_id,district_id,commune_id,village_id&search=$id';
   static String getAllMyApprovalHistory(int id) =>
       '${AppConstant.mainURL}watersupplyworkflow/?watersupply_id=&user_id=$id';
   static String getPendingApprovalAdmin(int id) =>

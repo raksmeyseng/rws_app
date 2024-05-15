@@ -856,9 +856,9 @@ class WaterSupplyEditBloc
   }
 
   void _onProvinceChanged(
-      ProvinceChanged event,
-      Emitter<WaterSupplyEditState> emit,
-      ) async {
+    ProvinceChanged event,
+    Emitter<WaterSupplyEditState> emit,
+  ) async {
     final language = Application.appBloc.state.language;
     //final userLocale = language.getLocale();
     //final province = WaterSupplyInput.pure(event.province.nameEn);
@@ -868,7 +868,7 @@ class WaterSupplyEditBloc
         : event.province.nameEn;
     districtController.text = '';
     List<DistrictModel> districts =
-    await repository.getDistrictByProvince(event.province.id);
+        await repository.getDistrictByProvince(event.province.id);
     //provinceController.value=event.province.id as TextEditingValue;
     emit(state.copyWith(
       provinceInput: province,
@@ -887,7 +887,8 @@ class WaterSupplyEditBloc
         ? event.district.nameKh
         : event.district.nameEn;
     communeController.text = '';
-    List<CommuneModel> communes =  await repository.getCommuneByDistrictId(event.district.id);
+    List<CommuneModel> communes =
+        await repository.getCommuneByDistrictId(event.district.id);
     emit(state.copyWith(
       districtInput: distict,
       //communes: event.district.districtCommnue,
@@ -901,11 +902,11 @@ class WaterSupplyEditBloc
   ) async {
     final language = Application.appBloc.state.language;
     final commune = WaterSupplyInput.pure(event.commnue.id.toString());
-    communeController.text = language.name == 'khmer'
-        ? event.commnue.nameKh
-        : event.commnue.nameEn;
+    communeController.text =
+        language.name == 'khmer' ? event.commnue.nameKh : event.commnue.nameEn;
     villageController.text = '';
-    List<VillageModel> villages =  await repository.getVillageByCommuneId(event.commnue.id);
+    List<VillageModel> villages =
+        await repository.getVillageByCommuneId(event.commnue.id);
     emit(state.copyWith(
       communeInput: commune,
       //villages: event.commnue.commnuevillage,
@@ -919,9 +920,8 @@ class WaterSupplyEditBloc
   ) {
     final language = Application.appBloc.state.language;
     final village = WaterSupplyInput.pure(event.village.id.toString());
-    villageController.text = language.name == 'khmer'
-        ? event.village.nameKh
-        : event.village.nameEn;
+    villageController.text =
+        language.name == 'khmer' ? event.village.nameKh : event.village.nameEn;
     emit(state.copyWith(villageInput: village));
   }
 
@@ -1949,6 +1949,7 @@ class WaterSupplyEditBloc
         //print(waterSupplyId);
 
         /* QRCODE SECTION */
+
         repository.getGenerateQRCodeResponse(waterSupplyId).then((qrcode) {
           final payloadWaterSupplyQRCode = PayloadWaterSupplyQRCodeModel(
               waterSupplyId: waterSupplyId, qrCodeImageName: qrcode.qrName);
@@ -2127,7 +2128,9 @@ class WaterSupplyEditBloc
             );
             //print(payloadRain);
             repository.addWaterSupplyRain(payload: payloadRain);
-          } else if (state.waterSupplyTypeId == 6) {
+          } 
+          //PIPE
+          else if (state.waterSupplyTypeId == 6) {
             var licenseRegisteredDateSplit =
                 supplierDateInput.value.toString().split(' ');
             var licenseExpiredDateSplit =

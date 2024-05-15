@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:rws_app/config/themes/app_color.dart';
 import 'package:rws_app/core/enum/base_status_enum.dart';
 import 'package:rws_app/core/modules/my_draft/bloc/my_draft_bloc.dart';
+import 'package:rws_app/core/modules/my_pending_approval/model/my_pending_approval_model.dart';
 import 'package:rws_app/core/widgets/caption_widget.dart';
 import 'package:rws_app/core/widgets/flat_card.dart';
 import 'package:rws_app/core/widgets/load_data_failed.dart';
@@ -103,7 +104,7 @@ class _LoadingView extends StatelessWidget {
 class _MyDraftItem extends StatelessWidget {
   const _MyDraftItem(this.item);
 
-  final WaterSupplyModel item;
+  final PendingApprovalModel item;
 
   @override
   Widget build(BuildContext context) {
