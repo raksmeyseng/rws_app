@@ -140,7 +140,9 @@ class _MyDraftItem extends StatelessWidget {
             CaptionWidget('${S.of(context).water_supply_type} :'),
             Flexible(
               child: TextWidget(
-                item.waterSupply.waterSupplyType,
+                appLocale.languageCode == 'en'
+                    ? item.waterSupply.waterSupplyTypeEn
+                    : item.waterSupply.waterSupplyType,
                 overflow: TextOverflow.ellipsis,
               ),
             ),

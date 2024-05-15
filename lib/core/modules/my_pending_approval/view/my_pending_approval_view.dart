@@ -141,7 +141,7 @@ class _MyDraftItem extends StatelessWidget {
             Flexible(
               child: TextWidget(
                 appLocale.languageCode == 'en'
-                    ? item.waterSupplyType
+                    ? item.waterSupplyTypeEn
                     : item.waterSupplyType,
                 overflow: TextOverflow.ellipsis,
               ),
@@ -149,19 +149,35 @@ class _MyDraftItem extends StatelessWidget {
           ),
           _InfoItem(
             CaptionWidget('${S.of(context).village} :'),
-            TextWidget(item.village?.nameEn),
+            TextWidget(
+                appLocale.languageCode == 'en'
+                    ? item.village?.nameEn
+                    : item.village?.nameKh
+            ),
           ),
           _InfoItem(
             CaptionWidget('${S.of(context).commune} :'),
-            TextWidget(item.commune.nameEn),
+            TextWidget(
+                appLocale.languageCode == 'en'
+                    ? item.commune.nameEn
+                    : item.commune.nameKh
+            ),
           ),
           _InfoItem(
             CaptionWidget('${S.of(context).district} :'),
-            TextWidget(item.district.nameEn),
+            TextWidget(
+              appLocale.languageCode == 'en'
+                  ? item.district.nameEn
+                  : item.district.nameKh
+            ),
           ),
           _InfoItem(
             CaptionWidget('${S.of(context).province} :'),
-            TextWidget(item.address.nameEn),
+            TextWidget(
+                appLocale.languageCode == 'en'
+                    ? item.address.nameEn
+                    : item.address.nameKh
+                ),
           ),
           const Padding(
             padding: EdgeInsets.symmetric(vertical: 8),
@@ -169,7 +185,10 @@ class _MyDraftItem extends StatelessWidget {
           ),
           _InfoItem(
             CaptionWidget('${S.of(context).status} :'),
-            TextWidget(item.status.statusNameKh.toString(),
+            TextWidget(
+              appLocale.languageCode == 'en'
+              ? item.status.statusName.toString()
+              : item.status.statusNameKh.toString(),
                 color: AppColor.warning),
           ),
         ],

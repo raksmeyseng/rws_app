@@ -280,7 +280,7 @@ class _ApprovalButtonBar extends StatelessWidget {
               ),
               Expanded(
                 child: MyButton(
-                  title: 'Approve',
+                  title: S.of(context).approve,
                   color: AppColor.active,
                   onPressed: () {
                     // Blurry(
